@@ -58,7 +58,7 @@
         }
     });
 
-function submit_password() {
+    async function submit_password() {
     buttonClicks += 1
     var password = document.getElementById('password-field').value;
     var confirmPassword = document.getElementById('toggle-password2').value;
@@ -86,13 +86,25 @@ function submit_password() {
     }
 
     if (confirmPassword !== "" && password !== "") {
-        // If the fields are not empty, save to localStorage
-        localStorage.setItem('first_name', name);
-        localStorage.setItem('last_name', last_name);
-        localStorage.setItem('email', email);
-        localStorage.setItem('code', code);
+        // If the fields are not empty, get from localStorage
+        localStorage.getItem('first_name');
+        localStorage.getItem('last_name');
+        localStorage.getItem('email');
+        localStorage.getItem('code');
+        try {
+            const response = await fetch("https://payuee.onrender.com");
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-    window.location.href = 'signup-password-new.html'
+    window.location.href = 'signup-confirm-otp.html'
 }
 
 
