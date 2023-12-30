@@ -1,8 +1,9 @@
     var buttonClicks = 0
     
     // this event listener runs only when the sign up button is triggered
-    document.getElementById('submitPassword').addEventListener('click', function() {
-        submit_password() ;
+    document.getElementById('submitPassword').addEventListener('click', async function() {
+        event.preventDefault(); // Prevent the form from submitting
+        await submit_password() ;
     }) ;
 
     // this event listener clears an existing error
@@ -123,6 +124,9 @@
         } catch (error) {
             reactivateButtonStyles()
             console.error('Error:', error);
+            if (error.error == 'User already exist, please login') {
+                
+            }
         }
     }
     // window.location.href = 'signup-confirm-otp.html'
