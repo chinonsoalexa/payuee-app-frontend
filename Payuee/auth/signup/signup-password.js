@@ -92,7 +92,7 @@
         localStorage.getItem('email');
         localStorage.getItem('code');
         try {
-            const response = await fetch("https://payuee.onrender.com");
+            const response = await fetch("https://payuee.onrender.com/sign-up");
             
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -101,7 +101,7 @@
             const data = await response.json();
             console.log(data);
         } catch (error) {
-            console.error('Error:', error);
+            console.log('Error:', error);
         }
     }
     window.location.href = 'signup-confirm-otp.html'
