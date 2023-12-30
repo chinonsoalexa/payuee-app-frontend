@@ -87,12 +87,30 @@
 
     if (confirmPassword !== "" && password !== "") {
         // If the fields are not empty, get from localStorage
-        localStorage.getItem('first_name');
-        localStorage.getItem('last_name');
-        localStorage.getItem('email');
-        localStorage.getItem('code');
+        const fname = localStorage.getItem('first_name');
+        const lname = localStorage.getItem('last_name');
+        const email = localStorage.getItem('email');
+        // localStorage.getItem('code');
+        const user = {
+            FirstName: fname,
+            LastName: lname,
+            password: confirmPassword,
+            email: email,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/sign-up";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(user),
+          };
+          
         try {
-            const response = await fetch("https://payuee.onrender.com/sign-up");
+            const response = await fetch(apiUrl, requestOptions);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -101,7 +119,7 @@
             const data = await response.json();
             console.log(data);
         } catch (error) {
-            console.log('Error:', error);
+            console.error('Error:', error);
         }
     }
     window.location.href = 'signup-confirm-otp.html'
