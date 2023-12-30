@@ -110,6 +110,7 @@
           };
           
         try {
+            deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
             
             if (!response.ok) {
@@ -117,8 +118,10 @@
             }
     
             const data = await response.json();
+            reactivateButtonStyles()
             console.log(data);
         } catch (error) {
+            reactivateButtonStyles()
             console.error('Error:', error);
         }
     }
@@ -151,4 +154,19 @@ function clearError(id) {
         errorElement.textContent = ''; // Clear the error message
         // errorElement.style.display = 'none'; // Hide the error message
     }
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles() {
+    var resendButton = document.getElementById('submitPassword');
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles() {
+    var resendButton = document.getElementById('submitPassword');
+    // Remove all existing classes
+    resendButton.className = '';
+    // Add the original class 'cmn__btn'
+    resendButton.classList.add('cmn__btn');
 }
