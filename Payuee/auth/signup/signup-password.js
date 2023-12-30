@@ -125,7 +125,7 @@
             console.error('Error:', error);
         }
     }
-    window.location.href = 'signup-confirm-otp.html'
+    // window.location.href = 'signup-confirm-otp.html'
 }
 
 
