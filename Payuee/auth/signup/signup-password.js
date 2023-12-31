@@ -119,7 +119,7 @@
             }
             const data = await response.json();
             reactivateButtonStyles()
-            window.location.href = '../../page/signup-confirm-otp.html'
+            window.location.href = '../Payuee/page/signup-confirm-otp.html'
             console.log(data);
         } catch (error) {
             reactivateButtonStyles()
