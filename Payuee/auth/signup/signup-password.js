@@ -119,7 +119,7 @@
             }
             const data = await response.json();
             reactivateButtonStyles()
-            window.location.href = 'https://payuee.vercel.app/Payuee/page/signup-confirm-otp.html'
+            window.location.href = 'https://payuee.vercel.app/page/signup-confirm-otp.html'
             console.log(data);
         } catch (error) {
             reactivateButtonStyles()
