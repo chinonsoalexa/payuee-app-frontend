@@ -120,16 +120,16 @@
     
             const data = await response.json();
             reactivateButtonStyles()
+           window.location.href = 'signup-confirm-otp.html'
             console.log(data);
         } catch (error) {
             reactivateButtonStyles()
             console.error('Error:', error);
-            if (error.error == 'User already exist, please login') {
+            // if (error.error == 'User already exist, please login') {
                 
-            }
+            // }
         }
     }
-    // window.location.href = 'signup-confirm-otp.html'
 }
 
 
