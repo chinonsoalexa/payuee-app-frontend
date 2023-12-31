@@ -11,15 +11,14 @@ window.onload = function () {
 // event listener to resend otp
 document.getElementById('resend-otp').addEventListener('click', function () {
     submitButtonOTP('input1');
-    // startResendTimer();
 });
 
 // Add event listeners for each input
-document.getElementById('input1').addEventListener('input', function () {
-    submitInputOTP('input1');
+document.getElementById('input1').addEventListener('input', async function () {
+    await submitInputOTP('input1');
 });
 
-function submitInputOTP(currentInput) {
+async function submitInputOTP(currentInput) {
     currentInput = document.getElementById(currentInput);
 
     if (!currentInput) {
@@ -32,8 +31,44 @@ function submitInputOTP(currentInput) {
 
     // check length of the input
     if (currentLength === parseInt(maxLength)) {
+        deactivateInputStyles()
         // send a post request with the otp
-        startResendTimer()
+        const otp = {
+            otp: currentInput.value,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/email-verification";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(otp),
+          };
+          
+        try {
+            deactivateButtonStyles()
+            const response = await fetch(apiUrl, requestOptions);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            } else {
+                const data = await response.json();
+                reactivateInputStyles()
+                localStorage.setItem('auth', 'true')
+                window.location.href = '../../../index-in.html'
+                console.log(data);
+            }
+        } catch (error) {
+            reactivateInputStyles()
+            console.error('Error:', error);
+            if (error.error == 'User already exist, please login') {
+                showError('otpError', "Please login user already exist.");
+                return;
+            }
+        }
     }
 }
 
@@ -48,15 +83,16 @@ function submitButtonOTP(currentInput) {
     const maxLength = currentInput.getAttribute('maxlength');
     const currentLength = currentInput.value.length;
 
-    if (currentLength !== parseInt(maxLength)) {
-        showError('otpError', "Please enter 6 digit otp values.", 5000);
-        return;
-    }
+    // if (currentLength !== parseInt(maxLength)) {
+    //     showError('otpError', "Please enter 6 digit otp values.", 5000);
+    //     return;
+    // }
 
     // check length of the input
     if (currentLength === parseInt(maxLength)) {
-        // send a post request with the otp
         startResendTimer()
+        // send a post request with the otp
+
     }
 }
 
@@ -185,6 +221,22 @@ function reactivateButtonStyles() {
     
     // Add the original class 'cmn__btn'
     resendButton.classList.add('cmn__btn');
+    
+    clearError('otpError');
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateInputStyles() {
+    var currentInput = document.getElementById('input1');
+    // Disable the input field
+    currentInput.disabled = true;
+}
+
+// Add this function to reactivate the button styles
+function reactivateInputStyles() {
+    var currentInput = document.getElementById('input1');
+    // Re-enable the input field
+    currentInput.disabled = false;
     
     clearError('otpError');
 }
