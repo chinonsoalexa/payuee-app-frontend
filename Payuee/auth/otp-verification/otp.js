@@ -65,7 +65,10 @@ async function submitInputOTP(currentInput) {
             reactivateInputStyles()
             localStorage.setItem('auth', 'true')
             window.location.href = '../../../index-in.html'
-            console.log(data);
+            localStorage.removeItem('code')
+            localStorage.removeItem('last_name')
+            localStorage.removeItem('first_name')
+            localStorage.removeItem('email')
         } catch (error) {
             reactivateInputStyles()
             console.error('Error:', error);
