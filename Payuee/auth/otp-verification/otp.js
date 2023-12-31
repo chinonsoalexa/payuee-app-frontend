@@ -64,7 +64,7 @@ async function submitInputOTP(currentInput) {
             const data = await response.json();
             reactivateInputStyles()
             localStorage.setItem('auth', 'true')
-            window.location.href = '../index-in.html'
+            window.location.href = '../../../index-in.html'
             console.log(data);
         } catch (error) {
             reactivateInputStyles()
