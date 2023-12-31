@@ -119,7 +119,7 @@
             }
             const data = await response.json();
             reactivateButtonStyles()
-            window.location.href = 'signup-confirm-otp.html'
+            window.location.href = '../../page/signup-confirm-otp-new.html'
             console.log(data);
         } catch (error) {
             reactivateButtonStyles()
