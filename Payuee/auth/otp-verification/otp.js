@@ -53,13 +53,12 @@ async function submitInputOTP(currentInput) {
             
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            } else {
-                const data = await response.json();
-                reactivateInputStyles()
-                localStorage.setItem('auth', 'true')
-                window.location.href = '../../../index-in.html'
-                console.log(data);
-            }
+            } 
+            const data = await response.json();
+            reactivateInputStyles()
+            localStorage.setItem('auth', 'true')
+            window.location.href = '../../../index-in.html'
+            console.log(data);
         } catch (error) {
             reactivateInputStyles()
             console.error('Error:', error);

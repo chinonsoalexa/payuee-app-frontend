@@ -116,12 +116,11 @@
             
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            }else {
-                const data = await response.json();
-                reactivateButtonStyles()
-                window.location.href = '../../page/signup-confirm-otp.html'
-                console.log(data);
             }
+            const data = await response.json();
+            reactivateButtonStyles()
+            window.location.href = '../../page/signup-confirm-otp.html'
+            console.log(data);
         } catch (error) {
             reactivateButtonStyles()
             console.error('Error:', error);
