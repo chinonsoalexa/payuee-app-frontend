@@ -51,8 +51,15 @@ async function submitInputOTP(currentInput) {
         try {
             const response = await fetch(apiUrl, requestOptions);
             
+
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                // throw new Error(`HTTP error! Status: ${response.status}`);
+                data = await response.json();
+                if (data.error == 'User already exist, please login') {
+                    showError('otpError', "Please login user already exist.");
+                    return;
+                }
+                return
             } 
             const data = await response.json();
             reactivateInputStyles()
@@ -62,10 +69,6 @@ async function submitInputOTP(currentInput) {
         } catch (error) {
             reactivateInputStyles()
             console.error('Error:', error);
-            if (error.error == 'User already exist, please login') {
-                showError('otpError', "Please login user already exist.");
-                return;
-            }
         }
     }
 }
