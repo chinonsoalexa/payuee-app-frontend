@@ -34,7 +34,7 @@ async function submitInputOTP(currentInput) {
         deactivateInputStyles()
         // send a post request with the otp
         const otp = {
-            otp: currentInput.value,
+            SentOTP: currentInput.value,
           };
 
           const apiUrl = "https://payuee.onrender.com/email-verification";
