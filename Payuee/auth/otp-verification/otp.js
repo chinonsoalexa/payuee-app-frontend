@@ -49,7 +49,6 @@ async function submitInputOTP(currentInput) {
           };
           
         try {
-            deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
             
             if (!response.ok) {
