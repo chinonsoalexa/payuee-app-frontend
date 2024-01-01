@@ -115,28 +115,23 @@ async function submit_password() {
             const response = await fetch(apiUrl, requestOptions);
             
             if (!response.ok) {
-                try {
-                    // Parse the response JSON
-                    const errorData = await response.json();
-                    // Check the error message
-                    if (errorData.error === 'User already exist, please login') {
-                        // Perform actions specific to this error
-                        showError('otpError', 'User already exists. Please login.');
-                    } else if (errorData.error === 'Please login using your google account') {
-                        // Handle other error cases
-                        showError('otpError', 'Please login using your google account.');
-                    } else if (errorData.error === 'User already exist, please verify your email ID') {
-                        // redirect user to verify email ID
-                        // window.location.href = '/verify';
-                    } else if (errorData.error === 'email verification failed') {
-                        // Handle other error cases
-                        showError('otpError', 'An error occurred while sending you an OTP. Please try resending an OTP.');
-                    }
-                } catch (parseError) {
-                    // Handle errors when parsing JSON
-                    showError('otpError', 'An error occurred. Please try again.');
+                // Parse the response JSON
+                const errorData = await response.json();
+                console.log(errorData);
+                // Check the error message
+                if (errorData.error === 'User already exist, please login') {
+                    // Perform actions specific to this error
+                    showError('passwordError', 'User already exists. Please login.');
+                } else if  (errorData.error === 'Please login using your google account') {
+                    // Handle other error cases
+                    showError('passwordError', 'Please login using your google account.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    // redirect user to verify email ID
+                    // window.location.href = '/verify';
+                } else if  (errorData.error === 'email verification failed') {
+                    // Handle other error cases
+                    showError('passwordError', 'an error occurred while sending you an otp, please try resending an otp.');
                 }
-                reactivateButtonStyles();
                 return;
             }
             // const data = await response.json();
@@ -144,7 +139,7 @@ async function submit_password() {
             window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
         } catch (error) {
             // Handle fetch-related errors
-            showError('otpError', 'An error occurred. Please try again.');
+            showError('passwordError', 'An error occurred. Please try again.');
         }
         reactivateButtonStyles();
     }
