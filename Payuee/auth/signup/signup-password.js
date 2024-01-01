@@ -134,13 +134,13 @@ async function submit_password() {
                 return;
             }
             // const data = await response.json();
-            reactivateButtonStyles()
+            reactivateButtonStyles();
             window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
         } catch (error) {
             // Handle fetch-related errors
-            reactivateButtonStyles();
             showError('otpError', 'An error occurred. Please try again.');
         }
+        reactivateButtonStyles();
     }
 }
 

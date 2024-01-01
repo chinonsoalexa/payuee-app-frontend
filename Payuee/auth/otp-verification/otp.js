@@ -122,7 +122,6 @@ async function resendButtonOTP(currentInput) {
             return;
         } 
         const data = await response.json();
-        reactivateInputStyles();
     } catch (error) {
         // Handle fetch-related errors
         reactivateButtonStyles();
@@ -244,11 +243,11 @@ function deactivateButtonStyles() {
 // Add this function to reactivate the button styles
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('resend-otp');
-    // Remove all existing classes
-    resendButton.className = '';
-    
+    // // Remove all existing classes
+    // resendButton.className = '';
+    resendButton.classList.remove('deactivated');
     // Add the original class 'cmn__btn'
-    resendButton.classList.add('cmn__btn');
+    // resendButton.classList.add('cmn__btn');
     
     clearError('otpError');
 }
