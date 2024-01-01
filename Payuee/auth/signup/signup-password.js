@@ -115,22 +115,28 @@ async function submit_password() {
             const response = await fetch(apiUrl, requestOptions);
             
             if (!response.ok) {
-                // Parse the response JSON
-                const errorData = await response.json();
-                // Check the error message
-                if (errorData.error === 'User already exist, please login') {
-                    // Perform actions specific to this error
-                    showError('otpError', 'User already exists. Please login.');
-                } else if  (errorData.error === 'Please login using your google account') {
-                    // Handle other error cases
-                    showError('otpError', 'Please login using your google account.');
-                } else if  (errorData.error === 'User already exist, please verify your email ID') {
-                    // redirect user to verify email ID
-                    // window.location.href = '/verify';
-                } else if  (errorData.error === 'email verification failed') {
-                    // Handle other error cases
-                    showError('otpError', 'an error occurred while sending you an otp, please try resending an otp.');
+                try {
+                    // Parse the response JSON
+                    const errorData = await response.json();
+                    // Check the error message
+                    if (errorData.error === 'User already exist, please login') {
+                        // Perform actions specific to this error
+                        showError('otpError', 'User already exists. Please login.');
+                    } else if (errorData.error === 'Please login using your google account') {
+                        // Handle other error cases
+                        showError('otpError', 'Please login using your google account.');
+                    } else if (errorData.error === 'User already exist, please verify your email ID') {
+                        // redirect user to verify email ID
+                        // window.location.href = '/verify';
+                    } else if (errorData.error === 'email verification failed') {
+                        // Handle other error cases
+                        showError('otpError', 'An error occurred while sending you an OTP. Please try resending an OTP.');
+                    }
+                } catch (parseError) {
+                    // Handle errors when parsing JSON
+                    showError('otpError', 'An error occurred. Please try again.');
                 }
+                reactivateButtonStyles();
                 return;
             }
             // const data = await response.json();

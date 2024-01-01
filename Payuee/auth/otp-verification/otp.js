@@ -237,6 +237,7 @@ function showError(id, message, duration = 5000) {
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
     var resendButton = document.getElementById('resend-otp');
+    resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
@@ -247,7 +248,7 @@ function reactivateButtonStyles() {
     // resendButton.className = '';
     resendButton.classList.remove('deactivated');
     // Add the original class 'cmn__btn'
-    // resendButton.classList.add('cmn__btn');
+    resendButton.classList.add('cmn__btn');
     
     clearError('otpError');
 }
