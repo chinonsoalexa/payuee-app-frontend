@@ -125,7 +125,7 @@ async function submit_password() {
                 } else if  (errorData.error === 'Please login using your google account') {
                     // Handle other error cases
                     showError('passwordError', 'Please login using your google account.');
-                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                } else if  (errorData === 'User already exist, please verify your email ID') {
                     // redirect user to verify email ID
                     // window.location.href = '/verify';
                 } else if  (errorData.error === 'email verification failed') {
