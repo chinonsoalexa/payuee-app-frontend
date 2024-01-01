@@ -92,7 +92,7 @@ async function resendButtonOTP(currentInput) {
     // }
 
     startResendTimer()
-    deactivateInputStyles();
+    deactivateButtonStyles();
     // send a post request with the otp
     const otp = {
         ReSentOTP: currentInput.value,
@@ -118,7 +118,6 @@ async function resendButtonOTP(currentInput) {
             data = await response.json();
             if (data.error == 'Failed to get previous email OTP') {
                 showError('otpError', "Email not found, please re-enter your email address.");
-                return;
             }
             return;
         } 
@@ -238,18 +237,12 @@ function showError(id, message, duration = 5000) {
 
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
-    var currentInput = document.getElementById('input1');
-    // Disable the input field
-    currentInput.disabled = true;
     var resendButton = document.getElementById('resend-otp');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 // Add this function to reactivate the button styles
 function reactivateButtonStyles() {
-    var currentInput = document.getElementById('input1');
-    // Re-enable the input field
-    currentInput.disabled = false;
     var resendButton = document.getElementById('resend-otp');
     // Remove all existing classes
     resendButton.className = '';
