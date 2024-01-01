@@ -9,8 +9,8 @@ window.onload = function () {
 };
 
 // event listener to resend otp
-document.getElementById('resend-otp').addEventListener('click', function () {
-    submitButtonOTP('input1');
+document.getElementById('resend-otp').addEventListener('click', async function () {
+    await resendButtonOTP('input1');
 });
 
 // Add event listeners for each input
@@ -31,7 +31,7 @@ async function submitInputOTP(currentInput) {
 
     // check length of the input
     if (currentLength === parseInt(maxLength)) {
-        deactivateInputStyles()
+        deactivateInputStyles();
         // send a post request with the otp
         const otp = {
             SentOTP: currentInput.value,
@@ -59,24 +59,24 @@ async function submitInputOTP(currentInput) {
                     showError('otpError', "Please login user already exist.");
                     return;
                 }
-                return
+                return;
             } 
             const data = await response.json();
-            reactivateInputStyles()
-            localStorage.setItem('auth', 'true')
-            window.location.href = '../../../index-in.html'
-            localStorage.removeItem('code')
-            localStorage.removeItem('last_name')
-            localStorage.removeItem('first_name')
-            localStorage.removeItem('email')
+            reactivateInputStyles();
+            localStorage.setItem('auth', 'true');
+            window.location.href = '../../../index-in.html';
+            localStorage.removeItem('code');
+            localStorage.removeItem('last_name');
+            localStorage.removeItem('first_name');
+            localStorage.removeItem('email');
         } catch (error) {
-            reactivateInputStyles()
+            reactivateInputStyles();
             console.error('Error:', error);
         }
     }
 }
 
-function submitButtonOTP(currentInput) {
+async function resendButtonOTP(currentInput) {
     currentInput = document.getElementById(currentInput);
 
     if (!currentInput) {
@@ -84,19 +84,50 @@ function submitButtonOTP(currentInput) {
     }
 
     currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only numerical values
-    const maxLength = currentInput.getAttribute('maxlength');
-    const currentLength = currentInput.value.length;
+    let emailOTP = localStorage.getItem('email');
 
     // if (currentLength !== parseInt(maxLength)) {
     //     showError('otpError', "Please enter 6 digit otp values.", 5000);
     //     return;
     // }
 
-    // check length of the input
-    if (currentLength === parseInt(maxLength)) {
-        startResendTimer()
-        // send a post request with the otp
+    startResendTimer()
+    deactivateInputStyles();
+    // send a post request with the otp
+    const otp = {
+        ReSentOTP: currentInput.value,
+        Email: emailOTP,
+    };
 
+    const apiUrl = "https://payuee.onrender.com/resend-otp";
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(otp),
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            // throw new Error(`HTTP error! Status: ${response.status}`);
+            data = await response.json();
+            if (data.error == 'Failed to get previous email OTP') {
+                showError('otpError', "Email not found, please re-enter your email address.");
+                return;
+            }
+            return;
+        } 
+        const data = await response.json();
+        reactivateInputStyles();
+    } catch (error) {
+        // Handle fetch-related errors
+        reactivateButtonStyles();
+        showError('otpError', 'An error occurred. Please try again.');
     }
 }
 

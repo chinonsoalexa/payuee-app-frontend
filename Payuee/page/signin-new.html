@@ -5,7 +5,7 @@
 <!-- Mirrored from /Payuee/Payuee/Signin.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:45:35 GMT -->
 
 <head>
-   <script src="../auth/auth-page-in.js" defer></script>
+   <script src="../auth/signin/signin.js" defer></script>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -250,18 +250,20 @@
                         <div class="col-lg-12">
                            <div class="input__grp">
                               <label for="email">Enter Your Email ID</label>
-                              <input type="email" id="email" placeholder="Your email ID here">
+                              <input type="email" id="email_id" placeholder="Your email address here">
+                              <p id="emailError" class="error-message"></p>
                            </div>
                         </div>
                         <div class="col-lg-12">
                            <div class="input__grp">
                               <label for="pass">Enter Your Password</label>
-                              <input type="text" id="pass" placeholder="Your Password">
+                              <input type="text" id="password" placeholder="Your Password">
+                              <p id="passwordError" class="error-message"></p>
                            </div>
                         </div>
                         <div class="col-lg-12">
                            <div class="input__grp">
-                              <button type="submit" class="cmn__btn">
+                              <button type="button" id="signin_button" class="cmn__btn">
                                  <span>
                                     Signin
                                  </span>
@@ -275,7 +277,7 @@
                            </div>
                         </div>
                         <div class="forgotDiv">
-                           <a href="password.html" class="forgot">
+                           <a href="change-password-email.html" class="forgot">
                               Forgot Password?
                            </a>
                            <span>
