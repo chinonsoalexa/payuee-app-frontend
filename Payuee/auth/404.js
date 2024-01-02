@@ -1,4 +1,4 @@
-// Listen for the DOMContentLoaded event
+// Listen for the click event
 document.getElementById('not_found').addEventListener('click', function () {
     // Run your authentication status check function
     page_not_found();
