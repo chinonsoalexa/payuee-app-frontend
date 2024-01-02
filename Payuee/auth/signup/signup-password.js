@@ -134,6 +134,7 @@ async function submit_password() {
                     // Handle other error cases
                     showError('passwordError', 'an error occurred while sending you an otp, please try resending an otp.');
                 }
+                  reactivateButtonStyles();
                 return;
             }
             // const data = await response.json();
