@@ -95,7 +95,6 @@ async function resendButtonOTP(currentInput) {
     deactivateButtonStyles();
     // send a post request with the otp
     const otp = {
-        ReSentOTP: currentInput.value,
         Email: emailOTP,
     };
 

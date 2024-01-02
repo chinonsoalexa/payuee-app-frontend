@@ -26,6 +26,20 @@
             showError('passwordError', 'Please enter your password', 5000)
         }
 
+        // Define password criteria
+        var hasUpperCase = /[A-Z]/.test(password);
+        var hasLowerCase = /[a-z]/.test(password);
+        var hasNumber = /\d/.test(password);
+        var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+        // Check if password meets the criteria
+        if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
+            err = true
+            showError('passwordError', "Invalid password.", 5000);
+            return
+    }
+
+
         if (!err) {
             // send post request
         }

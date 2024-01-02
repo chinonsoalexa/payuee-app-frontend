@@ -8,7 +8,7 @@ function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
         // let's redirect to a non-authenticated page cause the user is not authenticated
         window.location.href = '../payuee/page/signin-new.html';
-        // let's clear any local storage item
+        // let's clear auth local storage item
         localStorage.removeItem('auth');
     }
 }
