@@ -154,6 +154,21 @@ function showError(id, message) {
     errorElement.textContent = message;
 }
 
+function showErrorUserExist(id, message, duration = 5000) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
+
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
+        errorElement.textContent = ''; // Clear the error message
+        errorElement.style.display = 'none'; // Hide the error message
+        // redirect user to verify his email address
+        window.location.href = 'verify-email.html';
+    }, duration);
+}
+
 function showErrorAgain(id, message) {
     // Show error message
     if (buttonClicks > 0) {
