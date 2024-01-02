@@ -56,6 +56,8 @@ async function resendButtonOTP(currentInput) {
             errorData = await response.json();
             if (errorData.error == 'Failed to get previous email OTP') {
                 showError('emailError', "Email not found, please re-enter your email address.");
+            } else {
+                showError('emailError', 'An error occurred. Please try again.');
             }
             reactivateButtonStyles();
             return;
@@ -64,11 +66,10 @@ async function resendButtonOTP(currentInput) {
         // const data = await response.json();
         // if all process was okay let's redirect to the otp page for verification
         window.location.href = 'signup-confirm-otp-new.html'
-    } catch (error) {
-        // Handle fetch-related errors
-        reactivateButtonStyles();
-        showError('emailError', 'An error occurred. Please try again.');
+    } finally {
+        // do nothing cause error has been handled
     }
+    reactivateButtonStyles();
 }
 
 function isValidEmail(email) {

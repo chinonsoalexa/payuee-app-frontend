@@ -58,6 +58,8 @@ async function submitInputOTP(currentInput) {
                 if (data.error == 'User already exist, please login') {
                     showError('otpError', "Please login user already exist.");
                     return;
+                } else {
+                    showError('otpError', `an error occurred. Please try again.`);
                 }
                 return;
             } 
@@ -69,10 +71,10 @@ async function submitInputOTP(currentInput) {
             localStorage.removeItem('last_name');
             localStorage.removeItem('first_name');
             localStorage.removeItem('email');
-        } catch (error) {
-            reactivateInputStyles();
-            console.error('Error:', error);
+        } finally{
+            
         }
+        reactivateInputStyles();
     }
 }
 
@@ -117,15 +119,16 @@ async function resendButtonOTP(currentInput) {
             data = await response.json();
             if (data.error == 'Failed to get previous email OTP') {
                 showError('otpError', "Email not found, please re-enter your email address.");
+            } else {
+                showError('otpError', 'An error occurred. Please try again.');
             }
             return;
         } 
         const data = await response.json();
-    } catch (error) {
-        // Handle fetch-related errors
-        reactivateButtonStyles();
-        showError('otpError', 'An error occurred. Please try again.');
+    } finally {
+        // do nothing cause error has been handled
     }
+    reactivateButtonStyles();
 }
 
 function startResendTimer() {

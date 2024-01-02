@@ -60,6 +60,7 @@
     });
 
 async function submit_password() {
+    var auth_check = false
     buttonClicks += 1
     var password = document.getElementById('password-field').value;
     var confirmPassword = document.getElementById('toggle-password2').value;
@@ -72,21 +73,24 @@ async function submit_password() {
 
     // Check if password meets the criteria
     if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
+        auth_check = true
         showError('passwordError', "Password must have at least 8 characters, including uppercase, lowercase, number, and symbol.");
         return
     }
 
     if (confirmPassword === '') {
+        auth_check = true
         showError('confirmPasswordError', "Please confirm your password.");
         return
     }
 
     if (confirmPassword !== password) {
+        auth_check = true
         showError('confirmPasswordError', "Passwords do not match.");
         return
     }
 
-    if (confirmPassword !== "" && password !== "") {
+    if (!auth_check) {
         // If the fields are not empty, get from localStorage
         const fname = localStorage.getItem('first_name');
         const lname = localStorage.getItem('last_name');
@@ -133,6 +137,8 @@ async function submit_password() {
                 } else if  (errorData.error === 'email verification failed') {
                     // Handle other error cases
                     showError('passwordError', 'an error occurred while sending you an otp, please try resending an otp.');
+                }else {
+                    showError('passwordError', 'An error occurred. Please try again.');
                 }
                   reactivateButtonStyles();
                 return;
@@ -140,11 +146,8 @@ async function submit_password() {
             // const data = await response.json();
             reactivateButtonStyles();
             window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
-        } catch (error) {
-            // Handle fetch-related errors
-            console.log(errorData);
-            console.log('error message: ', errorData.error);
-            showError('passwordError', 'An error occurred. Please try again.');
+        } finally{
+           // do nothing cause error has been handled
         }
         reactivateButtonStyles();
     }
