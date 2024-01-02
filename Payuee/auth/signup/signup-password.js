@@ -117,7 +117,6 @@ async function submit_password() {
             if (!response.ok) {
                 // Parse the response JSON
                 const errorData = await response.json();
-                console.log(errorData);
                 // Check the error message
                 if (errorData.error === 'User already exist, please login') {
                     // Perform actions specific to this error
@@ -139,6 +138,8 @@ async function submit_password() {
             window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
         } catch (error) {
             // Handle fetch-related errors
+            console.log(errorData);
+            console.log('error message: ', errorData.error);
             showError('passwordError', 'An error occurred. Please try again.');
         }
         reactivateButtonStyles();
