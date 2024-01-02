@@ -3,6 +3,15 @@ window.onload = function () {
     document.getElementById('email_id').focus();
 };
 
+// Get the button element by its ID
+const googleSignupButton = document.getElementById('googleSigninButton');
+
+// Add a click event listener to the button
+googleSignupButton.addEventListener('click', function() {
+    // Redirect to the specified URL when the button is clicked
+    window.location.href = 'https://payuee.onrender.com/google/sign-in';
+});
+
 // this event listener runs only when the sign up button is triggered
 document.getElementById('signin_button').addEventListener('click', async function() {
     event.preventDefault(); // Prevent the form from submitting

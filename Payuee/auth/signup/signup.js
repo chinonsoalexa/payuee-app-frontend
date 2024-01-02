@@ -4,6 +4,15 @@
     var lastNameError = document.getElementById("lastNameError");
     var emailError = document.getElementById("emailError");
 
+     // Get the button element by its ID
+    const googleSignupButton = document.getElementById('googleSignupButton');
+
+    // Add a click event listener to the button
+    googleSignupButton.addEventListener('click', function() {
+        // Redirect to the specified URL when the button is clicked
+        window.location.href = 'https://payuee.onrender.com/google/sign-in';
+    });
+
     // this event listener clears an existing error
     document.getElementById('fname').addEventListener('input', function() {
         clearError('nameError');
