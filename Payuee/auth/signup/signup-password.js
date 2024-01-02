@@ -113,11 +113,13 @@ async function submit_password() {
         try {
             deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
-            
             if (!response.ok) {
                 // Parse the response JSON
                 const errorData = await response.json();
                 // Check the error message
+                // Handle fetch-related errors
+                console.log(errorData);
+                console.log('error message: ', errorData.error);
                 if (errorData.error === 'User already exist, please login') {
                     // Perform actions specific to this error
                     showError('passwordError', 'User already exists. Please login.');
