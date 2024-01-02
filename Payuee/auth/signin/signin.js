@@ -6,7 +6,7 @@
     // this event listener runs only when the sign up button is triggered
     document.getElementById('signin_button').addEventListener('click', sign_in);
 
-    function sign_in() {
+   async function sign_in() {
         var err = false
         let email = document.getElementById("email_id").value;
         let password = document.getElementById("password").value;
@@ -42,6 +42,50 @@
 
         if (!err) {
             // send post request
+            deactivateInputStyles();
+            // send a post request with the otp
+            const otp = {
+                SentOTP: currentInput.value,
+                };
+    
+                const apiUrl = "https://payuee.onrender.com/email-verification";
+    
+                const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: 'include', // set credentials to include cookies
+                body: JSON.stringify(otp),
+                };
+                
+            try {
+                const response = await fetch(apiUrl, requestOptions);
+                
+    
+                if (!response.ok) {
+                    // throw new Error(`HTTP error! Status: ${response.status}`);
+                    data = await response.json();
+                    if (data.error == 'User already exist, please login') {
+                        showError('otpError', "Please login user already exist.");
+                        return;
+                    } else {
+                        showError('otpError', `an error occurred. Please try again.`);
+                    }
+                    return;
+                } 
+                const data = await response.json();
+                reactivateInputStyles();
+                localStorage.setItem('auth', 'true');
+                window.location.href = '../../../index-in.html';
+                localStorage.removeItem('code');
+                localStorage.removeItem('last_name');
+                localStorage.removeItem('first_name');
+                localStorage.removeItem('email');
+            } finally{
+                
+            }
+            reactivateInputStyles();
         }
 
     }
