@@ -127,6 +127,7 @@ function hideLoadingIcon() {
 function showError(id, message) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
+    errorElement.style = 'red';
 }
 
 // Add this function to reactivate the button styles
