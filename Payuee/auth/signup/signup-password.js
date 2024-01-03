@@ -136,8 +136,14 @@ async function submit_password() {
                     // window.location.href = '/verify';
                 } else if  (errorData.error === 'email verification failed') {
                     // Handle other error cases
-                    showError('passwordError', 'an error occurred while sending you an otp, please try resending an otp.');
-                }else {
+                    showError('passwordError', 'an error occurred while sending you an verification email, please try resending.');
+                }else if  (errorData.error === 'User already exist, please login') {
+                    // Handle other error cases
+                    showError('passwordError', 'Please login you already have an existing account with us.');
+                }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    // Handle other error cases
+                    showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
+                } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
                   reactivateButtonStyles();

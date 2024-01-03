@@ -10,88 +10,11 @@ window.onload = function () {
 
 // event listener to resend otp
 document.getElementById('resend-otp').addEventListener('click', async function () {
-    await resendButtonOTP('input1');
+    await resendButtonOTP();
 });
 
-// Add event listeners for each input
-document.getElementById('input1').addEventListener('input', async function () {
-    await submitInputOTP('input1');
-});
-
-async function submitInputOTP(currentInput) {
-    currentInput = document.getElementById(currentInput);
-
-    if (!currentInput) {
-        return; // Return early if the input is not found
-    }
-
-    currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only numerical values
-    const maxLength = currentInput.getAttribute('maxlength');
-    const currentLength = currentInput.value.length;
-
-    // check length of the input
-    if (currentLength === parseInt(maxLength)) {
-        deactivateInputStyles();
-        // send a post request with the otp
-        const otp = {
-            SentOTP: currentInput.value,
-          };
-
-          const apiUrl = "https://payuee.onrender.com/email-verification";
-
-          const requestOptions = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: 'include', // set credentials to include cookies
-            body: JSON.stringify(otp),
-          };
-          
-        try {
-            const response = await fetch(apiUrl, requestOptions);
-            
-
-            if (!response.ok) {
-                // throw new Error(`HTTP error! Status: ${response.status}`);
-                data = await response.json();
-                if (data.error == 'User already exist, please login') {
-                    showError('otpError', "Please login user already exist.");
-                    return;
-                } else {
-                    showError('otpError', `an error occurred. Please try again.`);
-                }
-                return;
-            } 
-            const data = await response.json();
-            reactivateInputStyles();
-            localStorage.setItem('auth', 'true');
-            window.location.href = '../../../index-in.html';
-            localStorage.removeItem('code');
-            localStorage.removeItem('last_name');
-            localStorage.removeItem('first_name');
-            localStorage.removeItem('email');
-        } finally{
-            
-        }
-        reactivateInputStyles();
-    }
-}
-
-async function resendButtonOTP(currentInput) {
-    currentInput = document.getElementById(currentInput);
-
-    if (!currentInput) {
-        return; // Return early if the input is not found
-    }
-
-    currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only numerical values
+async function resendButtonOTP() {
     let emailOTP = localStorage.getItem('email');
-
-    // if (currentLength !== parseInt(maxLength)) {
-    //     showError('otpError', "Please enter 6 digit otp values.", 5000);
-    //     return;
-    // }
 
     startResendTimer()
     deactivateButtonStyles();
@@ -127,14 +50,13 @@ async function resendButtonOTP(currentInput) {
         const data = await response.json();
     } finally {
         // do nothing cause error has been handled
+        reactivateButtonStyles();
     }
     reactivateButtonStyles();
 }
 
 function startResendTimer() {
     checkIfStillCounting = false
-    // store the input the user added so that you can retrieve it back
-    currentInput = document.getElementById('input1').value;
 
     if (checkIfStillCounting) {
         showError('otpError', "Please wait at least 1 minute before resending.");
@@ -157,7 +79,6 @@ function startResendTimer() {
             resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
             // Save the last reset time as a string 
             localStorage.setItem('lastResendTime', Date.now().toString());
-            localStorage.setItem('inputValue', currentInput);
             checkIfStillCounting = true
         }
     
@@ -169,7 +90,6 @@ function startResendTimer() {
             reactivateButtonStyles(); // Reactivate button styles
             timerActive = false; // Set the timer as inactive
             localStorage.removeItem('lastResendTime');
-            localStorage.removeItem('inputValue');
         }
         if (timerActive) {
             deactivateButtonStyles();
@@ -178,7 +98,6 @@ function startResendTimer() {
 }
 
 function continueResendTimer() {
-    const usersLastInputValue = localStorage.getItem('inputValue');
     const storedLastResendTimeString = localStorage.getItem('lastResendTime');
     const storedLastResendTime = storedLastResendTimeString ? parseInt(storedLastResendTimeString) : 0;
 
@@ -209,12 +128,10 @@ function continueResendTimer() {
             clearInterval(resendTimer);
             resendButton.innerHTML = 'Resend OTP';
             resendButton.disabled = false; // Enable the button
-            localStorage.setItem('inputValue', usersLastInputValue);
             localStorage.setItem('lastResendTime', Date.now().toString()); // Update last reset time
             reactivateButtonStyles(); // Reactivate button styles
             timerActive = false; // Set the timer as inactive
             localStorage.removeItem('lastResendTime');
-            localStorage.removeItem('inputValue');
         }
 
         if (timerActive) {

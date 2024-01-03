@@ -58,6 +58,8 @@ async function resetPasswordEmail(currentInput) {
             return;
         } 
         const data = await response.json();
+
+        sessionStorage.setItem('lattit', )
         window.location.href = ''
         reactivateButtonStyles();
     } finally {

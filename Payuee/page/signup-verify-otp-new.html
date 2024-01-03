@@ -239,41 +239,27 @@
           <div class="col-xl-6 col-lg-6">
              <div class="signup__boxes">
                 <h4>
-                Verify Your Email Address
+                Verifying Your Email Address
                 </h4>
                 <p class="head__pra mb__30">
-                  A verification link has been sent to your email inbox. Please check your email and follow the instructions to verify your account.
+                  Please hold on a minute while we verify your email address.
                 </p>
-                
                 <form action="#" class="signup__form varified__number">
                   <div class="row g-2">
                       <div class="col-lg-12">
-                          <div class="input__grp mt-3">
-                              <!-- <input type="text" placeholder="" pattern="[0-9]" maxlength="6" id="input1"> -->
-                              <p id="otpError" class="error-message"></p>
-                             </div>
+                           <!-- Loading icon container -->
+                           <div id="loading-icon-container">
+                              <div id="loading-icon">&#8987;</div>
+                          </div>
+                          <p id="otpError" class="error-message"></p>
                       </div>
                       <div class="col-lg-12">
-                          <div class="input__grp mt-3">
-                              <button type="button" id="resend-otp" class="cmn__btn">
-                                  <span>
-                                      Resend
-                                  </span>
-                              </button>
+                          <div class="input__grp mt-3">    <!-- Loading icon element -->
                           </div>
                       </div>
                       <div class="col-lg-12">
                           <div class="input__grp mt-2">
-                              <a href="signup-new.html" class="back__btn">
-                                  <span class="icon">
-                                      <i class="material-symbols-outlined">
-                                          keyboard_backspace
-                                      </i>
-                                  </span>
-                                  <span>
-                                      Edit Email
-                                  </span>
-                              </a>
+                              
                           </div>
                       </div>
                   </div>
@@ -442,7 +428,7 @@
 
 
    <!-- signup otp -->
-   <script src="../auth/otp-verification/otp.js"></script>
+   <script src="../auth/otp-verification/signup-verify-otp.js"></script>
    <!--Jquery 3 6 0 Min Js-->
    <script src="../assets/js/jquery-3.6.0.min.js"></script>
    <!--Bootstrap bundle Js-->

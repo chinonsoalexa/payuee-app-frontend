@@ -11495,6 +11495,28 @@ form .cmn__btn span i {
   left: 0;
 }
 
+/* Style for the loading icon */
+#loading-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#loading-icon {
+  font-size: 2em;
+  animation: spin 1s linear infinite; /* Add a spinning animation */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .outline__btn {
   background: transparent;
   border: 1px solid var(--border);
