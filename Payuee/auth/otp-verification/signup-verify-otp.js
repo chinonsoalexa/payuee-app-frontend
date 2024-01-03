@@ -2,6 +2,7 @@
 const loadingIcon = document.getElementById('loading-icon');
 
 document.addEventListener('DOMContentLoaded', async function () {
+        showLoadingIcon()
         // Get the current URL
         const currentUrl = new URL(window.location.href);
 
@@ -30,7 +31,6 @@ document.addEventListener('DOMContentLoaded', async function () {
           };
           
         try {
-            showLoadingIcon()
             const response = await fetch(apiUrl, requestOptions);
             if (!response.ok) {
                 // Parse the response JSON
