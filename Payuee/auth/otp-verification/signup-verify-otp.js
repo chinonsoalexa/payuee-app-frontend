@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             // const data = await response.json();
             hideLoadingIcon();
+            showError('passwordError', 'Email address verified...');
             localStorage.setItem('auth', 'true');
             window.location.href = '../../../index-in.html'
         } finally{
