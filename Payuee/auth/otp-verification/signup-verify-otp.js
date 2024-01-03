@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     document.getElementById('submitPassword').style.display='block';
                 } else if  (errorData.error === 'otp not found') {
                     // Handle other error cases
-                    showError('otpError', 'Error verifying otp link.');
+                    showError('otpError', 'Email not found.');
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             // const data = await response.json();
             hideLoadingIcon();
-            window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
+            localStorage.setItem('auth', 'true');
+            window.location.href = '../../../index-in.html'
         } finally{
            // do nothing cause error has been handled
             hideLoadingIcon();
