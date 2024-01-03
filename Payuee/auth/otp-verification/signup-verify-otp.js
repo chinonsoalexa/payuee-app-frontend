@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 document.getElementById("submitButtonContainer").addEventListener('click', async function () {
+    await resendOTP();
+});
+
+async function resendOTP() {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -112,7 +116,7 @@ document.getElementById("submitButtonContainer").addEventListener('click', async
         reactivateButtonStyles();
     }
     reactivateButtonStyles();
-})
+}
 
 // Function to show loading icon
 function showLoadingIcon() {
