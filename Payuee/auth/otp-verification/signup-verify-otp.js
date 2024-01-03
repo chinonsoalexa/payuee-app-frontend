@@ -1,3 +1,6 @@
+let resendTimer;
+let lastResendTime = 0;
+
 // Get references to loading icon
 const loadingIcon = document.getElementById('loading-icon');
 
@@ -139,4 +142,89 @@ function deactivateInputStyles() {
     var currentInput = document.getElementById('submitPassword');
     // Disable the input field
     currentInput.disabled = true;
+}
+
+function startResendTimer() {
+    checkIfStillCounting = false
+
+    if (checkIfStillCounting) {
+        showError('otpError', "Please wait at least 1 minute before resending.");
+        return;
+    }
+
+    const resendButton = document.getElementById('submitPassword');
+    resendButton.disabled = true; // Disable the button
+
+    let seconds = 60; // Set the countdown time to 5 minutes (300 seconds)
+
+    let timerActive = true;
+
+    resendTimer = setInterval(function () {
+        seconds--;
+    
+        if (timerActive) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+            // Save the last reset time as a string 
+            localStorage.setItem('lastResendTime', Date.now().toString());
+            checkIfStillCounting = true
+        }
+    
+        if (seconds <= 0) {
+            clearInterval(resendTimer);
+            resendButton.innerHTML = 'Resend OTP';
+            resendButton.disabled = false; // Enable the button
+            lastResendTime = Date.now(); // Record the time of the last resend
+            reactivateButtonStyles(); // Reactivate button styles
+            timerActive = false; // Set the timer as inactive
+            localStorage.removeItem('lastResendTime');
+        }
+        if (timerActive) {
+            deactivateButtonStyles();
+        }
+    }, 1000);
+}
+
+function continueResendTimer() {
+    const storedLastResendTimeString = localStorage.getItem('lastResendTime');
+    const storedLastResendTime = storedLastResendTimeString ? parseInt(storedLastResendTimeString) : 0;
+
+    const now = Date.now();
+    const timeDifference = now - storedLastResendTime;
+    const minimumInterval = 60 * 1000; // 5 minutes in milliseconds
+
+    document.getElementById('input1').value = usersLastInputValue;
+
+    const resendButton = document.getElementById('submitPassword');
+    resendButton.disabled = true; // Disable the button
+
+    // Calculate the remaining time based on the difference
+    let seconds = Math.max(0, Math.floor((minimumInterval - timeDifference) / 1000));
+
+    let timerActive = true;
+
+    resendTimer = setInterval(function () {
+        seconds--;
+
+        if (timerActive) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+        }
+
+        if (seconds <= 0) {
+            clearInterval(resendTimer);
+            resendButton.innerHTML = 'Resend OTP';
+            resendButton.disabled = false; // Enable the button
+            localStorage.setItem('lastResendTime', Date.now().toString()); // Update last reset time
+            reactivateButtonStyles(); // Reactivate button styles
+            timerActive = false; // Set the timer as inactive
+            localStorage.removeItem('lastResendTime');
+        }
+
+        if (timerActive) {
+            deactivateButtonStyles();
+        }
+    }, 1000);
 }
