@@ -374,11 +374,25 @@
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
                      <h5 class="mb-4">
-                        Send Money To A Payuee User
+                        Send Funds
                      </h5>
+                     <div class="prepaid__option">
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
+                           <label class="form-check-label" for="pyradio2page">
+                             A Payuee User
+                           </label>
+                         </div>
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
+                           <label class="form-check-label" for="pyradio1page">
+                             External Bank
+                           </label>
+                         </div>
+                     </div>
                      <form action="javascript:void(0)" class="mb-3">
                         <div class="row g-4">
-                           <div class="col-lg-6">
+                           <!-- <div class="col-lg-6">
                               <select name="niceselect">
                                  <option value="1">
                                     Select Your Operator
@@ -409,24 +423,24 @@
                                     3rd State
                                  </option>
                               </select>
+                           </div> -->
+                           <div class="col-lg-6">
+                              <input type="text" placeholder="Enter Customer Email ID">
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Customer Number">
-                           </div>
-                           <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Bill Amount">
+                              <input type="number" placeholder="Enter Amount">
                            </div>
                         </div>
                      </form>
                      <div class="payment__check d-flex justify-content-start">
-                        <input class="form-check-input" type="checkbox" id="paycheckon" checked>
+                        <!-- <input class="form-check-input" type="checkbox" id="paycheckon" checked>
                         <label class="form-check-label" for="paycheckon">
                            I Agree this payment system terms & condition
-                        </label>
+                        </label> -->
                      </div>
                      <a href="order.html" class="cmn__btn mt-5">
                         <span>
-                           Continue Payment
+                           Send Money
                         </span>
                      </a>
                   </div>
