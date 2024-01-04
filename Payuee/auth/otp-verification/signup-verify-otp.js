@@ -1,9 +1,6 @@
 let resendTimer;
 let lastResendTime = 0;
 
-// Get references to loading icon
-const loadingIcon = document.getElementById('loading-icon');
-
 document.addEventListener('DOMContentLoaded', async function () {
         showLoadingIcon()
         // Get the current URL
@@ -125,12 +122,12 @@ async function resendOTP() {
 
 // Function to show loading icon
 function showLoadingIcon() {
-    loadingIcon.style.display = 'inline';
+    document.getElementById('loading-icon-container').style.display = 'block';
 }
 
 // Function to hide loading icon
 function hideLoadingIcon() {
-    loadingIcon.style.display = 'none';
+    document.getElementById('loading-icon-container').style.display = 'none';
 }
 
 function showError(id, message) {
