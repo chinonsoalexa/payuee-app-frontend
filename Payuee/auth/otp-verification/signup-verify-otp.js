@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Credentials": "include",
             },
             credentials: 'include', // set credentials to include cookies
             body: JSON.stringify(user),
