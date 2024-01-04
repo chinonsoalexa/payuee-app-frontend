@@ -11504,7 +11504,7 @@ form .cmn__btn span i {
 }
 
 #loading-icon {
-  font-size: 4em;
+  font-size: 3em;
   animation: spin 1s linear infinite; /* Add a spinning animation */
 }
 

@@ -374,12 +374,26 @@
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
                      <h5 class="mb-4">
-                        Pay your Broadbanad Bill
+                        Data Subscription
                      </h5>
+                     <div class="prepaid__option">
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
+                           <label class="form-check-label" for="pyradio2page">
+                             Wallet
+                           </label>
+                         </div>
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
+                           <label class="form-check-label" for="pyradio1page">
+                             External Bank
+                           </label>
+                         </div>
+                     </div>
                      <form action="javascript:void(0)" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Account Number">
+                              <input type="number" placeholder="Enter Mobile Number">
                            </div>
                            <div class="col-lg-6">
                               <select name="niceselect">
@@ -387,29 +401,53 @@
                                     Select Your Operator
                                  </option>
                                  <option value="2">
-                                    1st Operator
+                                   MTN-SME-Data (*461*4#)
                                  </option>
                                  <option value="3">
-                                    2nd Operator
+                                    MTN-Coporate-Gifting (*131*4#)
                                  </option>
                                  <option value="4">
-                                    3rd Operator
+                                    Airtel-Corporate-Gifting (*323)
+                                 </option>
+                                 <option value="5">
+                                    9mobile-Data (*323#)
+                                 </option>
+                                 <option value="6">
+                                    Glo-Corporate-Gifting (*323#)
                                  </option>
                               </select>
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="User Name">
+                               <!-- <div class="col-lg-6"> -->
+                              <select name="niceselect">
+                                 <option value="1">
+                                    Plans
+                                 </option>
+                                 <option value="2">
+                                    MTN (2% Discount)
+                                 </option>
+                                 <option value="3">
+                                    Airtel (3.1% Discount)
+                                 </option>
+                                 <option value="4">
+                                    9mobile (3.5% Discount)
+                                 </option>
+                                 <option value="5">
+                                    Glo (5% Discount)
+                                 </option>
+                              </select>
+                           <!-- </div> -->
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Bill Amount">
+                              <input type="number" id="displayInput" readonly>
                            </div>
                         </div>
                      </form>
                      <div class="payment__check d-flex justify-content-start">
-                        <input class="form-check-input" type="checkbox" id="paycheckon" checked>
+                        <!-- <input class="form-check-input" type="checkbox" id="paycheckon" checked>
                         <label class="form-check-label" for="paycheckon">
                            I Agree this payment system
-                        </label>
+                        </label> -->
                      </div>
                      <a href="order.html" class="cmn__btn mt-5">
                         <span>
