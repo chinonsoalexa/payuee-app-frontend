@@ -141,14 +141,13 @@ function showError(id, message) {
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('submitPassword');
     resendButton.classList.remove('deactivated');
-    
-    clearError('otpError');
 }
 
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
     var currentInput = document.getElementById('submitPassword');
     // Disable the input field
+    resendButton.classList.add('deactivated');
     currentInput.disabled = true;
 }
 
