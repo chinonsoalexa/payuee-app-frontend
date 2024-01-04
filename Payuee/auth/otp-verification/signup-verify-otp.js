@@ -75,6 +75,7 @@ document.getElementById("submitPassword").addEventListener('click', async functi
 });
 
 async function resendOTP() {
+    startResendTimer()
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
