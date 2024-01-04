@@ -173,7 +173,7 @@ function startResendTimer() {
         if (timerActive) {
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+            resendButton.innerHTML = `Resend (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
             // Save the last reset time as a string 
             localStorage.setItem('lastResendTime', Date.now().toString());
             checkIfStillCounting = true
@@ -181,7 +181,7 @@ function startResendTimer() {
     
         if (seconds <= 0) {
             clearInterval(resendTimer);
-            resendButton.innerHTML = 'Resend OTP';
+            resendButton.innerHTML = 'Resend';
             resendButton.disabled = false; // Enable the button
             lastResendTime = Date.now(); // Record the time of the last resend
             reactivateButtonStyles(); // Reactivate button styles
@@ -218,12 +218,12 @@ function continueResendTimer() {
         if (timerActive) {
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+            resendButton.innerHTML = `Resend (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
         }
 
         if (seconds <= 0) {
             clearInterval(resendTimer);
-            resendButton.innerHTML = 'Resend OTP';
+            resendButton.innerHTML = 'Resend';
             resendButton.disabled = false; // Enable the button
             localStorage.setItem('lastResendTime', Date.now().toString()); // Update last reset time
             reactivateButtonStyles(); // Reactivate button styles
