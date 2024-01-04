@@ -3,7 +3,6 @@ let lastResendTime = 0;
 
 // Focus on the first input field when the page loads
 window.onload = function () {
-    document.getElementById('input1').focus();
     // Retrieve the last reset time and continue if available
     continueResendTimer()
 };
