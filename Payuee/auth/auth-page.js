@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     get_auth_status();
 });
 
+// this is for authenticated pages
 function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
         // let's redirect to a non-authenticated page cause the user is not authenticated
-        window.location.href = '../payuee/page/signin-new.html';
+        window.location.href = '../index.html';
         // let's clear auth local storage item
         localStorage.removeItem('auth');
     }
