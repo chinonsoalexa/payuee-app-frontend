@@ -1,5 +1,6 @@
 let resendTimer;
 let lastResendTime = 0;
+let checkIfStillCounting = false
 
 // Focus on the first input field when the page loads
 window.onload = function () {
@@ -55,8 +56,6 @@ async function resendButtonOTP() {
 }
 
 function startResendTimer() {
-    checkIfStillCounting = false
-
     if (checkIfStillCounting) {
         showError('otpError', "Please wait at least 1 minute before resending.");
         return;
@@ -65,31 +64,29 @@ function startResendTimer() {
     const resendButton = document.getElementById('resend-otp');
     resendButton.disabled = true; // Disable the button
 
-    let seconds = 60; // Set the countdown time to 5 minutes (300 seconds)
-
+    let seconds = 60; // Set the countdown time to 1 minute (60 seconds)
     let timerActive = true;
 
     resendTimer = setInterval(function () {
         seconds--;
-    
+
         if (timerActive) {
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
-            // Save the last reset time as a string 
+            resendButton.innerHTML = `Resend Email (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
             localStorage.setItem('lastResendTime', Date.now().toString());
-            checkIfStillCounting = true
+            checkIfStillCounting = true;
         }
-    
+
         if (seconds <= 0) {
             clearInterval(resendTimer);
-            resendButton.innerHTML = 'Resend OTP';
+            resendButton.innerHTML = 'Resend Email';
             resendButton.disabled = false; // Enable the button
-            lastResendTime = Date.now(); // Record the time of the last resend
-            reactivateButtonStyles(); // Reactivate button styles
-            timerActive = false; // Set the timer as inactive
             localStorage.removeItem('lastResendTime');
+            reactivateButtonStyles(); // Reactivate button styles
+            timerActive = false;
         }
+
         if (timerActive) {
             deactivateButtonStyles();
         }
@@ -98,45 +95,43 @@ function startResendTimer() {
 
 function continueResendTimer() {
     const storedLastResendTimeString = localStorage.getItem('lastResendTime');
-    const storedLastResendTime = storedLastResendTimeString ? parseInt(storedLastResendTimeString) : 0;
 
-    const now = Date.now();
-    const timeDifference = now - storedLastResendTime;
-    const minimumInterval = 60 * 1000; // 5 minutes in milliseconds
+    if (storedLastResendTimeString) {
+        checkIfStillCounting = true; // Set the flag to prevent immediate resending
+        const storedLastResendTime = parseInt(storedLastResendTimeString);
+        const now = Date.now();
+        const timeDifference = now - storedLastResendTime;
+        const minimumInterval = 60 * 1000; // 1 minute in milliseconds
 
-    document.getElementById('input1').value = usersLastInputValue;
+        const resendButton = document.getElementById('resend-otp');
+        resendButton.disabled = true; // Disable the button
 
-    const resendButton = document.getElementById('resend-otp');
-    resendButton.disabled = true; // Disable the button
+        let seconds = Math.max(0, Math.floor((minimumInterval - timeDifference) / 1000));
+        let timerActive = true;
 
-    // Calculate the remaining time based on the difference
-    let seconds = Math.max(0, Math.floor((minimumInterval - timeDifference) / 1000));
+        resendTimer = setInterval(function () {
+            seconds--;
 
-    let timerActive = true;
+            if (timerActive) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                resendButton.innerHTML = `Resend Email (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+            }
 
-    resendTimer = setInterval(function () {
-        seconds--;
+            if (seconds <= 0) {
+                clearInterval(resendTimer);
+                resendButton.innerHTML = 'Resend Email';
+                resendButton.disabled = false; // Enable the button
+                localStorage.removeItem('lastResendTime');
+                reactivateButtonStyles(); // Reactivate button styles
+                timerActive = false;
+            }
 
-        if (timerActive) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
-        }
-
-        if (seconds <= 0) {
-            clearInterval(resendTimer);
-            resendButton.innerHTML = 'Resend OTP';
-            resendButton.disabled = false; // Enable the button
-            localStorage.setItem('lastResendTime', Date.now().toString()); // Update last reset time
-            reactivateButtonStyles(); // Reactivate button styles
-            timerActive = false; // Set the timer as inactive
-            localStorage.removeItem('lastResendTime');
-        }
-
-        if (timerActive) {
-            deactivateButtonStyles();
-        }
-    }, 1000);
+            if (timerActive) {
+                deactivateButtonStyles();
+            }
+        }, 1000);
+    }
 }
 
 function showError(id, message, duration = 5000) {
@@ -165,22 +160,6 @@ function reactivateButtonStyles() {
     // // Remove all existing classes
     // resendButton.className = '';
     resendButton.classList.remove('deactivated');
-    
-    clearError('otpError');
-}
-
-// Add this function to remove onclick and on hover styles
-function deactivateInputStyles() {
-    var currentInput = document.getElementById('input1');
-    // Disable the input field
-    currentInput.disabled = true;
-}
-
-// Add this function to reactivate the button styles
-function reactivateInputStyles() {
-    var currentInput = document.getElementById('input1');
-    // Re-enable the input field
-    currentInput.disabled = false;
     
     clearError('otpError');
 }
