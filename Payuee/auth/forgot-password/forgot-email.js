@@ -33,7 +33,7 @@ async function resetPasswordEmail(currentInput) {
         Email: currentInput.value,
     };
 
-    const apiUrl = "https://payuee.onrender.com/resend-otp";
+    const apiUrl = "https://payuee.onrender.com/forgotten-password-email";
 
     const requestOptions = {
         method: "POST",
@@ -59,8 +59,7 @@ async function resetPasswordEmail(currentInput) {
         } 
         const data = await response.json();
 
-        sessionStorage.setItem('lattit', )
-        window.location.href = ''
+        window.location.href = 'forgot-sent-email.html'
         reactivateButtonStyles();
     } finally {
         // do nothing cause error has been handled

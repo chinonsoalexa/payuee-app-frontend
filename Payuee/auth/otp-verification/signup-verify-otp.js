@@ -159,7 +159,7 @@ function startResendTimer() {
     }
 
     const resendButton = document.getElementById('submitPassword');
-    resendButton.disabled = true; // Disable the button
+    // resendButton.disabled = true; // Disable the button
 
     let seconds = 60; // Set the countdown time to 5 minutes (300 seconds)
 
@@ -180,7 +180,7 @@ function startResendTimer() {
         if (seconds <= 0) {
             clearInterval(resendTimer);
             resendButton.innerHTML = 'Resend';
-            resendButton.disabled = false; // Enable the button
+            // resendButton.disabled = false; // Enable the button
             lastResendTime = Date.now(); // Record the time of the last resend
             reactivateButtonStyles(); // Reactivate button styles
             timerActive = false; // Set the timer as inactive
@@ -203,7 +203,7 @@ function continueResendTimer() {
     document.getElementById('input1').value = usersLastInputValue;
 
     const resendButton = document.getElementById('submitPassword');
-    resendButton.disabled = true; // Disable the button
+    // resendButton.disabled = true; // Disable the button
 
     // Calculate the remaining time based on the difference
     let seconds = Math.max(0, Math.floor((minimumInterval - timeDifference) / 1000));
@@ -222,7 +222,7 @@ function continueResendTimer() {
         if (seconds <= 0) {
             clearInterval(resendTimer);
             resendButton.innerHTML = 'Resend';
-            resendButton.disabled = false; // Enable the button
+            // resendButton.disabled = false; // Enable the button
             localStorage.setItem('lastResendTime', Date.now().toString()); // Update last reset time
             reactivateButtonStyles(); // Reactivate button styles
             timerActive = false; // Set the timer as inactive

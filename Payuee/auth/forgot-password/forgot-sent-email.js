@@ -3,98 +3,27 @@ let lastResendTime = 0;
 
 // Focus on the first input field when the page loads
 window.onload = function () {
-    document.getElementById('input1').focus();
     // Retrieve the last reset time and continue if available
     continueResendTimer()
 };
 
 // event listener to resend otp
 document.getElementById('resend-otp').addEventListener('click', async function () {
-    await resendButtonOTP('input1');
+    await resendButtonOTP();
 });
 
-// Add event listeners for each input
-document.getElementById('input1').addEventListener('input', async function () {
-    await submitInputOTP('input1');
-});
-
-async function submitInputOTP(currentInput) {
-    currentInput = document.getElementById(currentInput);
-
-    if (!currentInput) {
-        return; // Return early if the input is not found
-    }
-
-    currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only numerical values
-    const maxLength = currentInput.getAttribute('maxlength');
-    const currentLength = currentInput.value.length;
-
-    // check length of the input
-    if (currentLength === parseInt(maxLength)) {
-        deactivateInputStyles();
-        // send a post request with the otp
-        const otp = {
-            SentOTP: currentInput.value,
-          };
-
-          const apiUrl = "https://payuee.onrender.com/email-verification";
-
-          const requestOptions = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: 'include', // set credentials to include cookies
-            body: JSON.stringify(otp),
-          };
-          
-        try {
-            const response = await fetch(apiUrl, requestOptions);
-            
-
-            if (!response.ok) {
-                // throw new Error(`HTTP error! Status: ${response.status}`);
-                data = await response.json();
-                if (data.error == 'User already exist, please login') {
-                    showError('otpError', "Please login user already exist.");
-                    return;
-                } else {
-                    showError('otpError', `an error occurred. Please try again.`);
-                }
-                return;
-            } 
-            const data = await response.json();
-            reactivateInputStyles();
-            localStorage.setItem('auth', 'true');
-            window.location.href = 'forgot-password.html';
-            localStorage.removeItem('code');
-            localStorage.removeItem('last_name');
-            localStorage.removeItem('first_name');
-            localStorage.removeItem('email');
-        } finally{
-            
-        }
-        reactivateInputStyles();
-    }
-}
-
-async function resendButtonOTP(currentInput) {
-    currentInput = document.getElementById(currentInput);
-
-    if (!currentInput) {
-        return; // Return early if the input is not found
-    }
-
-    currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only numerical values
-    let emailOTP = localStorage.getItem('email');
-
-    // if (currentLength !== parseInt(maxLength)) {
-    //     showError('otpError', "Please enter 6 digit otp values.", 5000);
-    //     return;
-    // }
-
+async function resendButtonOTP() {
     startResendTimer()
     deactivateButtonStyles();
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    const userID = params.get("user");
+
     // send a post request with the otp
     const otp = {
         Email: emailOTP,
@@ -133,8 +62,6 @@ async function resendButtonOTP(currentInput) {
 
 function startResendTimer() {
     checkIfStillCounting = false
-    // store the input the user added so that you can retrieve it back
-    currentInput = document.getElementById('input1').value;
 
     if (checkIfStillCounting) {
         showError('otpError', "Please wait at least 1 minute before resending.");
@@ -142,7 +69,7 @@ function startResendTimer() {
     }
 
     const resendButton = document.getElementById('resend-otp');
-    resendButton.disabled = true; // Disable the button
+    // resendButton.disabled = true; // Disable the button
 
     let seconds = 60; // Set the countdown time to 5 minutes (300 seconds)
 
@@ -154,16 +81,15 @@ function startResendTimer() {
         if (timerActive) {
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
+            resendButton.innerHTML = `Resend (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
             // Save the last reset time as a string 
             localStorage.setItem('lastResendTime', Date.now().toString());
-            localStorage.setItem('inputValue', currentInput);
             checkIfStillCounting = true
         }
     
         if (seconds <= 0) {
             clearInterval(resendTimer);
-            resendButton.innerHTML = 'Resend OTP';
+            resendButton.innerHTML = 'Resend';
             resendButton.disabled = false; // Enable the button
             lastResendTime = Date.now(); // Record the time of the last resend
             reactivateButtonStyles(); // Reactivate button styles
@@ -178,18 +104,15 @@ function startResendTimer() {
 }
 
 function continueResendTimer() {
-    const usersLastInputValue = localStorage.getItem('inputValue');
     const storedLastResendTimeString = localStorage.getItem('lastResendTime');
     const storedLastResendTime = storedLastResendTimeString ? parseInt(storedLastResendTimeString) : 0;
 
     const now = Date.now();
     const timeDifference = now - storedLastResendTime;
-    const minimumInterval = 60 * 1000; // 5 minutes in milliseconds
-
-    document.getElementById('input1').value = usersLastInputValue;
+    const minimumInterval = 60 * 1000; // 1 minute in milliseconds
 
     const resendButton = document.getElementById('resend-otp');
-    resendButton.disabled = true; // Disable the button
+    // resendButton.disabled = true; // Disable the button
 
     // Calculate the remaining time based on the difference
     let seconds = Math.max(0, Math.floor((minimumInterval - timeDifference) / 1000));
@@ -197,14 +120,6 @@ function continueResendTimer() {
     let timerActive = true;
 
     resendTimer = setInterval(function () {
-        seconds--;
-
-        if (timerActive) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
-        }
-
         if (seconds <= 0) {
             clearInterval(resendTimer);
             resendButton.innerHTML = 'Resend OTP';
@@ -215,13 +130,20 @@ function continueResendTimer() {
             timerActive = false; // Set the timer as inactive
             localStorage.removeItem('lastResendTime');
             localStorage.removeItem('inputValue');
+        } else {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            resendButton.innerHTML = `Resend OTP (${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds})`;
         }
 
         if (timerActive) {
             deactivateButtonStyles();
         }
+
+        seconds--;
     }, 1000);
 }
+
 
 function showError(id, message, duration = 5000) {
     var errorElement = document.getElementById(id);
@@ -239,34 +161,14 @@ function showError(id, message, duration = 5000) {
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
     var resendButton = document.getElementById('resend-otp');
-    resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 // Add this function to reactivate the button styles
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('resend-otp');
-    // // Remove all existing classes
     // resendButton.className = '';
     resendButton.classList.remove('deactivated');
-    // Add the original class 'cmn__btn'
-    resendButton.classList.add('cmn__btn');
-    
-    clearError('otpError');
-}
-
-// Add this function to remove onclick and on hover styles
-function deactivateInputStyles() {
-    var currentInput = document.getElementById('input1');
-    // Disable the input field
-    currentInput.disabled = true;
-}
-
-// Add this function to reactivate the button styles
-function reactivateInputStyles() {
-    var currentInput = document.getElementById('input1');
-    // Re-enable the input field
-    currentInput.disabled = false;
     
     clearError('otpError');
 }
