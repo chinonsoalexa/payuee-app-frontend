@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // redirect user to verify email ID
                     showError('otpError', 'This email verification link has expired please try resending a verification link.');
                     // if error is otp expired let's show the user button to resend an otp verification link
-                    document.getElementById('submitButtonContainer').style.display='block';
+                    document.getElementById('submitPassword').style.display='block';
                 } else if  (errorData.error === 'otp not found') {
                     // Handle other error cases
                     showError('otpError', 'Email not found.');
