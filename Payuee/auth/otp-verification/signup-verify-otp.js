@@ -146,7 +146,7 @@ function reactivateButtonStyles() {
 }
 
 // Add this function to remove onclick and on hover styles
-function deactivateInputStyles() {
+function deactivateButtonStyles() {
     var currentInput = document.getElementById('submitPassword');
     // Disable the input field
     currentInput.disabled = true;
