@@ -91,19 +91,24 @@ if (confirmPassword !== password) {
 }
 
 if (!auth_check) {
-    // If the fields are not empty, get from localStorage
-    const fname = localStorage.getItem('first_name');
-    const lname = localStorage.getItem('last_name');
-    const email = localStorage.getItem('email');
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    const userID = params.get("user");
+    const token = params.get("token");
+
     // localStorage.getItem('code');
     const user = {
-        FirstName: fname,
-        LastName: lname,
-        password: confirmPassword,
-        email: email,
+        Email: userID,
+        SentOTP: token,
+        Password: confirmPassword,
       };
 
-      const apiUrl = "https://payuee.onrender.com/sign-up";
+      const apiUrl = "https://payuee.onrender.com/forgotten-password-verification";
 
       const requestOptions = {
         method: "POST",
@@ -124,22 +129,21 @@ if (!auth_check) {
             // Handle fetch-related errors
             console.log(errorData);
             console.log('error message: ', errorData.error);
-            if (errorData.error === 'User already exist, please login') {
+            if (errorData.error === 'Wrong OTP') {
                 // Perform actions specific to this error
-                showError('passwordError', 'User already exists. Please login.');
-            } else if  (errorData.error === 'Please login using your google account') {
+                showError('passwordError', 'invalid password reset link.');
+            } else if  (errorData.error === 'max try exceeded resend a new otp') {
                 // Handle other error cases
-                showError('passwordError', 'Please login using your google account.');
-            } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                showError('passwordError', "This password reset link has exceeded it's max limit, please request for another reset link.");
+            } else if  (errorData.error === 'OTP  Expired') {
                 // redirect user to verify email ID
-                showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-                // window.location.href = '/verify';
+                showErrorUserExist('passwordError', 'This password reset link has expired please, try sending a new password reset link.');
             } else if  (errorData.error === 'email verification failed') {
                 // Handle other error cases
                 showError('passwordError', 'an error occurred while sending you an verification email, please try resending.');
-            }else if  (errorData.error === 'User already exist, please login') {
+            }else if  (errorData.error === 'Please login using your google account') {
                 // Handle other error cases
-                showError('passwordError', 'Please login you already have an existing account with us.');
+                showError('passwordError', 'Please login using your google account.');
             }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                 // Handle other error cases
                 showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
@@ -160,8 +164,10 @@ if (!auth_check) {
 }
 
 function showError(id, message) {
-var errorElement = document.getElementById(id);
-errorElement.textContent = message;
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    // Add styles to the error element
+    errorElement.style.color = 'red';  // Set text color to red
 }
 
 function showErrorUserExist(id, message, duration = 5000) {
