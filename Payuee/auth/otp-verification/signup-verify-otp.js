@@ -52,14 +52,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // Handle other error cases
                     showError('otpError', 'Email not found.');
                 } else {
-                    showError('passwordError', 'An error occurred. Please try again.');
+                    showError('otpError', 'An error occurred. Please try again.');
                 }
                 hideLoadingIcon();
                 return;
             }
             // const data = await response.json();
             hideLoadingIcon();
-            showError('passwordError', 'Email address verified...');
+            showError('otpError', 'Email address verified...');
             localStorage.setItem('auth', 'true');
             window.location.href = '../../../index-in.html'
         } finally{
