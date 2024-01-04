@@ -145,10 +145,9 @@ function reactivateButtonStyles() {
 
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
-    var currentInput = document.getElementById('submitPassword');
-    // Disable the input field
-    resendButton.classList.add('deactivated');
-    currentInput.disabled = true;
+    var resendButton = document.getElementById('submitPassword');
+    // Disable the button
+    resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 function startResendTimer() {
