@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         hideLoadingIcon();
 });
 
-document.getElementById("submitButtonContainer").addEventListener('click', async function () {
+document.getElementById("submitPassword").addEventListener('click', async function () {
     await resendOTP();
 });
 
