@@ -19,13 +19,34 @@ document.getElementById('logout-button').addEventListener('click', function () {
     logout()
 })
 
-document.getElementById('logout-button2').addEventListener('click', function () {
+document.getElementById('logout-button2').addEventListener('click', async function () {
     event.preventDefault()
-    logout()
+    await logout()
 })
 
-function logout() {
-    localStorage.removeItem('auth')
-    window.location.href = '../index.html'
+async function logout() {
     // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+            alert('an error occurred. Please try again');
+        return;
+      }
+        const data = await response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
