@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 } else if  (errorData.error === 'Wrong OTP') {
                     // Handle other error cases
                     showError('otpError', 'invalid email verification link.');
+                    // if error is invalid otp let's show the user button to resend an otp verification link
+                    document.getElementById('submitPassword').style.display='block';
                 } else if  (errorData.error === 'OTP  Expired') {
                     // redirect user to verify email ID
                     showError('otpError', 'This email verification link has expired please, try resending a verification link.');
