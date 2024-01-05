@@ -72,11 +72,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         hideLoadingIcon();
 });
 
-document.getElementById("submitPassword").addEventListener('click', async function () {
+document.getElementById("resendOTP").addEventListener('click', async function () {
     await resendOTP();
 });
 
 async function resendOTP() {
+    document.getElementById('verifyText').textContent = 'Please  check your email for verification link.'
     startResendTimer()
     // Get the current URL
     const currentUrl = new URL(window.location.href);
