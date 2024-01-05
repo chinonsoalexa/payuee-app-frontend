@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // Handle other error cases
                     showError('otpError', 'invalid email verification link.');
                     // if error is invalid otp let's show the user button to resend an otp verification link
-                    document.getElementById('submitPassword').style.display='block';
+                    document.getElementById('resendOTP').style.display='block';
                 } else if  (errorData.error === 'OTP  Expired') {
                     // redirect user to verify email ID
                     showError('otpError', 'This email verification link has expired please, try resending a verification link.');
                     // if error is otp expired let's show the user button to resend an otp verification link
-                    document.getElementById('submitPassword').style.display='block';
+                    document.getElementById('resendOTP').style.display='block';
                 } else if  (errorData.error === 'otp not found') {
                     // Handle other error cases
                     showError('otpError', 'Email not found.');
