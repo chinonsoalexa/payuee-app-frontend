@@ -13,3 +13,19 @@ function get_auth_status() {
         localStorage.removeItem('auth');
     }
 }
+
+document.getElementById('logout-button').addEventListener('click', function () {
+    event.preventDefault()
+    logout()
+})
+
+document.getElementById('logout-button2').addEventListener('click', function () {
+    event.preventDefault()
+    logout()
+})
+
+function logout() {
+    localStorage.removeItem('auth')
+    window.location.href = '../index.html'
+    // also send a request to the logout api endpoint
+}

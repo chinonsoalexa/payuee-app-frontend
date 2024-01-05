@@ -217,7 +217,7 @@
                </ul>
             </li>
             <li class="sigup__grp d-lg-none d-flex align-items-center">
-               <a href="" class="cmn__btn outline__btn">
+               <a href="" id="logout-button" class="cmn__btn outline__btn">
                   <span>
                      Logout
                   </span>
@@ -225,7 +225,7 @@
             </li>
          </ul>
          <div class="sigin__grp d-flex align-items-center">
-            <a href="javacript:void(0)" class="cmn__btn outline__btn">
+            <a href="" id="logout-button2" class="cmn__btn outline__btn">
                <span>
                   Logout
                </span>
