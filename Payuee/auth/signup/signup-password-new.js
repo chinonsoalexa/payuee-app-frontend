@@ -162,6 +162,8 @@ async function submit_password() {
 function showError(id, message) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
 }
 
 function showErrorUserExist(id, message, duration = 5000) {
@@ -175,7 +177,7 @@ function showErrorUserExist(id, message, duration = 5000) {
         errorElement.textContent = ''; // Clear the error message
         errorElement.style.display = 'none'; // Hide the error message
         // redirect user to verify his email address
-        window.location.href = 'verify-email.html';
+        // window.location.href = 'verify-email.html';
     }, duration);
 }
 
