@@ -1,6 +1,3 @@
-// script.js
-console.log('Script loaded!');
-
 // Handle scrolling when a link is clicked
 document.addEventListener('click', function (event) {
     // Check if the clicked link has a specific class or ID
