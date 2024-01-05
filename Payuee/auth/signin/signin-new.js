@@ -142,8 +142,8 @@ async function sign_in() {
 
     function deactivateInputStyles() {
         // Remove any existing classes that may interfere with input styling
-        var input1 = document.getElementsById('email_id');
-        var input2 = document.getElementsById('password');
+        var input1 = document.getElementById('email_id');
+        var input2 = document.getElementById('password');
 
         input1.disabled = true;
         input2.disabled = true;
@@ -151,8 +151,8 @@ async function sign_in() {
 
     function reactivateInputStyles() {
         // Remove any existing classes that may interfere with input styling
-        var input1 = document.getElementsById('email_id');
-        var input2 = document.getElementsById('password');
+        var input1 = document.getElementById('email_id');
+        var input2 = document.getElementById('password');
 
         input1.disabled = false;
         input2.disabled = false;
