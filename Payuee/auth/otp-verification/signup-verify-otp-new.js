@@ -161,7 +161,7 @@ function startResendTimer() {
         return;
     }
 
-    const resendButton = document.getElementById('submitPassword');
+    const resendButton = document.getElementById('resendOTP');
     // resendButton.disabled = true; // Disable the button
 
     let seconds = 60; // Set the countdown time to 5 minutes (300 seconds)
@@ -205,7 +205,7 @@ function continueResendTimer() {
 
     document.getElementById('input1').value = usersLastInputValue;
 
-    const resendButton = document.getElementById('submitPassword');
+    const resendButton = document.getElementById('resendOTP');
     // resendButton.disabled = true; // Disable the button
 
     // Calculate the remaining time based on the difference
