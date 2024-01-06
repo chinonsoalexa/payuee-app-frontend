@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     showError('otpError', 'invalid email verification link.');
                     // if error is invalid otp let's show the user button to resend an otp verification link
                     document.getElementById('resendOTP').style.display='block';
-                } else if  (errorData.error === 'OTP  Expired') {
+                } else if  (errorData.error === 'Verification Code Expired') {
                     // redirect user to verify email ID
                     showError('otpError', 'This email verification link has expired please, try resending a verification link.');
                     // if error is otp expired let's show the user button to resend an otp verification link
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             // const data = await response.json();
             hideLoadingIcon();
-            showError('otpError', 'Email address verified...');
+            showSuccess('otpError', 'Email address verified...');
             localStorage.setItem('auth', 'true');
             window.location.href = '../index-in.html'
         } finally{
@@ -138,6 +138,12 @@ function showError(id, message) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
     errorElement.style.color = 'red';
+}
+
+function showSuccess(id, message) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.color = 'green';
 }
 
 // Add this function to reactivate the button styles
