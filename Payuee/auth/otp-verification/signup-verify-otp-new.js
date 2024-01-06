@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const errorData = await response.json();
                 // Check the error message
                 // Handle fetch-related errors
-                if (errorData.error === 'failed to get OTP') {
+                if (errorData.error === 'OTP not found') {
                     // Perform actions specific to this error
-                    showError('otpError', 'an error occurred verifying email .');
+                    showError('otpError', 'Verification link unrecognized.');
                 } else if  (errorData.error === 'Wrong OTP') {
                     // Handle other error cases
-                    showError('otpError', 'invalid email verification link.');
+                    showError('otpError', 'Invalid email verification link.');
                     // if error is invalid otp let's show the user button to resend an otp verification link
                     document.getElementById('resendOTP').style.display='block';
                 } else if  (errorData.error === 'Verification Code Expired') {
