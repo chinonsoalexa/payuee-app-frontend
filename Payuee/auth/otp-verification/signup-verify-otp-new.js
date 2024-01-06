@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     showError('otpError', 'An error occurred. Please try again.');
                 }
                 hideLoadingIcon();
+                console.log(errorData.error)
                 return;
             }
             // const data = await response.json();
