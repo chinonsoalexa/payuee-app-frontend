@@ -14,9 +14,10 @@ function get_auth_status() {
     }
 }
 
-document.getElementById('logout-button').addEventListener('click', function () {
+// this is to log users out
+document.getElementById('logout-button').addEventListener('click', async function () {
     event.preventDefault()
-    logout()
+    await logout()
 })
 
 document.getElementById('logout-button2').addEventListener('click', async function () {
