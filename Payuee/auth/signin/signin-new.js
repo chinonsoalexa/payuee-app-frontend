@@ -79,12 +79,20 @@ async function sign_in() {
             if (!response.ok) {
                 // throw new Error(`HTTP error! Status: ${response.status}`);
                 data = await response.json();
-                if (data.error == 'User already exist, please login') {
-                    showError('otpError', "Please login user already exist.");
+                if (data.error == 'Please login using your google account') {
+                    showError('otpError', "Please login using your google account.");
                     return;
                 } else if (data.error == 'User already exist, please verify your email ID') {
                     // redirect user to verify email ID
                     showErrorUserExist('emailError', 'User already exist, please verify your email ID.', 5000);
+                    return;
+                } else if (data.error == 'User do not exist, please sign up') {
+                    // redirect user to verify email ID
+                    showErrorUserExist('emailError', 'User do not exist, please sign up.', 5000);
+                    return;
+                } else if (data.error == 'Invalid email or password') {
+                    // redirect user to verify email ID
+                    showErrorUserExist('emailError', 'Invalid email or password.', 5000);
                     return;
                 } else {
                     showError('otpError', `an error occurred. Please try again.`);
