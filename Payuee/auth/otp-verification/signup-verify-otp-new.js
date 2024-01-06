@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     document.getElementById('resendOTP').style.display='block';
                 } else if  (errorData.error === 'otp not found') {
                     // Handle other error cases
-                    showError('otpError', 'Email not found.');
+                    showError('otpError', 'Email not found...');
                 } else {
                     showError('otpError', 'An error occurred. Please try again.');
                 }

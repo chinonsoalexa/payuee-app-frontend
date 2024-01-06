@@ -55,12 +55,13 @@ async function sign_in() {
     if (!err) {
         // send post request
         deactivateInputStyles();
-        // send a post request with the otp
+        // send a post request with the email and password
         const otp = {
-            SentOTP: currentInput.value,
+            Email: email,
+            Password: password,
             };
 
-            const apiUrl = "https://payuee.onrender.com/email-verification";
+            const apiUrl = "https://payuee.onrender.com/sign-in";
 
             const requestOptions = {
             method: "POST",
