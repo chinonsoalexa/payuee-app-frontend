@@ -116,7 +116,7 @@ function sign_up() {
             localStorage.setItem('last_name', last_name);
             localStorage.setItem('email', email);
             localStorage.setItem('code', code);
-            window.location.href = 'signup-password-new.html'
+            window.location.replace('signup-password-new.html');
         }
     }
 }

@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                     showError('otpError', 'This email verification link has expired please, try resending a verification link.');
                     // if error is otp expired let's show the user button to resend an otp verification link
                     document.getElementById('resendOTP').style.display='block';
+                } else if  (errorData.error === 'email limit check exceeded') {
+                    // redirect user to verify email ID
+                    showError('otpError', "This email verification link has exceeded it's use limit, try resending a verification link.");
+                    // if error is otp expired let's show the user button to resend an otp verification link
+                    document.getElementById('resendOTP').style.display='block';
                 } else if  (errorData.error === 'otp not found') {
                     // Handle other error cases
                     showError('otpError', 'Email not found...');
@@ -63,8 +68,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             // const data = await response.json();
             hideLoadingIcon();
             showSuccess('otpError', 'Email address verified...');
+            // remove all locally stored content
+            localStorage.removeItem('first_name');
+            localStorage.removeItem('last_name');
+            localStorage.removeItem('email');
+            localStorage.removeItem('code');
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../index-in.html'
+            window.location.replace('../../index-in.html');
         } finally{
            // do nothing cause error has been handled
             hideLoadingIcon();
@@ -78,7 +88,8 @@ document.getElementById("resendOTP").addEventListener('click', async function ()
 });
 
 async function resendOTP() {
-    document.getElementById('verifyText').textContent = 'Please  check your email for verification link.'
+    // document.getElementById('verifyText').textContent = 'Please  check your email for verification link.'
+    showError('otpError', 'Please  check your email for verification link.');
     startResendTimer()
     // Get the current URL
     const currentUrl = new URL(window.location.href);
