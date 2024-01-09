@@ -88,7 +88,7 @@ document.getElementById("resendOTP").addEventListener('click', async function ()
 });
 
 async function resendOTP() {
-    // document.getElementById('verifyText').textContent = 'Please  check your email for verification link.'
+    document.getElementById('verifyText').textContent = 'Please hold on a minute while we send your a verification link...'
     showError('otpError', 'Please  check your email for verification link.');
     startResendTimer()
     // Get the current URL
