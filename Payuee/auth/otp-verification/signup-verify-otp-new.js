@@ -161,8 +161,11 @@ function showSuccess(id, message) {
 // Add this function to reactivate the button styles
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('submitPassword');
-    resendButton.classList.remove('deactivated');
+    if (resendButton) {
+        resendButton.classList.remove('deactivated');
+    }
 }
+
 
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
