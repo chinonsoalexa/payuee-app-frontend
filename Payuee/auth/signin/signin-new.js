@@ -86,11 +86,11 @@ async function sign_in() {
                     return;
                 } else if (data.error == 'User do not exist, please sign up') {
                     // redirect user to verify email ID
-                    showErrorUserExist('emailError', 'User do not exist, please sign up.', 5000);
+                    showErrorUserDontExist('emailError', 'User do not exist, please sign up.', 5000);
                     return;
                 } else if (data.error == 'Invalid email or password') {
                     // redirect user to verify email ID
-                    showErrorUserExist('emailError', 'Invalid email or password.', 5000);
+                    showError('emailError', 'Invalid email or password.', 5000);
                     return;
                 } else {
                     showError('otpError', `an error occurred. Please try again.`);
@@ -142,5 +142,20 @@ async function sign_in() {
             errorElement.style.display = 'none'; // Hide the error message
             // redirect user to verify his email address
             window.location.href = 'verify-email.html';
+        }, duration);
+    }
+
+    function showErrorUserDontExist(id, message, duration = 5000) {
+        var errorElement = document.getElementById(id);
+        errorElement.textContent = message;
+        errorElement.style.display = 'block'; // Change display to 'block'
+        errorElement.style.color = 'red'; // Set text color to red
+    
+        // Set a timeout to hide the error message after the specified duration
+        setTimeout(function () {
+            errorElement.textContent = ''; // Clear the error message
+            errorElement.style.display = 'none'; // Hide the error message
+            // redirect user to verify his email address
+            window.location.href = 'signup-new.html';
         }, duration);
     }
