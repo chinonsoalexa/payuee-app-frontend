@@ -126,7 +126,7 @@ async function submit_password() {
                 console.log('error message: ', errorData.error);
                 if (errorData.error === 'User already exist, please login') {
                     // Perform actions specific to this error
-                    showError('passwordError', 'User already exists. Please login.');
+                    showError('passwordError', 'User already exists. Please signin.');
                 } else if  (errorData.error === 'Please login using your google account') {
                     // Handle other error cases
                     showError('passwordError', 'Please login using your google account.');
@@ -137,7 +137,7 @@ async function submit_password() {
                 } else if  (errorData.error === 'email verification failed') {
                     // Handle other error cases
                     showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
-                }else if  (errorData.error === 'User already exist, please login') {
+                }else if  (errorData.error === 'User already exist, please signin') {
                     // Handle other error cases
                     showError('passwordError', 'Please login you already have an existing account with us.');
                 }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
