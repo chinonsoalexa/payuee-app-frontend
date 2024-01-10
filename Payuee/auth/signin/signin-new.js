@@ -76,7 +76,7 @@ async function sign_in() {
 
             if (!response.ok) {
                 // throw new Error(`HTTP error! Status: ${response.status}`);
-                data = await response.json();
+                let data = await response.json();
                 if (data.error == 'Please login using your google account') {
                     showError('otpError', "Please login using your google account.");
                     return;
