@@ -21,7 +21,7 @@ document.getElementById('signin_button').addEventListener('click', async functio
 async function sign_in() {
     var err = false
     let email = document.getElementById("email_id").value;
-    let password = document.getElementById("password").value;
+    let password = document.getElementById("password-field").value;
 
     if (email === '') {
         err = true
@@ -53,8 +53,6 @@ async function sign_in() {
 
 
     if (!err) {
-        // send post request
-        deactivateInputStyles();
         // send a post request with the email and password
         const otp = {
             Email: email,
@@ -100,7 +98,6 @@ async function sign_in() {
                 return;
             } 
             const data = await response.json();
-            reactivateInputStyles();
             localStorage.setItem('auth', 'true');
             window.location.href = '../../../index-in.html';
             localStorage.removeItem('code');
@@ -110,7 +107,6 @@ async function sign_in() {
         } finally{
             
         }
-        reactivateInputStyles();
     }
 
 }
@@ -147,22 +143,4 @@ async function sign_in() {
             // redirect user to verify his email address
             window.location.href = 'verify-email.html';
         }, duration);
-    }
-
-    function deactivateInputStyles() {
-        // Remove any existing classes that may interfere with input styling
-        var input1 = document.getElementById('email_id');
-        var input2 = document.getElementById('password');
-
-        input1.disabled = true;
-        input2.disabled = true;
-    }
-
-    function reactivateInputStyles() {
-        // Remove any existing classes that may interfere with input styling
-        var input1 = document.getElementById('email_id');
-        var input2 = document.getElementById('password');
-
-        input1.disabled = false;
-        input2.disabled = false;
     }
