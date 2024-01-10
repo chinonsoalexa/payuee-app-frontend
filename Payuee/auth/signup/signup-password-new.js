@@ -136,7 +136,7 @@ async function submit_password() {
                     // window.location.href = '/verify';
                 } else if  (errorData.error === 'email verification failed') {
                     // Handle other error cases
-                    showError('passwordError', 'an error occurred while sending you an verification email, please try resending.');
+                    showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
                 }else if  (errorData.error === 'User already exist, please login') {
                     // Handle other error cases
                     showError('passwordError', 'Please login you already have an existing account with us.');
