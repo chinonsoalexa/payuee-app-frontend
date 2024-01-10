@@ -155,7 +155,7 @@ if (!auth_check) {
         }
         // const data = await response.json();
         reactivateButtonStyles();
-        window.location.href = '../../../Payuee/page/signup-confirm-otp-new.html'
+        window.location.href = 'signin-new.html'
     } finally{
        // do nothing cause error has been handled
     }
