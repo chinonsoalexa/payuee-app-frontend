@@ -1,5 +1,3 @@
-// document.onload
-
 document.getElementById('recharge-button').addEventListener('click', function() {
         // Prevent the default behavior (in this case, the redirect)
         event.preventDefault();
@@ -40,7 +38,7 @@ function buy_airtime(){
 
     // let's send a post request to make an airtime purchase
 
-    
+
 }
 
 function getSelectedValue(id) {
