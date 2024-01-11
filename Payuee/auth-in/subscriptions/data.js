@@ -16,7 +16,7 @@ function buy_data(){
 
     if (amount < 10 && rechargeValue < 500) {
         validated = false;
-        showError('pin-error', 'Minimum 10 pins per order, except for ₦500+ recharge.');
+        showError('pin-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
     }else if (amountInput.value.trim() === '') {
         validated = false;
         showError('pin-error', 'Please enter amount of pin to recharge.');
