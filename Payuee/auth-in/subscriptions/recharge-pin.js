@@ -9,14 +9,16 @@ function buy_recharge_pin(){
     // let's take all fields and validate
     var amountInput = document.getElementById("pin-number");
     var amount = parseInt(amountInput.value, 10);
-    // var description = document.getElementById("description").value;
+    var description = document.getElementById("description").value;
     // let's get the selected value
     var selectedRechargeValue = getSelectedValue("rechargeSelect");
-    var rechargeValue = parseInt(selectedRechargeValue.value, 10);
-    // var selectedCarrierValue = getSelectedValue("carrierSelect");
+    var rechargeValue = parseInt(selectedRechargeValue, 10);
 
-    if (isNaN(amount) || amount < 10 && rechargeValue < 400) {
-        validated = false
+    console.log("amount:", amount);
+console.log("rechargeValue:", rechargeValue);
+
+    if (amountInput.value.trim() === '' || (amount < 10 && rechargeValue < 500)) {
+        validated = false;
         showError('pin-error', 'Minimum 10 pins per order, except for ₦500+ recharge.');
     }
 
