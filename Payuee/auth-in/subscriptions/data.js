@@ -1,10 +1,10 @@
 document.getElementById('recharge-button').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    buy_recharge_pin()
+    buy_data()
 })
 
-function buy_recharge_pin(){
+function buy_data(){
     var validated = true
     // let's take all fields and validate
     var amountInput = document.getElementById("pin-number");
