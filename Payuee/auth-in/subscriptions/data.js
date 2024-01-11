@@ -1,4 +1,4 @@
-document.getElementById('recharge-button').addEventListener('click', function() {
+document.getElementById('buy-data').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
     buy_data()
