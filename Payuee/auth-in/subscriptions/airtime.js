@@ -1,4 +1,4 @@
-document.getElementById('recharge-button').addEventListener('click', function() {
+document.getElementById('airtime-button').addEventListener('click', function() {
         // Prevent the default behavior (in this case, the redirect)
         event.preventDefault();
         buy_airtime()
@@ -23,22 +23,16 @@ function buy_airtime(){
         showError('amount-error', 'Minimum: ₦95 and Maximum:₦5000.');
     }
 
-    // let's check if the radio button is checked
-    // Get all radio buttons with the name 'flexRadioDefault'
-    const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
+    // let's check the radio button that was checked
+   let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    // Loop through the radio buttons
-    radioButtons.forEach(function(radioButton) {
-        // Check if the radio button is checked
-        if (radioButton.checked) {
-            // Log the id of the checked radio button
-            console.log('Checked radio button:', radioButton.id);
-        }
-    });
+    console.log('Checked radio button:', checkedButton);
 
     // let's send a post request to make an airtime purchase
 
+    if (validated) {
 
+    }
 }
 
 function getSelectedValue(id) {
@@ -63,4 +57,20 @@ function showError(id, message, duration = 5000) {
         errorElement.textContent = ''; // Clear the error message
         errorElement.style.display = 'none'; // Hide the error message
     }, duration);
+}
+
+function radioButtonCheck(idName) {
+        let radioButtonCheck = ''
+        // Get all radio buttons with the name 'flexRadioDefault'
+        const radioButtons = document.querySelectorAll(idName);
+
+        // Loop through the radio buttons
+        radioButtons.forEach(function(radioButton) {
+            // Check if the radio button is checked
+            if (radioButton.checked) {
+                // Log the id of the checked radio button
+                radioButtonCheck = radioButton.id
+            }
+        });
+        return radioButtonCheck
 }
