@@ -79,19 +79,24 @@ function radioButtonCheck(idName) {
         return radioButtonCheck
 }
 
-// Get the select element
-var operatorSelect = document.getElementById('operatorSelect');
-var plansSelect = document.getElementById('plansSelect');
 
 // Add an event listener to the select element
-operatorSelect.addEventListener('change', function() {
-    (async () => {
+document.getElementById('operator-select').addEventListener('change', async function () {
+    console.log('Change event triggered');
+
+    try {
         await getSelectedPlan();
-    })();
+        // Additional code to run after getSelectedPlan completes
+    } catch (error) {
+        console.error('Error in change event:', error);
+    }
 });
 
 async function getSelectedPlan() {
     console.log('get selected plan working')
+    var operatorSelect = document.getElementById('operator-select');
+    // Get the select element
+    var plansSelect = document.getElementById('plansSelect');
 
         // Get the selected value
         var selectedValue = operatorSelect.value;
