@@ -1,3 +1,6 @@
+// Attach the onload event using addEventListener
+window.addEventListener('load', getSelectedPlan);
+
 document.getElementById('buy-data').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
@@ -72,4 +75,67 @@ function radioButtonCheck(idName) {
             }
         });
         return radioButtonCheck
+}
+
+function getSelectedPlan() {
+    // Get the select element
+    var operatorSelect = document.getElementById('operatorSelect');
+
+    // Add an event listener to the select element
+    operatorSelect.addEventListener('change', function() {
+        // Get the selected value
+        var selectedValue = operatorSelect.value;
+
+        // Perform a task based on the selected value
+        switch (selectedValue) {
+            case '2':
+                requestPlan('mtn_sme')
+                // Add your specific task for this option
+                break;
+            case '3':
+                requestPlan('mtncg')
+                // Add your specific task for this option
+                break;
+            case '4':
+                requestPlan('airtel_cg')
+                // Add your specific task for this option
+                break;
+            case '5':
+                requestPlan('etisalat_data')
+                // Add your specific task for this option
+                break;
+            case '6':
+                requestPlan('glo_data')
+                // Add your specific task for this option
+                break;
+            default:
+                
+                break;
+        }
+    });
+}
+
+function requestPlan(plan_id) {
+    fetch('https://gsubz.com/api/plans?service=' + plan_id)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch plans');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var selectElement = document.getElementById('plansSelect');
+            selectElement.innerHTML = ''; // Clear existing options
+
+            data.plans.forEach(plan => {
+                var option = document.createElement('option');
+                option.value = plan.value;
+                option.textContent = `${plan.displayName} - ₦${plan.price}`;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching plans:', error);
+            // Handle the error, e.g., display an error message to the user
+        });
 }
