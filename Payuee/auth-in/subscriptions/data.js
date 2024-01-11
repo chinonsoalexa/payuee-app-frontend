@@ -1,5 +1,7 @@
-// Attach the onload event using addEventListener
-window.addEventListener('load', getSelectedPlan);
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Your JavaScript code here
+//     console.log('Script loaded');
+// });
 
 document.getElementById('buy-data').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
@@ -77,67 +79,76 @@ function radioButtonCheck(idName) {
         return radioButtonCheck
 }
 
-function getSelectedPlan() {
-    // Get the select element
-    var operatorSelect = document.getElementById('operatorSelect');
+// Get the select element
+var operatorSelect = document.getElementById('operatorSelect');
+var plansSelect = document.getElementById('plansSelect');
 
-    // Add an event listener to the select element
-    operatorSelect.addEventListener('change', function() {
+// Add an event listener to the select element
+operatorSelect.addEventListener('change', function() {
+    (async () => {
+        await getSelectedPlan();
+    })();
+});
+
+async function getSelectedPlan() {
+    console.log('get selected plan working')
+
         // Get the selected value
         var selectedValue = operatorSelect.value;
+
+        plansSelect.innerHTML = '<option value="1">Select a Plan</option>';
 
         // Perform a task based on the selected value
         switch (selectedValue) {
             case '2':
-                requestPlan('mtn_sme')
+                await requestPlan('mtn_sme');
                 // Add your specific task for this option
                 break;
             case '3':
-                requestPlan('mtncg')
+                await requestPlan('mtncg');
                 // Add your specific task for this option
                 break;
             case '4':
-                requestPlan('airtel_cg')
+                await requestPlan('airtel_cg');
                 // Add your specific task for this option
                 break;
             case '5':
-                requestPlan('etisalat_data')
+                await requestPlan('etisalat_data');
                 // Add your specific task for this option
                 break;
             case '6':
-                requestPlan('glo_data')
+                await requestPlan('glo_data');
                 // Add your specific task for this option
                 break;
             default:
-                
+                // Handle other cases
                 break;
         }
-    });
 }
 
-function requestPlan(plan_id) {
-    fetch('https://gsubz.com/api/plans?service=' + plan_id)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch plans');
-            }
-            return response.json();
-        })
-        .then(data => {
-            var selectElement = document.getElementById('plansSelect');
-            selectElement.innerHTML = ''; // Clear existing options
+async function requestPlan(plan_id) {
+    try {
+        const response = await fetch('https://gsubz.com/api/plans?service=' + plan_id);
 
-            console.log(data); 
+        if (!response.ok) {
+            throw new Error('Failed to fetch plans');
+        }
 
-            data.plans.forEach(plan => {
-                var option = document.createElement('option');
-                option.value = plan.value;
-                option.textContent = `${plan.displayName} - ₦${plan.price}`;
-                selectElement.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching plans:', error);
-            // Handle the error, e.g., display an error message to the user
+        const data = await response.json();
+
+        var selectElement = document.getElementById('plansSelect');
+        selectElement.innerHTML = ''; // Clear existing options
+
+        console.log(data);
+
+        data.plans.forEach(plan => {
+            var option = document.createElement('option');
+            option.value = plan.value;
+            option.textContent = `${plan.displayName} - ₦${plan.price}`;
+            selectElement.appendChild(option);
         });
+    } catch (error) {
+        console.error('Error fetching plans:', error);
+        // Handle the error, e.g., display an error message to the user
+    }
 }
