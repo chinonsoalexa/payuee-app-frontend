@@ -29,7 +29,7 @@
 
         // Check if password meets the criteria
         if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-            showError('passwordError', "Password must have at least 8 characters, including uppercase, lowercase, number, and symbol.");
+            showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
             return
         }
 
@@ -74,7 +74,7 @@ async function submit_password() {
     // Check if password meets the criteria
     if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
         auth_check = true
-        showError('passwordError', "Password must have at least 8 characters, including uppercase, lowercase, number, and symbol.");
+        showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
         return
     }
 

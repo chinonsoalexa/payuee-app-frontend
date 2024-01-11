@@ -394,10 +394,11 @@
                      <form action="javascript:void(0)" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
-                              <input type="text" placeholder="Enter Mobile Number">
+                              <input type="number" id="phone-number" placeholder="Enter Mobile Number">
+                              <p id="phone-error"></p>
                            </div>
                            <div class="col-lg-6">
-                              <select name="niceselect">
+                              <select name="niceselect" id="carrierSelect">
                                  <option value="1">
                                     MTN
                                  </option>
@@ -412,28 +413,13 @@
                                  </option>
                               </select>
                            </div>
-                           <!-- <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select Offers
-                                 </option>
-                                 <option value="2">
-                                    1st Offers
-                                 </option>
-                                 <option value="3">
-                                    2nd Offers
-                                 </option>
-                                 <option value="4">
-                                    3rd Offers
-                                 </option>
-                              </select>
-                           </div> -->
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Amount">
+                              <input type="number" id="amount-input" placeholder="Enter Amount">
+                              <p id="amount-error"></p>
                            </div>
                         </div>
                      </form>
-                     <a href="order.html" class="cmn__btn mt-5">
+                     <a href="order.html" id="recharge-button" class="cmn__btn mt-5">
                         <span>
                            Continue recharge
                         </span>
@@ -1296,8 +1282,10 @@
 </footer>
 <!-- footer End -->
 
+   <!-- Airtime purchase -->
+   <script src="auth-in/subscriptions/airtime.js"></script>
+
    <!--Jquery 3 6 0 Min Js-->
-   
    <script src="assets/js/jquery-3.6.0.min.js"></script>
    <!--Bootstrap bundle Js-->
    <script src="assets/js/bootstrap.bundle.min.js"></script>
