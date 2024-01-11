@@ -127,6 +127,7 @@ function requestPlan(plan_id) {
             var selectElement = document.getElementById('plansSelect');
             selectElement.innerHTML = ''; // Clear existing options
 
+            console.log(data)
             data.plans.forEach(plan => {
                 var option = document.createElement('option');
                 option.value = plan.value;
