@@ -166,8 +166,10 @@ async function requestPlan(plan_id) {
             data.plans.forEach(plan => {
                 console.log('Processing plan:', plan);
                 var option = document.createElement('option');
-                option.value = plan.value;
-                option.textContent = `${plan.displayName} - ₦${plan.price}`;
+                // option.value = plan.value;
+                // option.textContent = `${plan.displayName} - ₦${plan.price}`;
+                option.value = "newOptionValue";
+                option.text = "New Option";
                 selectElement.appendChild(option);
             });
         } else {
