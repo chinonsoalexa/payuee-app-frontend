@@ -143,10 +143,9 @@ async function requestPlan(plan_id) {
     const userAgent = navigator.userAgent;
     console.log('User-Agent:', userAgent);
     try {
-        const url = `https://gsubz.com/api/plans?service=${plan_id}`;
+        const url = `https://payuee.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
-            // 'User-Agent': userAgent
         };
 
         const response = await fetch(url, {
@@ -154,8 +153,7 @@ async function requestPlan(plan_id) {
             headers: headers,
             credentials: 'include'
         });
-        // const response = await fetch(url, { method: 'GET', mode: 'no-cors', header: headers });
-
+        
         if (response.ok) {
             const data = await response.json();
             
