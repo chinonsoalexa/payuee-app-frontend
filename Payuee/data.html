@@ -370,7 +370,7 @@
                   </div>
                </div>
             </div>
-            <div id="data-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+            <div id="data-section-container" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
                      <h5 class="mb-4">
@@ -398,9 +398,6 @@
                            </div>
                            <div class="col-lg-6">
                               <select id="operator-select" name="niceselect">
-                                 <!-- <option value="1">
-                                    Select Your Operator
-                                 </option> -->
                                  <option value="2">
                                    MTN-SME-Data (*461*4#)
                                  </option>
@@ -418,11 +415,9 @@
                                  </option>
                               </select>
                            </div>
-                           <div class="col-lg-6">
-                              <select id="plansSelect" name="niceselect" >
-                                 <option value="plans">
-                                    Select a Plans
-                                 </option>
+                           <div  id="planSelectId" class="col-lg-6">
+                              <select id="plansSelect" name="niceselect" style="display: none;">
+                                 <option value="plans">Select a Plan</option>
                               </select>
                            </div>
                            <div class="col-lg-6">
@@ -642,48 +637,6 @@
 </section>
 <!--home two refer end-->
 
-<!--home two sponsor start-->
-<!-- <section class="sponsor__section pt__60 pb__60 bgsection">
-   <div class="container">
-      <div class="logo__sponsor owl-theme owl-carousel">
-         <div class="item">
-            <img src="assets/img/sponsor/s1.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s2.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s3.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s4.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s5.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s6.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s7.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s2.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s3.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s4.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s5.png" alt="img">
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two sponsor end-->
-
 <!--home two working start-->
 <section class="working__section__two pt-120 pb-120">
    <div class="container">
@@ -759,318 +712,6 @@
 </section>
 <!--home two working end-->
 
-<!--home two app end-->
-<!-- <section class="app__section bgsection pt-120 pb-120">
-   <div class="container">
-      <div class="row justify-content-between align-items-center">
-         <div class="col-xl-7 col-lg-7 wow fadeInDown" data-wow-duration="1.5s">
-            <div class="app__content">
-               <div class="section__header">
-                  <h2>
-                     The Fastest Way to Pay In-store & Online.
-                  </h2>
-                  <p class="apptext"> 
-                     Download our app for the fastest, most convenient way to send Recharge.
-                  </p>
-                  <p class="pb__40">
-                     There are many variations of passages of Lorem Ipsum available, but the         have suffered alteration in some form, by injected humour, or randomised      words which don't look even slightly believable. If you are going to use...
-                  </p>
-                  <div class="d-flex gap-3 align-items-center">
-                     <a href="javascript:void(0)" class="storyitem">
-                        <img src="assets/img/app/appplay.png" alt="img">
-                     </a>
-                     <a href="javascript:void(0)" class="storyitem">
-                        <img src="assets/img/app/appstore.png" alt="img">
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-xl-5 col-lg-5 wow fadeInUp" data-wow-duration="2.5s">
-            <div class="app__thumb app__thumb__two">
-               <img src="assets/img/app/apptwo.png" alt="img">
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="app__woman">
-      <img src="assets/img/app/appwoman.png" alt="img">
-   </div>
-</section> -->
-<!--home two app end-->
-
-<!--home two testimonial start-->
-<!-- <section class="testimonial__section__two pt-120 pb-120">
-   <div class="container">
-      <div class="row justify-content-center wow fadeInDown">
-         <div class="col-lg-7">
-            <div class="section__header text-center pb__40">
-               <h2>
-                  Our Customers says
-               </h2>
-               <p class="max600">
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form
-               </p>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="testimoial__wrap__two owl-theme owl-carousel">
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/jenlia.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Jenelia d'suza
-               </h6>
-               <span class="desination">
-                  Student
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/alena.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Alena Hecals
-               </h6>
-               <span class="desination">
-                  Doctor
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/brad.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Brad Hogds
-               </h6>
-               <span class="desination">
-                  Enginner
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/jenlia.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Jenelia d'suza
-               </h6>
-               <span class="desination">
-                  Student
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/alena.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Alena Hecals
-               </h6>
-               <span class="desination">
-                  Doctor
-               </span>
-            </div>
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two testimonial end-->
-
-<!--home two support end-->
-<!-- <section class="speacial__support bgsection pt-120 pb-120">
-   <div class="container">
-      <div class="row gx-5 justify-content-between align-items-center">
-         <div class="col-xl-6 col-lg-6">
-            <div class="refer__content">
-               <div class="section__header wow fadeInDown">
-                  <h2>
-                     Enjoy our Speacial supports
-                  </h2>
-                  <p>
-                     There are many variations of passages of Lorem Ipsum available, but the  have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use...
-                  </p>
-               </div>
-               <div class="refer__wrap pt__20">
-                  <div class="refer__item wow fadeInUp" data-wow-duration="0.9s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxspeaker.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Secure Payment
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxregister.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Refer & Earn
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1.4s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxamount.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Trust pay
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1.6s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxamount.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           24X7 Support
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-               </div>
-               <a href="contact.html" class="cmn__btn wow fadeInUp" data-wow-duration="1.9s">
-                  <span>
-                     Contact us
-                  </span>
-               </a>
-            </div>
-         </div>
-         <div class="col-xl-5 col-lg-5 wow fadeInUp">
-            <div class="speacial__refer__thumb">
-               <img src="assets/img/refer/spealsupport.png" alt="thumb">
-            </div>
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two support start-->
 
 <!--home two qustions start-->
 <section class="question__section pt-120 pb-120">
@@ -1341,7 +982,6 @@
 </footer>
 <!-- home two footer End -->
 
-
    <!-- this for data subscription -->
    <script src="auth-in/subscriptions/data.js"></script>
    <!--Jquery 3 6 0 Min Js-->
@@ -1363,13 +1003,11 @@
    <!--Owl carousel min Js-->
    <script src="assets/js/owl.carousel.min.js"></script>
    <!--Prijm Js-->
-   <!-- <script src="assets/js/prism.js"></script> -->
+   <script src="assets/js/prism.js"></script>
    <!--main Js-->
    <script src="assets/js/main.js"></script>
       <!-- js scroll to data link -->
-   <!-- <script src="page-scroll-js/mobile-scroll.js" defer></script> -->
+   <script src="page-scroll-js/mobile-scroll.js" defer></script>
 </body>
 
-
-<!-- Mirrored from /Payuee/Payuee/broadband2.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:38 GMT -->
 </html>

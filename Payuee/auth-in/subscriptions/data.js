@@ -1,17 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
 //     // Your JavaScript code here
 //     console.log('Script loaded');
 console.log('Script is running');
 
-document.getElementById('buy-data').addEventListener('click', async function(event) {
-    // Prevent the default behavior (in this case, the redirect)
-    event.preventDefault();
-    // buy_data()
-   await getSelectedPlan();
-})
-});
 
-function buy_data(){
+// Add an event listener to the select element
+// document.getElementById('operator-select').addEventListener('change', async function () {
+//     console.log('Change event triggered');
+
+//     try {
+//         await getSelectedPlan();
+//         console.log('getSelectedPlan executed successfully');
+//     } catch (error) {
+//         console.error('Error in getSelectedPlan:', error);
+//     }
+// });
+
+document.getElementById('buy-data').addEventListener('click', function() {
+    // Prevent the default behavior (in this case, the redirect)
+    // buy_data()
+    getSelectedPlan();
+})
+
+function buy_data(event){
+    event.preventDefault();
     var validated = true
     // let's take all fields and validate
     var amountInput = document.getElementById("data-number");
@@ -81,36 +92,73 @@ function radioButtonCheck(idName) {
         return radioButtonCheck
 }
 
-// Add an event listener to the select element
-// document.getElementById('operator-select').addEventListener('change', async function () {
-//     console.log('Change event triggered');
+// Assuming 'planSelectId' is the ID of the div wrapping the select element
+var planSelectDiv = document.getElementById('planSelectId');
 
-//     try {
-//         await getSelectedPlan();
-//         // Additional code to run after getSelectedPlan completes
-//     } catch (error) {
-//         console.error('Error in change event:', error);
-//     }
-// });
+// Create a new div for nice-select
+var niceSelectDiv = document.createElement('div');
+niceSelectDiv.className = 'nice-select';
+niceSelectDiv.setAttribute('tabindex', '0');
+
+// Create the current span inside nice-select
+var currentSpan = document.createElement('span');
+currentSpan.className = 'current';
+currentSpan.textContent = 'Select a Plan';
+
+// Create the list ul inside nice-select
+var listUl = document.createElement('ul');
+listUl.className = 'list';
+
+// Create an option li inside the list
+var optionLi = document.createElement('li');
+optionLi.className = 'option focus selected';
+optionLi.setAttribute('data-value', 'plans');
+optionLi.textContent = 'Select a Plan';
+
+// Append elements to build the structure
+listUl.appendChild(optionLi);
+niceSelectDiv.appendChild(currentSpan);
+niceSelectDiv.appendChild(listUl);
+
+// Append the nice-select div to planSelectDiv
+planSelectDiv.appendChild(niceSelectDiv);
+
+// Add an event listener to the select element
+document.getElementById('operator-select').addEventListener('change', async function () {
+    console.log('Change event triggered');
+
+    try {
+        await getSelectedPlan();
+        console.log('getSelectedPlan executed successfully');
+    } catch (error) {
+        console.error('Error in getSelectedPlan:', error);
+    }
+});
+
 
 async function getSelectedPlan() {
     console.log('getSelectedPlan function entered');
     var operatorSelect = document.getElementById('operator-select');
-    // Get the select element
-    var plansSelect = document.getElementById('plansSelect');
-
+    // var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
+// 
     // Get the selected value
     var selectedValue = operatorSelect.value;
-    console.log('Selected Value:', selectedValue);
+    // console.log('Selected Value:', selectedValue);
+
+    // Update nice-select current span text
+    // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
 
     // Check if the selected value is not the default option
-    // if (selectedValue !== '1') {
-    //     plansSelect.innerHTML = '<option value="1">Select a Plan</option>';
+    if (selectedValue !== '1') {
+        var plansSelect = document.getElementById('plansSelect');
+        plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
         // Perform a task based on the selected value
         switch (selectedValue) {
             case '2':
+                console.log('Calling requestPlan function');
                 await requestPlan('mtn_sme');
+                console.log('requestPlan function called successfully');
                 // Add your specific task for this option
                 break;
             case '3':
@@ -133,7 +181,7 @@ async function getSelectedPlan() {
                 // Handle other cases
                 break;
         }
-    // }
+    }
 }
 
 async function requestPlan(plan_id) {
@@ -148,30 +196,30 @@ async function requestPlan(plan_id) {
         const response = await fetch(url, {
             method: 'GET',
             headers: headers,
-            credentials: 'include'
         });
-        var selectElement = document.getElementById('plansSelect');
-        console.log('Select Element:', selectElement);
 
         if (response.ok) {
             const data = await response.json();
-            // With a dummy data for testing
-            // const data = { plans: [{ displayName: 'Test Plan', price: '100', value: '1' }] };
-            
-            var selectElement = document.getElementById('plansSelect');
-            selectElement.innerHTML = ''; // Clear existing options
 
-            // console.log(data);
+            var plansList = document.querySelector('#planSelectId .nice-select .list');
+            var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
+
+            // Clear existing list items
+            plansList.innerHTML = '';
+
+            console.log(data);
+            console.log('plans for subscription', data.plans);
 
             data.plans.forEach(plan => {
-                console.log('Processing plan:', plan);
-                var option = document.createElement('option');
-                // option.value = plan.value;
-                // option.textContent = `${plan.displayName} - ₦${plan.price}`;
-                option.value = "newOptionValue";
-                option.text = "New Option";
-                selectElement.appendChild(option);
+                var listItem = document.createElement('li');
+                listItem.className = 'option';
+                listItem.setAttribute('data-value', plan.value);
+                listItem.textContent = `${plan.displayName} - ₦${plan.price}`;
+                niceSelectCurrentSpan.textContent = `${plan.displayName} - ₦${plan.price}`;
+                console.log('display name:', plan.value);
+                plansList.appendChild(listItem);
             });
+
         } else {
             console.error('Failed to fetch plans');
         }
