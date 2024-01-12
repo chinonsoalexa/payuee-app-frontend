@@ -146,7 +146,7 @@ async function requestPlan(plan_id) {
         const url = `https://gsubz.com/api/plans?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
-            'User-Agent': userAgent
+            // 'User-Agent': userAgent
         };
 
         const response = await fetch(url, {
