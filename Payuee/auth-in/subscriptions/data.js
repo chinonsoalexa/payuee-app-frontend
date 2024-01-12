@@ -1,7 +1,6 @@
-// document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 //     // Your JavaScript code here
 //     console.log('Script loaded');
-// });
 console.log('Script is running');
 
 document.getElementById('buy-data').addEventListener('click', async function(event) {
@@ -10,6 +9,7 @@ document.getElementById('buy-data').addEventListener('click', async function(eve
     // buy_data()
    await getSelectedPlan();
 })
+});
 
 function buy_data(){
     var validated = true
