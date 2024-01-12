@@ -154,12 +154,12 @@ async function requestPlan(plan_id) {
         console.log('Select Element:', selectElement);
 
         if (response.ok) {
-            // const data = await response.json();
+            const data = await response.json();
             // With a dummy data for testing
-            const data = { plans: [{ displayName: 'Test Plan', price: '100', value: '1' }] };
+            // const data = { plans: [{ displayName: 'Test Plan', price: '100', value: '1' }] };
             
             var selectElement = document.getElementById('plansSelect');
-            // selectElement.innerHTML = ''; // Clear existing options
+            selectElement.innerHTML = ''; // Clear existing options
 
             // console.log(data);
 
