@@ -7,11 +7,11 @@ console.log('Script is running');
 var operatorSelect = document.getElementById('operator-select');
 console.log('Operator select element:', operatorSelect);
 
-document.getElementById('buy-data').addEventListener('click', function(event) {
+document.getElementById('buy-data').addEventListener('click', async function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
     // buy_data()
-    getSelectedPlan();
+   await getSelectedPlan();
 })
 
 function buy_data(){
