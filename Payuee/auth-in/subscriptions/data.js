@@ -159,7 +159,7 @@ async function requestPlan(plan_id) {
             const data = { plans: [{ displayName: 'Test Plan', price: '100', value: '1' }] };
             
             var selectElement = document.getElementById('plansSelect');
-            selectElement.innerHTML = ''; // Clear existing options
+            // selectElement.innerHTML = ''; // Clear existing options
 
             // console.log(data);
 
