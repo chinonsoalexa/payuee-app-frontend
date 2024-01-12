@@ -142,7 +142,8 @@ async function getSelectedPlan() {
 async function requestPlan(plan_id) {
     try {
         const url = `https://gsubz.com/api/plans?service=${plan_id}`;
-        const response = await fetch(url, { method: 'GET' });
+       
+        const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
 
         if (!response.ok) {
             throw new Error('Failed to fetch plans');
