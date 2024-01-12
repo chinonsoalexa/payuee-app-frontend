@@ -152,7 +152,9 @@ async function requestPlan(plan_id) {
         });
 
         if (response.ok) {
-            const data = await response.json();
+            // const data = await response.json();
+            // With a dummy data for testing
+            const data = { plans: [{ displayName: 'Test Plan', price: '100', value: '1' }] };
             
             var selectElement = document.getElementById('plansSelect');
             selectElement.innerHTML = ''; // Clear existing options
