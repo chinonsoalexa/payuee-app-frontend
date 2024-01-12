@@ -149,10 +149,11 @@ async function requestPlan(plan_id) {
             // 'User-Agent': userAgent
         };
 
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: headers
-        });
+        // const response = await fetch(url, {
+        //     method: 'GET',
+        //     headers: headers
+        // });
+        const response = await fetch(url, { method: 'GET', mode: 'no-cors', header: headers });
 
         if (response.ok) {
             const data = await response.json();
