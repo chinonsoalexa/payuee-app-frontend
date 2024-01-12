@@ -153,7 +153,7 @@ async function requestPlan(plan_id) {
             headers: headers,
             credentials: 'include'
         });
-        
+
         if (response.ok) {
             const data = await response.json();
             
@@ -176,5 +176,3 @@ async function requestPlan(plan_id) {
         // Handle other errors
     }
 }
-
-
