@@ -213,10 +213,10 @@ async function requestPlan(plan_id) {
             data.plans.forEach(plan => {
                 var listItem = document.createElement('li');
                 listItem.className = 'option';
-                listItem.setAttribute('data-value', plan.value);
-                listItem.textContent = `${plan.displayName} - ₦${plan.price}`;
-                niceSelectCurrentSpan.textContent = `${plan.displayName} - ₦${plan.price}`;
-                console.log('display name:', plan.value);
+                listItem.setAttribute('data-value', plan.price);
+                listItem.textContent = `${plan.displayName}`;
+                niceSelectCurrentSpan.textContent = `Select a Plan`;
+                console.log('display name:', plan);
                 plansList.appendChild(listItem);
             });
 
