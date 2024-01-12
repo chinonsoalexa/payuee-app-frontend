@@ -18,7 +18,7 @@ console.log('Script is running');
 document.getElementById('buy-data').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
     // buy_data()
-    getSelectedPlan();
+    // getSelectedPlan();
 })
 
 function buy_data(event){
@@ -124,15 +124,12 @@ niceSelectDiv.appendChild(listUl);
 planSelectDiv.appendChild(niceSelectDiv);
 
 // Add an event listener to the select element
-document.getElementById('operatorSelect').addEventListener('change', async function () {
+document.getElementById('operatorSelect').addEventListener('change', function () {
     console.log('Change event triggered');
 
-    try {
-        await getSelectedPlan();
-        console.log('getSelectedPlan executed successfully');
-    } catch (error) {
-        console.error('Error in getSelectedPlan:', error);
-    }
+     getSelectedPlan();
+        
+     console.log('getSelectedPlan executed successfully');
 });
 
 
