@@ -140,31 +140,41 @@ async function getSelectedPlan() {
 }
 
 async function requestPlan(plan_id) {
+    const userAgent = navigator.userAgent;
+    console.log('User-Agent:', userAgent);
     try {
         const url = `https://gsubz.com/api/plans?service=${plan_id}`;
-       
-        const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
+        const headers = {
+            'Content-Type': 'application/json',
+            'User-Agent': userAgent
+        };
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch plans');
-        }
-
-        const data = await response.json();
-
-        var selectElement = document.getElementById('plansSelect');
-        selectElement.innerHTML = ''; // Clear existing options
-
-        console.log(data);
-
-        data.plans.forEach(plan => {
-            var option = document.createElement('option');
-            option.value = plan.value;
-            option.textContent = `${plan.displayName} - ₦${plan.price}`;
-            selectElement.appendChild(option);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: headers
         });
+
+        if (response.ok) {
+            const data = await response.json();
+            
+            var selectElement = document.getElementById('plansSelect');
+            selectElement.innerHTML = ''; // Clear existing options
+
+            console.log(data);
+
+            data.plans.forEach(plan => {
+                var option = document.createElement('option');
+                option.value = plan.value;
+                option.textContent = `${plan.displayName} - ₦${plan.price}`;
+                selectElement.appendChild(option);
+            });
+        } else {
+            console.error('Failed to fetch plans');
+        }
     } catch (error) {
         console.error('Error fetching plans:', error);
-        // Handle the error, e.g., display an error message to the user
+        // Handle other errors
     }
 }
+
 
