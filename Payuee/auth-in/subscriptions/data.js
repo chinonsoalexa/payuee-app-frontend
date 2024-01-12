@@ -150,6 +150,8 @@ async function requestPlan(plan_id) {
             headers: headers,
             credentials: 'include'
         });
+        var selectElement = document.getElementById('plansSelect');
+        console.log('Select Element:', selectElement);
 
         if (response.ok) {
             // const data = await response.json();
