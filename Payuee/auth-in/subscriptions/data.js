@@ -2,19 +2,23 @@
 //     // Your JavaScript code here
 //     console.log('Script loaded');
 // });
+console.log('Script is running');
 
-document.getElementById('buy-data').addEventListener('click', function(event) {
-    // Prevent the default behavior (in this case, the redirect)
-    event.preventDefault();
-    buy_data()
-})
+// var operatorSelect = document.getElementById('operator-select');
+// console.log('Operator select element:', operatorSelect);
+
+// document.getElementById('buy-data').addEventListener('click', function(event) {
+//     // Prevent the default behavior (in this case, the redirect)
+//     event.preventDefault();
+//     buy_data()
+// })
 
 function buy_data(){
     var validated = true
     // let's take all fields and validate
-    var amountInput = document.getElementById("pin-number");
+    var amountInput = document.getElementById("data-number");
     var amount = parseInt(amountInput.value, 10);
-    var description = document.getElementById("description").value;
+    // var description = document.getElementById("description").value;
     // let's get the selected value
     var selectedRechargeValue = getSelectedValue("rechargeSelect");
     var rechargeValue = parseInt(selectedRechargeValue, 10);
@@ -92,14 +96,17 @@ document.getElementById('operator-select').addEventListener('change', async func
 });
 
 async function getSelectedPlan() {
-    console.log('get selected plan working')
+    console.log('getSelectedPlan function entered');
     var operatorSelect = document.getElementById('operator-select');
     // Get the select element
     var plansSelect = document.getElementById('plansSelect');
 
-        // Get the selected value
-        var selectedValue = operatorSelect.value;
+    // Get the selected value
+    var selectedValue = operatorSelect.value;
+    console.log('Selected Value:', selectedValue);
 
+    // Check if the selected value is not the default option
+    if (selectedValue !== '1') {
         plansSelect.innerHTML = '<option value="1">Select a Plan</option>';
 
         // Perform a task based on the selected value
@@ -128,6 +135,7 @@ async function getSelectedPlan() {
                 // Handle other cases
                 break;
         }
+    }
 }
 
 async function requestPlan(plan_id) {
@@ -156,3 +164,11 @@ async function requestPlan(plan_id) {
         // Handle the error, e.g., display an error message to the user
     }
 }
+
+
+// var operatorSelect = document.getElementById('operator-select');
+// console.log('Element found:', operatorSelect);
+
+// document.getElementById('operator-select').addEventListener('change', function () {
+//     console.log('Change event triggered directly in HTML');
+// });

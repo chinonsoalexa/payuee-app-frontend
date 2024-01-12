@@ -1,4 +1,4 @@
-document.getElementById('recharge-button').addEventListener('click', function() {
+document.getElementById('recharge-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
     buy_recharge_pin()
