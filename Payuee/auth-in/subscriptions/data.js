@@ -3,7 +3,7 @@
 //     console.log('Script loaded');
 // });
 
-document.getElementById('buy-data').addEventListener('click', function() {
+document.getElementById('buy-data').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
     buy_data()
@@ -78,7 +78,6 @@ function radioButtonCheck(idName) {
         });
         return radioButtonCheck
 }
-
 
 // Add an event listener to the select element
 document.getElementById('operator-select').addEventListener('change', async function () {
