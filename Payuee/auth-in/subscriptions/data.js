@@ -157,7 +157,7 @@ async function requestPlan(plan_id) {
             var selectElement = document.getElementById('plansSelect');
             selectElement.innerHTML = ''; // Clear existing options
 
-            console.log(data);
+            // console.log(data);
 
             data.plans.forEach(plan => {
                 console.log('Processing plan:', plan);
