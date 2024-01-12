@@ -4,14 +4,15 @@
 // });
 console.log('Script is running');
 
-// var operatorSelect = document.getElementById('operator-select');
-// console.log('Operator select element:', operatorSelect);
+var operatorSelect = document.getElementById('operator-select');
+console.log('Operator select element:', operatorSelect);
 
-// document.getElementById('buy-data').addEventListener('click', function(event) {
-//     // Prevent the default behavior (in this case, the redirect)
-//     event.preventDefault();
-//     buy_data()
-// })
+document.getElementById('buy-data').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    // buy_data()
+    getSelectedPlan();
+})
 
 function buy_data(){
     var validated = true
@@ -84,16 +85,16 @@ function radioButtonCheck(idName) {
 }
 
 // Add an event listener to the select element
-document.getElementById('operator-select').addEventListener('change', async function () {
-    console.log('Change event triggered');
+// document.getElementById('operator-select').addEventListener('change', async function () {
+//     console.log('Change event triggered');
 
-    try {
-        await getSelectedPlan();
-        // Additional code to run after getSelectedPlan completes
-    } catch (error) {
-        console.error('Error in change event:', error);
-    }
-});
+//     try {
+//         await getSelectedPlan();
+//         // Additional code to run after getSelectedPlan completes
+//     } catch (error) {
+//         console.error('Error in change event:', error);
+//     }
+// });
 
 async function getSelectedPlan() {
     console.log('getSelectedPlan function entered');
@@ -106,8 +107,8 @@ async function getSelectedPlan() {
     console.log('Selected Value:', selectedValue);
 
     // Check if the selected value is not the default option
-    if (selectedValue !== '1') {
-        plansSelect.innerHTML = '<option value="1">Select a Plan</option>';
+    // if (selectedValue !== '1') {
+    //     plansSelect.innerHTML = '<option value="1">Select a Plan</option>';
 
         // Perform a task based on the selected value
         switch (selectedValue) {
@@ -135,7 +136,7 @@ async function getSelectedPlan() {
                 // Handle other cases
                 break;
         }
-    }
+    // }
 }
 
 async function requestPlan(plan_id) {
@@ -164,11 +165,3 @@ async function requestPlan(plan_id) {
         // Handle the error, e.g., display an error message to the user
     }
 }
-
-
-// var operatorSelect = document.getElementById('operator-select');
-// console.log('Element found:', operatorSelect);
-
-// document.getElementById('operator-select').addEventListener('change', function () {
-//     console.log('Change event triggered directly in HTML');
-// });
