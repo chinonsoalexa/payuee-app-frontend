@@ -124,7 +124,7 @@ niceSelectDiv.appendChild(listUl);
 planSelectDiv.appendChild(niceSelectDiv);
 
 // Add an event listener to the select element
-document.getElementById('operator-select').addEventListener('change', async function () {
+document.getElementById('operatorSelect').addEventListener('change', async function () {
     console.log('Change event triggered');
 
     try {
@@ -138,12 +138,12 @@ document.getElementById('operator-select').addEventListener('change', async func
 
 async function getSelectedPlan() {
     console.log('getSelectedPlan function entered');
-    var operatorSelect = document.getElementById('operator-select');
+    var operatorSelect = document.getElementById('operatorSelect');
     // var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
 // 
     // Get the selected value
     var selectedValue = operatorSelect.value;
-    // console.log('Selected Value:', selectedValue);
+    console.log('Selected Value:', selectedValue);
 
     // Update nice-select current span text
     // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
@@ -156,26 +156,24 @@ async function getSelectedPlan() {
         // Perform a task based on the selected value
         switch (selectedValue) {
             case '2':
-                console.log('Calling requestPlan function');
                 await requestPlan('mtn_sme');
-                console.log('requestPlan function called successfully');
-                // Add your specific task for this option
+                console.log('running 2')
                 break;
             case '3':
                 await requestPlan('mtncg');
-                // Add your specific task for this option
+                console.log('running 3')
                 break;
             case '4':
                 await requestPlan('airtel_cg');
-                // Add your specific task for this option
+                console.log('running 4')
                 break;
             case '5':
                 await requestPlan('etisalat_data');
-                // Add your specific task for this option
+                console.log('running 5')
                 break;
             case '6':
                 await requestPlan('glo_data');
-                // Add your specific task for this option
+                console.log('running 6')
                 break;
             default:
                 // Handle other cases
@@ -215,11 +213,15 @@ async function requestPlan(plan_id) {
                 listItem.className = 'option';
                 listItem.setAttribute('data-value', plan.price);
                 listItem.textContent = `${plan.displayName}`;
-                niceSelectCurrentSpan.textContent = `Select a Plan`;
-                console.log('display name:', plan);
                 plansList.appendChild(listItem);
             });
 
+            // Update nice-select current span text after the loop
+            if (data.plans.length > 0) {
+                niceSelectCurrentSpan.textContent = `Select a Plan`;
+            } else {
+                niceSelectCurrentSpan.textContent = `No plans available`;
+            }
         } else {
             console.error('Failed to fetch plans');
         }
@@ -228,3 +230,4 @@ async function requestPlan(plan_id) {
         // Handle other errors
     }
 }
+
