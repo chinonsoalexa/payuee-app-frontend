@@ -110,6 +110,7 @@ niceSelectDiv.appendChild(listUl);
 planSelectDiv.appendChild(niceSelectDiv);
 
 // getSelectedPlan()
+var dataValue
 
 console.log('Script is running');
 document.addEventListener('DOMContentLoaded', function() {
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
                 // Your code to handle the click event
                 // You can call your function here or perform any other actions
-                await getSelectedPlan()
+                await getSelectedPlan(dataValue)
             }
         });
     } else {
@@ -128,20 +129,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-async function getSelectedPlan() {
+// add an event listener to the list in order to retrieve the data-value
+document.addEventListener('DOMContentLoaded', function() {
+    var planSelect = document.getElementById('planSelectId');
 
-    var operatorSelect = document.getElementById('operatorSelect');
-    // var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
-// 
-    // Get the selected value
-    var selectedValue = operatorSelect.value;
-    console.log('Selected Value:', selectedValue);
+    if (planSelect) {
+        planSelect.addEventListener('click', function(event) {
+            var clickedElement = event.target;
+
+            // Check if the clicked element has the required classes
+            if (
+                clickedElement.classList.contains('option') &&
+                clickedElement.classList.contains('focus') &&
+                clickedElement.classList.contains('selected')
+            ) {
+                // Get the data-value attribute of the clicked list item
+                dataValue = clickedElement.getAttribute('data-value');
+            }
+        });
+    } else {
+        console.error('NiceSelect container not found.');
+    }
+});
+
+async function getSelectedPlan(dataValue) {
 
     // Update nice-select current span text
     // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
 
     // Check if the selected value is not the default option
-    if (selectedValue !== '1') {
+    if (dataValue !== '1') {
         var plansSelect = document.getElementById('planSelectId');
         plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
