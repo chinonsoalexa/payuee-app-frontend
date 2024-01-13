@@ -153,10 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function getSelectedPlan(dataValue) {
 
-    // Update nice-select current span text
-    console.log("this is the get selected plan data value: ", dataValue)
-    // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
-
     // Check if the selected value is not the default option
     if (dataValue !== '1') {
         // var plansSelect = document.getElementById('planSelectId');
@@ -258,7 +254,6 @@ async function requestPlan(plan_id) {
                     });
         
                     var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
-                    console.log('nuberic value', formattedNumber)
                     displayInput.value = formattedNumber;
                 });
         
