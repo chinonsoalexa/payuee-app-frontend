@@ -221,8 +221,8 @@ async function requestPlan(plan_id) {
                     dataValue = event.target.getAttribute('data-value');
                 }
         
-                // Parse the dataValue to a number
-                const numericValue = parseFloat(dataValue);
+                // Remove commas and parse the dataValue to a number
+                const numericValue = parseFloat(dataValue.replace(/,/g, ''));
         
                 // Get the input element by its ID
                 var displayInput = document.getElementById('displayInput');
