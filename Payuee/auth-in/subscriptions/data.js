@@ -227,7 +227,7 @@ async function requestPlan(plan_id) {
         
                 // Add a click event listener to each listItem
                 listItem.addEventListener('click', function (event) {
-                    var dataValue = '';
+                    var dataPrice = '';
         
                     // Remove 'focus' class from all list items
                     plansList.querySelectorAll('.option').forEach(item => {
@@ -236,14 +236,14 @@ async function requestPlan(plan_id) {
         
                     // Get the data-value attribute of the clicked list item
                     if (event.target.classList.contains('option')) {
-                        dataValue = event.target.getAttribute('data-value');
+                        dataPrice = event.target.getAttribute('data-value');
                     }
         
                     // Add 'focus' class to the clicked list item
                     event.target.classList.add('focus');
         
                     // Remove commas and parse the dataValue to a number
-                    const numericValue = parseFloat(dataValue);
+                    const numericValue = parseFloat(dataPrice);
         
                     // Get the input element by its ID
                     var displayInput = document.getElementById('displayInput');
