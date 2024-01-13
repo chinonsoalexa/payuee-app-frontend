@@ -159,9 +159,13 @@ async function getSelectedPlan(dataValue) {
     // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
 
     // Check if the selected value is not the default option
+    // Check if the selected value is not the default option
     if (dataValue !== '1') {
         var plansSelect = document.getElementById('planSelectId');
-        plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
+        
+        // Check if the list is empty
+        if (!plansSelect.querySelector('.nice-select .list .option')) {
+            plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
         // Perform a task based on the selected value
         switch (dataValue) {
