@@ -181,6 +181,7 @@ async function getSelectedPlan() {
 }
 
 async function requestPlan(plan_id) {
+    optionLi.textContent = 'Getting Plans...';
     const userAgent = navigator.userAgent;
     console.log('User-Agent:', userAgent);
     try {
@@ -240,9 +241,6 @@ async function requestPlan(plan_id) {
                 var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
 
                 displayInput.value = formattedNumber;
-                // Log the formatted number
-                console.log(formattedNumber);
-                console.log(numericValue);
             });
             
                 plansList.appendChild(listItem);
