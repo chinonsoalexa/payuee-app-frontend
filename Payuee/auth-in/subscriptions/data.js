@@ -1,7 +1,7 @@
 //     // Your JavaScript code here
 //     console.log('Script loaded');
 console.log('Script is running');
-
+document.addEventListener('DOMContentLoaded', function() {
 // Assuming .nice-select is a common ancestor of your dynamic options
 var niceSelect = document.querySelector('.nice-select');
 
@@ -21,6 +21,7 @@ if (niceSelect) {
 } else {
     console.error('NiceSelect container not found.');
 }
+});
 
 // Add an event listener to the select element
 // document.getElementById('operator-select').addEventListener('change', async function () {
