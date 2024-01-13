@@ -224,11 +224,8 @@ async function requestPlan(plan_id) {
                     var valueToDisplay = dataValue; // Replace this with the actual value you want to display
                     // Update the input element's value
                     var displayInput = document.getElementById('displayInput');
-                    displayInput.value = valueToDisplay;
-
-
-                    console.log(`Clicked on ${plan.displayName}. Price: ${plan.price}`);
-                    // Add more actions as needed
+                    const formattedNumber = valueToDisplay.toLocaleString('en-US'); // '270,000'
+                    displayInput.value = formattedNumber;
                 });
             
                 plansList.appendChild(listItem);
