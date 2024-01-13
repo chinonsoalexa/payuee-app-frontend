@@ -18,7 +18,7 @@ console.log('Script is running');
 document.getElementById('buy-data').addEventListener('click', function() {
     // Prevent the default behavior (in this case, the redirect)
     // buy_data()
-    // getSelectedPlan();
+    getSelectedPlan();
 })
 
 function buy_data(event){
