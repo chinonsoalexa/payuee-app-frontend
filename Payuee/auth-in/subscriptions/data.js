@@ -234,6 +234,7 @@ async function requestPlan(plan_id) {
 function displayGettingDataPlans() {
     // Assuming 'planSelectId' is the ID of the div wrapping the select element
 var planSelectDiv = document.getElementById('planSelectId');
+planSelectDiv = '';
 
 // Create a new div for nice-select
 var niceSelectDiv = document.createElement('div');
