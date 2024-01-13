@@ -214,18 +214,21 @@ async function requestPlan(plan_id) {
                 
             // Add a click event listener to each listItem
             listItem.addEventListener('click', function (event) {
-                var dataValue = ''; // Initialize with an empty string
-                
+                var dataValue = '';
+        
                 // Get the data-value attribute of the clicked list item
                 if (event.target.classList.contains('option')) {
                     dataValue = event.target.getAttribute('data-value');
                 }
-
+        
+                // Parse the dataValue to a number
+                const numericValue = parseFloat(dataValue);
+        
                 // Get the input element by its ID
                 var displayInput = document.getElementById('displayInput');
-
+        
                 // Set the value to be displayed
-                const formattedNumber = dataValue.toLocaleString('en-US'); // '270,000'
+                const formattedNumber = numericValue.toLocaleString('en-US'); // '270,000'
                 displayInput.value = formattedNumber;
             });
             
