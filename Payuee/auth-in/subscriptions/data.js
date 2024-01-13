@@ -304,11 +304,13 @@ options.forEach(option => {
     listItem.addEventListener('click', function (event) {
         // Remove 'select' class from all list items
         listUl.querySelectorAll('.option').forEach(item => {
-            item.classList.remove('select');
+            item.classList.remove('focus');
+            item.classList.remove('selected');
         });
 
         // Add 'select' class to the clicked list item
-        event.target.classList.add('select');
+        event.target.classList.add('selected');
+        event.target.classList.add('focus');
 
         // Set the value to be displayed
         var displayInput = document.getElementById('displayInput');
