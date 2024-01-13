@@ -211,9 +211,16 @@ async function requestPlan(plan_id) {
                 listItem.className = 'option';
                 listItem.setAttribute('data-value', plan.price);
                 listItem.textContent = `${plan.displayName}`;
+                
+                // Add a click event listener to each listItem
+                listItem.addEventListener('click', function () {
+                    // Perform the desired action when the listItem is clicked
+                    console.log(`Clicked on ${plan.displayName}. Price: ${plan.price}`);
+                    // Add more actions as needed
+                });
+            
                 plansList.appendChild(listItem);
             });
-
             // Update nice-select current span text after the loop
             if (data.plans.length > 0) {
                 niceSelectCurrentSpan.textContent = `Select a Plan`;
