@@ -2,17 +2,17 @@
 //     console.log('Script loaded');
 
 
-document.addEventListener('DOMContentLoaded', async function() {
-    // Your function to be executed on page load
-    await getSelectedPlan();
-});
+// document.addEventListener('DOMContentLoaded', async function() {
+//     // Your function to be executed on page load
+//     await getSelectedPlan();
+// });
 
-document.getElementById('buy-data').addEventListener('click', function(event) {
-    event.preventDefault
-    // Prevent the default behavior (in this case, the redirect)
-    buy_data()
-    // getSelectedPlan();
-})
+// document.getElementById('buy-data').addEventListener('click', function(event) {
+//     event.preventDefault
+//     // Prevent the default behavior (in this case, the redirect)
+//     buy_data()
+//     // getSelectedPlan();
+// })
 
 function buy_data(event){
     event.preventDefault();
@@ -118,15 +118,19 @@ planSelectDiv.appendChild(niceSelectDiv);
 
 console.log('Script is running');
 document.addEventListener('DOMContentLoaded', function() {
-    document.body.addEventListener('click', function(event) {
-        if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
-            var dataValue = event.target.getAttribute('data-value');
-            // console.log('Clicked data-value:', dataValue);
-            getSelectedPlan();
-            // Your code to handle the click event
-            // You can call your function here or perform any other actions
-        }
-    });
+    var container = document.getElementById('getDataDiv'); // Replace 'containerId' with your actual container ID
+
+    if (container) {
+        container.addEventListener('click', function(event) {
+            if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
+                // Your code to handle the click event
+                // You can call your function here or perform any other actions
+                getSelectedPlan()
+            }
+        });
+    } else {
+        console.error('Container not found.');
+    }
 });
 
 async function getSelectedPlan() {
@@ -254,3 +258,46 @@ async function requestPlan(plan_id) {
         // Handle other errors
     }
 }
+
+// // Assuming 'planSelectId' is the ID of the div wrapping the select element
+// var planSelectDiv = document.getElementById('planSelectId');
+
+// // Create a new div for nice-select
+// var niceSelectDiv = document.createElement('div');
+// niceSelectDiv.className = 'nice-select';  // Add your class here
+// niceSelectDiv.id = 'yourNiceSelectId';   // Add your ID here
+// niceSelectDiv.setAttribute('tabindex', '0');
+
+// // Create the current span inside nice-select
+// var currentSpan = document.createElement('span');
+// currentSpan.className = 'current';
+// currentSpan.textContent = 'Select a Plan';
+
+// // Create the list ul inside nice-select
+// var listUl = document.createElement('ul');
+// listUl.className = 'list';
+
+// // Sample array of options
+// var options = [
+//     { value: '2', text: 'MTN-SME-Data (*461*4#)' },
+//     { value: '3', text: 'MTN-Corporate-Gifting (*131*4#)' },
+//     { value: '4', text: 'Airtel-Corporate-Gifting (*323)' },
+//     { value: '5', text: '9mobile-Data (*323#)' },
+//     { value: '6', text: 'Glo-Corporate-Gifting (*323#)' }
+// ];
+
+// // Loop through options and create list items
+// options.forEach(option => {
+//     var listItem = document.createElement('li');
+//     listItem.className = 'option';
+//     listItem.setAttribute('data-value', option.value);
+//     listItem.textContent = option.text;
+//     listUl.appendChild(listItem);
+// });
+
+// // Append elements to build the structure
+// niceSelectDiv.appendChild(currentSpan);
+// niceSelectDiv.appendChild(listUl);
+
+// // Append the nice-select div to planSelectDiv
+// planSelectDiv.appendChild(niceSelectDiv);
