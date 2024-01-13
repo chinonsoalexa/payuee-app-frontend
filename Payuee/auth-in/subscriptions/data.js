@@ -114,7 +114,7 @@ listUl.className = 'list';
 var optionLi = document.createElement('li');
 optionLi.className = 'option focus selected';
 optionLi.setAttribute('data-value', 'plans');
-optionLi.textContent = 'Select a Plan';
+optionLi.textContent = 'Loading Plans...';
 
 // Append elements to build the structure
 listUl.appendChild(optionLi);
@@ -181,7 +181,7 @@ async function getSelectedPlan() {
 }
 
 async function requestPlan(plan_id) {
-    optionLi.textContent = 'Getting Plans...';
+    // optionLi.textContent = 'Getting Plans...';
     const userAgent = navigator.userAgent;
     console.log('User-Agent:', userAgent);
     try {
