@@ -15,7 +15,8 @@ console.log('Script is running');
 //     }
 // });
 
-document.getElementById('buy-data').addEventListener('click', function() {
+document.getElementById('buy-data').addEventListener('click', function(event) {
+    event.preventDefault
     // Prevent the default behavior (in this case, the redirect)
     // buy_data()
     getSelectedPlan();
