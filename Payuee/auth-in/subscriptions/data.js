@@ -212,21 +212,22 @@ async function requestPlan(plan_id) {
                 listItem.setAttribute('data-value', plan.price);
                 listItem.textContent = `${plan.displayName}`;
                 
-                // Add a click event listener to each listItem
-                listItem.addEventListener('click', function (event) {
-                    var dataValue
-                    // Get the input element by its ID
-                    // Set the value to be displayed
-                    if (event.target.classList.contains('option')) {
-                        // Get the data-value attribute of the clicked list item
-                        dataValue = event.target.getAttribute('data-value');
-                    }
-                    var valueToDisplay = dataValue; // Replace this with the actual value you want to display
-                    // Update the input element's value
-                    var displayInput = document.getElementById('displayInput');
-                    const formattedNumber = valueToDisplay.toLocaleString('en-US'); // '270,000'
-                    displayInput.value = formattedNumber;
-                });
+            // Add a click event listener to each listItem
+            listItem.addEventListener('click', function (event) {
+                var dataValue = ''; // Initialize with an empty string
+                
+                // Get the data-value attribute of the clicked list item
+                if (event.target.classList.contains('option')) {
+                    dataValue = event.target.getAttribute('data-value');
+                }
+
+                // Get the input element by its ID
+                var displayInput = document.getElementById('displayInput');
+
+                // Set the value to be displayed
+                const formattedNumber = dataValue.toLocaleString('en-US'); // '270,000'
+                displayInput.value = formattedNumber;
+            });
             
                 plansList.appendChild(listItem);
             });
