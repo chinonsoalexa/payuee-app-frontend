@@ -216,7 +216,16 @@ async function requestPlan(plan_id) {
                 if (event.target.classList.contains('option')) {
                     dataValue = event.target.getAttribute('data-value');
                 }
-        
+
+
+                // Remove 'focus' class from all list items
+                plansList.querySelectorAll('.option').forEach(item => {
+                    item.classList.remove('focus');
+                });
+
+               // Add 'focus' class to the clicked list item
+                event.target.classList.add('focus');
+                
                 // Remove commas and parse the dataValue to a number
                 const numericValue = parseFloat(dataValue);
         
