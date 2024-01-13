@@ -2,19 +2,25 @@
 //     console.log('Script loaded');
 console.log('Script is running');
 
-var list = document.querySelector('.nice-select .list');
+// Assuming .nice-select is a common ancestor of your dynamic options
+var niceSelect = document.querySelector('.nice-select');
 
-// Add a click event listener to each listItem
-list.querySelectorAll('.option').forEach(function (listItem) {
-    listItem.addEventListener('click', function (event) {
-        // Get the data-value attribute of the clicked list item
-        var dataValue = event.target.getAttribute('data-value');
-        console.log('Clicked data-value:', dataValue);
+// Add a click event listener to .nice-select
+if (niceSelect) {
+    niceSelect.addEventListener('click', function (event) {
+        // Check if the clicked element has the 'option' class
+        if (event.target.classList.contains('option')) {
+            // Get the data-value attribute of the clicked list item
+            var dataValue = event.target.getAttribute('data-value');
+            console.log('Clicked data-value:', dataValue);
 
-        // Your code to handle the click event
-        // You can call your function here or perform any other actions
+            // Your code to handle the click event
+            // You can call your function here or perform any other actions
+        }
     });
-});
+} else {
+    console.error('NiceSelect container not found.');
+}
 
 // Add an event listener to the select element
 // document.getElementById('operator-select').addEventListener('change', async function () {
