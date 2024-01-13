@@ -1,5 +1,4 @@
 // document.addEventListener('DOMContentLoaded', function() {
-//     getSelectedPlan()
 // });
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
@@ -109,6 +108,8 @@ niceSelectDiv.appendChild(listUl);
 
 // Append the nice-select div to planSelectDiv
 planSelectDiv.appendChild(niceSelectDiv);
+
+getSelectedPlan()
 
 console.log('Script is running');
 document.addEventListener('DOMContentLoaded', function() {
