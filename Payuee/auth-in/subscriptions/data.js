@@ -89,7 +89,7 @@ niceSelectDiv.setAttribute('tabindex', '0');
 // Create the current span inside nice-select
 var currentSpan = document.createElement('span');
 currentSpan.className = 'current';
-currentSpan.textContent = 'Select a Plan';
+currentSpan.textContent = 'Select Bundle';
 
 // Create the list ul inside nice-select
 var listUl = document.createElement('ul');
@@ -264,6 +264,7 @@ async function requestPlan(plan_id) {
     }
 }
 
+// for the plan operator selector
 
 // Assuming 'planSelectId' is the ID of the div wrapping the select element
 var planSelectDiv = document.getElementById('getDataDiv');
@@ -298,6 +299,25 @@ options.forEach(option => {
     listItem.className = 'option';
     listItem.setAttribute('data-value', option.value);
     listItem.textContent = option.text;
+
+    // Add a click event listener to each listItem
+    listItem.addEventListener('click', function (event) {
+        // Remove 'select' class from all list items
+        listUl.querySelectorAll('.option').forEach(item => {
+            item.classList.remove('select');
+        });
+
+        // Add 'select' class to the clicked list item
+        event.target.classList.add('select');
+
+        // Set the value to be displayed
+        var displayInput = document.getElementById('displayInput');
+        displayInput.value = option.text; // Set the value based on your requirement
+
+        // Your code to handle the click event
+        // You can call your function here or perform any other actions
+    });
+
     listUl.appendChild(listItem);
 });
 
