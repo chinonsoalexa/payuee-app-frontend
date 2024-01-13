@@ -142,7 +142,7 @@ async function getSelectedPlan() {
 
     // Check if the selected value is not the default option
     if (selectedValue !== '1') {
-        var plansSelect = document.getElementById('plansSelect');
+        var plansSelect = document.getElementById('planSelectId');
         plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
         // Perform a task based on the selected value
