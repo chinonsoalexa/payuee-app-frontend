@@ -223,8 +223,8 @@ async function requestPlan(plan_id) {
                     }
                     var valueToDisplay = dataValue; // Replace this with the actual value you want to display
                     // Update the input element's value
-                    displayInput.value = valueToDisplay;
                     var displayInput = document.getElementById('displayInput');
+                    displayInput.value = valueToDisplay;
 
 
                     console.log(`Clicked on ${plan.displayName}. Price: ${plan.price}`);
@@ -237,7 +237,7 @@ async function requestPlan(plan_id) {
             if (data.plans.length > 0) {
                 niceSelectCurrentSpan.textContent = `Select a Plan`;
             } else {
-                niceSelectCurrentSpan.textContent = `No plans available`;
+                niceSelectCurrentSpan.textContent = `Error getting plans`;
             }
         } else {
             console.error('Failed to fetch plans');
