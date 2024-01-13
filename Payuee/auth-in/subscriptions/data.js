@@ -93,36 +93,7 @@ function radioButtonCheck(idName) {
         return radioButtonCheck
 }
 
-// Assuming 'planSelectId' is the ID of the div wrapping the select element
-var planSelectDiv = document.getElementById('planSelectId');
-
-// Create a new div for nice-select
-var niceSelectDiv = document.createElement('div');
-niceSelectDiv.className = 'nice-select';
-niceSelectDiv.setAttribute('tabindex', '0');
-
-// Create the current span inside nice-select
-var currentSpan = document.createElement('span');
-currentSpan.className = 'current';
-currentSpan.textContent = 'Select a Plan';
-
-// Create the list ul inside nice-select
-var listUl = document.createElement('ul');
-listUl.className = 'list';
-
-// Create an option li inside the list
-var optionLi = document.createElement('li');
-optionLi.className = 'option focus selected';
-optionLi.setAttribute('data-value', 'plans');
-optionLi.textContent = 'Loading Plans...';
-
-// Append elements to build the structure
-listUl.appendChild(optionLi);
-niceSelectDiv.appendChild(currentSpan);
-niceSelectDiv.appendChild(listUl);
-
-// Append the nice-select div to planSelectDiv
-planSelectDiv.appendChild(niceSelectDiv);
+displayGettingDataPlans()
 
 // Add an event listener to the select element
 document.getElementById('operatorSelect').addEventListener('change', function () {
@@ -133,9 +104,9 @@ document.getElementById('operatorSelect').addEventListener('change', function ()
      console.log('getSelectedPlan executed successfully');
 });
 
-
 async function getSelectedPlan() {
-    console.log('getSelectedPlan function entered');
+    displayGettingDataPlans()
+
     var operatorSelect = document.getElementById('operatorSelect');
     // var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
 // 
@@ -260,3 +231,36 @@ async function requestPlan(plan_id) {
     }
 }
 
+function displayGettingDataPlans() {
+    // Assuming 'planSelectId' is the ID of the div wrapping the select element
+var planSelectDiv = document.getElementById('planSelectId');
+
+// Create a new div for nice-select
+var niceSelectDiv = document.createElement('div');
+niceSelectDiv.className = 'nice-select';
+niceSelectDiv.setAttribute('tabindex', '0');
+
+// Create the current span inside nice-select
+var currentSpan = document.createElement('span');
+currentSpan.className = 'current';
+currentSpan.textContent = 'Select a Plan';
+
+// Create the list ul inside nice-select
+var listUl = document.createElement('ul');
+listUl.className = 'list';
+
+// Create an option li inside the list
+var optionLi = document.createElement('li');
+optionLi.className = 'option focus selected';
+optionLi.setAttribute('data-value', 'plans');
+optionLi.textContent = 'Loading Plans...';
+
+// Append elements to build the structure
+listUl.appendChild(optionLi);
+niceSelectDiv.appendChild(currentSpan);
+niceSelectDiv.appendChild(listUl);
+
+// Append the nice-select div to planSelectDiv
+planSelectDiv.appendChild(niceSelectDiv);
+
+}
