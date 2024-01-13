@@ -2,6 +2,12 @@
 //     console.log('Script loaded');
 console.log('Script is running');
 
+// Add an event listener to the select element
+document.getElementById('operatorSelect').addEventListener('change', function () {
+    // Your code to handle the change event
+    console.log('Selected value:', this.value);
+    // You can call your function here or perform any other actions
+});
 
 // Add an event listener to the select element
 // document.getElementById('operator-select').addEventListener('change', async function () {
