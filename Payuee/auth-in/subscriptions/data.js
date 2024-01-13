@@ -164,7 +164,7 @@ async function getSelectedPlan(dataValue) {
         plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
         // Perform a task based on the selected value
-        switch (selectedValue) {
+        switch (dataValue) {
             case '2':
                 await requestPlan('mtn_sme');
                 console.log('running 2')
