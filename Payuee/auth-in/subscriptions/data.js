@@ -213,14 +213,19 @@ async function requestPlan(plan_id) {
                 listItem.textContent = `${plan.displayName}`;
                 
                 // Add a click event listener to each listItem
-                listItem.addEventListener('click', function () {
-                    // Perform the desired action when the listItem is clicked
+                listItem.addEventListener('click', function (event) {
+                    var dataValue
                     // Get the input element by its ID
                     // Set the value to be displayed
-                    var valueToDisplay = "2000"; // Replace this with the actual value you want to display
-
+                    if (event.target.classList.contains('option')) {
+                        // Get the data-value attribute of the clicked list item
+                        dataValue = event.target.getAttribute('data-value');
+                    }
+                    var valueToDisplay = dataValue; // Replace this with the actual value you want to display
                     // Update the input element's value
-                    displayInput.value = valueToDisplay;var displayInput = document.getElementById('displayInput');
+                    displayInput.value = valueToDisplay;
+                    var displayInput = document.getElementById('displayInput');
+
 
                     console.log(`Clicked on ${plan.displayName}. Price: ${plan.price}`);
                     // Add more actions as needed
