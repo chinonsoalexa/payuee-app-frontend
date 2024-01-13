@@ -1,17 +1,6 @@
 //     // Your JavaScript code here
 //     console.log('Script loaded');
-console.log('Script is running');
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.addEventListener('click', function(event) {
-        if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
-            var dataValue = event.target.getAttribute('data-value');
-            console.log('Clicked data-value:', dataValue);
 
-            // Your code to handle the click event
-            // You can call your function here or perform any other actions
-        }
-    });
-});
 
 // Add an event listener to the select element
 // document.getElementById('operator-select').addEventListener('change', async function () {
@@ -28,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
     // Prevent the default behavior (in this case, the redirect)
-    // buy_data()
-    getSelectedPlan();
+    buy_data()
+    // getSelectedPlan();
 })
 
 function buy_data(event){
@@ -134,14 +123,19 @@ niceSelectDiv.appendChild(listUl);
 // Append the nice-select div to planSelectDiv
 planSelectDiv.appendChild(niceSelectDiv);
 
-// Add an event listener to the select element
-document.getElementById('operatorSelect').addEventListener('change', function () {
-    console.log('Change event triggered');
-
-     getSelectedPlan();
-        
-     console.log('getSelectedPlan executed successfully');
+console.log('Script is running');
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.addEventListener('click', function(event) {
+        if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
+            var dataValue = event.target.getAttribute('data-value');
+            console.log('Clicked data-value:', dataValue);
+            getSelectedPlan();
+            // Your code to handle the click event
+            // You can call your function here or perform any other actions
+        }
+    });
 });
+
 
 async function getSelectedPlan() {
 
