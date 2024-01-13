@@ -109,7 +109,7 @@ niceSelectDiv.appendChild(listUl);
 // Append the nice-select div to planSelectDiv
 planSelectDiv.appendChild(niceSelectDiv);
 
-getSelectedPlan()
+// getSelectedPlan()
 
 console.log('Script is running');
 document.addEventListener('DOMContentLoaded', function() {
