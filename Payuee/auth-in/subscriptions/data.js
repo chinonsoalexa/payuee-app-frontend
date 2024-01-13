@@ -191,6 +191,7 @@ async function requestPlan(plan_id) {
         const response = await fetch(url, {
             method: 'GET',
             headers: headers,
+            include: Credential
         });
 
         if (response.ok) {
