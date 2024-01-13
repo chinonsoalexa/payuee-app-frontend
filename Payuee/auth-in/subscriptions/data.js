@@ -116,11 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('getDataDiv'); // Replace 'containerId' with your actual container ID
 
     if (container) {
-        container.addEventListener('click', function(event) {
+        container.addEventListener('click', async function(event) {
             if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
                 // Your code to handle the click event
                 // You can call your function here or perform any other actions
-                getSelectedPlan()
+                await getSelectedPlan()
             }
         });
     } else {
