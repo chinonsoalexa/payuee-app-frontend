@@ -222,7 +222,7 @@ async function requestPlan(plan_id) {
                 }
         
                 // Remove commas and parse the dataValue to a number
-                const numericValue = parseFloat(dataValue.replace(/,/g, ''));
+                const numericValue = parseFloat(dataValue);
         
                 // Get the input element by its ID
                 var displayInput = document.getElementById('displayInput');
@@ -230,6 +230,9 @@ async function requestPlan(plan_id) {
                 // Set the value to be displayed
                 const formattedNumber = numericValue.toLocaleString('en-US'); // '2,590'
                 displayInput.value = formattedNumber;
+                // Log the formatted number
+                console.log(formattedNumber);
+                console.log(numericValue);
             });
             
                 plansList.appendChild(listItem);
