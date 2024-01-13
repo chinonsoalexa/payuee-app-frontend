@@ -2,17 +2,10 @@
 //     console.log('Script loaded');
 
 
-// Add an event listener to the select element
-// document.getElementById('operator-select').addEventListener('change', async function () {
-//     console.log('Change event triggered');
-
-//     try {
-//         await getSelectedPlan();
-//         console.log('getSelectedPlan executed successfully');
-//     } catch (error) {
-//         console.error('Error in getSelectedPlan:', error);
-//     }
-// });
+document.addEventListener('DOMContentLoaded', async function() {
+    // Your function to be executed on page load
+    await getSelectedPlan();
+});
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
@@ -128,14 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(event) {
         if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
             var dataValue = event.target.getAttribute('data-value');
-            console.log('Clicked data-value:', dataValue);
+            // console.log('Clicked data-value:', dataValue);
             getSelectedPlan();
             // Your code to handle the click event
             // You can call your function here or perform any other actions
         }
     });
 });
-
 
 async function getSelectedPlan() {
 
