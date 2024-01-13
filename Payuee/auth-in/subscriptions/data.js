@@ -2,11 +2,18 @@
 //     console.log('Script loaded');
 console.log('Script is running');
 
-// Add an event listener to the select element
-document.getElementById('operatorSelect').addEventListener('change', function () {
-    // Your code to handle the change event
-    console.log('Selected value:', this.value);
-    // You can call your function here or perform any other actions
+var list = document.querySelector('.nice-select .list');
+
+// Add a click event listener to each listItem
+list.querySelectorAll('.option').forEach(function (listItem) {
+    listItem.addEventListener('click', function (event) {
+        // Get the data-value attribute of the clicked list item
+        var dataValue = event.target.getAttribute('data-value');
+        console.log('Clicked data-value:', dataValue);
+
+        // Your code to handle the click event
+        // You can call your function here or perform any other actions
+    });
 });
 
 // Add an event listener to the select element
