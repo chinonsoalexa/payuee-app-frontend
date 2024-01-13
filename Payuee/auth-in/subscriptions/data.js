@@ -229,7 +229,16 @@ async function requestPlan(plan_id) {
                 var displayInput = document.getElementById('displayInput');
         
                 // Set the value to be displayed
-                const formattedNumber = numericValue.toLocaleString('en-US'); // '2,590'
+                // Format the number with commas and a dot, using NGN as the currency
+                var formatter = new Intl.NumberFormat('en-NG', {
+                    style: 'currency',
+                    currency: 'NGN',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                });
+                
+                var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
+
                 displayInput.value = formattedNumber;
                 // Log the formatted number
                 console.log(formattedNumber);
