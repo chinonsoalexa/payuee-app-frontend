@@ -192,62 +192,62 @@ async function requestPlan(plan_id) {
 
         if (response.ok) {
             const data = await response.json();
-
+        
             var plansList = document.querySelector('#planSelectId .nice-select .list');
             var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
-
+        
             // Clear existing list items
             plansList.innerHTML = '';
-
+        
             console.log(data);
             console.log('plans for subscription', data.plans);
-
+        
             data.plans.forEach(plan => {
                 var listItem = document.createElement('li');
                 listItem.className = 'option';
                 listItem.setAttribute('data-value', plan.price);
                 listItem.textContent = `${plan.displayName}`;
-                
-            // Add a click event listener to each listItem
-            listItem.addEventListener('click', function (event) {
-                var dataValue = '';
         
-                // Get the data-value attribute of the clicked list item
-                if (event.target.classList.contains('option')) {
-                    dataValue = event.target.getAttribute('data-value');
-                }
-
-
-                // Remove 'focus' class from all list items
-                plansList.querySelectorAll('.option').forEach(item => {
-                    item.classList.remove('focus');
+                // Add a click event listener to each listItem
+                listItem.addEventListener('click', function (event) {
+                    var dataValue = '';
+        
+                    // Remove 'focus' class from all list items
+                    plansList.querySelectorAll('.option').forEach(item => {
+                        item.classList.remove('focus');
+                    });
+        
+                    // Get the data-value attribute of the clicked list item
+                    if (event.target.classList.contains('option')) {
+                        dataValue = event.target.getAttribute('data-value');
+                    }
+        
+                    // Add 'focus' class to the clicked list item
+                    event.target.classList.add('focus');
+        
+                    // Remove commas and parse the dataValue to a number
+                    const numericValue = parseFloat(dataValue);
+        
+                    // Get the input element by its ID
+                    var displayInput = document.getElementById('displayInput');
+        
+                    // Set the value to be displayed
+                    // Format the number with commas and a dot, using NGN as the currency
+                    var formatter = new Intl.NumberFormat('en-NG', {
+                        style: 'currency',
+                        currency: 'NGN',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    });
+        
+                    var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
+        
+                    displayInput.value = formattedNumber;
                 });
-
-               // Add 'focus' class to the clicked list item
-                event.target.classList.add('focus');
-                
-                // Remove commas and parse the dataValue to a number
-                const numericValue = parseFloat(dataValue);
         
-                // Get the input element by its ID
-                var displayInput = document.getElementById('displayInput');
-        
-                // Set the value to be displayed
-                // Format the number with commas and a dot, using NGN as the currency
-                var formatter = new Intl.NumberFormat('en-NG', {
-                    style: 'currency',
-                    currency: 'NGN',
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                });
-                
-                var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
-
-                displayInput.value = formattedNumber;
-            });
-            
                 plansList.appendChild(listItem);
             });
+        
             // Update nice-select current span text after the loop
             if (data.plans.length > 0) {
                 niceSelectCurrentSpan.textContent = `Select a Plan`;
@@ -257,6 +257,7 @@ async function requestPlan(plan_id) {
         } else {
             console.error('Failed to fetch plans');
         }
+        
     } catch (error) {
         console.error('Error fetching plans:', error);
         // Handle other errors
