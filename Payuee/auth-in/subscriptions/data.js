@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    getSelectedPlan()
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     getSelectedPlan()
+// });
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
