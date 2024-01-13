@@ -228,7 +228,7 @@ async function requestPlan(plan_id) {
                 var displayInput = document.getElementById('displayInput');
         
                 // Set the value to be displayed
-                const formattedNumber = numericValue.toLocaleString('en-US'); // '270,000'
+                const formattedNumber = numericValue.toLocaleString('en-US'); // '2,590'
                 displayInput.value = formattedNumber;
             });
             
