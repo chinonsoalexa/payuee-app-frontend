@@ -1,8 +1,12 @@
+document.addEventListener('DOMContentLoaded', function() {
+    getSelectedPlan()
+});
+
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
     // Prevent the default behavior (in this case, the redirect)
     buy_data()
-})
+});
 
 function buy_data(event){
     event.preventDefault();
