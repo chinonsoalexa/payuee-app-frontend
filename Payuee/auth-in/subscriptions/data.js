@@ -109,10 +109,9 @@ niceSelectDiv.appendChild(listUl);
 // Append the nice-select div to planSelectDiv
 planSelectDiv.appendChild(niceSelectDiv);
 
-// getSelectedPlan()
+// this variable is used to get the data-value so it's very essential
 var dataValue
 
-console.log('Script is running');
 document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('getDataDiv'); // Replace 'containerId' with your actual container ID
 
@@ -259,7 +258,7 @@ async function requestPlan(plan_id) {
                     });
         
                     var formattedNumber = formatter.format(numericValue); // '₦270,000.00'
-        
+                    console.log('nuberic value', formattedNumber)
                     displayInput.value = formattedNumber;
                 });
         
