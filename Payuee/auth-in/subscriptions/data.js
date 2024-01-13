@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function getSelectedPlan(dataValue) {
 
     // Update nice-select current span text
+    console.log("this is the get selected plan data value: ", dataValue)
     // niceSelectCurrentSpan.textContent = operatorSelect.options[operatorSelect.selectedIndex].text;
 
     // Check if the selected value is not the default option
