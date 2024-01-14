@@ -265,7 +265,7 @@ async function requestPlan(plan_id) {
         
             // Update nice-select current span text after the loop
             if (data.plans.length > 0) {
-                niceSelectCurrentSpan.textContent = `Select a Plan`;
+                niceSelectCurrentSpan.textContent = `Select a Bundle`;
             } else {
                 niceSelectCurrentSpan.textContent = `Error getting plans`;
             }
