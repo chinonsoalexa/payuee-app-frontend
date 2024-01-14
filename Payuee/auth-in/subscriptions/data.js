@@ -162,23 +162,23 @@ async function getSelectedPlan(dataValue) {
         switch (dataValue) {
             case '2':
                 await requestPlan('mtn_sme');
-                console.log('running 2')
+                // console.log('running 2')
                 break;
             case '3':
                 await requestPlan('mtncg');
-                console.log('running 3')
+                // console.log('running 3')
                 break;
             case '4':
                 await requestPlan('airtel_cg');
-                console.log('running 4')
+                // console.log('running 4')
                 break;
             case '5':
                 await requestPlan('etisalat_data');
-                console.log('running 5')
+                // console.log('running 5')
                 break;
             case '6':
                 await requestPlan('glo_data');
-                console.log('running 6')
+                // console.log('running 6')
                 break;
             default:
                 // Handle other cases
@@ -189,8 +189,8 @@ async function getSelectedPlan(dataValue) {
 
 async function requestPlan(plan_id) {
     // optionLi.textContent = 'Getting Plans...';
-    const userAgent = navigator.userAgent;
-    console.log('User-Agent:', userAgent);
+    // const userAgent = navigator.userAgent;
+    // console.log('User-Agent:', userAgent);
     try {
         const url = `https://payuee.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
