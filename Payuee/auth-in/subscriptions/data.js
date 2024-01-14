@@ -99,7 +99,7 @@ listUl.className = 'list';
 var optionLi = document.createElement('li');
 optionLi.className = 'option focus selected';
 optionLi.setAttribute('data-value', 'plans');
-optionLi.textContent = 'Loading Plans...';
+optionLi.textContent = 'Loading Bundles...';
 
 // Append elements to build the structure
 listUl.appendChild(optionLi);
@@ -214,6 +214,9 @@ async function requestPlan(plan_id) {
         
             console.log(data);
             console.log('plans for subscription', data.plans);
+            // Sort the 'plans' array based on the 'price' property
+            data.plans.sort((a, b) => a.price.localeCompare(b.price));
+
         
             data.plans.forEach(plan => {
                 var listItem = document.createElement('li');
