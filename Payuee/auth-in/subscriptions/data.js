@@ -212,8 +212,8 @@ async function requestPlan(plan_id) {
             // Clear existing list items
             plansList.innerHTML = '';
         
-            console.log(data);
-            console.log('plans for subscription', data.plans);
+            // console.log(data);
+            // console.log('plans for subscription', data.plans);
             // Sort the 'plans' array based on the 'price' property
             data.plans.sort((a, b) => a.price.localeCompare(b.price));
 
