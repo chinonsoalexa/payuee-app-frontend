@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             SentOTP: token,
           };
 
-          const apiUrl = "https://payuee.onrender.com/email-verification";
+          const apiUrl = "https://payuee-2769f5611775.herokuapp.com/email-verification";
 
           const requestOptions = {
             method: "POST",
@@ -104,7 +104,7 @@ async function resendOTP() {
         Email: userID,
     };
 
-    const apiUrl = "https://payuee.onrender.com/resend-otp";
+    const apiUrl = "https://payuee-2769f5611775.herokuapp.com/resend-otp";
 
     const requestOptions = {
         method: "POST",

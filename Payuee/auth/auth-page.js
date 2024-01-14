@@ -27,7 +27,7 @@ document.getElementById('logout-button2').addEventListener('click', async functi
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
+    const apiUrl = "https://payuee-2769f5611775.herokuapp.com/log-out";
 
     const requestOptions = {
     method: "GET",

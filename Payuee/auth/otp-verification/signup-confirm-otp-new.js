@@ -23,7 +23,7 @@ async function resendButtonOTP() {
         Email: emailOTP,
     };
 
-    const apiUrl = "https://payuee.onrender.com/resend-otp";
+    const apiUrl = "https://payuee-2769f5611775.herokuapp.com/resend-otp";
 
     const requestOptions = {
         method: "POST",

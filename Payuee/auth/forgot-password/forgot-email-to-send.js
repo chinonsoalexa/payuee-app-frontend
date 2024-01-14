@@ -33,7 +33,7 @@ async function resetPasswordEmail(currentInput) {
         Email: currentInput.value,
     };
 
-    const apiUrl = "https://payuee.onrender.com/forgotten-password-email";
+    const apiUrl = "https://payuee-2769f5611775.herokuapp.com/forgotten-password-email";
 
     const requestOptions = {
         method: "POST",
