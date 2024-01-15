@@ -50,17 +50,15 @@ var startime = [
     { value: 'super', text: 'Startimes Super - ₦6,500' },
 ];
 
-var dataValue
-
 document.addEventListener('DOMContentLoaded', function() {
-    var container = document.getElementById('getDataDiv'); // Replace 'containerId' with your actual container ID
+    var container = document.getElementById('getDataDiv');
+    var dataValue;
 
     if (container) {
         container.addEventListener('click', function(event) {
             if (event.target.closest('.nice-select') && event.target.classList.contains('option')) {
-                // Your code to handle the click event
-                // You can call your function here or perform any other actions
-                getSelectedPlan(dataValue)
+                dataValue = event.target.getAttribute('data-value');
+                getSelectedPlan(dataValue);
             }
         });
     } else {
@@ -68,109 +66,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var planSelect = document.getElementById('planSelectId');
-
-    if (planSelect) {
-        planSelect.addEventListener('click', function(event) {
-            var clickedElement = event.target;
-
-            // Check if the clicked element has the required classes
-            if (
-                clickedElement.classList.contains('option') &&
-                clickedElement.classList.contains('focus') &&
-                clickedElement.classList.contains('selected')
-            ) {
-                // Get the data-value attribute of the clicked list item
-                dataValue = clickedElement.getAttribute('data-value');
-            }
-        });
-    } else {
-        console.error('NiceSelect container not found.');
-    }
-});
-
 function getSelectedPlan(dataValue) {
+    var data;
 
-    // Check if the selected value is not the default option
-    if (dataValue !== '1') {
-
-        // Perform a task based on the selected value
-        switch (dataValue) {
-            case '2':
-                requestPlan('2');
-                // console.log('running 2')
-                break;
-            case '3':
-                requestPlan('3');
-                // console.log('running 3')
-                break;
-            case '4':
-                requestPlan('4');
-                // console.log('running 4')
-                break;
-            default:
-                // Handle other cases
-                break;
-        }
+    switch (dataValue) {
+        case '2':
+            data = dstv;
+            break;
+        case '3':
+            data = gotv;
+            break;
+        case '4':
+            data = startime;
+            break;
+        default:
+            // Handle other cases
+            break;
     }
+
+    displaySecondaryList(data);
 }
 
-function requestPlan(plan_id) {
-        var data;
-        if (plan_id == '2') {
-            data = dstv;
-        }
-        if (plan_id == '3') {
-            data = gotv;
-        }
-        if (plan_id == '4') {
-            data = startime;
-        }
-        
-        var plansList = document.querySelector('#planSelectId .nice-select .list');
-        var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
+function displaySecondaryList(data) {
+    var secondaryListDiv = document.getElementById('secondaryList');
     
-        // Clear existing list items
-        // plansList.innerHTML = '';
-    
-        // console.log(data);
-        // console.log('plans for subscription', data.plans);
+    if (secondaryListDiv) {
+        // Clear existing content
+        secondaryListDiv.innerHTML = '';
 
-    
+        // Create a new ul element
+        var secondaryList = document.createElement('ul');
+        secondaryList.className = 'list';
+
+        // Populate the ul with list items based on the provided data
         data.forEach(plan => {
             var listItem = document.createElement('li');
-            listItem.className = 'option';
-            listItem.setAttribute('data-value', plan.value);
-            listItem.textContent = `${plan.text}`;
-    
-            // Add a click event listener to each listItem
-            listItem.addEventListener('click', function (event) {
-                var dataPrice = '';
-    
-                // Remove 'focus' class from all list items
-                plansList.querySelectorAll('.option').forEach(item => {
-                    item.classList.remove('focus');
-                });
-    
-                // Get the data-value attribute of the clicked list item
-                if (event.target.classList.contains('option')) {
-                    dataPrice = event.target.getAttribute('data-value');
-                }
-    
-                // Add 'focus' class to the clicked list item
-                event.target.classList.add('focus');
-            });
-    
-            plansList.appendChild(listItem);
+            listItem.textContent = plan.text;
+            secondaryList.appendChild(listItem);
         });
-    
-        // Update nice-select current span text after the loop
-        if (data.plans.length > 0) {
-            niceSelectCurrentSpan.textContent = `Select a Bundle`;
-        } else {
-            niceSelectCurrentSpan.textContent = `Error getting plans`;
-        }
+
+        // Append the ul to the 'secondaryListDiv'
+        secondaryListDiv.appendChild(secondaryList);
+    } else {
+        console.error('Secondary list container not found.');
+    }
 }
 
 // for the plan operator selector
@@ -210,23 +149,24 @@ options.forEach(option => {
 
     // Add a click event listener to each listItem
     listItem.addEventListener('click', function (event) {
-        // Remove 'select' class from all list items
-        listUl.querySelectorAll('.option').forEach(item => {
-            item.classList.remove('focus');
-            item.classList.remove('selected');
-        });
-
-        // Add 'select' class to the clicked list item
-        event.target.classList.add('selected');
+        console.log('event.target:', event.target); // Add this line for debugging
+        var dataPrice = '';
+    
+        // Remove 'focus' class from all list items
+        // plansList.querySelectorAll('.option').forEach(item => {
+        //     item.classList.remove('focus');
+        // });
+    
+        // Get the data-value attribute of the clicked list item
+        if (event.target.classList.contains('option')) {
+            dataPrice = event.target.getAttribute('data-value');
+        }
+        console.log('data price: ', dataPrice)
+    
+        // Add 'focus' class to the clicked list item
         event.target.classList.add('focus');
-
-        // Set the value to be displayed
-        var displayInput = document.getElementById('displayInput');
-        displayInput.value = option.text; // Set the value based on your requirement
-
-        // Your code to handle the click event
-        // You can call your function here or perform any other actions
     });
+    
 
     listUl.appendChild(listItem);
 });
