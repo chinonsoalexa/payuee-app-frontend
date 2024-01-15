@@ -215,7 +215,7 @@ options.forEach(option => {
         if (event.target.classList.contains('option')) {
             dataPrice = event.target.getAttribute('data-value');
         }
-        console.log('data price: ', dataPrice)
+        console.log('data price/type: ', dataPrice)
     
         // Add 'focus' class to the clicked list item
         event.target.classList.add('focus');
