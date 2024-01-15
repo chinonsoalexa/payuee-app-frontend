@@ -152,7 +152,7 @@ function displaySecondaryList(data) {
             event.target.classList.add('focus');
 
             // Handle the data value here or pass it to a function
-            handleDataValue(dataValue);
+           console.log(dataValue)
         });
 
         plansList.appendChild(listItem);
