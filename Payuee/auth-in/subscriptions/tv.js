@@ -50,6 +50,37 @@ var startime = [
     { value: 'super', text: 'Startimes Super - ₦6,500' },
 ];
 
+// Assuming 'planSelectId' is the ID of the div wrapping the select element
+var planSelectDiv = document.getElementById('planSelectId');
+
+// Create a new div for nice-select
+var niceSelectDiv = document.createElement('div');
+niceSelectDiv.className = 'nice-select';
+niceSelectDiv.setAttribute('tabindex', '0');
+
+// Create the current span inside nice-select
+var currentSpan = document.createElement('span');
+currentSpan.className = 'current';
+currentSpan.textContent = 'Select Bundle';
+
+// Create the list ul inside nice-select
+var listUl = document.createElement('ul');
+listUl.className = 'list';
+
+// Create an option li inside the list
+var optionLi = document.createElement('li');
+optionLi.className = 'option focus selected';
+optionLi.setAttribute('data-value', 'plans');
+optionLi.textContent = 'Loading Bundles...';
+
+// Append elements to build the structure
+listUl.appendChild(optionLi);
+niceSelectDiv.appendChild(currentSpan);
+niceSelectDiv.appendChild(listUl);
+
+// Append the nice-select div to planSelectDiv
+planSelectDiv.appendChild(niceSelectDiv);
+
 document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('getDataDiv');
     var dataValue;
@@ -88,27 +119,50 @@ function getSelectedPlan(dataValue) {
 }
 
 function displaySecondaryList(data) {
-    var secondaryListDiv = document.getElementById('secondaryList');
-    
-    if (secondaryListDiv) {
-        // Clear existing content
-        secondaryListDiv.innerHTML = '';
+    var plansList = document.querySelector('#planSelectId .nice-select .list');
+    var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
 
-        // Create a new ul element
-        var secondaryList = document.createElement('ul');
-        secondaryList.className = 'list';
+    // Clear existing list items
+    plansList.innerHTML = '';
 
-        // Populate the ul with list items based on the provided data
-        data.forEach(plan => {
-            var listItem = document.createElement('li');
-            listItem.textContent = plan.text;
-            secondaryList.appendChild(listItem);
+    // Sort the 'data' array based on the 'text' property
+    data.sort((a, b) => a.text.localeCompare(b.text));
+
+    data.forEach(plan => {
+        var listItem = document.createElement('li');
+        listItem.className = 'option';
+        listItem.setAttribute('data-value', plan.value);
+        listItem.textContent = `${plan.text}`;
+
+        // Add a click event listener to each listItem
+        listItem.addEventListener('click', function (event) {
+            var dataValue = '';
+
+            // Remove 'focus' class from all list items
+            plansList.querySelectorAll('.option').forEach(item => {
+                item.classList.remove('focus');
+            });
+
+            // Get the data-value attribute of the clicked list item
+            if (event.target.classList.contains('option')) {
+                dataValue = event.target.getAttribute('data-value');
+            }
+
+            // Add 'focus' class to the clicked list item
+            event.target.classList.add('focus');
+
+            // Handle the data value here or pass it to a function
+            handleDataValue(dataValue);
         });
 
-        // Append the ul to the 'secondaryListDiv'
-        secondaryListDiv.appendChild(secondaryList);
+        plansList.appendChild(listItem);
+    });
+
+    // Update nice-select current span text after the loop
+    if (data.length > 0) {
+        niceSelectCurrentSpan.textContent = `Select a Plan`;
     } else {
-        console.error('Secondary list container not found.');
+        niceSelectCurrentSpan.textContent = `Error getting plans`;
     }
 }
 
