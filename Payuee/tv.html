@@ -392,36 +392,12 @@
                      </div>
                      <form action="javascript:void(0)" class="mb-3">
                         <div class="row g-4">
-                           <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select Your Operator
-                                 </option>
-                                 <option value="2">
-                                    DSTV
-                                 </option>
-                                 <option value="3">
-                                    GOTV
-                                 </option>
-                                 <option value="4">
-                                    Startimes
-                                 </option>
-                              </select>
+                           <div class="col-lg-6"  id="getDataDiv">
+                              
                            </div>
                            <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Plans
-                                 </option>
-                                 <option value="2">
-                                    DSTV
-                                 </option>
-                                 <option value="3">
-                                    GOTV
-                                 </option>
-                                 <option value="4">
-                                    Startimes
-                                 </option>
+                              <select id="plansSelect" name="niceselect" style="display: none;">
+                                 <option value="plans">Select a Plan</option>
                               </select>
                            </div>
                            <div class="col-lg-6">
@@ -438,7 +414,7 @@
                            Auto renew this plan every month
                         </label>
                      </div>
-                     <a href="order.html" class="cmn__btn mt-5">
+                     <a href="#" id="tv-button" class="cmn__btn mt-5">
                         <span>
                            Continue Payment
                         </span>
@@ -1367,7 +1343,9 @@
    <script src="assets/js/prism.js"></script>
    <!--main Js-->
    <script src="assets/js/main.js"></script>
-      <!-- js scroll to data link -->
+   <!-- this for cable tv subscription e.g dstv, gotv and startimes -->
+   <script src="auth-in/subscriptions/tv.js"></script>
+   <!-- js scroll to data link -->
    <script src="page-scroll-js/mobile-scroll.js" defer></script>
 </body>
 

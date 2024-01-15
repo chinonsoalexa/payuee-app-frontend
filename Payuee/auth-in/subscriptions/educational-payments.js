@@ -1,26 +1,18 @@
-document.getElementById('airtime-button').addEventListener('click', function() {
+document.getElementById('education-button-id').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    buy_airtime()
+    buy_education_pin()
 })
 
-function buy_airtime(){
+function buy_education_pin(){
 var validated = true
 // let's take all fields and validate
 var phone = document.getElementById("phone-number").value;
-var amountInput = document.getElementById("amount-input");
-var amount = parseInt(amountInput.value, 10);
-// let's get the selected value
-// var selectedCarrierValue = getSelectedValue("carrierSelect");
+console.log(phone)
 
 if (phone.length > 12 || phone.length < 11) {
     validated = false
     showError('phone-error', 'Phone number should be at least 11 digits.');
-}
-
-if (isNaN(amount) || amount > 5000 || amount < 95) {
-    validated = false
-    showError('amount-error', 'Minimum: ₦95 and Maximum:₦5000.');
 }
 
 // let's check the radio button that was checked
@@ -28,22 +20,11 @@ let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
 
 console.log('Checked radio button:', checkedButton);
 
-// let's send a post request to make an airtime purchase
+// let's send a post request to make an education pin purchase
 
 if (validated) {
 
 }
-}
-
-function getSelectedValue(id) {
-// Get the select element by its ID
-var selectElement = document.getElementById(id);
-
-// Get the selected value
-var selectedValue = selectElement.value;
-
-// Return the selected value
-return selectedValue;
 }
 
 function showError(id, message, duration = 5000) {
