@@ -1,4 +1,4 @@
-document.getElementById('airtime-button').addEventListener('click', function() {
+document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
         event.preventDefault();
         buy_airtime()
@@ -11,7 +11,8 @@ function buy_airtime(){
     var amountInput = document.getElementById("amount-input");
     var amount = parseInt(amountInput.value, 10);
     // let's get the selected value
-    // var selectedCarrierValue = getSelectedValue("carrierSelect");
+    var selectedCarrierValue = getSelectedValue("carrierSelect");
+    console.log(selectedCarrierValue)
 
     if (phone.length > 12 || phone.length < 11) {
         validated = false
