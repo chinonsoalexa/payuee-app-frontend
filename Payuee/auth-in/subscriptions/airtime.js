@@ -85,7 +85,7 @@ async function buy_airtime(){
                 // const data = await response.json();
                 // reactivateButtonStyles();
                 // window.location.href = response.data.authorization_url;
-                console.log(response);
+                console.log('response body: ', response);
                 console.log(response.data.authorization_url);
             } finally{
                // do nothing cause error has been handled
