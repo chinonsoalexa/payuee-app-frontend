@@ -5,6 +5,8 @@
 <!-- Mirrored from /Payuee/Payuee/electricity2.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:41 GMT -->
 <head>
    <script src="auth/auth-page.js" defer></script>
+   <!-- js scroll to data link -->
+   <script src="page-scroll-js/mobile-scroll.js" defer></script>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +38,6 @@
    </div>
 </div>
 <!-- Preloader End Here -->
-
-
 
 <!-- Header top Here -->
 <header class="header-section header__threestyle">
@@ -390,10 +390,10 @@
                            </label>
                          </div>
                      </div>
-                     <form action="javascript:void(0)" class="mb-3">
+                     <form action="#" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
-                              <select name="niceselect">
+                              <select name="niceselect" id="carrierSelect">
                                  <option value="abuja-electric">
                                     Abuja (AEDC)
                                  </option>
@@ -427,13 +427,16 @@
                               </select>
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Meter Number">
+                              <input id="meter-number" type="number" placeholder="Enter Meter Number">
+                              <p id="meter-error"></p>
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Mobile Number">
+                              <input id="phone-number" type="number" placeholder="Enter Mobile Number">
+                              <p id="phone-error"></p>
                            </div>
                            <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Bill Amount">
+                              <input id="bill-amount" type="number" placeholder="Enter Bill Amount">
+                              <p id="bill-error"></p>
                            </div>
                         </div>
                      </form>
@@ -453,7 +456,7 @@
                             </div>
                         </div>
                      <!-- </div> -->
-                     <a href="order.html" class="cmn__btn mt-5">
+                     <a id="electricity-button" href="#" class="cmn__btn mt-5">
                         <span>
                            Continue recharge
                         </span>
@@ -1382,9 +1385,8 @@
    <script src="assets/js/prism.js"></script>
    <!--main Js-->
    <script src="assets/js/main.js"></script>
+   <!-- this is used to pay bills for electricity and validation -->
    <script src="auth-in/subscriptions/electricity.js"></script>
-      <!-- js scroll to data link -->
-   <script src="page-scroll-js/mobile-scroll.js" defer></script>
 </body>
 
 

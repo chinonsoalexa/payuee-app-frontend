@@ -15,12 +15,12 @@ function get_auth_status() {
 }
 
 // this is to log users out
-document.getElementById('logout-button').addEventListener('click', async function () {
+document.getElementById('logout-button').addEventListener('click', async function (event) {
     event.preventDefault()
     await logout()
 })
 
-document.getElementById('logout-button2').addEventListener('click', async function () {
+document.getElementById('logout-button2').addEventListener('click', async function (event) {
     event.preventDefault()
     await logout()
 })

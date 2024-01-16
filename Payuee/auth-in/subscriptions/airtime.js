@@ -4,7 +4,7 @@ document.getElementById('airtime-button').addEventListener('click', function(eve
         buy_airtime()
 })
 
-function buy_airtime(){
+async function buy_airtime(){
     var validated = true
     // let's take all fields and validate
     var phone = document.getElementById("phone-number").value;
@@ -21,7 +21,7 @@ function buy_airtime(){
 
     if (isNaN(amount) || amount > 5000 || amount < 95) {
         validated = false
-        showError('amount-error', 'Minimum: ₦95 and Maximum:₦5000.');
+        showError('amount-error', 'Minimum: ₦95.00 and Maximum: ₦5,000.00');
     }
 
     // let's check the radio button that was checked
@@ -32,7 +32,63 @@ function buy_airtime(){
     // let's send a post request to make an airtime purchase
 
     if (validated) {
-
+            const user = {
+                Amount: amountInput,
+              };
+    
+              const apiUrl = "https://payuee-2769f5611775.herokuapp.com/init-transaction";
+    
+              const requestOptions = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                credentials: 'include', // set credentials to include cookies
+                body: JSON.stringify(user),
+              };
+              
+            try {
+                deactivateButtonStyles()
+                const response = await fetch(apiUrl, requestOptions);
+                if (!response.ok) {
+                    // Parse the response JSON
+                    const errorData = await response.json();
+                    // Check the error message
+                    // Handle fetch-related errors
+                    console.log(errorData);
+                    console.log('error message: ', errorData.error);
+                    if (errorData.error === 'User already exist, please login') {
+                        // Perform actions specific to this error
+                        showError('passwordError', 'User already exists. Please signin.');
+                    } else if  (errorData.error === 'Please login using your google account') {
+                        // Handle other error cases
+                        showError('passwordError', 'Please login using your google account.');
+                    } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                        // redirect user to verify email ID
+                        showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                        // window.location.href = '/verify';
+                    } else if  (errorData.error === 'email verification failed') {
+                        // Handle other error cases
+                        showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
+                    }else if  (errorData.error === 'User already exist, please signin') {
+                        // Handle other error cases
+                        showError('passwordError', 'Please login you already have an existing account with us.');
+                    }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                        // Handle other error cases
+                        showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
+                    } else {
+                        showError('passwordError', 'An error occurred. Please try again.');
+                    }
+                      reactivateButtonStyles();
+                    return;
+                }
+                // const data = await response.json();
+                reactivateButtonStyles();
+                window.location.href = response.data.authorization_url;
+            } finally{
+               // do nothing cause error has been handled
+            }
+            reactivateButtonStyles();
     }
 }
 
