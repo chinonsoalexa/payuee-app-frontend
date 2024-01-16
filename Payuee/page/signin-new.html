@@ -243,7 +243,7 @@
                   <p class="head__pra mb__30">
                      Sign in to your account and make recharges. payments and bookings faster
                   </p>
-                  <form action="#0" class="signup__form">
+                  <form action="#" class="signup__form password__box pt__40">
                      <div class="row g-4">
                         <div class="col-lg-12">
                            <div class="input__grp">
@@ -256,12 +256,15 @@
                            <div class="input__grp">
                               <label for="pass" class="form-label">Enter Your Password</label>
                               <!-- <div class="form-group"> -->
-                              <input type="text" id="password-field" type="password" class="form-control" placeholder="Your Password" name="password" value="">
-                              <!-- <span id="#toggle-password2" class="fa fa-fw field-icon toggle-password2">
-                                 <i class="material-symbols-outlined">
-                                    visibility
-                                 </i>
-                              </span> -->
+                              <!-- <input type="text" id="password-field" type="password" placeholder="Your Password" name="password" value=""> -->
+                              <div class="form-group">
+                                 <input id="password-field" type="password" placeholder="Enter Your Password" name="password" value="">
+                                 <span id="#password-field" class="fa fa-fw field-icon toggle-password">
+                                    <i class="material-symbols-outlined">
+                                       visibility
+                                    </i>
+                                 </span>
+                              </div>
                            <!-- </div> -->
                               <p id="passwordError" class="error-message"></p>
                            </div>

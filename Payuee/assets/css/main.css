@@ -1196,7 +1196,7 @@ p {
     margin-top: 20px;
     z-index: 999;
     padding: 15px 15px;
-    background: var(--banner);
+    background: white;
     transition: all 0.4s !important;
     transform-origin: top;
     max-height: calc(100vh - 130px);
