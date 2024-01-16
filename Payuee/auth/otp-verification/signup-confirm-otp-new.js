@@ -15,7 +15,6 @@ document.getElementById('resend-otp').addEventListener('click', async function (
 
 async function resendButtonOTP() {
     let emailOTP = localStorage.getItem('email');
-    console.log(emailOTP)
 
     startResendTimer()
     deactivateButtonStyles();
