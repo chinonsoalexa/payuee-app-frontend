@@ -48,7 +48,7 @@ async function buy_airtime(){
               };
               
             try {
-                deactivateButtonStyles()
+                // deactivateButtonStyles()
                 const response = await fetch(apiUrl, requestOptions);
                 if (!response.ok) {
                     // Parse the response JSON
@@ -79,17 +79,17 @@ async function buy_airtime(){
                     } else {
                         showError('passwordError', 'An error occurred. Please try again.');
                     }
-                      reactivateButtonStyles();
+                    //   reactivateButtonStyles();
                     return;
                 }
                 // const data = await response.json();
-                reactivateButtonStyles();
+                // reactivateButtonStyles();
                 window.location.href = response.data.authorization_url;
                 console.log(response);
             } finally{
                // do nothing cause error has been handled
             }
-            reactivateButtonStyles();
+            // reactivateButtonStyles();
     }
 }
 
