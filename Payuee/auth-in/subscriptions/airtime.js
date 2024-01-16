@@ -82,11 +82,19 @@ async function buy_airtime(){
                     //   reactivateButtonStyles();
                     return;
                 }
+                const responseData = await response.json();
+
+                if (!responseData.data || !responseData.data.authorization_url) {
+                    // Check if the expected properties are defined
+                    console.error('Authorization URL not found in response data:', responseData);
+                    showError('passwordError', 'An error occurred. Please try again.');
+                    return;
+                }
                 // const data = await response.json();
                 // reactivateButtonStyles();
-                // window.location.href = response.data.authorization_url;
-                console.log('response body: ', response);
-                console.log(response.data.authorization_url);
+                window.location.href = responseData.data.authorization_url;
+                console.log('response body: ', responseData);
+                console.log(responseData.data.authorization_url);
             } finally{
                // do nothing cause error has been handled
             }
