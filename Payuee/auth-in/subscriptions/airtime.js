@@ -36,7 +36,7 @@ async function buy_airtime(){
                 Amount: amountInput.value,
               };
     
-              const apiUrl = "https://payuee-2769f5611775.herokuapp.com/init-transaction";
+              const apiUrl = "https://payuee-2769f5611775.herokuapp.com/paystack/init-transaction";
     
               const requestOptions = {
                 method: "POST",
