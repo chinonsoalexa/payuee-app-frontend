@@ -1,7 +1,7 @@
 var buttonClicks = 0
     
 // this event listener runs only when the sign up button is triggered
-document.getElementById('submitPassword').addEventListener('click', async function() {
+document.getElementById('submitPassword').addEventListener('click', async function(event) {
     event.preventDefault(); // Prevent the form from submitting
     await submit_password() ;
 }) ;

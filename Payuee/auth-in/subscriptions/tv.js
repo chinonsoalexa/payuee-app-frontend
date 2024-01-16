@@ -1,3 +1,5 @@
+// onclick on continue payment validate and send request
+
 var dstv = [
     { value: 'dstv-padi', text: 'DStv Padi - ₦2,950' },
     { value: 'dstv-yanga', text: 'DStv Yanga - ₦4,200' },
@@ -221,7 +223,6 @@ options.forEach(option => {
         event.target.classList.add('focus');
     });
     
-
     listUl.appendChild(listItem);
 });
 
