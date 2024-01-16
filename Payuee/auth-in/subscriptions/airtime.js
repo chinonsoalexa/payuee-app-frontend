@@ -84,7 +84,7 @@ async function buy_airtime(){
                 }
                 // const data = await response.json();
                 // reactivateButtonStyles();
-                window.location.href = response.data.authorization_url;
+                // window.location.href = response.data.authorization_url;
                 console.log(response);
                 console.log(response.data.authorization_url);
             } finally{
