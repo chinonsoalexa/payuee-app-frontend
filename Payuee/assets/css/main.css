@@ -3625,10 +3625,10 @@ p {
   border-radius: 5px;
 }
 
-.bluar__shape {
+/* .bluar__shape {
   position: relative;
-}
-.bluar__shape::before {
+} */
+/* .bluar__shape::before {
   position: absolute;
   left: 0;
   top: 50%;
@@ -3638,7 +3638,7 @@ p {
   background: linear-gradient(90deg, #2942CB 0%, #273DB1 100%);
   filter: blur(450px);
   transform: translateY(-50%);
-}
+} */
 
 @media (max-width: 1199px) {
   .signup__thumb {
