@@ -1,4 +1,5 @@
 var validated = true
+var amountInput
 
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
@@ -16,7 +17,9 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
     // if validated let's send a request for payment
-    if (!validated) {
+    console.log('preparing to send request')
+    if (validated) {
+        console.log('sent request')
         const user = {
             Amount: amountInput.value,
           };
@@ -79,9 +82,10 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
 })
 
 async function buy_airtime(){
+    validated = true
     // let's take all fields and validate
     var phone = document.getElementById("phone-number").value;
-    var amountInput = document.getElementById("amount-input");
+    amountInput = document.getElementById("amount-input");
     var amount = parseInt(amountInput.value, 10);
     // let's get the selected value
     var selectedCarrierValue = getSelectedValue("carrierSelect");
