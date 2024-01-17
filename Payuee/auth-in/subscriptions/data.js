@@ -192,7 +192,7 @@ async function requestPlan(plan_id) {
     // const userAgent = navigator.userAgent;
     // console.log('User-Agent:', userAgent);
     try {
-        const url = `https://payuee-2769f5611775.herokuapp.com/plans/data?service=${plan_id}`;
+        const url = `https://payuee.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
         };

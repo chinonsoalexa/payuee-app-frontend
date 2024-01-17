@@ -108,7 +108,7 @@ if (!auth_check) {
         Password: confirmPassword,
       };
 
-      const apiUrl = "https://payuee-2769f5611775.herokuapp.com/forgotten-password-verification";
+      const apiUrl = "https://payuee.onrender.com/forgotten-password-verification";
 
       const requestOptions = {
         method: "POST",

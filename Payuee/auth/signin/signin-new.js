@@ -9,7 +9,7 @@ const googleSignupButton = document.getElementById('googleSigninButton');
 // Add a click event listener to the button
 googleSignupButton.addEventListener('click', function() {
     // Redirect to the specified URL when the button is clicked
-    window.location.href = 'https://payuee-2769f5611775.herokuapp.com/google/sign-in';
+    window.location.href = 'https://payuee.onrender.com/google/sign-in';
 });
 
 // this event listener runs only when the sign up button is triggered
@@ -59,7 +59,7 @@ async function sign_in() {
             Password: password,
             };
 
-            const apiUrl = "https://payuee-2769f5611775.herokuapp.com/sign-in";
+            const apiUrl = "https://payuee.onrender.com/sign-in";
 
             const requestOptions = {
             method: "POST",

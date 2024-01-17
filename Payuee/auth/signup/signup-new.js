@@ -10,7 +10,7 @@
     // Add a click event listener to the button
     googleSignupButton.addEventListener('click', function() {
         // Redirect to the specified URL when the button is clicked
-        window.location.href = 'https://payuee-2769f5611775.herokuapp.com/google/sign-in';
+        window.location.href = 'https://payuee.onrender.com/google/sign-in';
     });
 
     // this event listener clears an existing error
