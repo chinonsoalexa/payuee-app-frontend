@@ -1,11 +1,84 @@
+var validated = true
+
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
         event.preventDefault();
         buy_airtime()
 })
 
+document.getElementById('back-to-airtime').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    enableAirtimeDiv()
+})
+
+document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    // if validated let's send a request for payment
+    if (!validated) {
+        const user = {
+            Amount: amountInput.value,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(user),
+          };
+          
+        try {
+            // deactivateButtonStyles()
+            const response = await fetch(apiUrl, requestOptions);
+            if (!response.ok) {
+                // Parse the response JSON
+                const errorData = await response.json();
+                // Check the error message
+                // Handle fetch-related errors
+                console.log(errorData);
+                console.log('error message: ', errorData.error);
+                if (errorData.error === 'User already exist, please login') {
+                    // Perform actions specific to this error
+                    showError('passwordError', 'User already exists. Please signin.');
+                } else if  (errorData.error === 'Please login using your google account') {
+                    // Handle other error cases
+                    showError('passwordError', 'Please login using your google account.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    // redirect user to verify email ID
+                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                    // window.location.href = '/verify';
+                } else if  (errorData.error === 'email verification failed') {
+                    // Handle other error cases
+                    showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
+                }else if  (errorData.error === 'User already exist, please signin') {
+                    // Handle other error cases
+                    showError('passwordError', 'Please login you already have an existing account with us.');
+                }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    // Handle other error cases
+                    showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
+                } else {
+                    showError('passwordError', 'An error occurred. Please try again.');
+                }
+                //   reactivateButtonStyles();
+                return;
+            }
+            const responseData = await response.json();
+            // const data = await response.json();
+            // reactivateButtonStyles();
+            window.location.href = responseData.data.authorization_url;
+        } finally{
+           // do nothing cause error has been handled
+        }
+ 
+    }
+})
+
 async function buy_airtime(){
-    var validated = true
     // let's take all fields and validate
     var phone = document.getElementById("phone-number").value;
     var amountInput = document.getElementById("amount-input");
@@ -32,64 +105,9 @@ async function buy_airtime(){
     // let's send a post request to make an airtime purchase
 
     if (validated) {
-            const user = {
-                Amount: amountInput.value,
-              };
-    
-              const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
-    
-              const requestOptions = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                credentials: 'include', // set credentials to include cookies
-                body: JSON.stringify(user),
-              };
-              
-            try {
-                // deactivateButtonStyles()
-                const response = await fetch(apiUrl, requestOptions);
-                if (!response.ok) {
-                    // Parse the response JSON
-                    const errorData = await response.json();
-                    // Check the error message
-                    // Handle fetch-related errors
-                    console.log(errorData);
-                    console.log('error message: ', errorData.error);
-                    if (errorData.error === 'User already exist, please login') {
-                        // Perform actions specific to this error
-                        showError('passwordError', 'User already exists. Please signin.');
-                    } else if  (errorData.error === 'Please login using your google account') {
-                        // Handle other error cases
-                        showError('passwordError', 'Please login using your google account.');
-                    } else if  (errorData.error === 'User already exist, please verify your email ID') {
-                        // redirect user to verify email ID
-                        showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-                        // window.location.href = '/verify';
-                    } else if  (errorData.error === 'email verification failed') {
-                        // Handle other error cases
-                        showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
-                    }else if  (errorData.error === 'User already exist, please signin') {
-                        // Handle other error cases
-                        showError('passwordError', 'Please login you already have an existing account with us.');
-                    }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
-                        // Handle other error cases
-                        showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
-                    } else {
-                        showError('passwordError', 'An error occurred. Please try again.');
-                    }
-                    //   reactivateButtonStyles();
-                    return;
-                }
-                const responseData = await response.json();
-                // const data = await response.json();
-                // reactivateButtonStyles();
-                window.location.href = responseData.data.authorization_url;
-            } finally{
-               // do nothing cause error has been handled
-            }
-            // reactivateButtonStyles();
+        // first let's make request with details to get the invoice for the transaction
+        disableAirtimeDiv()
+         
     }
 }
 
@@ -131,4 +149,22 @@ function radioButtonCheck(idName) {
             }
         });
         return radioButtonCheck
+}
+
+// Function to disable the div and its content
+function disableAirtimeDiv() {
+    document.getElementById('airtime-section').classList.add('disabled');
+    document.getElementById('airtime-section').disabled = true;
+
+    document.getElementById('invoice-section').classList.remove('disabled');
+    document.getElementById('invoice-section').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableAirtimeDiv() {
+    document.getElementById('airtime-section').classList.remove('disabled');
+    document.getElementById('airtime-section').disabled = false;
+
+    document.getElementById('invoice-section').classList.add('disabled');
+    document.getElementById('invoice-section').disabled = true;
 }

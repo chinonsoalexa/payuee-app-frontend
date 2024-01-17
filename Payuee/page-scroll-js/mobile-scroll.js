@@ -3,6 +3,7 @@ document.addEventListener('click', function (event) {
     // Check if the clicked link has a specific class or ID
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
         scrollToSection('airtime-section');
+        scrollToSection('invoice-section');
     } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
         scrollToSection('card-pin-section');
     } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {

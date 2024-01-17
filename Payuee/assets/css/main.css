@@ -729,6 +729,10 @@ p {
   background: rgb(27, 114, 244) !important;
 }
 
+.disabled {
+  display: none;
+}
+
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
   font-weight: 200;
