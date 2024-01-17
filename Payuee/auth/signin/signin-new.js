@@ -98,8 +98,8 @@ async function sign_in() {
                 return;
             } 
             const data = await response.json();
-            localStorage.setItem('auth', 'true');
-            window.location.href = '../../../index-in.html';
+            // localStorage.setItem('auth', 'true');
+            // window.location.href = '../../../index-in.html';
             localStorage.removeItem('code');
             localStorage.removeItem('last_name');
             localStorage.removeItem('first_name');
