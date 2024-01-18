@@ -1,16 +1,21 @@
-let deferredPrompt;
+    let deferredPrompt;
+
+    // Check if the PWA has been installed
+    const isAppInstalled = () => {
+        return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    };  
 
     document.addEventListener('DOMContentLoaded', () => {
       const installPopup = document.getElementById('install-popup');
       const installButton = document.getElementById('install-btn');
       const cancelButton = document.getElementById('cancel-btn');
 
-      // Show the popup after 5 seconds only on mobile devices
-      if (/*isMobile() && */!isAppInstalled()) {
+    // Show the popup only if the PWA is not installed
+    if (!isAppInstalled()) {
         setTimeout(() => {
-          installPopup.style.display = 'block';
+        installPopup.style.display = 'block';
         }, 5000);
-      }
+    }
 
       // Install button click event
       installButton.addEventListener('click', () => {
@@ -51,11 +56,6 @@ let deferredPrompt;
     // const isMobile = () => {
     //   return /Mobi|Android/i.test(navigator.userAgent);
     // };
-
-    // Check if the PWA has been installed
-    const isAppInstalled = () => {
-      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    };
 
     // Register the service worker
     if ('serviceWorker' in navigator) {
