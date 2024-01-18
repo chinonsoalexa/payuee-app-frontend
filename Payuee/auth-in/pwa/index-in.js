@@ -19,9 +19,9 @@ let deferredPrompt;
           deferredPrompt.prompt();
           deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the A2HS prompt');
+            //   console.log('User accepted the A2HS prompt');
             } else {
-              console.log('User dismissed the A2HS prompt');
+            //   console.log('User dismissed the A2HS prompt');
             }
             deferredPrompt = null;
           });
@@ -61,9 +61,9 @@ let deferredPrompt;
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/Payuee/auth-in/pwa/service-worker.js')
         .then(registration => {
-          console.log('Service Worker registered with scope:', registration.scope);
+        //   console.log('Service Worker registered with scope:', registration.scope);
         })
         .catch(error => {
-          console.error('Service Worker registration failed:', error);
+        //   console.error('Service Worker registration failed:', error);
         });
     }
