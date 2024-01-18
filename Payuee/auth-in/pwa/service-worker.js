@@ -1,5 +1,5 @@
 const CACHE_NAME = 'Payuee';
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2'; // Incremented cache version
 const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 
 self.addEventListener('install', (event) => {
@@ -7,7 +7,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_KEY).then((cache) => {
       return cache.addAll([
         '/',
-        '/Payuee/'
+        '/Payuee/',
         // Add other files to cache as needed
       ]);
     })
@@ -52,7 +52,7 @@ const fetchResource = (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetchResource(event).catch(() => {
-      return caches.match('/index-in.html'); // Provide a fallback for offline scenarios
+      return caches.match('index-in.html'); // Provide a fallback for offline scenarios
     })
   );
 });
