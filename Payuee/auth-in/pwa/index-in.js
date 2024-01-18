@@ -1,17 +1,17 @@
 let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (event) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  event.preventDefault();
+// Check if the user is on a mobile device
+const isMobileDevice = () => {
+  return /Mobi|Android/i.test(navigator.userAgent);
+};
 
-  // Stash the event so it can be triggered later
-  deferredPrompt = event;
+// Check if the PWA has been installed
+const isAppInstalled = () => {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+};
 
-  // Show a custom install button or similar
-  showInstallButton();
-});
-
-function showInstallButton() {
+// Function to show the install button
+const showInstallButton = () => {
   // Display a button or UI element to prompt the user to install the app
   const installButton = document.getElementById('install-button');
   installButton.style.display = 'block';
@@ -30,9 +30,25 @@ function showInstallButton() {
 
       // Reset the deferredPrompt to null
       deferredPrompt = null;
-    });
 
-    // Hide the install button
-    installButton.style.display = 'none';
+      // Hide the install button
+      installButton.style.display = 'none';
+    });
   });
-}
+};
+
+// Check if the user is on a mobile device and the PWA is not installed after 5 seconds
+setTimeout(() => {
+  if (isMobileDevice() && !isAppInstalled()) {
+    showInstallButton();
+  }
+}, 5000);
+
+// Event listener for beforeinstallprompt
+window.addEventListener('beforeinstallprompt', (event) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  event.preventDefault();
+
+  // Stash the event so it can be triggered later
+  deferredPrompt = event;
+});
