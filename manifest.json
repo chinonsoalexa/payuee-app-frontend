@@ -8,7 +8,7 @@
     "theme_color": "#000000",
     "icons": [
       {
-        "src": "https://payuee.vercel.app/Payuee/assets/img/logo/logo-blue.png",
+        "src": "https://payuee.vercel.app/Payuee/assets/img/logo/payuee-logo.png",
         "sizes": "512x512",
         "type": "image/png"
       }
