@@ -14,74 +14,61 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 })
 
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
-    // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    // if validated let's send a request for payment
-    console.log('preparing to send request')
+
     if (validated) {
-        activatePreloader()
-        console.log('sent request')
+        activatePreloader();
+
         const user = {
             Amount: amountInput.value,
-          };
+        };
 
-          const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
+        const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
 
-          const requestOptions = {
+        const requestOptions = {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             credentials: 'include', // set credentials to include cookies
             body: JSON.stringify(user),
-          };
-          
+        };
+
         try {
-            // deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
+
             if (!response.ok) {
-                // Parse the response JSON
                 const errorData = await response.json();
-                // Check the error message
-                // Handle fetch-related errors
+
                 console.log(errorData);
-                console.log('error message: ', errorData.error);
+
                 if (errorData.error === 'User already exist, please login') {
-                    // Perform actions specific to this error
                     showError('passwordError', 'User already exists. Please signin.');
                 } else if  (errorData.error === 'Please login using your google account') {
-                    // Handle other error cases
                     showError('passwordError', 'Please login using your google account.');
                 } else if  (errorData.error === 'User already exist, please verify your email ID') {
-                    // redirect user to verify email ID
                     showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-                    // window.location.href = '/verify';
                 } else if  (errorData.error === 'email verification failed') {
-                    // Handle other error cases
-                    showError('passwordError', 'an error occurred while sending you a verification email, please try resending.');
-                }else if  (errorData.error === 'User already exist, please signin') {
-                    // Handle other error cases
-                    showError('passwordError', 'Please login you already have an existing account with us.');
-                }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
-                    // Handle other error cases
-                    showError('passwordError', 'This is an invalid email address, please enter a valid email address.');
+                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+                } else if  (errorData.error === 'User already exist, please signin') {
+                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
-                //   reactivateButtonStyles();
+
                 return;
             }
+
             const responseData = await response.json();
-            // const data = await response.json();
-            // reactivateButtonStyles();
             window.location.href = responseData.data.authorization_url;
-        } finally{
-            deactivatePreloader()
-           // do nothing cause error has been handled
+        } finally {
+            deactivatePreloader();
         }
- 
     }
-})
+});
+
 
 async function buy_airtime(){
     validated = true
