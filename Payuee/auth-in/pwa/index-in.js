@@ -1,5 +1,41 @@
 let deferredPrompt;
 
+document.addEventListener('DOMContentLoaded', () => {
+    const installPopup = document.getElementById('install-popup');
+    const installButton = document.getElementById('install-btn');
+    const cancelButton = document.getElementById('cancel-btn');
+  
+    // Show the popup after 5 seconds
+    setTimeout(() => {
+      installPopup.style.display = 'block';
+    }, 5000);
+  
+    // Install button click event
+    installButton.addEventListener('click', () => {
+      // Trigger the PWA installation prompt (assuming deferredPrompt is set globally)
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      }
+  
+      // Hide the popup
+      installPopup.style.display = 'none';
+    });
+  
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      // Hide the popup without triggering the PWA installation
+      installPopup.style.display = 'none';
+    });
+  });
+  
 // Event listener for beforeinstallprompt
 window.addEventListener('beforeinstallprompt', (event) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
