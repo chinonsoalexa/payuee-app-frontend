@@ -163,6 +163,7 @@ function enableAirtimeDiv() {
 }
 
 function activatePreloader() {
+    console.log("activated the preloader")
     // Create a new preloader wrapper
     var customPreloader = $('<div>', {
         'class': 'preloader__wrap'
@@ -187,9 +188,11 @@ function activatePreloader() {
 
     // Append the new preloader to the body
     $('body').append(customPreloader);
+    console.log("appended the preloader")
 }
 
 // Function to deactivate (hide) the preloader
 function deactivatePreloader() {
     $('.preloader__wrap').fadeOut();
+    console.log("deactivated the preloader")
 }
