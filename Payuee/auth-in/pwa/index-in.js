@@ -6,7 +6,7 @@ let deferredPrompt;
       const cancelButton = document.getElementById('cancel-btn');
 
       // Show the popup after 5 seconds only on mobile devices
-      if (isMobile() && !isAppInstalled()) {
+      if (/*isMobile() && */!isAppInstalled()) {
         setTimeout(() => {
           installPopup.style.display = 'block';
         }, 5000);
@@ -48,9 +48,9 @@ let deferredPrompt;
     });
 
     // Check if the user is on a mobile device
-    const isMobile = () => {
-      return /Mobi|Android/i.test(navigator.userAgent);
-    };
+    // const isMobile = () => {
+    //   return /Mobi|Android/i.test(navigator.userAgent);
+    // };
 
     // Check if the PWA has been installed
     const isAppInstalled = () => {
@@ -59,7 +59,7 @@ let deferredPrompt;
 
     // Register the service worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('/Payuee/auth-in/pwa/service-worker.js')
         .then(registration => {
           console.log('Service Worker registered with scope:', registration.scope);
         })
