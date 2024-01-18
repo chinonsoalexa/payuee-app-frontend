@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Payuee';
+const CACHE_NAME = 'payuee';
 const CACHE_VERSION = 'v2'; // Incremented cache version
 const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 
