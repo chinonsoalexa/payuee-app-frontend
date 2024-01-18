@@ -1,9 +1,9 @@
 let deferredPrompt;
 
 // Check if the user is on a mobile device
-const isMobileDevice = () => {
-  return /Mobi|Android/i.test(navigator.userAgent);
-};
+// const isMobileDevice = () => {
+//   return /Mobi|Android/i.test(navigator.userAgent);
+// };
 
 // Check if the PWA has been installed
 const isAppInstalled = () => {
@@ -19,7 +19,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
   deferredPrompt = event;
 
   // Check if the user is on a mobile device and the PWA is not installed
-  if (isMobileDevice() && !isAppInstalled()) {
+  if (/*isMobileDevice() && */!isAppInstalled()) {
     // Show the browser's default install prompt
     deferredPrompt.prompt();
 
