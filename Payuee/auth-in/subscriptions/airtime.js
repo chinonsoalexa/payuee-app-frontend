@@ -19,6 +19,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     // if validated let's send a request for payment
     console.log('preparing to send request')
     if (validated) {
+        activatePreloader()
         console.log('sent request')
         const user = {
             Amount: amountInput.value,
@@ -75,6 +76,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             // reactivateButtonStyles();
             window.location.href = responseData.data.authorization_url;
         } finally{
+            deactivatePreloader()
            // do nothing cause error has been handled
         }
  
@@ -171,4 +173,36 @@ function enableAirtimeDiv() {
 
     document.getElementById('invoice-section').classList.add('disabled');
     document.getElementById('invoice-section').disabled = true;
+}
+
+function activatePreloader() {
+    // Create a new preloader wrapper
+    var customPreloader = $('<div>', {
+        'class': 'preloader__wrap'
+    });
+
+    // Append your existing preloader HTML content
+    customPreloader.html(`
+    <div class="preloader__wrap">
+    <div class="preloader__box">
+       <div class="circle">
+          <img src="assets/img/preloader/preloader.png" alt="preloader">
+        </div>
+        <div class="recharge">
+            <img src="assets/img/preloader/rechage.png" alt="rechage">
+        </div>
+        <span class="pretext">
+            Payuee
+        </span>
+        </div>
+    </div>
+    `);
+
+    // Append the new preloader to the body
+    $('body').append(customPreloader);
+}
+
+// Function to deactivate (hide) the preloader
+function deactivatePreloader() {
+    $('.preloader__wrap').fadeOut();
 }

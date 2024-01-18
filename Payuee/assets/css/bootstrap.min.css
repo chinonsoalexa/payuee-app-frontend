@@ -2013,11 +2013,6 @@ progress {
         width: 66.66666667%
     }
 
-    .col-xxl-88 {
-        flex: 0 0 auto;
-        width: 45%
-    }
-
     .col-xxl-9 {
         flex: 0 0 auto;
         width: 75%
@@ -2026,11 +2021,6 @@ progress {
     .col-xxl-10 {
         flex: 0 0 auto;
         width: 83.33333333%
-    }
-
-    .col-xxl-100 {
-        flex: 0 0 auto;
-        width: 45%
     }
 
     .col-xxl-11 {
