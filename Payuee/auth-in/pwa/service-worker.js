@@ -6,7 +6,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_KEY).then((cache) => {
       return cache.addAll([
-        '/',
+        '/index-in.html',
         '/Payuee/',
         // Add other files to cache as needed
       ]);
