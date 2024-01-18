@@ -2,18 +2,22 @@ const CACHE_NAME = 'payuee';
 const CACHE_VERSION = 'v2'; // Incremented cache version
 const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 
+const FILES_TO_CACHE = [
+    '/',
+    '/index-in.html',
+    // '/Payuee/', // Assuming Payuee is a folder
+    // Add other files or folders to cache as needed
+  ];
+  
+  // Event listener for installing the service worker
 self.addEventListener('install', (event) => {
-  event.waitUntil(
+event.waitUntil(
     caches.open(CACHE_KEY).then((cache) => {
-      return cache.addAll([
-        '/index-in.html',
-        '/Payuee/',
-        // Add other files to cache as needed
-      ]);
+    return cache.addAll(FILES_TO_CACHE);
     })
-  );
+);
 });
-
+  
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
