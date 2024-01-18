@@ -1,78 +1,69 @@
 let deferredPrompt;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const installPopup = document.getElementById('install-popup');
-    const installButton = document.getElementById('install-btn');
-    const cancelButton = document.getElementById('cancel-btn');
-  
-    // Show the popup after 5 seconds
-    setTimeout(() => {
-      installPopup.style.display = 'block';
-    }, 5000);
-  
-    // Install button click event
-    installButton.addEventListener('click', () => {
-      // Trigger the PWA installation prompt (assuming deferredPrompt is set globally)
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+      const installPopup = document.getElementById('install-popup');
+      const installButton = document.getElementById('install-btn');
+      const cancelButton = document.getElementById('cancel-btn');
+
+      // Show the popup after 5 seconds only on mobile devices
+      if (isMobile() && !isAppInstalled()) {
+        setTimeout(() => {
+          installPopup.style.display = 'block';
+        }, 5000);
       }
-  
-      // Hide the popup
-      installPopup.style.display = 'none';
-    });
-  
-    // Cancel button click event
-    cancelButton.addEventListener('click', () => {
-      // Hide the popup without triggering the PWA installation
-      installPopup.style.display = 'none';
-    });
-  });
-  
-// Event listener for beforeinstallprompt
-window.addEventListener('beforeinstallprompt', (event) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  event.preventDefault();
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('../../../service-worker.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker registration failed:', error);
+
+      // Install button click event
+      installButton.addEventListener('click', () => {
+        // Trigger the PWA installation prompt (assuming deferredPrompt is set globally)
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });
+        }
+
+        // Hide the popup
+        installPopup.style.display = 'none';
       });
-  }
 
-  // Stash the event so it can be triggered later
-  deferredPrompt = event;
-
-  // Check if the PWA is not installed
-  if (!isAppInstalled()) {
-    // Show the browser's default install prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-
-      // Reset the deferredPrompt to null
-      deferredPrompt = null;
+      // Cancel button click event
+      cancelButton.addEventListener('click', () => {
+        // Hide the popup without triggering the PWA installation
+        installPopup.style.display = 'none';
+      });
     });
-  }
-});
 
-// Check if the PWA has been installed
-const isAppInstalled = () => {
-  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-};
+    // Event listener for beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (event) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      event.preventDefault();
+
+      // Stash the event so it can be triggered later
+      deferredPrompt = event;
+    });
+
+    // Check if the user is on a mobile device
+    const isMobile = () => {
+      return /Mobi|Android/i.test(navigator.userAgent);
+    };
+
+    // Check if the PWA has been installed
+    const isAppInstalled = () => {
+      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    };
+
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
