@@ -1,6 +1,6 @@
 var transactionDetails
 
-window.onload = function() {
+window.onload = async function() {
     const apiUrl = "https://payuee.onrender.com/paystack/get-latest-transaction";
 
     const requestOptions = {
@@ -12,10 +12,10 @@ window.onload = function() {
     };
 
     try {
-        const response = fetch(apiUrl, requestOptions);
+        const response = await fetch(apiUrl, requestOptions);
 
         if (!response.ok) {
-            const errorData = response.json();
+            const errorData = await response.json();
 
             console.log(errorData);
 
@@ -29,7 +29,7 @@ window.onload = function() {
             return;
         }
 
-        const responseData = response.json();
+        const responseData = await response.json();
         transactionDetails = responseData;
     } finally {
         
