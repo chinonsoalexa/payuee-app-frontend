@@ -15,12 +15,16 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
+    var amount = parseInt(amountInput.value, 10);
+    var finalAmount = amount * 100
+    // Using toString()
+    var finalAmountString1 = finalAmount.toString();
 
     if (validated) {
         activatePreloader();
 
         const user = {
-            Amount: amountInput.value,
+            Amount: finalAmountString1,
         };
 
         const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
@@ -99,8 +103,7 @@ async function buy_airtime(){
 
     if (validated) {
         // first let's make request with details to get the invoice for the transaction
-        disableAirtimeDiv()
-         
+        disableAirtimeDiv()   
     }
 }
 
