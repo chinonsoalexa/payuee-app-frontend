@@ -20,10 +20,10 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
-    var amount = parseInt(amountInput.value, 10);
-    var updatedTransactionCharge = amount;
+    // var amount = parseInt(amountInput.value, 10);
+    let finalAmount = updatedTransactionCharge * 100;
     // Using toString()
-    var finalAmountString1 = updatedTransactionCharge.toString();
+    var finalAmountString1 = finalAmount.toString();
 
     if (validated) {
         activatePreloader();
