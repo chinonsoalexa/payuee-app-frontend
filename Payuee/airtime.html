@@ -381,13 +381,13 @@
                      <div class="prepaid__option">
                         <div class="prepaid__check">
                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
-                           <label class="form-check-label" for="pyradio2page">
+                           <label class="form-check-label" for="wallet">
                              Wallet
                            </label>
                          </div>
                         <div class="prepaid__check">
                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
-                           <label class="form-check-label" for="pyradio1page">
+                           <label class="form-check-label" for="paystack">
                              External Bank
                            </label>
                          </div>
@@ -532,17 +532,9 @@
                         </h3>
                         <div class="invoice__leftnumber">
                            <span class="bage">
-                              Invoice number
-                           </span>
-                           <span class="counting">
-                              325546744
-                           </span>
-                        </div>
-                        <div class="invoice__leftnumber">
-                           <span class="bage">
                               Order Date
                            </span>
-                           <span class="counting">
+                           <span id="invoice_date" class="counting">
                               07/11/2023
                            </span>
                         </div>
@@ -550,7 +542,7 @@
                            <span class="bage">
                               Payment Method
                            </span>
-                           <span class="counting">
+                           <span id="payment_method" class="counting">
                               Paystack
                            </span>
                         </div>
@@ -558,16 +550,8 @@
                            <span class="bage">
                               Phone
                            </span>
-                           <span class="counting">
+                           <span id="phone_number" class="counting">
                               08136804598
-                           </span>
-                        </div>
-                        <div class="invoice__leftnumber">
-                           <span class="bage">
-                              Email
-                           </span>
-                           <span class="counting">
-                              customer@payuee.com
                            </span>
                         </div>
                      </div>
@@ -584,7 +568,7 @@
                               Operator
                            </span>
                            <span>
-                              Receive amount
+                              Transacton Charge
                            </span>
                            <span>
                               Amount
@@ -594,13 +578,13 @@
                            <span>
                               Airtime
                            </span>
-                           <span>
+                           <span id="invoice_operator">
                               MTN
                            </span>
-                           <span>
-                              0
+                           <span id="invoice_charge">
+                              ₦0
                            </span>
-                           <span>
+                           <span id="invoice_service_charge">
                               ₦500.00
                            </span>
                         </div>
@@ -610,7 +594,7 @@
                            <ul>
                               <li>
                                  <span>Total:</span>
-                                 <span class="bg">₦500.00</span>
+                                 <span id="invoice_total_charge" class="bg">₦500.00</span>
                               </li>
                            </ul>
                         </div>
@@ -618,7 +602,7 @@
                      </div>
                   </div>
                   <p class="note">
-                     Note : This is computer generated receipt and does not require physical signature.
+                     Note : This is computer generated invoice and does not require physical signature.
                   </p>
                   <div class="print__point__btn d-flex align-items-center gap-3">
                      <a id="back-to-airtime" href="#" class="cmn__btn">

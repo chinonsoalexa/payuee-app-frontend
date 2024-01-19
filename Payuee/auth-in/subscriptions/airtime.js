@@ -1,5 +1,9 @@
 var validated = true
 var amountInput
+var amountInputNumber
+var phone
+var selectedCarrierValue
+var paymentMethod
 
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
@@ -77,11 +81,11 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
 async function buy_airtime(){
     validated = true
     // let's take all fields and validate
-    var phone = document.getElementById("phone-number").value;
+    phone = document.getElementById("phone-number").value;
     amountInput = document.getElementById("amount-input");
-    var amount = parseInt(amountInput.value, 10);
+    amountInputNumber = parseInt(amountInput.value, 10);
     // let's get the selected value
-    var selectedCarrierValue = getSelectedValue("carrierSelect");
+    selectedCarrierValue = getSelectedValue("carrierSelect");
     console.log(selectedCarrierValue)
 
     if (phone.length > 12 || phone.length < 11) {
@@ -89,21 +93,65 @@ async function buy_airtime(){
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
 
-    if (isNaN(amount) || amount > 5000 || amount < 95) {
+    if (isNaN(amountInputNumber) || amountInputNumber > 5000 || amountInputNumber < 95) {
         validated = false
         showError('amount-error', 'Minimum: ₦95.00 and Maximum: ₦5,000.00');
     }
 
     // let's check the radio button that was checked
-   let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
+    paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    console.log('Checked radio button:', checkedButton);
+    console.log('Checked radio button:', paymentMethod);
 
     // let's send a post request to make an airtime purchase
 
     if (validated) {
-        // first let's make request with details to get the invoice for the transaction
         disableAirtimeDiv()   
+        // now our invoice div is enabled let's supply it data gotten from the airtime div
+        // Get the span element by its id
+        var invoice_date = document.getElementById('invoice_date');
+        var payment_method = document.getElementById('payment_method');
+        var phone_number = document.getElementById('phone_number');
+        var invoice_operator = document.getElementById('invoice_operator');
+        var invoice_charge = document.getElementById('invoice_charge');
+        var invoice_service_charge = document.getElementById('invoice_service_charge');
+        var invoice_total_charge = document.getElementById('invoice_total_charge');
+
+        // let's update all fields to user entered fields
+        // let's update the date field
+        invoice_date.textContent = getCurrentDate();
+        // let's update the payment method field
+        if (paymentMethod == "wallet") {
+         payment_method.textContent = "Wallet";
+        }else{
+         payment_method.textContent = "Paystack";
+        }
+        // let's update the phone number to be recharged
+        phone_number.textContent = phone;
+        // let's update the operator to be used for recharge
+        if (paymentMethod == "mtn") {
+            invoice_operator.textContent = "MTN";
+        }else if (paymentMethod == "airtel") {
+            invoice_operator.textContent = "Airtel";
+        }else if (paymentMethod == "etisalat") {
+            invoice_operator.textContent = "9mobile";
+        }else if (paymentMethod == "glo") {
+            invoice_operator.textContent = "GLO";
+        }
+        // let's get the transaction charge of this transaction
+        let percentage = 1.5;
+        // Calculate 1.5% of the original number
+        let TransactionCharge = (percentage / 100) * amountInputNumber;
+        let updatedTransactionCharge = TransactionCharge + 20;
+        let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
+        invoice_charge.textContent = '₦' + stringTransactionCharge;
+        // let's get the actual charge
+        invoice_service_charge.textContent = '₦' + amountInput.value;
+        // let's calculate the total charge for the user
+        let totalCharge = amountInputNumber + updatedTransactionCharge;
+        let updatedTotalCharge = totalCharge.toFixed(2);
+        invoice_total_charge.textContent = '₦' + updatedTotalCharge;
+        
     }
 }
 
@@ -198,4 +246,22 @@ function activatePreloader() {
 function deactivatePreloader() {
     $('.preloader__wrap').fadeOut();
     console.log("deactivated the preloader")
+}
+
+function getCurrentDate() {
+    // Get the current date
+    var currentDate = new Date();
+
+    // Extract day, month, and year components
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
+    var year = currentDate.getFullYear();
+
+    // Ensure two-digit format for day and month
+    day = (day < 10) ? '0' + day : day;
+    month = (month < 10) ? '0' + month : month;
+
+    // Format the date as "DD/MM/YYYY"
+    var formattedDate = day + '/' + month + '/' + year;
+    return formattedDate;
 }
