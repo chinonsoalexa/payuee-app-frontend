@@ -151,7 +151,6 @@ async function buy_airtime(){
         let totalCharge = amountInputNumber + updatedTransactionCharge;
         let updatedTotalCharge = totalCharge.toFixed(2);
         invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-        
     }
 }
 
