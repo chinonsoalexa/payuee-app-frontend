@@ -4,6 +4,7 @@ var amountInputNumber
 var phone
 var selectedCarrierValue
 var paymentMethod
+var totalCharge
 
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
@@ -19,16 +20,12 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
-    var amount = parseInt(amountInput.value, 10);
-    var finalAmount = amount * 100
-    // Using toString()
-    var finalAmountString1 = finalAmount.toString();
 
     if (validated) {
         activatePreloader();
 
         const user = {
-            Amount: finalAmountString1,
+            Amount: totalCharge,
         };
 
         const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
@@ -148,7 +145,7 @@ async function buy_airtime(){
         // let's get the actual charge
         invoice_service_charge.textContent = '₦' + amountInput.value.toFixed(2);
         // let's calculate the total charge for the user
-        let totalCharge = amountInputNumber + updatedTransactionCharge;
+        totalCharge = amountInputNumber + updatedTransactionCharge;
         let updatedTotalCharge = totalCharge.toFixed(2);
         invoice_total_charge.textContent = '₦' + updatedTotalCharge;
     }
