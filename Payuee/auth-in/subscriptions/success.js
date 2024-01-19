@@ -70,8 +70,8 @@ function displayErrorMessage() {
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
-    // var recharged_number = document.getElementById('recharged_number');
-    // var service_name = document.getElementById('service_name');
+    var recharged_number = document.getElementById('recharged_number');
+    var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
 
     // Access balance directly
@@ -85,5 +85,7 @@ function displayErrorMessage() {
     transaction_method.textContent = 'NA';
     transaction_status.textContent = 'NA';
     users_name.textContent = 'NA';
+     recharged_number.textContent = 'NA';
+    service_name.textContent = 'NA';
     transaction_amount.textContent = '₦' + 'NA';
 }
