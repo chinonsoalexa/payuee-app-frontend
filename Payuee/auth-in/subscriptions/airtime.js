@@ -4,6 +4,7 @@ var amountInputNumber
 var phone
 var selectedCarrierValue
 var paymentMethod
+var updatedTransactionCharge
 
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
@@ -19,10 +20,10 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
-    var amount = parseInt(amountInput.value, 10);
-    var finalAmount = amount * 100
+    // var amount = parseInt(amountInput.value, 10);
+    var updatedTransactionCharge = amount * 100
     // Using toString()
-    var finalAmountString1 = finalAmount.toString();
+    var finalAmountString1 = updatedTransactionCharge.toString();
 
     if (validated) {
         activatePreloader();
@@ -142,7 +143,7 @@ async function buy_airtime(){
         let percentage = 1.5;
         // Calculate 1.5% of the original number
         let TransactionCharge = (percentage / 100) * amountInputNumber;
-        let updatedTransactionCharge = TransactionCharge + 20;
+        updatedTransactionCharge = TransactionCharge + 20;
         let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
         invoice_charge.textContent = '₦' + stringTransactionCharge;
         // let's get the actual charge
@@ -151,7 +152,6 @@ async function buy_airtime(){
         let totalCharge = amountInputNumber + updatedTransactionCharge;
         let updatedTotalCharge = totalCharge.toFixed(2);
         invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-        
     }
 }
 
