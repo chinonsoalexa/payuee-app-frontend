@@ -1,5 +1,3 @@
-var transactionDetails
-
 window.onload = async function() {
     const apiUrl = "https://payuee.onrender.com/paystack/get-latest-transaction";
 
@@ -30,14 +28,13 @@ window.onload = async function() {
         }
 
         const responseData = await response.json();
-        transactionDetails = responseData;
+        getSuccessMessage(responseData)
     } finally {
         
     }
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
-    event.preventDefault;
+function getSuccessMessage(transactionDetails) {
 
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
@@ -62,4 +59,4 @@ document.addEventListener('DOMContentLoaded', function(event) {
     // service_name.textContent = transactionDetails.success.;
     transaction_amount.textContent = '₦' + transactionDetails.success.Fees;
 
-})
+}
