@@ -143,11 +143,12 @@ async function buy_airtime(){
         let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
         invoice_charge.textContent = '₦' + stringTransactionCharge;
         // let's get the actual charge
-        invoice_service_charge.textContent = '₦' + amountInput.value.toFixed(2);
+        invoice_service_charge.textContent = '₦' + amountInput.value;
         // let's calculate the total charge for the user
         totalCharge = amountInputNumber + updatedTransactionCharge;
         let updatedTotalCharge = totalCharge.toFixed(2);
         invoice_total_charge.textContent = '₦' + updatedTotalCharge;
+        console.log('updated total charge is: ' + updatedTotalCharge)
     }
 }
 
