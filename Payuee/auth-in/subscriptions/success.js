@@ -45,18 +45,19 @@ function getSuccessMessage(transactionDetails) {
     // var recharged_number = document.getElementById('recharged_number');
     // var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
-    console.log(transactionDetails)
 
+    // Access balance directly
     available_balance.textContent = transactionDetails.balance;
-    transaction_id.textContent = transactionDetails.success.TransactionID;
-    // Parse the timestamp string
-    var parsedTimestamp = new Date(transactionDetails.success.Paid_AT);
-    transaction_date.textContent = parsedTimestamp;
-    transaction_method.textContent = transactionDetails.success.TransactionType;
-    transaction_status.textContent = transactionDetails.success.Status;
-    users_name.textContent = transactionDetails.success.UserName;
-    // recharged_number.textContent = transactionDetails.success.;
-    // service_name.textContent = transactionDetails.success.;
-    transaction_amount.textContent = '₦' + transactionDetails.success.Fees;
 
+    // Access properties within the success object using dot notation
+    transaction_id.textContent = transactionDetails.success.transaction_id;
+    
+    // Parse the timestamp string
+    var parsedTimestamp = new Date(transactionDetails.success.paid_at);
+    transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
+
+    transaction_method.textContent = transactionDetails.success.transaction_type;
+    transaction_status.textContent = transactionDetails.success.transaction_status;
+    users_name.textContent = transactionDetails.success.user_name;
+    transaction_amount.textContent = '₦' + transactionDetails.success.fees;
 }
