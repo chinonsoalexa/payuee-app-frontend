@@ -21,7 +21,7 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
     // var amount = parseInt(amountInput.value, 10);
-    var updatedTransactionCharge = amount * 100
+    var updatedTransactionCharge = amount;
     // Using toString()
     var finalAmountString1 = updatedTransactionCharge.toString();
 
