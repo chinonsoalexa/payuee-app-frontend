@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     // var recharged_number = document.getElementById('recharged_number');
     // var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
+    console.log(transactionDetails)
 
     available_balance.textContent = transactionDetails.balance;
     transaction_id.textContent = transactionDetails.success.TransactionID;
