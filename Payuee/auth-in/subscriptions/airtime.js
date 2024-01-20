@@ -24,7 +24,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     if (validated && paymentMethod == 'paystack') {
         activatePreloader();
         let intTotalCharge = parseInt(totalCharge.value, 10);
-
+        console.log(intTotalCharge)
         const user = {
             Amount: intTotalCharge,
         };
