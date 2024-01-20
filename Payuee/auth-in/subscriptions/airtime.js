@@ -25,6 +25,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         activatePreloader();
         let intTotalCharge = parseInt(totalCharge.value, 10);
         console.log('this is amount to be sent', intTotalCharge)
+        console.log('this is amount to be sent', totalCharge)
         const user = {
             Amount: intTotalCharge,
         };
@@ -181,6 +182,7 @@ async function buy_airtime(){
             invoice_charge.textContent = '₦' + '0.00';
             let updatedTotalCharge = amountInputNumber.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
+            invoice_service_charge.textContent = '₦' + amountInput.value;
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
@@ -191,7 +193,8 @@ async function buy_airtime(){
             let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
             invoice_charge.textContent = '₦' + stringTransactionCharge;
             totalCharge = amountInputNumber + updatedTransactionCharge;
-            let updatedTotalCharge = totalCharge.toFixed(2);
+            let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
+            let updatedTotalCharge = totalChargeForPaystack.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             console.log('updated total charge is: ' + updatedTotalCharge)
         }
@@ -208,8 +211,6 @@ async function buy_airtime(){
             invoice_operator.textContent = "GLO";
         }
      
-        // let's get the actual charge
-        invoice_service_charge.textContent = '₦' + amountInput.value;
         // let's calculate the total charge for the user
     }
 }
