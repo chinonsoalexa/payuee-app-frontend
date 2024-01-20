@@ -65,6 +65,7 @@ function getSuccessMessage(transactionDetails) {
 
 function displayErrorMessage() {
 
+    var payment_condition = document.getElementById('payment_condition');
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
@@ -75,8 +76,10 @@ function displayErrorMessage() {
     var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
 
+    // let's change to payment unsuccessful
+    payment_condition.textContent = 'Payment Error'
     // Access balance directly
-    available_balance.textContent = 'NA';
+    available_balance.textContent = '₦ NA';
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = 'NA';
@@ -88,5 +91,5 @@ function displayErrorMessage() {
     users_name.textContent = 'NA';
      recharged_number.textContent = 'NA';
     service_name.textContent = 'NA';
-    transaction_amount.textContent = '₦' + 'NA';
+    transaction_amount.textContent = '₦ NA';
 }
