@@ -65,6 +65,7 @@ function getSuccessMessage(transactionDetails) {
 
 function displayErrorMessage() {
 
+    var payment_icon_color = document.getElementById('payment_icon_color');
     var payment_condition = document.getElementById('payment_condition');
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
@@ -75,6 +76,20 @@ function displayErrorMessage() {
     var recharged_number = document.getElementById('recharged_number');
     var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
+
+    // let's change the error icon color to red
+     // Remove the existing class
+     payment_icon_color.classList.remove("icon");
+
+    //  let's change the icon to an error icon
+    // Get the element by its id
+    var iconElement = document.getElementById("change_icon_type");
+
+    // Change the text content
+    iconElement.textContent = "cancel";
+
+     // Add a new class
+     payment_icon_color.classList.add("icon_color");
 
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Payment Error'
