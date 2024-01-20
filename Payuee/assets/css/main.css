@@ -8889,6 +8889,10 @@ form .cmn__btn span i {
   text-align: center;
   margin-bottom: 24px;
 }
+.icon_color {
+  text-align: center;
+  margin-bottom: 24px;
+}
 .payment__success__inner .payment__success__header .icon {
   width: 60px;
   height: 60px;
@@ -8908,13 +8912,13 @@ form .cmn__btn span i {
   justify-content: center;
   background: red;
   margin: 0 auto 20px;
-  text-align: center;
-  margin-bottom: 24px;
+}
+.payment__success__inner .payment__success__header .icon i {
   color: var(--white);
   font-size: 1.625rem;
   margin-top: -3px;
 }
-.payment__success__inner .payment__success__header .icon i {
+.icon_color {
   color: var(--white);
   font-size: 1.625rem;
   margin-top: -3px;
