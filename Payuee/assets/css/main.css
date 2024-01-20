@@ -8910,7 +8910,6 @@ form .cmn__btn span i {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: red; */
   margin: 0 auto 20px;
 }
 .payment__success__inner .payment__success__header .icon i {
