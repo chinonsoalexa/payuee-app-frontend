@@ -48,7 +48,7 @@ function getSuccessMessage(transactionDetails) {
 
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
-    available_balance.textContent = '₦' + availableBalanceString;
+    available_balance.textContent = '₦' + availableBalanceString.toFixed(2);
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
