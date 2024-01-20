@@ -173,10 +173,23 @@ async function buy_airtime(){
         // let's update the payment method field
         console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
-         payment_method.textContent = "Wallet";
-        console.log(paymentMethod + ' ' + payment_method.textContent)
+            payment_method.textContent = "Wallet";
+            invoice_charge.textContent = '₦' + '0.00';
+            let updatedTotalCharge = amountInputNumber.toFixed(2);
+            invoice_total_charge.textContent = '₦' + updatedTotalCharge;
         }else if (paymentMethod == "paystack") {
-         payment_method.textContent = "Paystack";
+            payment_method.textContent = "Paystack";
+                // let's get the transaction charge of this transaction
+            let percentage = 1.5;
+            // Calculate 1.5% of the original number
+            let TransactionCharge = (percentage / 100) * amountInputNumber;
+            let updatedTransactionCharge = TransactionCharge + 20;
+            let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
+            invoice_charge.textContent = '₦' + stringTransactionCharge;
+            totalCharge = amountInputNumber + updatedTransactionCharge;
+            let updatedTotalCharge = totalCharge.toFixed(2);
+            invoice_total_charge.textContent = '₦' + updatedTotalCharge;
+            console.log('updated total charge is: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;
@@ -190,20 +203,10 @@ async function buy_airtime(){
         }else if (selectedCarrierValue == "glo") {
             invoice_operator.textContent = "GLO";
         }
-        // let's get the transaction charge of this transaction
-        let percentage = 1.5;
-        // Calculate 1.5% of the original number
-        let TransactionCharge = (percentage / 100) * amountInputNumber;
-        let updatedTransactionCharge = TransactionCharge + 20;
-        let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
-        invoice_charge.textContent = '₦' + stringTransactionCharge;
+     
         // let's get the actual charge
         invoice_service_charge.textContent = '₦' + amountInput.value;
         // let's calculate the total charge for the user
-        totalCharge = amountInputNumber + updatedTransactionCharge;
-        let updatedTotalCharge = totalCharge.toFixed(2);
-        invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-        console.log('updated total charge is: ' + updatedTotalCharge)
     }
 }
 
