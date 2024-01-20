@@ -24,10 +24,13 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     if (validated && paymentMethod == 'paystack') {
         activatePreloader();
         let intTotalCharge = parseInt(totalCharge.value, 10);
-        console.log(intTotalCharge)
+        console.log('this is amount to be sent', intTotalCharge)
         const user = {
             Amount: intTotalCharge,
         };
+
+        // error message from paystack
+        // {"message":"Invalid Amount Sent","status":false}
 
         const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
 
