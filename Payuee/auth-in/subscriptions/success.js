@@ -47,8 +47,9 @@ function getSuccessMessage(transactionDetails) {
     var transaction_amount = document.getElementById('transaction_amount');
 
     // Access balance directly
-    let Balance = transactionDetails.balance / 100
-    let availableBalanceString = Balance;
+    let Balance = transactionDetails.balance;
+    let finalBalance = Balance / 100;
+    let availableBalanceString = finalBalance;
     available_balance.textContent = '₦' + availableBalanceString.toFixed(2);
 
     // Access properties within the success object using dot notation
