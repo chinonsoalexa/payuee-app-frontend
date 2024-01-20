@@ -60,7 +60,7 @@ function getSuccessMessage(transactionDetails) {
     transaction_method.textContent = transactionDetails.success.transaction_type;
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
-    let transactionAmountString = transactionDetails.success.fees;
+    let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString / 100).toFixed(2);
 }
 
