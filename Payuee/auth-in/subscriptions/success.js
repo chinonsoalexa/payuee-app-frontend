@@ -86,7 +86,7 @@ function displayErrorMessage() {
     var iconElement = document.getElementById("change_icon_type");
 
     // Change the text content
-    iconElement.textContent = "cancel";
+    iconElement.textContent = "clear";
 
      // Add a new class
      payment_icon_color.classList.add("icon_color");
