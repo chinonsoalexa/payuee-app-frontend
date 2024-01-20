@@ -8920,7 +8920,7 @@ form .cmn__btn span i {
 }
 .icon_color {
   color: var(--white);
-  font-size: 1.625rem;
+  font-size: 2rem;
   margin-top: -3px;
 }
 @media (max-width: 575px) {
