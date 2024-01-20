@@ -8910,7 +8910,7 @@ form .cmn__btn span i {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: red;
+  /* background: red; */
   margin: 0 auto 20px;
 }
 .payment__success__inner .payment__success__header .icon i {
@@ -8919,7 +8919,7 @@ form .cmn__btn span i {
   margin-top: -3px;
 }
 .icon_color {
-  color: white;
+  color: var(--white);
   font-size: 1.625rem;
   margin-top: -3px;
 }
