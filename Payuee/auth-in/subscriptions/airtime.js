@@ -21,7 +21,7 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
 
-    if (validated) {
+    if (validated && paymentMethod == 'paystack') {
         activatePreloader();
 
         const user = {
@@ -72,6 +72,59 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             deactivatePreloader();
         }
     }
+
+    if (validated && paymentMethod == 'wallet') {
+        activatePreloader();
+        alert('payment with wallet still under construction')
+
+        // const user = {
+        //     Amount: totalCharge,
+        // };
+
+        // const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
+
+        // const requestOptions = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     credentials: 'include', // set credentials to include cookies
+        //     body: JSON.stringify(user),
+        // };
+
+        // try {
+        //     const response = await fetch(apiUrl, requestOptions);
+
+        //     if (!response.ok) {
+        //         const errorData = await response.json();
+
+        //         console.log(errorData);
+
+        //         if (errorData.error === 'User already exist, please login') {
+        //             showError('passwordError', 'User already exists. Please signin.');
+        //         } else if  (errorData.error === 'Please login using your google account') {
+        //             showError('passwordError', 'Please login using your google account.');
+        //         } else if  (errorData.error === 'User already exist, please verify your email ID') {
+        //             showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+        //         } else if  (errorData.error === 'email verification failed') {
+        //             showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+        //         } else if  (errorData.error === 'User already exist, please signin') {
+        //             showError('passwordError', 'Please login, you already have an existing account with us.');
+        //         } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+        //             showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+        //         } else {
+        //             showError('passwordError', 'An error occurred. Please try again.');
+        //         }
+
+        //         return;
+        //     }
+
+        //     const responseData = await response.json();
+        //     window.location.href = responseData.data.authorization_url;
+        // } finally {
+            deactivatePreloader();
+        // }
+    }
 });
 
 
@@ -98,7 +151,7 @@ async function buy_airtime(){
     // let's check the radio button that was checked
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    console.log('Checked radio button:', paymentMethod);
+    // console.log('Checked radio button:', paymentMethod);
 
     // let's send a post request to make an airtime purchase
 
@@ -118,21 +171,23 @@ async function buy_airtime(){
         // let's update the date field
         invoice_date.textContent = getCurrentDate();
         // let's update the payment method field
+        console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
          payment_method.textContent = "Wallet";
-        }else{
+        console.log(paymentMethod + ' ' + payment_method.textContent)
+        }else if (paymentMethod == "paystack") {
          payment_method.textContent = "Paystack";
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;
         // let's update the operator to be used for recharge
-        if (paymentMethod == "mtn") {
+        if (selectedCarrierValue == "mtn") {
             invoice_operator.textContent = "MTN";
-        }else if (paymentMethod == "airtel") {
+        }else if (selectedCarrierValue == "airtel") {
             invoice_operator.textContent = "Airtel";
-        }else if (paymentMethod == "etisalat") {
+        }else if (selectedCarrierValue == "etisalat") {
             invoice_operator.textContent = "9mobile";
-        }else if (paymentMethod == "glo") {
+        }else if (selectedCarrierValue == "glo") {
             invoice_operator.textContent = "GLO";
         }
         // let's get the transaction charge of this transaction
