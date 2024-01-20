@@ -8908,6 +8908,11 @@ form .cmn__btn span i {
   justify-content: center;
   background: red;
   margin: 0 auto 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--white);
+  font-size: 1.625rem;
+  margin-top: -3px;
 }
 .payment__success__inner .payment__success__header .icon i {
   color: var(--white);
@@ -8916,6 +8921,11 @@ form .cmn__btn span i {
 }
 @media (max-width: 575px) {
   .payment__success__inner .payment__success__header .icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 5px;
+  }
+ .icon_color {
     width: 40px;
     height: 40px;
     margin: 0 auto 5px;
