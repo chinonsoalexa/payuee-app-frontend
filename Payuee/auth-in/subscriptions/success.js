@@ -1,4 +1,4 @@
-window.onload = async function() {
+window.onload = async function () {
     const apiUrl = "https://payuee.onrender.com/paystack/get-latest-transaction";
 
     const requestOptions = {
@@ -30,7 +30,7 @@ window.onload = async function() {
         const responseData = await response.json();
         getSuccessMessage(responseData)
     } finally {
-        
+
     }
 }
 
@@ -52,7 +52,7 @@ function getSuccessMessage(transactionDetails) {
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
-    
+
     // Parse the timestamp string
     var parsedTimestamp = new Date(transactionDetails.success.paid_at);
     transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
@@ -79,8 +79,8 @@ function displayErrorMessage() {
     var transaction_amount = document.getElementById('transaction_amount');
 
     // let's change the error icon color to red
-     // Remove the existing class
-     payment_icon_color.classList.remove("icon");
+    // Remove the existing class
+    payment_icon_color.classList.remove("icon");
 
     //  let's change the icon to an error icon
     // Get the element by its id
@@ -89,8 +89,8 @@ function displayErrorMessage() {
     // Change the text content
     iconElement.textContent = "clear";
 
-     // Add a new class
-     payment_icon_color.classList.add("icon_color");
+    // Add a new class
+    payment_icon_color.classList.add("icon_color");
 
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Payment Unsuccessful'
@@ -99,13 +99,13 @@ function displayErrorMessage() {
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = 'NA';
-    
+
     transaction_date.textContent = 'NA'; // Adjust the format as needed
 
     transaction_method.textContent = 'NA';
     transaction_status.textContent = 'NA';
     users_name.textContent = 'NA';
-     recharged_number.textContent = 'NA';
+    recharged_number.textContent = 'NA';
     service_name.textContent = 'NA';
     transaction_amount.textContent = '₦ NA';
 }
