@@ -26,7 +26,11 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         console.log('this is amount to be sent', intTotalCharge)
         console.log('this is amount to be sent', totalCharge)
         const user = {
-            Amount: intTotalCharge,
+            ServiceID: "mtn",
+            PaymentType: "paystack",
+            Network:    "MTN",
+            Price:  5000,
+            PhoneNumber: "08136804598",
         };
 
         // error message from paystack
@@ -136,7 +140,7 @@ async function buy_airtime(){
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;
     amountInput = document.getElementById("amount-input");
-    amountInputNumber = parseInt(amountInput.value, 10);
+   let  amountInputNumber = parseInt(amountInput.value, 10);
     // let's get the selected value
     selectedCarrierValue = getSelectedValue("carrierSelect");
     console.log(selectedCarrierValue)
