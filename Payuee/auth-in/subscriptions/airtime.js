@@ -22,7 +22,6 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     event.preventDefault();
 
     if (validated && paymentMethod == 'paystack') {
-        activatePreloader();
         let intTotalCharge = parseInt(totalCharge, 10);
         console.log('this is amount to be sent', intTotalCharge)
         console.log('this is amount to be sent', totalCharge)
@@ -74,12 +73,11 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             const responseData = await response.json();
             window.location.href = responseData.data.authorization_url;
         } finally {
-            deactivatePreloader();
+            
         }
     }
 
     if (validated && paymentMethod == 'wallet') {
-        activatePreloader();
         alert('payment with wallet still under construction')
 
         // const user = {
@@ -127,7 +125,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         //     const responseData = await response.json();
         //     window.location.href = responseData.data.authorization_url;
         // } finally {
-            deactivatePreloader();
+            
         // }
     }
 });
@@ -271,41 +269,6 @@ function enableAirtimeDiv() {
 
     document.getElementById('invoice-section').classList.add('disabled');
     document.getElementById('invoice-section').disabled = true;
-}
-
-function activatePreloader() {
-    console.log("activated the preloader")
-    // Create a new preloader wrapper
-    var customPreloader = $('<div>', {
-        'class': 'preloader__wrap'
-    });
-
-    // Append your existing preloader HTML content
-    customPreloader.html(`
-    <div class="preloader__wrap">
-    <div class="preloader__box">
-       <div class="circle">
-          <img src="assets/img/preloader/preloader.png" alt="preloader">
-        </div>
-        <div class="recharge">
-            <img src="assets/img/preloader/rechage.png" alt="rechage">
-        </div>
-        <span class="pretext">
-            Payuee
-        </span>
-        </div>
-    </div>
-    `);
-
-    // Append the new preloader to the body
-    $('body').append(customPreloader);
-    console.log("appended the preloader")
-}
-
-// Function to deactivate (hide) the preloader
-function deactivatePreloader() {
-    $('.preloader__wrap').fadeOut();
-    console.log("deactivated the preloader")
 }
 
 function getCurrentDate() {

@@ -1,4 +1,4 @@
-// Assuming banks.json is in the same directory as your HTML/JS file
+// // Assuming banks.json is in the same directory as your HTML/JS file
 
 // fetch('banks.json')
 //   .then(response => response.json())
