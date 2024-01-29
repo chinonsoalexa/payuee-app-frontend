@@ -26,7 +26,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         console.log('this is amount to be sent', intTotalCharge)
         console.log('this is amount to be sent', totalCharge)
         const user = {
-            ServiceID: "mtn",
+            ServiceID: "airtime",
             PaymentType: "paystack",
             Network:    "MTN",
             Price:  5000,
