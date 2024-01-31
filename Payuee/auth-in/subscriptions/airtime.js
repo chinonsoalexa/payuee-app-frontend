@@ -75,6 +75,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             }
 
             const responseData = await response.json();
+            console.log(responseData);
             window.location.href = responseData.success.data.authorization_url;
         } finally {
             
