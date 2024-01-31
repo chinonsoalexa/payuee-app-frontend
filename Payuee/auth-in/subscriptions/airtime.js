@@ -27,10 +27,10 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         console.log('this is amount to be sent', totalCharge)
         const user = {
             ServiceID: "airtime",
-            PaymentType: "paystack",
-            Network:    "MTN",
-            Price:  5000,
-            PhoneNumber: "08136804598",
+            PaymentType: paymentMethod,
+            Network:    selectedCarrierValue,
+            Price:  intTotalCharge,
+            PhoneNumber: phone,
         };
 
         // error message from paystack
@@ -76,7 +76,6 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             }
 
             const responseData = await response.json();
-            console.log(responseData);
             window.location.href = responseData.success.data.authorization_url;
         } finally {
             
