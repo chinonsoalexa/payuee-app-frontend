@@ -21,7 +21,7 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
 document.getElementById('continue-buy-airtime').addEventListener('click', async function(event) {
     event.preventDefault();
 
-    if (validated && paymentMethod == 'paystack') {
+    if (validated) {
         let intTotalCharge = parseInt(totalCharge, 10);
         console.log('this is amount to be sent', intTotalCharge)
         console.log('this is amount to be sent', totalCharge)
@@ -50,6 +50,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         try {
             const response = await fetch(apiUrl, requestOptions);
 
+            console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
@@ -82,57 +83,57 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         }
     }
 
-    if (validated && paymentMethod == 'wallet') {
-        alert('payment with wallet still under construction')
+    // if (validated && paymentMethod == 'wallet') {
+    //     alert('payment with wallet still under construction')
 
-        // const user = {
-        //     Amount: totalCharge,
-        // };
+    //     // const user = {
+    //     //     Amount: totalCharge,
+    //     // };
 
-        // const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
+    //     // const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
 
-        // const requestOptions = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     credentials: 'include', // set credentials to include cookies
-        //     body: JSON.stringify(user),
-        // };
+    //     // const requestOptions = {
+    //     //     method: "POST",
+    //     //     headers: {
+    //     //         "Content-Type": "application/json",
+    //     //     },
+    //     //     credentials: 'include', // set credentials to include cookies
+    //     //     body: JSON.stringify(user),
+    //     // };
 
-        // try {
-        //     const response = await fetch(apiUrl, requestOptions);
+    //     // try {
+    //     //     const response = await fetch(apiUrl, requestOptions);
 
-        //     if (!response.ok) {
-        //         const errorData = await response.json();
+    //     //     if (!response.ok) {
+    //     //         const errorData = await response.json();
 
-        //         console.log(errorData);
+    //     //         console.log(errorData);
 
-        //         if (errorData.error === 'User already exist, please login') {
-        //             showError('passwordError', 'User already exists. Please signin.');
-        //         } else if  (errorData.error === 'Please login using your google account') {
-        //             showError('passwordError', 'Please login using your google account.');
-        //         } else if  (errorData.error === 'User already exist, please verify your email ID') {
-        //             showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-        //         } else if  (errorData.error === 'email verification failed') {
-        //             showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
-        //         } else if  (errorData.error === 'User already exist, please signin') {
-        //             showError('passwordError', 'Please login, you already have an existing account with us.');
-        //         } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
-        //             showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
-        //         } else {
-        //             showError('passwordError', 'An error occurred. Please try again.');
-        //         }
+    //     //         if (errorData.error === 'User already exist, please login') {
+    //     //             showError('passwordError', 'User already exists. Please signin.');
+    //     //         } else if  (errorData.error === 'Please login using your google account') {
+    //     //             showError('passwordError', 'Please login using your google account.');
+    //     //         } else if  (errorData.error === 'User already exist, please verify your email ID') {
+    //     //             showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+    //     //         } else if  (errorData.error === 'email verification failed') {
+    //     //             showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+    //     //         } else if  (errorData.error === 'User already exist, please signin') {
+    //     //             showError('passwordError', 'Please login, you already have an existing account with us.');
+    //     //         } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+    //     //             showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+    //     //         } else {
+    //     //             showError('passwordError', 'An error occurred. Please try again.');
+    //     //         }
 
-        //         return;
-        //     }
+    //     //         return;
+    //     //     }
 
-        //     const responseData = await response.json();
-        //     window.location.href = responseData.data.authorization_url;
-        // } finally {
+    //     //     const responseData = await response.json();
+    //     //     window.location.href = responseData.data.authorization_url;
+    //     // } finally {
             
-        // }
-    }
+    //     // }
+    // }
 });
 
 
