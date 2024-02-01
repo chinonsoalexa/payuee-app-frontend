@@ -346,6 +346,8 @@
                   </div>
                </div>
             </div>
+
+            <!-- data subscription section -->
             <div id="data-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
@@ -373,23 +375,7 @@
                               <p id="data-error"></p>
                            </div>
                            <div class="col-lg-6" id="getDataDiv">
-                              <!-- <select id="operatorSelect" name="niceselect">
-                                 <option value="2">
-                                   MTN-SME-Data (*461*4#)
-                                 </option>
-                                 <option value="3">
-                                    MTN-Coporate-Gifting (*131*4#)
-                                 </option>
-                                 <option value="4">
-                                    Airtel-Corporate-Gifting (*323)
-                                 </option>
-                                 <option value="5">
-                                    9mobile-Data (*323#)
-                                 </option>
-                                 <option value="6">
-                                    Glo-Corporate-Gifting (*323#)
-                                 </option>
-                              </select> -->
+                              <!-- data drop down option -->
                            </div>
                            <div  id="planSelectId" class="col-lg-6">
                               <select id="plansSelect" name="niceselect" style="display: none;">
@@ -508,6 +494,126 @@
                   </div>
                </div>
             </div>
+
+            <!-- section for invoice -->
+            <div id="invoice-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 disabled">
+               <div class="order__wrappers invoice__wrapper">
+                  <div class="invoice__textwrapper mb__30">
+                     <div class="invoice__leftbox">
+                        <h3>
+                           Invoice
+                        </h3>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Order Date
+                           </span>
+                           <span id="invoice_date" class="counting">
+                              07/11/2023
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Payment Method
+                           </span>
+                           <span id="payment_method" class="counting">
+                              Paystack
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Phone
+                           </span>
+                           <span id="phone_number" class="counting">
+                              08136804598
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="order__summary__wrapper mb__40">
+                     <div class="over__responsive">
+                     <h5 class="summary__title">Order Summary</h5>
+                     <div class="order__table__fluid">
+                        <div class="order__table__items bg__add">
+                           <span>
+                              Service
+                           </span>
+                           <span>
+                              Operator
+                           </span>
+                           <span>
+                              No. of Pin
+                           </span>
+                           <span>
+                              Value
+                           </span>
+                           <span>
+                              Transaction Charge
+                           </span>
+                           <span>
+                              Amount
+                           </span>
+                        </div>
+                        <div class="order__table__items">
+                           <span id="invoice_service">
+                              Card Pin
+                           </span>
+                           <span id="invoice_operator">
+                              MTN
+                           </span>
+                           <span id="invoice_card_amount">
+                              10
+                           </span>
+                           <span id="invoice_card_value">
+                              500
+                           </span>
+                           <span id="invoice_charge">
+                              ₦0.00
+                           </span>
+                           <span id="invoice_service_charge">
+                              ₦500.00
+                           </span>
+                        </div>
+                     </div>
+                     <div class="order__table__box">
+                        <div class="order__graph">
+                           <ul>
+                              <li>
+                                 <span>Total:</span>
+                                 <span id="invoice_total_charge" class="bg">₦500.00</span>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+                  <p class="note">
+                     Note: Before completing a purchase using your wallet, please ensure your wallet is funded. Transactions made with your wallet incur a 0% charge
+                  </p>
+                  <div class="print__point__btn d-flex align-items-center gap-3">
+                     <a id="back-to-airtime" href="#" class="cmn__btn">
+                        <span>
+                           <i class="material-symbols-outlined">
+                              keyboard_backspace
+                           </i>
+                        </span>
+                        <span class="print">
+                           Back
+                        </span>
+                     </a>
+                     <a id="continue-buy-airtime" href="#" class="cmn__btn">
+                        <span class="print">
+                           Continue
+                        </span>
+                        <span>
+                           <i class="material-symbols-outlined">
+                              arrow_forward
+                           </i>
+                        </span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
                <div class="pay__sponsor__thumbtwo">
                   <img src="assets/img/banner/broadband2.jpg" alt="img">

@@ -34,7 +34,7 @@ function buy_data(event){
     // let's send a post request to make an airtime purchase
 
     if (validated) {
-
+        disableDataDiv()
     }
 }
 
@@ -76,6 +76,24 @@ function radioButtonCheck(idName) {
             }
         });
         return radioButtonCheck
+}
+
+// Function to disable the div and its content
+function disableDataDiv() {
+    document.getElementById('data-section').classList.add('disabled');
+    document.getElementById('data-section').disabled = true;
+
+    document.getElementById('invoice-section').classList.remove('disabled');
+    document.getElementById('invoice-section').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableDataDiv() {
+    document.getElementById('data-section').classList.remove('disabled');
+    document.getElementById('data-section').disabled = false;
+
+    document.getElementById('invoice-section').classList.add('disabled');
+    document.getElementById('invoice-section').disabled = true;
 }
 
 // Assuming 'planSelectId' is the ID of the div wrapping the select element
