@@ -1,4 +1,8 @@
-// onclick on continue payment validate and send request
+document.getElementById('tv-button').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    decoder_subscription()
+})
 
 var dstv = [
     { value: 'dstv-padi', text: 'DStv Padi - ₦2,950' },
@@ -51,6 +55,105 @@ var startime = [
     { value: 'classic', text: 'Startimes Classic - ₦3,800' },
     { value: 'super', text: 'Startimes Super - ₦6,500' },
 ];
+
+document.getElementById('back-to-tv').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    enableTvDiv()
+})
+
+function decoder_subscription(){
+    var validated = true
+
+    // var description = document.getElementById("description").value;
+    // let's get the selected value
+    var decoderNumber = document.getElementById("decoder-number").value;
+    var decoderNumberValue = parseInt(decoderNumber, 10);
+
+    if (decoderNumberValue.length < 10) {
+        validated = false;
+        showError('decoder-number-error', 'Decoder number should be at least 10 digits.'); 
+    }else if (decoderNumberValue.length > 10) {
+        validated = false;
+        showError('decoder-number-error', 'Decoder number should be 10 digits.'); 
+    }else if (decoderNumber.trim() === '') {
+        validated = false;
+        showError('decoder-number-error', 'Please enter a decoder number.');
+    }
+
+    // let's take all fields and validate
+    var mobileNumber = document.getElementById("mobile-number").value;
+    var number = parseInt(mobileNumber.value, 10);
+
+    if (number.length < 11) {
+        validated = false;
+        showError('mobile-error', 'Phone number should be at least 11 digits.'); 
+    }else if (number.length > 11) {
+        validated = false;
+        showError('mobile-error', 'Phone number should be 11 digits.'); 
+    }else if (mobileNumber.trim() === '') {
+        validated = false;
+        showError('mobile-error', 'Please enter mobile number.');
+    }
+
+    // let's check the radio button that was checked
+   let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
+
+    console.log('Checked radio button:', checkedButton);
+
+    // let's send a post request to make an airtime purchase
+
+    if (validated) {
+        disableTvDiv()
+    }
+}
+
+function showError(id, message, duration = 5000) {
+var errorElement = document.getElementById(id);
+errorElement.textContent = message;
+errorElement.style.display = 'block'; // Change display to 'block'
+errorElement.style.color = 'red'; // Set text color to red
+
+// Set a timeout to hide the error message after the specified duration
+setTimeout(function () {
+    errorElement.textContent = ''; // Clear the error message
+    errorElement.style.display = 'none'; // Hide the error message
+}, duration);
+}
+    
+function radioButtonCheck(idName) {
+    let radioButtonCheck = ''
+    // Get all radio buttons with the name 'flexRadioDefault'
+    const radioButtons = document.querySelectorAll(idName);
+
+    // Loop through the radio buttons
+    radioButtons.forEach(function(radioButton) {
+        // Check if the radio button is checked
+        if (radioButton.checked) {
+            // Log the id of the checked radio button
+            radioButtonCheck = radioButton.id
+        }
+    });
+    return radioButtonCheck
+}
+
+// Function to disable the div and its content
+function disableTvDiv() {
+    document.getElementById('tv-section').classList.add('disabled');
+    document.getElementById('tv-section').disabled = true;
+
+    document.getElementById('invoice-section').classList.remove('disabled');
+    document.getElementById('invoice-section').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableTvDiv() {
+    document.getElementById('tv-section').classList.remove('disabled');
+    document.getElementById('tv-section').disabled = false;
+
+    document.getElementById('invoice-section').classList.add('disabled');
+    document.getElementById('invoice-section').disabled = true;
+}
 
 // Assuming 'planSelectId' is the ID of the div wrapping the select element
 var planSelectDiv = document.getElementById('planSelectId');

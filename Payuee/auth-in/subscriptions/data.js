@@ -7,23 +7,28 @@ document.getElementById('buy-data').addEventListener('click', function(event) {
     buy_data()
 });
 
-function buy_data(event){
+document.getElementById('back-to-data').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
+    enableDataDiv()
+})
+
+function buy_data(){
     var validated = true
     // let's take all fields and validate
     var amountInput = document.getElementById("data-number");
     var amount = parseInt(amountInput.value, 10);
     // var description = document.getElementById("description").value;
     // let's get the selected value
-    var selectedRechargeValue = getSelectedValue("rechargeSelect");
+    var selectedRechargeValue = getSelectedValue("planSelectId");
     var rechargeValue = parseInt(selectedRechargeValue, 10);
 
     if (amount < 10 && rechargeValue < 500) {
         validated = false;
-        showError('pin-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
+        showError('data-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
     }else if (amountInput.value.trim() === '') {
         validated = false;
-        showError('pin-error', 'Please enter amount of pin to recharge.');
+        showError('data-error', 'Please enter amount of pin to recharge.');
     }
 
     // let's check the radio button that was checked

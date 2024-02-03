@@ -348,6 +348,8 @@
                   </div>
                </div>
             </div>
+
+            <!-- section for educational payments -->
             <div id="education-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
@@ -486,6 +488,108 @@
                   </div>
                </div>
             </div>
+
+            <!-- section for invoice -->
+            <div id="invoice-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 disabled">
+               <div class="order__wrappers invoice__wrapper">
+                  <div class="invoice__textwrapper mb__30">
+                     <div class="invoice__leftbox">
+                        <h3>
+                           Invoice
+                        </h3>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Order Date
+                           </span>
+                           <span id="invoice_date" class="counting">
+                              07/11/2023
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Payment Method
+                           </span>
+                           <span id="payment_method" class="counting">
+                              Paystack
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Phone
+                           </span>
+                           <span id="phone_number" class="counting">
+                              08136804598
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="order__summary__wrapper mb__40">
+                     <div class="over__responsive">
+                     <h5 class="summary__title">Order Summary</h5>
+                     <div class="order__table__fluid">
+                        <div class="order__table__items bg__add">
+                           <span>
+                              Service
+                           </span>
+                           <span>
+                              Transaction Charge
+                           </span>
+                           <span>
+                              Amount
+                           </span>
+                        </div>
+                        <div class="order__table__items">
+                           <span id="invoice_service">
+                              WAEC Pin
+                           </span>
+                           <span id="invoice_charge">
+                              ₦0.00
+                           </span>
+                           <span id="invoice_service_charge">
+                              ₦3,800.00
+                           </span>
+                        </div>
+                     </div>
+                     <div class="order__table__box">
+                        <div class="order__graph">
+                           <ul>
+                              <li>
+                                 <span>Total:</span>
+                                 <span id="invoice_total_charge" class="bg">₦3,800.00</span>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+                  <p class="note">
+                     Note: Before completing a purchase using your wallet, please ensure your wallet is funded. Transactions made with your wallet incur a 0% charge
+                  </p>
+                  <div class="print__point__btn d-flex align-items-center gap-3">
+                     <a id="back-to-data" href="#" class="cmn__btn">
+                        <span>
+                           <i class="material-symbols-outlined">
+                              keyboard_backspace
+                           </i>
+                        </span>
+                        <span class="print">
+                           Back
+                        </span>
+                     </a>
+                     <a id="continue-buy-airtime" href="#" class="cmn__btn">
+                        <span class="print">
+                           Continue
+                        </span>
+                        <span>
+                           <i class="material-symbols-outlined">
+                              arrow_forward
+                           </i>
+                        </span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+            
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
                <div class="pay__sponsor__thumbtwo">
                   <img src="assets/img/banner/landline2.jpg" alt="img">
@@ -591,48 +695,6 @@
 </section>
 <!--home two refer end-->
 
-<!--home two sponsor start-->
-<!-- <section class="sponsor__section pt__60 pb__60 bgsection">
-   <div class="container">
-      <div class="logo__sponsor owl-theme owl-carousel">
-         <div class="item">
-            <img src="assets/img/sponsor/s1.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s2.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s3.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s4.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s5.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s6.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s7.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s2.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s3.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s4.png" alt="img">
-         </div>
-         <div class="item">
-            <img src="assets/img/sponsor/s5.png" alt="img">
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two sponsor end-->
-
 <!--home two working start-->
 <section class="working__section__two pt-120 pb-120">
    <div class="container">
@@ -707,319 +769,6 @@
    </div>
 </section>
 <!--home two working end-->
-
-<!--home two app end-->
-<!-- <section class="app__section bgsection pt-120 pb-120">
-   <div class="container">
-      <div class="row justify-content-between align-items-center">
-         <div class="col-xl-7 col-lg-7 wow fadeInDown" data-wow-duration="1.5s">
-            <div class="app__content">
-               <div class="section__header">
-                  <h2>
-                     The Fastest Way to Pay In-store & Online.
-                  </h2>
-                  <p class="apptext"> 
-                     Download our app for the fastest, most convenient way to send Recharge.
-                  </p>
-                  <p class="pb__40">
-                     There are many variations of passages of Lorem Ipsum available, but the         have suffered alteration in some form, by injected humour, or randomised      words which don't look even slightly believable. If you are going to use...
-                  </p>
-                  <div class="d-flex gap-3 align-items-center">
-                     <a href="javascript:void(0)" class="storyitem">
-                        <img src="assets/img/app/appplay.png" alt="img">
-                     </a>
-                     <a href="javascript:void(0)" class="storyitem">
-                        <img src="assets/img/app/appstore.png" alt="img">
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-xl-5 col-lg-5 wow fadeInUp" data-wow-duration="2.5s">
-            <div class="app__thumb app__thumb__two">
-               <img src="assets/img/app/apptwo.png" alt="img">
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="app__woman">
-      <img src="assets/img/app/appwoman.png" alt="img">
-   </div>
-</section> -->
-<!--home two app end-->
-
-<!--home two testimonial start-->
-<!-- <section class="testimonial__section__two pt-120 pb-120">
-   <div class="container">
-      <div class="row justify-content-center wow fadeInDown">
-         <div class="col-lg-7">
-            <div class="section__header text-center pb__40">
-               <h2>
-                  Our Customers says
-               </h2>
-               <p class="max600">
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form
-               </p>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="testimoial__wrap__two owl-theme owl-carousel">
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/jenlia.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Jenelia d'suza
-               </h6>
-               <span class="desination">
-                  Student
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/alena.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Alena Hecals
-               </h6>
-               <span class="desination">
-                  Doctor
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/brad.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Brad Hogds
-               </h6>
-               <span class="desination">
-                  Enginner
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/jenlia.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Jenelia d'suza
-               </h6>
-               <span class="desination">
-                  Student
-               </span>
-            </div>
-         </div>
-      </div>
-      <div class="testimonial__item">
-         <div class="star__wrap pb__20 d-flex align-items-center gap-2 justify-content-center">
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-            <span>
-               <img src="assets/img/testimonial/star.png" alt="icon">
-            </span>
-         </div>
-         <p class="fz-18 fw-600">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...
-         </p>
-         <div class="client">
-            <div class="thumb">
-               <img src="assets/img/testimonial/alena.png" alt="img">
-            </div>
-            <div class="content">
-               <h6 class="name">
-                  Alena Hecals
-               </h6>
-               <span class="desination">
-                  Doctor
-               </span>
-            </div>
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two testimonial end-->
-
-<!--home two support end-->
-<!-- <section class="speacial__support bgsection pt-120 pb-120">
-   <div class="container">
-      <div class="row gx-5 justify-content-between align-items-center">
-         <div class="col-xl-6 col-lg-6">
-            <div class="refer__content">
-               <div class="section__header wow fadeInDown">
-                  <h2>
-                     Enjoy our Speacial supports
-                  </h2>
-                  <p>
-                     There are many variations of passages of Lorem Ipsum available, but the  have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use...
-                  </p>
-               </div>
-               <div class="refer__wrap pt__20">
-                  <div class="refer__item wow fadeInUp" data-wow-duration="0.9s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxspeaker.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Secure Payment
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxregister.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Refer & Earn
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1.4s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxamount.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           Trust pay
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-                  <div class="refer__item wow fadeInUp" data-wow-duration="1.6s">
-                     <div class="icon">
-                        <img src="assets/img/refer/boxamount.png" alt="img">
-                     </div>
-                     <div class="content">
-                        <h5>
-                           24X7 Support
-                        </h5>
-                        <p>There are many variations of passages of Lorem Ipsum available...</p>
-                     </div>
-                  </div>
-               </div>
-               <a href="contact.html" class="cmn__btn wow fadeInUp" data-wow-duration="1.9s">
-                  <span>
-                     Contact us
-                  </span>
-               </a>
-            </div>
-         </div>
-         <div class="col-xl-5 col-lg-5 wow fadeInUp">
-            <div class="speacial__refer__thumb">
-               <img src="assets/img/refer/spealsupport.png" alt="thumb">
-            </div>
-         </div>
-      </div>
-   </div>
-</section> -->
-<!--home two support start-->
 
 <!--home two qustions start-->
 <section class="question__section pt-120 pb-120">

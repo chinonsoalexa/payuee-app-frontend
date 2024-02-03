@@ -4,6 +4,12 @@ document.getElementById('education-button-id').addEventListener('click', functio
     buy_education_pin()
 })
 
+document.getElementById('back-to-data').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    enableEducationDiv()
+})
+
 function buy_education_pin(){
 var validated = true
 // let's take all fields and validate
@@ -23,7 +29,7 @@ console.log('Checked radio button:', checkedButton);
 // let's send a post request to make an education pin purchase
 
 if (validated) {
-
+    disableEducationDiv()
 }
 }
 
@@ -54,4 +60,22 @@ function radioButtonCheck(idName) {
         }
     });
     return radioButtonCheck
+}
+
+// Function to disable the div and its content
+function disableEducationDiv() {
+    document.getElementById('education-section').classList.add('disabled');
+    document.getElementById('education-section').disabled = true;
+
+    document.getElementById('invoice-section').classList.remove('disabled');
+    document.getElementById('invoice-section').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableEducationDiv() {
+    document.getElementById('education-section').classList.remove('disabled');
+    document.getElementById('education-section').disabled = false;
+
+    document.getElementById('invoice-section').classList.add('disabled');
+    document.getElementById('invoice-section').disabled = true;
 }
