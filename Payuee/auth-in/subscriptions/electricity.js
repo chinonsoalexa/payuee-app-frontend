@@ -4,6 +4,12 @@ document.getElementById('electricity-button').addEventListener('click', function
     pay_electricity_bill()
 })
 
+document.getElementById('back-to-tv').addEventListener('click', function(event) {
+    // Prevent the default behavior (in this case, the redirect)
+    event.preventDefault();
+    enableElectricityDiv()
+})
+
 function pay_electricity_bill(){
 var validated = true
 // let's take all fields and validate
@@ -19,7 +25,6 @@ if (phone.length > 12 || phone.length < 11) {
     validated = false
     showError('phone-error', 'Phone number should be at least 11 digits.');
 }
-console.log(phone)
 
 if (isNaN(amount) || amount > 10000 || amount < 1000) {
     validated = false
@@ -41,6 +46,7 @@ console.log('Checked radio button:', checkedButton);
 // let's send a post request to make an airtime purchase
 
 if (validated) {
+    disableElectricityDiv()
 
 }
 }
@@ -83,4 +89,22 @@ function radioButtonCheck(idName) {
             }
         });
         return radioButtonCheck
+}
+
+// Function to disable the div and its content
+function disableElectricityDiv() {
+    document.getElementById('electricity-section').classList.add('disabled');
+    document.getElementById('electricity-section').disabled = true;
+
+    document.getElementById('invoice-section').classList.remove('disabled');
+    document.getElementById('invoice-section').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableElectricityDiv() {
+    document.getElementById('electricity-section').classList.remove('disabled');
+    document.getElementById('electricity-section').disabled = false;
+
+    document.getElementById('invoice-section').classList.add('disabled');
+    document.getElementById('invoice-section').disabled = true;
 }
