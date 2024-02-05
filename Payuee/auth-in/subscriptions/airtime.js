@@ -76,11 +76,12 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             }
 
             const responseData = await response.json();
-            if (responseData.success.data.authorization_url != "") {
-                window.location.href = responseData.success.data.authorization_url;
-                return
-            }
-            if (responseData.success == "transaction successful using wallet"){
+
+            if (responseData.hasOwnProperty('success')){
+                if (responseData.success.hasOwnProperty('data')) {
+                    window.location.href = responseData.success.data.authorization_url;
+                    return
+                }
                 window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                 return
             }
