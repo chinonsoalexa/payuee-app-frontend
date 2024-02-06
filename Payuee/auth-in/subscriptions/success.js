@@ -98,9 +98,9 @@ function displayErrorMessage() {
     payment_icon_color.classList.add("icon_color");
 
     // let's change to payment unsuccessful
-    payment_condition.textContent = 'Payment Unsuccessful'
+    payment_condition.textContent = 'Transaction Unsuccessful'
 
-    payment_display_message.textContent = 'Your Payment Failed, Please Try Again!'
+    payment_display_message.textContent = 'Your Transaction Failed, Please Try Again!'
     // Access balance directly
     available_balance.textContent = '₦ NA';
 
