@@ -36,6 +36,8 @@ window.onload = async function () {
 
 function getSuccessMessage(transactionDetails) {
 
+    var payment_condition = document.getElementById('payment_condition');
+    var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
@@ -45,6 +47,11 @@ function getSuccessMessage(transactionDetails) {
     var recharged_number = document.getElementById('recharged_number');
     var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
+
+    // let's change to payment unsuccessful
+    payment_condition.textContent = 'Transaction Successful'
+
+    payment_display_message.textContent = 'Congratulations! Your Transaction is Successfully Processed!'
 
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
