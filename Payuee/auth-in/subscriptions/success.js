@@ -63,6 +63,7 @@ function getSuccessMessage(transactionDetails) {
     service_name.textContent = transactionDetails.success.service_type;
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
+    console.log("amount spent", transactionAmountString);
 
     // let's get the phone number and the transaction amount
 
