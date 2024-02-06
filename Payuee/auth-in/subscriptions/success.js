@@ -42,6 +42,7 @@ function getSuccessMessage(transactionDetails) {
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
+    var service_name = document.getElementById('service_name');
     // var recharged_number = document.getElementById('recharged_number');
     // var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
@@ -62,12 +63,16 @@ function getSuccessMessage(transactionDetails) {
     users_name.textContent = transactionDetails.success.user_name;
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString / 100).toFixed(2);
+
+    // let's get the phone number and the transaction amount
+
 }
 
 function displayErrorMessage() {
 
     var payment_icon_color = document.getElementById('payment_icon_color');
     var payment_condition = document.getElementById('payment_condition');
+    var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
@@ -94,6 +99,8 @@ function displayErrorMessage() {
 
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Payment Unsuccessful'
+
+    payment_display_message.textContent = 'Your Payment Failed, Please Try Again!'
     // Access balance directly
     available_balance.textContent = '₦ NA';
 
