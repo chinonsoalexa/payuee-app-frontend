@@ -83,7 +83,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                     return
                 }
             } else {
-                // window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+                window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                 return
             }
         } finally {
