@@ -42,9 +42,8 @@ function getSuccessMessage(transactionDetails) {
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
-    var service_name = document.getElementById('service_name');
     // var recharged_number = document.getElementById('recharged_number');
-    // var service_name = document.getElementById('service_name');
+    var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
 
     // Access balance directly
@@ -61,8 +60,9 @@ function getSuccessMessage(transactionDetails) {
     transaction_method.textContent = transactionDetails.success.transaction_type;
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
+    service_name.textContent = transactionDetails.success.service_type;
     let transactionAmountString = transactionDetails.success.amount;
-    transaction_amount.textContent = '₦' + (transactionAmountString / 100).toFixed(2);
+    transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
 
     // let's get the phone number and the transaction amount
 
