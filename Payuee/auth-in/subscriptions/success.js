@@ -42,7 +42,7 @@ function getSuccessMessage(transactionDetails) {
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
-    // var recharged_number = document.getElementById('recharged_number');
+    var recharged_number = document.getElementById('recharged_number');
     var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
 
@@ -61,6 +61,7 @@ function getSuccessMessage(transactionDetails) {
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
     service_name.textContent = transactionDetails.success.service_type;
+    recharged_number.textContent = transactionDetails.service.mobile_number;
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
     console.log("amount spent", transactionAmountString);
