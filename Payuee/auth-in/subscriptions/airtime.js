@@ -140,10 +140,11 @@ async function buy_airtime(){
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            totalCharge = updatedTotalCharge;
+            totalCharge = amountInputNumber;
             let updatedTotalCharge = amountInputNumber.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             invoice_service_charge.textContent = '₦' + amountInput.value;
+            console.log('updated total charge is for wallet: ' + totalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
@@ -157,7 +158,7 @@ async function buy_airtime(){
             let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
             let updatedTotalCharge = totalChargeForPaystack.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-            console.log('updated total charge is: ' + updatedTotalCharge)
+            console.log('updated total charge is for paystack: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;
