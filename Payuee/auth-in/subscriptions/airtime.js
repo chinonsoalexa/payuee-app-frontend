@@ -66,7 +66,10 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                     showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
                 } else if  (errorData.error === 'User already exist, please signin') {
                     showError('passwordError', 'Please login, you already have an existing account with us.');
-                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                } else if  (errorData.error === 'No Authentication cookie found') {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
@@ -140,11 +143,11 @@ async function buy_airtime(){
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            totalCharge = amountInputNumber;
+            totalCharge = updatedTotalCharge;
             let updatedTotalCharge = amountInputNumber.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             invoice_service_charge.textContent = '₦' + amountInput.value;
-            console.log('updated total charge is for wallet: ' + totalCharge)
+            console.log('updated total charge is: ' + totalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
@@ -158,7 +161,7 @@ async function buy_airtime(){
             let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
             let updatedTotalCharge = totalChargeForPaystack.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-            console.log('updated total charge is for paystack: ' + updatedTotalCharge)
+            console.log('updated total charge is: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;
@@ -251,4 +254,31 @@ function getCurrentDate() {
     // Format the date as "DD/MM/YYYY"
     var formattedDate = day + '/' + month + '/' + year;
     return formattedDate;
+}
+
+function logUserOutIfTokenIsExpired() {
+        // also send a request to the logout api endpoint
+        const apiUrl = "https://payuee.onrender.com/log-out";
+    
+        const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        };
+        
+    try {
+        const response = fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+                alert('an error occurred. Please try again');
+            return;
+          }
+            const data = response.json();
+            localStorage.removeItem('auth')
+            window.location.href = '../index.html'
+        } finally{
+            // do nothing
+        }
 }
