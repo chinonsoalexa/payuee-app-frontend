@@ -54,7 +54,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
@@ -140,6 +140,7 @@ async function buy_airtime(){
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
+            totalCharge = updatedTotalCharge;
             let updatedTotalCharge = amountInputNumber.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             invoice_service_charge.textContent = '₦' + amountInput.value;
