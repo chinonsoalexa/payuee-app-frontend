@@ -86,12 +86,12 @@ function getSuccessMessage(transactionDetails) {
     recharged_number.textContent = transactionDetails.service.mobile_number;
 
     default:
-        displayErrorMessage();
+        displayErrorMessage('₦' + availableBalanceString.toFixed(2));
         break;
     }
 }
 
-function displayErrorMessage() {
+function displayErrorMessage(balance) {
 
     var payment_icon_color = document.getElementById('payment_icon_color');
     var payment_condition = document.getElementById('payment_condition');
@@ -125,7 +125,7 @@ function displayErrorMessage() {
 
     payment_display_message.textContent = 'Your Transaction Failed, Please Try Again!'
     // Access balance directly
-    available_balance.textContent = '₦ NA';
+    available_balance.textContent = balance;
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = 'NA';
