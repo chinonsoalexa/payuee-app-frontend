@@ -68,6 +68,8 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                     showError('passwordError', 'Please login, you already have an existing account with us.');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                }else if  (errorData.error === 'insufficient funds') {
+                    insufficientFunds();
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
@@ -252,4 +254,19 @@ function getCurrentDate() {
     // Format the date as "DD/MM/YYYY"
     var formattedDate = day + '/' + month + '/' + year;
     return formattedDate;
+}
+
+function insufficientFunds() {
+    const installPopup = document.getElementById('balance-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+
+  // Show the popup only if the PWA is not installed
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      // Hide the popup without triggering the PWA installation
+      installPopup.style.display = 'none';
+    });
 }
