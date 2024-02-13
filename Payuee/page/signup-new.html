@@ -235,7 +235,9 @@
 
 <!-- signUp here -->
 <section class="signup__section bluar__shape">
-   <div class="container">
+
+   <!-- collecting users data -->
+   <div id="sign-up-form" class="container">
       <div class="row align-items-center justify-content-between">
          <div class="col-xl-6 col-lg-6">
             <div class="signup__boxes">
@@ -312,6 +314,83 @@
          </div>
       </div>
    </div>
+
+   <!-- taking users password -->
+   <div id="sign-up-password" class="container disabled">
+      <div class="row align-items-center justify-content-between">
+         <div class="col-xl-6 col-lg-6">
+            <div class="signup__boxes">
+               <h4>
+                  Set Up Your Password
+               </h4>
+               <p class="head__pra">
+                  Your security is our top priority. You'll need this to log into your account
+               </p>
+               <form  class="signup__form password__box pt__40">
+                  <div class="row g-4">
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="password-field" class="form-label">Choose Password</label>
+                           <div class="form-group">
+                              <input id="password-field" type="password" class="form-control" placeholder="Enter Your Password" name="password" value="">
+                              <span id="#password-field" class="fa fa-fw field-icon toggle-password">
+                                 <i class="material-symbols-outlined">
+                                    visibility
+                                 </i>
+                              </span>
+                           <p id="passwordError" class="error-message"></p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="password-field" class="form-label">Confirm Password</label>
+                           <div class="form-group">
+                              <input id="toggle-password2" type="password" class="form-control" placeholder="Password" name="password" value="">
+                              <span id="#toggle-password2" class="fa fa-fw field-icon toggle-password2">
+                                 <i class="material-symbols-outlined">
+                                    visibility
+                                 </i>
+                              </span>
+                              <p id="confirmPasswordError" class="error-message"></p>
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-3">
+                        <button type="button" id="submitPassword" class="cmn__btn">
+                              <span>
+                                 Submit Now
+                              </span>
+                        </button>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-2">
+                        <a onclick="enableSignUpPasswordDiv()" style="cursor: pointer;" class="back__btn">
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    keyboard_backspace
+                                 </i>
+                              </span>
+                              <span>
+                                 Back
+                              </span>
+                        </a>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div class="col-xl-5 col-lg-6">
+            <div class="signup__thumb">
+               <img src="../assets/img/signup/signup.png" alt="img">
+            </div>
+         </div>
+      </div>
+   </div>
+
 </section>
 <!-- signUp End -->
 
