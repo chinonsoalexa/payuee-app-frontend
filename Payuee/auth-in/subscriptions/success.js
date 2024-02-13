@@ -71,7 +71,7 @@ function getSuccessMessage(transactionDetails) {
 
     service_name.textContent = transactionDetails.success.service_type;
 
-    switch (transactionDetails.success.service_type) {
+    switch (transactionDetails.service.unique_id) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
