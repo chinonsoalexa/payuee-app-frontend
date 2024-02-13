@@ -100,7 +100,7 @@ function displayErrorMessage(balance) {
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
     // var transaction_method = document.getElementById('transaction_method');
-    // var transaction_status = document.getElementById('transaction_status');
+    var transaction_status = document.getElementById('transaction_status');
     // var users_name = document.getElementById('users_name');
     // var recharged_number = document.getElementById('recharged_number');
     // var service_name = document.getElementById('service_name');
@@ -133,7 +133,7 @@ function displayErrorMessage(balance) {
     transaction_date.textContent = 'NA'; // Adjust the format as needed
 
     // transaction_method.textContent = 'NA';
-    // transaction_status.textContent = 'NA';
+    transaction_status.textContent = 'Failed';
     // users_name.textContent = 'NA';
     // recharged_number.textContent = 'NA';
     // service_name.textContent = 'NA';
