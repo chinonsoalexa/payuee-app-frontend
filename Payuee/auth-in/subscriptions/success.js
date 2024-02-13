@@ -71,6 +71,7 @@ function getSuccessMessage(transactionDetails) {
 
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
+    console.log("transaction type: " + serviceType);
 
     switch (serviceType) {
     // airtime field from response
