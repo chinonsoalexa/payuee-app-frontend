@@ -68,7 +68,10 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                     showError('passwordError', 'Please login, you already have an existing account with us.');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
-                }else if  (errorData.error === 'insufficient funds') {
+                }else if  (errorData.error === 'No Authentication cookie found') {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                } else if  (errorData.error === 'insufficient funds') {
                     insufficientFunds();
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
@@ -269,4 +272,31 @@ function insufficientFunds() {
       // Hide the popup without triggering the PWA installation
       installPopup.style.display = 'none';
     });
+}
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+            alert('an error occurred. Please try again');
+        return;
+      }
+        const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
