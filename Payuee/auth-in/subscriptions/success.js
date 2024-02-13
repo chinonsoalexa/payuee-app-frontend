@@ -69,7 +69,7 @@ function getSuccessMessage(transactionDetails) {
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
     service_name.textContent = transactionDetails.success.service_type;
-    airtime_type.textContent = transactionDetails.success.airtime_type;
+    airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
