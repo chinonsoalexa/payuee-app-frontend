@@ -135,6 +135,7 @@ async function buy_airtime(){
         // let's update all fields to user entered fields
         // let's update the date field
         invoice_date.textContent = getCurrentDate();
+        invoice_service_charge
         // let's update the payment method field
         console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
@@ -155,6 +156,8 @@ async function buy_airtime(){
             totalCharge = amountInputNumber + updatedTransactionCharge;
             let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
             let updatedTotalCharge = totalChargeForPaystack.toFixed(2);
+            let TotalChargePaystack = amountInputNumber.toFixed(2);
+            invoice_service_charge.textContent = '₦' + TotalChargePaystack;
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             console.log('updated total charge is: ' + updatedTotalCharge)
         }
