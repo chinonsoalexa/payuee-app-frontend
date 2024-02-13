@@ -35,18 +35,19 @@ window.onload = async function () {
 }
 
 function getSuccessMessage(transactionDetails) {
-
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
+    var transaction_amount = document.getElementById('transaction_amount');
+    var service_name = document.getElementById('service_name');
+
+// airtime fields
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
     var recharged_number = document.getElementById('recharged_number');
-    var service_name = document.getElementById('service_name');
-    var transaction_amount = document.getElementById('transaction_amount');
     var airtime_type = document.getElementById('airtime_type');
 
     // let's change to payment unsuccessful
@@ -65,18 +66,27 @@ function getSuccessMessage(transactionDetails) {
     var parsedTimestamp = new Date(transactionDetails.success.paid_at);
     transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
 
+    let transactionAmountString = transactionDetails.success.amount;
+    transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
+
+    service_name.textContent = transactionDetails.success.service_type;
+
+    switch (transactionDetails.success.service_type) {
+    // airtime field from response
+    // let's enable the airtime field
+    case "airtime":
+    // document.getElementById('airtime-section').classList.remove('disabled');
+    // document.getElementById('airtime-section').disabled = false;
     transaction_method.textContent = transactionDetails.success.transaction_type;
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
-    service_name.textContent = transactionDetails.success.service_type;
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
-    let transactionAmountString = transactionDetails.success.amount;
-    transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
-    console.log("amount spent", transactionAmountString);
 
-    // let's get the phone number and the transaction amount
-
+    default:
+        displayErrorMessage();
+        break;
+    }
 }
 
 function displayErrorMessage() {
