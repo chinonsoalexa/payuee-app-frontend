@@ -266,7 +266,7 @@ function insufficientFunds() {
     const cancelButton = document.getElementById('cancel-btn');
     const balance = document.getElementById('insuficientFunds');
 
-    balance.textContent = totalCharge;
+    balance.textContent = totalCharge.toFixed(2);
 
       installPopup.style.display = 'block';
 
