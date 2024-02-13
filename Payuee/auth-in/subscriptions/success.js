@@ -77,8 +77,8 @@ function getSuccessMessage(transactionDetails) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
-    // document.getElementById('airtime-section').classList.remove('disabled');
-    // document.getElementById('airtime-section').disabled = false;
+    document.getElementById('airtime-section').classList.remove('disabled');
+    document.getElementById('airtime-section').disabled = false;
     transaction_method.textContent = transactionDetails.success.transaction_type;
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
