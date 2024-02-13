@@ -264,14 +264,14 @@ function getCurrentDate() {
 function insufficientFunds() {
     const installPopup = document.getElementById('balance-popup');
     const cancelButton = document.getElementById('cancel-btn');
+    const balance = document.getElementById('insuficientFunds');
 
-  // Show the popup only if the PWA is not installed
+    balance.textContent = totalCharge;
 
       installPopup.style.display = 'block';
 
     // Cancel button click event
     cancelButton.addEventListener('click', () => {
-      // Hide the popup without triggering the PWA installation
       installPopup.style.display = 'none';
     });
 }
