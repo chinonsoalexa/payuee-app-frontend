@@ -70,8 +70,9 @@ function getSuccessMessage(transactionDetails) {
     transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
 
     service_name.textContent = transactionDetails.success.service_type;
+    var serviceType = transactionDetails.success.service_type;
 
-    switch (transactionDetails.service.unique_id) {
+    switch (serviceType) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
