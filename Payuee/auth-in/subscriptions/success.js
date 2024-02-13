@@ -92,6 +92,8 @@ function getSuccessMessage(transactionDetails) {
 }
 
 function displayErrorMessage(balance) {
+    document.getElementById('general-section').classList.remove('disabled');
+    document.getElementById('general-section').disabled = false;
 
     var payment_icon_color = document.getElementById('payment_icon_color');
     var payment_condition = document.getElementById('payment_condition');
