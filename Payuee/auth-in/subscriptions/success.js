@@ -47,6 +47,7 @@ function getSuccessMessage(transactionDetails) {
     var recharged_number = document.getElementById('recharged_number');
     var service_name = document.getElementById('service_name');
     var transaction_amount = document.getElementById('transaction_amount');
+    var airtime_type = document.getElementById('airtime_type');
 
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Transaction Successful'
@@ -68,6 +69,7 @@ function getSuccessMessage(transactionDetails) {
     transaction_status.textContent = transactionDetails.success.transaction_status;
     users_name.textContent = transactionDetails.success.user_name;
     service_name.textContent = transactionDetails.success.service_type;
+    airtime_type.textContent = transactionDetails.success.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
