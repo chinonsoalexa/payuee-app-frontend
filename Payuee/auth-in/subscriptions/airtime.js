@@ -146,9 +146,11 @@ async function buy_airtime(){
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
+            totalCharge = amountInputNumber;
             let updatedTotalCharge = amountInputNumber.toFixed(2);
             invoice_total_charge.textContent = '₦' + updatedTotalCharge;
             invoice_service_charge.textContent = '₦' + amountInput.value;
+            console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
