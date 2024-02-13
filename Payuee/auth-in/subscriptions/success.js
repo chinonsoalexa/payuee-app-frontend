@@ -84,7 +84,7 @@ function getSuccessMessage(transactionDetails) {
     users_name.textContent = transactionDetails.success.user_name;
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
-
+    break;
     default:
         displayErrorMessage('₦' + availableBalanceString.toFixed(2));
         break;
