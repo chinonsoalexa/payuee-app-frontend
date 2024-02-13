@@ -133,7 +133,7 @@ function displayErrorMessage(balance) {
     transaction_date.textContent = 'NA'; // Adjust the format as needed
 
     // transaction_method.textContent = 'NA';
-    transaction_status.textContent = 'Failed';
+    transaction_status.textContent = 'failed';
     // users_name.textContent = 'NA';
     // recharged_number.textContent = 'NA';
     // service_name.textContent = 'NA';
