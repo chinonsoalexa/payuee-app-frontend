@@ -98,13 +98,8 @@ function displayErrorMessage(balance) {
     var available_balance = document.getElementById('available_balance');
     var transaction_id = document.getElementById('transaction_id');
     var transaction_date = document.getElementById('transaction_date');
-    // var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
-    // var users_name = document.getElementById('users_name');
-    // var recharged_number = document.getElementById('recharged_number');
-    // var service_name = document.getElementById('service_name');
-    // var transaction_amount = document.getElementById('transaction_amount');
-
+    var transaction_small_status = document.getElementById('transaction_small_status');
     // let's change the error icon color to red
     // Remove the existing class
     payment_icon_color.classList.remove("icon");
@@ -130,11 +125,7 @@ function displayErrorMessage(balance) {
     transaction_id.textContent = 'NA';
 
     transaction_date.textContent = 'NA'; // Adjust the format as needed
-
-    // transaction_method.textContent = 'NA';
+    
     transaction_status.textContent = 'failed';
-    // users_name.textContent = 'NA';
-    // recharged_number.textContent = 'NA';
-    // service_name.textContent = 'NA';
-    // transaction_amount.textContent = '₦ NA';
+    transaction_small_status.textContent = 'Failed';
 }
