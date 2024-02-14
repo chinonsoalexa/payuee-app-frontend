@@ -22,5 +22,5 @@ window.onload = async function () {
 function displayErrorMessage(balance) {
     var available_balance = document.getElementById('available_balance');
 
-    available_balance.textContent = balance;
+    available_balance.textContent = '₦' + balance.toFixed(2);
 }
