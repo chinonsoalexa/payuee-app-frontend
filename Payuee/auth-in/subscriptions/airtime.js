@@ -147,26 +147,22 @@ async function buy_airtime(){
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
             totalCharge = amountInputNumber;
-            let updatedTotalCharge = amountInputNumber.toFixed(2);
-            invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-            invoice_service_charge.textContent = '₦' + amountInput.value;
-            console.log('updated total charge for wallet is: ' + updatedTotalCharge)
+            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber);
+            invoice_service_charge.textContent = formatNumberToNaira(amountInput.value);
+            // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
             let TransactionCharge = (percentage / 100) * amountInputNumber;
-            let updatedTransactionCharge = TransactionCharge + 20;
-            let stringTransactionCharge = updatedTransactionCharge.toFixed(2);
-            invoice_charge.textContent = '₦' + stringTransactionCharge;
+            let updatedTransactionCharge = TransactionCharge + 20;      
+            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = amountInputNumber + updatedTransactionCharge;
             let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
-            let updatedTotalCharge = totalChargeForPaystack.toFixed(2);
-            let TotalChargePaystack = amountInputNumber.toFixed(2);
-            invoice_service_charge.textContent = '₦' + TotalChargePaystack;
-            invoice_total_charge.textContent = '₦' + updatedTotalCharge;
-            console.log('updated total charge is: ' + updatedTotalCharge)
+            invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
+            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
+            // console.log('updated total charge is: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;
@@ -261,12 +257,26 @@ function getCurrentDate() {
     return formattedDate;
 }
 
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
+}
+
 function insufficientFunds() {
     const installPopup = document.getElementById('balance-popup');
     const cancelButton = document.getElementById('cancel-btn');
-    const balance = document.getElementById('insuficientFunds');
+    const balance = document.getElementById('insufficientFunds');
 
-    balance.textContent = totalCharge.toFixed(2);
+    let formattedFunds = new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(totalCharge);
+
+    balance.textContent = formattedFunds;
 
       installPopup.style.display = 'block';
 

@@ -22,11 +22,13 @@ window.onload = async function () {
 function displayErrorMessage(balance) {
     var available_balance = document.getElementById('available_balance');
 
-    let formattedBalance = new Intl.NumberFormat('en-NG', {
+    available_balance.textContent = formatNumberToNaira(balance);
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
         style: 'currency',
         currency: 'NGN',
         minimumFractionDigits: 2
-    }).format(balance);
-
-    available_balance.textContent = formattedBalance;
+    }).format(number);
 }

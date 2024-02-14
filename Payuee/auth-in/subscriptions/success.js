@@ -57,12 +57,7 @@ function getSuccessMessage(transactionDetails) {
 
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
-    let formattedBalance = new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 2
-    }).format(availableBalanceString);
-    available_balance.textContent = formattedBalance;
+    available_balance.textContent = formatNumberToNaira(availableBalanceString);
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
@@ -72,12 +67,7 @@ function getSuccessMessage(transactionDetails) {
     transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
 
     let transactionAmountString = transactionDetails.success.amount;
-    let formattedTranAmount = new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 2
-    }).format(transactionAmountString);
-    transaction_amount.textContent = formattedTranAmount;
+    transaction_amount.textContent = formatNumberToNaira(transactionAmountString);
 
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
@@ -97,12 +87,7 @@ function getSuccessMessage(transactionDetails) {
     break;
     default:
         let availableBalanceString = transactionDetails.balance;
-        let formattedBalance = new Intl.NumberFormat('en-NG', {
-            style: 'currency',
-            currency: 'NGN',
-            minimumFractionDigits: 2
-        }).format(availableBalanceString);
-        displayErrorMessage(formattedBalance);
+        displayErrorMessage(formatNumberToNaira(availableBalanceString));
         break;
     }
 }
@@ -144,4 +129,12 @@ function displayErrorMessage(balance) {
     
     transaction_status.textContent = 'failed';
     transaction_small_status.textContent = 'Failed';
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
 }
