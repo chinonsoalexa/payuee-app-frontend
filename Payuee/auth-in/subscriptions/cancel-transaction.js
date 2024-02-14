@@ -22,5 +22,11 @@ window.onload = async function () {
 function displayErrorMessage(balance) {
     var available_balance = document.getElementById('available_balance');
 
-    available_balance.textContent = '₦' + balance.toFixed(2);
+    let formattedBalance = new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(available_balance);
+
+    available_balance.textContent = formattedBalance;
 }
