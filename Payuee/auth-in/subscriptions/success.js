@@ -57,7 +57,12 @@ function getSuccessMessage(transactionDetails) {
 
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
-    available_balance.textContent = '₦' + availableBalanceString.toFixed(2);
+    let formattedBalance = new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(availableBalanceString);
+    available_balance.textContent = formattedBalance;
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
@@ -67,7 +72,12 @@ function getSuccessMessage(transactionDetails) {
     transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
 
     let transactionAmountString = transactionDetails.success.amount;
-    transaction_amount.textContent = '₦' + (transactionAmountString).toFixed(2);
+    let formattedTranAmount = new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(transactionAmountString);
+    transaction_amount.textContent = formattedTranAmount;
 
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
@@ -86,7 +96,13 @@ function getSuccessMessage(transactionDetails) {
     recharged_number.textContent = transactionDetails.service.mobile_number;
     break;
     default:
-        displayErrorMessage('₦' + availableBalanceString.toFixed(2));
+        let availableBalanceString = transactionDetails.balance;
+        let formattedBalance = new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+            minimumFractionDigits: 2
+        }).format(availableBalanceString);
+        displayErrorMessage(formattedBalance);
         break;
     }
 }

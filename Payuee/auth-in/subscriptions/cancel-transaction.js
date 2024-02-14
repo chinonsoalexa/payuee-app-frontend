@@ -26,7 +26,7 @@ function displayErrorMessage(balance) {
         style: 'currency',
         currency: 'NGN',
         minimumFractionDigits: 2
-    }).format(available_balance);
+    }).format(balance);
 
     available_balance.textContent = formattedBalance;
 }
