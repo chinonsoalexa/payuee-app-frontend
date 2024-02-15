@@ -512,3 +512,22 @@ niceSelectDiv.appendChild(listUl);
 
 // Append the nice-select div to planSelectDiv
 planSelectDiv.appendChild(niceSelectDiv);
+
+
+function getCurrentDate() {
+    // Get the current date
+    var currentDate = new Date();
+
+    // Extract day, month, and year components
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
+    var year = currentDate.getFullYear();
+
+    // Ensure two-digit format for day and month
+    day = (day < 10) ? '0' + day : day;
+    month = (month < 10) ? '0' + month : month;
+
+    // Format the date as "DD/MM/YYYY"
+    var formattedDate = day + '/' + month + '/' + year;
+    return formattedDate;
+}
