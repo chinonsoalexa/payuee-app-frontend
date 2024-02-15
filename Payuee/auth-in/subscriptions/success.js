@@ -42,14 +42,13 @@ function getSuccessMessage(transactionDetails) {
     var transaction_date = document.getElementById('transaction_date');
     var transaction_amount = document.getElementById('transaction_amount');
     var service_name = document.getElementById('service_name');
-
-// airtime fields
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
-    var recharged_number = document.getElementById('recharged_number');
-    var airtime_type = document.getElementById('airtime_type');
-
+    var recharged_number;
+    var airtime_type;
+    var data_recharged_number;
+    
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Transaction Successful'
 
@@ -73,18 +72,35 @@ function getSuccessMessage(transactionDetails) {
     var serviceType = transactionDetails.success.service_type;
     console.log("transaction type: " + serviceType);
 
+    transaction_method.textContent = transactionDetails.success.transaction_type;
+    users_name.textContent = transactionDetails.success.user_name;
+    transaction_status.textContent = transactionDetails.success.transaction_status;
+
     switch (serviceType) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
     document.getElementById('airtime-section').classList.remove('disabled');
     document.getElementById('airtime-section').disabled = false;
-    transaction_method.textContent = transactionDetails.success.transaction_type;
-    transaction_status.textContent = transactionDetails.success.transaction_status;
-    users_name.textContent = transactionDetails.success.user_name;
+    // airtime fields
+    recharged_number = document.getElementById('recharged_number');
+    airtime_type = document.getElementById('airtime_type');    
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     break;
+    case "data":
+        document.getElementById('data-section').classList.remove('disabled');
+        document.getElementById('data-section').disabled = false;
+         // data fields
+        data_recharged_number = document.getElementById('data_recharged_number');
+        network_plan = document.getElementById('network_plan');
+        bundle = document.getElementById('bundle');
+        auto_renew = document.getElementById('auto_renew');
+        network_plan.textContent = transactionDetails.service.network_plan;
+        data_recharged_number.textContent = transactionDetails.service.mobile_number;
+        bundle.textContent = transactionDetails.service.bundle;
+        auto_renew.textContent = transactionDetails.service.auto_renew;
+        break;
     default:
         let availableBalanceString = transactionDetails.balance;
         displayErrorMessage(formatNumberToNaira(availableBalanceString));
