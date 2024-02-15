@@ -4,6 +4,7 @@ var bundle
 var autoRenew
 var paymentMethod
 var totalCharge
+var validated = true
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
@@ -97,7 +98,6 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 });
 
 function buy_data(){
-    var validated = true
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;
 
