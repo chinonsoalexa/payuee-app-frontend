@@ -527,3 +527,30 @@ function formatNumberToNaira(number) {
         minimumFractionDigits: 2
     }).format(number);
 }
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+            alert('an error occurred. Please try again');
+        return;
+      }
+        const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
+}
