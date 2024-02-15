@@ -21,22 +21,15 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
     event.preventDefault();
 
     if (validated) {
-        let intTotalCharge = parseInt(totalCharge, 10);
-        console.log('this is amount to be sent', intTotalCharge)
-        console.log('this is amount to be sent', totalCharge)
+        
         const user = {
             ServiceID: "data",
             PaymentType: paymentMethod,
-            Network:    selectedCarrierValue,
-            Price:  intTotalCharge,
+            Price:  totalCharge,
             PhoneNumber: phone,
-            // PaymentType string
-            // ServiceID   string
-            // NetworkPlan string
-            // Bundle      string
-            // PhoneNumber string
-            // Price       int
-            // AutoRenew   bool
+            NetworkPlan: plan,
+            Bundle:      bundle,
+            AutoRenew:   autoRenew,
         };
 
         // error message from paystack
@@ -174,7 +167,7 @@ function buy_data(){
         invoice_data_plan.textContent = plan;
         invoice_bundle.textContent = bundle;
         invoice_auto_renew.textContent = autoRenew;
-        
+
 
     }
 }
