@@ -150,25 +150,25 @@ function buy_data(){
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            totalCharge = amountInputNumber;
-            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber);
-            invoice_service_charge.textContent = formatNumberToNaira(amountInput.value);
+            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
+            invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
             // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
-            let TransactionCharge = (percentage / 100) * amountInputNumber;
+            let TransactionCharge = (percentage / 100) * totalCharge;
             let updatedTransactionCharge = TransactionCharge + 20;      
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            totalCharge = amountInputNumber + updatedTransactionCharge;
-            let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
-            invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
+            totalCharge = totalCharge + updatedTransactionCharge;
+            let totalChargeForPaystack = totalCharge + updatedTransactionCharge;
+            invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
             invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
             // console.log('updated total charge is: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
+        console.log(phone);
         phone_number.textContent = phone;
         // let's update the operator to be used for recharge
         if (selectedCarrierValue == "mtn") {
@@ -530,4 +530,12 @@ function getCurrentDate() {
     // Format the date as "DD/MM/YYYY"
     var formattedDate = day + '/' + month + '/' + year;
     return formattedDate;
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
 }
