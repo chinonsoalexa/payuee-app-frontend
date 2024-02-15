@@ -112,21 +112,21 @@ function buy_data(){
     var amount = parseInt(amountInput.value, 10);
     // var description = document.getElementById("description").value;
     // let's get the selected value
-    var selectedRechargeValue = getSelectedValue("planSelectId");
-    var rechargeValue = parseInt(selectedRechargeValue, 10);
+    // var selectedRechargeValue = getSelectedValue("planSelectId");
+    // var rechargeValue = parseInt(selectedRechargeValue, 10);
 
     if (phone.length > 12 || phone.length < 11) {
         validated = false
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
 
-    if (amount < 10 && rechargeValue < 500) {
-        validated = false;
-        showError('data-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
-    }else if (amountInput.value.trim() === '') {
-        validated = false;
-        showError('data-error', 'Please enter amount of pin to recharge.');
-    }
+    // if (amount < 10 && rechargeValue < 500) {
+    //     validated = false;
+    //     showError('data-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
+    // }else if (amountInput.value.trim() === '') {
+    //     validated = false;
+    //     showError('data-error', 'Please enter amount of pin to recharge.');
+    // }
 
     // let's check the radio button that was checked to determine the payment option
    let paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
@@ -501,7 +501,7 @@ options.forEach(option => {
         var displayInput = document.getElementById('displayInput');
         displayInput.value = option.text; // Set the value based on your requirement
         plan = option.text;
-        console.log('this is the display value of the option: ' + option.text);
+        // console.log('this is the display value of the option: ' + option.text);
 
         // Your code to handle the click event
         // You can call your function here or perform any other actions
