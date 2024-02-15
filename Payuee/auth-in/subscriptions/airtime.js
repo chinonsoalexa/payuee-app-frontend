@@ -36,7 +36,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         // error message from paystack
         // {"message":"Invalid Amount Sent","status":false}
 
-        const apiUrl = "https://payuee.onrender.com/paystack/init-transaction";
+        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -97,8 +97,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     }
 });
 
-
-async function buy_airtime(){
+function buy_airtime(){
     validated = true
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;

@@ -1,5 +1,10 @@
-// document.addEventListener('DOMContentLoaded', function() {
-// });
+var amountInput
+var amountInputNumber
+var plan
+var phone
+var selectedCarrierValue
+var paymentMethod
+var totalCharge
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault
@@ -13,15 +18,107 @@ document.getElementById('back-to-data').addEventListener('click', function(event
     enableDataDiv()
 })
 
+document.getElementById('continue-buy-data').addEventListener('click', async function(event) {
+    event.preventDefault();
+
+    if (validated) {
+        let intTotalCharge = parseInt(totalCharge, 10);
+        console.log('this is amount to be sent', intTotalCharge)
+        console.log('this is amount to be sent', totalCharge)
+        const user = {
+            ServiceID: "data",
+            PaymentType: paymentMethod,
+            Network:    selectedCarrierValue,
+            Price:  intTotalCharge,
+            PhoneNumber: phone,
+            // PaymentType string
+            // ServiceID   string
+            // NetworkPlan string
+            // Bundle      string
+            // PhoneNumber string
+            // Price       int
+            // AutoRenew   bool
+        };
+
+        // error message from paystack
+        // {"message":"Invalid Amount Sent","status":false}
+
+        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(user),
+        };
+
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+
+            console.log(response);
+            if (!response.ok) {
+                const errorData = await response.json();
+
+                console.log(errorData);
+
+                if (errorData.error === 'User already exist, please login') {
+                    showError('passwordError', 'User already exists. Please signin.');
+                } else if  (errorData.error === 'Please login using your google account') {
+                    showError('passwordError', 'Please login using your google account.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                } else if  (errorData.error === 'email verification failed') {
+                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+                } else if  (errorData.error === 'User already exist, please signin') {
+                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                }else if  (errorData.error === 'No Authentication cookie found') {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                } else if  (errorData.error === 'insufficient funds') {
+                    insufficientFunds();
+                } else {
+                    showError('passwordError', 'An error occurred. Please try again.');
+                }
+
+                return;
+            }
+
+            const responseData = await response.json();
+
+            if (responseData.hasOwnProperty('success')){
+                if (responseData.success.hasOwnProperty('data')) {
+                    window.location.href = responseData.success.data.authorization_url;
+                    return
+                }
+            } else {
+                window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+                return
+            }
+        } finally {
+            
+        }
+    }
+});
+
 function buy_data(){
     var validated = true
     // let's take all fields and validate
+    phone = document.getElementById("phone-number").value;
     var amountInput = document.getElementById("data-number");
     var amount = parseInt(amountInput.value, 10);
     // var description = document.getElementById("description").value;
     // let's get the selected value
     var selectedRechargeValue = getSelectedValue("planSelectId");
     var rechargeValue = parseInt(selectedRechargeValue, 10);
+
+    if (phone.length > 12 || phone.length < 11) {
+        validated = false
+        showError('phone-error', 'Phone number should be at least 11 digits.');
+    }
 
     if (amount < 10 && rechargeValue < 500) {
         validated = false;
@@ -31,15 +128,65 @@ function buy_data(){
         showError('data-error', 'Please enter amount of pin to recharge.');
     }
 
-    // let's check the radio button that was checked
-   let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
+    // let's check the radio button that was checked to determine the payment option
+   let paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    console.log('Checked radio button:', checkedButton);
+    console.log('Checked radio button:', paymentMethod);
 
     // let's send a post request to make an airtime purchase
 
     if (validated) {
         disableDataDiv()
+          // now our invoice div is enabled let's supply it data gotten from the airtime div
+        // Get the span element by its id
+        var invoice_date = document.getElementById('invoice_date');
+        var payment_method = document.getElementById('payment_method');
+        var phone_number = document.getElementById('phone_number');
+        var invoice_operator = document.getElementById('invoice_operator');
+        var invoice_charge = document.getElementById('invoice_charge');
+        var invoice_service_charge = document.getElementById('invoice_service_charge');
+        var invoice_total_charge = document.getElementById('invoice_total_charge');
+
+        // let's update all fields to user entered fields
+        // let's update the date field
+        invoice_date.textContent = getCurrentDate();
+        invoice_service_charge
+        // let's update the payment method field
+        console.log('payment method: ' + paymentMethod)
+        if (paymentMethod == "wallet") {
+            payment_method.textContent = "Wallet";
+            invoice_charge.textContent = '₦' + '0.00';
+            totalCharge = amountInputNumber;
+            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber);
+            invoice_service_charge.textContent = formatNumberToNaira(amountInput.value);
+            // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
+        }else if (paymentMethod == "paystack") {
+            payment_method.textContent = "Paystack";
+                // let's get the transaction charge of this transaction
+            let percentage = 1.5;
+            // Calculate 1.5% of the original number
+            let TransactionCharge = (percentage / 100) * amountInputNumber;
+            let updatedTransactionCharge = TransactionCharge + 20;      
+            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            totalCharge = amountInputNumber + updatedTransactionCharge;
+            let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
+            invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
+            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
+            // console.log('updated total charge is: ' + updatedTotalCharge)
+        }
+        // let's update the phone number to be recharged
+        phone_number.textContent = phone;
+        // let's update the operator to be used for recharge
+        if (selectedCarrierValue == "mtn") {
+            invoice_operator.textContent = "MTN";
+        }else if (selectedCarrierValue == "airtel") {
+            invoice_operator.textContent = "Airtel";
+        }else if (selectedCarrierValue == "etisalat") {
+            invoice_operator.textContent = "9mobile";
+        }else if (selectedCarrierValue == "glo") {
+            invoice_operator.textContent = "GLO";
+        }
+     
     }
 }
 
@@ -353,6 +500,8 @@ options.forEach(option => {
         // Set the value to be displayed
         var displayInput = document.getElementById('displayInput');
         displayInput.value = option.text; // Set the value based on your requirement
+        plan = option.text;
+        console.log('this is the display value of the option: ' + option.text);
 
         // Your code to handle the click event
         // You can call your function here or perform any other actions
