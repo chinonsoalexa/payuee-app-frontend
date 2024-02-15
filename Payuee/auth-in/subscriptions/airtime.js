@@ -269,13 +269,7 @@ function insufficientFunds() {
     const cancelButton = document.getElementById('cancel-btn');
     const balance = document.getElementById('insufficientFunds');
 
-    let formattedFunds = new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 2
-    }).format(totalCharge);
-
-    balance.textContent = formattedFunds;
+    balance.textContent = formatNumberToNaira(totalCharge);
 
       installPopup.style.display = 'block';
 

@@ -520,6 +520,21 @@ function getCurrentDate() {
     return formattedDate;
 }
 
+function insufficientFunds() {
+    const installPopup = document.getElementById('balance-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const balance = document.getElementById('insufficientFunds');
+
+    balance.textContent = formatNumberToNaira(totalCharge);
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+}
+
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
         style: 'currency',
