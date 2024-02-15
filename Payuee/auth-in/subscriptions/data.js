@@ -562,7 +562,7 @@ try {
             alert('an error occurred. Please try again');
         return;
       }
-        const data = response.json();
+        // const data = response.json();
         localStorage.removeItem('auth')
         window.location.href = '../index.html'
     } finally{
