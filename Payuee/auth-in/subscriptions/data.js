@@ -1,8 +1,7 @@
-var amountInput
-var amountInputNumber
 var plan
 var phone
-var selectedCarrierValue
+var bundle
+var autoRenew
 var paymentMethod
 var totalCharge
 
@@ -108,30 +107,25 @@ function buy_data(){
     var validated = true
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;
-    var amountInput = document.getElementById("data-number");
-    var amount = parseInt(amountInput.value, 10);
-    // var description = document.getElementById("description").value;
-    // let's get the selected value
-    // var selectedRechargeValue = getSelectedValue("planSelectId");
-    // var rechargeValue = parseInt(selectedRechargeValue, 10);
 
     if (phone.length > 12 || phone.length < 11) {
         validated = false
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
 
-    // if (amount < 10 && rechargeValue < 500) {
-    //     validated = false;
-    //     showError('data-error', 'Minimum 10 pins per order, except for ₦500+ recharge.'); 
-    // }else if (amountInput.value.trim() === '') {
-    //     validated = false;
-    //     showError('data-error', 'Please enter amount of pin to recharge.');
-    // }
-
     // let's check the radio button that was checked to determine the payment option
    let paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
     console.log('Checked radio button:', paymentMethod);
+
+    var autorenewCheckbox = document.getElementById("autorenew");
+
+    // Check if the checkbox is checked
+    if (autorenewCheckbox.checked) {
+        autoRenew = true;
+    } else {
+        autoRenew = false;
+    }
 
     // let's send a post request to make an airtime purchase
 
@@ -413,6 +407,8 @@ async function requestPlan(plan_id) {
         
                     // Remove commas and parse the dataValue to a number
                     const numericValue = parseFloat(dataPrice);
+                    totalCharge = numericValue;
+                    bundle = plan.displayName;
         
                     // Get the input element by its ID
                     var displayInput = document.getElementById('displayInput');
