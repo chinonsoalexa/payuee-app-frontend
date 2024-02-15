@@ -24,12 +24,12 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
     if (validated) {
         
         const user = {
-            ServiceID: "data",
             PaymentType: paymentMethod,
-            Price:  totalCharge,
-            PhoneNumber: phone,
+            ServiceID: "data",
             NetworkPlan: plan,
             Bundle:      bundle,
+            Price:  totalCharge,
+            PhoneNumber: phone,
             AutoRenew:   autoRenew,
         };
 
