@@ -136,7 +136,9 @@ function buy_data(){
         var invoice_date = document.getElementById('invoice_date');
         var payment_method = document.getElementById('payment_method');
         var phone_number = document.getElementById('phone_number');
-        var invoice_operator = document.getElementById('invoice_operator');
+        var invoice_data_plan = document.getElementById('invoice_data_plan');
+        var invoice_bundle = document.getElementById('invoice_bundle');
+        var invoice_auto_renew = document.getElementById('invoice_auto_renew');
         var invoice_charge = document.getElementById('invoice_charge');
         var invoice_service_charge = document.getElementById('invoice_service_charge');
         var invoice_total_charge = document.getElementById('invoice_total_charge');
@@ -159,28 +161,21 @@ function buy_data(){
             let percentage = 1.5;
             // Calculate 1.5% of the original number
             let TransactionCharge = (percentage / 100) * totalCharge;
-            let updatedTransactionCharge = TransactionCharge + 20;      
+            let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = totalCharge + updatedTransactionCharge;
             let totalChargeForPaystack = totalCharge + updatedTransactionCharge;
             invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
             invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
-            // console.log('updated total charge is: ' + updatedTotalCharge)
         }
         // let's update the phone number to be recharged
         console.log(phone);
         phone_number.textContent = phone;
-        // let's update the operator to be used for recharge
-        if (selectedCarrierValue == "mtn") {
-            invoice_operator.textContent = "MTN";
-        }else if (selectedCarrierValue == "airtel") {
-            invoice_operator.textContent = "Airtel";
-        }else if (selectedCarrierValue == "etisalat") {
-            invoice_operator.textContent = "9mobile";
-        }else if (selectedCarrierValue == "glo") {
-            invoice_operator.textContent = "GLO";
-        }
-     
+        invoice_data_plan.textContent = plan;
+        invoice_bundle.textContent = bundle;
+        invoice_auto_renew.textContent = autoRenew;
+        
+
     }
 }
 
