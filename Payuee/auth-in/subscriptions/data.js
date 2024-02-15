@@ -557,12 +557,7 @@ function logUserOutIfTokenIsExpired() {
     
 try {
     const response = fetch(apiUrl, requestOptions);
-    console.log('this is the log-out response', response);
-    
-    if (!response.ok) {
-            alert('an error occurred. Please try again');
-        return;
-      }
+
         // const data = response.json();
         localStorage.removeItem('auth')
         window.location.href = '../index.html'
