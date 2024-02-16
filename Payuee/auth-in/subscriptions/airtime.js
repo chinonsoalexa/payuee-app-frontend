@@ -107,7 +107,7 @@ function buy_airtime(){
     selectedCarrierValue = getSelectedValue("carrierSelect");
     console.log(selectedCarrierValue)
 
-    if (phone.length > 10 || phone.length < 10) {
+    if (phone.length > 11 || phone.length < 11) {
         validated = false
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
