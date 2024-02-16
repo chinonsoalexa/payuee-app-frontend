@@ -38,13 +38,6 @@ function getSuccessMessage(transactionDetails) {
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
-    var transaction_id = document.getElementById('transaction_id');
-    var transaction_date = document.getElementById('transaction_date');
-    var transaction_amount = document.getElementById('transaction_amount');
-    var service_name = document.getElementById('service_name');
-    var transaction_method = document.getElementById('transaction_method');
-    var transaction_status = document.getElementById('transaction_status');
-    var users_name = document.getElementById('users_name');
     // var recharged_number;
     // var airtime_type;
     // var data_recharged_number;
@@ -59,30 +52,6 @@ function getSuccessMessage(transactionDetails) {
     available_balance.textContent = formatNumberToNaira(availableBalanceString);
     console.log("transaction balance: " + formatNumberToNaira(availableBalanceString));
 
-    // Access properties within the success object using dot notation
-    transaction_id.textContent = transactionDetails.success.transaction_id;
-    console.log("transaction id: " + transactionDetails.success.transaction_id);
-
-    // Parse the timestamp string
-    var parsedTimestamp = new Date(transactionDetails.success.paid_at);
-    transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
-    console.log("transaction date: " + parsedTimestamp.toLocaleString());
-
-    let transactionAmountString = transactionDetails.success.amount;
-    transaction_amount.textContent = formatNumberToNaira(transactionAmountString);
-
-    service_name.textContent = transactionDetails.success.service_type;
-    var serviceType = transactionDetails.success.service_type;
-    console.log("transaction service type: " + transactionDetails.success.service_type);
-    // console.log("transaction details: " + JSON.stringify(transactionDetails.success));
-
-    transaction_method.textContent = transactionDetails.success.transaction_type;
-    console.log("transaction payment method: " + transactionDetails.success.transaction_type);
-    users_name.textContent = transactionDetails.success.user_name;
-    console.log("transaction users name: " + transactionDetails.success.user_name);
-    transaction_status.textContent = transactionDetails.success.transaction_status;
-    console.log("transaction status: " + transactionDetails.success.transaction_status);
-
     switch (serviceType) {
     // airtime field from response
     // let's enable the airtime field
@@ -90,8 +59,27 @@ function getSuccessMessage(transactionDetails) {
     document.getElementById('airtime-section').classList.remove('disabled');
     document.getElementById('airtime-section').disabled = false;
     // airtime fields
+    let transaction_id = document.getElementById('transaction_id');
+    let transaction_date = document.getElementById('transaction_date');
+    let transaction_amount = document.getElementById('transaction_amount');
+    let service_name = document.getElementById('service_name');
+    let transaction_method = document.getElementById('transaction_method');
+    let transaction_status = document.getElementById('transaction_status');
+    let users_name = document.getElementById('users_name');
     let recharged_number = document.getElementById('recharged_number');
     let airtime_type = document.getElementById('airtime_type');    
+    // Access properties within the success object using dot notation
+    transaction_id.textContent = transactionDetails.success.transaction_id;
+    // Parse the timestamp string
+    let parsedTimestamp = new Date(transactionDetails.success.paid_at);
+    transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
+    let transactionAmountString = transactionDetails.success.amount;
+    transaction_amount.textContent = formatNumberToNaira(transactionAmountString);
+    service_name.textContent = transactionDetails.success.service_type;
+    let serviceType = transactionDetails.success.service_type;
+    transaction_method.textContent = transactionDetails.success.transaction_type;
+    users_name.textContent = transactionDetails.success.user_name;
+    transaction_status.textContent = transactionDetails.success.transaction_status;
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     break;
@@ -99,10 +87,28 @@ function getSuccessMessage(transactionDetails) {
         document.getElementById('data-section').classList.remove('disabled');
         document.getElementById('data-section').disabled = false;
          // data fields
+        let data_transaction_id = document.getElementById('data_transaction_id');
+        let data_transaction_date = document.getElementById('data_transaction_date');
+        let data_transaction_amount = document.getElementById('data_transaction_amount');
+        let data_service_name = document.getElementById('data_service_name');
+        let data_transaction_method = document.getElementById('data_transaction_method');
+        let data_transaction_status = document.getElementById('data_transaction_status');
+        let data_users_name = document.getElementById('data_users_name');
         let data_recharged_number = document.getElementById('data_recharged_number');
         let network_plan = document.getElementById('network_plan');
         let bundle = document.getElementById('bundle');
         let auto_renew = document.getElementById('auto_renew');
+        // Access properties within the success object using dot notation
+        data_transaction_id.textContent = transactionDetails.success.transaction_id;
+        // Parse the timestamp string
+        let dataParsedTimestamp = new Date(transactionDetails.success.paid_at);
+        data_transaction_date.textContent = dataParsedTimestamp.toLocaleString(); // Adjust the format as needed
+        let dataTransactionAmountString = transactionDetails.success.amount;
+        data_transaction_amount.textContent = formatNumberToNaira(dataTransactionAmountString);
+        data_service_name.textContent = transactionDetails.success.service_type;
+        data_transaction_method.textContent = transactionDetails.success.transaction_type;
+        data_transaction_status.textContent = transactionDetails.success.transaction_status;
+        data_users_name.textContent = transactionDetails.success.user_name;
         network_plan.textContent = transactionDetails.service.network_plan;
         data_recharged_number.textContent = transactionDetails.service.mobile_number;
         bundle.textContent = transactionDetails.service.bundle;
