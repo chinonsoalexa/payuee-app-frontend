@@ -45,9 +45,9 @@ function getSuccessMessage(transactionDetails) {
     var transaction_method = document.getElementById('transaction_method');
     var transaction_status = document.getElementById('transaction_status');
     var users_name = document.getElementById('users_name');
-    var recharged_number;
-    var airtime_type;
-    var data_recharged_number;
+    // var recharged_number;
+    // var airtime_type;
+    // var data_recharged_number;
     
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Transaction Successful'
@@ -57,24 +57,31 @@ function getSuccessMessage(transactionDetails) {
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
     available_balance.textContent = formatNumberToNaira(availableBalanceString);
+    console.log("transaction balance: " + formatNumberToNaira(availableBalanceString));
 
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
+    console.log("transaction id: " + transactionDetails.success.transaction_id);
 
     // Parse the timestamp string
     var parsedTimestamp = new Date(transactionDetails.success.paid_at);
     transaction_date.textContent = parsedTimestamp.toLocaleString(); // Adjust the format as needed
+    console.log("transaction date: " + parsedTimestamp.toLocaleString());
 
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = formatNumberToNaira(transactionAmountString);
 
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
+    console.log("transaction service type: " + transactionDetails.success.service_type);
     console.log("transaction details: " + JSON.stringify(transactionDetails.success));
 
     transaction_method.textContent = transactionDetails.success.transaction_type;
+    console.log("transaction payment method: " + transactionDetails.success.transaction_type);
     users_name.textContent = transactionDetails.success.user_name;
+    console.log("transaction users name: " + transactionDetails.success.user_name);
     transaction_status.textContent = transactionDetails.success.transaction_status;
+    console.log("transaction status: " + transactionDetails.success.transaction_status);
 
     switch (serviceType) {
     // airtime field from response
@@ -83,8 +90,8 @@ function getSuccessMessage(transactionDetails) {
     document.getElementById('airtime-section').classList.remove('disabled');
     document.getElementById('airtime-section').disabled = false;
     // airtime fields
-    recharged_number = document.getElementById('recharged_number');
-    airtime_type = document.getElementById('airtime_type');    
+    let recharged_number = document.getElementById('recharged_number');
+    let airtime_type = document.getElementById('airtime_type');    
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     break;
@@ -92,10 +99,10 @@ function getSuccessMessage(transactionDetails) {
         document.getElementById('data-section').classList.remove('disabled');
         document.getElementById('data-section').disabled = false;
          // data fields
-        data_recharged_number = document.getElementById('data_recharged_number');
-        network_plan = document.getElementById('network_plan');
-        bundle = document.getElementById('bundle');
-        auto_renew = document.getElementById('auto_renew');
+        let data_recharged_number = document.getElementById('data_recharged_number');
+        let network_plan = document.getElementById('network_plan');
+        let bundle = document.getElementById('bundle');
+        let auto_renew = document.getElementById('auto_renew');
         network_plan.textContent = transactionDetails.service.network_plan;
         data_recharged_number.textContent = transactionDetails.service.mobile_number;
         bundle.textContent = transactionDetails.service.bundle;
