@@ -145,13 +145,15 @@ function buy_data(){
         console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
+            paymentMethod = "wallet";
             invoice_charge.textContent = '₦' + '0.00';
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
             invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
             // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
-                // let's get the transaction charge of this transaction
+            paymentMethod = "paystack";
+            // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
             let TransactionCharge = (percentage / 100) * totalCharge;
