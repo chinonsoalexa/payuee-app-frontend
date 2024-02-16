@@ -70,7 +70,7 @@ function getSuccessMessage(transactionDetails) {
 
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
-    console.log("transaction type: " + serviceType);
+    console.log("transaction details: " + transactionDetails);
 
     transaction_method.textContent = transactionDetails.success.transaction_type;
     users_name.textContent = transactionDetails.success.user_name;
