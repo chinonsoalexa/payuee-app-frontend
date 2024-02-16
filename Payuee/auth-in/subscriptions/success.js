@@ -110,6 +110,7 @@ function getSuccessMessage(transactionDetails) {
         data_transaction_status.textContent = transactionDetails.success.transaction_status;
         data_users_name.textContent = transactionDetails.success.user_name;
         data_network_plan.textContent = transactionDetails.service.network_plan;
+        console.log("mobile number: " + transactionDetails.service.phone_number);
         data_recharged_number.textContent = transactionDetails.service.phone_number;
         data_bundle.textContent = transactionDetails.service.bundle;
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
