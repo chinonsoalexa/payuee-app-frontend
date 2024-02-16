@@ -28,7 +28,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             ServiceID: "data",
             NetworkPlan: plan,
             Bundle:      bundle,
-            Price:  totalCharge, 
+            Price:  Math.ceil(totalCharge), 
             PhoneNumber: phone,
             AutoRenew:   autoRenew,
         };

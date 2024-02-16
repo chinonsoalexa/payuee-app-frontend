@@ -29,7 +29,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
             ServiceID: "airtime",
             PaymentType: paymentMethod,
             Network:    selectedCarrierValue,
-            Price:  intTotalCharge,
+            Price:  Math.ceil(intTotalCharge),
             PhoneNumber: phone,
         };
 
