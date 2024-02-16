@@ -28,7 +28,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             ServiceID: "data",
             NetworkPlan: plan,
             Bundle:      bundle,
-            Price:  Math.round(totalCharge * 1e6), // Multiply by 1e6 (1,000,000)) so that it would't loose it's .74848 value when converted from float to an int
+            Price:  totalCharge, 
             PhoneNumber: phone,
             AutoRenew:   autoRenew,
         };
