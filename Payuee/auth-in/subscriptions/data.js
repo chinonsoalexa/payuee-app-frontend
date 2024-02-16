@@ -83,14 +83,12 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
             const responseData = await response.json();
 
-            if (responseData.hasOwnProperty('success')){
                 console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
                     console.log('here 2')
                     window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                     return
-                }
-            } else {
+                } else {
                 console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
