@@ -51,6 +51,8 @@ function getSuccessMessage(transactionDetails) {
     let availableBalanceString = transactionDetails.balance;
     available_balance.textContent = formatNumberToNaira(availableBalanceString);
     console.log("transaction balance: " + formatNumberToNaira(availableBalanceString));
+    
+    let serviceType = transactionDetails.success.service_type;
 
     switch (serviceType) {
     // airtime field from response
@@ -76,7 +78,6 @@ function getSuccessMessage(transactionDetails) {
     let transactionAmountString = transactionDetails.success.amount;
     transaction_amount.textContent = formatNumberToNaira(transactionAmountString);
     service_name.textContent = transactionDetails.success.service_type;
-    let serviceType = transactionDetails.success.service_type;
     transaction_method.textContent = transactionDetails.success.transaction_type;
     users_name.textContent = transactionDetails.success.user_name;
     transaction_status.textContent = transactionDetails.success.transaction_status;
