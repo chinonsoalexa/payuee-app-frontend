@@ -74,7 +74,7 @@ function getSuccessMessage(transactionDetails) {
     service_name.textContent = transactionDetails.success.service_type;
     var serviceType = transactionDetails.success.service_type;
     console.log("transaction service type: " + transactionDetails.success.service_type);
-    console.log("transaction details: " + JSON.stringify(transactionDetails.success));
+    // console.log("transaction details: " + JSON.stringify(transactionDetails.success));
 
     transaction_method.textContent = transactionDetails.success.transaction_type;
     console.log("transaction payment method: " + transactionDetails.success.transaction_type);
