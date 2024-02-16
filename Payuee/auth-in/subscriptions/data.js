@@ -7,15 +7,15 @@ var totalCharge
 var validated = true
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
-    event.preventDefault
+    event.preventDefault();
     // Prevent the default behavior (in this case, the redirect)
-    buy_data()
+    buy_data();
 });
 
 document.getElementById('back-to-data').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    enableDataDiv()
+    enableDataDiv();
 })
 
 document.getElementById('continue-buy-data').addEventListener('click', async function(event) {
