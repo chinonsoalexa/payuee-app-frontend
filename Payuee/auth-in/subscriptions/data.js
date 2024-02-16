@@ -103,7 +103,7 @@ function buy_data(){
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;
 
-    if (phone.length > 12 || phone.length < 11) {
+    if (phone.length > 10 || phone.length < 10) {
         validated = false
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
