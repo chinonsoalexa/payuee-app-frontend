@@ -95,9 +95,9 @@ function getSuccessMessage(transactionDetails) {
         let data_transaction_status = document.getElementById('data_transaction_status');
         let data_users_name = document.getElementById('data_users_name');
         let data_recharged_number = document.getElementById('data_recharged_number');
-        let network_plan = document.getElementById('network_plan');
-        let bundle = document.getElementById('bundle');
-        let auto_renew = document.getElementById('auto_renew');
+        let data_network_plan = document.getElementById('data_network_plan');
+        let data_bundle = document.getElementById('data_bundle');
+        let data_auto_renew = document.getElementById('data_auto_renew');
         // Access properties within the success object using dot notation
         data_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
@@ -109,10 +109,10 @@ function getSuccessMessage(transactionDetails) {
         data_transaction_method.textContent = transactionDetails.success.transaction_type;
         data_transaction_status.textContent = transactionDetails.success.transaction_status;
         data_users_name.textContent = transactionDetails.success.user_name;
-        network_plan.textContent = transactionDetails.service.network_plan;
+        data_network_plan.textContent = transactionDetails.service.network_plan;
         data_recharged_number.textContent = transactionDetails.service.mobile_number;
-        bundle.textContent = transactionDetails.service.bundle;
-        auto_renew.textContent = transactionDetails.service.auto_renew;
+        data_bundle.textContent = transactionDetails.service.bundle;
+        data_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
     default:
         let availableBalanceString = transactionDetails.balance;
