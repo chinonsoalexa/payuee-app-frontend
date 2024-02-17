@@ -139,9 +139,9 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_transaction_method.textContent = transactionDetails.success.transaction_type;
         recharge_pin_transaction_status.textContent = transactionDetails.success.transaction_status;
         recharge_pin_users_name.textContent = transactionDetails.success.user_name;
-        recharge_pin_network_type.textContent = transactionDetails.RechargePinDetails.network;
-        recharge_pin_number.textContent = transactionDetails.RechargePinDetails.number_of_pin;
-        recharge_pin_value.textContent = transactionDetails.RechargePinDetails.value;
+        recharge_pin_network_type.textContent = transactionDetails.service.RechargePinDetails.network;
+        recharge_pin_number.textContent = transactionDetails.service.RechargePinDetails.number_of_pin;
+        recharge_pin_value.textContent = transactionDetails.service.RechargePinDetails.value;
         recharge_pin_purchased_pin.addEventListener('click', function(event) {
             // Prevent the default behavior (in this case, the redirect)
             event.preventDefault();
