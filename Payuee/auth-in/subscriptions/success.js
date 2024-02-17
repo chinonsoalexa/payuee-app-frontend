@@ -231,7 +231,7 @@ function showCardPin(serverData) {
         // Insert items from the serverData
         data.forEach((item) => {
             const listItem = document.createElement('li');
-            listItem.textContent = item;
+            listItem.textContent = item.pin;
             cardList.appendChild(listItem);
         });
     };
