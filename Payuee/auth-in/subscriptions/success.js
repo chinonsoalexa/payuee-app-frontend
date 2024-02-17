@@ -120,7 +120,7 @@ function getSuccessMessage(transactionDetails) {
         let recharge_pin_transaction_id = document.getElementById('recharge_pin_transaction_id');
         let recharge_pin_transaction_date = document.getElementById('recharge_pin_transaction_date');
         let recharge_pin_transaction_amount = document.getElementById('recharge_pin_transaction_amount');
-        // let recharge_pin_service_name = document.getElementById('recharge_pin_service_name');
+        let recharge_pin_purchased_pin = document.getElementById('recharge_pin_purchased_pin');
         let recharge_pin_transaction_method = document.getElementById('recharge_pin_transaction_method');
         let recharge_pin_transaction_status = document.getElementById('recharge_pin_transaction_status');
         let recharge_pin_users_name = document.getElementById('recharge_pin_users_name');
@@ -145,6 +145,12 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_value.textContent = transactionDetails.service.phone_number;
         recharge_pin_bundle.textContent = transactionDetails.service.bundle;
         recharge_pin_auto_renew.textContent = transactionDetails.service.auto_renew;
+        recharge_pin_purchased_pin.addEventListener('click', function(event) {
+            // Prevent the default behavior (in this case, the redirect)
+            event.preventDefault();
+            showCardPin();
+        })
+
         break;
     
     default:
@@ -206,4 +212,70 @@ function formatNumberToNaira(number) {
 function enableDiv(id) {
     document.getElementById(id).classList.remove('disabled');
     document.getElementById(id).disabled = false;
+}
+
+function showCardPin(serverData) {
+    const cardPopup = document.getElementById('card-popup');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const cardList = document.getElementById('card-list');
+
+    // Example data from the server
+    // const serverData = [14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230, 14343545334223230];
+
+    // Function to dynamically insert items into the list
+    const populateCardList = (data) => {
+        // Clear existing items
+        cardList.innerHTML = '';
+
+        // Insert items from the serverData
+        data.forEach((item) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            cardList.appendChild(listItem);
+        });
+    };
+
+    // Function to copy the content of the list
+    const copyContent = () => {
+        const contentToCopy = Array.from(cardList.children).map(item => item.textContent).join('\n');
+
+        // Create a temporary textarea to copy the content
+        const textarea = document.createElement('textarea');
+        textarea.value = contentToCopy;
+        document.body.appendChild(textarea);
+
+        // Select and copy the content
+        navigator.clipboard.writeText(contentToCopy)
+        .then(() => {
+            // Success
+            copyBtn.textContent = 'Copied';
+        })
+        .catch((err) => {
+            // Handle error
+            copyBtn.textContent = 'error...';
+        });
+    };
+
+    // Event listener for the Copy button
+    copyBtn.addEventListener('click', copyContent);
+
+    // Show the popup and populate the list
+    const showPopup = () => {
+        cardPopup.style.display = 'block';
+        populateCardList(serverData);
+    };
+
+    // Close the popup
+    const closePopup = () => {
+        cardPopup.style.display = 'none';
+    };
+
+    // Event listener for the Close button
+    cancelBtn.addEventListener('click', closePopup);
+
+    // Event listener for showing the popup (you can call this function when needed)
+    // For example, call showPopup() when the server responds with insufficient funds
+    // For demonstration purposes, I'm calling it after 2 seconds here
+    setTimeout(showPopup, 0);
 }

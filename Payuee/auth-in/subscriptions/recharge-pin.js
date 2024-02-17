@@ -8,13 +8,13 @@ var validated = true;
 document.getElementById('recharge-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    buy_recharge_pin()
+    buy_recharge_pin();
 })
 
 document.getElementById('back-to-airtime').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    enableCardPinDiv()
+    enableCardPinDiv();
 })
 
 document.getElementById('continue-buy-recharge-pin').addEventListener('click', async function(event) {
