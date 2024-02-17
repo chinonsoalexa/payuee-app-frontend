@@ -22,6 +22,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     event.preventDefault();
 
     if (validated) {
+        deactivateButtonStyles();
         let intTotalCharge = parseInt(totalCharge, 10);
         console.log('this is amount to be sent', intTotalCharge)
         console.log('this is amount to be sent', totalCharge)
@@ -92,7 +93,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                 return
             }
         } finally {
-            
+            reactivateButtonStyles();
         }
     }
 });
@@ -300,4 +301,19 @@ try {
     } finally{
         // do nothing
     }
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles() {
+    var resendButton = document.getElementById('continue-buy-airtime');
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles() {
+    var resendButton = document.getElementById('continue-buy-airtime');
+    // Remove all existing classes
+    resendButton.className = '';
+    // Add the original class 'cmn__btn'
+    resendButton.classList.add('cmn__btn');
 }

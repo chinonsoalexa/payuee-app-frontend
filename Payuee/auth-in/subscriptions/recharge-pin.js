@@ -21,7 +21,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
     event.preventDefault();
 
     if (validated) {
-        let intTotalCharge = parseInt(totalCharge, 10);
+        deactivateButtonStyles();
         const user = {
             ServiceID: "rechargePin",
             PaymentType: paymentMethod,
@@ -87,7 +87,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
                 return
             }
         } finally {
-            
+            reactivateButtonStyles();
         }
     }
 });
@@ -297,4 +297,19 @@ try {
     } finally{
         // do nothing
     }
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles() {
+    var resendButton = document.getElementById('continue-buy-recharge-pin');
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles() {
+    var resendButton = document.getElementById('continue-buy-recharge-pin');
+    // Remove all existing classes
+    resendButton.className = '';
+    // Add the original class 'cmn__btn'
+    resendButton.classList.add('cmn__btn');
 }
