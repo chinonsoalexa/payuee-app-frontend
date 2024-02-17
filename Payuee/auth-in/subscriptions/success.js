@@ -127,9 +127,8 @@ function getSuccessMessage(transactionDetails) {
         let recharge_pin_number = document.getElementById('recharge_pin_number');
         let recharge_pin_value = document.getElementById('recharge_pin_value');
         let recharge_pin_network_type = document.getElementById('recharge_pin_network_type');
-        let recharge_pin_bundle = document.getElementById('recharge_pin_bundle');
         // Access properties within the success object using dot notation
-        console.log(transactionDetails.RechargePinDetails);
+        console.log(transactionDetails.service);
         recharge_pin_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
         let rechargePinDataParsedTimestamp = new Date(transactionDetails.success.paid_at);
@@ -143,7 +142,6 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_network_type.textContent = transactionDetails.RechargePinDetails.network;
         recharge_pin_number.textContent = transactionDetails.RechargePinDetails.number_of_pin;
         recharge_pin_value.textContent = transactionDetails.RechargePinDetails.value;
-        recharge_pin_bundle.textContent = transactionDetails.RechargePinDetails.bundle;
         recharge_pin_purchased_pin.addEventListener('click', function(event) {
             // Prevent the default behavior (in this case, the redirect)
             event.preventDefault();
