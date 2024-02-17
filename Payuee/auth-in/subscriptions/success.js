@@ -129,6 +129,7 @@ function getSuccessMessage(transactionDetails) {
         let recharge_pin_network_type = document.getElementById('recharge_pin_network_type');
         let recharge_pin_bundle = document.getElementById('recharge_pin_bundle');
         // Access properties within the success object using dot notation
+        console.log(transactionDetails.RechargePinDetails);
         recharge_pin_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
         let rechargePinDataParsedTimestamp = new Date(transactionDetails.success.paid_at);
