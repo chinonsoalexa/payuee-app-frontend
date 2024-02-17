@@ -92,7 +92,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                 console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
-            }
+                }
         } finally {
             reactivateButtonStyles();
         }

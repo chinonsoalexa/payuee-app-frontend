@@ -77,14 +77,14 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 
             const responseData = await response.json();
 
-            if (responseData.hasOwnProperty('success')){
-                if (responseData.success.hasOwnProperty('data')) {
-                    window.location.href = responseData.success.data.authorization_url;
-                    return
-                }
-            } else {
+            if (responseData.success == 'recharge pin successfully bought') {
+                console.log('here 2')
                 window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                 return
+            } else {
+            console.log('here 3')
+            window.location.href = responseData.success.data.authorization_url;
+            return
             }
         } finally {
             reactivateButtonStyles();
