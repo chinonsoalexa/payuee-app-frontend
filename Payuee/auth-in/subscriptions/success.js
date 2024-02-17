@@ -140,9 +140,9 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_transaction_method.textContent = transactionDetails.success.transaction_type;
         recharge_pin_transaction_status.textContent = transactionDetails.success.transaction_status;
         recharge_pin_users_name.textContent = transactionDetails.success.user_name;
-        recharge_pin_network_plan.textContent = transactionDetails.service.network_plan;
-        recharge_pin_number.textContent = transactionDetails.service.phone_number;
-        recharge_pin_value.textContent = transactionDetails.service.phone_number;
+        recharge_pin_network_plan.textContent = transactionDetails.service.network;
+        recharge_pin_number.textContent = transactionDetails.service.number_of_pin;
+        recharge_pin_value.textContent = transactionDetails.service.value;
         recharge_pin_bundle.textContent = transactionDetails.service.bundle;
         recharge_pin_auto_renew.textContent = transactionDetails.service.auto_renew;
         recharge_pin_purchased_pin.addEventListener('click', function(event) {
