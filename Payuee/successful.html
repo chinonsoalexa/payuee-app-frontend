@@ -425,44 +425,51 @@
                      </li>
                   </ul>
                </div>
-               
+
                <!-- recharge pin field -->
-               <div id="rechage-pin-section" class="payment__success__footer disabled">
-                  <div class="payment-success__footer-inner">
-                     <a href="javascript:void(0)">
-                       <span class="icon">
-                        <i class="material-symbols-outlined">
-                           download
-                        </i>
-                       </span>
-                       <span>
-                           Download
-                       </span>
-                     </a>
-                     <a href="javascript:void(0)">
-                        <span class="icon">
-                           <i class="material-symbols-outlined">
-                              print
-                           </i>
-                        </span>
-                        <span>
-                           Print Receipt
-                        </span>
-                     </a>
-                     <a href="hotel-email.html">
-                        <span class="icon">
-                           <i class="material-symbols-outlined">
-                              drafts
-                           </i> 
-                        </span>
-                        <span>
-                           Email Receipt
-                        </span>
-                     </a>
-                  </div>
-                  <div class="dbutton">
-                     <a href="../index-in.html" class="cmn__btn"><span> Back to Home</span></a>
-                  </div>
+               <div id="rechage-pin-section" class="payment__success__body disabled">
+                  <ul>
+                     <li>
+                        <span>Transactions ID</span>
+                        <span id="recharge_pin_transaction_id" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Date</span>
+                        <span id="recharge_pin_transaction_date" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Mode of Payment</span>
+                        <span id="recharge_pin_transaction_method" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Transaction Status</span>
+                        <span id="recharge_pin_transaction_status" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Customer Name</span>
+                        <span id="recharge_pin_users_name" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>No. of Pins</span>
+                        <span  id="recharge_pin_number"class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Value</span>
+                        <span  id="recharge_pin_value"class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Service</span>
+                        <span id="recharge_pin_service_name" class="textbo">Recharge Pin</span>
+                     </li>
+                     <li>
+                        <span>Network</span>
+                        <span id="recharge_pin_airtime_type" class="textbo">NA</span>
+                     </li>
+                     <li>
+                        <span>Payment Amount</span>
+                        <span id="recharge_pin_transaction_amount" class="textbo">₦ NA</span>
+                     </li>
+                  </ul>
                </div>
 
                <!-- educational payment field -->
@@ -653,6 +660,45 @@
                         <span id="transaction_amount" class="textbo">₦ NA</span>
                      </li>
                   </ul>
+               </div>
+
+               <!-- footer for download field -->
+               <div id="footer-download-section" class="payment__success__footer">
+                  <div class="payment-success__footer-inner">
+                     <a href="javascript:void(0)">
+                        <span class="icon">
+                        <i class="material-symbols-outlined">
+                           download
+                        </i>
+                        </span>
+                        <span>
+                           Download
+                        </span>
+                     </a>
+                     <a href="javascript:void(0)">
+                        <span class="icon">
+                           <i class="material-symbols-outlined">
+                              print
+                           </i>
+                        </span>
+                        <span>
+                           Print Receipt
+                        </span>
+                     </a>
+                     <a href="hotel-email.html">
+                        <span class="icon">
+                           <i class="material-symbols-outlined">
+                              drafts
+                           </i> 
+                        </span>
+                        <span>
+                           Email Receipt
+                        </span>
+                     </a>
+                  </div>
+                  <div class="dbutton">
+                     <a href="../index-in.html" class="cmn__btn"><span> Back to Home</span></a>
+                  </div>
                </div>
 
             </div>

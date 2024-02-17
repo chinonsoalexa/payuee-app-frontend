@@ -57,8 +57,9 @@ function getSuccessMessage(transactionDetails) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
-    document.getElementById('airtime-section').classList.remove('disabled');
-    document.getElementById('airtime-section').disabled = false;
+    // document.getElementById('airtime-section').classList.remove('disabled');
+    // document.getElementById('airtime-section').disabled = false;
+    enableDiv('airtime-section');
     // airtime fields
     let transaction_id = document.getElementById('transaction_id');
     let transaction_date = document.getElementById('transaction_date');
@@ -84,8 +85,7 @@ function getSuccessMessage(transactionDetails) {
     recharged_number.textContent = transactionDetails.service.mobile_number;
     break;
     case "data":
-        document.getElementById('data-section').classList.remove('disabled');
-        document.getElementById('data-section').disabled = false;
+        enableDiv('data-section');
          // data fields
         let data_transaction_id = document.getElementById('data_transaction_id');
         let data_transaction_date = document.getElementById('data_transaction_date');
@@ -114,6 +114,39 @@ function getSuccessMessage(transactionDetails) {
         data_bundle.textContent = transactionDetails.service.bundle;
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
+    case "rechargePin":
+        enableDiv('rechage-pin-section');
+            // data fields
+        let recharge_pin_transaction_id = document.getElementById('recharge_pin_transaction_id');
+        let recharge_pin_transaction_date = document.getElementById('recharge_pin_transaction_date');
+        let recharge_pin_transaction_amount = document.getElementById('recharge_pin_transaction_amount');
+        // let recharge_pin_service_name = document.getElementById('recharge_pin_service_name');
+        let recharge_pin_transaction_method = document.getElementById('recharge_pin_transaction_method');
+        let recharge_pin_transaction_status = document.getElementById('recharge_pin_transaction_status');
+        let recharge_pin_users_name = document.getElementById('recharge_pin_users_name');
+        let recharge_pin_number = document.getElementById('recharge_pin_number');
+        let recharge_pin_value = document.getElementById('recharge_pin_value');
+        let recharge_pin_network_plan = document.getElementById('recharge_pin_network_plan');
+        let recharge_pin_bundle = document.getElementById('recharge_pin_bundle');
+        let recharge_pin_auto_renew = document.getElementById('recharge_pin_auto_renew');
+        // Access properties within the success object using dot notation
+        recharge_pin_transaction_id.textContent = transactionDetails.success.transaction_id;
+        // Parse the timestamp string
+        let rechargePinDataParsedTimestamp = new Date(transactionDetails.success.paid_at);
+        recharge_pin_transaction_date.textContent = rechargePinDataParsedTimestamp.toLocaleString(); // Adjust the format as needed
+        let rechargePinDataTransactionAmountString = transactionDetails.success.amount;
+        recharge_pin_transaction_amount.textContent = formatNumberToNaira(rechargePinDataTransactionAmountString);
+        // recharge_pin_service_name.textContent = transactionDetails.success.service_type;
+        recharge_pin_transaction_method.textContent = transactionDetails.success.transaction_type;
+        recharge_pin_transaction_status.textContent = transactionDetails.success.transaction_status;
+        recharge_pin_users_name.textContent = transactionDetails.success.user_name;
+        recharge_pin_network_plan.textContent = transactionDetails.service.network_plan;
+        recharge_pin_number.textContent = transactionDetails.service.phone_number;
+        recharge_pin_value.textContent = transactionDetails.service.phone_number;
+        recharge_pin_bundle.textContent = transactionDetails.service.bundle;
+        recharge_pin_auto_renew.textContent = transactionDetails.service.auto_renew;
+        break;
+    
     default:
         let availableBalanceString = transactionDetails.balance;
         displayErrorMessage(formatNumberToNaira(availableBalanceString));
@@ -122,6 +155,8 @@ function getSuccessMessage(transactionDetails) {
 }
 
 function displayErrorMessage(balance) {
+    document.getElementById('data-section').classList.add('disabled');
+    document.getElementById('data-section').disabled = true;
     var payment_icon_color = document.getElementById('payment_icon_color');
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
@@ -166,4 +201,9 @@ function formatNumberToNaira(number) {
         currency: 'NGN',
         minimumFractionDigits: 2
     }).format(number);
+}
+
+function enableDiv(id) {
+    document.getElementById(id).classList.remove('disabled');
+    document.getElementById(id).disabled = false;
 }

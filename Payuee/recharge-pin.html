@@ -17,6 +17,48 @@
    <link rel="stylesheet" href="assets/css/datepickerboot.css">
    <!--main css-->
    <link rel="stylesheet" href="assets/css/main.css">
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+position: relative; /* Ensure the body has a relative position */
+}
+
+.popup {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+padding: 20px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+z-index: 1000; /* Set a higher z-index value */
+}
+
+.popup-content {
+text-align: center;
+}
+
+button {
+margin: 10px;
+padding: 8px 16px;
+cursor: pointer;
+}
+
+.install-button {
+background-color: green;
+color: #fff;
+border: none;
+}
+
+.cancel-button {
+background-color: red;
+color: #fff;
+border: none;
+}
+
+</style>
 </head>
 
 <body>
@@ -358,14 +400,14 @@
                      </h5>
                      <div class="prepaid__option">
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
-                           <label class="form-check-label" for="pyradio2page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="wallet" checked>
+                           <label class="form-check-label" for="wallet">
                              Wallet
                            </label>
                          </div>
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
-                           <label class="form-check-label" for="pyradio1page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
+                           <label class="form-check-label" for="paystack">
                              External Bank
                            </label>
                          </div>
@@ -378,16 +420,16 @@
                            </div>
                            <div class="col-lg-6">
                               <select name="niceselect" id="carrierSelect">
-                                 <option value="2">
+                                 <option value="mtn">
                                     MTN (2% Discount)
                                  </option>
-                                 <option value="3">
+                                 <option value="airtel">
                                     Airtel (3.1% Discount)
                                  </option>
-                                 <option value="4">
+                                 <option value="etisalat">
                                     9mobile (3.5% Discount)
                                  </option>
-                                 <option value="5">
+                                 <option value="glo">
                                     Glo (5% Discount)
                                  </option>
                               </select>
@@ -548,14 +590,6 @@
                               Paystack
                            </span>
                         </div>
-                        <div class="invoice__leftnumber">
-                           <span class="bage">
-                              Phone
-                           </span>
-                           <span id="phone_number" class="counting">
-                              08136804598
-                           </span>
-                        </div>
                      </div>
                   </div>
                   <div class="order__summary__wrapper mb__40">
@@ -584,7 +618,7 @@
                         </div>
                         <div class="order__table__items">
                            <span id="invoice_service">
-                              Card Pin
+                              Recharge Pin
                            </span>
                            <span id="invoice_operator">
                               MTN
@@ -629,7 +663,7 @@
                            Back
                         </span>
                      </a>
-                     <a id="continue-buy-airtime" href="#" class="cmn__btn">
+                     <a id="continue-buy-recharge-pin" href="#" class="cmn__btn">
                         <span class="print">
                            Continue
                         </span>
@@ -943,6 +977,14 @@
 </section>
 <!--home two qustions start-->
 
+  <!-- Popup box -->
+  <div id="balance-popup" class="popup">
+   <div class="popup-content">
+     <p>Sorry you currently don't have up to <span id="insufficientFunds">₦ NA</span> in your wallet</p>
+     <button class="cancel-button" id="cancel-btn">Close</button>
+   </div>
+ </div>
+
 <!-- footer Here -->
 <footer class="footer__section bgsection pt-120">
    <div class="container">
@@ -1120,6 +1162,4 @@
    <script src="page-scroll-js/mobile-scroll.js" defer></script>
 </body>
 
-
-<!-- Mirrored from /Payuee/Payuee/card2.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:37 GMT -->
 </html>
