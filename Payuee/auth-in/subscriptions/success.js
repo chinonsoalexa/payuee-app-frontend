@@ -230,7 +230,7 @@ function showCardPin(serverData) {
         cardList.innerHTML = '';
 
         // Insert items from the serverData
-        data.Pins.forEach((item) => {
+        data.forEach((item) => {
             const listItem = document.createElement('li');
             listItem.textContent = item.pin;
             cardList.appendChild(listItem);
