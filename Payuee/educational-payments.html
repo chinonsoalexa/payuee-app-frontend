@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from /Payuee/Payuee/landline2.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:38 GMT -->
 <head>
    <script src="auth/auth-page.js" defer></script>
    <meta charset="UTF-8">
@@ -17,6 +15,48 @@
    <link rel="stylesheet" href="assets/css/datepickerboot.css">
    <!--main css-->
    <link rel="stylesheet" href="assets/css/main.css">
+   <style>
+      body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      position: relative; /* Ensure the body has a relative position */
+      }
+      
+      .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Set a higher z-index value */
+      }
+      
+      .popup-content {
+      text-align: center;
+      }
+      
+      button {
+      margin: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      }
+      
+      .install-button {
+      background-color: green;
+      color: #fff;
+      border: none;
+      }
+      
+      .cancel-button {
+      background-color: red;
+      color: #fff;
+      border: none;
+      }
+      
+   </style>
 </head>
 
 <body>
@@ -358,14 +398,14 @@
                      </h5>
                      <div class="prepaid__option">
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
-                           <label class="form-check-label" for="pyradio2page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="wallet" checked>
+                           <label class="form-check-label" for="wallet">
                              Wallet
                            </label>
                          </div>
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
-                           <label class="form-check-label" for="pyradio1page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
+                           <label class="form-check-label" for="paystack">
                              External Bank
                            </label>
                          </div>
@@ -373,7 +413,7 @@
                      <form action="#" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
-                              <input id="phone-number" type="text" placeholder="Enter Mobile Number">
+                              <input id="phone-number" type="number" placeholder="Enter Mobile Number">
                               <p id="phone-error"></p>
                            </div>
                            <div class="col-lg-6">
@@ -382,10 +422,10 @@
                         </div>
                      </form>
                      <div class="payment__check d-flex justify-content-start">
-                        <!-- <input class="form-check-input" type="checkbox" id="paycheckon" checked>
-                        <label class="form-check-label" for="paycheckon">
-                           I Agree this payment system
-                        </label> -->
+                        <input class="form-check-input" type="checkbox" id="emailPin">
+                        <label class="form-check-label" for="emailPin">
+                           Email me the generated pin
+                        </label>
                      </div>
                      <a href="#" id="education-button-id" class="cmn__btn mt-5">
                         <span>
@@ -532,6 +572,9 @@
                               Service
                            </span>
                            <span>
+                              Email Pin
+                           </span>
+                           <span>
                               Transaction Charge
                            </span>
                            <span>
@@ -541,6 +584,9 @@
                         <div class="order__table__items">
                            <span id="invoice_service">
                               WAEC Pin
+                           </span>
+                           <span id="invoice_email_pin">
+                              false
                            </span>
                            <span id="invoice_charge">
                               ₦0.00
@@ -576,7 +622,7 @@
                            Back
                         </span>
                      </a>
-                     <a id="continue-buy-airtime" href="#" class="cmn__btn">
+                     <a id="continue-buy-pin" href="#" class="cmn__btn">
                         <span class="print">
                            Continue
                         </span>
@@ -889,6 +935,14 @@
    </div>
 </section>
 <!--home two qustions start-->
+
+<!-- Popup box -->
+<div id="balance-popup" class="popup">
+<div class="popup-content">
+   <p>Sorry you currently don't have up to <span id="insufficientFunds">₦ NA</span> in your wallet</p>
+   <button class="cancel-button" id="cancel-btn">Close</button>
+</div>
+</div>
 
 <!-- footer Here -->
 <footer class="footer__section bgsection pt-120">

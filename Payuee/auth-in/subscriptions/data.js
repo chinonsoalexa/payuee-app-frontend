@@ -111,7 +111,7 @@ function buy_data(){
     // let's check the radio button that was checked to determine the payment option
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    console.log('Checked radio button:', paymentMethod);
+    // console.log('Checked radio button:', paymentMethod);
 
     var autorenewCheckbox = document.getElementById("autorenew");
 
