@@ -148,7 +148,8 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_purchased_pin.addEventListener('click', function(event) {
             // Prevent the default behavior (in this case, the redirect)
             event.preventDefault();
-            showCardPin(transactionDetails.Pins);
+            console.log('this are the pin click event: ', transactionDetails.service.Pins);
+            showCardPin(transactionDetails.service.Pins);
         })
 
         break;
