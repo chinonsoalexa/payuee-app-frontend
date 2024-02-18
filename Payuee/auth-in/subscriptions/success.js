@@ -20,7 +20,10 @@ window.onload = async function () {
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
                 displayErrorMessage();
-            } else {
+            } else if  (errorData.error === 'No Authentication cookie found') {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
                 displayErrorMessage();
             }
 
@@ -275,4 +278,27 @@ function showCardPin(serverData) {
     // For example, call showPopup() when the server responds with insufficient funds
     // For demonstration purposes, I'm calling it after 2 seconds here
     setTimeout(showPopup, 0);
+}
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+
+        // const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
