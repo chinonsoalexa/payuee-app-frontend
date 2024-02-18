@@ -78,7 +78,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
             const responseData = await response.json();
 
                 console.log('here 1')
-                if (responseData.success == 'data successfully bought') {
+                if (responseData.success == 'educational pin successfully bought') {
                     console.log('here 2')
                     window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                     return
