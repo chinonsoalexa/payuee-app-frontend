@@ -161,12 +161,12 @@ function getSuccessMessage(transactionDetails) {
         let education_transaction_id = document.getElementById('education_transaction_id');
         let education_transaction_date = document.getElementById('education_transaction_date');
         let education_transaction_amount = document.getElementById('education_transaction_amount');
-        let education_service_name = document.getElementById('education_service_name');
+        // let education_service_name = document.getElementById('education_service_name');
         let education_transaction_method = document.getElementById('education_transaction_method');
         let education_transaction_status = document.getElementById('education_transaction_status');
         let education_users_name = document.getElementById('education_users_name');
         let education_recharged_number = document.getElementById('education_recharged_number');
-        let education_airtime_type = document.getElementById('education_airtime_type');    
+        // let education_airtime_type = document.getElementById('education_airtime_type');    
         // Access properties within the success object using dot notation
         education_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
@@ -174,7 +174,7 @@ function getSuccessMessage(transactionDetails) {
         education_transaction_date.textContent = educationParsedTimestamp.toLocaleString(); // Adjust the format as needed
         let educationTransactionAmountString = transactionDetails.success.amount;
         education_transaction_amount.textContent = formatNumberToNaira(educationTransactionAmountString);
-        education_service_name.textContent = transactionDetails.success.service_type;
+        // education_service_name.textContent = transactionDetails.success.service_type;
         education_transaction_method.textContent = transactionDetails.success.transaction_type;
         education_users_name.textContent = transactionDetails.success.user_name;
         education_transaction_status.textContent = transactionDetails.success.transaction_status;
