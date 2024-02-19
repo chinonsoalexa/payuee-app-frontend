@@ -152,7 +152,7 @@ function getSuccessMessage(transactionDetails) {
 
         break;
     case "educationalPayment":
-        enableDiv('airtime-section');
+        enableDiv('educational-payments-section');
         // airtime fields
         let education_transaction_id = document.getElementById('education_transaction_id');
         let education_transaction_date = document.getElementById('education_transaction_date');
