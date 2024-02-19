@@ -153,7 +153,7 @@ function getSuccessMessage(transactionDetails) {
         })
 
         break;
-    case "educationalPayments":
+    case "educationalPayment":
         // document.getElementById('airtime-section').classList.remove('disabled');
         // document.getElementById('airtime-section').disabled = false;
         enableDiv('airtime-section');
