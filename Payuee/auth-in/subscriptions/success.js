@@ -172,7 +172,7 @@ function getSuccessMessage(transactionDetails) {
         education_transaction_method.textContent = transactionDetails.success.transaction_type;
         education_users_name.textContent = transactionDetails.success.user_name;
         education_transaction_status.textContent = transactionDetails.success.transaction_status;
-        education_recharged_number.textContent = transactionDetails.service.mobile_number;
+        education_recharged_number.textContent = transactionDetails.service.phone_number;
         break;
 
     default:
