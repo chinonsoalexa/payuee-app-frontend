@@ -24,7 +24,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
         deactivateButtonStyles();
         const user = {
             PaymentType: paymentMethod,
-            ServiceID: "educationalPayments",
+            ServiceID: "educationalPayment",
             Price:  totalCharge, 
             PhoneNumber: phone,
             // EmailPin:   sendPin,

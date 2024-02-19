@@ -60,8 +60,6 @@ function getSuccessMessage(transactionDetails) {
     // airtime field from response
     // let's enable the airtime field
     case "airtime":
-    // document.getElementById('airtime-section').classList.remove('disabled');
-    // document.getElementById('airtime-section').disabled = false;
     enableDiv('airtime-section');
     // airtime fields
     let transaction_id = document.getElementById('transaction_id');
@@ -154,19 +152,15 @@ function getSuccessMessage(transactionDetails) {
 
         break;
     case "educationalPayment":
-        // document.getElementById('airtime-section').classList.remove('disabled');
-        // document.getElementById('airtime-section').disabled = false;
         enableDiv('airtime-section');
         // airtime fields
         let education_transaction_id = document.getElementById('education_transaction_id');
         let education_transaction_date = document.getElementById('education_transaction_date');
         let education_transaction_amount = document.getElementById('education_transaction_amount');
-        // let education_service_name = document.getElementById('education_service_name');
         let education_transaction_method = document.getElementById('education_transaction_method');
         let education_transaction_status = document.getElementById('education_transaction_status');
         let education_users_name = document.getElementById('education_users_name');
         let education_recharged_number = document.getElementById('education_recharged_number');
-        // let education_airtime_type = document.getElementById('education_airtime_type');    
         // Access properties within the success object using dot notation
         education_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
