@@ -193,8 +193,7 @@ function getSuccessMessage(transactionDetails) {
         // Parse the timestamp string
         let decoderParsedTimestamp = new Date(transactionDetails.success.paid_at);
         decoder_transaction_date.textContent = decoderParsedTimestamp.toLocaleString(); // Adjust the format as needed
-        let decoderTransactionAmountString = transactionDetails.success.amount;
-        decoder_transaction_amount.textContent = formatNumberToNaira(decoderTransactionAmountString);
+        decoder_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
         // data_service_name.textContent = transactionDetails.success.service_type;
         decoder_transaction_method.textContent = transactionDetails.success.transaction_type;
         decoder_transaction_status.textContent = transactionDetails.success.transaction_status;
