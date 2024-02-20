@@ -14,7 +14,7 @@ var validated = true
 document.getElementById('tv-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    decoder_subscription()
+    decoder_subscription();
 })
 
 var dstv = [
@@ -76,6 +76,12 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
 })
 
 function decoder_subscription(){
+    // deactivateButtonStyles('tv-button');
+    if (!clickedSelectPlan) {
+        validated = false;
+        showError('decoder-operator-error', 'Please select a plan'); 
+    }
+
     if (!clickedSelectOperator) {
         validated = false;
         showError('decoder-operator-error', 'Please select an operator'); 
@@ -84,12 +90,11 @@ function decoder_subscription(){
     // var description = document.getElementById("description").value;
     // let's get the selected value
     var decoderNumber = document.getElementById("decoder-number").value;
-    var decoderNumberValue = parseInt(decoderNumber, 10);
 
-    if (decoderNumberValue.length < 10) {
+    if (decoderNumber.length < 10) {
         validated = false;
         showError('decoder-number-error', 'Decoder number should be at least 10 digits.'); 
-    }else if (decoderNumberValue.length > 10) {
+    }else if (decoderNumber.length > 10) {
         validated = false;
         showError('decoder-number-error', 'Decoder number should be 10 digits.'); 
     }else if (decoderNumber.trim() === '') {
@@ -99,12 +104,12 @@ function decoder_subscription(){
 
     // let's take all fields and validate
     var mobileNumber = document.getElementById("mobile-number").value;
-    var number = parseInt(mobileNumber.value, 10);
+    // var number = parseInt(mobileNumber.value, 10);
 
-    if (number.length < 11) {
+    if (mobileNumber.length < 11) {
         validated = false;
         showError('mobile-error', 'Phone number should be at least 11 digits.'); 
-    }else if (number.length > 11) {
+    }else if (mobileNumber.length > 11) {
         validated = false;
         showError('mobile-error', 'Phone number should be 11 digits.'); 
     }else if (mobileNumber.trim() === '') {
@@ -124,20 +129,25 @@ function decoder_subscription(){
     // let's check the radio button that was checked
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    console.log('Checked radio button:', paymentMethod);
+    // console.log('Checked radio button:', paymentMethod);
 
     // let's send a post request to make an airtime purchase
 
+        console.log('here 0');
+        console.log('this is validated status: ' + validated);
+        // reactivateButtonStyles('tv-button')
     if (validated) {
-        disableTvDiv()
+        console.log('here 1');
+        disableTvDiv();
+        console.log('here 2');
          // now our invoice div is enabled let's supply it data gotten from the airtime div
         // Get the span element by its id
         var invoice_date = document.getElementById('invoice_date');
         var payment_method = document.getElementById('payment_method');
         var phone_number = document.getElementById('phone_number');
-        var invoice_data_plan = document.getElementById('invoice_data_plan');
-        var invoice_bundle = document.getElementById('invoice_bundle');
-        var invoice_auto_renew = document.getElementById('invoice_auto_renew');
+        var invoice_decoder_operator = document.getElementById('invoice_decoder_operator');
+        var invoice_decoder_plan = document.getElementById('invoice_decoder_plan');
+        var invoice_decoder_auto_renew = document.getElementById('invoice_decoder_auto_renew');
         var invoice_charge = document.getElementById('invoice_charge');
         var invoice_service_charge = document.getElementById('invoice_service_charge');
         var invoice_total_charge = document.getElementById('invoice_total_charge');
@@ -152,8 +162,9 @@ function decoder_subscription(){
             payment_method.textContent = "Wallet";
             // paymentMethod = "wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            console.log('this is decoderPlanPrice wallet: ' +decoderPlanPrice)
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
             // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
@@ -163,18 +174,20 @@ function decoder_subscription(){
             // Calculate 1.5% of the original number
             let TransactionCharge = (percentage / 100) * decoderPlanPrice;
             let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            decoderPlanPrice = decoderPlanPrice + updatedTransactionCharge;
-            let totalChargeForPaystack = decoderPlanPrice + updatedTransactionCharge;
+            invoice_charge.textContent = formatNumberToNaira(Math.ceil(updatedTransactionCharge));
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
-            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
+            // let totalChargeForPaystack = decoderPlanPrice + updatedTransactionCharge;
+            console.log('this is decoderPlanPrice paystack: ' +decoderPlanPrice);
+            console.log('this is decoder transaction Price paystack: ' +Math.ceil(updatedTransactionCharge));
+            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice + Math.ceil(updatedTransactionCharge));
         }
+        console.log('decoder text type: ' + decoderTextType);
+        console.log('decoder plan type: ' + decoderPlanText);
         // let's update the phone number to be recharged
         phone_number.textContent = mobileNumber;
-        invoice_data_plan.textContent = decoderTextType;
-        invoice_bundle.textContent = decoderPlanText;
-        invoice_auto_renew.textContent = autoRenew;
-
+        invoice_decoder_operator.textContent = decoderTextType;
+        invoice_decoder_plan.textContent = decoderPlanText;
+        invoice_decoder_auto_renew.textContent = autoRenew;
     }
 }
 
@@ -291,14 +304,14 @@ try {
 }
 
 // Add this function to remove onclick and on hover styles
-function deactivateButtonStyles() {
-    var resendButton = document.getElementById('tv-button');
+function deactivateButtonStyles(tv_button) {
+    var resendButton = document.getElementById(tv_button);
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 // Add this function to reactivate the button styles
-function reactivateButtonStyles() {
-    var resendButton = document.getElementById('tv-button');
+function reactivateButtonStyles(tv_button) {
+    var resendButton = document.getElementById(tv_button);
     // Remove all existing classes
     resendButton.className = '';
     // Add the original class 'cmn__btn'
@@ -408,7 +421,7 @@ function displaySecondaryList(data) {
                 decoderPlanText = event.target.getAttribute('data-text');
                 decoderPlanPrice = event.target.getAttribute('data-price');
             }
-            clickedSelectPlan = false;
+            clickedSelectPlan = true;
             // console.log('clicked plan: ', decoderPlanValue);
 
             //  console.log('data value/type1: ', decoderPlanValue)
