@@ -20,7 +20,7 @@ window.onload = async function () {
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
                 displayErrorMessage();
-            } else if  (errorData.error === 'No Authentication cookie found') {
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
             }else {
