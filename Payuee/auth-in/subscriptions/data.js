@@ -111,8 +111,6 @@ function buy_data(){
     // let's check the radio button that was checked to determine the payment option
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    // console.log('Checked radio button:', paymentMethod);
-
     var autorenewCheckbox = document.getElementById("autorenew");
 
     // Check if the checkbox is checked
@@ -146,14 +144,11 @@ function buy_data(){
         console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
-            // paymentMethod = "wallet";
             invoice_charge.textContent = '₦' + '0.00';
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
             invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
-            // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
-            // paymentMethod = "paystack";
             // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
@@ -161,9 +156,8 @@ function buy_data(){
             let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = totalCharge + updatedTransactionCharge;
-            let totalChargeForPaystack = totalCharge + updatedTransactionCharge;
             invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
-            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
+            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
         }
         // let's update the phone number to be recharged
         console.log(phone);

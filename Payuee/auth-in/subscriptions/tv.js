@@ -5,6 +5,8 @@ var decoderPlanValue;
 var decoderPlanText;
 var decoderPlanPrice;
 var paymentMethod;
+var decoderNumber;
+var mobileNumber;
 
 // validation for selecting the decoder type
 var clickedSelectOperator = false;
@@ -75,6 +77,93 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
     enableTvDiv()
 })
 
+document.getElementById('continue-sub-decoder').addEventListener('click', async function(event) {
+    event.preventDefault();
+
+    if (validated) {
+    // console.log(decoderType);
+    // console.log(decoderTextType);
+    // console.log(decoderPlanValue);
+    // console.log(decoderPlanText);
+    // console.log(decoderPlanPrice);
+
+        deactivateButtonStyles('continue-sub-decoder');
+        const user = {
+            PaymentType: paymentMethod,
+            ServiceID: "decoder",
+            Price:  Math.ceil(decoderPlanPrice), 
+            PhoneNumber: mobileNumber,
+            Operator:      decoderType,
+            Bundle:       decoderPlanText,
+            DecoderNumber: decoderNumber,
+            VariationID:   decoderPlanValue,
+            Plan:          decoderPlanText,
+            AutoRenew:   autoRenew,
+        };
+        console.log('this is the data to be sent: ' + JSON.stringify(user));
+
+        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(user),
+        };
+
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+
+            console.log(response);
+            if (!response.ok) {
+                const errorData = await response.json();
+
+                console.log(errorData);
+
+                if (errorData.error === 'User already exist, please login') {
+                    showError('passwordError', 'User already exists. Please signin.');
+                } else if  (errorData.error === 'Please login using your google account') {
+                    showError('passwordError', 'Please login using your google account.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                } else if  (errorData.error === 'email verification failed') {
+                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+                } else if  (errorData.error === 'User already exist, please signin') {
+                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                } else if  (errorData.error === 'insufficient funds') {
+                    insufficientFunds();
+                } else {
+                    showError('passwordError', 'An error occurred. Please try again.');
+                }
+
+                return;
+            }
+
+            const responseData = await response.json();
+
+                console.log('here 1')
+                if (responseData.success == 'data successfully bought') {
+                    console.log('here 2')
+                    window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+                    return
+                } else {
+                console.log('here 3')
+                window.location.href = responseData.success.data.authorization_url;
+                return
+                }
+        } finally {
+            reactivateButtonStyles('continue-sub-decoder');
+        }
+    }
+});
+
 function decoder_subscription(){
     // deactivateButtonStyles('tv-button');
     if (!clickedSelectPlan) {
@@ -89,7 +178,7 @@ function decoder_subscription(){
 
     // var description = document.getElementById("description").value;
     // let's get the selected value
-    var decoderNumber = document.getElementById("decoder-number").value;
+    decoderNumber = document.getElementById("decoder-number").value;
 
     if (decoderNumber.length < 10) {
         validated = false;
@@ -103,7 +192,7 @@ function decoder_subscription(){
     }
 
     // let's take all fields and validate
-    var mobileNumber = document.getElementById("mobile-number").value;
+    mobileNumber = document.getElementById("mobile-number").value;
     // var number = parseInt(mobileNumber.value, 10);
 
     if (mobileNumber.length < 11) {
@@ -148,9 +237,6 @@ function decoder_subscription(){
         // let's update all fields to user entered fields
         // let's update the date field
         invoice_date.textContent = getCurrentDate();
-        invoice_service_charge
-        // let's update the payment method field
-        console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
