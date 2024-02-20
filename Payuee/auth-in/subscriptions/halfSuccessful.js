@@ -42,10 +42,9 @@ function getSuccessMessage(transactionDetails) {
     var service = document.getElementById('service');
     var available_balance = document.getElementById('available_balance');
 
-    user_name.textContent = 'John Doe';
-    service.textContent = 'John Doe';
-    available_balance.textContent = 'John Doe';
-
+    user_name.textContent = transactionDetails.success.user_name;
+    service.textContent = transactionDetails.success.service_type;
+    available_balance.textContent = formatNumberToNaira(transactionDetails.balance);
 }
 
 function formatNumberToNaira(number) {
