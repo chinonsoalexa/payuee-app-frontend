@@ -174,36 +174,36 @@ function getSuccessMessage(transactionDetails) {
         education_transaction_status.textContent = transactionDetails.success.transaction_status;
         education_recharged_number.textContent = transactionDetails.service.phone_number;
         break;
-        case "decoder":
-            enableDiv('decoder-section');
-             // data fields
-            let decoder_transaction_id = document.getElementById('data_transaction_id');
-            let decoder_transaction_date = document.getElementById('data_transaction_date');
-            let decoder_transaction_amount = document.getElementById('data_transaction_amount');
-            let decoder_service_name = document.getElementById('data_service_name');
-            let decoder_transaction_method = document.getElementById('data_transaction_method');
-            let decoder_transaction_status = document.getElementById('data_transaction_status');
-            let decoder_users_name = document.getElementById('data_users_name');
-            let decoder_recharged_number = document.getElementById('data_recharged_number');
-            let decoder_network_plan = document.getElementById('data_network_plan');
-            let decoder_bundle = document.getElementById('decoder_bundle');
-            let decoder_auto_renew = document.getElementById('decoder_auto_renew');
-            // Access properties within the success object using dot notation
-            data_transaction_id.textContent = transactionDetails.success.transaction_id;
-            // Parse the timestamp string
-            let dataParsedTimestamp = new Date(transactionDetails.success.paid_at);
-            data_transaction_date.textContent = dataParsedTimestamp.toLocaleString(); // Adjust the format as needed
-            let dataTransactionAmountString = transactionDetails.success.amount;
-            data_transaction_amount.textContent = formatNumberToNaira(dataTransactionAmountString);
-            data_service_name.textContent = transactionDetails.success.service_type;
-            data_transaction_method.textContent = transactionDetails.success.transaction_type;
-            data_transaction_status.textContent = transactionDetails.success.transaction_status;
-            data_users_name.textContent = transactionDetails.success.user_name;
-            data_network_plan.textContent = transactionDetails.service.network_plan;
-            data_recharged_number.textContent = transactionDetails.service.phone_number;
-            data_bundle.textContent = transactionDetails.service.bundle;
-            data_auto_renew.textContent = transactionDetails.service.auto_renew;
-            break;
+    case "decoder":
+        enableDiv('decoder-section');
+            // data fields
+        let decoder_transaction_id = document.getElementById('data_transaction_id');
+        let decoder_transaction_date = document.getElementById('data_transaction_date');
+        let decoder_transaction_amount = document.getElementById('data_transaction_amount');
+        // let decoder_service_name = document.getElementById('data_service_name');
+        let decoder_transaction_method = document.getElementById('data_transaction_method');
+        let decoder_transaction_status = document.getElementById('data_transaction_status');
+        let decoder_users_name = document.getElementById('data_users_name');
+        let decoder_recharged_number = document.getElementById('data_recharged_number');
+        let decoder_operator = document.getElementById('decoder_operator');
+        let decoder_plan = document.getElementById('decoder_plan');
+        let decoder_auto_renew = document.getElementById('decoder_auto_renew');
+        // Access properties within the success object using dot notation
+        decoder_transaction_id.textContent = transactionDetails.success.transaction_id;
+        // Parse the timestamp string
+        let decoderParsedTimestamp = new Date(transactionDetails.success.paid_at);
+        decoder_transaction_date.textContent = decoderParsedTimestamp.toLocaleString(); // Adjust the format as needed
+        let decoderTransactionAmountString = transactionDetails.success.amount;
+        decoder_transaction_amount.textContent = formatNumberToNaira(decoderTransactionAmountString);
+        // data_service_name.textContent = transactionDetails.success.service_type;
+        decoder_transaction_method.textContent = transactionDetails.success.transaction_type;
+        decoder_transaction_status.textContent = transactionDetails.success.transaction_status;
+        decoder_users_name.textContent = transactionDetails.success.user_name;
+        decoder_operator.textContent = transactionDetails.service.network_plan;
+        decoder_recharged_number.textContent = transactionDetails.service.phone_number;
+        decoder_plan.textContent = transactionDetails.service.bundle;
+        decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
+        break;
     default:
         let availableBalanceString = transactionDetails.balance;
         displayErrorMessage(formatNumberToNaira(availableBalanceString));
