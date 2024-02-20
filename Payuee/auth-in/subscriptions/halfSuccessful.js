@@ -38,24 +38,13 @@ window.onload = async function () {
 }
 
 function getSuccessMessage(transactionDetails) {
-    var payment_condition = document.getElementById('payment_condition');
-    var payment_display_message = document.getElementById('payment_display_message');
+    var user_name = document.getElementById('user_name');
+    var service = document.getElementById('service');
     var available_balance = document.getElementById('available_balance');
-    // var recharged_number;
-    // var airtime_type;
-    // var data_recharged_number;
-    
-    // let's change to payment unsuccessful
-    payment_condition.textContent = 'Transaction Successful'
 
-    payment_display_message.textContent = 'Congratulations! Your Transaction is Successfully Processed!'
-
-    // Access balance directly
-    let availableBalanceString = transactionDetails.balance;
-    available_balance.textContent = formatNumberToNaira(availableBalanceString);
-    
-    let serviceType = transactionDetails.success.service_type;
-
+    user_name.textContent = 'John Doe';
+    service.textContent = 'John Doe';
+    available_balance.textContent = 'John Doe';
 
 }
 
