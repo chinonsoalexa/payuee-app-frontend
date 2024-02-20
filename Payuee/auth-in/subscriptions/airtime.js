@@ -159,10 +159,8 @@ function buy_airtime(){
             let updatedTransactionCharge = TransactionCharge + 20;      
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = amountInputNumber + updatedTransactionCharge;
-            let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
-            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
-            // console.log('updated total charge is: ' + updatedTotalCharge)
+            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
         }
         // let's update the phone number to be recharged
         phone_number.textContent = phone;

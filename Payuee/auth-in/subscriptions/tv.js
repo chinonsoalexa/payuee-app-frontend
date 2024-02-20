@@ -129,17 +129,10 @@ function decoder_subscription(){
     // let's check the radio button that was checked
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    // console.log('Checked radio button:', paymentMethod);
-
     // let's send a post request to make an airtime purchase
 
-        console.log('here 0');
-        console.log('this is validated status: ' + validated);
-        // reactivateButtonStyles('tv-button')
     if (validated) {
-        console.log('here 1');
         disableTvDiv();
-        console.log('here 2');
          // now our invoice div is enabled let's supply it data gotten from the airtime div
         // Get the span element by its id
         var invoice_date = document.getElementById('invoice_date');
@@ -160,29 +153,23 @@ function decoder_subscription(){
         console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
-            // paymentMethod = "wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            console.log('this is decoderPlanPrice wallet: ' +decoderPlanPrice)
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
             invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
             // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
-            // paymentMethod = "paystack";
             // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
             let TransactionCharge = (percentage / 100) * decoderPlanPrice;
             let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
-            invoice_charge.textContent = formatNumberToNaira(Math.ceil(updatedTransactionCharge));
+            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
-            // let totalChargeForPaystack = decoderPlanPrice + updatedTransactionCharge;
-            console.log('this is decoderPlanPrice paystack: ' +decoderPlanPrice);
-            console.log('this is decoder transaction Price paystack: ' +Math.ceil(updatedTransactionCharge));
-            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice + Math.ceil(updatedTransactionCharge));
+            decoderPlanPrice = parseFloat(decoderPlanPrice) + updatedTransactionCharge;
+            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
         }
-        console.log('decoder text type: ' + decoderTextType);
-        console.log('decoder plan type: ' + decoderPlanText);
+        
         // let's update the phone number to be recharged
         phone_number.textContent = mobileNumber;
         invoice_decoder_operator.textContent = decoderTextType;
