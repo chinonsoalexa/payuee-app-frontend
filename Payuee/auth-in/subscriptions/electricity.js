@@ -84,13 +84,10 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
 
             const responseData = await response.json();
 
-                // console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
-                    // console.log('here 2')
                     window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                     return
                 } else {
-                // console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
                 }
@@ -110,11 +107,11 @@ electricBill = parseInt(amountInput.value, 10);
 
 // let's get the selected value for electric state
 electricSelectValue = getSelectedValue("electricSelect");
-console.log("selected electric value: ", electricSelectValue);
+// console.log("selected electric value: ", electricSelectValue);
 
 // let's get the selected text for electric state
 electricSelectText = getSelectedText("electricSelect");
-console.log("selected electric text: ", electricSelectText);
+// console.log("selected electric text: ", electricSelectText);
 
 if (phone.length > 11 || phone.length < 11) {
     validated = false;
