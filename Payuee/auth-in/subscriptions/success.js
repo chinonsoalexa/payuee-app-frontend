@@ -199,9 +199,9 @@ function getSuccessMessage(transactionDetails) {
         decoder_transaction_method.textContent = transactionDetails.success.transaction_type;
         decoder_transaction_status.textContent = transactionDetails.success.transaction_status;
         decoder_users_name.textContent = transactionDetails.success.user_name;
-        decoder_operator.textContent = transactionDetails.service.network_plan;
+        decoder_operator.textContent = transactionDetails.service.service_id;
         decoder_recharged_number.textContent = transactionDetails.service.phone_number;
-        decoder_plan.textContent = transactionDetails.service.bundle;
+        decoder_plan.textContent = transactionDetails.service.plan;
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
     default:
