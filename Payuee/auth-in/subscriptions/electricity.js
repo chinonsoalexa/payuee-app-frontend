@@ -1,42 +1,48 @@
+var validated = true
+
 document.getElementById('electricity-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    pay_electricity_bill()
+    pay_electricity_bill();
 })
 
 document.getElementById('back-to-tv').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
-    enableElectricityDiv()
+    enableElectricityDiv();
 })
 
 function pay_electricity_bill(){
-var validated = true
 // let's take all fields and validate
 var phone = document.getElementById("phone-number").value;
 var meterNumber = document.getElementById("meter-number").value;
 var amountInput = document.getElementById("bill-amount");
 var amount = parseInt(amountInput.value, 10);
-// let's get the selected value
-var selectedCarrierValue = getSelectedValue("carrierSelect");
-console.log(selectedCarrierValue)
 
-if (phone.length > 12 || phone.length < 11) {
-    validated = false
+// let's get the selected value for electric state
+var selectedCarrierValue = getSelectedValue("electricSelect");
+console.log("selected electric value: ", selectedCarrierValue);
+
+// let's get the selected text for electric state
+var selectedCarrierValue = getSelectedText("electricSelect");
+console.log("selected electric text: ", selectedCarrierValue);
+
+if (phone.length > 11 || phone.length < 11) {
+    validated = false;
     showError('phone-error', 'Phone number should be at least 11 digits.');
 }
 
 if (isNaN(amount) || amount > 10000 || amount < 1000) {
-    validated = false
+    validated = false;
     showError('bill-error', 'Minimum: ₦1,000.00 and Maximum: ₦10,000.00');
 }
 console.log(amount)
 
 if (meterNumber === '') {
-    validated = false
-    showError('meter-error', 'meter number should not be empty.');
+    validated = false;
+    showError('meter-error', "Meter Number can not be empty.");
 }
-console.log(meterNumber)
+console.log(meterNumber);
 
 // let's check the radio button that was checked
 let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
@@ -46,7 +52,7 @@ console.log('Checked radio button:', checkedButton);
 // let's send a post request to make an airtime purchase
 
 if (validated) {
-    disableElectricityDiv()
+    disableElectricityDiv();
 
 }
 }
@@ -61,6 +67,21 @@ function getSelectedValue(id) {
     // Return the selected value
     return selectedValue;
 }
+
+function getSelectedText(id) {
+    // Get the select element by its ID
+    var selectElement = document.getElementById(id);
+
+    // Get the selected option
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+    // Get the text content of the selected option
+    var selectedText = selectedOption.text || selectedOption.innerText;
+
+    // Return the selected text
+    return selectedText;
+}
+
 
 function showError(id, message, duration = 5000) {
     var errorElement = document.getElementById(id);

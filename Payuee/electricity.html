@@ -361,14 +361,14 @@
                      </h5>
                      <div class="prepaid__option">
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
-                           <label class="form-check-label" for="pyradio2page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="wallet" checked>
+                           <label class="form-check-label" for="wallet">
                              Wallet
                            </label>
                          </div>
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
-                           <label class="form-check-label" for="pyradio1page">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
+                           <label class="form-check-label" for="paystack">
                              External Bank
                            </label>
                          </div>
@@ -376,19 +376,16 @@
                      <form action="#" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
-                              <select name="niceselect" id="carrierSelect">
+                              <select name="niceselect" id="electricSelect">
                                  <option value="abuja-electric">
                                     Abuja (AEDC)
                                  </option>
-                                 <option value="3">
+                                 <option value="benin-electric">
                                     Benin-Electric (BEDC)
                                  </option>
                                  <option value="eko-electric">
                                     Eko (EKEDC)
                                  </option>
-                                 <!-- <option value="2">
-                                    Enugu
-                                 </option> -->
                                  <option value="ibadan-electric">
                                     Ibadan (IBEDC)
                                  </option>
@@ -423,22 +420,12 @@
                            </div>
                         </div>
                      </form>
-                     <!-- <div class="payment__check d-flex justify-content-start"> -->
-                        <!-- <div class="prepaid__option">
-                           <div class="prepaid__check">
-                              <input class="form-check-input1" type="checkbox" name="flexRadioDefault" id="pyradio2page" checked>
-                              <label class="form-check-label1" for="pyradio2page">
-                                Wallet
-                              </label>
-                            </div>
-                           <div class="prepaid__check">
-                              <input class="form-check-input1" type="checkbox" name="flexRadioDefault" id="pyradio1page">
-                              <label class="form-check-label1" for="pyradio1page">
-                                External Bank
-                              </label>
-                            </div>
-                        </div> -->
-                     <!-- </div> -->
+                     <div class="payment__check d-flex justify-content-start">
+                        <input class="form-check-input" type="checkbox" id="autoRenewDecoder">
+                        <label class="form-check-label" for="autoRenewDecoder">
+                           Auto renew this plan every month
+                        </label>
+                     </div>
                      <a id="electricity-button" href="#" class="cmn__btn mt-5">
                         <span>
                            Continue recharge
