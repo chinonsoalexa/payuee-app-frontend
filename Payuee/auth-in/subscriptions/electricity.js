@@ -27,13 +27,13 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
 
         deactivateButtonStyles('continue-sub-electricity');
         const user = {
-            PaymentType: paymentMethod,
             ServiceID: "electricity",
-            Price:  Math.ceil(electricBill), 
-            PhoneNumber: phone,
-            RegionID:      electricSelectValue,
+            PaymentType: paymentMethod,
             Region:       electricSelectText,
+            RegionID:      electricSelectValue,
             MeterNumber: meterNumber,
+            PhoneNumber: phone,
+            Price:  Math.ceil(electricBill), 
             AutoRenew:   autoRenew,
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
