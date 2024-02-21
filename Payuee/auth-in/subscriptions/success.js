@@ -176,6 +176,7 @@ function getSuccessMessage(transactionDetails) {
         break;
     case "decoder":
         enableDiv('decoder-section');
+        console.log(transactionDetails);
             // data fields
         let decoder_transaction_id = document.getElementById('data_transaction_id');
         let decoder_transaction_date = document.getElementById('data_transaction_date');

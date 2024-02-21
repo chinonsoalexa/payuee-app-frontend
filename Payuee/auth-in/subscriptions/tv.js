@@ -95,7 +95,7 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
             Plan:          decoderPlanText,
             AutoRenew:   autoRenew,
         };
-        console.log('this is the data to be sent: ' + JSON.stringify(user));
+        // console.log('this is the data to be sent: ' + JSON.stringify(user));
 
         const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
 
@@ -143,13 +143,13 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
 
             const responseData = await response.json();
 
-                console.log('here 1')
+                // console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
-                    console.log('here 2')
+                    // console.log('here 2')
                     window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                     return
                 } else {
-                console.log('here 3')
+                // console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
                 }
