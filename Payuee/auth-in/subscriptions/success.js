@@ -178,14 +178,14 @@ function getSuccessMessage(transactionDetails) {
         enableDiv('decoder-section');
         console.log(transactionDetails);
             // data fields
-        let decoder_transaction_id = document.getElementById('data_transaction_id');
-        let decoder_transaction_date = document.getElementById('data_transaction_date');
-        let decoder_transaction_amount = document.getElementById('data_transaction_amount');
+        let decoder_transaction_id = document.getElementById('decoder_transaction_id');
+        let decoder_transaction_date = document.getElementById('decoder_transaction_date');
+        let decoder_transaction_amount = document.getElementById('decoder_transaction_amount');
         // let decoder_service_name = document.getElementById('data_service_name');
         let decoder_transaction_method = document.getElementById('data_transaction_method');
         let decoder_transaction_status = document.getElementById('data_transaction_status');
-        let decoder_users_name = document.getElementById('data_users_name');
-        let decoder_recharged_number = document.getElementById('data_recharged_number');
+        let decoder_users_name = document.getElementById('decoder_users_name');
+        let decoder_recharged_number = document.getElementById('decoder_recharged_number');
         let decoder_operator = document.getElementById('decoder_operator');
         let decoder_plan = document.getElementById('decoder_plan');
         let decoder_auto_renew = document.getElementById('decoder_auto_renew');
