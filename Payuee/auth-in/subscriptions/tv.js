@@ -81,11 +81,6 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
     event.preventDefault();
 
     if (validated) {
-    // console.log(decoderType);
-    // console.log(decoderTextType);
-    // console.log(decoderPlanValue);
-    // console.log(decoderPlanText);
-    // console.log(decoderPlanPrice);
 
         deactivateButtonStyles('continue-sub-decoder');
         const user = {
@@ -343,7 +338,7 @@ function insufficientFunds() {
     const cancelButton = document.getElementById('cancel-btn');
     const balance = document.getElementById('insufficientFunds');
 
-    balance.textContent = formatNumberToNaira(totalCharge);
+    balance.textContent = formatNumberToNaira(decoderPlanPrice);
 
       installPopup.style.display = 'block';
 
