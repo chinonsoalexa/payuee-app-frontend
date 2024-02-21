@@ -1,6 +1,7 @@
 var phone;
+var autoRenew;
 var meterNumber;
-var amount;
+var electricBill;
 var electricSelectValue;
 var electricSelectText;
 var paymentMethod;
@@ -24,17 +25,15 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
 
     if (validated) {
 
-        deactivateButtonStyles('continue-sub-decoder');
+        deactivateButtonStyles('continue-sub-electricity');
         const user = {
             PaymentType: paymentMethod,
-            ServiceID: "decoder",
-            Price:  Math.ceil(decoderPlanPrice), 
-            PhoneNumber: mobileNumber,
-            Operator:      decoderType,
-            Bundle:       decoderPlanText,
-            DecoderNumber: decoderNumber,
-            VariationID:   decoderPlanValue,
-            Plan:          decoderPlanText,
+            ServiceID: "electricity",
+            Price:  Math.ceil(electricBill), 
+            PhoneNumber: phone,
+            RegionID:      electricSelectValue,
+            Region:       electricSelectText,
+            MeterNumber: meterNumber,
             AutoRenew:   autoRenew,
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
@@ -96,7 +95,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
                 return
                 }
         } finally {
-            reactivateButtonStyles('continue-sub-decoder');
+            reactivateButtonStyles('continue-sub-electricity');
         }
     }
 });
@@ -105,9 +104,9 @@ function pay_electricity_bill(){
 // let's take all fields and validate
 phone = document.getElementById("phone-number").value;
 let meterNumberValue = document.getElementById("meter-number").value;
-meterNumber = parseInt(meterNumberValue.value, 10);
+meterNumber = parseInt(meterNumberValue, 10);
 var amountInput = document.getElementById("bill-amount");
-amount = parseInt(amountInput.value, 10);
+electricBill = parseInt(amountInput.value, 10);
 
 // let's get the selected value for electric state
 electricSelectValue = getSelectedValue("electricSelect");
@@ -122,7 +121,7 @@ if (phone.length > 11 || phone.length < 11) {
     showError('phone-error', 'Phone number should be at least 11 digits');
 }
 
-if (isNaN(amount) || amount > 10000 || amount < 1000) {
+if (isNaN(electricBill) || electricBill > 10000 || electricBill < 1000) {
     validated = false;
     showError('bill-error', 'Minimum: ₦1,000.00 and Maximum: ₦10,000.00');
 }
@@ -142,6 +141,15 @@ paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
 // console.log('Checked radio button:', paymentMethod);
 
+var autorenewCheckbox = document.getElementById("autoRenewElectric");
+
+// Check if the checkbox is checked
+if (autorenewCheckbox.checked) {
+    autoRenew = true;
+} else {
+    autoRenew = false;
+}
+
 // let's send a post request to make an airtime purchase
 
 if (validated) {
@@ -152,7 +160,7 @@ if (validated) {
         var payment_method = document.getElementById('payment_method');
         var phone_number = document.getElementById('phone_number');
         var invoice_electric_region = document.getElementById('invoice_electric_region');
-        var invoice_electric_region_id = document.getElementById('invoice_electric_region_id');
+        // var invoice_electric_region_id = document.getElementById('invoice_electric_region_id');
         var invoice_electric_auto_renew = document.getElementById('invoice_electric_auto_renew');
         var invoice_electric_meter_number = document.getElementById('invoice_electric_meter_number');
         var invoice_charge = document.getElementById('invoice_charge');
@@ -165,27 +173,27 @@ if (validated) {
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
-            invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
-            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            invoice_service_charge.textContent = formatNumberToNaira(electricBill);
+            invoice_total_charge.textContent = formatNumberToNaira(electricBill);
             // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
             let percentage = 1.5;
             // Calculate 1.5% of the original number
-            let TransactionCharge = (percentage / 100) * decoderPlanPrice;
+            let TransactionCharge = (percentage / 100) * electricBill;
             let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
-            decoderPlanPrice = parseFloat(decoderPlanPrice) + updatedTransactionCharge;
-            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            invoice_service_charge.textContent = formatNumberToNaira(electricBill);
+            electricBill = parseFloat(electricBill) + updatedTransactionCharge;
+            invoice_total_charge.textContent = formatNumberToNaira(electricBill);
         }
         
         // let's update the phone number to be recharged
-        phone_number.textContent = mobileNumber;
-        invoice_decoder_operator.textContent = decoderTextType;
-        invoice_decoder_plan.textContent = decoderPlanText;
-        invoice_decoder_auto_renew.textContent = autoRenew;
+        phone_number.textContent = phone;
+        invoice_electric_region.textContent = electricSelectText;
+        invoice_electric_meter_number.textContent = meterNumber;
+        invoice_electric_auto_renew.textContent = autoRenew;
 }
 }
 
@@ -213,7 +221,6 @@ function getSelectedText(id) {
     // Return the selected text
     return selectedText;
 }
-
 
 function showError(id, message, duration = 5000) {
     var errorElement = document.getElementById(id);
@@ -260,4 +267,83 @@ function enableElectricityDiv() {
 
     document.getElementById('invoice-section').classList.add('disabled');
     document.getElementById('invoice-section').disabled = true;
+}
+
+function getCurrentDate() {
+    // Get the current date
+    var currentDate = new Date();
+
+    // Extract day, month, and year components
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
+    var year = currentDate.getFullYear();
+
+    // Ensure two-digit format for day and month
+    day = (day < 10) ? '0' + day : day;
+    month = (month < 10) ? '0' + month : month;
+
+    // Format the date as "DD/MM/YYYY"
+    var formattedDate = day + '/' + month + '/' + year;
+    return formattedDate;
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles(tv_button) {
+    var resendButton = document.getElementById(tv_button);
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles(tv_button) {
+    var resendButton = document.getElementById(tv_button);
+    // Remove all existing classes
+    resendButton.className = '';
+    // Add the original class 'cmn__btn'
+    resendButton.classList.add('cmn__btn');
+}
+
+function insufficientFunds() {
+    const installPopup = document.getElementById('balance-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const balance = document.getElementById('insufficientFunds');
+
+    balance.textContent = formatNumberToNaira(decoderPlanPrice);
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+}
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+
+        // const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
