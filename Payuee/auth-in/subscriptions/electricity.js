@@ -1,3 +1,10 @@
+var phone;
+var meterNumber;
+var amount;
+var electricSelectValue;
+var electricSelectText;
+var paymentMethod;
+
 var validated = true
 
 document.getElementById('electricity-button').addEventListener('click', function(event) {
@@ -12,42 +19,128 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
     enableElectricityDiv();
 })
 
+document.getElementById('continue-sub-electricity').addEventListener('click', async function(event) {
+    event.preventDefault();
+
+    if (validated) {
+
+        deactivateButtonStyles('continue-sub-decoder');
+        const user = {
+            PaymentType: paymentMethod,
+            ServiceID: "decoder",
+            Price:  Math.ceil(decoderPlanPrice), 
+            PhoneNumber: mobileNumber,
+            Operator:      decoderType,
+            Bundle:       decoderPlanText,
+            DecoderNumber: decoderNumber,
+            VariationID:   decoderPlanValue,
+            Plan:          decoderPlanText,
+            AutoRenew:   autoRenew,
+        };
+        // console.log('this is the data to be sent: ' + JSON.stringify(user));
+
+        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(user),
+        };
+
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+
+            console.log(response);
+            if (!response.ok) {
+                const errorData = await response.json();
+
+                console.log(errorData);
+
+                if (errorData.error === 'User already exist, please login') {
+                    showError('passwordError', 'User already exists. Please signin.');
+                } else if  (errorData.error === 'Please login using your google account') {
+                    showError('passwordError', 'Please login using your google account.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                } else if  (errorData.error === 'email verification failed') {
+                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+                } else if  (errorData.error === 'User already exist, please signin') {
+                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                } else if  (errorData.error === 'insufficient funds') {
+                    insufficientFunds();
+                } else {
+                    showError('passwordError', 'An error occurred. Please try again.');
+                }
+
+                return;
+            }
+
+            const responseData = await response.json();
+
+                // console.log('here 1')
+                if (responseData.success == 'data successfully bought') {
+                    // console.log('here 2')
+                    window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+                    return
+                } else {
+                // console.log('here 3')
+                window.location.href = responseData.success.data.authorization_url;
+                return
+                }
+        } finally {
+            reactivateButtonStyles('continue-sub-decoder');
+        }
+    }
+});
+
 function pay_electricity_bill(){
 // let's take all fields and validate
-var phone = document.getElementById("phone-number").value;
-var meterNumber = document.getElementById("meter-number").value;
+phone = document.getElementById("phone-number").value;
+let meterNumberValue = document.getElementById("meter-number").value;
+meterNumber = parseInt(meterNumberValue.value, 10);
 var amountInput = document.getElementById("bill-amount");
-var amount = parseInt(amountInput.value, 10);
+amount = parseInt(amountInput.value, 10);
 
 // let's get the selected value for electric state
-var selectedCarrierValue = getSelectedValue("electricSelect");
-console.log("selected electric value: ", selectedCarrierValue);
+electricSelectValue = getSelectedValue("electricSelect");
+console.log("selected electric value: ", electricSelectValue);
 
 // let's get the selected text for electric state
-var selectedCarrierValue = getSelectedText("electricSelect");
-console.log("selected electric text: ", selectedCarrierValue);
+electricSelectText = getSelectedText("electricSelect");
+console.log("selected electric text: ", electricSelectText);
 
 if (phone.length > 11 || phone.length < 11) {
     validated = false;
-    showError('phone-error', 'Phone number should be at least 11 digits.');
+    showError('phone-error', 'Phone number should be at least 11 digits');
 }
 
 if (isNaN(amount) || amount > 10000 || amount < 1000) {
     validated = false;
     showError('bill-error', 'Minimum: ₦1,000.00 and Maximum: ₦10,000.00');
 }
-console.log(amount)
+// console.log(amount)
 
 if (meterNumber === '') {
     validated = false;
-    showError('meter-error', "Meter Number can not be empty.");
+    showError('meter-error', "Meter number can not be empty.");
+}else if (meterNumber.length < 10 || meterNumber.length > 10) {
+    validated = false;
+    showError('meter-error', "Meter number should be at least 10 digits");
 }
-console.log(meterNumber);
+// console.log(meterNumber);
 
 // let's check the radio button that was checked
-let checkedButton = radioButtonCheck('input[name="flexRadioDefault"]');
+paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-console.log('Checked radio button:', checkedButton);
+// console.log('Checked radio button:', paymentMethod);
 
 // let's send a post request to make an airtime purchase
 
@@ -58,9 +151,10 @@ if (validated) {
         var invoice_date = document.getElementById('invoice_date');
         var payment_method = document.getElementById('payment_method');
         var phone_number = document.getElementById('phone_number');
-        var invoice_electric_operator = document.getElementById('invoice_electric_operator');
-        var invoice_electric_plan = document.getElementById('invoice_electric_plan');
+        var invoice_electric_region = document.getElementById('invoice_electric_region');
+        var invoice_electric_region_id = document.getElementById('invoice_electric_region_id');
         var invoice_electric_auto_renew = document.getElementById('invoice_electric_auto_renew');
+        var invoice_electric_meter_number = document.getElementById('invoice_electric_meter_number');
         var invoice_charge = document.getElementById('invoice_charge');
         var invoice_service_charge = document.getElementById('invoice_service_charge');
         var invoice_total_charge = document.getElementById('invoice_total_charge');

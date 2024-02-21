@@ -353,6 +353,7 @@
                </div>
             </div>
 
+            <!-- section for electric payment -->
             <div id="electricity-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-duration="2.5s">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
@@ -377,6 +378,9 @@
                         <div class="row g-4">
                            <div class="col-lg-6">
                               <select name="niceselect" id="electricSelect">
+                                 <option value="portharcourt-electric">
+                                    Port (PHED)
+                                 </option>
                                  <option value="abuja-electric">
                                     Abuja (AEDC)
                                  </option>
@@ -400,9 +404,6 @@
                                  </option>
                                  <option value="kano-electric">
                                     Kano (KEDCO)
-                                 </option>
-                                 <option value="portharcourt-electric">
-                                    Port (PHED)
                                  </option>
                               </select>
                            </div>
@@ -571,7 +572,7 @@
                               Service
                            </span>
                            <span>
-                              State
+                              Region
                            </span>
                            <span>
                               Meter Number
@@ -590,13 +591,13 @@
                            <span id="invoice_service">
                               Electricity Bill
                            </span>
-                           <span id="invoice_operator">
+                           <span id="invoice_electric_region">
                               Port (PHED)
                            </span>
-                           <span id="invoice_card_amount">
+                           <span id="invoice_electric_meter_number">
                               1032323283
                            </span>
-                           <span id="invoice_card_value">
+                           <span id="invoice_electric_auto_renew">
                               True
                            </span>
                            <span id="invoice_charge">
@@ -633,7 +634,7 @@
                            Back
                         </span>
                      </a>
-                     <a id="continue-buy-airtime" href="#" class="cmn__btn">
+                     <a id="continue-sub-electricity" href="#" class="cmn__btn">
                         <span class="print">
                            Continue
                         </span>
