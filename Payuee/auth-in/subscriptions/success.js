@@ -182,8 +182,8 @@ function getSuccessMessage(transactionDetails) {
         let decoder_transaction_date = document.getElementById('decoder_transaction_date');
         let decoder_transaction_amount = document.getElementById('decoder_transaction_amount');
         // let decoder_service_name = document.getElementById('data_service_name');
-        let decoder_transaction_method = document.getElementById('data_transaction_method');
-        let decoder_transaction_status = document.getElementById('data_transaction_status');
+        let decoder_transaction_method = document.getElementById('decoder_transaction_method');
+        let decoder_transaction_status = document.getElementById('decoder_transaction_status');
         let decoder_users_name = document.getElementById('decoder_users_name');
         let decoder_recharged_number = document.getElementById('decoder_recharged_number');
         let decoder_operator = document.getElementById('decoder_operator');
