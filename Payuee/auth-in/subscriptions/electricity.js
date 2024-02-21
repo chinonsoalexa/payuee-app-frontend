@@ -53,7 +53,45 @@ console.log('Checked radio button:', checkedButton);
 
 if (validated) {
     disableElectricityDiv();
+      // now our invoice div is enabled let's supply it data gotten from the airtime div
+        // Get the span element by its id
+        var invoice_date = document.getElementById('invoice_date');
+        var payment_method = document.getElementById('payment_method');
+        var phone_number = document.getElementById('phone_number');
+        var invoice_electric_operator = document.getElementById('invoice_electric_operator');
+        var invoice_electric_plan = document.getElementById('invoice_electric_plan');
+        var invoice_electric_auto_renew = document.getElementById('invoice_electric_auto_renew');
+        var invoice_charge = document.getElementById('invoice_charge');
+        var invoice_service_charge = document.getElementById('invoice_service_charge');
+        var invoice_total_charge = document.getElementById('invoice_total_charge');
 
+        // let's update all fields to user entered fields
+        // let's update the date field
+        invoice_date.textContent = getCurrentDate();
+        if (paymentMethod == "wallet") {
+            payment_method.textContent = "Wallet";
+            invoice_charge.textContent = '₦' + '0.00';
+            invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
+        }else if (paymentMethod == "paystack") {
+            payment_method.textContent = "Paystack";
+            // let's get the transaction charge of this transaction
+            let percentage = 1.5;
+            // Calculate 1.5% of the original number
+            let TransactionCharge = (percentage / 100) * decoderPlanPrice;
+            let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
+            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            decoderPlanPrice = parseFloat(decoderPlanPrice) + updatedTransactionCharge;
+            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+        }
+        
+        // let's update the phone number to be recharged
+        phone_number.textContent = mobileNumber;
+        invoice_decoder_operator.textContent = decoderTextType;
+        invoice_decoder_plan.textContent = decoderPlanText;
+        invoice_decoder_auto_renew.textContent = autoRenew;
 }
 }
 
