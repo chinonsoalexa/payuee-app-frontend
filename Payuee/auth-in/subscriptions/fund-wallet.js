@@ -47,3 +47,35 @@ function reactivateButtonStyles() {
     // Add the original class 'cmn__btn'
     resendButton.classList.add('cmn__btn');
 }
+
+// Get the input element
+const billAmountInput = document.getElementById('billAmountInput');
+const displayInput = document.getElementById('displayInput'); // Move this line up
+
+// Add an event listener for the input event
+billAmountInput.addEventListener('input', function() {
+    // Run your checks or functions here
+    checkAndProcessInput(this.value);
+});
+
+// Example function to check and process input
+function checkAndProcessInput(inputValue) {
+    if (inputValue.length === 0) {
+        displayInput.value = 'Transaction Charge';
+    } else {
+        let percentage = 1.5;
+        // Calculate 1.5% of the original number
+        let TransactionCharge = (percentage / 100) * inputValue;
+        let updatedTransactionCharge = TransactionCharge + 20;      
+        // Modify the value property
+        displayInput.value = formatNumberToNaira(updatedTransactionCharge);
+    }
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
+}
