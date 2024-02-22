@@ -204,10 +204,40 @@ function getSuccessMessage(transactionDetails) {
         decoder_plan.textContent = transactionDetails.service.plan;
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
-    default:
-        let availableBalanceString = transactionDetails.balance;
-        displayErrorMessage(formatNumberToNaira(availableBalanceString));
+    case "electricity":
+        enableDiv('decoder-section');
+        // console.log(transactionDetails);
+            // data fields
+        let electric_transaction_id = document.getElementById('electric_transaction_id');
+        let electric_transaction_date = document.getElementById('electric_transaction_date');
+        let electric_transaction_amount = document.getElementById('electric_transaction_amount');
+        // let electric_service_name = document.getElementById('electric_service_name');
+        let electric_transaction_method = document.getElementById('electric_transaction_method');
+        let electric_transaction_status = document.getElementById('electric_transaction_status');
+        let electric_users_name = document.getElementById('electric_users_name');
+        let electric_recharged_number = document.getElementById('electric_recharged_number');
+        let electric_region = document.getElementById('electric_region');
+        let electric_meter_number = document.getElementById('electric_meter_number');
+        let electric_auto_renew = document.getElementById('electric_auto_renew');
+        // Access properties within the success object using dot notation
+        electric_transaction_id.textContent = transactionDetails.success.transaction_id;
+        // Parse the timestamp string
+        let electricParsedTimestamp = new Date(transactionDetails.success.paid_at);
+        electric_transaction_date.textContent = electricParsedTimestamp.toLocaleString(); // Adjust the format as needed
+        electric_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
+        // data_service_name.textContent = transactionDetails.success.service_type;
+        electric_transaction_method.textContent = transactionDetails.success.transaction_type;
+        electric_transaction_status.textContent = transactionDetails.success.transaction_status;
+        electric_users_name.textContent = transactionDetails.success.user_name;
+        electric_region.textContent = transactionDetails.service.service_id;
+        electric_recharged_number.textContent = transactionDetails.service.phone_number;
+        electric_meter_number.textContent = transactionDetails.service.plan;
+        electric_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
+    default:
+    let availableBalanceString = transactionDetails.balance;
+    displayErrorMessage(formatNumberToNaira(availableBalanceString));
+    break;
     }
 }
 
