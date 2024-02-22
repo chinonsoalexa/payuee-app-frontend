@@ -205,7 +205,7 @@ function getSuccessMessage(transactionDetails) {
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
     case "electricity":
-        enableDiv('decoder-section');
+        enableDiv('electricity-section');
         // console.log(transactionDetails);
             // data fields
         let electric_transaction_id = document.getElementById('electric_transaction_id');
@@ -229,9 +229,9 @@ function getSuccessMessage(transactionDetails) {
         electric_transaction_method.textContent = transactionDetails.success.transaction_type;
         electric_transaction_status.textContent = transactionDetails.success.transaction_status;
         electric_users_name.textContent = transactionDetails.success.user_name;
-        electric_region.textContent = transactionDetails.service.service_id;
+        electric_region.textContent = transactionDetails.service.region;
         electric_recharged_number.textContent = transactionDetails.service.phone_number;
-        electric_meter_number.textContent = transactionDetails.service.plan;
+        electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
     default:
