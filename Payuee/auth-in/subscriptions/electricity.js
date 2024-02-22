@@ -33,7 +33,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             RegionID:      electricSelectValue,
             MeterNumber: meterNumber,
             PhoneNumber: phone,
-            Price:  Math.ceil(electricBill), 
+            Price:      electricBill, 
             AutoRenew:   autoRenew,
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
@@ -55,8 +55,6 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
-
-                console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
