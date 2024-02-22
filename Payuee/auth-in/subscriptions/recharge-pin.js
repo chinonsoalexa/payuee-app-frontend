@@ -93,10 +93,12 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 });
 
 function buy_recharge_pin(){
+    validated = true
+
     // let's take all fields and validate
     amountInput = document.getElementById("pin-number").value;
     var amount = parseInt(amountInput, 10);
-    var description = document.getElementById("description").value;
+    // var description = document.getElementById("description").value;
 
     // let's get the selected value
     selectedRechargeValue = getSelectedValue("rechargeSelect");

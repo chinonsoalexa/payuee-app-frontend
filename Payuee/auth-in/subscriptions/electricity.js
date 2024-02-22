@@ -96,6 +96,8 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
 });
 
 function pay_electricity_bill(){
+    validated = true
+
 // let's take all fields and validate
 phone = document.getElementById("phone-number").value;
 meterNumber = document.getElementById("meter-number").value;

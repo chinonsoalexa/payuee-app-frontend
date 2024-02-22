@@ -94,6 +94,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
 });
 
 function buy_education_pin(){
+    validated = true
 // let's take all fields and validate
 phone = document.getElementById("phone-number").value;
 // console.log(phone)

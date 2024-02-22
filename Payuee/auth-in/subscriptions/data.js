@@ -100,6 +100,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 });
 
 function buy_data(){
+    validated = true
     // let's take all fields and validate
     phone = document.getElementById("phone-number").value;
 

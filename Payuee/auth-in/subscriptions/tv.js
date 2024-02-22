@@ -160,6 +160,8 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
 });
 
 function decoder_subscription(){
+    validated = true
+
     // deactivateButtonStyles('tv-button');
     if (!clickedSelectPlan) {
         validated = false;
