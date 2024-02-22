@@ -17,34 +17,33 @@
 
     // Function to disable the div and its content
 function disablePaystackDiv() {
+    reactivateButtonStyles();
     document.getElementById('fund_payuee1').classList.remove('disabled');
     document.getElementById('fund_payuee1').disabled = false;
     document.getElementById('fund_payuee2').classList.remove('disabled');
     document.getElementById('fund_payuee2').disabled = false;
-    document.getElementById('fund_payuee3').classList.remove('disabled');
-    document.getElementById('fund_payuee3').disabled = false;
-    document.getElementById('fund_payuee4').classList.remove('disabled');
-    document.getElementById('fund_payuee4').disabled = false;
-
-    document.getElementById('fund_paystack1').classList.add('disabled');
-    document.getElementById('fund_paystack1').disabled = true;
-    document.getElementById('fund_paystack2').classList.add('disabled');
-    document.getElementById('fund_paystack2').disabled = true;
 }
 
 // Function to enable the div and its content
 function enablePaystackDiv() {
-    document.getElementById('fund_paystack1').classList.remove('disabled');
-    document.getElementById('fund_paystack1').disabled = false;
-    document.getElementById('fund_paystack2').classList.remove('disabled');
-    document.getElementById('fund_paystack2').disabled = false;
-
+    deactivateButtonStyles();
     document.getElementById('fund_payuee1').classList.add('disabled');
     document.getElementById('fund_payuee1').disabled = true;
     document.getElementById('fund_payuee2').classList.add('disabled');
     document.getElementById('fund_payuee2').disabled = true;
-    document.getElementById('fund_payuee3').classList.add('disabled');
-    document.getElementById('fund_payuee3').disabled = true;
-    document.getElementById('fund_payuee4').classList.add('disabled');
-    document.getElementById('fund_payuee4').disabled = true;
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles() {
+    var resendButton = document.getElementById('fund_wallet');
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles() {
+    var resendButton = document.getElementById('fund_wallet');
+    // Remove all existing classes
+    resendButton.className = '';
+    // Add the original class 'cmn__btn'
+    resendButton.classList.add('cmn__btn');
 }
