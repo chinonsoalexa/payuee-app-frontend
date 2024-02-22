@@ -17,7 +17,7 @@
 
     // Function to disable the div and its content
 function disablePaystackDiv() {
-    reactivateButtonStyles();
+    deactivateButtonStyles();
     document.getElementById('fund_payuee1').classList.remove('disabled');
     document.getElementById('fund_payuee1').disabled = false;
     document.getElementById('fund_payuee2').classList.remove('disabled');
@@ -26,7 +26,7 @@ function disablePaystackDiv() {
 
 // Function to enable the div and its content
 function enablePaystackDiv() {
-    deactivateButtonStyles();
+    reactivateButtonStyles();
     document.getElementById('fund_payuee1').classList.add('disabled');
     document.getElementById('fund_payuee1').disabled = true;
     document.getElementById('fund_payuee2').classList.add('disabled');
