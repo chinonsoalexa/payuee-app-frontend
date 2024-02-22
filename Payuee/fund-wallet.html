@@ -347,48 +347,47 @@
                   </div>
                </div>
             </div>
+
+            <!-- fund wallet section -->
             <div id="wallet-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
                      <h5 class="mb-4">
                         Fund Your Payuee Wallet
                      </h5>
+                     <div class="prepaid__option">
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="transfer" checked>
+                           <label class="form-check-label" for="transfer">
+                              Paystack
+                           </label>
+                         </div>
+                        <div class="prepaid__check">
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
+                           <label class="form-check-label" for="paystack">
+                              Bank Transfer
+                           </label>
+                         </div>
+                     </div>
+                     <p id="fund_payuee1" class="disabled">Fund Your Payuee Wallet Through Transfer</p>
+                     <p id="fund_payuee2" class="disabled">------------------------------------------------</p>
                      <form action="#" class="mb-3">
                         <div class="row g-4">
-                           <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select Payment Method
-                                 </option>
-                                 <option value="2">
-                                    ATM Card
-                                 </option>
-                                 <option value="3">
-                                    Bank Transfer
-                                 </option>
-                              </select>
+                           <div id="fund_paystack1" class="col-lg-6">
+                              <input type="text" placeholder="Enter Bill Amount">
                            </div>
-                           <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select State
-                                 </option>
-                                 <option value="2">
-                                    1st State
-                                 </option>
-                                 <option value="3">
-                                    2nd State
-                                 </option>
-                                 <option value="4">
-                                    3rd State
-                                 </option>
-                              </select>
+                           <div id="fund_paystack2" class="col-lg-6">
+                              <input type="text" id="displayInput" value="Transaction Charge" readonly>
                            </div>
-                           <div class="col-lg-6">
-                              <input type="text" placeholder="Enter Customer Number">
+                           <div id="fund_payuee3" class="col-lg-6 disabled">
+                              <p>Access Bank</p>
+                              <p>Payuee-Alex</p>
+                              <p>0442748239</p>
                            </div>
-                           <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Bill Amount">
+                           <div id="fund_payuee4" class="col-lg-6 disabled">
+                              <p>Wema Bank</p>
+                              <p>Payuee-Alex</p>
+                              <p>0124858992</p>
                            </div>
                         </div>
                      </form>
@@ -398,7 +397,7 @@
                            I Agree this payment system terms & condition
                         </label>
                      </div>
-                     <a href="order.html" class="cmn__btn mt-5">
+                     <a href="#" class="cmn__btn mt-5">
                         <span>
                            Continue recharge
                         </span>
@@ -499,6 +498,7 @@
                   </div>
                </div>
             </div>
+
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
                <div class="pay__sponsor__thumbtwo">
                   <img src="assets/img/banner/water2.jpg" alt="img">

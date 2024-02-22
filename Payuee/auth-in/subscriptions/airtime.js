@@ -121,8 +121,6 @@ function buy_airtime(){
     // let's check the radio button that was checked
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
-    // console.log('Checked radio button:', paymentMethod);
-
     // let's send a post request to make an airtime purchase
 
     if (validated) {
