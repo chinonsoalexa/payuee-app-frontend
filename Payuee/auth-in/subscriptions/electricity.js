@@ -180,7 +180,7 @@ if (validated) {
             let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             invoice_service_charge.textContent = formatNumberToNaira(electricBill);
-            electricBill = parseFloat(electricBill) + updatedTransactionCharge;
+            electricBill = electricBill + updatedTransactionCharge;
             invoice_total_charge.textContent = formatNumberToNaira(electricBill);
         }
         
