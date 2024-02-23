@@ -72,7 +72,6 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 } else if  (errorData.error === 'insufficient funds') {
-                    console.log('insufficient funds error: ', errorData.error)
                     insufficientFunds();
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');

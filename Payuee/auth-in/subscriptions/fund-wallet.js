@@ -149,7 +149,7 @@ function checkAndProcessInput(inputValue) {
         let TransactionCharge = (percentage / 100) * inputValue;
         let updatedTransactionCharge = TransactionCharge + 20;      
         // Modify the value property
-        billAmount = updatedTransactionCharge;
+        billAmount = updatedTransactionCharge + inputValue;
         displayInput.value = formatNumberToNaira(updatedTransactionCharge);
     }
 }
