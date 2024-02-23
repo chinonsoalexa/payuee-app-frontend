@@ -1,4 +1,85 @@
-    // Get the radio buttons by name
+var billAmount;
+var validated = true;
+
+document.getElementById('fund_wallet').addEventListener('click', async function(event) {
+event.preventDefault();
+  billAmount = Math.ceil(billAmount);
+
+if (billAmount <= 50) {
+    validated = false;
+    showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
+} 
+
+if (validated) {
+    deactivateButtonStyles();
+    const user = {
+        ServiceID: "fundWallet",
+        Amount:  billAmount,
+    };
+
+    // error message from paystack
+    // {"message":"Invalid Amount Sent","status":false}
+
+    const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(user),
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        console.log(response);
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            console.log(errorData);
+
+            if (errorData.error === 'User already exist, please login') {
+                showError('passwordError', 'User already exists. Please signin.');
+            } else if  (errorData.error === 'Please login using your google account') {
+                showError('passwordError', 'Please login using your google account.');
+            } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+            } else if  (errorData.error === 'email verification failed') {
+                showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
+            } else if  (errorData.error === 'User already exist, please signin') {
+                showError('passwordError', 'Please login, you already have an existing account with us.');
+            } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+            }else if  (errorData.error === 'No Authentication cookie found') {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                showError('passwordError', 'An error occurred. Please try again.');
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+
+        if (responseData.hasOwnProperty('success')){
+            if (responseData.success.hasOwnProperty('data')) {
+                window.location.href = responseData.success.data.authorization_url;
+                return
+            }
+        } else {
+            window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+            return
+        }
+    } finally {
+        reactivateButtonStyles();
+    }
+}
+});
+   
+   // Get the radio buttons by name
     const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
     // Add an event listener to each radio button
@@ -49,7 +130,7 @@ function reactivateButtonStyles() {
 }
 
 // Get the input element
-const billAmountInput = document.getElementById('billAmountInput');
+billAmount = document.getElementById('billAmountInput').value;
 const displayInput = document.getElementById('displayInput'); // Move this line up
 
 // Add an event listener for the input event
@@ -68,6 +149,7 @@ function checkAndProcessInput(inputValue) {
         let TransactionCharge = (percentage / 100) * inputValue;
         let updatedTransactionCharge = TransactionCharge + 20;      
         // Modify the value property
+        billAmount = updatedTransactionCharge;
         displayInput.value = formatNumberToNaira(updatedTransactionCharge);
     }
 }
@@ -78,4 +160,17 @@ function formatNumberToNaira(number) {
         currency: 'NGN',
         minimumFractionDigits: 2
     }).format(number);
+}
+
+function showError(id, message, duration = 5000) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
+
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
+        errorElement.textContent = ''; // Clear the error message
+        errorElement.style.display = 'none'; // Hide the error message
+    }, duration);
 }
