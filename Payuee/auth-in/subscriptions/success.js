@@ -234,6 +234,26 @@ function getSuccessMessage(transactionDetails) {
         electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_auto_renew.textContent = transactionDetails.service.auto_renew;
         break;
+    case "fundWallet":
+        enableDiv('fund-wallet-section');
+        // console.log(transactionDetails);
+            // data fields
+        let fund_wallet_transaction_id = document.getElementById('fund_wallet_transaction_id');
+        let fund_wallet_transaction_date = document.getElementById('fund_wallet_transaction_date');
+        let fund_wallet_transaction_amount = document.getElementById('fund_wallet_transaction_amount');
+        let fund_wallet_transaction_method = document.getElementById('fund_wallet_transaction_method');
+        let fund_wallet_transaction_status = document.getElementById('fund_wallet_transaction_status');
+        let fund_wallet_users_name = document.getElementById('fund_wallet_users_name');
+        // Access properties within the success object using dot notation
+        fund_wallet_transaction_id.textContent = transactionDetails.success.transaction_id;
+        // Parse the timestamp string
+        let fundWalletParsedTimestamp = new Date(transactionDetails.success.paid_at);
+        fund_wallet_transaction_date.textContent = fundWalletParsedTimestamp.toLocaleString(); // Adjust the format as needed
+        fund_wallet_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
+        fund_wallet_transaction_method.textContent = transactionDetails.success.transaction_type;
+        fund_wallet_transaction_status.textContent = transactionDetails.success.transaction_status;
+        fund_wallet_users_name.textContent = transactionDetails.success.user_name;
+        break;
     default:
     let availableBalanceString = transactionDetails.balance;
     displayErrorMessage(formatNumberToNaira(availableBalanceString));
