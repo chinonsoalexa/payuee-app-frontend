@@ -82,7 +82,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
 
             const responseData = await response.json();
 
-                if (responseData.success == 'data successfully bought') {
+                if (responseData.success == 'electricity token successfully bought') {
                     window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
                     return
                 } else {
