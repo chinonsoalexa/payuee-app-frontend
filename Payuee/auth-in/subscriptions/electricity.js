@@ -312,7 +312,7 @@ function insufficientFunds() {
     const cancelButton = document.getElementById('cancel-btn');
     const balance = document.getElementById('insufficientFunds');
 
-    balance.textContent = formatNumberToNaira(decoderPlanPrice);
+    balance.textContent = formatNumberToNaira(electricBill);
 
       installPopup.style.display = 'block';
 
