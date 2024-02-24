@@ -4,8 +4,11 @@ var validated = true;
 document.getElementById('fund_wallet').addEventListener('click', async function(event) {
 event.preventDefault();
   billAmount = Math.ceil(billAmount);
+  console.log('billAmount = ' + billAmount);
+// Get the input element
+let  firstBillAmount = parseInt(document.getElementById('billAmountInput').value, 10);
 
-if (billAmount < 50) {
+if (firstBillAmount < 50) {
     validated = false;
     showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
 } 
@@ -82,19 +85,19 @@ if (validated) {
    // Get the radio buttons by name
     const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
-    // Add an event listener to each radio button
-    radioButtons.forEach(button => {
-        button.addEventListener('change', function() {
-            // Perform your desired action here
-            console.log(`Selected option: ${this.id}`);
+// Add an event listener to each radio button
+radioButtons.forEach(button => {
+    button.addEventListener('change', function() {
+        // Perform your desired action here
+        console.log(`Selected option: ${this.id}`);
 
-            if (this.id === "transfer") {
-                enablePaystackDiv()
-            } else if (this.id === "paystack") { 
-                disablePaystackDiv()
-            }
-        });
+        if (this.id === "transfer") {
+            enablePaystackDiv()
+        } else if (this.id === "paystack") { 
+            disablePaystackDiv()
+        }
     });
+});
 
     // Function to disable the div and its content
 function disablePaystackDiv() {
@@ -137,8 +140,6 @@ function reactivateButtonStyles() {
     resendButton.classList.add('cmn__btn');
 }
 
-// Get the input element
-billAmount = document.getElementById('billAmountInput').value;
 const displayInput = document.getElementById('displayInput'); // Move this line up
 
 // Add an event listener for the input event
@@ -152,9 +153,10 @@ function checkAndProcessInput(inputValue) {
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
     } else {
-        let updatedTransactionCharge = calculateTotalCharge(inputValue);      
+        let updatedTransactionCharge = calculateTotalCharge(parseInt(inputValue));      
         // Modify the value property
-        billAmount = updatedTransactionCharge;
+        billAmount = updatedTransactionCharge + parseInt(inputValue);
+        console.log('billAmount111 = ' + billAmount);
         displayInput.value = formatNumberToNaira(updatedTransactionCharge);
     }
 }
