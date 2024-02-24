@@ -41,9 +41,6 @@ function getSuccessMessage(transactionDetails) {
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
-    // var recharged_number;
-    // var airtime_type;
-    // var data_recharged_number;
     
     // let's change to payment unsuccessful
     payment_condition.textContent = 'Transaction Successful'
@@ -71,6 +68,7 @@ function getSuccessMessage(transactionDetails) {
     let users_name = document.getElementById('users_name');
     let recharged_number = document.getElementById('recharged_number');
     let airtime_type = document.getElementById('airtime_type');    
+
     // Access properties within the success object using dot notation
     transaction_id.textContent = transactionDetails.success.transaction_id;
     // Parse the timestamp string
@@ -84,6 +82,8 @@ function getSuccessMessage(transactionDetails) {
     transaction_status.textContent = transactionDetails.success.transaction_status;
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
+    let backLink = document.getElementById('backLink');
+    backLink.href = "airtime.html"; // Let's redirect back to transaction page
     break;
     case "data":
         enableDiv('data-section');
