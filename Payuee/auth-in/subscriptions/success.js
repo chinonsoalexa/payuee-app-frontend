@@ -262,6 +262,8 @@ function getSuccessMessage(transactionDetails) {
         fund_wallet_transaction_method.textContent = transactionDetails.success.transaction_type;
         fund_wallet_transaction_status.textContent = transactionDetails.success.transaction_status;
         fund_wallet_users_name.textContent = transactionDetails.success.user_name;
+        let fundWalletBackLink = document.getElementById('backLink');
+        fundWalletBackLink.href = "fund-wallet.html"; // Let's redirect back to transaction page
         break;
     default:
     let availableBalanceString = transactionDetails.balance;
