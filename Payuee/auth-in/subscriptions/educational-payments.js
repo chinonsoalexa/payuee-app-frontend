@@ -118,7 +118,6 @@ if (emailPin.checked) {
     sendPin = false;
 }
 
-
 // let's send a post request to make an education pin purchase
 
 if (validated) {
@@ -150,11 +149,8 @@ if (validated) {
         // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
     }else if (paymentMethod == "paystack") {
         payment_method.textContent = "Paystack";
-            // let's get the transaction charge of this transaction
-        let percentage = 1.5;
-        // Calculate 1.5% of the original number
-        let TransactionCharge = (percentage / 100) * 3800;
-        let updatedTransactionCharge = TransactionCharge + 20;      
+        // let's get the transaction charge of this transaction
+        let updatedTransactionCharge = calculateTotalCharge(3800);      
         invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
         totalCharge = 3800 + updatedTransactionCharge;
         let totalChargeForPaystack = 3800 + updatedTransactionCharge;
@@ -162,7 +158,6 @@ if (validated) {
         invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
         // console.log('updated total charge is: ' + updatedTotalCharge)
     }
-    
 }
 }
 
@@ -240,6 +235,21 @@ try {
 function deactivateButtonStyles() {
     var resendButton = document.getElementById('continue-buy-pin');
     resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function calculateTotalCharge(originalPrice) {
+    let additionalPercentage = 1.5;
+    let paystackPercentage = 1.5;
+    
+    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
+    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    let secondPrice = totalAmount - originalPrice;
+
+    if (originalPrice > 5000) {
+        return Math.ceil(secondPrice += 25);
+    }
+
+    return Math.ceil(secondPrice += 5);
 }
 
 // Add this function to reactivate the button styles

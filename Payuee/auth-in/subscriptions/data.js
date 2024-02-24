@@ -151,11 +151,7 @@ function buy_data(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
-            let percentage = 1.5;
-            // Calculate 1.5% of the original number
-            let TransactionCharge = (percentage / 100) * totalCharge;
-            let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            invoice_charge.textContent = formatNumberToNaira(calculateTotalCharge(totalCharge));
             totalCharge = totalCharge + updatedTransactionCharge;
             invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
@@ -430,6 +426,21 @@ async function requestPlan(plan_id) {
         console.error('Error fetching plans:', error);
         // Handle other errors
     }
+}
+
+function calculateTotalCharge(originalPrice) {
+    let additionalPercentage = 1.5;
+    let paystackPercentage = 1.5;
+    
+    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
+    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    let secondPrice = totalAmount - originalPrice;
+
+    if (originalPrice > 5000) {
+        return Math.ceil(secondPrice += 25);
+    }
+
+    return Math.ceil(secondPrice += 5);
 }
 
 // for the plan operator selector

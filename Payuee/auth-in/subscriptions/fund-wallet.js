@@ -103,6 +103,10 @@ function disablePaystackDiv() {
     document.getElementById('fund_payuee1').disabled = false;
     document.getElementById('fund_payuee2').classList.remove('disabled');
     document.getElementById('fund_payuee2').disabled = false;
+    document.getElementById('fund_payuee3').classList.remove('disabled');
+    document.getElementById('fund_payuee3').disabled = false;
+    document.getElementById('fund_payuee4').classList.remove('disabled');
+    document.getElementById('fund_payuee4').disabled = false;
 }
 
 // Function to enable the div and its content
@@ -112,6 +116,10 @@ function enablePaystackDiv() {
     document.getElementById('fund_payuee1').disabled = true;
     document.getElementById('fund_payuee2').classList.add('disabled');
     document.getElementById('fund_payuee2').disabled = true;
+    document.getElementById('fund_payuee3').classList.add('disabled');
+    document.getElementById('fund_payuee3').disabled = true;
+    document.getElementById('fund_payuee4').classList.add('disabled');
+    document.getElementById('fund_payuee4').disabled = true;
 }
 
 // Add this function to remove onclick and on hover styles
@@ -144,12 +152,9 @@ function checkAndProcessInput(inputValue) {
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
     } else {
-        let percentage = 1.5;
-        // Calculate 1.5% of the original number
-        let TransactionCharge = (percentage / 100) * inputValue;
-        let updatedTransactionCharge = TransactionCharge + 20;      
+        let updatedTransactionCharge = calculateTotalCharge(inputValue);      
         // Modify the value property
-        billAmount = updatedTransactionCharge + inputValue;
+        billAmount = updatedTransactionCharge;
         displayInput.value = formatNumberToNaira(updatedTransactionCharge);
     }
 }
@@ -173,4 +178,19 @@ function showError(id, message, duration = 5000) {
         errorElement.textContent = ''; // Clear the error message
         errorElement.style.display = 'none'; // Hide the error message
     }, duration);
+}
+
+function calculateTotalCharge(originalPrice) {
+    let additionalPercentage = 1.5;
+    let paystackPercentage = 1.5;
+    
+    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
+    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    let secondPrice = totalAmount - originalPrice;
+
+    if (originalPrice > 5000) {
+        return Math.ceil(secondPrice += 25);
+    }
+
+    return Math.ceil(secondPrice += 5);
 }

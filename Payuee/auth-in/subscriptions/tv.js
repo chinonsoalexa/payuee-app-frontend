@@ -173,7 +173,6 @@ function decoder_subscription(){
         showError('decoder-operator-error', 'Please select an operator'); 
     }
 
-    // var description = document.getElementById("description").value;
     // let's get the selected value
     decoderNumber = document.getElementById("decoder-number").value;
 
@@ -243,10 +242,7 @@ function decoder_subscription(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
-            let percentage = 1.5;
-            // Calculate 1.5% of the original number
-            let TransactionCharge = (percentage / 100) * decoderPlanPrice;
-            let updatedTransactionCharge = TransactionCharge + 20; // Add NGN20 as processing fee
+            let updatedTransactionCharge = calculateTotalCharge(decoderPlanPrice); // Add NGN20 as processing fee
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
             decoderPlanPrice = parseFloat(decoderPlanPrice) + updatedTransactionCharge;
@@ -272,6 +268,21 @@ setTimeout(function () {
     errorElement.textContent = ''; // Clear the error message
     errorElement.style.display = 'none'; // Hide the error message
 }, duration);
+}
+
+function calculateTotalCharge(originalPrice) {
+    let additionalPercentage = 1.5;
+    let paystackPercentage = 1.5;
+    
+    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
+    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    let secondPrice = totalAmount - originalPrice;
+
+    if (originalPrice > 5000) {
+        return Math.ceil(secondPrice += 25);
+    }
+
+    return Math.ceil(secondPrice += 5);
 }
     
 function radioButtonCheck(idName) {
