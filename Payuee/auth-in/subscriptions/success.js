@@ -115,7 +115,7 @@ function getSuccessMessage(transactionDetails) {
         data_bundle.textContent = transactionDetails.service.bundle;
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
         let dataBackLink = document.getElementById('backLink');
-        dataBackLink.href = "airtime.html"; // Let's redirect back to transaction page
+        dataBackLink.href = "data.html"; // Let's redirect back to transaction page
         break;
     case "rechargePin":
         enableDiv('rechage-pin-section');
