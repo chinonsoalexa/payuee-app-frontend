@@ -151,7 +151,8 @@ function getSuccessMessage(transactionDetails) {
             console.log('this are the pin click event: ', transactionDetails.service.Pins);
             showCardPin(transactionDetails.service.Pins);
         })
-
+        let rechargePinBackLink = document.getElementById('backLink');
+        rechargePinBackLink.href = "recharge-pin.html"; // Let's redirect back to transaction page
         break;
     case "educationalPayment":
         enableDiv('educational-payments-section');
