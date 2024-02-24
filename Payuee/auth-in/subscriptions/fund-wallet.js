@@ -5,7 +5,7 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
 event.preventDefault();
   billAmount = Math.ceil(billAmount);
 
-if (billAmount <= 50) {
+if (billAmount < 50) {
     validated = false;
     showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
 } 
