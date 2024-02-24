@@ -176,6 +176,8 @@ function getSuccessMessage(transactionDetails) {
         education_users_name.textContent = transactionDetails.success.user_name;
         education_transaction_status.textContent = transactionDetails.success.transaction_status;
         education_recharged_number.textContent = transactionDetails.service.phone_number;
+        let educationalPaymentPinBackLink = document.getElementById('backLink');
+        educationalPaymentPinBackLink.href = "educational-payments.html"; // Let's redirect back to transaction page
         break;
     case "decoder":
         enableDiv('decoder-section');
@@ -206,6 +208,8 @@ function getSuccessMessage(transactionDetails) {
         decoder_recharged_number.textContent = transactionDetails.service.phone_number;
         decoder_plan.textContent = transactionDetails.service.plan;
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
+        let decoderBackLink = document.getElementById('backLink');
+        decoderBackLink.href = "tv.html"; // Let's redirect back to transaction page
         break;
     case "electricity":
         enableDiv('electricity-section');
@@ -236,6 +240,8 @@ function getSuccessMessage(transactionDetails) {
         electric_recharged_number.textContent = transactionDetails.service.phone_number;
         electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_auto_renew.textContent = transactionDetails.service.auto_renew;
+        let electricityBackLink = document.getElementById('backLink');
+        electricityBackLink.href = "electricity.html"; // Let's redirect back to transaction page
         break;
     case "fundWallet":
         enableDiv('fund-wallet-section');
