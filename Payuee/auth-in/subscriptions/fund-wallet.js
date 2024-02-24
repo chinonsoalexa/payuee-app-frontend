@@ -156,7 +156,6 @@ function checkAndProcessInput(inputValue) {
         let updatedTransactionCharge = calculateTotalCharge(parseInt(inputValue));      
         // Modify the value property
         billAmount = updatedTransactionCharge + parseInt(inputValue);
-        console.log('billAmount111 = ' + billAmount);
         displayInput.value = formatNumberToNaira(updatedTransactionCharge);
     }
 }
