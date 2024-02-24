@@ -82,8 +82,8 @@ function getSuccessMessage(transactionDetails) {
     transaction_status.textContent = transactionDetails.success.transaction_status;
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
-    let backLink = document.getElementById('backLink');
-    backLink.href = "airtime.html"; // Let's redirect back to transaction page
+    let airtimeBackLink = document.getElementById('backLink');
+    airtimeBackLink.href = "airtime.html"; // Let's redirect back to transaction page
     break;
     case "data":
         enableDiv('data-section');
@@ -114,6 +114,8 @@ function getSuccessMessage(transactionDetails) {
         data_recharged_number.textContent = transactionDetails.service.phone_number;
         data_bundle.textContent = transactionDetails.service.bundle;
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
+        let dataBackLink = document.getElementById('backLink');
+        dataBackLink.href = "airtime.html"; // Let's redirect back to transaction page
         break;
     case "rechargePin":
         enableDiv('rechage-pin-section');
