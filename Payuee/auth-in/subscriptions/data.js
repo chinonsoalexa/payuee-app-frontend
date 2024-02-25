@@ -5,6 +5,7 @@ var autoRenew
 var paymentMethod
 var totalCharge
 var validated = true
+var transCharge = 0;
 
 document.getElementById('buy-data').addEventListener('click', function(event) {
     event.preventDefault();
@@ -28,7 +29,8 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             ServiceID: "data",
             NetworkPlan: plan,
             Bundle:      bundle,
-            Price:  Math.ceil(totalCharge), 
+            Price:  totalCharge, 
+            TranCharge: transCharge,
             PhoneNumber: phone,
             AutoRenew:   autoRenew,
         };
@@ -151,13 +153,15 @@ function buy_data(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
-            invoice_charge.textContent = formatNumberToNaira(calculateTotalCharge(totalCharge));
+            let updatedTransactionCharge = calculateTotalCharge(totalCharge)
+            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = totalCharge + updatedTransactionCharge;
-            invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
+            transCharge = updatedTransactionCharge;
+            invoice_service_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
         }
         // let's update the phone number to be recharged
-        console.log(phone);
+        // console.log(phone);
         phone_number.textContent = phone;
         invoice_data_plan.textContent = plan;
         invoice_bundle.textContent = bundle;

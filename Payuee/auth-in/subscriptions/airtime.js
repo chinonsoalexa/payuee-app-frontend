@@ -1,10 +1,11 @@
-var validated = true
-var amountInput
-var amountInputNumber
-var phone
-var selectedCarrierValue
-var paymentMethod
-var totalCharge
+var validated = true;
+var transCharge = 0;
+var amountInput;
+var amountInputNumber;
+var phone;
+var selectedCarrierValue;
+var paymentMethod;
+var totalCharge;
 
 document.getElementById('airtime-button').addEventListener('click', function(event) {
         // Prevent the default behavior (in this case, the redirect)
@@ -24,13 +25,12 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
     if (validated) {
         deactivateButtonStyles();
         let intTotalCharge = parseInt(totalCharge, 10);
-        console.log('this is amount to be sent', intTotalCharge)
-        console.log('this is amount to be sent', totalCharge)
         const user = {
             ServiceID: "airtime",
             PaymentType: paymentMethod,
             Network:    selectedCarrierValue,
-            Price:  Math.ceil(intTotalCharge),
+            Price:  intTotalCharge,
+            TranCharge: transCharge,
             PhoneNumber: phone,
         };
 
@@ -151,9 +151,9 @@ function buy_airtime(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
-            let updatedTransactionCharge = calculateTotalCharge(amountInputNumber);      
+            transCharge = calculateTotalCharge(amountInputNumber);      
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            totalCharge = amountInputNumber + updatedTransactionCharge;
+            totalCharge = amountInputNumber;
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
         }

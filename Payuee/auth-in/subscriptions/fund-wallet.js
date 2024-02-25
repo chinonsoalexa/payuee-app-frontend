@@ -1,9 +1,9 @@
 var billAmount;
 var validated = true;
+var transCharge = 0;
 
 document.getElementById('fund_wallet').addEventListener('click', async function(event) {
 event.preventDefault();
-  billAmount = Math.ceil(billAmount);
 // Get the input element
 let  firstBillAmount = parseInt(document.getElementById('billAmountInput').value, 10);
 
@@ -19,6 +19,7 @@ if (validated) {
     const user = {
         ServiceID: "fundWallet",
         Amount:  billAmount,
+        TranCharge:  transCharge,
     };
 
     // error message from paystack
@@ -154,10 +155,10 @@ function checkAndProcessInput(inputValue) {
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
     } else {
-        let updatedTransactionCharge = calculateTotalCharge(parseInt(inputValue));      
+        transCharge = calculateTotalCharge(parseInt(inputValue));      
         // Modify the value property
-        billAmount = updatedTransactionCharge + parseInt(inputValue);
-        displayInput.value = formatNumberToNaira(updatedTransactionCharge);
+        billAmount = parseInt(inputValue);
+        displayInput.value = formatNumberToNaira(transCharge);
     }
 }
 
