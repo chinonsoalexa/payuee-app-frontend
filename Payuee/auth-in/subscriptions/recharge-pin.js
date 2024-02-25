@@ -1,4 +1,5 @@
 var totalCharge;
+var transCharge = 0;
 var selectedCarrierValue;
 var amountInput;
 var selectedRechargeValue;
@@ -27,6 +28,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
             PaymentType: paymentMethod,
             Network:    selectedCarrierValue,
             Price:  totalCharge,
+            TranCharge: transCharge,
             Value:       selectedRechargeValue,
             NumberOfPin: amountInput,
         };
@@ -147,7 +149,7 @@ function buy_recharge_pin(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
              // let's get the transaction charge of this transaction
-            let updatedTransactionCharge = calculateTotalCharge(amountInputNumber);
+            transCharge = calculateTotalCharge(amountInputNumber);
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
             totalCharge = amountInputNumber + updatedTransactionCharge;
             let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
