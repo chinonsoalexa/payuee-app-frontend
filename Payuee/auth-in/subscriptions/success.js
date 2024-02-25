@@ -136,8 +136,7 @@ function getSuccessMessage(transactionDetails) {
         // Parse the timestamp string
         let rechargePinDataParsedTimestamp = new Date(transactionDetails.success.paid_at);
         recharge_pin_transaction_date.textContent = rechargePinDataParsedTimestamp.toLocaleString(); // Adjust the format as needed
-        let rechargePinDataTransactionAmountString = transactionDetails.success.amount;
-        recharge_pin_transaction_amount.textContent = formatNumberToNaira(rechargePinDataTransactionAmountString);
+        recharge_pin_transaction_amount.textContent = formatNumberToNaira(transactionDetails.service.RechargePinDetails.amount);
         // recharge_pin_service_name.textContent = transactionDetails.success.service_type;
         recharge_pin_transaction_method.textContent = transactionDetails.success.transaction_type;
         recharge_pin_transaction_status.textContent = transactionDetails.success.transaction_status;
@@ -148,7 +147,7 @@ function getSuccessMessage(transactionDetails) {
         recharge_pin_purchased_pin.addEventListener('click', function(event) {
             // Prevent the default behavior (in this case, the redirect)
             event.preventDefault();
-            console.log('this are the pin click event: ', transactionDetails.service.Pins);
+            // console.log('this are the pin click event: ', transactionDetails.service.Pins);
             showCardPin(transactionDetails.service.Pins);
         })
         let rechargePinBackLink = document.getElementById('backLink');
