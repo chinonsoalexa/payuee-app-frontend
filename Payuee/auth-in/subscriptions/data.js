@@ -1,10 +1,10 @@
-var plan
-var phone
-var bundle
-var autoRenew
-var paymentMethod
-var totalCharge
-var validated = true
+var plan;
+var phone;
+var bundle;
+var autoRenew;
+var paymentMethod;
+var totalCharge;
+var validated = true;
 var transCharge = 0;
 
 document.getElementById('buy-data').addEventListener('click', function(event) {

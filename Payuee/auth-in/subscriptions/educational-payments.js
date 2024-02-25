@@ -2,7 +2,8 @@ var sendPin;
 var paymentMethod;
 var totalCharge;
 var phone;
-var validated = true
+var validated = true;
+var transCharge = 0;
 
 
 document.getElementById('education-button-id').addEventListener('click', function(event) {
@@ -26,6 +27,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
             PaymentType: paymentMethod,
             ServiceID: "educationalPayment",
             Price:  totalCharge, 
+            TranCharge: transCharge,
             PhoneNumber: phone,
             // EmailPin:   sendPin,
         };
@@ -150,10 +152,10 @@ if (validated) {
     }else if (paymentMethod == "paystack") {
         payment_method.textContent = "Paystack";
         // let's get the transaction charge of this transaction
-        let updatedTransactionCharge = calculateTotalCharge(3800);      
+        transCharge = calculateTotalCharge(3800);      
         invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-        totalCharge = 3800 + updatedTransactionCharge;
-        let totalChargeForPaystack = 3800 + updatedTransactionCharge;
+        totalCharge = 3800;
+        let totalChargeForPaystack = 3800 + transCharge;
         invoice_service_charge.textContent = formatNumberToNaira(3800);
         invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
         // console.log('updated total charge is: ' + updatedTotalCharge)
