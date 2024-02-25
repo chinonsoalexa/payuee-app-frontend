@@ -5,8 +5,8 @@ var electricBill;
 var electricSelectValue;
 var electricSelectText;
 var paymentMethod;
-
-var validated = true
+var validated = true; 
+var transCharge = 0;
 
 document.getElementById('electricity-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
@@ -34,6 +34,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             MeterNumber: meterNumber,
             PhoneNumber: phone,
             Price:      electricBill, 
+            TranCharge: transCharge,
             AutoRenew:   autoRenew,
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
@@ -175,11 +176,10 @@ if (validated) {
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
-            let updatedTransactionCharge = calculateTotalCharge(electricBill); // Add NGN20 as processing fee
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            transCharge = calculateTotalCharge(electricBill); // Add NGN20 as processing fee
+            invoice_charge.textContent = formatNumberToNaira(transCharge);
             invoice_service_charge.textContent = formatNumberToNaira(electricBill);
-            electricBill = electricBill + updatedTransactionCharge;
-            invoice_total_charge.textContent = formatNumberToNaira(electricBill);
+            invoice_total_charge.textContent = formatNumberToNaira(electricBill + transCharge);
         }
         
         // let's update the phone number to be recharged
