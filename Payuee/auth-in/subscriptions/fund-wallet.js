@@ -4,7 +4,6 @@ var validated = true;
 document.getElementById('fund_wallet').addEventListener('click', async function(event) {
 event.preventDefault();
   billAmount = Math.ceil(billAmount);
-  console.log('billAmount = ' + billAmount);
 // Get the input element
 let  firstBillAmount = parseInt(document.getElementById('billAmountInput').value, 10);
 
@@ -12,6 +11,8 @@ if (firstBillAmount < 50) {
     validated = false;
     showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
 } 
+
+console.log('bill to send: ', billAmount);
 
 if (validated) {
     deactivateButtonStyles();
@@ -187,7 +188,10 @@ function calculateTotalCharge(originalPrice) {
     
     // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
     let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    console.log("original price amount is " + Math.ceil(originalPrice));
+    console.log("Total amount is " + Math.ceil(totalAmount));
     let secondPrice = totalAmount - originalPrice;
+    console.log("second price amount is " + Math.ceil(secondPrice));
 
     if (originalPrice > 5000) {
         return Math.ceil(secondPrice += 25);
