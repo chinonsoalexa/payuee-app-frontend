@@ -11,7 +11,8 @@ var mobileNumber;
 // validation for selecting the decoder type
 var clickedSelectOperator = false;
 var clickedSelectPlan = false;
-var validated = true
+var validated = true;
+var transCharge = 0;
 
 document.getElementById('tv-button').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
@@ -86,7 +87,8 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
         const user = {
             PaymentType: paymentMethod,
             ServiceID: "decoder",
-            Price:  Math.ceil(decoderPlanPrice), 
+            Price:  decoderPlanPrice, 
+            TranCharge: transCharge,
             PhoneNumber: mobileNumber,
             Operator:      decoderType,
             Bundle:       decoderPlanText,
@@ -242,11 +244,10 @@ function decoder_subscription(){
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
             // let's get the transaction charge of this transaction
-            let updatedTransactionCharge = calculateTotalCharge(decoderPlanPrice); // Add NGN20 as processing fee
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            transCharge = calculateTotalCharge(decoderPlanPrice); // Add NGN20 as processing fee
+            invoice_charge.textContent = formatNumberToNaira(transCharge);
             invoice_service_charge.textContent = formatNumberToNaira(decoderPlanPrice);
-            decoderPlanPrice = parseFloat(decoderPlanPrice) + updatedTransactionCharge;
-            invoice_total_charge.textContent = formatNumberToNaira(decoderPlanPrice);
+            invoice_total_charge.textContent = formatNumberToNaira(parseFloat(decoderPlanPrice) + transCharge);
         }
         
         // let's update the phone number to be recharged
