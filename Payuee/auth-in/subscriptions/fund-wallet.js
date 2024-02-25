@@ -188,10 +188,10 @@ function calculateTotalCharge(originalPrice) {
     
     // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
     let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
-    console.log("original price amount is " + Math.ceil(originalPrice));
-    console.log("Total amount is " + Math.ceil(totalAmount));
+    // console.log("original price amount is " + Math.ceil(originalPrice));
+    // console.log("Total amount is " + Math.ceil(totalAmount));
     let secondPrice = totalAmount - originalPrice;
-    console.log("second price amount is " + Math.ceil(secondPrice));
+    // console.log("second price amount is " + Math.ceil(secondPrice));
 
     if (originalPrice > 5000) {
         return Math.ceil(secondPrice += 25);
