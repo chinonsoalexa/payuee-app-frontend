@@ -155,10 +155,9 @@ function buy_data(){
             // let's get the transaction charge of this transaction
             let updatedTransactionCharge = calculateTotalCharge(totalCharge)
             invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            totalCharge = totalCharge + updatedTransactionCharge;
             transCharge = updatedTransactionCharge;
             invoice_service_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
+            invoice_total_charge.textContent = formatNumberToNaira(totalCharge + updatedTransactionCharge);
         }
         // let's update the phone number to be recharged
         // console.log(phone);

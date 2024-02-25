@@ -12,7 +12,7 @@ if (firstBillAmount < 50) {
     showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
 } 
 
-console.log('bill to send: ', billAmount);
+// console.log('bill to send: ', billAmount);
 
 if (validated) {
     deactivateButtonStyles();

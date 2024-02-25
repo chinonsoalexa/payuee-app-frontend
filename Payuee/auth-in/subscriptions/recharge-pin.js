@@ -150,11 +150,9 @@ function buy_recharge_pin(){
             payment_method.textContent = "Paystack";
              // let's get the transaction charge of this transaction
             transCharge = calculateTotalCharge(amountInputNumber);
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
-            totalCharge = amountInputNumber + updatedTransactionCharge;
-            let totalChargeForPaystack = amountInputNumber + updatedTransactionCharge;
+            invoice_charge.textContent = formatNumberToNaira(transCharge);
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
-            invoice_total_charge.textContent = formatNumberToNaira(totalChargeForPaystack);
+            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber + transCharge);
         }
 
         // let's update the phone number to be recharged
