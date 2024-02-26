@@ -147,13 +147,14 @@ function buy_airtime(){
             totalCharge = amountInputNumber;
             invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber);
             invoice_service_charge.textContent = formatNumberToNaira(amountInput.value);
-            // console.log('updated total charge for wallet is: ' + updatedTotalCharge)
         }else if (paymentMethod == "paystack") {
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
             transCharge = calculateTotalCharge(amountInputNumber);      
-            invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+            console.log('transCharge: '+ transCharge);
+            invoice_charge.textContent = formatNumberToNaira(transCharge);
             totalCharge = amountInputNumber;
+            console.log('TotalCharge: '+ totalCharge);
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge + transCharge);
         }
