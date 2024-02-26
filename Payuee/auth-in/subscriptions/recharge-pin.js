@@ -23,6 +23,8 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 
     if (validated) {
         deactivateButtonStyles();
+        console.log('total charge: ', totalCharge)
+        console.log('transaction charge: ', transCharge)
         const user = {
             ServiceID: "rechargePin",
             PaymentType: paymentMethod,
@@ -151,9 +153,9 @@ function buy_recharge_pin(){
              // let's get the transaction charge of this transaction
             transCharge = calculateTotalCharge(amountInputNumber);
             invoice_charge.textContent = formatNumberToNaira(transCharge);
-            totalCharge =  amountInputNumber + transCharge
+            totalCharge =  amountInputNumber;
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
-            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
+            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber + transCharge);
         }
 
         // let's update the phone number to be recharged
