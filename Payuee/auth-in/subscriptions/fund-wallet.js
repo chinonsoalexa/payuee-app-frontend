@@ -10,7 +10,10 @@ let  firstBillAmount = parseInt(document.getElementById('billAmountInput').value
 if (firstBillAmount < 50) {
     validated = false;
     showError('bill_amount_error', 'Minimum Deposit: ₦50.00');
-} 
+} else if (firstBillAmount > 200000) {
+    validated = false;
+    showError('bill_amount_error', 'Maximum Deposit: ₦200,000.00');
+}
 
 // console.log('bill to send: ', billAmount);
 

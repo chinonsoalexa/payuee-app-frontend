@@ -153,7 +153,7 @@ if (validated) {
         payment_method.textContent = "Paystack";
         // let's get the transaction charge of this transaction
         transCharge = calculateTotalCharge(3800);      
-        invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+        invoice_charge.textContent = formatNumberToNaira(transCharge);
         totalCharge = 3800;
         let totalChargeForPaystack = 3800 + transCharge;
         invoice_service_charge.textContent = formatNumberToNaira(3800);
