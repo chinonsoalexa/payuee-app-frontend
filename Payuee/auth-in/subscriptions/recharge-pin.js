@@ -151,8 +151,9 @@ function buy_recharge_pin(){
              // let's get the transaction charge of this transaction
             transCharge = calculateTotalCharge(amountInputNumber);
             invoice_charge.textContent = formatNumberToNaira(transCharge);
+            totalCharge =  amountInputNumber + transCharge
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
-            invoice_total_charge.textContent = formatNumberToNaira(amountInputNumber + transCharge);
+            invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
         }
 
         // let's update the phone number to be recharged
