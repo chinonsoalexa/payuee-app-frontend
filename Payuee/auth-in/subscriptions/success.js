@@ -136,7 +136,7 @@ function getSuccessMessage(transactionDetails) {
         // Parse the timestamp string
         let rechargePinDataParsedTimestamp = new Date(transactionDetails.success.paid_at);
         recharge_pin_transaction_date.textContent = rechargePinDataParsedTimestamp.toLocaleString(); // Adjust the format as needed
-        recharge_pin_transaction_amount.textContent = formatNumberToNaira(transactionDetails.service.RechargePinDetails.amount);
+        recharge_pin_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
         // recharge_pin_service_name.textContent = transactionDetails.success.service_type;
         recharge_pin_transaction_method.textContent = transactionDetails.success.transaction_type;
         recharge_pin_transaction_status.textContent = transactionDetails.success.transaction_status;
