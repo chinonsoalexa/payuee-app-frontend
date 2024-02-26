@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 window.onload = async function () {
     const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
 
@@ -410,3 +412,4 @@ try {
         // do nothing
     }
 }
+});
