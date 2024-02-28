@@ -35,7 +35,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             AutoRenew:   autoRenew,
         };
         console.log('this is the data to be sent: ' + JSON.stringify(user));
-var value.data
+// var value.data
         // error message from paystack
         // {"message":"Invalid Amount Sent","status":false}
 
