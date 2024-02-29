@@ -517,7 +517,7 @@ function shareReceiptByEmail() {
     var receiptContent = pdfContentElement.innerHTML;
 
     // Create a mailto link with pre-populated subject and body
-    var mailtoLink = 'mailto:?subject=Receipt&body=' + encodeURIComponent(receiptContent);
+    var mailtoLink = 'mailto:?subject=Payuee Receipt&body=' + encodeURIComponent(receiptContent);
 
     // Open the user's default email client
     window.location.href = mailtoLink;
