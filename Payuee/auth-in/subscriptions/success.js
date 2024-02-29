@@ -438,9 +438,7 @@ function downloadReceipt() {
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
-    companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    companyLogoElement.classList.add('company-logo');
     pdfContentElement.appendChild(companyLogoElement);    
 
     var options = {
@@ -467,7 +465,7 @@ function printReceipt() {
     printContentElement.appendChild(clonedSuccessReceipt);
 
     // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = printContentElement.querySelectorAll('.available__balance, .order__button');
+    var elementsToExclude = printContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
     elementsToExclude.forEach(function(element) {
         element.remove();
     });
@@ -476,10 +474,8 @@ function printReceipt() {
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
-    companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
-    pdfContentElement.appendChild(companyLogoElement);    
+    companyLogoElement.classList.add('company-logo');
+    printContentElement.appendChild(companyLogoElement);    
 
     // Open the print dialog for the new element
     window.print();
