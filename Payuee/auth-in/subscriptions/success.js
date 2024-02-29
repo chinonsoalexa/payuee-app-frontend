@@ -457,46 +457,68 @@ document.getElementById('print_receipt').addEventListener('click', function(even
     printReceipt();
 });
 
-function loadStylesheet(link, callback) {
-    var stylesheet = document.createElement('link');
-    stylesheet.rel = 'stylesheet';
-    stylesheet.href = link;
-    stylesheet.onload = callback;
-    document.head.appendChild(stylesheet);
-}
-
 function printReceipt() {
-    // Create a new window or iframe for printing
-    var printWindow = window.open('', '_blank');
+    // Create a new element to contain the content to be included in the PDF
+    var printContentElement = document.createElement('div');
 
-    // Clone the div you want to print
-    var divToPrint = document.getElementById('successReceipt').cloneNode(true);
+    // Copy the content you want to include to the new element
+    var successReceiptElement = document.getElementById('successReceipt');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    printContentElement.appendChild(clonedSuccessReceipt);
 
-    // Function to initiate printing once stylesheets are loaded
-    function initiatePrinting() {
-        // Append the cloned div to the body of the new window or iframe
-        printWindow.document.body.appendChild(divToPrint);
-
-        // Open the print dialog for the new window or iframe
-        printWindow.print();
-    }
-
-    // Load stylesheets asynchronously
-    var stylesheetLinks = [
-        'assets/css/nice-select.css',
-        'assets/css/datepickerboot.css',
-        'assets/css/main.css'
-    ];
-
-    var stylesheetsLoaded = 0;
-
-    stylesheetLinks.forEach(function(link) {
-        loadStylesheet(link, function() {
-            stylesheetsLoaded++;
-            if (stylesheetsLoaded === stylesheetLinks.length) {
-                // All stylesheets have loaded, initiate printing
-                initiatePrinting();
-            }
-        });
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = printContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
     });
+
+    // Create the company logo element dynamically
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    printContentElement.appendChild(companyLogoElement);    
+
+    // Open the print dialog for the new element
+    window.print();
+}
+document.getElementById('email_receipt').addEventListener('click', function(event) {
+    event.preventDefault();
+    shareReceiptByEmail();
+});
+
+function shareReceiptByEmail() {
+    // Create a new element to contain the content to be included in the PDF
+    var pdfContentElement = document.createElement('div');
+
+    // Copy the content you want to include to the new element
+    var successReceiptElement = document.getElementById('successReceipt');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    pdfContentElement.appendChild(clonedSuccessReceipt);
+
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
+
+    // Create the company logo element dynamically
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    pdfContentElement.appendChild(companyLogoElement);
+
+    // Get the content of the receipt
+    var receiptContent = pdfContentElement.innerHTML;
+
+    // Create a mailto link with pre-populated subject and body
+    var mailtoLink = 'mailto:?subject=Receipt&body=' + encodeURIComponent(receiptContent);
+
+    // Open the user's default email client
+    window.location.href = mailtoLink;
 }
