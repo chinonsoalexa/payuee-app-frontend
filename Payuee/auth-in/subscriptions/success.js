@@ -434,11 +434,20 @@ function downloadReceipt() {
         element.remove();
     });
 
-        var options = {
-            filename: 'payuee receipt.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-        };  // Use default options
+    // Create the company logo element dynamically
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    pdfContentElement.appendChild(companyLogoElement);    
 
-        // Generate the PDF using html2pdf library
-        html2pdf().from(pdfContentElement).set(options).save();
+    var options = {
+        filename: 'payuee receipt.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+    };  // Use default options
+
+    // Generate the PDF using html2pdf library
+    html2pdf().from(pdfContentElement).set(options).save();
 }
