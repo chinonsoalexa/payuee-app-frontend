@@ -452,47 +452,48 @@ function downloadReceipt() {
 
 document.getElementById('print_receipt').addEventListener('click', function(event) {
     event.preventDefault();
-    printReceipt();
+    loadStylesheet();
 });
 
-function printReceipt() {
-    // Create a new window for printing
-    var printWindow = window.open('', '_blank');
+var stylesheetLinks = [
+    'assets/css/nice-select.css',
+    'assets/css/datepickerboot.css',
+    'assets/css/main.css'
+];
 
-    // Write the HTML content to the new window
+var stylesheetsLoaded = 0;
+
+function loadStylesheet(link, callback) {
+    var stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = link;
+    stylesheet.onload = callback;
+    document.head.appendChild(stylesheet);
+}
+
+function printReceipt() {
+    var printWindow = window.open('', '_blank');
     printWindow.document.write('<html><head><title>Receipt</title>');
 
-    // Include the required stylesheets
-    var stylesheetLinks = [
-        'assets/css/nice-select.css',
-        'assets/css/datepickerboot.css',
-        'assets/css/main.css'
-    ];
-
     stylesheetLinks.forEach(function(stylesheet) {
-        printWindow.document.write('<link rel="stylesheet" href="' + stylesheet + '">');
+        loadStylesheet(stylesheet, function() {
+            stylesheetsLoaded++;
+            if (stylesheetsLoaded === stylesheetLinks.length) {
+                // All stylesheets have loaded
+                printWindow.document.write('<link rel="stylesheet" href="' + stylesheet + '">');
+                printWindow.document.write('</head><body>');
+                var successReceiptElement = document.getElementById('successReceipt').cloneNode(true);
+                printWindow.document.body.appendChild(successReceiptElement);
+                var companyLogoElement = document.createElement('img');
+                companyLogoElement.src = 'assets/img/logo/favicon2.png';
+                companyLogoElement.alt = 'Payuee';
+                companyLogoElement.classList.add('company-logo');
+                printWindow.document.body.appendChild(companyLogoElement);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            }
+        });
     });
-
-    printWindow.document.write('</head><body>');
-
-    // Clone and append the receipt content
-    var successReceiptElement = document.getElementById('successReceipt').cloneNode(true);
-    printWindow.document.body.appendChild(successReceiptElement);
-
-    // Create the company logo element dynamically
-    var companyLogoElement = document.createElement('img');
-    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
-    companyLogoElement.alt = 'Payuee';
-    companyLogoElement.classList.add('company-logo');
-    printWindow.document.body.appendChild(companyLogoElement);
-
-    // Write the closing body and HTML tags
-    printWindow.document.write('</body></html>');
-
-    // Ensure all content is loaded before printing
-    printWindow.document.close();
-
-    // Print the new window
-    printWindow.print();
 }
 
