@@ -458,9 +458,22 @@ document.getElementById('print_receipt').addEventListener('click', function(even
 function printReceipt() {
     // Create a new window for printing
     var printWindow = window.open('', '_blank');
-    
+
     // Write the HTML content to the new window
-    printWindow.document.write('<html><head><title>Receipt</title></head><body>');
+    printWindow.document.write('<html><head><title>Receipt</title>');
+
+    // Include the required stylesheets
+    var stylesheetLinks = [
+        'assets/css/nice-select.css',
+        'assets/css/datepickerboot.css',
+        'assets/css/main.css'
+    ];
+
+    stylesheetLinks.forEach(function(stylesheet) {
+        printWindow.document.write('<link rel="stylesheet" href="' + stylesheet + '">');
+    });
+
+    printWindow.document.write('</head><body>');
 
     // Clone and append the receipt content
     var successReceiptElement = document.getElementById('successReceipt').cloneNode(true);
