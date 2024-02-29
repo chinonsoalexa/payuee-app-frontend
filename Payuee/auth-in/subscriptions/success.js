@@ -433,7 +433,7 @@ function downloadReceipt() {
         // };
         var options = {
             filename: 'payuee receipt.pdf',
-            image: { type: 'png', quality: 1 },
+            // image: { type: 'png', quality: 1 },
         };  // Use default options
 
         // Generate the PDF using html2pdf library
