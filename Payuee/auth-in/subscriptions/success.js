@@ -438,7 +438,9 @@ function downloadReceipt() {
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
-    companyLogoElement.classList.add('company-logo');
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
     pdfContentElement.appendChild(companyLogoElement);    
 
     var options = {
@@ -452,16 +454,8 @@ function downloadReceipt() {
 
 document.getElementById('print_receipt').addEventListener('click', function(event) {
     event.preventDefault();
-    loadStylesheet();
+    printReceipt();
 });
-
-var stylesheetLinks = [
-    'assets/css/nice-select.css',
-    'assets/css/datepickerboot.css',
-    'assets/css/main.css'
-];
-
-var stylesheetsLoaded = 0;
 
 function loadStylesheet(link, callback) {
     var stylesheet = document.createElement('link');
@@ -472,28 +466,37 @@ function loadStylesheet(link, callback) {
 }
 
 function printReceipt() {
+    // Create a new window or iframe for printing
     var printWindow = window.open('', '_blank');
-    printWindow.document.write('<html><head><title>Receipt</title>');
 
-    stylesheetLinks.forEach(function(stylesheet) {
-        loadStylesheet(stylesheet, function() {
+    // Clone the div you want to print
+    var divToPrint = document.getElementById('successReceipt').cloneNode(true);
+
+    // Function to initiate printing once stylesheets are loaded
+    function initiatePrinting() {
+        // Append the cloned div to the body of the new window or iframe
+        printWindow.document.body.appendChild(divToPrint);
+
+        // Open the print dialog for the new window or iframe
+        printWindow.print();
+    }
+
+    // Load stylesheets asynchronously
+    var stylesheetLinks = [
+        'assets/css/nice-select.css',
+        'assets/css/datepickerboot.css',
+        'assets/css/main.css'
+    ];
+
+    var stylesheetsLoaded = 0;
+
+    stylesheetLinks.forEach(function(link) {
+        loadStylesheet(link, function() {
             stylesheetsLoaded++;
             if (stylesheetsLoaded === stylesheetLinks.length) {
-                // All stylesheets have loaded
-                printWindow.document.write('<link rel="stylesheet" href="' + stylesheet + '">');
-                printWindow.document.write('</head><body>');
-                var successReceiptElement = document.getElementById('successReceipt').cloneNode(true);
-                printWindow.document.body.appendChild(successReceiptElement);
-                var companyLogoElement = document.createElement('img');
-                companyLogoElement.src = 'assets/img/logo/favicon2.png';
-                companyLogoElement.alt = 'Payuee';
-                companyLogoElement.classList.add('company-logo');
-                printWindow.document.body.appendChild(companyLogoElement);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.print();
+                // All stylesheets have loaded, initiate printing
+                initiatePrinting();
             }
         });
     });
 }
-
