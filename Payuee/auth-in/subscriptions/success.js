@@ -420,23 +420,25 @@ document.getElementById('download_receipt').addEventListener('click', function(e
 });
 
 function downloadReceipt() {
-        // Get the element you want to convert to PDF
-        var element = document.getElementById('successReceipt');
+    // Create a new element to contain the content to be included in the PDF
+    var pdfContentElement = document.createElement('div');
 
-        // Options for the PDF generation (you can customize these as needed)
-        // var options = {
-        //     margin: 10,
-        //     filename: 'payuee receipt.pdf',
-        //     image: { type: 'jpeg', quality: 0.98 },
-        //     html2canvas: { scale: 2 },
-        //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        // };
+    // Copy the content you want to include to the new element
+    var successReceiptElement = document.getElementById('successReceipt');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    pdfContentElement.appendChild(clonedSuccessReceipt);
+
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
+
         var options = {
             filename: 'payuee receipt.pdf',
             image: { type: 'jpeg', quality: 0.98 },
-            // image: { type: 'png', quality: 1 },
         };  // Use default options
 
         // Generate the PDF using html2pdf library
-        html2pdf().from(element).set(options).save();
+        html2pdf().from(pdfContentElement).set(options).save();
 }
