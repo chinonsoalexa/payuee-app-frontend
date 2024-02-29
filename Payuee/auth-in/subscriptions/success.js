@@ -413,3 +413,25 @@ try {
     }
 }
 });
+
+document.getElementById('download_receipt').addEventListener('click', function(event) {
+    event.preventDefault;
+    downloadReceipt();
+});
+
+function downloadReceipt() {
+        // Get the element you want to convert to PDF
+        var element = document.getElementById('successReceipt');
+
+        // Options for the PDF generation (you can customize these as needed)
+        var options = {
+            margin: 10,
+            filename: 'receipt.pdf',
+            image: { type: 'png', quality: 1 },
+            html2canvas: { scale: 3 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', dpi: 300 },
+        };
+
+        // Generate the PDF using html2pdf library
+        html2pdf().from(element).set(options).save();
+}
