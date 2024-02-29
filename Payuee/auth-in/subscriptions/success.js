@@ -433,6 +433,7 @@ function downloadReceipt() {
         // };
         var options = {
             filename: 'payuee receipt.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
             // image: { type: 'png', quality: 1 },
         };  // Use default options
 
