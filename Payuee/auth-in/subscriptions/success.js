@@ -431,7 +431,10 @@ function downloadReceipt() {
         //     html2canvas: { scale: 2 },
         //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         // };
-        var options = {};  // Use default options
+        var options = {
+            filename: 'payuee receipt.pdf',
+            image: { type: 'png', quality: 1 },
+        };  // Use default options
 
         // Generate the PDF using html2pdf library
         html2pdf().from(element).set(options).save();
