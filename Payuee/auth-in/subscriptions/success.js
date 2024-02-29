@@ -426,10 +426,10 @@ function downloadReceipt() {
         // Options for the PDF generation (you can customize these as needed)
         var options = {
             margin: 10,
-            filename: 'receipt.pdf',
-            image: { type: 'png', quality: 1 },
-            html2canvas: { scale: 3 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', dpi: 300 },
+            filename: 'payuee receipt.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
         // Generate the PDF using html2pdf library
