@@ -424,13 +424,14 @@ function downloadReceipt() {
         var element = document.getElementById('successReceipt');
 
         // Options for the PDF generation (you can customize these as needed)
-        var options = {
-            margin: 10,
-            filename: 'payuee receipt.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
+        // var options = {
+        //     margin: 10,
+        //     filename: 'payuee receipt.pdf',
+        //     image: { type: 'jpeg', quality: 0.98 },
+        //     html2canvas: { scale: 2 },
+        //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        // };
+        var options = {};  // Use default options
 
         // Generate the PDF using html2pdf library
         html2pdf().from(element).set(options).save();
