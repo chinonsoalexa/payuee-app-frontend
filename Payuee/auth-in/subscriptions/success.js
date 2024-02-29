@@ -456,27 +456,30 @@ document.getElementById('print_receipt').addEventListener('click', function(even
 });
 
 function printReceipt() {
-    // Create a new element to contain the content to be included in the PDF
-    var printContentElement = document.createElement('div');
+    // Create a new window for printing
+    var printWindow = window.open('', '_blank');
+    
+    // Write the HTML content to the new window
+    printWindow.document.write('<html><head><title>Receipt</title></head><body>');
 
-    // Copy the content you want to include to the new element
-    var successReceiptElement = document.getElementById('successReceipt');
-    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-    printContentElement.appendChild(clonedSuccessReceipt);
-
-    // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = printContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
-    elementsToExclude.forEach(function(element) {
-        element.remove();
-    });
+    // Clone and append the receipt content
+    var successReceiptElement = document.getElementById('successReceipt').cloneNode(true);
+    printWindow.document.body.appendChild(successReceiptElement);
 
     // Create the company logo element dynamically
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
     companyLogoElement.classList.add('company-logo');
-    printContentElement.appendChild(companyLogoElement);    
+    printWindow.document.body.appendChild(companyLogoElement);
 
-    // Open the print dialog for the new element
-    window.print();
+    // Write the closing body and HTML tags
+    printWindow.document.write('</body></html>');
+
+    // Ensure all content is loaded before printing
+    printWindow.document.close();
+
+    // Print the new window
+    printWindow.print();
 }
+
