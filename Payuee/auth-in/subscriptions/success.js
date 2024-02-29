@@ -451,3 +451,36 @@ function downloadReceipt() {
     // Generate the PDF using html2pdf library
     html2pdf().from(pdfContentElement).set(options).save();
 }
+
+document.getElementById('print_receipt').addEventListener('click', function(event) {
+    event.preventDefault();
+    printReceipt();
+});
+
+function printReceipt() {
+    // Create a new element to contain the content to be included in the PDF
+    var printContentElement = document.createElement('div');
+
+    // Copy the content you want to include to the new element
+    var successReceiptElement = document.getElementById('successReceipt');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    printContentElement.appendChild(clonedSuccessReceipt);
+
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = printContentElement.querySelectorAll('.available__balance, .order__button');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
+
+    // Create the company logo element dynamically
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    pdfContentElement.appendChild(companyLogoElement);    
+
+    // Open the print dialog for the new element
+    window.print();
+}
