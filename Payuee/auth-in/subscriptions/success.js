@@ -484,41 +484,43 @@ function printReceipt() {
     // Open the print dialog for the new element
     window.print();
 }
+
 document.getElementById('email_receipt').addEventListener('click', function(event) {
     event.preventDefault();
     shareReceiptByEmail();
 });
 
 function shareReceiptByEmail() {
-    // Create a new element to contain the content to be included in the PDF
-    var pdfContentElement = document.createElement('div');
+    // Get the element you want to convert to an image
+    var element = document.getElementById('successReceipt');
 
-    // Copy the content you want to include to the new element
-    var successReceiptElement = document.getElementById('successReceipt');
-    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-    pdfContentElement.appendChild(clonedSuccessReceipt);
+    // Use html2canvas to convert the element to a canvas
+    html2canvas(element).then(function(canvas) {
+        // Convert the canvas to a data URL
+        var imageDataUrl = canvas.toDataURL('image/png');
 
-    // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
-    elementsToExclude.forEach(function(element) {
-        element.remove();
+        // Use Email.js to send the email
+        sendEmail(imageDataUrl);
     });
+}
 
-    // Create the company logo element dynamically
-    var companyLogoElement = document.createElement('img');
-    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
-    companyLogoElement.alt = 'Payuee';
-    companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
-    pdfContentElement.appendChild(companyLogoElement);
+function sendEmail(imageDataUrl) {
+    // Configure your Email.js service (replace these values with your own)
+    emailjs.init("user_your_emailjs_user_id");
 
-    // Get the content of the receipt
-    var receiptContent = pdfContentElement.innerHTML;
+    // Prepare the email parameters
+    var emailParams = {
+        to_email: 'recipient@example.com',
+        subject: 'Receipt',
+        body: 'Attached is your receipt.',
+        attachment: imageDataUrl,
+    };
 
-    // Create a mailto link with pre-populated subject and body
-    var mailtoLink = 'mailto:?subject=Payuee Receipt&body=' + encodeURIComponent(receiptContent);
-
-    // Open the user's default email client
-    window.location.href = mailtoLink;
+    // Use Email.js to send the email
+    emailjs.send("your_emailjs_service_id", "your_emailjs_template_id", emailParams)
+        .then(function(response) {
+            console.log('Email sent:', response);
+        }, function(error) {
+            console.error('Email error:', error);
+        });
 }
