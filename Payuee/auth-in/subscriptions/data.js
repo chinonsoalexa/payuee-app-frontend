@@ -401,9 +401,9 @@ async function requestPlan(plan_id) {
         
                     // Remove commas and parse the dataValue to a number
                     const numericValue = parseFloat(dataPrice);
-                    totalCharge = numericValue;
-                    bundle = plan.displayName;
-                    planID = plan.value;
+                    // totalCharge = numericValue;
+                    // bundle = plan.displayName;
+                    // planID = plan.value;
 
                     console.log("planID: " + planID)
         
