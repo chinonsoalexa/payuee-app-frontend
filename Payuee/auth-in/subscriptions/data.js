@@ -39,7 +39,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
         };
         console.log('this is the data to be sent: ' + JSON.stringify(user));
         console.log('the plan id to be sent is: ' + planID);
-// var value.data
+        // var value.data
         // error message from paystack
         // {"message":"Invalid Amount Sent","status":false}
 
