@@ -404,6 +404,8 @@ async function requestPlan(plan_id) {
                     totalCharge = numericValue;
                     bundle = plan.displayName;
                     planID = plan.value;
+
+                    console.log("planID: " + planID)
         
                     // Get the input element by its ID
                     var displayInput = document.getElementById('displayInput');
