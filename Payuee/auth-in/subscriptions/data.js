@@ -30,7 +30,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             PaymentType: paymentMethod,
             ServiceID: "data",
             NetworkPlan: servicePlanID,
-            PlanID: planID,
+            PlanID: "300",
             Bundle:      bundle,
             Price:  totalCharge, 
             TranCharge: transCharge,
