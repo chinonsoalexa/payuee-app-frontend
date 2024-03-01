@@ -37,7 +37,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             TranCharge: transCharge,
             AutoRenew:   autoRenew,
         };
-        // console.log('this is the data to be sent: ' + JSON.stringify(user));
+        console.log('this is the data to be sent: ' + JSON.stringify(user));
 
         const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
 
