@@ -380,6 +380,7 @@ async function requestPlan(plan_id) {
                 var listItem = document.createElement('li');
                 listItem.className = 'option';
                 listItem.setAttribute('data-value', plan.price);
+                listItem.setAttribute('plan-id', plan.value);
                 listItem.textContent = `${plan.displayName}`;
         
                 // Add a click event listener to each listItem
@@ -395,14 +396,19 @@ async function requestPlan(plan_id) {
                     if (event.target.classList.contains('option')) {
                         dataPrice = event.target.getAttribute('data-value');
                     }
+
+                    // Get the data-value attribute of the clicked list item
+                    if (event.target.classList.contains('option')) {
+                        planID = event.target.getAttribute('plan-id');
+                    }
         
                     // Add 'focus' class to the clicked list item
                     event.target.classList.add('focus');
         
                     // Remove commas and parse the dataValue to a number
                     const numericValue = parseFloat(dataPrice);
-                    // totalCharge = numericValue;
-                    // bundle = plan.displayName;
+                    totalCharge = numericValue;
+                    bundle = plan.displayName;
                     // planID = plan.value;
 
                     console.log("planID: " + planID)
