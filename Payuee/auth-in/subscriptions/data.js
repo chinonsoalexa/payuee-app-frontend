@@ -1,10 +1,11 @@
 var plan;
-var planID;
+var servicePlanID;
 var phone;
 var bundle;
 var autoRenew;
 var paymentMethod;
 var totalCharge;
+var planID;
 var validated = true;
 var transCharge = 0;
 
@@ -28,7 +29,8 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
         const user = {
             PaymentType: paymentMethod,
             ServiceID: "data",
-            NetworkPlan: planID,
+            NetworkPlan: servicePlanID,
+            PlanID: planID,
             Bundle:      bundle,
             Price:  totalCharge, 
             TranCharge: transCharge,
@@ -313,27 +315,27 @@ async function getSelectedPlan(dataValue) {
         switch (dataValue) {
             case '2':
                 await requestPlan('mtn_sme');
-                planID = 'mtn_sme'
+                servicePlanID = 'mtn_sme'
                 // console.log('running 2')
                 break;
             case '3':
                 await requestPlan('mtncg');
-                planID = 'mtncg'
+                servicePlanID = 'mtncg'
                 // console.log('running 3')
                 break;
             case '4':
                 await requestPlan('airtel_cg');
-                planID = 'airtel_cg'
+                servicePlanID = 'airtel_cg'
                 // console.log('running 4')
                 break;
             case '5':
                 await requestPlan('etisalat_data');
-                planID = 'etisalat_data'
+                servicePlanID = 'etisalat_data'
                 // console.log('running 5')
                 break;
             case '6':
                 await requestPlan('glo_data');
-                planID = 'glo_data'
+                servicePlanID = 'glo_data'
                 // console.log('running 6')
                 break;
             default:
@@ -401,6 +403,7 @@ async function requestPlan(plan_id) {
                     const numericValue = parseFloat(dataPrice);
                     totalCharge = numericValue;
                     bundle = plan.displayName;
+                    planID = plan.value;
         
                     // Get the input element by its ID
                     var displayInput = document.getElementById('displayInput');

@@ -127,9 +127,9 @@ if (isNaN(electricBill) || electricBill > 10000 || electricBill < 1000) {
 if (meterNumber === '') {
     validated = false;
     showError('meter-error', "Meter number can not be empty.");
-}else if (meterNumber.length < 10 || meterNumber.length > 10) {
+}else if (meterNumber.length < 11 || meterNumber.length > 11) {
     validated = false;
-    showError('meter-error', "Meter number should be at least 10 digits");
+    showError('meter-error', "Meter number should be at least 11 digits");
 }
 // console.log(meterNumber);
 
