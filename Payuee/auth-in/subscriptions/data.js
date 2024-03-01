@@ -409,7 +409,7 @@ async function requestPlan(plan_id) {
                     const numericValue = parseFloat(dataPrice);
                     totalCharge = numericValue;
                     bundle = plan.displayName;
-                    // planID = plan.value;
+                    planID = plan.value; 
 
                     console.log("planID: " + planID)
         
