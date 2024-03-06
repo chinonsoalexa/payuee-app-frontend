@@ -84,3 +84,56 @@ function formatNumberToNaira(number) {
         minimumFractionDigits: 2
     }).format(number);
 }
+
+document.getElementById('payueeEmailId').addEventListener('input', function() {
+    const email = this.value.trim(); // Trim to remove leading and trailing whitespaces
+
+    if (email === "") {
+        showError('emailError', "Please enter your email address.");
+        return;
+    } else if (!isValidEmail(email)) {
+        showError('emailError', "Please enter a valid email address.");
+        return;
+    }
+});
+
+function isValidEmail(email) {
+    // Simple email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function showError(id, message) {
+    // Show error message
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+}
+
+function showErrorAgain(id, message) {
+    // Show error message
+    if (buttonClicks > 0) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    }
+}
+
+function clearError(id) {
+    // Construct the error message element ID
+    const errorId = id;
+    
+    // Get the error message element
+    const errorElement = document.getElementById(errorId);
+
+    // Check if the error element exists before manipulating it
+    if (errorElement) {
+        errorElement.textContent = ''; // Clear the error message
+        // errorElement.style.display = 'none'; // Hide the error message
+        return;
+    }
+}
+
+document.getElementById('payueeEmailId').addEventListener('input', function() {
+    clearError('emailError');
+});
