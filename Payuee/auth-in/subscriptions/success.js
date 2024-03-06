@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
 
 window.onload = async function () {
     const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
@@ -412,7 +412,7 @@ try {
         // do nothing
     }
 }
-});
+// });
 
 document.getElementById('download_receipt').addEventListener('click', function(event) {
     event.preventDefault;

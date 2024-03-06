@@ -17,6 +17,48 @@
    <link rel="stylesheet" href="assets/css/datepickerboot.css">
    <!--main css-->
    <link rel="stylesheet" href="assets/css/main.css">
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+position: relative; /* Ensure the body has a relative position */
+}
+
+.popup {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+padding: 20px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+z-index: 1000; /* Set a higher z-index value */
+}
+
+.popup-content {
+text-align: center;
+}
+
+button {
+margin: 10px;
+padding: 8px 16px;
+cursor: pointer;
+}
+
+.send-button {
+background-color: green;
+color: #fff;
+border: none;
+}
+
+.cancel-button {
+background-color: red;
+color: #fff;
+border: none;
+}
+
+</style>
 </head>
 
 <body>
@@ -345,65 +387,35 @@
                   </div>
                </div>
             </div>
+
+            <!-- send money to someone through payuee to a payuee user or external bank -->
             <div id="send-funds-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                <div class="recharge__paymentbox mb__30">
                   <div class="mobile__recharge text-center">
                      <h5 class="mb-4">
-                        Send Funds To
+                        Send Funds
                      </h5>
                      <div class="prepaid__option">
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio2page" checked>
-                           <label class="form-check-label" for="pyradio2page">
-                             A Payuee User
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="payuee" checked>
+                           <label class="form-check-label" for="payuee">
+                             To Payuee
                            </label>
                          </div>
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="pyradio1page">
-                           <label class="form-check-label" for="pyradio1page">
-                             An External Bank
+                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
+                           <label class="form-check-label" for="paystack">
+                             To Bank
                            </label>
                          </div>
                      </div>
                      <form action="javascript:void(0)" class="mb-3">
                         <div class="row g-4">
-                           <!-- <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select Your Operator
-                                 </option>
-                                 <option value="2">
-                                    1st Operator
-                                 </option>
-                                 <option value="3">
-                                    2nd Operator
-                                 </option>
-                                 <option value="4">
-                                    3rd Operator
-                                 </option>
-                              </select>
+                           <div class="col-lg-6">
+                              <input id="payueeEmailId" type="text" placeholder="Enter Customer's Email ID">
                            </div>
                            <div class="col-lg-6">
-                              <select name="niceselect">
-                                 <option value="1">
-                                    Select Your State
-                                 </option>
-                                 <option value="2">
-                                    1st State
-                                 </option>
-                                 <option value="3">
-                                    2nd State
-                                 </option>
-                                 <option value="4">
-                                    3rd State
-                                 </option>
-                              </select>
-                           </div> -->
-                           <div class="col-lg-6">
-                              <input type="text" placeholder="Enter Customer Email ID">
-                           </div>
-                           <div class="col-lg-6">
-                              <input type="number" placeholder="Enter Amount">
+                              <input id="payueeAmount" type="number" placeholder="Enter Amount">
                            </div>
 
                         </div>
@@ -414,7 +426,7 @@
                            I Agree this payment system terms & condition
                         </label> -->
                      </div>
-                     <a href="order.html" class="cmn__btn mt-5">
+                     <a id="sendMoney" href="#" class="cmn__btn mt-5">
                         <span>
                            Send Money
                         </span>
@@ -515,6 +527,7 @@
                   </div>
                </div>
             </div>
+
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
                <div class="pay__sponsor__thumbtwo">
                   <img src="assets/img/banner/gas2.jpg" alt="img">
@@ -815,6 +828,16 @@
 </section>
 <!--home two qustions end-->
 
+<!-- Popup box -->
+<div id="balance-popup" class="popup">
+<div class="popup-content">
+   <p>Are you sure you want to send <span id="FundsToSend">₦ NA</span> To <span id="UserToSendTo">johndoe@gmail.com?</span></p>
+     <button class="send-button" id="send-btn">Send</button>
+     <button class="cancel-button" id="cancel-btn">Close</button>
+</div>
+</div>
+
+
 <!-- footer Here -->
 <footer class="footer__section bgsection pt-120">
    <div class="container">
@@ -990,8 +1013,7 @@
    <script src="assets/js/main.js"></script>
       <!-- js scroll to data link -->
    <script src="page-scroll-js/mobile-scroll.js" defer></script>
+   <script src="auth-in/subscriptions/send-funds.js"></script>
 </body>
 
-
-<!-- Mirrored from /Payuee/Payuee/gas2.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:43 GMT -->
 </html>
