@@ -103,6 +103,7 @@ function FundsToSend(email, amount) {
     });
     sendButton.addEventListener('click', async () => {
         // let's approve and send the transaction
+        installPopup.style.display = 'none';
         await sendFunds()
       });
 }
