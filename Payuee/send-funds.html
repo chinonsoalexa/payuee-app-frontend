@@ -409,7 +409,7 @@ border: none;
                            </label>
                          </div>
                      </div>
-                     <form action="javascript:void(0)" class="mb-3">
+                     <form id="fundwalletform" action="#" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
                               <input id="payueeEmailId" type="text" placeholder="Enter Customer's Email ID">
@@ -838,6 +838,14 @@ border: none;
      <button class="cancel-button" id="cancel-btn">Cancel</button>
 </div>
 </div>
+
+  <!-- Popup box -->
+  <div id="error-popup" class="popup">
+   <div class="popup-content">
+     <p>Sorry no user with <span id="returnedEmailID">johndoe@gmail.com</span> was found</p>
+     <button class="cancel-button" id="cancel-btn">Close</button>
+   </div>
+ </div>
 
 
 <!-- footer Here -->

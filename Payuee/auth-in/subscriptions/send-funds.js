@@ -172,23 +172,15 @@ async function sendFunds() {
     
                 console.log(errorData);
     
-                if (errorData.error === 'User already exist, please login') {
-                    showError('passwordError', 'User already exists. Please signin.');
-                } else if  (errorData.error === 'Please login using your google account') {
-                    showError('passwordError', 'Please login using your google account.');
-                } else if  (errorData.error === 'User already exist, please verify your email ID') {
-                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-                } else if  (errorData.error === 'email verification failed') {
-                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
-                } else if  (errorData.error === 'User already exist, please signin') {
-                    showError('passwordError', 'Please login, you already have an existing account with us.');
-                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
-                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                if  (errorData.error === 'a user with this email was not found') {
+                    returnedErrorMessageDisplay(errorData.email);
+                }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    showError('returnedError', 'This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
-                    showError('passwordError', 'An error occurred. Please try again.');
+                    showError('returnedError', 'An error occurred. Please try again.');
                 }
     
                 return;
@@ -210,6 +202,22 @@ async function sendFunds() {
         }
     }
 }
+
+function returnedErrorMessageDisplay(errorMessage) {
+    const installPopup = document.getElementById('error-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const returnedEmailID = document.getElementById('returnedEmailID');
+
+    returnedEmailID.textContent = errorMessage;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+}
+
 
 
 // Add this function to remove onclick and on hover styles
