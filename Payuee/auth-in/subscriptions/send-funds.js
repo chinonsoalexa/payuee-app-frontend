@@ -54,6 +54,7 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
             showError('amountError', "Please maximum transfer amount is ₦100,000");
         } 
         if (validated == true) {
+            BankType = "payuee"
             FundsToSend(payueeEmailId, payueeAmount);
         }
     }
