@@ -1,32 +1,53 @@
 var sendFundsToStatus = "payuee";
+var payueeEmailId;
+var payueeAmount;
    
    // Get the radio buttons by name
    const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
    // Add an event listener to each radio button
-   radioButtons.forEach(button => {
-       button.addEventListener('change', function() {
-           // Perform your desired action here
-           console.log(`Selected option: ${this.id}`);
-           this.id = sendFundsToStatus;
-   
-           if (this.id === "payuee") {
-               enableTransferDiv()
-           } else if (this.id === "paystack") { 
-               disableTransferDiv()
-           }
-       });
-   });
+radioButtons.forEach(button => {
+    button.addEventListener('change', function() {
+        // Perform your desired action here
+        console.log(`Selected option: ${this.id}`);
+        this.id = sendFundsToStatus;
 
-   document.getElementById("sendMoney").addEventListener("click", function(event) {
-        event.preventDefault();
-        console.log("clicked on the send money button")
-        if (sendFundsToStatus == "payuee") {
-            let payueeEmailId = document.getElementById("payueeEmailId").value;
-            let payueeAmount = document.getElementById("payueeAmount").value;
+        if (this.id === "payuee") {
+            enableTransferDiv()
+        } else if (this.id === "paystack") { 
+            disableTransferDiv()
+        }
+    });
+});
+
+document.getElementById("sendMoney").addEventListener("click", function(event) {
+    event.preventDefault();
+    let status = true;
+    if (sendFundsToStatus == "payuee") {
+        payueeEmailId = document.getElementById("payueeEmailId").value;
+        payueeAmount = document.getElementById("payueeAmount").value;
+        if (payueeEmailId  == "") {
+            status = false;
+            showError('emailError', "Please enter an  email address");
+        } else if (!isValidEmail(payueeEmailId)) {
+            status = false;
+            showError('emailError', "Please enter a valid email address");
+        } 
+        if (payueeAmount == "") {
+            status = false;
+            showError('amountError', "Please enter an amount to transfer");
+        } else if (payueeAmount < 50) {
+            status = false;
+            showError('amountError', "Please minimum transfer amount is ₦50");
+        } else if (payueeAmount > 100000) {
+            status = false;
+            showError('amountError', "Please maximum transfer amount is ₦100,000");
+        } 
+        if (status == true) {
             FundsToSend(payueeEmailId, payueeAmount);
         }
-   });
+    }
+});
 
  // Function to disable the div and its content
 function disablePaystackDiv() {
@@ -57,7 +78,7 @@ function enablePaystackDiv() {
 function FundsToSend(email, amount) {
     const installPopup = document.getElementById('balance-popup');
     const cancelButton = document.getElementById('cancel-btn');
-    const sendButton = document.getElementById('send-button');
+    const sendButton = document.getElementById('send-btn');
     const FundsToSend = document.getElementById('FundsToSend');
     const UserToSendTo = document.getElementById('UserToSendTo');
 
@@ -71,9 +92,8 @@ function FundsToSend(email, amount) {
       installPopup.style.display = 'none';
     });
     sendButton.addEventListener('click', () => {
-        // installPopup.style.display = 'none';
         // let's approve and send the transaction
-
+        sendFunds()
       });
 }
 
@@ -85,55 +105,25 @@ function formatNumberToNaira(number) {
     }).format(number);
 }
 
-document.getElementById('payueeEmailId').addEventListener('input', function() {
-    const email = this.value.trim(); // Trim to remove leading and trailing whitespaces
-
-    if (email === "") {
-        showError('emailError', "Please enter your email address.");
-        return;
-    } else if (!isValidEmail(email)) {
-        showError('emailError', "Please enter a valid email address.");
-        return;
-    }
-});
-
 function isValidEmail(email) {
     // Simple email validation
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-function showError(id, message) {
-    // Show error message
+function showError(id, message, duration = 5000) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
     errorElement.style.display = 'block'; // Change display to 'block'
-}
+    errorElement.style.color = 'red'; // Set text color to red
 
-function showErrorAgain(id, message) {
-    // Show error message
-    if (buttonClicks > 0) {
-    var errorElement = document.getElementById(id);
-    errorElement.textContent = message;
-    errorElement.style.display = 'block'; // Change display to 'block'
-    }
-}
-
-function clearError(id) {
-    // Construct the error message element ID
-    const errorId = id;
-    
-    // Get the error message element
-    const errorElement = document.getElementById(errorId);
-
-    // Check if the error element exists before manipulating it
-    if (errorElement) {
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
         errorElement.textContent = ''; // Clear the error message
-        // errorElement.style.display = 'none'; // Hide the error message
-        return;
-    }
+        errorElement.style.display = 'none'; // Hide the error message
+    }, duration);
 }
 
-document.getElementById('payueeEmailId').addEventListener('input', function() {
-    clearError('emailError');
-});
+function sendFunds() {
+    
+}
