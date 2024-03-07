@@ -169,6 +169,11 @@ async function sendFunds() {
             const response = await fetch(apiUrl, requestOptions);
     
             console.log(response);
+            if (!responseContent) {
+                console.log("Empty response received");
+                // Handle accordingly
+                return;
+            }
             if (!response.ok) {
                 const errorData = await response.json();
     
