@@ -1,16 +1,16 @@
 var sendFundsToStatus = "payuee";
-var payueeEmailId;
+var payueeEmailId = "";
 var payueeAmount = 0;
-var validated;
+var validated = "";
 var transCharge = 0;
-var BankType;
-var BankCountryType;
-var AccountNumber;
-var AccountName;
-var Description;
-var BankCode;
-var Bank;
-var Currency;
+var BankType = "";
+var BankCountryType = "";
+var AccountNumber = "";
+var AccountName = "";
+var Description = "";
+var BankCode = "";
+var Bank = "";
+var Currency = "NGN";
    
    // Get the radio buttons by name
    const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
