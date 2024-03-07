@@ -169,7 +169,7 @@ async function sendFunds() {
             const response = await fetch(apiUrl, requestOptions);
     
             console.log(response);
-            if (!responseContent) {
+            if (!response) {
                 console.log("Empty response received");
                 // Handle accordingly
                 return;
