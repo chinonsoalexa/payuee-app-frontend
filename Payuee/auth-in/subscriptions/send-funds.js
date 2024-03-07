@@ -139,11 +139,11 @@ async function sendFunds() {
         deactivateButtonStyles();
         const user = {
             ServiceID: "sendFunds",
-            Amount:  payueeAmount,
-            TranCharge:  transCharge,
             BankType:        BankType,
             BankCountryType: BankCountryType,
             EmailID:        payueeEmailId,
+            Amount:  payueeAmount,
+            TranCharge:  transCharge,
             AccountNumber:   AccountNumber,
             AccountName:     AccountName,
             Description:     Description,
