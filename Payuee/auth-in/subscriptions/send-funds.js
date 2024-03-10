@@ -214,7 +214,7 @@ async function sendFunds() {
 
 function returnedErrorMessageDisplay(errorMessage) {
     const installPopup = document.getElementById('error-popup');
-    const cancelButton = document.getElementById('cancel-btn');
+    const cancelButton = document.getElementById('cancel-btn2');
     const returnedEmailID = document.getElementById('returnedEmailID');
 
     returnedEmailID.textContent = errorMessage;
