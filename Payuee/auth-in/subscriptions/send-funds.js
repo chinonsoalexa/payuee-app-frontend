@@ -35,7 +35,7 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         validated = true;
     if (sendFundsToStatus == "payuee") {
         payueeEmailId = document.getElementById("payueeEmailId").value;
-        payueeAmount = document.getElementById("payueeAmount").value;
+        payueeAmount = parseInt(document.getElementById("payueeAmount").value);
         if (payueeEmailId  == "") {
             validated = false;
             showError('emailError', "Please enter an  email address");
