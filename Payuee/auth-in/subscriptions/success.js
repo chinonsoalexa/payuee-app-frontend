@@ -266,6 +266,31 @@ function getSuccessMessage(transactionDetails) {
         let fundWalletBackLink = document.getElementById('backLink');
         fundWalletBackLink.href = "fund-wallet.html"; // Let's redirect back to transaction page
         break;
+    case "sendFunds":
+    enableDiv('send-funds-section');
+    // console.log(transactionDetails);
+        // data fields
+    let send_funds_transaction_id = document.getElementById('send_funds_transaction_id');
+    let send_funds_transaction_date = document.getElementById('send_funds_transaction_date');
+    let send_funds_transaction_method = document.getElementById('send_funds_transaction_method');
+    let send_funds_transaction_status = document.getElementById('send_funds_transaction_status');
+    let send_funds_receivers_email = document.getElementById('send_funds_receivers_email');
+    let send_funds_senders_name = document.getElementById('send_funds_senders_name');
+    let send_funds_service_name = document.getElementById('send_funds_service_name');
+    let send_funds_transaction_amount = document.getElementById('send_funds_transaction_amount');
+    // Access properties within the success object using dot notation
+    send_funds_transaction_id.textContent = transactionDetails.success.transaction_id;
+    // Parse the timestamp string
+    let sendFundsParsedTimestamp = new Date(transactionDetails.success.paid_at);
+    send_funds_transaction_date.textContent = sendFundsParsedTimestamp.toLocaleString(); // Adjust the format as needed
+    fund_wallet_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
+    send_funds_transaction_method.textContent = transactionDetails.success.transaction_type;
+    send_funds_transaction_status.textContent = transactionDetails.success.transaction_status;
+    send_funds_senders_name.textContent = transactionDetails.success.user_name;
+    let sendFundsBackLink = document.getElementById('backLink');
+    sendFundsBackLink.href = "send-funds.html"; // Let's redirect back to transaction page
+    break;
+
     default:
     let availableBalanceString = transactionDetails.balance;
     displayErrorMessage(formatNumberToNaira(availableBalanceString));
