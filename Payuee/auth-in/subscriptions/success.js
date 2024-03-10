@@ -283,10 +283,12 @@ function getSuccessMessage(transactionDetails) {
     // Parse the timestamp string
     let sendFundsParsedTimestamp = new Date(transactionDetails.success.paid_at);
     send_funds_transaction_date.textContent = sendFundsParsedTimestamp.toLocaleString(); // Adjust the format as needed
-    fund_wallet_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
     send_funds_transaction_method.textContent = transactionDetails.success.transaction_type;
     send_funds_transaction_status.textContent = transactionDetails.success.transaction_status;
+    send_funds_receivers_email.textContent = transactionDetails.service.email_id;
     send_funds_senders_name.textContent = transactionDetails.success.user_name;
+    send_funds_service_name.textContent = "send funds";
+    send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
     let sendFundsBackLink = document.getElementById('backLink');
     sendFundsBackLink.href = "send-funds.html"; // Let's redirect back to transaction page
     break;
