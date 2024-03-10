@@ -35,7 +35,7 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         validated = true;
     if (sendFundsToStatus == "payuee") {
         payueeEmailId = document.getElementById("payueeEmailId").value;
-        payueeAmount = parseInt(document.getElementById("payueeAmount").value);
+        payueeAmount = document.getElementById("payueeAmount").value;
         if (payueeEmailId  == "") {
             validated = false;
             showError('emailError', "Please enter an  email address");
@@ -144,7 +144,7 @@ async function sendFunds() {
             BankType: BankType,
             BankCountryType: BankCountryType,
             EmailID: payueeEmailId,
-            Amount: payueeAmount,
+            Amount: parseInt(payueeAmount),
             TranCharge: transCharge,
             AccountNumber: AccountNumber,
             AccountName: AccountName,
