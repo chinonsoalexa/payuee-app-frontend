@@ -140,18 +140,18 @@ async function sendFunds() {
     if (validated) {
         deactivateButtonStyles();
         const user = {
-            service_id: "sendFunds",
-            bank_type: BankType,
-            bank_country_type: BankCountryType,
-            email_id: payueeEmailId,
-            amount: payueeAmount,
-            trans_charge: transCharge,
-            account_number: AccountNumber,
-            account_name: AccountName,
-            description: Description,
-            bank_code: BankCode,
-            bank: Bank,
-            currency: Currency,
+            ServiceID: "sendFunds",
+            BankType: BankType,
+            BankCountryType: BankCountryType,
+            EmailID: payueeEmailId,
+            Amount: payueeAmount,
+            TranCharge: transCharge,
+            AccountNumber: AccountNumber,
+            AccountName: AccountName,
+            Description: Description,
+            BankCode: BankCode,
+            Bank: Bank,
+            Currency: Currency,
         };
     
         const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
