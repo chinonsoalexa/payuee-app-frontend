@@ -1,22 +1,3 @@
-// // Assuming banks.json is in the same directory as your HTML/JS file
-
-// fetch('banks.json')
-//   .then(response => response.json())
-//   .then(data => {
-//     // Now you can work with the data
-//     console.log(data);
-
-//     // Accessing data example:
-//     const banks = data.data;
-
-//     banks.forEach(bank => {
-//       console.log(`Bank Name: ${bank.name}`);
-//       console.log(`Bank Code: ${bank.code}`);
-//       // Access other properties as needed
-//     });
-//   })
-//   .catch(error => console.error('Error fetching JSON:', error));
-
 {
     "status": true,
     "message": "Banks retrieved",

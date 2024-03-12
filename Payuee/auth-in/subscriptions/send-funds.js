@@ -227,8 +227,6 @@ function returnedErrorMessageDisplay(errorMessage) {
     });
 }
 
-
-
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles() {
     var resendButton = document.getElementById('sendMoney');
@@ -242,4 +240,88 @@ function reactivateButtonStyles() {
     resendButton.className = '';
     // Add the original class 'cmn__btn'
     resendButton.classList.add('cmn__btn');
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    var inputElement = document.getElementById("searchBankID");
+    var searchOptionsDiv = document.getElementById("searchOptions");
+
+    inputElement.addEventListener("input", function () {
+        var inputValue = inputElement.value.trim();
+
+        // Clear previous search options
+        searchOptionsDiv.innerHTML = '';
+
+        // Show search options if the input is not empty
+        if (inputValue !== "") {
+            searchBanksByName(inputValue, searchAndGetBankDetails());
+            // Mock search results
+            var mockSearchResults = ["United Bank For Africa", "First Bank", "Access Bank"];
+
+            // Create and append search options
+            for (var i = 0; i < mockSearchResults.length; i++) {
+                var option = document.createElement("a");
+                option.href = "#"; // You can set a link or use JavaScript to handle the click
+                option.textContent = mockSearchResults[i];
+                searchOptionsDiv.appendChild(option);
+            }
+
+            // Show search options
+            searchOptionsDiv.style.display = "block";
+        } else {
+            // Hide search options if the input is empty
+            searchOptionsDiv.style.display = "none";
+        }
+    });
+});
+
+// Function to search for banks by name
+function searchBanksByName(query, banksData) {
+    query = query.toLowerCase().trim();
+    console.log("this is the banks result:   ", banksData.filter(bank => bank.name.toLowerCase().includes(query)));
+    return banksData.filter(bank => bank.name.toLowerCase().includes(query));
+}
+
+function searchAndGetBankDetails() {
+    var banksData = null; // Variable to store the loaded JSON data
+
+    // Load the JSON file
+    fetch('bankCodes.json')
+        .then(response => response.json())
+        .then(data => {
+            banksData = data.data; // Store the loaded data
+
+            // Function to display search results
+            // function displaySearchResults(results) {
+            //     console.log(results);
+                // var searchResultsElement = document.getElementById("searchResults");
+                // searchResultsElement.innerHTML = ''; // Clear previous search results
+
+                // // Create and append search result items
+                // results.forEach(bank => {
+                //     var resultItem = document.createElement("div");
+                //     resultItem.textContent = bank.name;
+                //     searchResultsElement.appendChild(resultItem);
+                // });
+            // }
+
+            // Event listener for input changes
+            // document.getElementById("payueeEmailId").addEventListener("input", function () {
+            //     var inputValue = this.value;
+            //     if (!inputValue) {
+            //         // Clear search results if input is empty
+            //         document.getElementById("searchResults").innerHTML = '';
+            //         return;
+            //     }
+
+            //     // Perform search
+            //     var searchResults = searchBanksByName(inputValue);
+
+            //     // Display search results
+            //     displaySearchResults(searchResults);
+            // });
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+
+        return banksData;
 }
