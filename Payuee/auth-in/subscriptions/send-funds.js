@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 option.textContent = mockSearchResults[i].name;
         
                 // Set data attributes
-                option.setAttribute("data-id", mockSearchResults[i].id);
+                option.setAttribute("data-name", mockSearchResults[i].name);
                 option.setAttribute("data-code", mockSearchResults[i].code);
                 option.setAttribute("data-type", mockSearchResults[i].type);
                 option.setAttribute("data-currency", mockSearchResults[i].currency);
@@ -334,36 +334,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             banksData = data.data; // Store the loaded data
-
-            // Function to display search results
-            // function displaySearchResults(results) {
-            //     console.log(results);
-                // var searchResultsElement = document.getElementById("searchResults");
-                // searchResultsElement.innerHTML = ''; // Clear previous search results
-
-                // // Create and append search result items
-                // results.forEach(bank => {
-                //     var resultItem = document.createElement("div");
-                //     resultItem.textContent = bank.name;
-                //     searchResultsElement.appendChild(resultItem);
-                // });
-            // }
-
-            // Event listener for input changes
-            // document.getElementById("payueeEmailId").addEventListener("input", function () {
-            //     var inputValue = this.value;
-            //     if (!inputValue) {
-            //         // Clear search results if input is empty
-            //         document.getElementById("searchResults").innerHTML = '';
-            //         return;
-            //     }
-
-            //     // Perform search
-            //     var searchResults = searchBanksByName(inputValue);
-
-            //     // Display search results
-            //     displaySearchResults(searchResults);
-            // });
         })
         .catch(error => console.error('Error loading JSON:', error));
 
