@@ -264,14 +264,15 @@ document.addEventListener("DOMContentLoaded", function () {
             // Create and append search options
             for (var i = 0; i < mockSearchResults.length; i++) {
                 var option = document.createElement("a");
-                option.href = "#"; // You can set a link or use JavaScript to handle the click
-                option.textContent = mockSearchResults[i].name;
-
-                // Attach additional data using data attributes
-                option.setAttribute("data-bankName", mockSearchResults[i].name);
-                option.setAttribute("data-code", mockSearchResults[i].code);
-                option.setAttribute("data-type", mockSearchResults[i].type);
-                option.setAttribute("data-currency", mockSearchResults[i].currency);
+                option.href = "#";
+                option.textContent = results[i].name;
+        
+                // Set data attributes
+                option.setAttribute("data-id", results[i].id);
+                option.setAttribute("data-code", results[i].code);
+                option.setAttribute("data-type", results[i].type);
+                option.setAttribute("data-currency", results[i].currency);
+        
                 searchOptionsDiv.appendChild(option);
             }
 
@@ -286,10 +287,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 searchOptionsDiv.addEventListener("click", function (event) {
     var clickedOption = event.target;
-    var name = clickedOption.dataset.name;
-    var code = clickedOption.dataset.code;
-    var type = clickedOption.dataset.type;
-    var currency = clickedOption.dataset.currency;
+    let name = clickedOption.dataset.name;
+    let code = clickedOption.dataset.code;
+    let type = clickedOption.dataset.type;
+    let currency = clickedOption.dataset.currency;
 
     // Check if the clicked element is an anchor tag
     if (clickedOption.tagName.toLowerCase() === 'a') {
@@ -297,7 +298,8 @@ searchOptionsDiv.addEventListener("click", function (event) {
     inputElement.value = name;
 
     // Hide or remove the dropdown
-    searchOptionsDiv.innerHTML = ''; // Clear search options
+    // searchOptionsDiv.innerHTML = ''; // Clear search options
+    searchOptionsDiv.style.display = "none";
     }
 
     // Use the retrieved values as needed
