@@ -12,6 +12,9 @@ var BankCode = "";
 var Bank = "";
 var Currency = "NGN";
    
+var banksData = null; // Variable to store the loaded JSON data
+
+
    // Get the radio buttons by name
    const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
@@ -254,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show search options if the input is not empty
         if (inputValue !== "") {
-            searchBanksByName(inputValue, searchAndGetBankDetails());
+            searchBanksByName(inputValue, banksData);
             // Mock search results
             var mockSearchResults = ["United Bank For Africa", "First Bank", "Access Bank"];
 
@@ -283,8 +286,6 @@ function searchBanksByName(query, banksData) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-function searchAndGetBankDetails() {
-    var banksData = null; // Variable to store the loaded JSON data
 
     // Load the JSON file
     fetch('bankCodes.json')
@@ -325,5 +326,4 @@ function searchAndGetBankDetails() {
         .catch(error => console.error('Error loading JSON:', error));
 
         return banksData;
-}
 });
