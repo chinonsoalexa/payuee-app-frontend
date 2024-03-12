@@ -99,7 +99,7 @@ radioButtons.forEach(button => {
     });
 });
 
-    // Function to disable the div and its content
+ // Function to disable the div and its content
 function disablePaystackDiv() {
     deactivateButtonStyles();
     document.getElementById('fund_payuee1').classList.remove('disabled');
