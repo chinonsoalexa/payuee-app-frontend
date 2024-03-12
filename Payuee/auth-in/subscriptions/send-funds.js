@@ -377,7 +377,7 @@ fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankC
     .then(data => {
         // Handle the response data here
         console.log('Response data:', data);
-        fillInTheAccountName(data);
+        fillInTheAccountName(data.account_name);
     })
     .catch(error => {
         // Handle errors here
