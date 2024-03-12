@@ -374,7 +374,7 @@ fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankC
     })
     .then(data => {
         // Handle the response data here
-        console.log('Response data:', data);
+        // console.log('Response data:', data);
         document.getElementById('fund_external_bank3').classList.remove('disabled');
         document.getElementById('fund_external_bank3').disabled = false;
         fillInTheAccountName(data.account_name);
