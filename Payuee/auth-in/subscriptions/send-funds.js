@@ -320,6 +320,10 @@ searchOptionsDiv.addEventListener("click", function (event) {
     // Hide or remove the dropdown
     // searchOptionsDiv.innerHTML = ''; // Clear search options
     searchOptionsDiv.style.display = "none";
+    // Get the input element
+    const accountNumberInput = document.getElementById('AccountNumber').value;
+
+    getAccountDetails(accountNumberInput)
     }
 
     // Use the retrieved values as needed
@@ -353,24 +357,32 @@ const accountNumberInput = document.getElementById('AccountNumber');
 accountNumberInput.addEventListener('input', function () {
     // Get the current value of the input
     const inputValue = this.value;
+    getAccountDetails(inputValue)
+});
 
-    // Check if the value is greater than or equal to ten
-    if (inputValue.length == 10) {
+function fillInTheAccountName(accountName) {
+    const userBankName = document.getElementById('userBankName');
+    userBankName.value = accountName;
+}
+
+function getAccountDetails(inputValue) {
+      // Check if the value is greater than or equal to ten
+      if (inputValue.length == 10 && BankCode != "") {
         // Perform your desired action here
         // Make a GET request using fetch
-fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankCode}`, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        // Add any additional headers if needed
-    },
-    // Add any additional options if needed
-})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
+    fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankCode}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            // Add any additional headers if needed
+        },
+        // Add any additional options if needed
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
     })
     .then(data => {
         // Handle the response data here
@@ -385,9 +397,4 @@ fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankC
     });
 
     }
-});
-
-function fillInTheAccountName(accountName) {
-    const userBankName = document.getElementById('userBankName');
-    userBankName.value = accountName;
 }
