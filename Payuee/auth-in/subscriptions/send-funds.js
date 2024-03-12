@@ -15,55 +15,54 @@ var Currency = "NGN";
 var banksData = null; // Variable to store the loaded JSON data
 
 
-   // Get the radio buttons by name
-   const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
+// Get the radio buttons by name
+const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
-   // Add an event listener to each radio button
+// Add an event listener to each radio button
 radioButtons.forEach(button => {
-    button.addEventListener('change', function() {
+    button.addEventListener('change', function () {
         // Perform your desired action here
         console.log(`Selected option: ${this.id}`);
-        this.id = sendFundsToStatus;
 
         if (this.id === "payuee") {
-            enableTransferDiv()
-        } else if (this.id === "paystack") { 
-            disableTransferDiv()
+            enableTransferDiv();
+        } else if (this.id === "paystack") {
+            disableTransferDiv();
         }
     });
 });
 
-    // Function to disable the div and its content
-    function disableTransferDiv() {
-        document.getElementById('fund_payuee1').classList.remove('disabled');
-        document.getElementById('fund_payuee1').disabled = false;
-        document.getElementById('fund_payuee2').classList.remove('disabled');
-        document.getElementById('fund_payuee2').disabled = false;
-        document.getElementById('fund_external_bank1').classList.remove('disabled');
-        document.getElementById('fund_external_bank1').disabled = false;
-        document.getElementById('fund_external_bank2').classList.remove('disabled');
-        document.getElementById('fund_external_bank2').disabled = false;
-        document.getElementById('fund_external_bank3').classList.remove('disabled');
-        document.getElementById('fund_external_bank3').disabled = false;
-        document.getElementById('fund_external_bank4').classList.remove('disabled');
-        document.getElementById('fund_external_bank4').disabled = false;
-    }
-    
-    // Function to enable the div and its content
-    function enableTransferDiv() {
-        document.getElementById('fund_payuee1').classList.add('disabled');
-        document.getElementById('fund_payuee1').disabled = true;
-        document.getElementById('fund_payuee2').classList.add('disabled');
-        document.getElementById('fund_payuee2').disabled = true;
-        document.getElementById('fund_external_bank1').classList.add('disabled');
-        document.getElementById('fund_external_bank1').disabled = true;
-        document.getElementById('fund_external_bank2').classList.add('disabled');
-        document.getElementById('fund_external_bank2').disabled = true;
-        document.getElementById('fund_external_bank3').classList.add('disabled');
-        document.getElementById('fund_external_bank3').disabled = true;
-        document.getElementById('fund_external_bank4').classList.add('disabled');
-        document.getElementById('fund_external_bank4').disabled = true;
-    }    
+// Function to disable the div and its content
+function disableTransferDiv() {
+    document.getElementById('fund_payuee1').classList.add('disabled');
+    document.getElementById('fund_payuee1').disabled = true;
+    document.getElementById('fund_payuee2').classList.add('disabled');
+    document.getElementById('fund_payuee2').disabled = true;
+    document.getElementById('fund_external_bank1').classList.remove('disabled');
+    document.getElementById('fund_external_bank1').disabled = false;
+    document.getElementById('fund_external_bank2').classList.remove('disabled');
+    document.getElementById('fund_external_bank2').disabled = false;
+    document.getElementById('fund_external_bank3').classList.remove('disabled');
+    document.getElementById('fund_external_bank3').disabled = false;
+    document.getElementById('fund_external_bank4').classList.remove('disabled');
+    document.getElementById('fund_external_bank4').disabled = false;
+}
+
+// Function to enable the div and its content
+function enableTransferDiv() {
+    document.getElementById('fund_payuee1').classList.remove('disabled');
+    document.getElementById('fund_payuee1').disabled = false;
+    document.getElementById('fund_payuee2').classList.remove('disabled');
+    document.getElementById('fund_payuee2').disabled = false;
+    document.getElementById('fund_external_bank1').classList.add('disabled');
+    document.getElementById('fund_external_bank1').disabled = true;
+    document.getElementById('fund_external_bank2').classList.add('disabled');
+    document.getElementById('fund_external_bank2').disabled = true;
+    document.getElementById('fund_external_bank3').classList.add('disabled');
+    document.getElementById('fund_external_bank3').disabled = true;
+    document.getElementById('fund_external_bank4').classList.add('disabled');
+    document.getElementById('fund_external_bank4').disabled = true;
+}    
 
 document.getElementById("sendMoney").addEventListener("click", function(event) {
     event.preventDefault();
@@ -94,32 +93,6 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         }
     }
 });
-
- // Function to disable the div and its content
-function disablePaystackDiv() {
-    deactivateButtonStyles();
-    document.getElementById('fund_external_bank1').classList.remove('disabled');
-    document.getElementById('fund_external_bank1').disabled = false;
-    document.getElementById('fund_external_bank2').classList.remove('disabled');
-    document.getElementById('fund_external_bank2').disabled = false;
-    document.getElementById('fund_external_bank3').classList.remove('disabled');
-    document.getElementById('fund_external_bank3').disabled = false;
-    document.getElementById('fund_external_bank4').classList.remove('disabled');
-    document.getElementById('fund_external_bank4').disabled = false;
-}
-
-// Function to enable the div and its content
-function enablePaystackDiv() {
-    reactivateButtonStyles();
-    document.getElementById('fund_external_bank1').classList.add('disabled');
-    document.getElementById('fund_external_bank1').disabled = true;
-    document.getElementById('fund_external_bank2').classList.add('disabled');
-    document.getElementById('fund_external_bank2').disabled = true;
-    document.getElementById('fund_external_bank3').classList.add('disabled');
-    document.getElementById('fund_external_bank3').disabled = true;
-    document.getElementById('fund_external_bank4').classList.add('disabled');
-    document.getElementById('fund_external_bank4').disabled = true;
-}
 
 function FundsToSend(email, amount) {
     const installPopup = document.getElementById('balance-popup');
