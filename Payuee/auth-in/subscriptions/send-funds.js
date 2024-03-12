@@ -56,8 +56,6 @@ function enableTransferDiv() {
     document.getElementById('fund_external_bank1').disabled = true;
     document.getElementById('fund_external_bank2').classList.add('disabled');
     document.getElementById('fund_external_bank2').disabled = true;
-    document.getElementById('fund_external_bank3').classList.add('disabled');
-    document.getElementById('fund_external_bank3').disabled = true;
     document.getElementById('fund_external_bank4').classList.add('disabled');
     document.getElementById('fund_external_bank4').disabled = true;
 }    
