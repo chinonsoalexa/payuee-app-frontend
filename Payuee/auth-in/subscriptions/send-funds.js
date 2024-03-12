@@ -347,3 +347,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return banksData;
 });
+
+// Get the input element
+const accountNumberInput = document.getElementById('AccountNumber');
+
+// Add an event listener for the 'input' event
+accountNumberInput.addEventListener('input', function () {
+    // Get the current value of the input
+    const inputValue = this.value;
+
+    // Check if the value is greater than or equal to ten
+    if (inputValue.length == 10) {
+        // Perform your desired action here
+        // Make a GET request using fetch
+fetch(`https://payuee.onrender.com/verify-account/${inputValue}/${BankCode}`, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        // Add any additional headers if needed
+    },
+    // Add any additional options if needed
+})
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle the response data here
+        console.log('Response data:', data);
+        fillInTheAccountName(data);
+    })
+    .catch(error => {
+        // Handle errors here
+        console.error('Error:', error);
+    });
+
+    }
+});
+
+function fillInTheAccountName(accountName) {
+    const anotherInput = document.getElementById('AnotherInput');
+    if (anotherInput) {
+        anotherInput.value = accountName;
+    }
+}
