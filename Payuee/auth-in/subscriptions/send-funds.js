@@ -301,15 +301,15 @@ searchOptionsDiv.addEventListener("click", function (event) {
     let type = clickedOption.dataset.type;
     let currency = clickedOption.dataset.currency;
 
-    console.log("name", name)
-    console.log("code", code)
-    console.log("type", type)
-    console.log("currency", currency)
+    // console.log("name", name)
+    // console.log("code", code)
+    // console.log("type", type)
+    // console.log("currency", currency)
 
     // Check if the clicked element is an anchor tag
     if (clickedOption.tagName.toLowerCase() === 'a') {
     // Set input value with the selected bank's name
-    inputElement.value = clickedOption;
+    inputElement.value = name;
 
     // Hide or remove the dropdown
     // searchOptionsDiv.innerHTML = ''; // Clear search options
