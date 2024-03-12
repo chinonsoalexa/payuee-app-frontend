@@ -276,6 +276,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 searchOptionsDiv.appendChild(option);
             }
 
+            // let's check if mockSearchResults is less than 1 so that we can trow an error
+            if (mockSearchResults.length < 1) {
+                var option = document.createElement("a");
+                option.href = "#";
+                option.textContent = "Bank Not Found";
+                searchOptionsDiv.appendChild(option);
+            }
+
             // Show search options
             searchOptionsDiv.style.display = "block";
         } else {
