@@ -304,7 +304,7 @@ searchOptionsDiv.addEventListener("click", function (event) {
     // Check if the clicked element is an anchor tag
     if (clickedOption.tagName.toLowerCase() === 'a') {
     // Set input value with the selected bank's name
-    inputElement.value = name;
+    inputElement.value = clickedOption;
 
     // Hide or remove the dropdown
     // searchOptionsDiv.innerHTML = ''; // Clear search options
