@@ -388,8 +388,6 @@ fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankC
 });
 
 function fillInTheAccountName(accountName) {
-    const anotherInput = document.getElementById('AnotherInput');
-    if (anotherInput) {
-        anotherInput.value = accountName;
-    }
+    const userBankName = document.getElementById('userBankName');
+    userBankName.value = accountName;
 }
