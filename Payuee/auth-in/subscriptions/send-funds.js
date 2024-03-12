@@ -282,6 +282,7 @@ function searchBanksByName(query, banksData) {
     return banksData.filter(bank => bank.name.toLowerCase().includes(query));
 }
 
+document.addEventListener("DOMContentLoaded", function () {
 function searchAndGetBankDetails() {
     var banksData = null; // Variable to store the loaded JSON data
 
@@ -325,3 +326,4 @@ function searchAndGetBankDetails() {
 
         return banksData;
 }
+});
