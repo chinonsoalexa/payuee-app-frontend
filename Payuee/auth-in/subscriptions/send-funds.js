@@ -265,13 +265,13 @@ document.addEventListener("DOMContentLoaded", function () {
             for (var i = 0; i < mockSearchResults.length; i++) {
                 var option = document.createElement("a");
                 option.href = "#";
-                option.textContent = results[i].name;
+                option.textContent = mockSearchResults[i].name;
         
                 // Set data attributes
-                option.setAttribute("data-id", results[i].id);
-                option.setAttribute("data-code", results[i].code);
-                option.setAttribute("data-type", results[i].type);
-                option.setAttribute("data-currency", results[i].currency);
+                option.setAttribute("data-id", mockSearchResults[i].id);
+                option.setAttribute("data-code", mockSearchResults[i].code);
+                option.setAttribute("data-type", mockSearchResults[i].type);
+                option.setAttribute("data-currency", mockSearchResults[i].currency);
         
                 searchOptionsDiv.appendChild(option);
             }
