@@ -245,9 +245,10 @@ function reactivateButtonStyles() {
     resendButton.classList.add('cmn__btn');
 }
 
+var inputElement = document.getElementById("searchBankID");
+var searchOptionsDiv = document.getElementById("searchOptions");
+
 document.addEventListener("DOMContentLoaded", function () {
-    var inputElement = document.getElementById("searchBankID");
-    var searchOptionsDiv = document.getElementById("searchOptions");
 
     inputElement.addEventListener("input", function () {
         var inputValue = inputElement.value.trim();
@@ -265,6 +266,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 var option = document.createElement("a");
                 option.href = "#"; // You can set a link or use JavaScript to handle the click
                 option.textContent = mockSearchResults[i].name;
+
+                // Attach additional data using data attributes
+                option.setAttribute("data-bankName", mockSearchResults[i].name);
+                option.setAttribute("data-code", mockSearchResults[i].code);
+                option.setAttribute("data-type", mockSearchResults[i].type);
+                option.setAttribute("data-currency", mockSearchResults[i].currency);
                 searchOptionsDiv.appendChild(option);
             }
 
@@ -275,6 +282,26 @@ document.addEventListener("DOMContentLoaded", function () {
             searchOptionsDiv.style.display = "none";
         }
     });
+});
+
+searchOptionsDiv.addEventListener("click", function (event) {
+    var clickedOption = event.target;
+    var name = clickedOption.dataset.name;
+    var code = clickedOption.dataset.code;
+    var type = clickedOption.dataset.type;
+    var currency = clickedOption.dataset.currency;
+
+    // Check if the clicked element is an anchor tag
+    if (clickedOption.tagName.toLowerCase() === 'a') {
+    // Set input value with the selected bank's name
+    inputElement.value = name;
+
+    // Hide or remove the dropdown
+    searchOptionsDiv.innerHTML = ''; // Clear search options
+    }
+
+    // Use the retrieved values as needed
+    
 });
 
 // Function to search for banks by name
