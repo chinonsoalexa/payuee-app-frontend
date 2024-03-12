@@ -257,15 +257,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show search options if the input is not empty
         if (inputValue !== "") {
-            searchBanksByName(inputValue, banksData);
             // Mock search results
-            var mockSearchResults = ["United Bank For Africa", "First Bank", "Access Bank"];
+            var mockSearchResults = searchBanksByName(inputValue, banksData);
 
             // Create and append search options
             for (var i = 0; i < mockSearchResults.length; i++) {
                 var option = document.createElement("a");
                 option.href = "#"; // You can set a link or use JavaScript to handle the click
-                option.textContent = mockSearchResults[i];
+                option.textContent = mockSearchResults[i.name];
                 searchOptionsDiv.appendChild(option);
             }
 
