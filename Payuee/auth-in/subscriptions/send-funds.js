@@ -42,8 +42,6 @@ function disableTransferDiv() {
     document.getElementById('fund_external_bank1').disabled = false;
     document.getElementById('fund_external_bank2').classList.remove('disabled');
     document.getElementById('fund_external_bank2').disabled = false;
-    document.getElementById('fund_external_bank3').classList.remove('disabled');
-    document.getElementById('fund_external_bank3').disabled = false;
     document.getElementById('fund_external_bank4').classList.remove('disabled');
     document.getElementById('fund_external_bank4').disabled = false;
 }
@@ -377,6 +375,8 @@ fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankC
     .then(data => {
         // Handle the response data here
         console.log('Response data:', data);
+        document.getElementById('fund_external_bank3').classList.remove('disabled');
+        document.getElementById('fund_external_bank3').disabled = false;
         fillInTheAccountName(data.account_name);
     })
     .catch(error => {
