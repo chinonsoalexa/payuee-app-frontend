@@ -360,7 +360,7 @@ accountNumberInput.addEventListener('input', function () {
     if (inputValue.length == 10) {
         // Perform your desired action here
         // Make a GET request using fetch
-fetch(`https://payuee.onrender.com/verify-account/${inputValue}/${BankCode}`, {
+fetch(`https://payuee.onrender.com/paystack/verify-account/${inputValue}/${BankCode}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
