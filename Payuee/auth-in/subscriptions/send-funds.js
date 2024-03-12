@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 searchOptionsDiv.addEventListener("click", function (event) {
+    event.preventDefault();
     var clickedOption = event.target;
     let name = clickedOption.dataset.name;
     let code = clickedOption.dataset.code;
