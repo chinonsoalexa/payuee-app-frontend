@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
             for (var i = 0; i < mockSearchResults.length; i++) {
                 var option = document.createElement("a");
                 option.href = "#"; // You can set a link or use JavaScript to handle the click
-                option.textContent = mockSearchResults[i.name];
+                option.textContent = mockSearchResults[i].name;
                 searchOptionsDiv.appendChild(option);
             }
 
