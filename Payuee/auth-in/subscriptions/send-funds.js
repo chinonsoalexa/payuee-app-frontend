@@ -13,7 +13,7 @@ var Bank = "";
 var Currency = "NGN";
    
 var banksData = null; // Variable to store the loaded JSON data
-
+var GetName = 0
 
 // Get the radio buttons by name
 const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
@@ -56,6 +56,10 @@ function enableTransferDiv() {
     document.getElementById('fund_external_bank1').disabled = true;
     document.getElementById('fund_external_bank2').classList.add('disabled');
     document.getElementById('fund_external_bank2').disabled = true;
+    if (GetName >= 1) {
+        document.getElementById('fund_external_bank3').classList.add('disabled');
+        document.getElementById('fund_external_bank3').disabled = true;
+    }
     document.getElementById('fund_external_bank4').classList.add('disabled');
     document.getElementById('fund_external_bank4').disabled = true;
 }    
@@ -387,6 +391,7 @@ function getAccountDetails(inputValue) {
         // console.log('Response data:', data);
         document.getElementById('fund_external_bank3').classList.remove('disabled');
         document.getElementById('fund_external_bank3').disabled = false;
+        GetName += 1;
         fillInTheAccountName(data.data.account_name);
     })
     .catch(error => {
