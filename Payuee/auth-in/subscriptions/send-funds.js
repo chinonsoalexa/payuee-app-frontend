@@ -339,7 +339,6 @@ searchOptionsDiv.addEventListener("click", function (event) {
 // Function to search for banks by name
 function searchBanksByName(query, banksData) {
     query = query.toLowerCase().trim();
-    console.log("this is the banks result:   ", banksData.filter(bank => bank.name.toLowerCase().includes(query)));
     return banksData.filter(bank => bank.name.toLowerCase().includes(query));
 }
 
@@ -408,7 +407,7 @@ function getAccountDetails(inputValue) {
     })
     .catch(error => {
         // Handle errors here
-        console.error('Error:', error);
+        // console.error('Error:', error);
     });
 
     }
