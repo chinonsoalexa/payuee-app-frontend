@@ -400,7 +400,7 @@ function getAccountDetails(inputValue) {
         document.getElementById('fund_external_bank3').classList.remove('disabled');
         document.getElementById('fund_external_bank3').disabled = false;
         GetName += 1;
-        if (data.code == invalid_bank_code){
+        if (data.code == "invalid_bank_code"){
             fillInTheAccountName("Invalid Bank Details");
         } else {
             fillInTheAccountName(data.data.account_name);
