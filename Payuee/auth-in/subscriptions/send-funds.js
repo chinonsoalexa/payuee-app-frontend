@@ -15,18 +15,6 @@ var Currency = "NGN";
 var banksData = null; // Variable to store the loaded JSON data
 var GetName = 0
 
-// Get the input element
-const accountNumberInputBox = document.getElementById('AccountNumber');
-
-// Add an event listener for the 'input' event
-accountNumberInputBox.addEventListener('input', function () {
-    // Limit the input to a maximum of 10 digits
-    const inputValue = this.value;
-    if (inputValue.length > 10) {
-        this.value = inputValue.slice(0, 10);
-    }
-});
-
 // Get the radio buttons by name
 const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
@@ -374,7 +362,11 @@ const accountNumberInput = document.getElementById('AccountNumber');
 // Add an event listener for the 'input' event
 accountNumberInput.addEventListener('input', function () {
     // Get the current value of the input
+    // Limit the input to a maximum of 10 digits
     const inputValue = this.value;
+    if (inputValue.length > 10) {
+        this.value = inputValue.slice(0, 10);
+    }
     getAccountDetails(inputValue)
 });
 
