@@ -398,7 +398,7 @@ function getAccountDetails(inputValue) {
         // console.log('Response data:', data);
         document.getElementById('fund_external_bank3').classList.remove('disabled');
         document.getElementById('fund_external_bank3').disabled = false;
-        GetName += 1;
+        GetName = 1;
         if (data.code == "invalid_bank_code"){
             fillInTheAccountName("Invalid Bank Details");
         } else {
