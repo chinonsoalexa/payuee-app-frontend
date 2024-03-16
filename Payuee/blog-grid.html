@@ -284,7 +284,7 @@
    <div class="container">
       <div class="breadcumnd__wrapper">
          <h2 class="bread__title">
-            Blog - Grid
+            Blog - Post
          </h2>
          <ul class="breadcumnd__link">
             <li>
@@ -302,14 +302,6 @@
                   Blog
                </a>
             </li>
-            <li>
-               <i class="material-symbols-outlined">
-                  chevron_right
-               </i>
-            </li>
-            <li>
-               Grid
-            </li>
          </ul>
       </div>
    </div>
@@ -323,23 +315,23 @@
       <div class="row">
          <div class="col-xxl-8 col-xl-8 col-lg-8">
             <div class="blog__grid__leftwrapper">
-               <div class="row g-4">
+               <div id="blogPostContents" class="row g-4">
                   <div class="col-xl-6 col-md-6">
                      <div class="blog__list__item">
                         <a href="#0" class="thumb">
-                           <img src="assets/img/blog/list1.jpg" alt="img">
+                           <img src="assets/img/blog/list1.jpg" alt="img" id="blog_post_image">
                            <span class="date__box">
-                              <span>
+                              <span id="blog_date_month">
                                  17 dec
-                                 <span class="dat">
-                                    2023
+                                 <span class="dat" id="blog_date_year">
+                                    2024
                                  </span>
                               </span>
                            </span>
                         </a>
                         <div class="content">
                            <h5 class="mb__15">
-                              <a href="#0">
+                              <a href="#0" id="blog_post_title">
                                  Why you should think twice before booking the Maldives...
                               </a>
                            </h5>
@@ -361,10 +353,10 @@
                                  </span>
                               </li>
                            </ul>
-                           <p class="mb__30">
+                           <p class="mb__30" id="blog_post_description">
                               There are many variations of passages of Lorem ipsum available, but the majority have sufferrd alteration in some form...                   
                            </p>
-                           <a href="#0" class="cmn__btn">
+                           <a href="#0" class="cmn__btn" id="blog_post_read_more_button">
                               <span>
                                  Read more
                               </span>
@@ -939,6 +931,8 @@
    <script src="assets/js/prism.js"></script>
    <!--main Js-->
    <script src="assets/js/main.js"></script>
+   <!-- blog js file -->
+   <script src="auth-in/subscriptions/blogGrid.js"></script>
 </body>
 
 
