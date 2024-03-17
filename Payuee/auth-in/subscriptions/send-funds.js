@@ -91,28 +91,29 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         } else if (payueeAmount > 100000) {
             validated = false;
             showError('amountError', "Please maximum transfer amount is ₦100,000");
-        } else if (sendFundsToStatus == "paystack") {
-            BankType = "paystack"
-            AccountNumber = document.getElementById("AccountNumber").value;
-            paystackAmount = document.getElementById("AmountToTransfer").value;
-            if (AccountNumber  == "") {
-                validated = false;
-                showError('accountNumberError', "Please enter an  account number");
-            } else if (AccountNumber.length < 10 ) {
-                validated = false;
-                showError('accountNumberError', "Please enter a complete account number");
-            } 
-            if (paystackAmount == "") {
-                validated = false;
-                showError('amountToTransferError', "Please enter an amount to transfer");
-            } else if (paystackAmount < 100) {
-                validated = false;
-                showError('amountToTransferError', "Please minimum transfer amount is ₦100");
-            } else if (paystackAmount > 100000) {
-                validated = false;
-                showError('amountToTransferError', "Please maximum transfer amount is ₦100,000");
-            } 
-        }
+        } 
+    }else if (sendFundsToStatus == "paystack") {
+        BankType = "paystack"
+        AccountNumber = document.getElementById("AccountNumber").value;
+        paystackAmount = document.getElementById("AmountToTransfer").value;
+        if (AccountNumber  == "") {
+            validated = false;
+            showError('accountNumberError', "Please enter an  account number");
+        } else if (AccountNumber.length < 10 ) {
+            validated = false;
+            showError('accountNumberError', "Please enter a complete account number");
+        } 
+        if (paystackAmount == "") {
+            validated = false;
+            showError('amountToTransferError', "Please enter an amount to transfer");
+        } else if (paystackAmount < 100) {
+            validated = false;
+            showError('amountToTransferError', "Please minimum transfer amount is ₦100");
+        } else if (paystackAmount > 100000) {
+            validated = false;
+            showError('amountToTransferError', "Please maximum transfer amount is ₦100,000");
+        } 
+    }
         if (validated == true) {
             console.log("this is the bank status: ", sendFundsToStatus);
             if (sendFundsToStatus == "payuee") {
@@ -127,7 +128,6 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
                 FundsToSendToPaystack(AccountName, paystackAmount);
             }
         }
-    }
 });
 
 function FundsToSendToPayuee(email, amount) {
