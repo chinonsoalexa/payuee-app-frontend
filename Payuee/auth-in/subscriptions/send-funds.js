@@ -114,6 +114,7 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
             } 
         }
         if (validated == true) {
+            console.log("this is the bank status: ", sendFundsToStatus);
             if (sendFundsToStatus == "payuee") {
                 console.log("this is the account name to send funds to payuee");
                 console.log("this is the account name to send funds to: ", payueeEmailId);
