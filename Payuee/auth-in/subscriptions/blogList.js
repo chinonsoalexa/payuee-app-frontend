@@ -57,7 +57,19 @@ function blogPost(postsData) {
         parentElement.appendChild(divContainer);
 
         const readMoreButton = divContainer.querySelector('.cmn__btn');
+        const title = divContainer.querySelector('.mb__15');
+        const image = divContainer.querySelector('.thumb');
         readMoreButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('Read more button clicked for post:', postId);
+            prompt('Read more button clicked for post:', postId);
+        });
+        title.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('Read more button clicked for post:', postId);
+            prompt('Read more button clicked for post:', postId);
+        });
+        image.addEventListener('click', function(event) {
             event.preventDefault();
             console.log('Read more button clicked for post:', postId);
             prompt('Read more button clicked for post:', postId);
