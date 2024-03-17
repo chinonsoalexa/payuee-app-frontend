@@ -116,10 +116,10 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         if (validated == true) {
             if (BankType == "payuee") {
                 console.log("this is the account name to send funds to payuee");
-                console.log("this is the account name to send funds to: ", AccountName);
-                console.log("this is the amount we want to send : ", paystackAmount);
+                console.log("this is the account name to send funds to: ", payueeEmailId);
+                console.log("this is the amount we want to send : ", payueeAmount);
                 FundsToSendToPayuee(payueeEmailId, payueeAmount);
-            } else {
+            } else if (BankType == "paystack"){
                 console.log("this is the account name to send funds to paystack");
                 console.log("this is the account name to send funds to: ", AccountName);
                 console.log("this is the amount we want to send : ", paystackAmount);
