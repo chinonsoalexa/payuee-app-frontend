@@ -9,7 +9,7 @@ function blogPost(postsData) {
 
         divContainer.innerHTML = `
             <a href="#0" class="thumb">
-                <img src="${postData.postImageSrc}" alt="img">
+                <img id="image" src="${postData.postImageSrc}" alt="img">
                 <span class="date-item">
                     <span class="fz-18 fw-600 dtext lato d-block">
                         ${postData.dateMonth}
