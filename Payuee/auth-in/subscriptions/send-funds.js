@@ -115,8 +115,12 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         }
         if (validated == true) {
             if (BankType == "payuee") {
+                console.log("this is the account name to send funds to payuee");
+                console.log("this is the account name to send funds to: ", AccountName);
+                console.log("this is the amount we want to send : ", paystackAmount);
                 FundsToSendToPayuee(payueeEmailId, payueeAmount);
             } else {
+                console.log("this is the account name to send funds to paystack");
                 console.log("this is the account name to send funds to: ", AccountName);
                 console.log("this is the amount we want to send : ", paystackAmount);
                 FundsToSendToPaystack(AccountName, paystackAmount);
