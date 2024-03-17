@@ -104,13 +104,13 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
             } 
             if (paystackAmount == "") {
                 validated = false;
-                showError('amountError', "Please enter an amount to transfer");
+                showError('amountToTransferError', "Please enter an amount to transfer");
             } else if (paystackAmount < 100) {
                 validated = false;
-                showError('amountError', "Please minimum transfer amount is ₦100");
+                showError('amountToTransferError', "Please minimum transfer amount is ₦100");
             } else if (paystackAmount > 100000) {
                 validated = false;
-                showError('amountError', "Please maximum transfer amount is ₦100,000");
+                showError('amountToTransferError', "Please maximum transfer amount is ₦100,000");
             } 
         }
         if (validated == true) {
