@@ -1,59 +1,56 @@
-function createMultiplePosts(postsData) {
-    const parentElement = document.getElementById('blogPostContents'); // Get the parent element by ID
+function blogPost(postsData) {
+    const parentElement = document.getElementById('blogPostContents');
 
     postsData.forEach((postData, index) => {
         const postId = `post_${index}_${Date.now()}`;
 
         const divContainer = document.createElement('div');
-        divContainer.id = postId;
-        divContainer.classList.add('col-xl-6', 'col-md-6');
+        divContainer.classList.add('blog__list__item', 'mb__30');
 
         divContainer.innerHTML = `
-            <div class="blog__list__item mb__30">
-                <a href="#0" class="thumb">
-                    <img src="${postData.postImageSrc}" alt="img">
-                    <span class="date-item">
-                        <span class="fz-18 fw-600 dtext lato d-block">
-                            ${postData.dateMonth}
+            <a href="#0" class="thumb">
+                <img src="${postData.postImageSrc}" alt="img">
+                <span class="date-item">
+                    <span class="fz-18 fw-600 dtext lato d-block">
+                        ${postData.dateMonth}
+                    </span>
+                    <span class="fz-18 fw-600 dtext lato">
+                        ${postData.dateYear}
+                    </span>
+                </span>
+            </a>
+            <div class="content">
+                <h5 class="mb__15">
+                    <a href="#0">
+                        ${postData.postTitle}
+                    </a>
+                </h5>
+                <ul class="admin__commments mb__15">
+                    <li>
+                        <span class="icon">
+                            <img src="assets/img/svg/person.svg" alt="icon">
                         </span>
-                        <span class="fz-18 fw-600 dtext lato">
-                            ${postData.dateYear}
+                        <span class="text">
+                            Admin
                         </span>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="assets/img/svg/comments.svg" alt="icon">
+                        </span>
+                        <span class="text">
+                            ${postData.adminComments}
+                        </span>
+                    </li>
+                </ul>
+                <p class="mb__30">
+                    ${postData.postDescription}
+                </p>
+                <a href="#0" class="cmn__btn">
+                    <span>
+                        Read more
                     </span>
                 </a>
-                <div class="content">
-                    <h5 class="mb__15">
-                        <a href="#0">
-                            ${postData.postTitle}
-                        </a>
-                    </h5>
-                    <ul class="admin__commments mb__15">
-                        <li>
-                            <span class="icon">
-                                <img src="assets/img/svg/person.svg" alt="icon">
-                            </span>
-                            <span class="text">
-                                Admin
-                            </span>
-                        </li>
-                        <li>
-                            <span class="icon">
-                                <img src="assets/img/svg/comments.svg" alt="icon">
-                            </span>
-                            <span class="text">
-                                ${postData.adminComments}
-                            </span>
-                        </li>
-                    </ul>
-                    <p class="mb__30">
-                        ${postData.postDescription}
-                    </p>
-                    <a href="#0" class="cmn__btn">
-                        <span>
-                            Read more
-                        </span>
-                    </a>
-                </div>
             </div>
         `;
 
@@ -63,9 +60,11 @@ function createMultiplePosts(postsData) {
         readMoreButton.addEventListener('click', function(event) {
             event.preventDefault();
             console.log('Read more button clicked for post:', postId);
+            prompt('Read more button clicked for post:', postId);
         });
     });
 }
+
 // Define an array of test data for multiple posts
 const testData = [
     {
@@ -119,4 +118,60 @@ const testData = [
 ];
 
 // Call the function to create multiple posts with the provided test data
-createMultiplePosts(testData);
+blogPost(testData);
+
+function popularBlogPost(popularPostData) {
+
+    const parentElement = document.getElementById('popularBlogPosts');
+
+    popularPostData.forEach((popularPostData, index) => {
+        const postId = `post_${index}_${Date.now()}`;
+        const divContainer = document.createElement('div');
+        divContainer.classList.add('blog__list__item', 'mb__30');
+
+        divContainer.innerHTML = `
+    <a href="#0" class="recent__item">
+        <span class="thumb">
+            <img src="${popularPostData.postImageSrc}" alt="img">
+        </span>
+        <span class="content">
+            <span class="title">
+            ${popularPostData.postTitle}
+            </span>
+            <span class="date">
+            ${popularPostData.postDate}
+            </span>
+        </span>
+        </a>`;
+
+        parentElement.appendChild(divContainer);
+
+        const popularBlogClickEvent = divContainer.querySelector('.recent__item');
+        popularBlogClickEvent.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('Read more button clicked for post:', postId);
+            prompt('Read more button clicked for post:', postId);
+        });
+        });
+}
+
+// Define an array of test data for multiple posts
+const popularBlogPostData = [
+    {
+        postImageSrc: 'assets/img/blog/liss1.jpg',
+        postDate: 'December 19, 2022',
+        postTitle: 'Recharge to enable card payments...',
+        },
+    {
+        postImageSrc: 'assets/img/blog/list2.jpg',
+        postDate: 'November 23, 2021',
+        postTitle: 'Stop auto payment in Paytm, turn off this...',
+    },
+    {
+        postImageSrc: 'assets/img/blog/list3.jpg',
+        postDate: 'October 17, 2020',
+        postTitle: 'Paytm KYC- How to Complete Paytm...',
+    },
+];
+
+popularBlogPost(popularBlogPostData)
