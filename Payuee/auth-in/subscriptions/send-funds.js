@@ -367,9 +367,6 @@ searchOptionsDiv.addEventListener("click", function (event) {
 
     sendFundsToStatus = "paystack";
     BankCountryType = type;
-    // AccountNumber = "";
-    // AccountName = "";
-    // Description = "";
     BankCode = code;
     Bank = name;
 
@@ -425,6 +422,7 @@ accountNumberInput.addEventListener('input', function () {
 });
 
 function fillInTheAccountName(accountName) {
+    AccountName = accountName;
     const userBankName = document.getElementById('userBankName');
     userBankName.value = accountName;
 }
