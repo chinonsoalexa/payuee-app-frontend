@@ -72,6 +72,7 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
     event.preventDefault();
         validated = true;
     if (sendFundsToStatus == "payuee") {
+        BankType = "payuee"
         payueeEmailId = document.getElementById("payueeEmailId").value;
         payueeAmount = document.getElementById("payueeAmount").value;
         if (payueeEmailId  == "") {
@@ -84,21 +85,45 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         if (payueeAmount == "") {
             validated = false;
             showError('amountError', "Please enter an amount to transfer");
-        } else if (payueeAmount < 50) {
+        } else if (payueeAmount < 100) {
             validated = false;
-            showError('amountError', "Please minimum transfer amount is ₦50");
+            showError('amountError', "Please minimum transfer amount is ₦100");
         } else if (payueeAmount > 100000) {
             validated = false;
             showError('amountError', "Please maximum transfer amount is ₦100,000");
-        } 
+        } else if (sendFundsToStatus == "paystack") {
+            BankType = "paystack"
+            AccountNumber = document.getElementById("AccountNumber").value;
+            paystackAmount = document.getElementById("AmountToTransfer").value;
+            if (AccountNumber  == "") {
+                validated = false;
+                showError('accountNumberError', "Please enter an  account number");
+            } else if (AccountNumber.length < 10 ) {
+                validated = false;
+                showError('accountNumberError', "Please enter a complete account number");
+            } 
+            if (paystackAmount == "") {
+                validated = false;
+                showError('amountError', "Please enter an amount to transfer");
+            } else if (paystackAmount < 100) {
+                validated = false;
+                showError('amountError', "Please minimum transfer amount is ₦100");
+            } else if (paystackAmount > 100000) {
+                validated = false;
+                showError('amountError', "Please maximum transfer amount is ₦100,000");
+            } 
+        }
         if (validated == true) {
-            BankType = "payuee"
-            FundsToSend(payueeEmailId, payueeAmount);
+            if (BankType == "payuee") {
+                FundsToSendToPayuee(payueeEmailId, payueeAmount);
+            } else {
+                FundsToSendToPaystack(AccountName, paystackAmount)
+            }
         }
     }
 });
 
-function FundsToSend(email, amount) {
+function FundsToSendToPayuee(email, amount) {
     const installPopup = document.getElementById('balance-popup');
     const cancelButton = document.getElementById('cancel-btn');
     const sendButton = document.getElementById('send-btn');
@@ -107,6 +132,29 @@ function FundsToSend(email, amount) {
 
     FundsToSend.textContent = formatNumberToNaira(amount);
     UserToSendTo.textContent = email;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+    sendButton.addEventListener('click', async () => {
+        // let's approve and send the transaction
+        installPopup.style.display = 'none';
+        await sendFunds()
+      });
+}
+
+function FundsToSendToPaystack(name, amount) {
+    const installPopup = document.getElementById('balance-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const sendButton = document.getElementById('send-btn');
+    const FundsToSend = document.getElementById('FundsToSend');
+    const UserToSendTo = document.getElementById('UserToSendTo');
+
+    FundsToSend.textContent = formatNumberToNaira(amount);
+    UserToSendTo.textContent = name;
 
       installPopup.style.display = 'block';
 
