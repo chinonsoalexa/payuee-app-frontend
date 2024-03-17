@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from /Payuee/Payuee/debit-creadit.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:44 GMT -->
+<!-- Mirrored from /Payuee/Payuee/favourites.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:42:38 GMT -->
 <head>
    <script src="auth/auth-page.js" defer></script>
    <meta charset="UTF-8">
@@ -284,7 +284,7 @@
    <div class="container">
       <div class="breadcumnd__wrapper">
          <h2 class="bread__title">
-            Credit or Debit Cards
+            Favourites
          </h2>
          <ul class="breadcumnd__link">
             <li>
@@ -318,7 +318,7 @@
                </i>
             </li>
             <li>
-               Cedit or Debit Cards
+               Favourites
             </li>
          </ul>
       </div>
@@ -355,32 +355,22 @@
                   </a>
                   </li>
                   <li class="nav-item">
-                     <a href="favourites.html" class="nav-link">
+                     <a href="subscriptions.html" class="nav-link active">
                       <span class="icon">
                          <img src="assets/img/svg/badge.svg" alt="login">
                       </span>
                       <span>
-                         Favourites
+                         Subscriptions
                       </span>
                    </a>
                    </li>
-                  <li class="nav-item">
-                    <a href="debit-creadit.html" class="nav-link active">
-                     <span class="icon">
-                        <img src="assets/img/svg/creadits.svg" alt="login">
-                     </span>
-                     <span>
-                        Credit or Debit Cards
-                     </span>
-                  </a>
-                  </li>
                   <li class="nav-item">
                      <a href="transaction.html" class="nav-link">
                         <span class="icon">
                            <img src="assets/img/svg/file-transfer.svg" alt="login">
                         </span>
                         <span>
-                           Transaction
+                           Transactions
                         </span>
                      </a>
                    </li>
@@ -407,40 +397,112 @@
                </ul>
             </div>
          </div>
-         <div class="col-xxl-7 col-xl-7 col-lg-7">
-            <div class="personal__infobody">
+         <div class="col-xxl-8 col-xl-8 col-lg-8">
+            <div class="personal__favorites">
                <div class="personal__info__box">
-                  <div class="per__ittle border__bottom pb__20 d-flex align-items-center">
+                  <div class="per__ittle d-flex align-items-center">
                      <h5>
-                        Credit or Debit Cards
+                        Your Saved Connections
                      </h5>
-                     <a href="javascript:void(0)" class="edit d-flex align-items-center gap-2">
-                        <span class="icon delete">
-                           <i class="material-symbols-outlined">
-                              delete
-                           </i>
-                        </span>
-                        <span class="fz-18 fw-600">
-                           Delete Card
-                        </span>
-                     </a>
                   </div>
-                  <div class="debit__creadit d-flex align-items-center">
-                     <div class="card__box">
-                        <img src="assets/img/payment/cr3.png" alt="img">
-                     </div>
-                     <div class="card__box">
-                        <img src="assets/img/payment/cr1.png" alt="img">
-                     </div>
-                     <div class="card__box">
-                        <img src="assets/img/payment/cr2.png" alt="img">
-                     </div>
-                     <a href="javascript:void(0)" class="card__boxed">
-                        <img src="assets/img/payment/payplus.png" alt="img">
-                        <span>
-                           Add New Card
-                        </span>
-                     </a>
+                  <div class="table__system">
+                     <table class="table1">
+                        <thead>
+                          <tr>
+                            <th>Oparetor</th>
+                            <th>Transaction</th>
+                            <th>Number</th>
+                            <th>Purchase</th>
+                            <th>Edit</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <span class="oparetor">
+                                 <img src="assets/img/payment/verizon.png" alt="img">
+                              </span>
+                            </td>
+                            <td>Mobile Recharge</td>
+                            <td>(406) 555-0120</td>
+                            <td>
+                               <a href="payment.html" class="purchase">
+                                  <span>
+                                     Recharge Now
+                                    </span>
+                                 </a>
+                              </td>
+                              <td>
+                                 <a href="javascript:void(0)" class="edit">
+                                    <img src="assets/img/svg/edits.svg" alt="img">
+                                 </a>
+                              </td>
+                          </tr>
+                          <tr>
+                           <td>
+                             <span class="oparetor">
+                                <img src="assets/img/payment/met.png" alt="img">
+                             </span>
+                           </td>
+                           <td>Electric Bill</td>
+                           <td>4600</td>
+                           <td>
+                              <a href="payment.html" class="purchase">
+                                 <span>
+                                    Payment
+                                 </span>
+                              </a>
+                           </td>
+                           <td>
+                              <a href="javascript:void(0)" class="edit">
+                                 <img src="assets/img/svg/edits.svg" alt="img">
+                              </a>
+                           </td>
+                         </tr>
+                         <tr>
+                           <td>
+                             <span class="oparetor">
+                                <img src="assets/img/payment/sprint.png" alt="img">
+                             </span>
+                           </td>
+                           <td>Gas Bill</td>
+                           <td>8829</td>
+                           <td>
+                               <a href="payment.html" class="purchase">
+                                 <span>
+                                    Payment
+                                   </span>
+                                </a>
+                             </td>
+                             <td>
+                              <a href="javascript:void(0)" class="edit">
+                                 <img src="assets/img/svg/edits.svg" alt="img">
+                              </a>
+                             </td>
+                         </tr>
+                         <tr>
+                           <td>
+                             <span class="oparetor">
+                                <img src="assets/img/payment/ata5g.png" alt="img">
+                             </span>
+                           </td>
+                           <td>Flight Booking</td>
+                           <td>9151</td>
+                           <td>
+                              <a href="payment.html" class="purchase">
+                                 <span>
+                                    Payment
+                                   </span>
+                                </a>
+                             </td>
+                             <td>
+                              <a href="javascript:void(0)" class="edit">
+                                 <img src="assets/img/svg/edits.svg" alt="img">
+                              </a>
+                             </td>
+                         </tr>
+                        </tbody>
+                      </table>
                   </div>
                </div>
             </div>
@@ -626,5 +688,5 @@
 </body>
 
 
-<!-- Mirrored from /Payuee/Payuee/debit-creadit.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:43:44 GMT -->
+<!-- Mirrored from /Payuee/Payuee/favourites.html by Payuee/3.x [XR&CO'2014], Sat, 23 Dec 2023 21:42:51 GMT -->
 </html>
