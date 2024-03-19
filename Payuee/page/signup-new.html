@@ -221,160 +221,154 @@
 <!-- signUp here -->
 <section class="signup__section bluar__shape">
 
-<!-- collecting users data -->
-<div id="sign-up-form" class="container">
-   <div class="row align-items-center justify-content-between">
-      <div class="col-xl-6 col-lg-6">
-         <div class="signup__boxes">
-            <h4>
-               Let's Get Started!
-            </h4>
-            <p class="head__pra">
-               Please Enter your Email Address to Start your Online Application
-            </p>
-            <form action="https://payuee.onrender.com/sign-up" class="signup__form pt__40">
-               <div class="row g-4">
-                  <div class="col-lg-6">
-                     <div class="input__grp">
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" placeholder="John">
-                        <p id="nameError" class="error-message"></p>
+   <!-- collecting users data -->
+   <div id="sign-up-form" class="container">
+      <div class="row align-items-center justify-content-between">
+         <div class="col-xl-6 col-lg-6">
+            <div class="signup__boxes">
+               <h4>
+                  Let's Get Started!
+               </h4>
+               <p class="head__pra">
+                  Please Enter your Email Address to Start your Online Application
+               </p>
+               <form action="https://payuee.onrender.com/sign-up" class="signup__form pt__40">
+                  <div class="row g-4">
+                     <div class="col-lg-6">
+                        <div class="input__grp">
+                           <label for="fname">First Name</label>
+                           <input type="text" id="fname" placeholder="John">
+                           <p id="nameError" class="error-message"></p>
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="input__grp">
+                           <label for="lname">Last Name</label>
+                           <input type="text" id="lname" placeholder="Doe">
+                           <p id="lastNameError" class="error-message"></p>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="email">Enter Your Email ID</label>
+                           <input type="email" id="email" placeholder="Your email address here">
+                           <p id="emailError" class="error-message"></p>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="code">Enter The Referral Code</label>
+                           <input type="text" id="code" placeholder="Enter the referral code (optional)">
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <p class="tag__pra">
+                              By clicking submit, you agree to <a href="#">Terms of Use</a>, <a href="#0">Privacy Policy</a>, <a href="#0">E-sign</a> & <a href="#0">communication Authorization</a>.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-2">
+                          <button id="signupButton" type="button" class="cmn__btn">
+                              <span>
+                                 Signup
+                              </span>
+                          </button>
+                        </div>
+                     </div>
+                     <div class="forgotDiv">
+                        <span>
+                           Already have an account? <a href="signin-new.html" class="signInLink">Signin</a>
+                         </span>
                      </div>
                   </div>
-                  <div class="col-lg-6">
-                     <div class="input__grp">
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" placeholder="Doe">
-                        <p id="lastNameError" class="error-message"></p>
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp">
-                        <label for="email">Enter Your Email ID</label>
-                        <input type="email" id="email" placeholder="Your email address here">
-                        <p id="emailError" class="error-message"></p>
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp">
-                        <label for="code">Enter The Referral Code</label>
-                        <input type="text" id="code" placeholder="Enter the referral code (optional)">
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp">
-                        <p class="tag__pra">
-                           By clicking submit, you agree to <a href="#">Terms of Use</a>, <a href="#0">Privacy Policy</a>, <a href="#0">E-sign</a> & <a href="#0">communication Authorization</a>.
-                        </p>
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp mt-2">
-                        <button id="signupButton" type="button" class="cmn__btn">
-                           <span>
-                              Signup
-                           </span>
-                        </button>
-                        <!-- <p class="input__grp">Or signup using</p> -->
-                        <!-- Google Signup Button with Image -->
-                        <!-- <button id="googleSignupButton" type="button" class="cmn__btn">
-                              <img src="../assets/img/signup/google-signup.png" alt="Google Logo" style="width: 20px; height: 20px; margin-right: 10px;">
-                              <span>Google</span>
-                        </button> -->
-                     </div>
-                  </div>
-                  <div class="forgotDiv">
-                     <span>
-                        Already have an account? <a href="signin-new.html" class="signInLink">Signin</a>
-                        </span>
-                  </div>
-               </div>
-            </form>
+               </form>
+            </div>
          </div>
-      </div>
-      <div class="col-xl-5 col-lg-6">
-         <div class="signup__thumb">
-            <img src="../assets/img/signup/signup.png" alt="img">
+         <div class="col-xl-5 col-lg-6">
+            <div class="signup__thumb">
+               <img src="../assets/img/signup/signup.png" alt="img">
+            </div>
          </div>
       </div>
    </div>
-</div>
 
-<!-- taking users password -->
-<div id="sign-up-password" class="container disabled">
-   <div class="row align-items-center justify-content-between">
-      <div class="col-xl-6 col-lg-6">
-         <div class="signup__boxes">
-            <h4>
-               Set Up Your Password
-            </h4>
-            <p class="head__pra">
-               Your security is our top priority. You'll need this to log into your account
-            </p>
-            <form  class="signup__form password__box pt__40">
-               <div class="row g-4">
-                  <div class="col-lg-12">
-                     <div class="input__grp">
-                        <label for="password-field" class="form-label">Choose Password</label>
-                        <div class="form-group">
-                           <input id="password-field" type="password" class="form-control" placeholder="Enter Your Password" name="password" value="">
-                           <span id="#password-field" class="fa fa-fw field-icon toggle-password">
-                              <i class="material-symbols-outlined">
-                                 visibility
-                              </i>
-                           </span>
-                        <p id="passwordError" class="error-message"></p>
+   <!-- taking users password -->
+   <div id="sign-up-password" class="container disabled">
+      <div class="row align-items-center justify-content-between">
+         <div class="col-xl-6 col-lg-6">
+            <div class="signup__boxes">
+               <h4>
+                  Set Up Your Password
+               </h4>
+               <p class="head__pra">
+                  Your security is our top priority. You'll need this to log into your account
+               </p>
+               <form  class="signup__form password__box pt__40">
+                  <div class="row g-4">
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="password-field" class="form-label">Choose Password</label>
+                           <div class="form-group">
+                              <input id="password-field" type="password" class="form-control" placeholder="Enter Your Password" name="password" value="">
+                              <span id="#password-field" class="fa fa-fw field-icon toggle-password">
+                                 <i class="material-symbols-outlined">
+                                    visibility
+                                 </i>
+                              </span>
+                           <p id="passwordError" class="error-message"></p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="password-field" class="form-label">Confirm Password</label>
+                           <div class="form-group">
+                              <input id="toggle-password2" type="password" class="form-control" placeholder="Password" name="password" value="">
+                              <span id="#toggle-password2" class="fa fa-fw field-icon toggle-password2">
+                                 <i class="material-symbols-outlined">
+                                    visibility
+                                 </i>
+                              </span>
+                              <p id="confirmPasswordError" class="error-message"></p>
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-3">
+                        <button type="button" id="submitPassword" class="cmn__btn">
+                              <span>
+                                 Submit Now
+                              </span>
+                        </button>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-2">
+                        <a onclick="enableSignUpPasswordDiv()" style="cursor: pointer;" class="back__btn">
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    keyboard_backspace
+                                 </i>
+                              </span>
+                              <span>
+                                 Back
+                              </span>
+                        </a>
                         </div>
                      </div>
                   </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp">
-                        <label for="password-field" class="form-label">Confirm Password</label>
-                        <div class="form-group">
-                           <input id="toggle-password2" type="password" class="form-control" placeholder="Password" name="password" value="">
-                           <span id="#toggle-password2" class="fa fa-fw field-icon toggle-password2">
-                              <i class="material-symbols-outlined">
-                                 visibility
-                              </i>
-                           </span>
-                           <p id="confirmPasswordError" class="error-message"></p>
-                     </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp mt-3">
-                     <button type="button" id="submitPassword" class="cmn__btn">
-                           <span>
-                              Submit Now
-                           </span>
-                     </button>
-                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                     <div class="input__grp mt-2">
-                     <a onclick="enableSignUpPasswordDiv()" style="cursor: pointer;" class="back__btn">
-                           <span class="icon">
-                              <i class="material-symbols-outlined">
-                                 keyboard_backspace
-                              </i>
-                           </span>
-                           <span>
-                              Back
-                           </span>
-                     </a>
-                     </div>
-                  </div>
-               </div>
-            </form>
+               </form>
+            </div>
          </div>
-      </div>
-      <div class="col-xl-5 col-lg-6">
-         <div class="signup__thumb">
-            <img src="../assets/img/signup/signup.png" alt="img">
+         <div class="col-xl-5 col-lg-6">
+            <div class="signup__thumb">
+               <img src="../assets/img/signup/signup.png" alt="img">
+            </div>
          </div>
       </div>
    </div>
-</div>
 
 </section>
 <!-- signUp End -->

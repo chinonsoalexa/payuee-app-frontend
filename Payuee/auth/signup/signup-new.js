@@ -14,15 +14,23 @@
     var email
     var code
 
-     // Get the button element by its ID
-    const googleSignupButton = document.getElementById('googleSignupButton');
+    window.addEventListener('DOMContentLoaded', () => {
+        // Get the current URL
+        const currentUrl = new URL(window.location.href);
 
-    // Add a click event listener to the button
-    googleSignupButton.addEventListener('click', function() {
-        // Redirect to the specified URL when the button is clicked
-        window.location.href = 'https://payuee.onrender.com/google/sign-in';
+        // Extract parameters using URLSearchParams
+        const params = new URLSearchParams(currentUrl.search);
+
+        // Get individual parameter values
+        const referralCode = params.get("referral-code");
+
+        // Get the input element
+        const inputBox = document.getElementById('code');
+
+        // Set the value of the input box
+        inputBox.value = referralCode;
     });
-
+    
     // this event listener clears an existing error
     document.getElementById('fname').addEventListener('input', function() {
         clearError('nameError');
@@ -285,7 +293,7 @@ document.getElementById('toggle-password2').addEventListener('input', function()
 });
 
 async function submit_password() {
-    var auth_check = false
+    var auth_check = true
     buttonClicks += 1
     var password = document.getElementById('password-field').value;
     var confirmPassword = document.getElementById('toggle-password2').value;
@@ -298,34 +306,39 @@ async function submit_password() {
 
     // Check if password meets the criteria
     if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-        auth_check = true
+        auth_check = false
         showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
         return
     }
 
     if (confirmPassword === '') {
-        auth_check = true
+        auth_check = false
         showError('confirmPasswordError', "Please confirm your password.");
         return
     }
 
     if (confirmPassword !== password) {
-        auth_check = true
+        auth_check = false
         showError('confirmPasswordError', "Passwords do not match.");
         return
     }
 
-    if (!auth_check) {
-        // If the fields are not empty, get from localStorage
-        // const fname = localStorage.getItem('first_name');
-        // const lname = localStorage.getItem('last_name');
-        // const email = localStorage.getItem('email');
-        // localStorage.getItem('code');
+    if (auth_check) {
+        // Get the current URL
+        const currentUrl = new URL(window.location.href);
+
+        // Extract parameters using URLSearchParams
+        const params = new URLSearchParams(currentUrl.search);
+
+        // Get individual parameter values
+        const referralCode = params.get("referral-code");
+
         const user = {
             FirstName: FirstName,
             LastName: LastName,
             password: confirmPassword,
             email: Email,
+            ReferralCode: referralCode,
           };
 
           const apiUrl = "https://payuee.onrender.com/sign-up";
