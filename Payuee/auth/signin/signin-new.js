@@ -26,12 +26,12 @@ signInWithEmail.addEventListener('click', function() {
     }
     if (enabled) {
         // validated = 0
-        if (email === "") {
+        if (this.email === "") {
             // validated = 1;
             showError('emailErrorMagic', "Please enter your email address.");
             // validated = 2;
             return;
-        } else if (!isValidEmail(email)) {
+        } else if (!isValidEmail(this.email)) {
             // validated = 1;
             showError('emailErrorMagic', "Please enter a valid email address.");
             // validated = 2;
