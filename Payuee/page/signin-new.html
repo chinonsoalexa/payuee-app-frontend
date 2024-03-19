@@ -19,21 +19,21 @@
 
 <body>
 
-   <!-- Preloader Start Here -->
-   <div class="preloader__wrap">
-      <div class="preloader__box">
-         <div class="circle">
-            <img src="../assets/img/preloader/preloader.png" alt="preloader">
-         </div>
-         <div class="recharge">
-            <img src="../assets/img/preloader/rechage.png" alt="rechage">
-         </div>
-         <span class="pretext">
-            Payuee
-         </span>
+<!-- Preloader Start Here -->
+<div class="preloader__wrap">
+   <div class="preloader__box">
+      <div class="circle">
+         <img src="../assets/img/preloader/preloader.png" alt="preloader">
       </div>
+      <div class="recharge">
+         <img src="../assets/img/preloader/rechage.png" alt="rechage">
+      </div>
+      <span class="pretext">
+         Payuee
+      </span>
    </div>
-   <!-- Preloader End Here -->
+</div>
+<!-- Preloader End Here -->
 
 <!-- Header top Here -->
 <header class="header-section header__threestyle">
@@ -216,80 +216,78 @@
 </header>
 <!-- Header top End -->
 
-   <!-- signIn here -->
-   <section class="signup__section bluar__shape">
-      <div class="container">
-         <div class="row align-items-center justify-content-between">
-            <div class="col-xl-6 col-lg-6">
-               <div class="signup__boxes">
-                  <h4>
-                     Sign in to Payuee
-                  </h4>
-                  <p class="head__pra mb__30">
-                     Sign in to your account and make recharges. payments and bookings faster
-                  </p>
-                  <form action="#" class="signup__form password__box pt__40">
-                     <div class="row g-4">
-                        <div class="col-lg-12">
-                           <div class="input__grp">
-                              <label for="email">Enter Your Email ID</label>
-                              <input type="email" id="email_id" placeholder="Your email address here">
-                              <p id="emailError" class="error-message"></p>
-                           </div>
-                        </div>
-                        <div class="col-lg-12">
-                           <div class="input__grp">
-                              <label for="pass" class="form-label">Enter Your Password</label>
-                              <!-- <div class="form-group"> -->
-                              <!-- <input type="text" id="password-field" type="password" placeholder="Your Password" name="password" value=""> -->
-                              <div class="form-group">
-                                 <input id="password-field" type="password" placeholder="Enter Your Password" name="password" value="">
-                                 <span id="#password-field" class="fa fa-fw field-icon toggle-password">
-                                    <i class="material-symbols-outlined">
-                                       visibility
-                                    </i>
-                                 </span>
-                              </div>
-                           <!-- </div> -->
-                              <p id="passwordError" class="error-message"></p>
-                           </div>
-                        </div>
-                        <div class="col-lg-12">
-                           <div class="input__grp">
-                              <button type="button" id="signin_button" class="cmn__btn">
-                                 <span>
-                                    Signin
-                                 </span>
-                              </button>
-                              <p class="input__grp">Or signin using</p>
-                          <!-- Google Signup Button with Image -->
-                           <button id="googleSigninButton" type="button" class="cmn__btn">
-                                 <img src="../assets/img/signup/google-signup.png" alt="Google Logo" style="width: 20px; height: 20px; margin-right: 10px;">
-                                 <span>Google</span>
-                           </button>
-                           </div>
-                        </div>
-                        <div class="forgotDiv">
-                           <a href="forgot-email-to-send.html" class="forgot">
-                              Forgot Password?
-                           </a>
-                           <span>
-                              Don't have an account? <a href="signup-new.html" class="forgot"> Signup </a>
-                           </span>
+<!-- signIn here -->
+<section class="signup__section bluar__shape">
+   <div class="container">
+      <div class="row align-items-center justify-content-between">
+         <div class="col-xl-6 col-lg-6">
+            <div class="signup__boxes">
+               <h4>
+                  Sign in to Payuee
+               </h4>
+               <p class="head__pra mb__30">
+                  Sign in to your account and make recharges. payments and bookings faster
+               </p>
+               <form action="#" class="signup__form password__box pt__40">
+                  <div class="row g-4">
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="email">Enter Your Email ID</label>
+                           <input type="email" id="email_id" placeholder="Enter Your Email Address">
+                           <p id="emailError" class="error-message"></p>
                         </div>
                      </div>
-                  </form>
-               </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <label for="pass" class="form-label">Enter Your Password</label>
+                           <div class="form-group">
+                              <input id="password-field" type="password" placeholder="Enter Your Password" name="password" value="">
+                              <span id="#password-field" class="fa fa-fw field-icon toggle-password">
+                                 <i class="material-symbols-outlined">
+                                    visibility
+                                 </i>
+                              </span>
+                           </div>
+                        <!-- </div> -->
+                           <p id="passwordError" class="error-message"></p>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp">
+                           <button type="button" id="signin_button" class="cmn__btn">
+                              <span>
+                                 Signin
+                              </span>
+                           </button>
+                           <p class="input__grp">OR</p>
+                        <!-- Google Signup Button with Image -->
+                        <button id="signInWithEmail" type="button" class="cmn__btn">
+                              <img src="../assets/img/signup/email.png" alt="Email Sign-In" style="width: 20px; height: 20px; margin-right: 10px;">
+                              <span>Continue with email</span>
+                        </button>
+                        </div>
+                     </div>
+                     <div class="forgotDiv">
+                        <a href="forgot-email-to-send.html" class="forgot">
+                           Forgot Password?
+                        </a>
+                        <span>
+                           Don't have an account? <a href="signup-new.html" class="forgot"> Signup </a>
+                        </span>
+                     </div>
+                  </div>
+               </form>
             </div>
-            <div class="col-xl-5 col-lg-6">
-               <div class="signup__thumb">
-                  <img src="../assets/img/signup/signup.png" alt="img">
-               </div>
+         </div>
+         <div class="col-xl-5 col-lg-6">
+            <div class="signup__thumb">
+               <img src="../assets/img/signup/signup.png" alt="img">
             </div>
          </div>
       </div>
-   </section>
-   <!-- signIn End -->
+   </div>
+</section>
+<!-- signIn End -->
 
 <!-- footer Here -->
 <footer class="footer__section bgsection pt-120">

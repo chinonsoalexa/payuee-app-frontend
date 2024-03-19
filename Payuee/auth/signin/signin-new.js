@@ -4,16 +4,16 @@ window.onload = function () {
 };
 
 // Get the button element by its ID
-const googleSignupButton = document.getElementById('googleSigninButton');
+const signInWithEmail = document.getElementById('signInWithEmail');
 
 // Add a click event listener to the button
-googleSignupButton.addEventListener('click', function() {
+signInWithEmail.addEventListener('click', function() {
     // Redirect to the specified URL when the button is clicked
     window.location.href = 'https://payuee.onrender.com/google/sign-in';
 });
 
 // this event listener runs only when the sign up button is triggered
-document.getElementById('signin_button').addEventListener('click', async function() {
+document.getElementById('signin_button').addEventListener('click', async function(event) {
     event.preventDefault(); // Prevent the form from submitting
     await sign_in() ;
 }) ;
@@ -111,51 +111,51 @@ async function sign_in() {
 
 }
     
-    function isValidEmail(email) {
-        // Simple email validation
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    function showError(id, message, duration = 5000) {
-        var errorElement = document.getElementById(id);
-        errorElement.textContent = message;
-        errorElement.style.display = 'block'; // Change display to 'block'
-        errorElement.style.color = 'red'; // Set text color to red
-    
-        // Set a timeout to hide the error message after the specified duration
-        setTimeout(function () {
-            errorElement.textContent = ''; // Clear the error message
-            errorElement.style.display = 'none'; // Hide the error message
-        }, duration);
-    }
-    
-    function showErrorUserExist(id, message, duration = 5000) {
-        var errorElement = document.getElementById(id);
-        errorElement.textContent = message;
-        errorElement.style.display = 'block'; // Change display to 'block'
-        errorElement.style.color = 'red'; // Set text color to red
-    
-        // Set a timeout to hide the error message after the specified duration
-        setTimeout(function () {
-            errorElement.textContent = ''; // Clear the error message
-            errorElement.style.display = 'none'; // Hide the error message
-            // redirect user to verify his email address
-            window.location.href = 'verify-email.html';
-        }, duration);
-    }
+function isValidEmail(email) {
+    // Simple email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-    function showErrorUserDontExist(id, message, duration = 5000) {
-        var errorElement = document.getElementById(id);
-        errorElement.textContent = message;
-        errorElement.style.display = 'block'; // Change display to 'block'
-        errorElement.style.color = 'red'; // Set text color to red
-    
-        // Set a timeout to hide the error message after the specified duration
-        setTimeout(function () {
-            errorElement.textContent = ''; // Clear the error message
-            errorElement.style.display = 'none'; // Hide the error message
-            // redirect user to verify his email address
-            window.location.href = 'signup-new.html';
-        }, duration);
-    }
+function showError(id, message, duration = 5000) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
+
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
+        errorElement.textContent = ''; // Clear the error message
+        errorElement.style.display = 'none'; // Hide the error message
+    }, duration);
+}
+
+function showErrorUserExist(id, message, duration = 5000) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
+
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
+        errorElement.textContent = ''; // Clear the error message
+        errorElement.style.display = 'none'; // Hide the error message
+        // redirect user to verify his email address
+        window.location.href = 'verify-email.html';
+    }, duration);
+}
+
+function showErrorUserDontExist(id, message, duration = 5000) {
+    var errorElement = document.getElementById(id);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block'; // Change display to 'block'
+    errorElement.style.color = 'red'; // Set text color to red
+
+    // Set a timeout to hide the error message after the specified duration
+    setTimeout(function () {
+        errorElement.textContent = ''; // Clear the error message
+        errorElement.style.display = 'none'; // Hide the error message
+        // redirect user to verify his email address
+        window.location.href = 'signup-new.html';
+    }, duration);
+}
