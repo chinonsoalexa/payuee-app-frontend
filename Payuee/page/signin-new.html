@@ -221,23 +221,32 @@
    <div class="container">
       <div class="row align-items-center justify-content-between">
          <div class="col-xl-6 col-lg-6">
-            <div class="signup__boxes">
+            
+            <!-- this is the sign in div -->
+            <div id="signupDiv" class="signup__boxes">
                <h4>
                   Sign in to Payuee
                </h4>
                <p class="head__pra mb__30">
-                  Sign in to your account and make recharges. payments and bookings faster
+                  Sign in to your account and make recharges. payments and top-ups faster
                </p>
                <form action="#" class="signup__form password__box pt__40">
                   <div class="row g-4">
-                     <div class="col-lg-12">
+                     <div id="emailID" class="col-lg-12">
                         <div class="input__grp">
-                           <label for="email">Enter Your Email ID</label>
+                           <label for="email">Enter Your Email Address</label>
                            <input type="email" id="email_id" placeholder="Enter Your Email Address">
                            <p id="emailError" class="error-message"></p>
                         </div>
                      </div>
-                     <div class="col-lg-12">
+                     <div id="emailLogin" class="col-lg-12 disabled">
+                        <div class="input__grp">
+                           <label for="email">Enter Your Email Address To Receive A Magic Login Link</label>
+                           <input type="email" id="email_id_magic" placeholder="Enter Your Email Address">
+                           <p id="emailErrorMagic" class="error-message"></p>
+                        </div>
+                     </div>
+                     <div id="loginPassword" class="col-lg-12">
                         <div class="input__grp">
                            <label for="pass" class="form-label">Enter Your Password</label>
                            <div class="form-group">
@@ -248,23 +257,38 @@
                                  </i>
                               </span>
                            </div>
-                        <!-- </div> -->
                            <p id="passwordError" class="error-message"></p>
                         </div>
                      </div>
                      <div class="col-lg-12">
                         <div class="input__grp">
-                           <button type="button" id="signin_button" class="cmn__btn">
-                              <span>
-                                 Signin
+                           <div id="signin_button" >
+                              <button type="button" class="cmn__btn">
+                                 <span>
+                                    Signin
+                                 </span>
+                              </button>
+                              <p id="signin_option" class="input__grp">OR</p>
+                           </div>
+                              <!-- Email signin Button with Image -->
+                              <button id="signInWithEmail" type="button" class="cmn__btn">
+                                    <img src="../assets/img/signup/email.png" alt="Email Sign-In" style="width: 20px; height: 20px; margin-right: 10px;">
+                                    <span>Continue with email</span>
+                              </button>
+                        </div>
+                     </div>
+                    <div id="backToLogin" class="col-lg-12 disabled">
+                        <div class="input__grp mt-2">
+                        <a style="cursor: pointer;" class="back__btn">
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    keyboard_backspace
+                                 </i>
                               </span>
-                           </button>
-                           <p class="input__grp">OR</p>
-                        <!-- Google Signup Button with Image -->
-                        <button id="signInWithEmail" type="button" class="cmn__btn">
-                              <img src="../assets/img/signup/email.png" alt="Email Sign-In" style="width: 20px; height: 20px; margin-right: 10px;">
-                              <span>Continue with email</span>
-                        </button>
+                              <span>
+                                 Back
+                              </span>
+                        </a>
                         </div>
                      </div>
                      <div class="forgotDiv">
@@ -278,6 +302,51 @@
                   </div>
                </form>
             </div>
+
+            <!-- this is the sent email for sign in div -->
+            <div id="magicLinkDiv" class="signup__boxes disabled">
+               <h4>
+               Magic Link Sent To Your Email Address
+               </h4>
+               <p class="head__pra mb__30">
+                  A magic login link has been sent to your email inbox just click on it or copy the link to your browser to login to your <b>Payuee</b> account. If you don't see it, please check your spam folder.
+               </p>
+             
+               <form action="#" class="signup__form varified__number">
+                  <div class="row g-2">
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-3">
+                              <!-- <input type="text" placeholder="" pattern="[0-9]" maxlength="6" id="input1"> -->
+                              <p id="otpError" class="error-message"></p>
+                           </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="input__grp mt-3">
+                              <button type="button" id="resend-otp" class="cmn__btn">
+                                 <span>
+                                    Resend Email
+                                 </span>
+                              </button>
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <div id="editMagicEmail" class="input__grp mt-2">
+                              <a href="#" class="back__btn">
+                                 <span class="icon">
+                                    <i class="material-symbols-outlined">
+                                          keyboard_backspace
+                                    </i>
+                                 </span>
+                                 <span>
+                                    Edit Email
+                                 </span>
+                              </a>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+
          </div>
          <div class="col-xl-5 col-lg-6">
             <div class="signup__thumb">
