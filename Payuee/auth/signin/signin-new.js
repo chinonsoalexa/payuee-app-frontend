@@ -333,45 +333,52 @@ document.getElementById('resend-otp').addEventListener('click', async function (
 });
 
 async function resendButtonOTP() {
-    let emailOTP = localStorage.getItem('email');
-
     startResendTimer()
-    deactivateButtonStyles();
-    // send a post request with the otp
-    const otp = {
-        Email: emailOTP,
-    };
+    const details = {
+        Email: signInWithEmailBox.value,
+      };
 
-    const apiUrl = "https://payuee.onrender.com/resend-otp";
+      const apiUrl = "https://payuee.onrender.com/magic-link";
 
-    const requestOptions = {
+      const requestOptions = {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify(otp),
-    };
-    
+        body: JSON.stringify(details),
+      };
+      
     try {
+        deactivateButtonStyles2()
         const response = await fetch(apiUrl, requestOptions);
-
         if (!response.ok) {
-            // throw new Error(`HTTP error! Status: ${response.status}`);
-            let data = await response.json();
-            if (data.error == 'Failed to get previous email OTP') {
-                showError('otpError', "Email not found, please re-enter your email address.");
+            // Parse the response JSON
+            const errorData = await response.json();
+            // Check the error message
+            // Handle fetch-related errors
+            if (errorData.error === 'error retrieving user') {
+                // Perform actions specific to this error
+                showError('magicLinkError', 'User does not exist');
+            } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                // Handle other error cases
+                showError('magicLinkError', 'This email is invalid because it uses illegal characters. Please enter a valid email.');
+            } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                // redirect user to verify email ID
+                showErrorUserExist('magicLinkError', 'User already exist, please verify your email ID.');
+                // window.location.href = '/verify';
             } else {
-                showError('otpError', 'An error occurred. Please try again.');
+                showError('magicLinkError', 'An error occurred. Please try again.');
             }
+              reactivateButtonStyles2();
             return;
-        } 
-        const data = await response.json();
-    } finally {
-        // do nothing cause error has been handled
-        reactivateButtonStyles();
-    }
-    reactivateButtonStyles();
+        }
+        // const data = await response.json();
+        reactivateButtonStyles2();
+    } finally{
+       // do nothing cause error has been handled
+    reactivateButtonStyles2();
+}
 }
 
 function startResendTimer() {
