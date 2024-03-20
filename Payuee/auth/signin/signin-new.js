@@ -18,7 +18,7 @@ const signInWithEmailBox = document.getElementById('email_id_magic');
 const backToLogin = document.getElementById('backToLogin');
 
 // Add a click event listener to the button
-signInWithEmail.addEventListener('click', function() {
+signInWithEmail.addEventListener('click', async function() {
     // Redirect to the specified URL when the button is clicked
     enableSignUpFieldDiv()
     if (!enabled) {
@@ -41,7 +41,54 @@ signInWithEmail.addEventListener('click', function() {
         console.log("making request...")
         enableFullSignUpFieldDiv()
         // let's show the sent email box
+        const details = {
+            Email: signInWithEmailBox.value,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/magic-link";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(details),
+          };
+          
+        try {
+            deactivateButtonStyles2()
+            const response = await fetch(apiUrl, requestOptions);
+            if (!response.ok) {
+                // Parse the response JSON
+                const errorData = await response.json();
+                // Check the error message
+                // Handle fetch-related errors
+                if (errorData.error === 'error retrieving user') {
+                    // Perform actions specific to this error
+                    showError('magicLinkError', 'User does not exist');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    // Handle other error cases
+                    showError('magicLinkError', 'This email is invalid because it uses illegal characters. Please enter a valid email.');
+                } else if  (errorData.error === 'User already exist, please verify your email ID') {
+                    // redirect user to verify email ID
+                    showErrorUserExist('magicLinkError', 'User already exist, please verify your email ID.');
+                    // window.location.href = '/verify';
+                } else {
+                    showError('magicLinkError', 'An error occurred. Please try again.');
+                }
+                  reactivateButtonStyles2();
+                return;
+            }
+            // const data = await response.json();
+            reactivateButtonStyles2();
+            window.location.href = '../../../index-in.html';
+        } finally{
+           // do nothing cause error has been handled
         }
+        reactivateButtonStyles2();
+    }
+    
     }
 });
 
@@ -439,7 +486,7 @@ async function continueResendTimer() {
             }
             // const data = await response.json();
             reactivateButtonStyles();
-            window.location.href = '../../index-in.html'
+            window.location.href = '../../../index-in.html'
         } finally{
            // do nothing cause error has been handled
         }
@@ -508,6 +555,23 @@ function deactivateButtonStyles() {
 // Add this function to reactivate the button styles
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('resend-otp');
+    // // Remove all existing classes
+    // resendButton.className = '';
+    resendButton.classList.remove('deactivated');
+    
+    clearError('otpError');
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles2() {
+    var resendButton = document.getElementById('signInWithEmail');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to reactivate the button styles
+function reactivateButtonStyles2() {
+    var resendButton = document.getElementById('signInWithEmail');
     // // Remove all existing classes
     // resendButton.className = '';
     resendButton.classList.remove('deactivated');
