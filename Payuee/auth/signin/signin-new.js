@@ -1,7 +1,7 @@
 let resendTimer;
 let lastResendTime = 0;
 let checkIfStillCounting = false;
-var validated = 0;
+var validated = true;
 
 // Focus on the first input field when the page loads
 window.onload = function () {
@@ -14,6 +14,7 @@ var enabled = false;
 
 // Get the button element by its ID
 const signInWithEmail = document.getElementById('signInWithEmail');
+const signInWithEmailBox = document.getElementById('email_id_magic');
 const backToLogin = document.getElementById('backToLogin');
 
 // Add a click event listener to the button
@@ -25,23 +26,22 @@ signInWithEmail.addEventListener('click', function() {
         return
     }
     if (enabled) {
-        // validated = 0
-        // if (this.email === "") {
-        //     // validated = 1;
-        //     showError('emailErrorMagic', "Please enter your email address.");
-        //     // validated = 2;
-        //     return;
-        // } else if (!isValidEmail(this.email)) {
-        //     // validated = 1;
-        //     showError('emailErrorMagic', "Please enter a valid email address.");
-        //     // validated = 2;
-        //     return;
-        // }
-        // if (validated = 0) {
+        validated = true;
+        console.log("this is the email am getting: " + signInWithEmailBox.value)
+        if (signInWithEmailBox.value === "") {
+            validated = false;
+            showError('emailErrorMagic', "Please enter your email address.");
+            return;
+        } else if (!isValidEmail(signInWithEmailBox.value)) {
+            validated = false;
+            showError('emailErrorMagic', "Please enter a valid email address.");
+            return;
+        }
+        if (validated) {
         console.log("making request...")
         enableFullSignUpFieldDiv()
         // let's show the sent email box
-        // }
+        }
     }
 });
 
@@ -53,8 +53,8 @@ backToLogin.addEventListener('click', function() {
 });
 
 document.getElementById('email_id_magic').addEventListener('input', function() {
-    // if (validated = 2) {
-    const email = this.value.trim(); // Trim to remove leading and trailing whitespaces
+    if (!validated) {
+    const email = this.value.trim(); // Trim to remove leading and trailing white spaces
 
     if (email === "") {
         showError('emailErrorMagic', "Please enter your email address.");
@@ -63,7 +63,7 @@ document.getElementById('email_id_magic').addEventListener('input', function() {
         showError('emailErrorMagic', "Please enter a valid email address.");
         return;
     }
-// }
+}
 });
 
 function isValidEmail(email) {
