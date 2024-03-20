@@ -38,7 +38,6 @@ signInWithEmail.addEventListener('click', async function() {
             return;
         }
         if (validated) {
-        console.log("making request...")
         enableFullSignUpFieldDiv()
         // let's show the sent email box
         const details = {
@@ -82,11 +81,10 @@ signInWithEmail.addEventListener('click', async function() {
             }
             // const data = await response.json();
             reactivateButtonStyles2();
-            window.location.href = '../../../index-in.html';
         } finally{
            // do nothing cause error has been handled
-        }
         reactivateButtonStyles2();
+    }
     }
     
     }
