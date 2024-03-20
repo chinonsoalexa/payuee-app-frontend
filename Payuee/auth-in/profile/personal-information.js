@@ -16,19 +16,29 @@ document.getElementById('edit_button').addEventListener('click', function (event
 })
 
 function showEdit() {
-    document.getElementById('toggle-first-name-main').classList.add('disabled');
-    document.getElementById('toggle-first-name-main').disabled = true;
+    // this is for the previous data
+    let firstName = document.getElementById('toggle-first-name-main').textContent.trim();
+    let lastName = document.getElementById('toggle-last-name-main').textContent.trim();
+    let address = document.getElementById('toggle-address-main').textContent.trim();
+
+    // this is the input box to fill in the new data
+    document.getElementById('first-name-input').value = firstName;
+    document.getElementById('last-name-input').value = lastName;
+    document.getElementById('address-input').value = address;
+
     document.getElementById('edit_button_one').classList.add('disabled');
     document.getElementById('edit_button_one').disabled = true;
+    document.getElementById('toggle-first-name-main').classList.add('disabled');
+    document.getElementById('toggle-first-name-main').disabled = true;
     document.getElementById('toggle-last-name-main').classList.add('disabled');
     document.getElementById('toggle-last-name-main').disabled = true;
     document.getElementById('toggle-address-main').classList.add('disabled');
     document.getElementById('toggle-address-main').disabled = true;
 
-    document.getElementById('toggle-first-name').classList.remove('disabled');
-    document.getElementById('toggle-first-name').disabled = false;
     document.getElementById('save_button_one').classList.remove('disabled');
     document.getElementById('save_button_one').disabled = false;
+    document.getElementById('toggle-first-name').classList.remove('disabled');
+    document.getElementById('toggle-first-name').disabled = false;
     document.getElementById('toggle-last-name').classList.remove('disabled');
     document.getElementById('toggle-last-name').disabled = false;
     document.getElementById('toggle-address').classList.remove('disabled');
