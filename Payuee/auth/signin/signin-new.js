@@ -491,7 +491,8 @@ async function continueResendTimer() {
             }
             // const data = await response.json();
             reactivateButtonStyles();
-            window.location.href = '../../../index-in.html'
+            localStorage.setItem('auth', 'true');
+            window.location.href = '../../../index-in.html';
         } finally{
            // do nothing cause error has been handled
         }
