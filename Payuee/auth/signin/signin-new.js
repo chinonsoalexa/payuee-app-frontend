@@ -274,6 +274,10 @@ function showErrorUserDontExist(id, message, duration = 5000) {
 
 // event listener to resend otp
 document.getElementById('editMagicEmail').addEventListener('click', async function () {
+    document.getElementById('loading-icon').classList.add('disabled');
+    document.getElementById('loading-icon').disabled = true;
+    document.getElementById('magicLinkText').classList.remove('disabled');
+    document.getElementById('magicLinkText').disabled = false;
     disableFullSignUpFieldDiv();
     enableSignUpFieldDiv();
 });
@@ -363,8 +367,84 @@ function startResendTimer() {
     }, 1000);
 }
 
-function continueResendTimer() {
+async function continueResendTimer() {
     const storedLastResendTimeString = localStorage.getItem('lastResendTime');
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    const magicCode = params.get("magic-code");
+    const user = params.get("user");
+
+    if (magicCode !== null) {
+        enableFullSignUpFieldDiv()
+        let magicLinkHeader = document.getElementById('magicLinkHeader');
+        magicLinkHeader.textContent = 'Please wait a minute verifying your login link';
+        document.getElementById('magicLinkText').classList.add('disabled');
+        document.getElementById('magicLinkText').disabled = true;
+        // Append the magic login email template into the loading icon div
+        document.getElementById('loading-icon').classList.remove('disabled');
+        document.getElementById('loading-icon').disabled = false;
+        const details = {
+            Email: user,
+            SentOTP: magicCode,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/verify/magic-link";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(details),
+          };
+          
+        try {
+            deactivateButtonStyles()
+            const response = await fetch(apiUrl, requestOptions);
+            if (!response.ok) {
+                // Parse the response JSON
+                const errorData = await response.json();
+                // Check the error message
+                // Handle fetch-related errors
+                if (errorData.error === 'Failed to read body') {
+                    // Perform actions specific to this error
+                    showError('magicLinkError', 'An error occurred. Please try again.');
+                } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
+                    // Handle other error cases
+                    showError('magicLinkError', 'This email is invalid because it uses illegal characters. Please enter a valid email.');
+                } else if  (errorData.error === 'email limit check exceeded') {
+                    // redirect user to verify email ID
+                    showErrorUserExist('magicLinkError', 'Email limit check exceeded.');
+                    // window.location.href = '/verify';
+                } else if  (errorData.error === 'OTP not found') {
+                    // Handle other error cases
+                    showError('magicLinkError', 'Magic link not recognized.');
+                }else if  (errorData.error === 'Wrong OTP') {
+                    // Handle other error cases
+                    showError('magicLinkError', 'Incorrect magic link...');
+                }else if  (errorData.error === 'Magic Link Expired') {
+                    // Handle other error cases
+                    showError('magicLinkError', 'Magic link expired.');
+                } else {
+                    showError('magicLinkError', 'An error occurred. Please try again.');
+                }
+                  reactivateButtonStyles();
+                return;
+            }
+            // const data = await response.json();
+            reactivateButtonStyles();
+            window.location.href = '../../index-in.html'
+        } finally{
+           // do nothing cause error has been handled
+        }
+        reactivateButtonStyles();
+    }
 
     if (storedLastResendTimeString) {
         enableFullSignUpFieldDiv()

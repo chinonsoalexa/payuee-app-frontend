@@ -305,12 +305,16 @@
 
             <!-- this is the sent email for sign in div -->
             <div id="magicLinkDiv" class="signup__boxes disabled">
-               <h4>
+               <h4 id="magicLinkHeader">
                Magic Link Sent To Your Email Address
                </h4>
-               <p class="head__pra mb__30">
+               <p id="magicLinkText" class="head__pra mb__30">
                   A magic login link has been sent to your email inbox just click on it or copy the link to your browser to login to your <b>Payuee</b> account. If you don't see it, please check your spam folder.
                </p>
+               <p id="magicLinkError"></p>
+               <div id="loading-icon-container">
+                  <div id="loading-icon" class="disabled">&#8987;</div>
+              </div>
              
                <form action="#" class="signup__form varified__number">
                   <div class="row g-2">
