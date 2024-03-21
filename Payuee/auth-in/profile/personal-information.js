@@ -199,8 +199,8 @@ lastName.addEventListener('input', function (event) {
 address.addEventListener('input', function (event) {
     const inputValue = event.target.value;
 
-    // Replace any characters that are not alphabets, numbers, underscores, or hyphens with an empty string
-    const sanitizedValue = inputValue.replace(/[^A-Za-z0-9_\-]/g, '');
+    // Replace any characters that are not alphabets, numbers, underscores, hyphens, full stops, commas, or spaces with an empty string
+    const sanitizedValue = inputValue.replace(/[^A-Za-z0-9_\-.,\s]/g, '');
 
     // Update the input box value with the sanitized value
     event.target.value = sanitizedValue;
