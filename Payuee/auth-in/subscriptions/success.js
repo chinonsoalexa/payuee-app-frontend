@@ -1,6 +1,6 @@
 // document.addEventListener('DOMContentLoaded', function() {
 
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
 
     const requestOptions = {
@@ -37,7 +37,7 @@ window.onload = async function () {
     } finally {
 
     }
-}
+});
 
 function getSuccessMessage(transactionDetails) {
     var payment_condition = document.getElementById('payment_condition');
