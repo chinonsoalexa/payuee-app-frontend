@@ -1,7 +1,7 @@
 // make request to the server for users profile details on load of the page
 var responseData;
 var ReferralCode;
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = "https://payuee.onrender.com/profile";
 
     const requestOptions = {
@@ -45,7 +45,7 @@ window.onload = async function () {
     } finally {
 
     }
-}
+});
 
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
