@@ -171,3 +171,37 @@ try {
         // do nothing
     }
 }
+
+const firstName = document.getElementById('first-name-input');
+const lastName = document.getElementById('last-name-input');
+const address = document.getElementById('address-input');
+
+firstName.addEventListener('input', function (event) {
+    const inputValue = event.target.value;
+
+    // Replace any characters that are not alphabets, numbers, underscores, or hyphens with an empty string
+    const sanitizedValue = inputValue.replace(/[^A-Za-z0-9_\-]/g, '');
+
+    // Update the input box value with the sanitized value
+    event.target.value = sanitizedValue;
+});
+
+lastName.addEventListener('input', function (event) {
+    const inputValue = event.target.value;
+
+    // Replace any characters that are not alphabets, numbers, underscores, or hyphens with an empty string
+    const sanitizedValue = inputValue.replace(/[^A-Za-z0-9_\-]/g, '');
+
+    // Update the input box value with the sanitized value
+    event.target.value = sanitizedValue;
+});
+
+address.addEventListener('input', function (event) {
+    const inputValue = event.target.value;
+
+    // Replace any characters that are not alphabets, numbers, underscores, or hyphens with an empty string
+    const sanitizedValue = inputValue.replace(/[^A-Za-z0-9_\-]/g, '');
+
+    // Update the input box value with the sanitized value
+    event.target.value = sanitizedValue;
+});
