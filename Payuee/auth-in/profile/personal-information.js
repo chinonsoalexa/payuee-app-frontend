@@ -59,13 +59,81 @@ var referral_link
 
 var SHOW_EDIT = false;
 
-document.getElementById('edit_button').addEventListener('click', function (event) {
+document.getElementById('edit_button').addEventListener('click', async function (event) {
     event.preventDefault()
     if (!SHOW_EDIT) {
         SHOW_EDIT = true;
         showEdit();
     } else if (SHOW_EDIT) {
         SHOW_EDIT = false;
+        // let's compare the previous data and the updated data to be sent and only send a request when there is a change in any of the previous data
+        // let's first get the old data
+        // this is for the previous data
+        let firstName = document.getElementById('toggle-first-name-main').textContent.trim();
+        let lastName = document.getElementById('toggle-last-name-main').textContent.trim();
+        let address = document.getElementById('toggle-address-main').textContent.trim();
+
+        // this is the input box to fill in the new data
+        let firstNameBox = document.getElementById('first-name-input').value;
+        let lastNameBox = document.getElementById('last-name-input').value;
+        let addressBox = document.getElementById('address-input').value;
+
+        if (firstName !== firstNameBox || lastName !== lastNameBox || address !== addressBox) {
+                // let's fill in data to send to the server for profile update
+                const details = {
+                    FirstName:     firstNameBox,
+                    LastName:       lastNameBox,
+                    Email:          "",
+                    AccountBalance: 0,
+                    Address:        addressBox,
+                    ReferralCode:   "",
+                  };
+        
+                  const apiUrl = "https://payuee.onrender.com/profile/update";
+        
+                  const requestOptions = {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                    body: JSON.stringify(details),
+                  };
+                  
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+                    if (!response.ok) {
+                        // Parse the response JSON
+                        const errorData = await response.json();
+                        // Check the error message
+                        // Handle fetch-related errors
+                        if (errorData.error === 'User ID is < nil >') {
+                            // Perform actions specific to this error
+                            // showError('magicLinkError', 'User does not exist');
+                        } else if  (errorData.error === 'Failed to read profile updated body') {
+                            // Handle other error cases
+                            showError('magicLinkError', 'This email is invalid because it uses illegal characters. Please enter a valid email.');
+                        } else if  (errorData.error === "an error occurred while updating user's profile") {
+                            // redirect user to verify email ID
+                            showErrorUserExist('magicLinkError', 'User already exist, please verify your email ID.');
+                            // window.location.href = '/verify';
+                        } else {
+                            showError('magicLinkError', 'An error occurred. Please try again.');
+                        }
+                        return;
+                    }
+                    const responseData = await response.json();
+                    document.getElementById('toggle-first-name-main').textContent = responseData.success.FirstName;
+                    document.getElementById('toggle-last-name-main').textContent = responseData.success.LastName;
+                    document.getElementById('toggle-address-main').textContent = responseData.success.Address;
+                    document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
+                    document.getElementById('toggle-email-main').textContent = responseData.success.Email;
+                    ReferralCode = responseData.success.ReferralCode;
+                } finally{
+                   // do nothing cause error has been handled
+            }
+        }
+
         hideEdit();
         // let's make a request to the server to update the user's profile details
     }
