@@ -40,7 +40,7 @@ window.onload = async function () {
         document.getElementById('toggle-address-main').textContent = responseData.success.Address;
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
-        document.getElementById('toggle-referral-main').textContent = responseData.success.ReferralCode;
+        // document.getElementById('toggle-referral-main').textContent = responseData.success.ReferralCode;
     } finally {
 
     }
@@ -124,7 +124,7 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     event.preventDefault();
 
     // Select and copy the content
-    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signin-new.html?referral-code=' + responseData.success.ReferralCode)
+    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signup-new.html?referral-code=' + responseData.success.ReferralCode)
     .then(() => {
         // Success
         referralLinkCopier();
