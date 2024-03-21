@@ -33,7 +33,12 @@ window.onload = async function () {
         }
 
         responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData);
+        // this is for the previous data
+        document.getElementById('toggle-first-name-main').textContent = responseData.FirstName;
+        document.getElementById('toggle-last-name-main').textContent = responseData.LastName;
+        document.getElementById('toggle-address-main').textContent = responseData.Address;
+        document.getElementById('toggle-balance-main').textContent = responseData.AccountBalance;
     } finally {
 
     }
