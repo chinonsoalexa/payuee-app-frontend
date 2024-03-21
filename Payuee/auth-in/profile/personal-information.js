@@ -120,7 +120,7 @@ function hideEdit() {
     document.getElementById('toggle-address').disabled = true;
 }
 
-document.getElementById('referral_link').addEventListener('click', function (event) {
+document.getElementById('referral_link').addEventListener('click', async function (event) {
     event.preventDefault();
 
     // Select and copy the content
@@ -135,6 +135,49 @@ document.getElementById('referral_link').addEventListener('click', function (eve
         // copyBtn.textContent = 'error...';
     });
 
+    const apiUrl = "https://payuee.onrender.com/profile";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            console.log(errorData);
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                displayErrorMessage();
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                
+            }
+
+            return;
+        }
+
+        responseData = await response.json();
+        // console.log(responseData);
+        // this is for the previous data
+        document.getElementById('toggle-first-name-main').textContent = responseData.FirstName;
+        document.getElementById('toggle-last-name-main').textContent = responseData.LastName;
+        document.getElementById('toggle-address-main').textContent = responseData.Address;
+        document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.AccountBalance);
+        document.getElementById('toggle-email-main').textContent = responseData.Email;
+        document.getElementById('toggle-referral-main').textContent = responseData.ReferralCode;
+    } finally {
+
+    }
 })
 
 function referralLinkCopier() {
@@ -148,7 +191,6 @@ function referralLinkCopier() {
       installPopup.style.display = 'none';
     });
 }
-
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
