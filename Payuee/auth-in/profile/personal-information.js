@@ -38,10 +38,20 @@ window.onload = async function () {
         document.getElementById('toggle-first-name-main').textContent = responseData.FirstName;
         document.getElementById('toggle-last-name-main').textContent = responseData.LastName;
         document.getElementById('toggle-address-main').textContent = responseData.Address;
-        document.getElementById('toggle-balance-main').textContent = responseData.AccountBalance;
+        document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.AccountBalance);
+        document.getElementById('toggle-email-main').textContent = responseData.Email;
+        document.getElementById('toggle-referral-main').textContent = responseData.ReferralCode;
     } finally {
 
     }
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
 }
 
 var referral_link
