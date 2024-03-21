@@ -1,5 +1,6 @@
 // make request to the server for users profile details on load of the page
 var responseData;
+var ReferralCode;
 window.onload = async function () {
     const apiUrl = "https://payuee.onrender.com/profile";
 
@@ -40,7 +41,7 @@ window.onload = async function () {
         document.getElementById('toggle-address-main').textContent = responseData.success.Address;
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
-        // document.getElementById('toggle-referral-main').textContent = responseData.success.ReferralCode;
+        ReferralCode = responseData.success.ReferralCode;
     } finally {
 
     }
@@ -124,7 +125,7 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     event.preventDefault();
 
     // Select and copy the content
-    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signup-new.html?referral-code=' + responseData.success.ReferralCode)
+    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signup-new.html?referral-code=' + ReferralCode)
     .then(() => {
         // Success
         referralLinkCopier();
