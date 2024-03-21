@@ -1,4 +1,44 @@
 // make request to the server for users profile details on load of the page
+var responseData;
+window.onload = async function () {
+    const apiUrl = "https://payuee.onrender.com/profile";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            console.log(errorData);
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                displayErrorMessage();
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                
+            }
+
+            return;
+        }
+
+        responseData = await response.json();
+        console.log(responseData);
+    } finally {
+
+    }
+}
+
 var referral_link
 
 var SHOW_EDIT = false;
@@ -69,7 +109,7 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     event.preventDefault();
 
     // Select and copy the content
-    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signin-new.html' + referral_link)
+    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signin-new.html?referral-code=' + referral_link)
     .then(() => {
         // Success
         referralLinkCopier();
@@ -92,4 +132,28 @@ function referralLinkCopier() {
     cancelButton.addEventListener('click', () => {
       installPopup.style.display = 'none';
     });
+}
+
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+
+        // const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
