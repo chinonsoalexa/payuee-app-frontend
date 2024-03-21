@@ -132,7 +132,6 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     })
     .catch((err) => {
         // Handle error
-        // copyBtn.textContent = 'error...';
     });
 
 })
