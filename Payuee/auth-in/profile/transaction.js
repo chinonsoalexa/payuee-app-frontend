@@ -1,6 +1,7 @@
 var NextPageOnLoad;
 var PreviousPageOnLoad;
 var CurrentPageOnLoad;
+var TotalPageOnLoad;
 document.addEventListener('DOMContentLoaded', async function () {
      // Get the current URL
      const currentUrl = new URL(window.location.href);
