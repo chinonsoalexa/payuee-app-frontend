@@ -301,7 +301,6 @@ document.getElementById("previousPage").addEventListener("click", async function
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
             renderTransactionHistory(testData);
     } finally {
@@ -347,7 +346,6 @@ document.getElementById("beforePage").addEventListener("click", async function(e
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
             renderTransactionHistory(testData);
     } finally {
@@ -393,7 +391,6 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
             renderTransactionHistory(testData);
     } finally {
@@ -439,7 +436,6 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + NextPageOnLoad;
     } finally {
     
@@ -484,7 +480,6 @@ document.getElementById("currentPage").addEventListener("click", async function(
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
     } finally {
     
@@ -529,7 +524,6 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
             }
     
             const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + NextPageOnLoad;
     } finally {
     
