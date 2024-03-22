@@ -51,8 +51,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
         if (CurrentPageOnLoad <= 1) {
-            deactivateButtonStyles();
+            deactivatePreviousPage();
+        } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
+            deactivateNextPage();
         }
+        // let's update the pagination with the current page
+        var currentPageElement = document.getElementById("currentPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = CurrentPageOnLoad;
+        
         renderTransactionHistory(responseData.success);
 } finally {
 
@@ -318,8 +325,15 @@ function formatTimestamp(timestamp) {
 }
 
 // Add this function to remove onclick and on hover styles
-function deactivateButtonStyles() {
+function deactivatePreviousPage() {
     var resendButton = document.getElementById('previousPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateNextPage() {
+    var resendButton = document.getElementById('nextPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
