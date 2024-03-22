@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
+        TotalPageOnLoad = responseData.pagination.TotalPages;
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
             deactivateBeforeButton();
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
-        if (CurrentPageOnLoad >= NextPageOnLoad) {
+        if (CurrentPageOnLoad >= TotalPageOnLoad) {
             // let's disable the next page navigation button
             document.getElementById('afterPage').classList.add('disabled');
             document.getElementById('afterPage').disabled = true;
