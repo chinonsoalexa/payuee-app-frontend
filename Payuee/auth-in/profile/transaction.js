@@ -309,5 +309,5 @@ function formatTimestamp(timestamp) {
     var formattedDay = day < 10 ? '0' + day : day;
 
     // Return the formatted timestamp string
-    return formattedMonth + ' ' + formattedDay + ' ' + year;
+    return formattedMonth + ' - ' + formattedDay + ' - ' + year;
 }
