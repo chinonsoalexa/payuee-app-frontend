@@ -687,8 +687,8 @@ function deactivateNextButton() {
 }
 
 function deactivateCurrentButton() {
-    var dotButton = document.getElementById('dotBeforePage');
-    dotButton.classList.add('deactivated'); // Add a class to the button
+    // var dotButton = document.getElementById('dotBeforePage');
+    // dotButton.classList.add('deactivated'); // Add a class to the button
 
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
