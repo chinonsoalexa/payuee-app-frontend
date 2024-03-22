@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!response.ok) {
             const errorData = await response.json();
 
-            console.log(errorData);
-
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
                 // displayErrorMessage();
@@ -46,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         const responseData = await response.json();
-        console.log("this is the response data for transaction: ", responseData);
+        
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
