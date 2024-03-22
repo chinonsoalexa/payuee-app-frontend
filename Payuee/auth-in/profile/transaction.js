@@ -299,15 +299,17 @@ function formatTimestamp(timestamp) {
     // Parse the provided timestamp string
     var dateObj = new Date(timestamp);
 
+    // Define an array of month abbreviations
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
     // Extract year, month, and day from the date object
     var year = dateObj.getFullYear();
-    var month = dateObj.getMonth() + 1; // Month is zero-based, so add 1
+    var month = dateObj.getMonth();
     var day = dateObj.getDate();
 
-    // Convert month and day to two-digit format if necessary
-    var formattedMonth = month < 10 ? '0' + month : month;
+    // Convert day to two-digit format if necessary
     var formattedDay = day < 10 ? '0' + day : day;
 
     // Return the formatted timestamp string
-    return formattedMonth + ' - ' + formattedDay + ' - ' + year;
+    return formattedDay + ' - ' + months[month] + ' - ' + year;
 }
