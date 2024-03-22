@@ -588,7 +588,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + NextPageOnLoad;
+            window.location.href = 'transaction.html?page=' + TotalPageOnLoad;
     } finally {
     
     }
