@@ -189,10 +189,12 @@ try {
     }
 }
 
-document.getElementById("previousPage").addEventListener("click", function(){
+document.getElementById("previousPage").addEventListener("click", function(event){
+    event.preventDefault;
     console.log('previousPage clicked')
 });
 
-document.getElementById("nextPage").addEventListener("click", function(){
+document.getElementById("nextPage").addEventListener("click", function(event){
+    event.preventDefault;
     console.log('nextPage clicked')
 });
