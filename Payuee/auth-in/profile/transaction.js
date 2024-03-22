@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             deactivateNextButton();
         }
 
-        if (CurrentPageOnLoad < 3) {
+        if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
             document.getElementById('constantBeforePage').classList.add('disabled');
             document.getElementById('constantBeforePage').disabled = true;
