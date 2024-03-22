@@ -2,6 +2,9 @@ var NextPageOnLoad;
 var PreviousPageOnLoad;
 var CurrentPageOnLoad;
 var TotalPageOnLoad;
+var TwoBeforePageOnLoad;
+var TwoAfterPageOnLoad;
+
 document.addEventListener('DOMContentLoaded', async function () {
      // Get the current URL
      const currentUrl = new URL(window.location.href);
@@ -50,11 +53,24 @@ document.addEventListener('DOMContentLoaded', async function () {
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
         TotalPageOnLoad = responseData.pagination.TotalPages;
+        TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
+        TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
             deactivateBeforeButton();
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
+        }
+
+        if (CurrentPageOnLoad > 2) {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("twoBeforePage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TwoBeforePageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('twoBeforePage').classList.add('disabled');
+            document.getElementById('twoBeforePage').disabled = true;
         }
 
         // let's update the pagination with the next page
@@ -279,6 +295,98 @@ document.getElementById("previousPage").addEventListener("click", async function
         }
 });
 
+document.getElementById("beforePage").addEventListener("click", async function(event){
+    event.preventDefault(); 
+
+    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
+    
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+        };
+    
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+    
+                console.log(errorData);
+    
+                if (errorData.error === 'failed to get user from request') {
+                    // need to do a data of just null event 
+                    // displayErrorMessage();
+                } else if (errorData.error === 'failed to get transaction history') {
+                    // need to do a data of just null event 
+                    
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                }else {
+                    // displayErrorMessage();
+                }
+    
+                return;
+            }
+    
+            const responseData = await response.json();
+            console.log("this is the response data for transaction: ", responseData);
+            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
+            renderTransactionHistory(testData);
+    } finally {
+    
+        }
+});
+
+document.getElementById("twoBeforePage").addEventListener("click", async function(event){
+    event.preventDefault(); 
+
+    const apiUrl = "https://payuee.onrender.com/transactions/" + TwoBeforePageOnLoad;
+    
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+        };
+    
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+    
+                console.log(errorData);
+    
+                if (errorData.error === 'failed to get user from request') {
+                    // need to do a data of just null event 
+                    // displayErrorMessage();
+                } else if (errorData.error === 'failed to get transaction history') {
+                    // need to do a data of just null event 
+                    
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                }else {
+                    // displayErrorMessage();
+                }
+    
+                return;
+            }
+    
+            const responseData = await response.json();
+            console.log("this is the response data for transaction: ", responseData);
+            window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
+            renderTransactionHistory(testData);
+    } finally {
+    
+        }
+});
+
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
@@ -367,52 +475,6 @@ document.getElementById("currentPage").addEventListener("click", async function(
     } finally {
     
     }
-});
-
-document.getElementById("beforePage").addEventListener("click", async function(event){
-    event.preventDefault(); 
-
-    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
-    
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: 'include', // set credentials to include cookies
-        };
-    
-        try {
-            const response = await fetch(apiUrl, requestOptions);
-    
-            if (!response.ok) {
-                const errorData = await response.json();
-    
-                console.log(errorData);
-    
-                if (errorData.error === 'failed to get user from request') {
-                    // need to do a data of just null event 
-                    // displayErrorMessage();
-                } else if (errorData.error === 'failed to get transaction history') {
-                    // need to do a data of just null event 
-                    
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-                    // let's log user out the users session has expired
-                    logUserOutIfTokenIsExpired();
-                }else {
-                    // displayErrorMessage();
-                }
-    
-                return;
-            }
-    
-            const responseData = await response.json();
-            console.log("this is the response data for transaction: ", responseData);
-            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
-            renderTransactionHistory(testData);
-    } finally {
-    
-        }
 });
 
 document.getElementById("afterPage").addEventListener("click", async function(event){
