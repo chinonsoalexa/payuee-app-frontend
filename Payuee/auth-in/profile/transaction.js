@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
+        if (CurrentPageOnLoad <= 1) {
+            deactivateButtonStyles();
+        }
         renderTransactionHistory(responseData.success);
 } finally {
 
@@ -312,4 +315,11 @@ function formatTimestamp(timestamp) {
 
     // Return the formatted timestamp string
     return formattedDay + ' - ' + months[month] + ' - ' + year;
+}
+
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles() {
+    var resendButton = document.getElementById('previousPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
 }
