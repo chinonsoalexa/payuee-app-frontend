@@ -71,6 +71,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('constantBeforePage').disabled = true;
         }
 
+        if (CurrentPageOnLoad < 5) {
+            // let's disable the next page navigation button
+            document.getElementById('dotBeforePage').classList.add('disabled');
+            document.getElementById('dotBeforePage').disabled = true;
+        }
+
         if (CurrentPageOnLoad > 2) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("twoBeforePage");
