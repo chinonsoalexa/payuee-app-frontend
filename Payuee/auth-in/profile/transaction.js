@@ -728,8 +728,11 @@ function deactivateNextButton() {
 }
 
 function deactivateCurrentButton() {
-    // var dotButton = document.getElementById('dotBeforePage');
-    // dotButton.classList.add('deactivated'); // Add a class to the button
+    var dotButtonBefore = document.getElementById('dotBeforePage');
+    dotButtonBefore.classList.add('deactivated'); // Add a class to the button
+
+    var dotButtonAfter = document.getElementById('dotAfterPage');
+    dotButtonAfter.classList.add('deactivated'); // Add a class to the button
 
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
