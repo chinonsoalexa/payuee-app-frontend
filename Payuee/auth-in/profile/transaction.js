@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
+        if (CurrentPageOnLoad > NextPageOnLoad) {
+            // let's disable the next page navigation button
+            document.getElementById('afterPage').classList.add('disabled');
+            document.getElementById('afterPage').disabled = true;
+        }
+        
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("afterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
