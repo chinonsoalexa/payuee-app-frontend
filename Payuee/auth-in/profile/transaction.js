@@ -462,6 +462,50 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
         }
 });
 
+document.getElementById("currentPage").addEventListener("click", async function(event){
+    event.preventDefault(); 
+
+    const apiUrl = "https://payuee.onrender.com/transactions/" + CurrentPageOnLoad;
+    
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+        };
+    
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+    
+                console.log(errorData);
+    
+                if (errorData.error === 'failed to get user from request') {
+                    // need to do a data of just null event 
+                    // displayErrorMessage();
+                } else if (errorData.error === 'failed to get transaction history') {
+                    // need to do a data of just null event 
+                    
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
+                }else {
+                    // displayErrorMessage();
+                }
+    
+                return;
+            }
+    
+            const responseData = await response.json();
+            window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
+    } finally {
+    
+    }
+});
+
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
@@ -506,10 +550,10 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
     }
 });
 
-document.getElementById("currentPage").addEventListener("click", async function(event){
+document.getElementById("constantAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + CurrentPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/transactions/" + TotalPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -544,7 +588,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
+            window.location.href = 'transaction.html?page=' + NextPageOnLoad;
     } finally {
     
     }
