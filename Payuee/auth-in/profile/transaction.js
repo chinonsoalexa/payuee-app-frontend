@@ -132,17 +132,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('constantAfterPage').disabled = true;
         }
 
-        if (TotalPageOnLoad < 3) {
-            // let's update the pagination with the next page
-            var currentPageElement = document.getElementById("constantAfterPage");
-            var currentPageAnchor = currentPageElement.querySelector("a");
-            currentPageAnchor.textContent = TwoBeforePageOnLoad;
-        } else {
-            // let's disable the next page navigation button
-            document.getElementById('constantAfterPage').classList.add('disabled');
-            document.getElementById('constantAfterPage').disabled = true;
-        }
-
         renderTransactionHistory(responseData.success);
 } finally {
 
