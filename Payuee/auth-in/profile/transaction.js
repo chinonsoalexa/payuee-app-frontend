@@ -205,7 +205,7 @@ try {
 }
 
 document.getElementById("previousPage").addEventListener("click", async function(event){
-    event.preventDefault;
+    event.preventDefault(); 
 
     const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
     
@@ -251,7 +251,7 @@ document.getElementById("previousPage").addEventListener("click", async function
 });
 
 document.getElementById("nextPage").addEventListener("click", async function(event){
-    event.preventDefault;
+    event.preventDefault(); 
 
     const apiUrl = "https://payuee.onrender.com/transactions/" + NextPageOnLoad;
     
