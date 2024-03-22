@@ -59,6 +59,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
+        // let's update the pagination with the previous page
+        var currentPageElement = document.getElementById("previousPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = PreviousPageOnLoad;
+
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("nextPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = NextPageOnLoad;
+
         renderTransactionHistory(responseData.success);
 } finally {
 
