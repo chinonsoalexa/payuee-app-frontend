@@ -51,9 +51,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
         if (CurrentPageOnLoad <= 1) {
-            deactivatePreviousPage();
+            deactivatePreviousButton();
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
-            deactivateNextPage();
+            deactivateNextButton();
+        } else if (pageNumber === CurrentPageOnLoad) {
+            deactivateNextButton();
         }
         // let's update the pagination with the current page
         var currentPageElement = document.getElementById("currentPage");
@@ -369,15 +371,19 @@ function formatTimestamp(timestamp) {
     return formattedDay + ' - ' + months[month] + ' - ' + year;
 }
 
-// Add this function to remove onclick and on hover styles
-function deactivatePreviousPage() {
+function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-// Add this function to remove onclick and on hover styles
-function deactivateNextPage() {
+function deactivateNextButton() {
+    var resendButton = document.getElementById('nextPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateNextButton() {
     var resendButton = document.getElementById('nextPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
