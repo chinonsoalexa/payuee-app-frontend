@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
+            deactivateBeforeButton();
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
         }
