@@ -215,7 +215,6 @@ function renderTransactionHistory(historyData) {
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
             // Use the ID as needed
-            // console.log('Clicked row ID:', rowId);
             window.location.href = 'success-trans-id.html?id=' + rowId;
         });
     });
