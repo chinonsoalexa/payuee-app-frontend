@@ -6,17 +6,17 @@ var TwoBeforePageOnLoad;
 var TwoAfterPageOnLoad;
 
 document.addEventListener('DOMContentLoaded', async function () {
-     // Get the current URL
-     const currentUrl = new URL(window.location.href);
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
 
-     // Extract parameters using URLSearchParams
-     const params = new URLSearchParams(currentUrl.search);
- 
-     // Get individual parameter values
-     const pageNumber = params.get("page");
-     if  (pageNumber == null) {
-        pageNumber = "1"
-     }
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    let pageNumber = params.get("page");
+    if (pageNumber == null) {
+        pageNumber = "1";
+    }
 
     const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
 
