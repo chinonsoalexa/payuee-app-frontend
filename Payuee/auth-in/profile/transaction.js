@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentPageAnchor.textContent = NextPageOnLoad;
         }
 
-        if (TwoAfterPageOnLoad < TotalPageOnLoad) {
+        if (TwoAfterPageOnLoad <= TotalPageOnLoad) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("twoAfterPage");
             var currentPageAnchor = currentPageElement.querySelector("a");
