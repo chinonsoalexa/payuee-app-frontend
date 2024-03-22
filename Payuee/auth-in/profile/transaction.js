@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
-        if (CurrentPageOnLoad >= TotalPageOnLoad) {
+        if (CurrentPageOnLoad > TotalPageOnLoad) {
             // let's disable the next page navigation button
             document.getElementById('afterPage').classList.add('disabled');
             document.getElementById('afterPage').disabled = true;
