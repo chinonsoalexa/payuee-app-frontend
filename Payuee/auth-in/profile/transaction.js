@@ -188,3 +188,11 @@ try {
         // do nothing
     }
 }
+
+document.getElementById("previousPage").addEventListener("click", function(){
+    console.log('previousPage clicked')
+});
+
+document.getElementById("nextPage").addEventListener("click", function(){
+    console.log('nextPage clicked')
+});
