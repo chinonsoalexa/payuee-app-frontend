@@ -52,6 +52,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         const responseData = await response.json();
+
+        // render the transaction history
+        renderTransactionHistory(responseData.success);
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
@@ -139,8 +142,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('dotAfterPage').classList.add('disabled');
             document.getElementById('dotAfterPage').disabled = true;
         }
-
-        renderTransactionHistory(responseData.success);
 } finally {
 
     }
@@ -176,8 +177,6 @@ function renderTransactionHistory(historyData) {
     }
     
     historyData.forEach((historyData, index) => {
-        // Generate a unique ID for each row
-        const rowId = `historyRow_${index}`;
 
         let transactionStatus;
         // let's check the status of the transaction
@@ -191,7 +190,7 @@ function renderTransactionHistory(historyData) {
 
         // Create a new table row element
         const rowElement = document.createElement('tr');
-        rowElement.id = rowId; // Set the ID of the row
+        rowElement.id = historyData.transaction_id; // Set the ID of the row
 
         // Create the HTML string with dynamic data using template literals
         rowElement.innerHTML = `
@@ -209,6 +208,7 @@ function renderTransactionHistory(historyData) {
         // Append the row to the table body
         tableBody.appendChild(rowElement);
 
+        
         // Add event listener to the row element
         rowElement.addEventListener('click', function(event) {
             event.preventDefault();
