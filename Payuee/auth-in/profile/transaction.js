@@ -70,8 +70,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             // let's disable the next page navigation button
             document.getElementById('afterPage').classList.add('disabled');
             document.getElementById('afterPage').disabled = true;
+            document.getElementById('nextPage').classList.add('disabled');
+            document.getElementById('nextPage').disabled = true;
         }
-        
+
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("afterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
