@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         if (TwoAfterPageOnLoad < TotalPageOnLoad) {
-            // let's disable the next page navigation button
-            document.getElementById('constantAfterPage').classList.add('disabled');
-            document.getElementById('constantAfterPage').disabled = true;
-        } else {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("constantAfterPage");
             var currentPageAnchor = currentPageElement.querySelector("a");
             currentPageAnchor.textContent = TotalPageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('constantAfterPage').classList.add('disabled');
+            document.getElementById('constantAfterPage').disabled = true;
         }
 
         if (TotalPageOnLoad < 3) {
