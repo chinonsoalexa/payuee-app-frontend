@@ -442,7 +442,6 @@ try {
         // do nothing
     }
 }
-// });
 
 document.getElementById('download_receipt').addEventListener('click', function(event) {
     event.preventDefault;

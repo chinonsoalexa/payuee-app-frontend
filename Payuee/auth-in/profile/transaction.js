@@ -1,3 +1,43 @@
+document.addEventListener('DOMContentLoaded', async function () {
+    const apiUrl = "https://payuee.onrender.com/transactions/";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            console.log(errorData);
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                displayErrorMessage();
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        console.log("this is the response data for transaction: ", responseData);
+    } finally {
+
+    }
+});
+
+
 function renderTransactionHistory(historyData) {
     // Assuming you have a reference to the table body element
     const tableBody = document.getElementById('table_body_id');
@@ -71,14 +111,14 @@ function renderTransactionHistory(historyData) {
 
 const testData = [
     {
-        date: '01 Jan',
+        date: '01 Jan 2024',
         service: 'Mobile Recharge',
         price: '₦750.00',
         charge: '-₦50.00',
         status: 'success',
     },
     {
-        date: '27 Jan',
+        date: '27 Jan 2022',
         service: 'Electric Bill',
         price: '₦320.00',
         charge: '-₦15.00',
@@ -114,4 +154,35 @@ const testData = [
     },
 ];
 
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
+}
+
 renderTransactionHistory(testData)
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+
+        // const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
+}
