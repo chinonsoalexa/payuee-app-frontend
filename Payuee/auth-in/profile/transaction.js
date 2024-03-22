@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
-            deactivateBeforeButton();
+            // let's disable the next page navigation button
+            document.getElementById('beforePage').classList.add('disabled');
+            document.getElementById('beforePage').disabled = true;
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
         }
@@ -592,12 +594,6 @@ function formatTimestamp(timestamp) {
 
 function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
-    // resendButton.className = '';
-    resendButton.classList.add('deactivated'); // Add a class to the button
-}
-
-function deactivateBeforeButton() {
-    var resendButton = document.getElementById('beforePage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
