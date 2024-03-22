@@ -65,6 +65,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('beforePage').disabled = true;
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
+            document.getElementById('afterPage').classList.add('disabled');
+            document.getElementById('afterPage').disabled = true;
         }
 
         if (CurrentPageOnLoad > 2) {
