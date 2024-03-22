@@ -65,6 +65,17 @@ document.addEventListener('DOMContentLoaded', async function () {
             deactivateNextButton();
         }
 
+        if (CurrentPageOnLoad > 3) {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("constantBeforePage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TwoBeforePageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('constantBeforePage').classList.add('disabled');
+            document.getElementById('constantBeforePage').disabled = true;
+        }
+
         if (CurrentPageOnLoad > 2) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("twoBeforePage");
