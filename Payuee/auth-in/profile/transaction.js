@@ -4,6 +4,7 @@ var CurrentPageOnLoad;
 var TotalPageOnLoad;
 var TwoBeforePageOnLoad;
 var TwoAfterPageOnLoad;
+var ThreeAfterPageOnLoad;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         TotalPageOnLoad = responseData.pagination.TotalPages;
         TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
+        ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
             deactivateBeforeButton();
@@ -132,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentPageAnchor.textContent = TotalPageOnLoad;
         }
 
-        if (TwoAfterPageOnLoad > TotalPageOnLoad) {
+        if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
             // let's disable the next page navigation button
             document.getElementById('dotAfterPage').classList.add('disabled');
             document.getElementById('dotAfterPage').disabled = true;
