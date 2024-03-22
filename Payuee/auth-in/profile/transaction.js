@@ -209,13 +209,15 @@ function renderTransactionHistory(historyData) {
         tableBody.appendChild(rowElement);
 
         
-    // Add event listener to the row element
-    rowElement.addEventListener('click', (function(rowId) {
-        return function(event) {
+        // Add event listener to the row element
+        rowElement.addEventListener('click', function(event) {
             event.preventDefault();
+            // Retrieve the ID of the clicked row
+            const rowId = event.target.closest('tr').id;
+            // Use the ID as needed
+            // console.log('Clicked row ID:', rowId);
             window.location.href = 'success-trans-id.html?id=' + rowId;
-        };
-    })(rowId));
+        });
     });
 }
 
