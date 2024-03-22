@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
         }
+
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("beforePage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = PreviousPageOnLoad;
+
         // let's update the pagination with the current page
         var currentPageElement = document.getElementById("currentPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
