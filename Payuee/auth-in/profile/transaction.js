@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         var currentPageAnchor = currentPageElement.querySelector("a");
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
-        
+
         renderTransactionHistory(responseData.success);
 } finally {
 
@@ -381,7 +381,7 @@ function deactivateNextButton() {
 }
 
 function deactivateCurrentButton() {
-    var resendButton = document.getElementById('nextPage');
+    var resendButton = document.getElementById('currentPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
