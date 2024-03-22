@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
-        renderTransactionHistory(testData);
+        renderTransactionHistory(responseData.success);
 } finally {
 
     }
@@ -91,11 +91,11 @@ function renderTransactionHistory(historyData) {
 
         let transactionStatus;
         // let's check the status of the transaction
-        if (historyData.status == 'success') {
+        if (historyData.transaction_status == 'success') {
             transactionStatus = 'assets/img/payment/g-check.png';
-        } else if (historyData.status == 'pending') {
+        } else if (historyData.transaction_status == 'pending') {
             transactionStatus = 'assets/img/payment/g-worning.png';
-        } else if (historyData.status == 'failed') {
+        } else if (historyData.transaction_status == 'failed') {
             transactionStatus = 'assets/img/payment/g-cross.png';
         }
 
@@ -105,10 +105,10 @@ function renderTransactionHistory(historyData) {
 
         // Create the HTML string with dynamic data using template literals
         rowElement.innerHTML = `
-            <td>${historyData.date}</td>
-            <td>${historyData.service}</td>
-            <td>${historyData.price}</td>
-            <td>${historyData.charge}</td>
+            <td>${formatTimestamp(historyData.created_at)}</td>
+            <td>${historyData.service_type}</td>
+            <td>${historyData.amount}</td>
+            <td>${historyData.fees}</td>
             <td>
                 <a href="javascript:void(0)" class="edi">
                     <img src="${transactionStatus}" alt="img">
@@ -290,8 +290,24 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
             const responseData = await response.json();
             console.log("this is the response data for transaction: ", responseData);
             window.location.href = 'transaction.html?page=' + NextPageOnLoad;
-            renderTransactionHistory(testData);
     } finally {
     
     }
 });
+
+function formatTimestamp(timestamp) {
+    // Parse the provided timestamp string
+    var dateObj = new Date(timestamp);
+
+    // Extract year, month, and day from the date object
+    var year = dateObj.getFullYear();
+    var month = dateObj.getMonth() + 1; // Month is zero-based, so add 1
+    var day = dateObj.getDate();
+
+    // Convert month and day to two-digit format if necessary
+    var formattedMonth = month < 10 ? '0' + month : month;
+    var formattedDay = day < 10 ? '0' + day : day;
+
+    // Return the formatted timestamp string
+    return formattedMonth + ' ' + formattedDay + ' ' + year;
+}
