@@ -52,13 +52,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             deactivatePreviousButton();
         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
             deactivateNextButton();
-        } else if (pageNumber === CurrentPageOnLoad) {
-            deactivateNextButton();
         }
         // let's update the pagination with the current page
         var currentPageElement = document.getElementById("currentPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
         currentPageAnchor.textContent = CurrentPageOnLoad;
+        deactivateCurrentButton();
         
         renderTransactionHistory(responseData.success);
 } finally {
@@ -381,7 +380,7 @@ function deactivateNextButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-function deactivateNextButton() {
+function deactivateCurrentButton() {
     var resendButton = document.getElementById('nextPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
