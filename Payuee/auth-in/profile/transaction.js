@@ -212,8 +212,7 @@ function renderTransactionHistory(historyData) {
         // Add event listener to the row element
         rowElement.addEventListener('click', function(event) {
             event.preventDefault();
-            alert('Row clicked: ' + rowId);
-            // You can print out or perform any action here
+            window.location.href = 'success-trans-id.html?id=' + rowId;
         });
     });
 }
