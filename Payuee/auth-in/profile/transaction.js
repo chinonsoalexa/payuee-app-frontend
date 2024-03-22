@@ -209,11 +209,13 @@ function renderTransactionHistory(historyData) {
         tableBody.appendChild(rowElement);
 
         
-        // Add event listener to the row element
-        rowElement.addEventListener('click', function(event) {
+    // Add event listener to the row element
+    rowElement.addEventListener('click', (function(rowId) {
+        return function(event) {
             event.preventDefault();
             window.location.href = 'success-trans-id.html?id=' + rowId;
-        });
+        };
+    })(rowId));
     });
 }
 
