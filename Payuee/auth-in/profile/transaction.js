@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', async function () {
  
      // Get individual parameter values
      const pageNumber = params.get("page");
+     if  (pageNumber == null) {
+        pageNumber = "1"
+     }
 
     const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
 
