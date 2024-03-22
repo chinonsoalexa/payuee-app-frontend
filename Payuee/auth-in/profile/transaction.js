@@ -302,7 +302,6 @@ document.getElementById("previousPage").addEventListener("click", async function
     
             const responseData = await response.json();
             window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
-            renderTransactionHistory(testData);
     } finally {
     
         }
@@ -347,7 +346,6 @@ document.getElementById("beforePage").addEventListener("click", async function(e
     
             const responseData = await response.json();
             window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
-            renderTransactionHistory(testData);
     } finally {
     
         }
@@ -392,7 +390,6 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
     
             const responseData = await response.json();
             window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
-            renderTransactionHistory(testData);
     } finally {
     
         }
@@ -569,7 +566,6 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
     
             const responseData = await response.json();
             window.location.href = 'transaction.html?page=' + TwoAfterPageOnLoad;
-            renderTransactionHistory(testData);
     } finally {
     
         }
