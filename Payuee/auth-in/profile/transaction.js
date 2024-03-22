@@ -89,8 +89,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         if (CurrentPageOnLoad >= TotalPageOnLoad) {
             // let's disable the next page navigation button
-            document.getElementById('afterPage').classList.add('disabled');
-            document.getElementById('afterPage').disabled = true;
+            deactivateAfterButton();
         } else {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("afterPage");
@@ -604,6 +603,12 @@ function deactivateBeforeButton() {
 
 function deactivateNextButton() {
     var resendButton = document.getElementById('nextPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateAfterButton() {
+    var resendButton = document.getElementById('afterPage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
