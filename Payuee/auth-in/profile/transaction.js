@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         deactivateCurrentButton();
 
         // let's update the pagination with the previous page
-        var currentPageElement = document.getElementById("currentPage");
+        var currentPageElement = document.getElementById("beforePage");
         var currentPageAnchor = currentPageElement.querySelector("a");
         currentPageAnchor.textContent = PreviousPageOnLoad;
 
