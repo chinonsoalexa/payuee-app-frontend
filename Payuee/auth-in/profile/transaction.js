@@ -121,6 +121,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('twoAfterPage').disabled = true;
         }
 
+        if (TwoAfterPageOnLoad > TotalPageOnLoad) {
+            // let's disable the next page navigation button
+            document.getElementById('dotAfterPage').classList.add('disabled');
+            document.getElementById('dotAfterPage').disabled = true;
+        }
+
         if (TotalPageOnLoad < 3) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("constantAfterPage");
