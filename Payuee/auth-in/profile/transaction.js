@@ -107,7 +107,7 @@ function renderTransactionHistory(historyData) {
         rowElement.innerHTML = `
             <td>${formatTimestamp(historyData.created_at)}</td>
             <td>${historyData.service_type}</td>
-            <td>${historyData.amount}</td>
+            <td>${formatNumberToNaira(historyData.amount)}</td>
             <td>${historyData.fees}</td>
             <td>
                 <a href="javascript:void(0)" class="edi">
