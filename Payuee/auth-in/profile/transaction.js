@@ -70,12 +70,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             // let's disable the next page navigation button
             document.getElementById('afterPage').classList.add('disabled');
             document.getElementById('afterPage').disabled = true;
+        } else {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("afterPage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = NextPageOnLoad;
         }
-
-        // let's update the pagination with the next page
-        var currentPageElement = document.getElementById("afterPage");
-        var currentPageAnchor = currentPageElement.querySelector("a");
-        currentPageAnchor.textContent = NextPageOnLoad;
 
         renderTransactionHistory(responseData.success);
 } finally {
