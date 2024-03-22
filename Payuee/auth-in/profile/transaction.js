@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const responseData = await response.json();
         console.log("this is the response data for transaction: ", responseData);
-    } finally {
+        renderTransactionHistory(testData)
+} finally {
 
     }
 });
@@ -164,8 +165,6 @@ function formatNumberToNaira(number) {
         minimumFractionDigits: 2
     }).format(number);
 }
-
-renderTransactionHistory(testData)
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
