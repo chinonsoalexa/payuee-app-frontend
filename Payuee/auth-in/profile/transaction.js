@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentPageAnchor.textContent = TotalPageOnLoad;
         }
 
-        if (ThreeAfterPageOnLoad + 1 > TotalPageOnLoad) {
+        if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
             // let's disable the next page navigation button
             document.getElementById('dotAfterPage').classList.add('disabled');
             document.getElementById('dotAfterPage').disabled = true;
