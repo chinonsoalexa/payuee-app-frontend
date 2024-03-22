@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('twoAfterPage').disabled = true;
         }
 
-        if (TwoAfterPageOnLoad > TotalPageOnLoad) {
+        if (TwoAfterPageOnLoad < TotalPageOnLoad) {
             // let's disable the next page navigation button
             document.getElementById('constantAfterPage').classList.add('disabled');
             document.getElementById('constantAfterPage').disabled = true;
