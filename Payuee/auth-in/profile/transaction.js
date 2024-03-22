@@ -59,11 +59,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         currentPageAnchor.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
-        // let's update the pagination with the previous page
-        var currentPageElement = document.getElementById("beforePage");
-        var currentPageAnchor = currentPageElement.querySelector("a");
-        currentPageAnchor.textContent = PreviousPageOnLoad;
-
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("afterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
@@ -471,6 +466,12 @@ function formatTimestamp(timestamp) {
 
 function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateBeforeButton() {
+    var resendButton = document.getElementById('beforePage');
     // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
