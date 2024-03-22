@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    const apiUrl = "https://payuee.onrender.com/transactions/";
+     // Get the current URL
+     const currentUrl = new URL(window.location.href);
+
+     // Extract parameters using URLSearchParams
+     const params = new URLSearchParams(currentUrl.search);
+ 
+     // Get individual parameter values
+     const pageNumber = params.get("page");
+
+    const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
