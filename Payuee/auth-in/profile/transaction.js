@@ -98,6 +98,17 @@ document.addEventListener('DOMContentLoaded', async function () {
             currentPageAnchor.textContent = NextPageOnLoad;
         }
 
+        if (TwoAfterPageOnLoad < TotalPageOnLoad) {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("twoAfterPage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TwoAfterPageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('twoAfterPage').classList.add('disabled');
+            document.getElementById('twoAfterPage').disabled = true;
+        }
+
         renderTransactionHistory(responseData.success);
 } finally {
 
