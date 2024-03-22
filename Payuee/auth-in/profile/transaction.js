@@ -1,3 +1,6 @@
+var NextPageOnLoad;
+var PreviousPageOnLoad;
+var CurrentPageOnLoad;
 document.addEventListener('DOMContentLoaded', async function () {
      // Get the current URL
      const currentUrl = new URL(window.location.href);
@@ -44,7 +47,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const responseData = await response.json();
         console.log("this is the response data for transaction: ", responseData);
-        renderTransactionHistory(testData)
+        NextPageOnLoad = responseData.pagination.NextPage;
+        PreviousPageOnLoad = responseData.pagination.PreviousPage;
+        CurrentPageOnLoad = responseData.pagination.CurrentPage;
+        renderTransactionHistory(testData);
 } finally {
 
     }
