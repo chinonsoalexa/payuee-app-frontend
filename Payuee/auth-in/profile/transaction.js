@@ -156,7 +156,7 @@ function renderTransactionHistory(historyData) {
     // Loop through the transactions array
     historyData.forEach(historyData => {
         // Parse the CreatedAt property into a Date object
-        const createdAt = new Date(historyData.CreatedAt);
+        const createdAt = new Date(historyData.created_at);
 
         // Check if latestDate is null or the current transaction's date is later
         if (latestDate === null || createdAt > latestDate) {
