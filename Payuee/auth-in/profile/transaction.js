@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Assuming you have a reference to the date input element
-    const datepicker = document.getElementById('datepicker2');
+    const datepicker = document.getElementById('datepicker23');
 
     // Add event listener to the date input element
     datepicker.addEventListener('change', function(event) {
