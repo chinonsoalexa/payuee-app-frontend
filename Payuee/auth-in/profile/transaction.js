@@ -774,17 +774,24 @@ function formatTimestamp(timestamp) {
 }
 
 function formatTimestampForPlaceholder(timestamp) {
-    // Parse the provided timestamp string
-    var parts = timestamp.split('/');
-    var month = parseInt(parts[0], 10) - 1; // Adjust month to 0-indexed
-    var day = parseInt(parts[1], 10);
-    var year = parseInt(parts[2], 10);
+    if (typeof timestamp === 'string') {
+        // Parse the provided timestamp string
+        var parts = timestamp.split('/');
+        if (parts.length !== 3) {
+            throw new Error('Invalid timestamp format');
+        }
+        var month = parseInt(parts[0], 10) - 1; // Adjust month to 0-indexed
+        var day = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
 
-    // Define an array of month abbreviations
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        // Define an array of month abbreviations
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    // Return the formatted timestamp string
-    return day + ' - ' + months[month] + ' - ' + year;
+        // Return the formatted timestamp string
+        return day + ' / ' + months[month] + ' / ' + year;
+    } else {
+        throw new Error('Invalid input type');
+    }
 }
 
 function deactivatePreviousButton() {
