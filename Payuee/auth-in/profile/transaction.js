@@ -19,20 +19,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
 
-    // Assuming you have a reference to the date input element
-    const datepicker = document.getElementById('datepicker23');
-
-    // Add event listener to the date input element
-    datepicker.addEventListener('change', function(event) {
-        // Get the selected date from the input value
-        const selectedDate = event.target.value;
-        
-        // Do whatever you want with the selected date
-        console.log('Selected date:', selectedDate);
-        alert('Selected date:', selectedDate);
-        // You can perform any action with the selected date here
-    });
-
     const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
 
     const requestOptions = {
@@ -232,6 +218,37 @@ function renderTransactionHistory(historyData) {
             window.location.href = 'success-trans-id.html?id=' + rowId + '&page=' + CurrentPageOnLoad;
         });
     });
+}
+
+function renderTransactionHistoryLoading() {
+    // Assuming you have a reference to the table body element
+    const tableBody = document.getElementById('table_body_id');
+
+    // Remove all child elements of the tbody
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    // Create a new table row element
+    const rowElement = document.createElement('tr');
+
+    // Create the HTML string for displaying "No History Available"
+    rowElement.innerHTML = `
+        <td>Getting Transactions</td>
+        <td>Getting Transactions</td>
+        <td>Getting Transactions</td>
+        <td>Getting Transactions</td>
+        <td>
+            <a href="javascript:void(0)" class="edi">
+                <img src="assets/img/payment/g-worning.png" alt="img">
+            </a>
+        </td>
+    `;
+
+    // Append the row to the table body
+    tableBody.appendChild(rowElement);
+
+    return; // Exit the function
 }
 
 const testData = [
