@@ -775,21 +775,16 @@ function formatTimestamp(timestamp) {
 
 function formatTimestampForPlaceholder(timestamp) {
     // Parse the provided timestamp string
-    var dateObj = new Date(timestamp);
+    var parts = timestamp.split('/');
+    var month = parseInt(parts[0], 10) - 1; // Adjust month to 0-indexed
+    var day = parseInt(parts[1], 10);
+    var year = parseInt(parts[2], 10);
 
     // Define an array of month abbreviations
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    // Extract year, month, and day from the date object
-    var year = dateObj.getFullYear();
-    var month = dateObj.getMonth();
-    var day = dateObj.getDate();
-
-    // Convert day to two-digit format if necessary
-    var formattedDay = day < 10 ? '0' + day : day;
-
     // Return the formatted timestamp string
-    return formattedDay + ' / ' + months[month] + ' / ' + year;
+    return day + ' - ' + months[month] + ' - ' + year;
 }
 
 function deactivatePreviousButton() {
