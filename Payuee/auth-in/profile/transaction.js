@@ -19,6 +19,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
 
+    // Assuming you have a reference to the date input element
+    const datepicker = document.getElementById('datepicker2');
+
+    // Add event listener to the date input element
+    datepicker.addEventListener('change', function(event) {
+        // Get the selected date from the input value
+        const selectedDate = event.target.value;
+        
+        // Do whatever you want with the selected date
+        console.log('Selected date:', selectedDate);
+        alert('Selected date:', selectedDate);
+        // You can perform any action with the selected date here
+    });
+
     const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
 
     const requestOptions = {
@@ -739,17 +753,3 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
-
-// Assuming you have a reference to the date input element
-const datepicker = document.getElementById('datepicker2');
-
-// Add event listener to the date input element
-datepicker.addEventListener('change', function(event) {
-    // Get the selected date from the input value
-    const selectedDate = event.target.value;
-    
-    // Do whatever you want with the selected date
-    console.log('Selected date:', selectedDate);
-    alert('Selected date:', selectedDate);
-    // You can perform any action with the selected date here
-});
