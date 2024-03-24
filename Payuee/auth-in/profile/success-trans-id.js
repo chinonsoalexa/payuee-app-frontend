@@ -49,6 +49,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 function getSuccessMessage(transactionDetails) {
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    let pageNumber = params.get("page");
+    if (pageNumber == null) {
+        pageNumber = "1";
+    }
+
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
@@ -94,7 +106,7 @@ function getSuccessMessage(transactionDetails) {
     airtime_type.textContent = transactionDetails.service.airtime_type;
     recharged_number.textContent = transactionDetails.service.mobile_number;
     let airtimeBackLink = document.getElementById('backLink');
-    airtimeBackLink.href = "airtime.html"; // Let's redirect back to transaction page
+    airtimeBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
     break;
     case "data":
         enableDiv('data-section');
@@ -126,7 +138,7 @@ function getSuccessMessage(transactionDetails) {
         data_bundle.textContent = transactionDetails.service.bundle;
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
         let dataBackLink = document.getElementById('backLink');
-        dataBackLink.href = "data.html"; // Let's redirect back to transaction page
+        dataBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "rechargePin":
         enableDiv('rechage-pin-section');
@@ -162,7 +174,7 @@ function getSuccessMessage(transactionDetails) {
             showCardPin(transactionDetails.service.Pins);
         })
         let rechargePinBackLink = document.getElementById('backLink');
-        rechargePinBackLink.href = "recharge-pin.html"; // Let's redirect back to transaction page
+        rechargePinBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "educationalPayment":
         enableDiv('educational-payments-section');
@@ -187,7 +199,7 @@ function getSuccessMessage(transactionDetails) {
         education_transaction_status.textContent = transactionDetails.success.transaction_status;
         education_recharged_number.textContent = transactionDetails.service.phone_number;
         let educationalPaymentPinBackLink = document.getElementById('backLink');
-        educationalPaymentPinBackLink.href = "educational-payments.html"; // Let's redirect back to transaction page
+        educationalPaymentPinBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "decoder":
         enableDiv('decoder-section');
@@ -219,7 +231,7 @@ function getSuccessMessage(transactionDetails) {
         decoder_plan.textContent = transactionDetails.service.plan;
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
         let decoderBackLink = document.getElementById('backLink');
-        decoderBackLink.href = "tv.html"; // Let's redirect back to transaction page
+        decoderBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "electricity":
         enableDiv('electricity-section');
@@ -251,7 +263,7 @@ function getSuccessMessage(transactionDetails) {
         electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_auto_renew.textContent = transactionDetails.service.auto_renew;
         let electricityBackLink = document.getElementById('backLink');
-        electricityBackLink.href = "electricity.html"; // Let's redirect back to transaction page
+        electricityBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "fundWallet":
         enableDiv('fund-wallet-section');
@@ -273,7 +285,7 @@ function getSuccessMessage(transactionDetails) {
         fund_wallet_transaction_status.textContent = transactionDetails.success.transaction_status;
         fund_wallet_users_name.textContent = transactionDetails.success.user_name;
         let fundWalletBackLink = document.getElementById('backLink');
-        fundWalletBackLink.href = "fund-wallet.html"; // Let's redirect back to transaction page
+        fundWalletBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
     case "sendFunds":
     if (transactionDetails.success.transaction_type == "wallet"){
@@ -299,7 +311,7 @@ function getSuccessMessage(transactionDetails) {
         send_funds_service_name.textContent = "send funds";
         send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
         let sendFundsBackLink = document.getElementById('backLink');
-        sendFundsBackLink.href = "send-funds.html"; // Let's redirect back to transaction page
+        sendFundsBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
     } else {
         
     }
