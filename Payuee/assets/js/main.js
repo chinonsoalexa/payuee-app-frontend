@@ -912,12 +912,12 @@ $('.video-btn').magnificPopup({
 					const createdAt = new Date(historyData.created_at);
 					updatedDate = createdAt
 				});
-				
+
 				// Get a reference to the input element by its ID
 				const datePickerInput = document.getElementById('datepicker2');
 
 				// Set the new placeholder text
-				datePickerInput.placeholder = formatTimestampForPlaceholder(updatedDate);
+				datePickerInput.value = formatTimestampForPlaceholder(updatedDate);
 		} finally {
 		
 		}
