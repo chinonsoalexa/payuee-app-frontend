@@ -149,6 +149,32 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
 function renderTransactionHistory(historyData) {
+    // Initialize variables for the latest and oldest dates
+    let latestDate = null;
+    let oldestDate = null;
+
+    // Loop through the transactions array
+    transactions.forEach(transaction => {
+    // Parse the CreatedAt property into a Date object
+    const createdAt = new Date(transaction.CreatedAt);
+
+    // Check if latestDate is null or the current transaction's date is later
+    if (latestDate === null || createdAt > latestDate) {
+        latestDate = createdAt; // Update latestDate
+    }
+
+    // Check if oldestDate is null or the current transaction's date is earlier
+    if (oldestDate === null || createdAt < oldestDate) {
+        oldestDate = createdAt; // Update oldestDate
+    }
+    });
+
+    // Get a reference to the input element by its ID
+    const datePickerInput = document.getElementById('datepicker2');
+
+    // Set the new placeholder text
+    datePickerInput.placeholder = formatTimestampForPlaceholder(oldestDate) + ' ' + formatTimestampForPlaceholder(latestDate);
+
     // Assuming you have a reference to the table body element
     const tableBody = document.getElementById('table_body_id');
 
@@ -740,6 +766,25 @@ function formatTimestamp(timestamp) {
 
     // Return the formatted timestamp string
     return formattedDay + ' - ' + months[month] + ' - ' + year;
+}
+
+function formatTimestampForPlaceholder(timestamp) {
+    // Parse the provided timestamp string
+    var dateObj = new Date(timestamp);
+
+    // Define an array of month abbreviations
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // Extract year, month, and day from the date object
+    var year = dateObj.getFullYear();
+    var month = dateObj.getMonth();
+    var day = dateObj.getDate();
+
+    // Convert day to two-digit format if necessary
+    var formattedDay = day < 10 ? '0' + day : day;
+
+    // Return the formatted timestamp string
+    return formattedDay + ' / ' + months[month] + ' / ' + year;
 }
 
 function deactivatePreviousButton() {
