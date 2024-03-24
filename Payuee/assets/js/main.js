@@ -858,15 +858,21 @@ $('.video-btn').magnificPopup({
 			const selectedDate = event.format();
 			
 			event.preventDefault(); 
-			const apiUrl = `https://payuee.onrender.com/transaction/date/${selectedDate}`;
 
-			const requestOptions = {
-				method: "GET",
+			const transaction = {
+				date: selectedDate,
+			  };
+	
+			  const apiUrl = "https://payuee.onrender.com/transaction/date";
+	
+			  const requestOptions = {
+				method: "POST",
 				headers: {
-					"Content-Type": "application/json",
+				  "Content-Type": "application/json",
 				},
 				credentials: 'include', // set credentials to include cookies
-			};
+				body: JSON.stringify(transaction),
+			  };
 		
 			try {
 				const response = await fetch(apiUrl, requestOptions);
