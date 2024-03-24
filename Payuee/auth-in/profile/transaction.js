@@ -178,6 +178,11 @@ function renderTransactionHistory(historyData) {
     // Assuming you have a reference to the table body element
     const tableBody = document.getElementById('table_body_id');
 
+    // Remove all child elements of the tbody
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
     // Check if historyData is empty
     if (historyData.length === 0) {
         // Create a new table row element
@@ -202,7 +207,7 @@ function renderTransactionHistory(historyData) {
         return; // Exit the function
     }
     
-    historyData.forEach((historyData, index) => {
+    historyData.forEach((historyData) => {
 
         let transactionStatus;
         // let's check the status of the transaction
