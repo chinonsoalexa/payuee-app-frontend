@@ -173,7 +173,7 @@ function renderTransactionHistory(historyData) {
     const datePickerInput = document.getElementById('datepicker2');
 
     // Set the new placeholder text
-    datePickerInput.placeholder = formatTimestampForPlaceholder(oldestDate) + ' - ' + formatTimestampForPlaceholder(latestDate);
+    datePickerInput.placeholder = formatTimestampForPlaceholder(latestDate) + ' - ' + formatTimestampForPlaceholder(oldestDate);
 
     // Assuming you have a reference to the table body element
     const tableBody = document.getElementById('table_body_id');
