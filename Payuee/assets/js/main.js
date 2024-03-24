@@ -856,6 +856,14 @@ $('.video-btn').magnificPopup({
 		}).on('changeDate', async function(event) {
 			// Get the selected date from the datepicker
 			const selectedDate = event.format();
+
+			// Check if the selectedDate is a string and matches the expected format
+			if (typeof selectedDate === 'string' && /^\d{2}\/\d{2}\/\d{4}$/.test(selectedDate)) {
+				const formattedDate = formatTimestampForPlaceholder(selectedDate);
+				console.log(formattedDate);
+			} else {
+				console.error('Invalid date format:', selectedDate);
+			}
 			
 			event.preventDefault(); 
 
@@ -902,7 +910,7 @@ $('.video-btn').magnificPopup({
 				// render the transaction history
 				renderTransactionHistoryLoading()
 				renderTransactionHistory(responseData.success);
-				
+
 				// Get a reference to the input element by its ID
 				const datePickerInput = document.getElementById('datepicker2');
 
