@@ -902,6 +902,11 @@ $('.video-btn').magnificPopup({
 				// render the transaction history
 				renderTransactionHistoryLoading()
 				renderTransactionHistory(responseData.success);
+				// Get a reference to the input element by its ID
+				const datePickerInput = document.getElementById('datepicker2');
+
+				// Set the new placeholder text
+				datePickerInput.placeholder = formatTimestampForPlaceholder(responseData.success.created_at);
 		} finally {
 		
 		}
