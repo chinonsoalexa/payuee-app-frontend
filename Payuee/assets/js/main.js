@@ -856,22 +856,10 @@ $('.video-btn').magnificPopup({
 		}).on('changeDate', async function(event) {
 			// Get the selected date from the datepicker
 			const selectedDate = event.format();
-
-			// Get the current URL
-			const currentUrl = new URL(window.location.href);
-
-			// Extract parameters using URLSearchParams
-			const params = new URLSearchParams(currentUrl.search);
-		
-			// Get individual parameter values
-			let pageNumber = params.get("page");
-			if (pageNumber == null) {
-				pageNumber = "1";
-			}
 			
 			event.preventDefault(); 
 			const apiUrl = "https://payuee.onrender.com/transaction/date/" + selectedDate;
-		
+
 			const requestOptions = {
 				method: "GET",
 				headers: {
