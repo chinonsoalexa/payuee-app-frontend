@@ -858,7 +858,7 @@ $('.video-btn').magnificPopup({
 			const selectedDate = event.format();
 			
 			event.preventDefault(); 
-			const apiUrl = "https://payuee.onrender.com/transaction/date/" + selectedDate;
+			const apiUrl = `https://payuee.onrender.com/transaction/date/${selectedDate}`;
 
 			const requestOptions = {
 				method: "GET",
