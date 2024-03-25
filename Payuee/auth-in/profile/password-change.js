@@ -126,6 +126,21 @@ function showError(message) {
     });
 }
 
+function showError(message) {
+    const installPopup = document.getElementById('password-popup2');
+    const cancelButton = document.getElementById('close-btn');
+    const passwordError = document.getElementById('passwordSuccess');
+
+    passwordError.textContent = message;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+}
+
 // Add this function to remove onclick and on hover styles
 function deactivateButtonStyles2() {
     var resendButton = document.getElementById('submitPassword');
