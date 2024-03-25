@@ -107,6 +107,9 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 return;
             }
             const data = await response.json();
+            presentPassword = "";
+            newPassword = "";
+            confirmPassword = "";
             showSuccess(data.success);
         } finally{
            // do nothing cause error has been handled
