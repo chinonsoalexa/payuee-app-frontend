@@ -103,7 +103,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 return;
             }
             const data = await response.json();
-            showError(data.success);
+            showSuccess(data.success);
         } finally{
            // do nothing cause error has been handled
         reactivateButtonStyles2();
@@ -126,7 +126,7 @@ function showError(message) {
     });
 }
 
-function showError(message) {
+function showSuccess(message) {
     const installPopup = document.getElementById('password-popup2');
     const cancelButton = document.getElementById('close-btn');
     const passwordError = document.getElementById('passwordSuccess');
