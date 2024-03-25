@@ -39,11 +39,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         responseData = await response.json();
-        // console.log(responseData);
         // this is for the previous data
-        document.getElementById('toggle-first-name-main').textContent = responseData.success.FirstName;
-        document.getElementById('toggle-last-name-main').textContent = responseData.success.LastName;
-        document.getElementById('toggle-address-main').textContent = responseData.success.Address;
+        var firstNamee = document.getElementById('toggle-first-name-main');
+        var lastNamee = document.getElementById('toggle-last-name-main'); 
+        var homeAddress = document.getElementById('toggle-address-main');
+        firstNamee.textContent = responseData.success.FirstName;
+        if (responseData.success.FirstName == "") {
+            firstNamee.textContent = "Add First Name";
+        }
+        lastNamee.textContent = responseData.success.LastName;
+        if (responseData.success.lastNamee == "") {
+            lastNamee.textContent = "Add First Name";
+        }
+        homeAddress.textContent = responseData.success.Address;
+        if (responseData.success.homeAddress == "") {
+            homeAddress.textContent = "Add First Name";
+        }
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
         ReferralCode = responseData.success.ReferralCode;
