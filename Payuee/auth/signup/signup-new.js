@@ -332,8 +332,8 @@ async function submit_password() {
 
         // Get individual parameter values
         var referralCode = params.get("referral-code");
-        if (referralCode === nil) {
-            referralCode = document.getElementById("referrer-code").value
+        if (referralCode === null || referralCode === undefined) {
+            referralCode = document.getElementById("referrer-code").value;
         }
 
         const user = {
