@@ -355,7 +355,7 @@ async function submit_password() {
             credentials: 'include', // set credentials to include cookies
             body: JSON.stringify(user),
           };
-          
+          console.log("body to send: ", JSON.stringify(user));
         try {
             deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
