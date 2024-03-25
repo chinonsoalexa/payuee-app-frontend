@@ -335,7 +335,9 @@ async function submit_password() {
         if (referralCode === null || referralCode === undefined) {
             console.log("in the referral code parameter is null or undefined");
             referralCode = code;
-        }
+        } else {
+            referralCode = 0;
+         }
 
         const user = {
             FirstName: FirstName,
