@@ -93,6 +93,9 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 }  else if  (errorData.error === "error updating user's password") {
                     // Handle other error cases
                     showError('an error occurred while updating your password');
+                }  else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                    // let's log user out the users session has expired
+                    logUserOutIfTokenIsExpired();
                 } else {
                     showError('An error occurred. Please try again.');
                 }
@@ -100,7 +103,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 return;
             }
             const data = await response.json();
-            showError(data.success)
+            showError(data.success);
         } finally{
            // do nothing cause error has been handled
         reactivateButtonStyles2();
@@ -138,4 +141,27 @@ function reactivateButtonStyles2() {
     resendButton.classList.remove('deactivated');
     
     clearError('otpError');
+}
+
+function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://payuee.onrender.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = fetch(apiUrl, requestOptions);
+
+        // const data = response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../index.html'
+    } finally{
+        // do nothing
+    }
 }
