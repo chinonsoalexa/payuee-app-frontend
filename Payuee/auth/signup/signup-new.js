@@ -1,18 +1,18 @@
-    var buttonClicks = 0
+    var buttonClicks = 0;
 
     var nameError = document.getElementById("nameError");
     var lastNameError = document.getElementById("lastNameError");
     var emailError = document.getElementById("emailError");
 
     // sign up data
-    var nameInput
-    var last_nameInput
-    var emailInput
-    var codeInput
-    var first_name
-    var last_name
-    var email
-    var code
+    var nameInput;
+    var last_nameInput;
+    var emailInput;
+    var codeInput;
+    var first_name;
+    var last_name;
+    var email;
+    var code = 0;
 
     window.addEventListener('DOMContentLoaded', () => {
         // Get the current URL
@@ -25,7 +25,7 @@
         const referralCode = params.get("referral-code");
 
         // Get the input element
-        const inputBox = document.getElementById('code');
+        const inputBox = document.getElementById('referral-code');
 
         // Set the value of the input box
         inputBox.value = referralCode;
