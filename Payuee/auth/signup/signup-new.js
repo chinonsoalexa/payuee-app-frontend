@@ -96,7 +96,7 @@ function sign_up() {
     nameInput = document.getElementById("fname");
     last_nameInput = document.getElementById("lname");
     emailInput = document.getElementById("email");
-    codeInput = document.getElementById("code");
+    codeInput = document.getElementById("referrer-code");
 
     first_name = nameInput.value.trim();
     last_name = last_nameInput.value.trim();
