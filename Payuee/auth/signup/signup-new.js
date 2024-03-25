@@ -333,6 +333,7 @@ async function submit_password() {
         // Get individual parameter values
         var referralCode = params.get("referral-code");
         if (referralCode === null || referralCode === undefined) {
+            console.log("in the referral code parameter is null or undefined");
             referralCode = code;
         }
 
