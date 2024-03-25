@@ -90,7 +90,11 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                     // redirect user to verify email ID
                     showError('password does not match');
                     // window.location.href = '/verify';
-                }  else if  (errorData.error === "error updating user's password") {
+                } else if  (errorData.error === 'Invalid password') {
+                    // redirect user to verify email ID
+                    showError('Incorrect Present Password');
+                    // window.location.href = '/verify';
+                } else if  (errorData.error === "error updating user's password") {
                     // Handle other error cases
                     showError('an error occurred while updating your password');
                 }  else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
