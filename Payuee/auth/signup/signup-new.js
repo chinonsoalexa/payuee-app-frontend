@@ -12,7 +12,7 @@
     var first_name;
     var last_name;
     var email;
-    var code = 0;
+    var code;
 
     window.addEventListener('DOMContentLoaded', () => {
         // Get the current URL
@@ -342,7 +342,7 @@ async function submit_password() {
             LastName: LastName,
             password: confirmPassword,
             email: Email,
-            RefereeCode: referralCode,
+            RefereeCode: parseInt(referralCode),
           };
 
           const apiUrl = "https://payuee.onrender.com/sign-up";
