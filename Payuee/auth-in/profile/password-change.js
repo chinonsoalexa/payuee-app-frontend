@@ -1,50 +1,141 @@
 // this is an event listener that adds an error again if criteria does not meet
-document.getElementById('present').addEventListener('input', function() {
-    const password = this.value.trim(); // Trim to remove leading and trailing white spaces
-    var confirmPassword = document.getElementById('present').value;
+document.getElementById('submitPassword').addEventListener('click', async function(event) {
+    event.preventDefault();
 
-        // Define password criteria
-    var hasUpperCase = /[A-Z]/.test(password);
-    var hasLowerCase = /[a-z]/.test(password);
-    var hasNumber = /\d/.test(password);
-    var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    var presentPassword = document.getElementById('present').value.trim();
+    var newPassword = document.getElementById('new').value.trim();
+    var confirmPassword = document.getElementById('confirm').value.trim();
+
+    if (presentPassword === '') {
+        showError("Please enter your present password!");
+        return
+    }
+
+    // Define password criteria
+    var hasNewUpperCase = /[A-Z]/.test(newPassword);
+    var hasNewLowerCase = /[a-z]/.test(newPassword);
+    var hasNewNumber = /\d/.test(newPassword);
+    var hasNewSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
+
+    if (newPassword === '') {
+        showError("Please enter a new password!");
+        return
+    }
 
     // Check if password meets the criteria
-    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-        showError('presentPassword', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
+    if (!hasNewUpperCase || !hasNewLowerCase || !hasNewNumber || !hasNewSymbol || newPassword.length < 8) {
+        showError("Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
         return
     }
 
     if (confirmPassword === '') {
-        showError('newPassword', "Please confirm your password.");
+        showError("Please confirm your password.");
         return
     }
 
-    if (confirmPassword !== password) {
-        showError('confirmPassword', "Passwords do not match.");
+    if (confirmPassword !== newPassword) {
+        showError("Passwords do not match.");
         return
+    }
+
+    if (presentPassword === newPassword) {
+        showError("New password cannot be the same as the old one.");
+        return
+    }
+
+    // Define password criteria
+    var hasUpperCase = /[A-Z]/.test(presentPassword);
+    var hasLowerCase = /[a-z]/.test(presentPassword);
+    var hasNumber = /\d/.test(presentPassword);
+    var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(presentPassword);
+
+    // Check if password meets the criteria
+    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || presentPassword.length < 8) {
+        showError("Incorrect Present Password");
+        return
+    }
+
+    // since all condition check is false let's send a post request to change the user's password
+        const details = {
+            OldPassword: presentPassword,
+            NewPassword: newPassword,
+          };
+
+          const apiUrl = "https://payuee.onrender.com/profile/update/password";
+
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(details),
+          };
+          
+        try {
+            deactivateButtonStyles2()
+            const response = await fetch(apiUrl, requestOptions);
+            if (!response.ok) {
+                // Parse the response JSON
+                const errorData = await response.json();
+                // Check the error message
+                // Handle fetch-related errors
+                if (errorData.error === 'failed to get user') {
+                    // Perform actions specific to this error
+                    showError('an error occurred');
+                } else if  (errorData.error === 'failed to get user from request') {
+                    // Handle other error cases
+                    showError('an error occurred while updating your password');
+                } else if  (errorData.error === 'password does not match') {
+                    // redirect user to verify email ID
+                    showError('password does not match');
+                    // window.location.href = '/verify';
+                }  else if  (errorData.error === "error updating user's password") {
+                    // Handle other error cases
+                    showError('an error occurred while updating your password');
+                } else {
+                    showError('An error occurred. Please try again.');
+                }
+                  reactivateButtonStyles2();
+                return;
+            }
+            const data = await response.json();
+            showError(data.success)
+        } finally{
+           // do nothing cause error has been handled
+        reactivateButtonStyles2();
     }
 });
 
-document.getElementById('toggle-password2').addEventListener('input', function() {
-    clearError('presentPassword');
-});
 
-function showError(id, message) {
-    var errorElement = document.getElementById(id);
-    errorElement.textContent = message;
-    errorElement.style.display = 'block'; // Change display to 'block'
-    errorElement.style.color = 'red'; // Set text color to red
+function showError(message) {
+    const installPopup = document.getElementById('password-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const passwordError = document.getElementById('passwordError');
+
+    passwordError.textContent = message;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
 }
 
-function clearError(id) {
-    // Construct the error message element ID
-    const errorId = id;
+// Add this function to remove onclick and on hover styles
+function deactivateButtonStyles2() {
+    var resendButton = document.getElementById('submitPassword');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
 
-    var errorElement = document.getElementById(errorId);
-
-    if (errorElement) {
-        errorElement.textContent = ''; // Clear the error message
-        // errorElement.style.display = 'none'; // Hide the error message
-    }
+// Add this function to reactivate the button styles
+function reactivateButtonStyles2() {
+    var resendButton = document.getElementById('submitPassword');
+    // // Remove all existing classes
+    // resendButton.className = '';
+    resendButton.classList.remove('deactivated');
+    
+    clearError('otpError');
 }
