@@ -107,9 +107,9 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 return;
             }
             const data = await response.json();
-            presentPassword = "";
-            newPassword = "";
-            confirmPassword = "";
+            presentPassword.value = "";
+            newPassword.value = "";
+            confirmPassword.value = "";
             showSuccess(data.success);
         } finally{
            // do nothing cause error has been handled
@@ -161,8 +161,6 @@ function reactivateButtonStyles2() {
     // // Remove all existing classes
     // resendButton.className = '';
     resendButton.classList.remove('deactivated');
-    
-    clearError('otpError');
 }
 
 function logUserOutIfTokenIsExpired() {
