@@ -2,6 +2,9 @@
 var responseData;
 var ReferralCode;
 document.addEventListener('DOMContentLoaded', async function () {
+    document.getElementById('toggle-first-name-main').textContent = "Loading...";
+    document.getElementById('toggle-last-name-main').textContent = "Loading...";
+    document.getElementById('toggle-address-main').textContent = "Loading...";
     const apiUrl = "https://payuee.onrender.com/profile";
 
     const requestOptions = {
@@ -29,7 +32,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             }else {
                 
             }
-
+            document.getElementById('toggle-first-name-main').textContent = "Add First Name";
+            document.getElementById('toggle-last-name-main').textContent = "Add Last Name";
+            document.getElementById('toggle-address-main').textContent = "Add Home Address";
             return;
         }
 
