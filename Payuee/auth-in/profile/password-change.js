@@ -101,7 +101,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 } else {
-                    showError('An error occurred. Please try again.');
+                    showError('an error occurred. please try again.');
                 }
                   reactivateButtonStyles2();
                 return;
