@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         lastNamee.textContent = responseData.success.LastName;
         if (responseData.success.lastNamee == "") {
-            lastNamee.textContent = "Add First Name";
+            lastNamee.textContent = "Add Last Name";
         }
         homeAddress.textContent = responseData.success.Address;
         if (responseData.success.homeAddress == "") {
-            homeAddress.textContent = "Add First Name";
+            homeAddress.textContent = "Add Home Address";
         }
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
