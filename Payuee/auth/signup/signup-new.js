@@ -338,7 +338,7 @@ async function submit_password() {
             LastName: LastName,
             password: confirmPassword,
             email: Email,
-            ReferralCode: referralCode,
+            RefereeCode: referralCode,
           };
 
           const apiUrl = "https://payuee.onrender.com/sign-up";

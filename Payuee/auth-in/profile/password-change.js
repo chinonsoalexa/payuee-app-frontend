@@ -121,6 +121,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
 });
 
 
+
 function showError(message) {
     const installPopup = document.getElementById('password-popup');
     const cancelButton = document.getElementById('cancel-btn');
