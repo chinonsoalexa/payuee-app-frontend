@@ -973,11 +973,10 @@ $('.video-btn').magnificPopup({
 	
 			// When the fetch request is complete, trigger onRequestComplete
 			fetchPromise.then(() => {
-				onRequestComplete();
+			// $('.preloader__wrap').fadeToggle();
+			onRequestComplete();
 			});
 	
-			$('.preloader__wrap').fadeToggle();
-
 			// Return the fetch promise
 			return fetchPromise;
 		};
