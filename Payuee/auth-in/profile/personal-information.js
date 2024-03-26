@@ -54,8 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             lastNamee.textContent = "Add Last Name";
         }
         homeAddress.textContent = responseData.success.Address;
-        console.log("this is the address: ", responseData.success.Address);
-        if (responseData.success.homeAddress == "") {
+        if (responseData.success.Address == "") {
             homeAddress.textContent = "Add Home Address";
         }
         referralNum.textContent = responseData.success.NumberOfReferrals;
