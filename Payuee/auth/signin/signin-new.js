@@ -4,11 +4,11 @@ let checkIfStillCounting = false;
 var validated = true;
 
 // Focus on the first input field when the page loads
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('email_id').focus();
     // Retrieve the last reset time and continue if available
     continueResendTimer()
-};
+});
 
 var enabled = false;
 
