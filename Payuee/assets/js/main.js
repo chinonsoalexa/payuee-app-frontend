@@ -941,9 +941,9 @@ $('.video-btn').magnificPopup({
 	}, 1000);
 	//--Preloader--//
 	
-	function onRequestSent(url) {
+	function onRequestSent() {
 		// Code to execute when a request is sent
-		console.log("Request sent to:", url);
+		console.log("Request sent");
 	
 		// Trigger the preloader fadeToggle after 1 second
 			$('.preloader__wrap').fadeToggle();
@@ -964,9 +964,9 @@ $('.video-btn').magnificPopup({
 		const originalFetch = window.fetch;
 	
 		// Override the fetch function with our own custom implementation
-		window.fetch = function(url, options) {
+		window.fetch = function() {
 			// Trigger onRequestSent when a request is sent
-			onRequestSent(url);
+			onRequestSent();
 	
 			// Call the original fetch function
 			const fetchPromise = originalFetch.apply(this, arguments);
