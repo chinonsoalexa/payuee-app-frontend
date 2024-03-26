@@ -946,9 +946,7 @@ $('.video-btn').magnificPopup({
 		console.log("Request sent to:", url);
 	
 		// Trigger the preloader fadeToggle after 1 second
-		setTimeout(function(){
 			$('.preloader__wrap').fadeToggle();
-		}, 1000);
 	}
 	
 	function onRequestComplete() {
@@ -958,7 +956,7 @@ $('.video-btn').magnificPopup({
 		// Trigger the preloader fadeToggle after 1 second
 		setTimeout(function(){
 			$('.preloader__wrap').fadeToggle();
-		}, 1000);
+		}, 1000); 
 	}
 	
 	(function() {
