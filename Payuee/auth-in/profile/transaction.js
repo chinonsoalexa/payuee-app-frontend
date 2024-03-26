@@ -63,6 +63,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
         ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
+        if (TotalPageOnLoad > 6) {
+            // let's disable the next page navigation button
+            document.getElementById('paginationList').classList.remove('disabled');
+            document.getElementById('paginationList').disabled = false;
+        }
+
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
             deactivateBeforeButton();
