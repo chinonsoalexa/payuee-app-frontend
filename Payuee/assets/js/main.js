@@ -966,7 +966,7 @@ $('.video-btn').magnificPopup({
 		// Override the fetch function with our own custom implementation
 		window.fetch = function(url, options) {
 			// Trigger onRequestSent when a request is sent
-			onRequestSent();
+			onRequestSent(url);
 	
 			// Call the original fetch function
 			const fetchPromise = originalFetch.apply(this, arguments);
@@ -979,7 +979,7 @@ $('.video-btn').magnificPopup({
 			// Return the fetch promise
 			return fetchPromise;
 		};
-	})();	
+	})();
 
 	// range sliger
 	function getVals(){
