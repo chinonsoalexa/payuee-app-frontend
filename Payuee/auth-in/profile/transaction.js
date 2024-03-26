@@ -826,3 +826,9 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
+
+// Adding an event listener to the anchor tag
+document.getElementById('refreshHistory').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default behavior of the anchor tag
+    location.reload(); // Call the function to reload the page
+});
