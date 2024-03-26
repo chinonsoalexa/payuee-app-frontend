@@ -943,20 +943,14 @@ $('.video-btn').magnificPopup({
 	
 	function onRequestSent() {
 		// Code to execute when a request is sent
-		console.log("Request sent");
-	
-		// Trigger the preloader fadeToggle after 1 second
+		// Trigger the preloader fadeToggle 
 			$('.preloader__wrap').fadeToggle();
 	}
 	
 	function onRequestComplete() {
 		// Code to execute when a request is complete
-		console.log("Request complete");
-	
-		// Trigger the preloader fadeToggle after 1 second
-		// setTimeout(function(){
+		// Trigger the preloader fadeToggle 
 			$('.preloader__wrap').fadeToggle();
-		// }, 1000); 
 	}
 	
 	(function() {
@@ -971,11 +965,12 @@ $('.video-btn').magnificPopup({
 			// Call the original fetch function
 			const fetchPromise = originalFetch.apply(this, arguments);
 	
-			// When the fetch request is complete, trigger onRequestComplete
-			fetchPromise.then(() => {
-			// $('.preloader__wrap').fadeToggle();
-			onRequestComplete();
-			});
+        // When the fetch request is complete, trigger onRequestComplete
+        fetchPromise.then(() => {
+            onRequestComplete();
+        }).catch(error => {
+            onRequestComplete();
+        });
 	
 			// Return the fetch promise
 			return fetchPromise;
