@@ -940,7 +940,48 @@ $('.video-btn').magnificPopup({
 		$('.preloader__wrap').fadeToggle();
 	}, 1000);
 	//--Preloader--//
-
+	
+	function onRequestSent(url) {
+		// Code to execute when a request is sent
+		console.log("Request sent to:", url);
+	
+		// Trigger the preloader fadeToggle after 1 second
+		setTimeout(function(){
+			$('.preloader__wrap').fadeToggle();
+		}, 1000);
+	}
+	
+	function onRequestComplete() {
+		// Code to execute when a request is complete
+		console.log("Request complete");
+	
+		// Trigger the preloader fadeToggle after 1 second
+		setTimeout(function(){
+			$('.preloader__wrap').fadeToggle();
+		}, 1000);
+	}
+	
+	(function() {
+		// Save reference to the original fetch function
+		const originalFetch = window.fetch;
+	
+		// Override the fetch function with our own custom implementation
+		window.fetch = function(url, options) {
+			// Trigger onRequestSent when a request is sent
+			onRequestSent();
+	
+			// Call the original fetch function
+			const fetchPromise = originalFetch.apply(this, arguments);
+	
+			// When the fetch request is complete, trigger onRequestComplete
+			fetchPromise.then(() => {
+				onRequestComplete();
+			});
+	
+			// Return the fetch promise
+			return fetchPromise;
+		};
+	})();	
 
 	// range sliger
 	function getVals(){
