@@ -1,7 +1,7 @@
 // Focus on the first input field when the page loads
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('verify-email').focus();
-};
+});
 
 // event listener to resend otp
 document.getElementById('verify-email-button').addEventListener('click', async function () {
