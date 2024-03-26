@@ -14,22 +14,22 @@
     var email;
     var code;
 
-    // window.addEventListener('DOMContentLoaded', () => {
-    //     // Get the current URL
-    //     const currentUrl = new URL(window.location.href);
+    window.addEventListener('DOMContentLoaded', () => {
+        // Get the current URL
+        const currentUrl = new URL(window.location.href);
 
-    //     // Extract parameters using URLSearchParams
-    //     const params = new URLSearchParams(currentUrl.search);
+        // Extract parameters using URLSearchParams
+        const params = new URLSearchParams(currentUrl.search);
 
-    //     // Get individual parameter values
-    //     const referralCode = params.get("referral-code");
+        // Get individual parameter values
+        const referralCode = params.get("referral-code");
 
-    //     // Get the input element
-    //     const inputBox = document.getElementById('referral-code');
+        // Get the input element
+        const inputBox = document.getElementById('referral-code');
 
-    //     // Set the value of the input box
-    //     inputBox.value = referralCode;
-    // });
+        // Set the value of the input box
+        inputBox.value = referralCode;
+    });
     
     // this event listener clears an existing error
     document.getElementById('fname').addEventListener('input', function() {
