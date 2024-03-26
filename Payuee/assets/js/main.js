@@ -954,9 +954,9 @@ $('.video-btn').magnificPopup({
 		console.log("Request complete");
 	
 		// Trigger the preloader fadeToggle after 1 second
-		setTimeout(function(){
+		// setTimeout(function(){
 			$('.preloader__wrap').fadeToggle();
-		}, 1000); 
+		// }, 1000); 
 	}
 	
 	(function() {
@@ -976,6 +976,8 @@ $('.video-btn').magnificPopup({
 				onRequestComplete();
 			});
 	
+			$('.preloader__wrap').fadeToggle();
+
 			// Return the fetch promise
 			return fetchPromise;
 		};
