@@ -336,7 +336,7 @@ async function submit_password() {
             console.log("in the referral code parameter is null or undefined");
             referralCode = code;
         } else {
-            referralCode = 0;
+            referralCode = ""
          }
 
         const user = {
@@ -344,7 +344,7 @@ async function submit_password() {
             LastName: LastName,
             password: confirmPassword,
             email: Email,
-            RefereeCode: parseInt(referralCode),
+            RefereeCode: referralCode,
           };
 
           const apiUrl = "https://payuee.onrender.com/sign-up";
