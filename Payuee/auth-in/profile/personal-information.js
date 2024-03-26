@@ -30,11 +30,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
             }else {
-                
+                document.getElementById('toggle-first-name-main').textContent = "...";
+                document.getElementById('toggle-last-name-main').textContent = "...";
+                document.getElementById('toggle-address-main').textContent = "...";
             }
-            document.getElementById('toggle-first-name-main').textContent = "Add First Name";
-            document.getElementById('toggle-last-name-main').textContent = "Add Last Name";
-            document.getElementById('toggle-address-main').textContent = "Add Home Address";
             return;
         }
 
@@ -52,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             lastNamee.textContent = "Add Last Name";
         }
         homeAddress.textContent = responseData.success.Address;
+        console.log("this is the address: ", responseData.success.Address);
         if (responseData.success.homeAddress == "") {
             homeAddress.textContent = "Add Home Address";
         }
