@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-first-name-main').textContent = "Loading...";
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
     document.getElementById('toggle-address-main').textContent = "Loading...";
+    document.getElementById('referral_link_number').textContent = "Loading...";
     const apiUrl = "https://payuee.onrender.com/profile";
 
     const requestOptions = {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 document.getElementById('toggle-first-name-main').textContent = "...";
                 document.getElementById('toggle-last-name-main').textContent = "...";
                 document.getElementById('toggle-address-main').textContent = "...";
+                document.getElementById('referral_link_number').textContent = "...";
             }
             return;
         }
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         var firstNamee = document.getElementById('toggle-first-name-main');
         var lastNamee = document.getElementById('toggle-last-name-main'); 
         var homeAddress = document.getElementById('toggle-address-main');
+        var referralNum = document.getElementById('referral_link_number');
         firstNamee.textContent = responseData.success.FirstName;
         if (responseData.success.FirstName == "") {
             firstNamee.textContent = "Add First Name";
@@ -54,6 +57,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log("this is the address: ", responseData.success.Address);
         if (responseData.success.homeAddress == "") {
             homeAddress.textContent = "Add Home Address";
+        }
+        referralNum.textContent = responseData.success.NumberOfReferrals;
+        if (responseData.success.NumberOfReferrals == "") {
+            referralNum.textContent = 0;
         }
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
