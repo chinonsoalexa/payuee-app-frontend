@@ -25,7 +25,7 @@
         const referralCode = params.get("referral-code");
 
         // Get the input element
-        const inputBox = document.getElementById('referral-code');
+        const inputBox = document.getElementById('referrer-code');
 
         // Set the value of the input box
         inputBox.value = referralCode;
