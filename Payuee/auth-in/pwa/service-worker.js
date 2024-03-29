@@ -1,5 +1,5 @@
 const CACHE_NAME = 'payuee';
-const CACHE_VERSION = 'v2'; // Incremented cache version
+const CACHE_VERSION = '0.01'; // Incremented cache version
 const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 
 const FILES_TO_CACHE = [

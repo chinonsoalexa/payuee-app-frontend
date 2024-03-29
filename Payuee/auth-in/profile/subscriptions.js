@@ -178,7 +178,7 @@ function renderSubscriptionHistory(historyData) {
             <td>No Subscription Yet</td>
             <td>No Subscription Yet</td>
             <td>
-                <a href="payment.html" class="purchase">
+                <a id="addSub" href="payment.html" class="purchase">
                     <span>
                         Add Subscription
                     </span>
@@ -193,6 +193,13 @@ function renderSubscriptionHistory(historyData) {
 
         // Append the row to the table body
         tableBody.appendChild(rowElement);
+
+        // Add event listener to the row element
+        document.getElementById("addSub").addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        alert("added new subscription");
+    });
 
         return; // Exit the function
     }
@@ -232,7 +239,7 @@ function renderSubscriptionHistory(historyData) {
             <td>${serviceID}</td>
             <td>${historyItem.MobileNumber}</td>
             <td>
-                <a href="payment.html" class="purchase">
+                <a id="autoRecharge" href="#" class= "purchase">
                     <span>
                         Recharge Now
                     </span>
@@ -256,11 +263,14 @@ function renderSubscriptionHistory(historyData) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
-            // Use the ID as needed
-            console.log(rowId);
-            alert("this is the row id: ", rowId);
+            alert(`this is the row id: ${rowId}`);
         });
     });
+    if (historyData.length > 6) {
+        // let's disable the next page navigation button
+        document.getElementById('paginationList').classList.remove('disabled');
+        document.getElementById('paginationList').disabled = false;
+    }
 }
 
 const testData = [
