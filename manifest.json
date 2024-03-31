@@ -2,7 +2,7 @@
     "name": "Payuee",
     "short_name": "Payuee",
     "description": "Recharge & Bill Payment",
-    "start_url": "https://payuee.com/",
+    "start_url": "https://payuee.com",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",

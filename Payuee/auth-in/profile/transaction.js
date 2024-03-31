@@ -314,7 +314,7 @@ const testData = [
         date: '7 Mar',
         service: 'Flight Booking',
         price: '₦777.00',
-        charge: '-₦20.00',
+        charge: '-₦10.00',
         status: 'success',
     },
     {
