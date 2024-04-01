@@ -92,7 +92,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                 console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
                     console.log('here 2')
-                    window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+                    window.location.href = "https://payuee.com/successful.html"
                     return
                 } else {
                 console.log('here 3')

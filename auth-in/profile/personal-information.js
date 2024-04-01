@@ -215,7 +215,7 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     event.preventDefault();
 
     // Select and copy the content
-    navigator.clipboard.writeText('https://payuee.vercel.app/Payuee/page/signup-new.html?referral-code=' + ReferralCode)
+    navigator.clipboard.writeText('https://payuee.com/page/signup-new.html?referral-code=' + ReferralCode)
     .then(() => {
         // Success
         referralLinkCopier();

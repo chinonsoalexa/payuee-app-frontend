@@ -73,7 +73,7 @@ if (validated) {
                 return
             }
         } else {
-            window.location.href = "https://payuee.vercel.app/Payuee/successful.html"
+            window.location.href = "https://payuee.com/successful.html"
             return
         }
     } finally {

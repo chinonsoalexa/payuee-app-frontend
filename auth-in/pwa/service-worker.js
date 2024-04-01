@@ -5,7 +5,7 @@ const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 const FILES_TO_CACHE = [
     '/',
     '/index-in.html',
-    // '/Payuee/', // Assuming Payuee is a folder
+    // '/', // Assuming Payuee is a folder
     // Add other files or folders to cache as needed
   ];
   
