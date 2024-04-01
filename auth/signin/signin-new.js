@@ -256,7 +256,7 @@ async function sign_in() {
             } 
             // const data = await response.json();
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../../index-in.html';
+            window.location.href = '../../index-in.html';
             localStorage.removeItem('code');
             localStorage.removeItem('last_name');
             localStorage.removeItem('first_name');
@@ -492,7 +492,7 @@ async function continueResendTimer() {
             // const data = await response.json();
             reactivateButtonStyles();
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../../index-in.html';
+            window.location.href = '../../index-in.html';
         } finally{
            // do nothing cause error has been handled
         }
