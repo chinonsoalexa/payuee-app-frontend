@@ -52,10 +52,97 @@ color: #fff;
 border: none;
 }
 
+/* Style for the cancel button */
 .cancel-button {
-background-color: green;
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style for the cancel button */
+.cancel-button2 {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.verify-button {
+background-color: rgb(11, 27, 255);
 color: #fff;
 border: none;
+}
+
+/* Style for the input group */
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Style for the country code */
+.country-code {
+  background-color: #f0f0f0;
+  padding: 8px 10px;
+  border-right: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+/* Style for the input field */
+#whatsapp-number {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: green;
+}
+
+/* Style for the input field */
+#verification-code {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  color: green;
+}
+
+/* Style for the input field placeholder */
+#verification-code::placeholder {
+  color: #999;
+}
+
+/* Style for the input field placeholder */
+#whatsapp-number::placeholder {
+  color: #999;
+}
+
+/* Hover effect for the verify button */
+.verify-button:hover {
+  background-color: #59ff00;
+}
+
+/* Hover effect for the cancel button */
+.cancel-button:hover {
+  background-color: #ff0000;
+}
+
+/* Hover effect for the cancel button */
+.cancel-button2:hover {
+  background-color: #59ff00;
 }
 
 </style>
@@ -504,6 +591,14 @@ border: none;
                            </a>
                         </span>
                      </li>
+                     <li>
+                        <span class="namebold fz-18 fw-600">
+                           Connect To WhatsApp
+                        </span>
+                        <span>
+                           We're excited to provide you with an enhanced customer care experience through our AI-powered WhatsApp chat. To ensure seamless and secure communication, we kindly ask you to add and verify your WhatsApp number. <a id="connectWhatsapp" href="#">Setup</a>
+                        </span>
+                     </li>
                   </ul>
                </div>
             </div>
@@ -518,6 +613,38 @@ border: none;
    <div class="popup-content">
      <p>You've successfully copied the referral link</p>
      <button class="cancel-button" id="cancel-btn">Close</button>
+   </div>
+ </div>
+
+<!-- WhatsApp Connect Popup Box -->
+<div id="whatsapp-connect-popup" class="popup">
+   <div class="popup-content">
+     <p>Please enter your WhatsApp number below to verify and unlock full customer care AI chat features</p>
+     <div class="input-group">
+       <span class="country-code">+234</span>
+       <input type="text" id="whatsapp-number" placeholder="e.g 8189799992">
+     </div>
+     <button class="verify-button" id="verify-btn">Verify</button>
+     <button class="cancel-button" id="whatsapp-cancel-btn">Close</button>
+   </div>
+ </div>
+ 
+
+  <!-- whatsapp connect Popup box2 -->
+  <div id="whatsapp-verification-popup" class="popup">
+   <div class="popup-content">
+     <p>A one-time verification code has been sent to your WhatsApp number. Please enter the code below to verify and unlock full customer care AI chat features:</p>
+     <input type="text" id="verification-code" placeholder="Enter verification code">
+     <button class="verify-button" id="submit-verification-btn">Submit</button>
+     <button class="cancel-button" id="cancel-verification-btn">Cancel</button>
+   </div>
+ </div>
+
+   <!-- Popup box -->
+<div id="whatsapp-verification-popup2" class="popup">
+   <div class="popup-content">
+     <p id="whatsappAuthMessage">Registration Successful</p>
+     <button class="cancel-button2" id="message-cancel-btn">Close</button>
    </div>
  </div>
 

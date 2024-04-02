@@ -295,3 +295,75 @@ address.addEventListener('input', function (event) {
     // Update the input box value with the sanitized value
     event.target.value = sanitizedValue;
 });
+
+const whatsappNumberInput = document.getElementById("whatsapp-number");
+
+whatsappNumberInput.addEventListener('input', function (event) {
+    let inputValue = event.target.value;
+
+    // Remove any characters that are not numbers
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Limit the input to 10 digits
+    inputValue = inputValue.substring(0, 10);
+
+    // Update the input box value with the sanitized value
+    event.target.value = inputValue;
+});
+
+document.getElementById('connectWhatsapp').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    connectWhatsapp()
+
+
+})
+
+
+function connectWhatsapp() {
+    const installPopup = document.getElementById('whatsapp-connect-popup');
+    const cancelButton = document.getElementById('whatsapp-cancel-btn');
+    const verifyButton = document.getElementById('verify-btn');
+    var whatsappNumber = document.getElementById('whatsapp-number').value;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
+
+    // verify button click event
+    verifyButton.addEventListener('click', () => {
+        // let's send a request to verify the whatsapp otp code
+
+        // after sending the request let's show the popup box to take in the code
+        installPopup.style.display = 'none';
+        const installPopup2 = document.getElementById('whatsapp-verification-popup');
+        const cancelButton2 = document.getElementById('cancel-verification-btn');
+        const verifyButton2 = document.getElementById('submit-verification-btn');
+
+        installPopup2.style.display = 'block';
+
+        // Cancel button click event
+        cancelButton2.addEventListener('click', () => {
+            installPopup2.style.display = 'none';
+        });
+
+        verifyButton2.addEventListener('click', () => {
+            installPopup2.style.display = 'none';
+            
+            // let's send request to verify the otp
+            const installPopup3 = document.getElementById('whatsapp-verification-popup2');
+
+            installPopup3.style.display = 'block';
+
+            // after sending the request let's display the response then close the popup dialog box
+            const closeButton = document.getElementById('message-cancel-btn');
+
+            closeButton.addEventListener('click', () => {
+                installPopup3.style.display = 'none';
+            });
+        })
+    });
+}
