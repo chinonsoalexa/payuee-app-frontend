@@ -313,8 +313,8 @@ whatsappNumberInput.addEventListener('input', function (event) {
 
 // Function to send OTP code to WhatsApp number
 async function sendOtpToWhatsappNumber(number) {
-    console.log(typeof number);
-    const url = 'https://payuee.onrender.com/link-whatsapp/' + number;
+    // const url = 'https://payuee.onrender.com/link-whatsapp/' + number;
+    const url = 'https://payuee.onrender.com/link-whatsapp/8136804598';
     try {
       const response = await fetch(url, {
         method: 'GET',
