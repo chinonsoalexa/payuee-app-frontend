@@ -311,6 +311,48 @@ whatsappNumberInput.addEventListener('input', function (event) {
     event.target.value = inputValue;
 });
 
+// Function to send OTP code to WhatsApp number
+async function sendOtpToWhatsappNumber(number) {
+    const url = `https://payuee.onrender.com/link-whatsapp/${number}`;
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+      });
+      const data = await response.json();
+      return data; // Return the response data
+    } catch (error) {
+      console.error('Error:', error);
+      throw error; // Throw the error to handle it outside the function
+    }
+  }
+
+// Function to verify WhatsApp OTP code
+async function verifyWhatsappOtpCode(number, sentOtp) {
+    const url = 'https://payuee.onrender.com/verify-whatsapp';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+          Number: number,
+          SentOTP: sentOtp,
+        }),
+      });
+      const data = await response.json();
+      return data; // Return the response data
+    } catch (error) {
+      console.error('Error:', error);
+      throw error; // Throw the error to handle it outside the function
+    }
+  }
+
 document.getElementById('connectWhatsapp').addEventListener('click', function (event) {
     event.preventDefault();
 
@@ -334,14 +376,16 @@ function connectWhatsapp() {
     });
 
     // verify button click event
-    verifyButton.addEventListener('click', () => {
+    verifyButton.addEventListener('click', async () => {
         // let's send a request to verify the whatsapp otp code
-
+        const sendOtpResponse = await sendOtpToWhatsappNumber(whatsappNumber)
+        console.log(sendOtpResponse)
         // after sending the request let's show the popup box to take in the code
         installPopup.style.display = 'none';
         const installPopup2 = document.getElementById('whatsapp-verification-popup');
         const cancelButton2 = document.getElementById('cancel-verification-btn');
         const verifyButton2 = document.getElementById('submit-verification-btn');
+        var whatsappOtp = document.getElementById('verification-code').value;
 
         installPopup2.style.display = 'block';
 
@@ -350,12 +394,15 @@ function connectWhatsapp() {
             installPopup2.style.display = 'none';
         });
 
-        verifyButton2.addEventListener('click', () => {
+        verifyButton2.addEventListener('click', async () => {
             installPopup2.style.display = 'none';
             
             // let's send request to verify the otp
+            const sendOtpResponse2 = await verifyWhatsappOtpCode(whatsappNumber, whatsappOtp)
+            console.log(sendOtpResponse2)
             const installPopup3 = document.getElementById('whatsapp-verification-popup2');
-
+            var whatsappAuthMessage = document.getElementById('whatsappAuthMessage');
+            whatsappAuthMessage.textContent = sendOtpResponse2;
             installPopup3.style.display = 'block';
 
             // after sending the request let's display the response then close the popup dialog box
