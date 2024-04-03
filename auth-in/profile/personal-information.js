@@ -324,7 +324,7 @@ async function sendOtpToWhatsappNumber(number) {
     };
 
     try {
-        const response = await fetch(apiUrl, requestOptions);
+        const response = await fetch(url, requestOptions);
 
         if (!response.ok) {
             const errorData = await response.json();
