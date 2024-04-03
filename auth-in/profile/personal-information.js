@@ -386,14 +386,11 @@ document.getElementById('connectWhatsapp').addEventListener('click', function (e
 
 })
 
-var whatsappNumber;
-var whatsappOtp;
-
 function connectWhatsapp() {
     const installPopup = document.getElementById('whatsapp-connect-popup');
     const cancelButton = document.getElementById('whatsapp-cancel-btn');
     const verifyButton = document.getElementById('verify-btn');
-    whatsappNumber = document.getElementById('whatsapp-number').value;
+    var whatsappNumber = document.getElementById('whatsapp-number').value;
 
       installPopup.style.display = 'block';
 
@@ -412,7 +409,7 @@ function connectWhatsapp() {
         const installPopup2 = document.getElementById('whatsapp-verification-popup');
         const cancelButton2 = document.getElementById('cancel-verification-btn');
         const verifyButton2 = document.getElementById('submit-verification-btn');
-        whatsappOtp = document.getElementById('verification-code').value;
+        var whatsappOtp = document.getElementById('verification-code').value;
 
         installPopup2.style.display = 'block';
 
