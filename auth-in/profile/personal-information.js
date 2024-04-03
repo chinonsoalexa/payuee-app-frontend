@@ -313,18 +313,41 @@ whatsappNumberInput.addEventListener('input', function (event) {
 
 // Function to send OTP code to WhatsApp number
 async function sendOtpToWhatsappNumber(number) {
-    // const url = 'https://payuee.onrender.com/link-whatsapp/' + number;
-    const url = 'https://payuee.onrender.com/link-whatsapp/8136804598';
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
+    const url = 'https://payuee.onrender.com/link-whatsapp/' + number;
+
+    const requestOptions = {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
-      });
-      const data = await response.json();
-      return data; // Return the response data
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+
+      return responseData; // Return the response data
     } catch (error) {
       console.error('Error:', error);
       throw error; // Throw the error to handle it outside the function
