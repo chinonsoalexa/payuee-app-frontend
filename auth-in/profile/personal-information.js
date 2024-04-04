@@ -376,7 +376,10 @@ async function verifyWhatsappOtpCode(whatsappNumber, sentOtp) {
 }
 
 // Function to handle WhatsApp connection
-function connectWhatsapp() {
+// Add event listener to connect button
+document.getElementById('connectWhatsapp').addEventListener('click',  (event) => {
+    
+    event.preventDefault()
     const installPopup = document.getElementById('whatsapp-connect-popup');
     const cancelButton = document.getElementById('whatsapp-cancel-btn');
     const verifyButton = document.getElementById('verify-btn');
@@ -385,12 +388,14 @@ function connectWhatsapp() {
     installPopup.style.display = 'block';
 
     // Cancel button click event
-    cancelButton.addEventListener('click', () => {
+    cancelButton.addEventListener('click', (event) => {
+        event.preventDefault()
         installPopup.style.display = 'none';
     });
 
     // Verify button click event
-    verifyButton.addEventListener('click', async () => {
+    verifyButton.addEventListener('click', async (event) => {
+        event.preventDefault()
         const whatsappNumber = whatsappNumberInput.value;
 
         // Send request to send OTP
@@ -421,13 +426,11 @@ function connectWhatsapp() {
 
             // Handle message popup close button click
             const closeButton = document.getElementById('message-cancel-btn');
-            closeButton.addEventListener('click', () => {
+            closeButton.addEventListener('click', (event) => {
+                event.preventDefault()
                 verificationMessagePopup.style.display = 'none';
             });
         });
     });
-}
-
-// Add event listener to connect button
-document.getElementById('connectWhatsapp').addEventListener('click', connectWhatsapp);
+});
 
