@@ -388,8 +388,7 @@ document.getElementById('connectWhatsapp').addEventListener('click',  (event) =>
     installPopup.style.display = 'block';
 
     // Cancel button click event
-    cancelButton.addEventListener('click', (event) => {
-        event.preventDefault()
+    cancelButton.addEventListener('click', () => {
         installPopup.style.display = 'none';
     });
 
@@ -426,11 +425,9 @@ document.getElementById('connectWhatsapp').addEventListener('click',  (event) =>
 
             // Handle message popup close button click
             const closeButton = document.getElementById('message-cancel-btn');
-            closeButton.addEventListener('click', (event) => {
-                event.preventDefault()
+            closeButton.addEventListener('click', () => {
                 verificationMessagePopup.style.display = 'none';
             });
         });
     });
 });
-
