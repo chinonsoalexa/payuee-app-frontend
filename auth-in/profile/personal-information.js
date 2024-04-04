@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
     document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
+    document.getElementById('link_whatsapp_ai').textContent = "Loading..."
     const apiUrl = "https://payuee.onrender.com/profile";
 
     const requestOptions = {
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 document.getElementById('toggle-last-name-main').textContent = "...";
                 document.getElementById('toggle-address-main').textContent = "...";
                 document.getElementById('referral_link_number').textContent = "...";
+                document.getElementById('link_whatsapp_ai').textContent = "...";
             }
             return;
         }
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         var lastNamee = document.getElementById('toggle-last-name-main'); 
         var homeAddress = document.getElementById('toggle-address-main');
         var referralNum = document.getElementById('referral_link_number');
+        var phoneNumberActivated = document.getElementById('link_whatsapp_ai');
         firstNamee.textContent = responseData.success.FirstName;
         if (responseData.success.FirstName == "") {
             firstNamee.textContent = "Add First Name";
@@ -64,6 +67,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
         ReferralCode = responseData.success.ReferralCode;
+        if (responseData.success.PhoneNumberActivated == true) {
+            phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
+        }
     } finally {
 
     }
