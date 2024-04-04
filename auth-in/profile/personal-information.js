@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
     document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
-    document.getElementById('link_whatsapp_ai').textContent = "Loading..."
     const apiUrl = "https://payuee.onrender.com/profile";
 
     const requestOptions = {
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 document.getElementById('toggle-last-name-main').textContent = "...";
                 document.getElementById('toggle-address-main').textContent = "...";
                 document.getElementById('referral_link_number').textContent = "...";
-                document.getElementById('link_whatsapp_ai').textContent = "...";
             }
             return;
         }
