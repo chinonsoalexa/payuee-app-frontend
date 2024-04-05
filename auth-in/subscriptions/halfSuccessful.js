@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async function() {
     const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
 
     const requestOptions = {
@@ -36,46 +35,45 @@ window.onload = async function () {
     } finally {
 
     }
-}
 
-function getSuccessMessage(transactionDetails) {
-    var user_name = document.getElementById('user_name');
-    var service = document.getElementById('service');
-    var available_balance = document.getElementById('available_balance');
+    function getSuccessMessage(transactionDetails) {
+        var user_name = document.getElementById('user_name');
+        var service = document.getElementById('service');
+        var available_balance = document.getElementById('available_balance');
 
-    user_name.textContent = transactionDetails.success.user_name;
-    service.textContent = transactionDetails.success.service_type;
-    available_balance.textContent = formatNumberToNaira(transactionDetails.balance);
-}
-
-function formatNumberToNaira(number) {
-    return new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 2
-    }).format(number);
-}
-
-function logUserOutIfTokenIsExpired() {
-    // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
-
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-    };
-    
-try {
-    const response = fetch(apiUrl, requestOptions);
-
-        // const data = response.json();
-        localStorage.removeItem('auth')
-        window.location.href = '../index.html'
-    } finally{
-        // do nothing
+        user_name.textContent = transactionDetails.success.user_name;
+        service.textContent = transactionDetails.success.service_type;
+        available_balance.textContent = formatNumberToNaira(transactionDetails.balance);
     }
-}
-});
+
+    function formatNumberToNaira(number) {
+        return new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+            minimumFractionDigits: 2
+        }).format(number);
+    }
+
+    function logUserOutIfTokenIsExpired() {
+        // also send a request to the logout api endpoint
+        const apiUrl = "https://payuee.onrender.com/log-out";
+
+        const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        };
+        
+    try {
+        const response = fetch(apiUrl, requestOptions);
+
+            // const data = response.json();
+            localStorage.removeItem('auth')
+            window.location.href = '../index.html'
+        } finally{
+            // do nothing
+        }
+    }
+    });
