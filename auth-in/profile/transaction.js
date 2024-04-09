@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         if (TwoAfterPageOnLoad > TotalPageOnLoad) {
             // let's disable the next page navigation button
-            document.getElementById('constantAfterPage').classList.add('disabled');
-            document.getElementById('constantAfterPage').disabled = true;
+            // document.getElementById('constantAfterPage').classList.add('disabled');
+            // document.getElementById('constantAfterPage').disabled = true;
         } else {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("constantAfterPage");
@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
             // let's disable the next page navigation button
-            document.getElementById('dotAfterPage').classList.add('disabled');
-            document.getElementById('dotAfterPage').disabled = true;
+            // document.getElementById('dotAfterPage').classList.add('disabled');
+            // document.getElementById('dotAfterPage').disabled = true;
         }
 } finally {
 
