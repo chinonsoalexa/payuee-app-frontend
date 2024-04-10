@@ -443,7 +443,7 @@ async function requestPlan(plan_id, plan_name) {
 }
 
 function subscriptionError(operator_name) {
-    const installPopup = document.getElementById('sub-error-popup');
+    const installPopup = document.getElementById('subErrorPopup');
     const cancelButton = document.getElementById('cancel-btn');
     const dataSubName = document.getElementById('dataSubName');
 
