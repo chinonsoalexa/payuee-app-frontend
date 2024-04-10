@@ -370,7 +370,7 @@ async function requestPlan(plan_id) {
             // console.log('plans for subscription', data.plans);
             // Sort the 'plans' array based on the 'price' property
             data.plans.sort((a, b) => a.price.localeCompare(b.price));
-            
+
             console.log("data is null show some error", data);
 
         if (data == null) {
@@ -440,10 +440,12 @@ async function requestPlan(plan_id) {
                 niceSelectCurrentSpan.textContent = `Error getting plans`;
             }
         } else {
+            console.log("1 data is null show some error", data);
             // console.error('Failed to fetch plans');
         }
         
     } catch (error) {
+            console.log("2 data is null show some error", data);
         // console.error('Error fetching plans:', error);
         // Handle other errors
     }
