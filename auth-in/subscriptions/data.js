@@ -453,6 +453,7 @@ function subscriptionError(operator_name) {
 
     // Cancel button click event
     cancelButton.addEventListener('click', () => {
+        console.log('Cancel clicked');
       installPopup.style.display = 'none';
     });
 }
