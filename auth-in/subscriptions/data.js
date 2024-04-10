@@ -371,7 +371,7 @@ async function requestPlan(plan_id) {
             // Sort the 'plans' array based on the 'price' property
             data.plans.sort((a, b) => a.price.localeCompare(b.price));
 
-        if (data = null) {
+        if (data == null) {
             console.log("data is null show some error");
             return 
         } else {
