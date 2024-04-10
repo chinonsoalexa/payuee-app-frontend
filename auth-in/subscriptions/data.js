@@ -445,7 +445,7 @@ async function requestPlan(plan_id, plan_name) {
 function subscriptionError(operator_name) {
     console.log('subscriptionError function called');
     const installPopup = document.getElementById('subErrorPopup');
-    const cancelButton = document.getElementById('cancel-btn');
+    const cancelButton = document.getElementById('okay-btn');
     const dataSubName = document.getElementById('dataSubName');
 
     dataSubName.textContent = operator_name;
