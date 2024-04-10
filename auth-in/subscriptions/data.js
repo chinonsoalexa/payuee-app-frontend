@@ -356,9 +356,9 @@ async function requestPlan(plan_id) {
             headers: headers,
             include: Credential
         });
-
+        var data;
         if (response.ok) {
-            const data = await response.json();
+            data = await response.json();
         
             var plansList = document.querySelector('#planSelectId .nice-select .list');
             var niceSelectCurrentSpan = document.querySelector('#planSelectId .nice-select .current');
