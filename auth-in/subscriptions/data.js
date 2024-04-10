@@ -313,27 +313,27 @@ async function getSelectedPlan(dataValue) {
         // Perform a task based on the selected value
         switch (dataValue) {
             case '2':
-                await requestPlan('mtn_sme');
+                await requestPlan('mtn_sme', 'MTN SME');
                 servicePlanID = 'mtn_sme'
                 // console.log('running 2')
                 break;
             case '3':
-                await requestPlan('mtncg');
+                await requestPlan('mtncg', 'MTN CG');
                 servicePlanID = 'mtncg'
                 // console.log('running 3')
                 break;
             case '4':
-                await requestPlan('airtel_cg');
+                await requestPlan('airtel_cg', "Airtel CG");
                 servicePlanID = 'airtel_cg'
                 // console.log('running 4')
                 break;
             case '5':
-                await requestPlan('etisalat_data');
+                await requestPlan('etisalat_data', '9mobile');
                 servicePlanID = 'etisalat_data'
                 // console.log('running 5')
                 break;
             case '6':
-                await requestPlan('glo_data');
+                await requestPlan('glo_data', 'GLO');
                 servicePlanID = 'glo_data'
                 // console.log('running 6')
                 break;
@@ -344,7 +344,7 @@ async function getSelectedPlan(dataValue) {
     }
 }
 
-async function requestPlan(plan_id) {
+async function requestPlan(plan_id, plan_name) {
     try {
         const url = `https://payuee.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
@@ -370,13 +370,6 @@ async function requestPlan(plan_id) {
             // console.log('plans for subscription', data.plans);
             // Sort the 'plans' array based on the 'price' property
             data.plans.sort((a, b) => a.price.localeCompare(b.price));
-
-            console.log("data is null show some error", data);
-
-        if (data == null) {
-            console.log("data is null show some error");
-            return 
-        } else {
 
             data.plans.forEach(plan => {
                 var listItem = document.createElement('li');
@@ -431,7 +424,6 @@ async function requestPlan(plan_id) {
         
                 plansList.appendChild(listItem);
             });
-        }
         
             // Update nice-select current span text after the loop
             if (data.plans.length > 0) {
@@ -440,15 +432,29 @@ async function requestPlan(plan_id) {
                 niceSelectCurrentSpan.textContent = `Error getting plans`;
             }
         } else {
-            console.log("1 data is null show some error", data);
             // console.error('Failed to fetch plans');
         }
         
     } catch (error) {
-            console.log("2 data is null show some error", data);
+            subscriptionError(plan_name);
         // console.error('Error fetching plans:', error);
         // Handle other errors
     }
+}
+
+function subscriptionError(operator_name) {
+    const installPopup = document.getElementById('sub-error-popup');
+    const cancelButton = document.getElementById('cancel-btn');
+    const dataSubName = document.getElementById('dataSubName');
+
+    dataSubName.textContent = operator_name;
+
+      installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+      installPopup.style.display = 'none';
+    });
 }
 
 function calculateTotalCharge(originalPrice) {
