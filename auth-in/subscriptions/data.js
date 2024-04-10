@@ -91,11 +91,9 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
                 console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
-                    console.log('here 2')
                     window.location.href = "https://payuee.com/successful.html"
                     return
                 } else {
-                console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
                 }
@@ -347,9 +345,6 @@ async function getSelectedPlan(dataValue) {
 }
 
 async function requestPlan(plan_id) {
-    // optionLi.textContent = 'Getting Plans...';
-    // const userAgent = navigator.userAgent;
-    // console.log('User-Agent:', userAgent);
     try {
         const url = `https://payuee.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
@@ -376,7 +371,11 @@ async function requestPlan(plan_id) {
             // Sort the 'plans' array based on the 'price' property
             data.plans.sort((a, b) => a.price.localeCompare(b.price));
 
-        
+        if (data = null) {
+            console.log("data is null show some error");
+            return 
+        } else {
+
             data.plans.forEach(plan => {
                 var listItem = document.createElement('li');
                 listItem.className = 'option';
@@ -411,8 +410,6 @@ async function requestPlan(plan_id) {
                     totalCharge = numericValue;
                     bundle = plan.displayName;
                     planID = plan.value; 
-
-                    console.log("planID: " + planID)
         
                     // Get the input element by its ID
                     var displayInput = document.getElementById('displayInput');
@@ -432,6 +429,7 @@ async function requestPlan(plan_id) {
         
                 plansList.appendChild(listItem);
             });
+        }
         
             // Update nice-select current span text after the loop
             if (data.plans.length > 0) {
