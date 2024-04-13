@@ -432,7 +432,10 @@ async function requestPlan(plan_id, plan_name) {
                 niceSelectCurrentSpan.textContent = `Error getting plans`;
             }
         } else {
-            // console.error('Failed to fetch plans');
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }
         }
         
     } catch (error) {
