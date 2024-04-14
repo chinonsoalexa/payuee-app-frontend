@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!response.ok) {
             const errorData = await response.json();
 
-            console.log(errorData);
+            // console.log(errorData);
 
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
-                displayErrorMessage();
+                // displayErrorMessage();
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
         ReferralCode = responseData.success.ReferralCode;
-        if (responseData.success.PhoneNumberActivated == true) {
-            phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
-        }
+        // if (responseData.success.PhoneNumberActivated == true) {
+        //     phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
+        // }
     } finally {
 
     }
