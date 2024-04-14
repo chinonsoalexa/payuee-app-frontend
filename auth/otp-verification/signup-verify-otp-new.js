@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             // const data = await response.json();
             hideLoadingIcon();
             showSuccess('otpError', 'Email address verified...');
-            // remove all locally stored content
             localStorage.setItem('auth', 'true');
             window.location.replace('../index-in.html');
         } finally{

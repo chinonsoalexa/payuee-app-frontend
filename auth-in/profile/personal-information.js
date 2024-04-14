@@ -300,138 +300,138 @@ address.addEventListener('input', function (event) {
     event.target.value = sanitizedValue;
 });
 
-const whatsappNumberInput = document.getElementById("whatsapp-number");
+// const whatsappNumberInput = document.getElementById("whatsapp-number");
 
-whatsappNumberInput.addEventListener('input', function (event) {
-    let inputValue = event.target.value;
+// whatsappNumberInput.addEventListener('input', function (event) {
+//     let inputValue = event.target.value;
 
-    // Remove any characters that are not numbers
-    inputValue = inputValue.replace(/\D/g, '');
+//     // Remove any characters that are not numbers
+//     inputValue = inputValue.replace(/\D/g, '');
 
-    // Limit the input to 10 digits
-    inputValue = inputValue.substring(0, 10);
+//     // Limit the input to 10 digits
+//     inputValue = inputValue.substring(0, 10);
 
-    // Update the input box value with the sanitized value
-    event.target.value = inputValue;
-});
+//     // Update the input box value with the sanitized value
+//     event.target.value = inputValue;
+// });
 
-// Function to send OTP code to WhatsApp number
-async function sendOtpToWhatsappNumber(whatsappNumber) {
-    console.log('Number to send OTP to:', whatsappNumber);
-    const apiUrl = 'https://payuee.onrender.com/link-whatsapp/' + whatsappNumber;
+// // Function to send OTP code to WhatsApp number
+// async function sendOtpToWhatsappNumber(whatsappNumber) {
+//     console.log('Number to send OTP to:', whatsappNumber);
+//     const apiUrl = 'https://payuee.onrender.com/link-whatsapp/' + whatsappNumber;
 
-    const requestOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Include cookies in the request
-    };
+//     const requestOptions = {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         credentials: 'include', // Include cookies in the request
+//     };
 
-    try {
-        const response = await fetch(apiUrl, requestOptions);
+//     try {
+//         const response = await fetch(apiUrl, requestOptions);
 
-        if (!response.ok) {
-            const errorData = await response.json();
+//         if (!response.ok) {
+//             const errorData = await response.json();
 
-            if (errorData.error === 'failed to get user from request') {
-                // Handle specific error condition
-            } else if (errorData.error === 'failed to get transaction history') {
-                // Handle specific error condition
-            } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-                // Handle session expiration
-                logUserOutIfTokenIsExpired();
-            } else {
-                // Handle other errors
-            }
+//             if (errorData.error === 'failed to get user from request') {
+//                 // Handle specific error condition
+//             } else if (errorData.error === 'failed to get transaction history') {
+//                 // Handle specific error condition
+//             } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+//                 // Handle session expiration
+//                 logUserOutIfTokenIsExpired();
+//             } else {
+//                 // Handle other errors
+//             }
 
-            return null;
-        }
+//             return null;
+//         }
 
-        const responseData = await response.json();
-        return responseData; // Return the response data
-    } catch (error) {
-        console.error('Error:', error);
-        throw error; // Throw the error to handle it outside the function
-    }
-}
+//         const responseData = await response.json();
+//         return responseData; // Return the response data
+//     } catch (error) {
+//         console.error('Error:', error);
+//         throw error; // Throw the error to handle it outside the function
+//     }
+// }
 
-// Function to verify WhatsApp OTP code
-async function verifyWhatsappOtpCode(whatsappNumber, sentOtp) {
-    const url = 'https://payuee.onrender.com/verify-whatsapp';
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include', // Include cookies in the request
-            body: JSON.stringify({
-                Number: whatsappNumber,
-                SentOTP: sentOtp,
-            }),
-        });
-        const data = await response.json();
-        return data; // Return the response data
-    } catch (error) {
-        console.error('Error:', error);
-        throw error; // Throw the error to handle it outside the function
-    }
-}
+// // Function to verify WhatsApp OTP code
+// async function verifyWhatsappOtpCode(whatsappNumber, sentOtp) {
+//     const url = 'https://payuee.onrender.com/verify-whatsapp';
+//     try {
+//         const response = await fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             credentials: 'include', // Include cookies in the request
+//             body: JSON.stringify({
+//                 Number: whatsappNumber,
+//                 SentOTP: sentOtp,
+//             }),
+//         });
+//         const data = await response.json();
+//         return data; // Return the response data
+//     } catch (error) {
+//         console.error('Error:', error);
+//         throw error; // Throw the error to handle it outside the function
+//     }
+// }
 
-// Function to handle WhatsApp connection
-// Add event listener to connect button
-document.getElementById('connectWhatsapp').addEventListener('click',  (event) => {
+// // Function to handle WhatsApp connection
+// // Add event listener to connect button
+// document.getElementById('connectWhatsapp').addEventListener('click',  (event) => {
     
-    event.preventDefault()
-    const installPopup = document.getElementById('whatsapp-connect-popup');
-    const cancelButton = document.getElementById('whatsapp-cancel-btn');
-    const verifyButton = document.getElementById('verify-btn');
-    const whatsappNumberInput = document.getElementById('whatsapp-number');
+//     event.preventDefault()
+//     const installPopup = document.getElementById('whatsapp-connect-popup');
+//     const cancelButton = document.getElementById('whatsapp-cancel-btn');
+//     const verifyButton = document.getElementById('verify-btn');
+//     const whatsappNumberInput = document.getElementById('whatsapp-number');
 
-    installPopup.style.display = 'block';
+//     installPopup.style.display = 'block';
 
-    // Cancel button click event
-    cancelButton.addEventListener('click', () => {
-        installPopup.style.display = 'none';
-    });
+//     // Cancel button click event
+//     cancelButton.addEventListener('click', () => {
+//         installPopup.style.display = 'none';
+//     });
 
-    // Verify button click event
-    verifyButton.addEventListener('click', async (event) => {
-        event.preventDefault()
-        const whatsappNumber = whatsappNumberInput.value;
+//     // Verify button click event
+//     verifyButton.addEventListener('click', async (event) => {
+//         event.preventDefault()
+//         const whatsappNumber = whatsappNumberInput.value;
 
-        // Send request to send OTP
-        const sendOtpResponse = await sendOtpToWhatsappNumber(whatsappNumber);
-        console.log(sendOtpResponse);
+//         // Send request to send OTP
+//         const sendOtpResponse = await sendOtpToWhatsappNumber(whatsappNumber);
+//         console.log(sendOtpResponse);
 
-        // Display verification popup
-        installPopup.style.display = 'none';
-        const verificationPopup = document.getElementById('whatsapp-verification-popup');
-        verificationPopup.style.display = 'block';
+//         // Display verification popup
+//         installPopup.style.display = 'none';
+//         const verificationPopup = document.getElementById('whatsapp-verification-popup');
+//         verificationPopup.style.display = 'block';
 
-        // Handle verification submit button click
-        const submitButton = document.getElementById('submit-verification-btn');
-        const verificationCodeInput = document.getElementById('verification-code');
-        submitButton.addEventListener('click', async () => {
-            verificationPopup.style.display = 'none';
-            const whatsappOtp = verificationCodeInput.value;
+//         // Handle verification submit button click
+//         const submitButton = document.getElementById('submit-verification-btn');
+//         const verificationCodeInput = document.getElementById('verification-code');
+//         submitButton.addEventListener('click', async () => {
+//             verificationPopup.style.display = 'none';
+//             const whatsappOtp = verificationCodeInput.value;
 
-            // Send request to verify OTP
-            const verifyOtpResponse = await verifyWhatsappOtpCode(whatsappNumber, whatsappOtp);
-            console.log(verifyOtpResponse);
+//             // Send request to verify OTP
+//             const verifyOtpResponse = await verifyWhatsappOtpCode(whatsappNumber, whatsappOtp);
+//             console.log(verifyOtpResponse);
 
-            // Display verification message
-            const verificationMessagePopup = document.getElementById('whatsapp-verification-popup2');
-            const whatsappAuthMessage = document.getElementById('whatsappAuthMessage');
-            whatsappAuthMessage.textContent = verifyOtpResponse;
-            verificationMessagePopup.style.display = 'block';
+//             // Display verification message
+//             const verificationMessagePopup = document.getElementById('whatsapp-verification-popup2');
+//             const whatsappAuthMessage = document.getElementById('whatsappAuthMessage');
+//             whatsappAuthMessage.textContent = verifyOtpResponse;
+//             verificationMessagePopup.style.display = 'block';
 
-            // Handle message popup close button click
-            const closeButton = document.getElementById('message-cancel-btn');
-            closeButton.addEventListener('click', () => {
-                verificationMessagePopup.style.display = 'none';
-            });
-        });
-    });
-});
+//             // Handle message popup close button click
+//             const closeButton = document.getElementById('message-cancel-btn');
+//             closeButton.addEventListener('click', () => {
+//                 verificationMessagePopup.style.display = 'none';
+//             });
+//         });
+//     });
+// });
