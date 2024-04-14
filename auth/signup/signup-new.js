@@ -327,7 +327,7 @@ async function submit_password() {
     if (auth_check) {
 
         if (referralCode === null || referralCode === undefined) {
-            console.log("in the referral code parameter is null or undefined");
+            // console.log("in the referral code parameter is null or undefined");
             referralCode = code;
         }
 
@@ -349,7 +349,7 @@ async function submit_password() {
             credentials: 'include', // set credentials to include cookies
             body: JSON.stringify(user),
           };
-          console.log("body to send: ", JSON.stringify(user));
+          
         try {
             deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
