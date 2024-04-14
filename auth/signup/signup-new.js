@@ -13,6 +13,7 @@
     var last_name;
     var email;
     var code;
+    var referralCode;
 
     window.addEventListener('DOMContentLoaded', () => {
         // Get the current URL
@@ -22,7 +23,7 @@
         const params = new URLSearchParams(currentUrl.search);
 
         // Get individual parameter values
-        const referralCode = params.get("referral-code");
+        referralCode = params.get("referral-code");
 
         // Get the input element
         const inputBox = document.getElementById('referrer-code');
@@ -233,64 +234,64 @@ function enableSignUpPasswordDiv() {
 function validateSignUpPassword(FirstName, LastName, Email) {
     var buttonClicks = 0
     
-// this event listener runs only when the sign up button is triggered
-document.getElementById('submitPassword').addEventListener('click', async function(event) {
-    event.preventDefault(); // Prevent the form from submitting
-    await submit_password() ;
-}) ;
+    // this event listener runs only when the sign up button is triggered
+    document.getElementById('submitPassword').addEventListener('click', async function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+        await submit_password() ;
+    }) ;
 
-// this event listener clears an existing error
-document.getElementById('password-field').addEventListener('input', function() {
-    clearError('passwordError');
-    clearError('confirmPasswordError');
-});
+    // this event listener clears an existing error
+    document.getElementById('password-field').addEventListener('input', function() {
+        clearError('passwordError');
+        clearError('confirmPasswordError');
+    });
 
-document.getElementById('toggle-password2').addEventListener('input', function() {
-    clearError('confirmPasswordError');
-});
+    document.getElementById('toggle-password2').addEventListener('input', function() {
+        clearError('confirmPasswordError');
+    });
 
-// this is an event listener that adds an error again if criteria does not meet
-document.getElementById('password-field').addEventListener('input', function() {
-    const password = this.value.trim(); // Trim to remove leading and trailing white spaces
-    var confirmPassword = document.getElementById('toggle-password2').value;
+    // this is an event listener that adds an error again if criteria does not meet
+    document.getElementById('password-field').addEventListener('input', function() {
+        const password = this.value.trim(); // Trim to remove leading and trailing white spaces
+        var confirmPassword = document.getElementById('toggle-password2').value;
 
-        // Define password criteria
-    var hasUpperCase = /[A-Z]/.test(password);
-    var hasLowerCase = /[a-z]/.test(password);
-    var hasNumber = /\d/.test(password);
-    var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            // Define password criteria
+        var hasUpperCase = /[A-Z]/.test(password);
+        var hasLowerCase = /[a-z]/.test(password);
+        var hasNumber = /\d/.test(password);
+        var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    // Check if password meets the criteria
-    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-        showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
-        return
-    }
+        // Check if password meets the criteria
+        if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
+            showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
+            return
+        }
 
-    if (confirmPassword === '') {
-        showError('confirmPasswordError', "Please confirm your password.");
-        return
-    }
+        if (confirmPassword === '') {
+            showError('confirmPasswordError', "Please confirm your password.");
+            return
+        }
 
-    if (confirmPassword !== password) {
-        showError('confirmPasswordError', "Passwords do not match.");
-        return
-    }
-});
+        if (confirmPassword !== password) {
+            showError('confirmPasswordError', "Passwords do not match.");
+            return
+        }
+    });
 
-document.getElementById('toggle-password2').addEventListener('input', function() {
-    const confirmPassword = this.value.trim(); // Trim to remove leading and trailing white spaces
-    var password = document.getElementById('password-field').value;
+    document.getElementById('toggle-password2').addEventListener('input', function() {
+        const confirmPassword = this.value.trim(); // Trim to remove leading and trailing white spaces
+        var password = document.getElementById('password-field').value;
 
-    if (confirmPassword === '') {
-        showError('confirmPasswordError', "Please confirm your password.");
-        return
-    }
+        if (confirmPassword === '') {
+            showError('confirmPasswordError', "Please confirm your password.");
+            return
+        }
 
-    if (confirmPassword !== password) {
-        showError('confirmPasswordError', "Passwords do not match.");
-        return
-    }
-});
+        if (confirmPassword !== password) {
+            showError('confirmPasswordError', "Passwords do not match.");
+            return
+        }
+    });
 
 async function submit_password() {
     var auth_check = true
@@ -324,20 +325,11 @@ async function submit_password() {
     }
 
     if (auth_check) {
-        // Get the current URL
-        const currentUrl = new URL(window.location.href);
 
-        // Extract parameters using URLSearchParams
-        const params = new URLSearchParams(currentUrl.search);
-
-        // Get individual parameter values
-        var referralCode = params.get("referral-code");
         if (referralCode === null || referralCode === undefined) {
             console.log("in the referral code parameter is null or undefined");
             referralCode = code;
-        } else {
-            referralCode = ""
-         }
+        }
 
         const user = {
             FirstName: FirstName,

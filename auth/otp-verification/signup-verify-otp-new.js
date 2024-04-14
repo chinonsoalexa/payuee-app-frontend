@@ -62,19 +62,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                     showError('otpError', 'An error occurred. Please try again.');
                 }
                 hideLoadingIcon();
-                console.log(errorData.error)
                 return;
             }
             // const data = await response.json();
             hideLoadingIcon();
             showSuccess('otpError', 'Email address verified...');
             // remove all locally stored content
-            localStorage.removeItem('first_name');
-            localStorage.removeItem('last_name');
-            localStorage.removeItem('email');
-            localStorage.removeItem('code');
             localStorage.setItem('auth', 'true');
-            window.location.replace('../../index-in.html');
+            window.location.replace('../index-in.html');
         } finally{
            // do nothing cause error has been handled
             hideLoadingIcon();
