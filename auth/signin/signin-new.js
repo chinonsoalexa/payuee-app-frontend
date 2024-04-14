@@ -257,10 +257,6 @@ async function sign_in() {
             // const data = await response.json();
             localStorage.setItem('auth', 'true');
             window.location.href = '../../index-in.html';
-            localStorage.removeItem('code');
-            localStorage.removeItem('last_name');
-            localStorage.removeItem('first_name');
-            localStorage.removeItem('email');
         } finally{
             
         }
