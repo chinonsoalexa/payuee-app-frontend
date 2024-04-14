@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             hideLoadingIcon();
             showSuccess('otpError', 'Email address verified...');
             localStorage.setItem('auth', 'true');
-            window.location.href('../../index-in.html');
+            window.location.href = '../../index-in.html';
         } finally{
            // do nothing cause error has been handled
             hideLoadingIcon();
