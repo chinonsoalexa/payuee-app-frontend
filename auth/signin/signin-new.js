@@ -255,7 +255,7 @@ async function sign_in() {
                 return;
             } 
             localStorage.setItem('auth', 'true');
-            window.location.href = '../index-in.html';
+            window.location.replace('../index-in.html');
         } finally{
             
         }
