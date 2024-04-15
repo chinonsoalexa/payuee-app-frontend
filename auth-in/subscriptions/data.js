@@ -318,8 +318,8 @@ async function getSelectedPlan(dataValue) {
                 // console.log('running 2')
                 break;
             case '3':
-                await requestPlan('mtncg', 'MTN CG');
-                servicePlanID = 'mtncg'
+                await requestPlan('mtn_coupon', 'MTN Coupon');
+                servicePlanID = 'mtn_coupon'
                 // console.log('running 3')
                 break;
             case '4':
