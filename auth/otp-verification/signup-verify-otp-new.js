@@ -64,11 +64,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 hideLoadingIcon();
                 return;
             }
-            // const data = await response.json();
             hideLoadingIcon();
             showSuccess('otpError', 'Email address verified...');
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../index-in.html';
+            // window.location.href = '../index-in.html';
         } finally{
            // do nothing cause error has been handled
             hideLoadingIcon();

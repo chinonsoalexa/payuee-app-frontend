@@ -254,9 +254,8 @@ async function sign_in() {
                 }
                 return;
             } 
-            // const data = await response.json();
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../index-in.html';
+            window.location.href = '../index-in.html';
         } finally{
             
         }
