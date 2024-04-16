@@ -53,7 +53,6 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
