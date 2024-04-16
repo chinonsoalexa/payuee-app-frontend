@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('email_rocket_subscription').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-    });
-
     document.getElementById('rocket_subscription_form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent form submission
+
         var emailInput = document.getElementById('email_rocket_subscription');
         var emailValue = emailInput.value;
+
+        // Validate email format using regex
+        var emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(emailValue)) {
+            showPopup("Please enter a valid email address.");
+            return;
+        }
 
         const user = {
             Email: emailValue,
@@ -28,14 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!response.ok) {
                 const errorData = await response.json();
 
-                if (errorData.error === 'Failed to read body') {
-                    showPopup("an error occurred while trying to add email");
-                } else if  (errorData.error === 'error adding new email subscriber') {
-                    showPopup("an error occurred while trying to add email");
-                } else if  (errorData.error === 'user with email already exists') {
-                    showPopup("user with email already exists");
+                if (errorData.error === 'Failed to read body' || errorData.error === 'error adding new email subscriber') {
+                    showPopup("An error occurred while trying to add email");
+                } else if (errorData.error === 'user with email already exists') {
+                    showPopup("User with email already exists");
                 } else {
-                    showPopup("an error occurred while trying to add email");
+                    showPopup("An error occurred while trying to add email");
                 }
 
                 return;
@@ -43,15 +46,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const responseData = await response.json();
             showPopup(responseData.success);
-        } finally {
-            // reactivateButtonStyles('continue-sub-electricity');
+        } catch (error) {
+            console.error("An error occurred:", error);
+            showPopup("An error occurred while trying to add email");
         }
-        event.preventDefault();
     });
-
-    // Call showPopup here if needed after the event listeners are attached
-    showPopup("haawfa nah");
 });
+
 
 // Function to create and display the popup box
 function showPopup(message) {
