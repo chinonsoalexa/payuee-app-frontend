@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('email_rocket_subscription').addEventListener('submmit', function(event) {
+    document.getElementById('email_rocket_subscription').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
     });
 
@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     showPopup("an error occurred while trying to add email");
                 } else if  (errorData.error === 'error adding new email subscriber') {
                     showPopup("an error occurred while trying to add email");
+                } else if  (errorData.error === 'user with email already exists') {
+                    showPopup("user with email already exists");
                 } else {
                     showPopup("an error occurred while trying to add email");
                 }
@@ -46,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         event.preventDefault();
     });
+
+    // Call showPopup here if needed after the event listeners are attached
+    showPopup("haawfa nah");
 });
 
 // Function to create and display the popup box
@@ -81,5 +86,4 @@ function showPopup(message) {
   
     // Append popup to the body
     document.body.appendChild(popup);
-  }
-  
+}
