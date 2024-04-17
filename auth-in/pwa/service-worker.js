@@ -63,7 +63,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         fetchResource(event).catch(() => {
             // Fallback to the offline page if the resource is not cached
-            return caches.match('/index.html');
+            return caches.match('/no-internet.html');
         })
     );
 });
