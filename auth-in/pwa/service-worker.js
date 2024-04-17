@@ -6,7 +6,6 @@ const FILES_TO_CACHE = [
     '/',
     '/index-in.html',
     '/index.html', // Add the page you want to show offline
-    '/index.html',
     '/data.html', 
     '/airtime.html', 
     '/electricity.html', 
@@ -24,6 +23,7 @@ const FILES_TO_CACHE = [
     '/tv.html', 
     '/verified-number.html', 
     '/help-support.html', 
+    '/no-internet.html', 
     // Add other files or folders to cache as needed
 ];
 
