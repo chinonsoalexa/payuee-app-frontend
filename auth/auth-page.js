@@ -1,6 +1,27 @@
 
 // Listen for the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function () {
+
+    // Make a GET request to a URL
+    fetch('https://payuee.onrender.com/payuee-analytics')
+    .then(response => {
+        // Check if the response is OK (status code 200)
+        if (!response.ok) {
+            // throw new Error('Network response was not ok');
+            return;
+        }
+        // Parse the JSON response
+        return response.json();
+    })
+    .then(data => {
+        // Do something with the JSON data
+        // console.log(data);
+    })
+    .finally(() => {
+        // This block will execute regardless of success or failure
+        // You can use it for cleanup or any other operations
+    });
+
     // Run your authentication status check function
     get_auth_status();
 });
