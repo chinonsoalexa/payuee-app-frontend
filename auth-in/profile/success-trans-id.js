@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async function () {
+    var responseData;
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     try {
-        const response = await fetch(apiUrl, requestOptions);
+        const response =  fetch(apiUrl, requestOptions);
 
         if (!response.ok) {
-            const errorData = await response.json();
+            const errorData = response.json();
 
             console.log(errorData);
 
@@ -39,11 +39,17 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
-        const responseData = await response.json();
-        getSuccessMessage(responseData)
+        responseData = await response.json();
     } finally {
 
     }
+
+document.addEventListener('DOMContentLoaded', async function () {
+    getSuccessMessage(responseData)
+    document.getElementById('download_receipt').addEventListener('click', function(event) {
+        event.preventDefault();
+        downloadReceipt();
+    });
 });
 
 function getSuccessMessage(transactionDetails) {
@@ -461,11 +467,6 @@ try {
         // do nothing
     }
 }
-
-document.getElementById('download_receipt').addEventListener('click', function(event) {
-    event.preventDefault;
-    downloadReceipt();
-});
 
 function downloadReceipt() {
     // Create a new element to contain the content to be included in the PDF
