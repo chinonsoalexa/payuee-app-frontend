@@ -36,7 +36,7 @@
                 displayErrorMessage();
             }
 
-            return;
+            // return;
         }
 
         responseData = await response.json();
