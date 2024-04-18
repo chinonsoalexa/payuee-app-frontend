@@ -39,7 +39,7 @@
             // return;
         }
 
-        responseData = await response.json();
+        responseData = response.json();
     } finally {
 
     }
