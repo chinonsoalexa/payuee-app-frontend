@@ -443,6 +443,8 @@ try {
     }
 }
 
+document.addEventListener('DOMContentLoaded', async function () {
+
 document.getElementById('download_receipt').addEventListener('click', function(event) {
     event.preventDefault();
     downloadReceipt();
@@ -480,3 +482,5 @@ function downloadReceipt() {
     // Generate the PDF using html2pdf library
     html2pdf().from(pdfContentElement).set(options).save();
 }
+
+});
