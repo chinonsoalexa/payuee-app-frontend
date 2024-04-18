@@ -42,40 +42,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         event.preventDefault();
         downloadReceipt();
     });
-    
-    function downloadReceipt() {
-        // Create a new element to contain the content to be included in the PDF
-        var pdfContentElement = document.createElement('div');
-    
-        // Copy the content you want to include to the new element
-        var successReceiptElement = document.getElementById('successReceipt');
-        var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-        pdfContentElement.appendChild(clonedSuccessReceipt);
-    
-        // Optionally, you can remove specific elements you want to exclude
-        var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
-        elementsToExclude.forEach(function(element) {
-            element.remove();
-        });
-    
-        // Create the company logo element dynamically
-        var companyLogoElement = document.createElement('img');
-        companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
-        companyLogoElement.alt = 'Payuee';
-        companyLogoElement.style.position = 'absolute';
-        companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-        companyLogoElement.style.left = '10px';  // Adjust the left position as needed
-        pdfContentElement.appendChild(companyLogoElement);    
-    
-        var options = {
-            filename: 'payuee receipt.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-        };  // Use default options
-    
-        // Generate the PDF using html2pdf library
-        html2pdf().from(pdfContentElement).set(options).save();
-    }
-    
 });
 
 function getSuccessMessage(transactionDetails) {
@@ -480,4 +446,37 @@ try {
     } finally{
         // do nothing
     }
+}
+
+function downloadReceipt() {
+    // Create a new element to contain the content to be included in the PDF
+    var pdfContentElement = document.createElement('div');
+
+    // Copy the content you want to include to the new element
+    var successReceiptElement = document.getElementById('successReceipt');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    pdfContentElement.appendChild(clonedSuccessReceipt);
+
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
+
+    // Create the company logo element dynamically
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'absolute';
+    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
+    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
+    pdfContentElement.appendChild(companyLogoElement);    
+
+    var options = {
+        filename: 'payuee receipt.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+    };  // Use default options
+
+    // Generate the PDF using html2pdf library
+    html2pdf().from(pdfContentElement).set(options).save();
 }
