@@ -37,11 +37,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     } finally {
 
     }
-
-    document.getElementById('download_receipt').addEventListener('click', function(event) {
-        event.preventDefault();
-        downloadReceipt();
-    });
 });
 
 function getSuccessMessage(transactionDetails) {
@@ -447,6 +442,11 @@ try {
         // do nothing
     }
 }
+
+document.getElementById('download_receipt').addEventListener('click', function(event) {
+    event.preventDefault();
+    downloadReceipt();
+});
 
 function downloadReceipt() {
     // Create a new element to contain the content to be included in the PDF
