@@ -1,4 +1,8 @@
     var responseData;
+
+getResponse();
+
+async function getResponse() {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -19,10 +23,10 @@
     };
 
     try {
-        const response =  fetch(apiUrl, requestOptions);
+        const response = await fetch(apiUrl, requestOptions);
 
         if (!response.ok) {
-            const errorData = response.json();
+            const errorData = await response.json();
 
             console.log(errorData);
 
@@ -36,20 +40,21 @@
                 displayErrorMessage();
             }
 
-            // return;
+            return;
         }
 
-        responseData = response.json();
+        responseData = await response.json();
     } finally {
 
     }
+} 
 
 document.addEventListener('DOMContentLoaded', async function () {
     getSuccessMessage(responseData)
-    document.getElementById('download_receipt').addEventListener('click', function(event) {
-        event.preventDefault();
-        downloadReceipt();
-    });
+document.getElementById('download_receipt').addEventListener('click', function(event) {
+    event.preventDefault();
+    downloadReceipt();
+});
 });
 
 function getSuccessMessage(transactionDetails) {
