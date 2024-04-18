@@ -1,6 +1,4 @@
-// document.addEventListener('DOMContentLoaded', function() {
-
-document.addEventListener('DOMContentLoaded', async function () {
+    var responseData;
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -41,11 +39,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
-        const responseData = await response.json();
-        getSuccessMessage(responseData)
+        responseData = await response.json();
     } finally {
 
     }
+
+document.addEventListener('DOMContentLoaded', async function () {
+    getSuccessMessage(responseData)
+
 });
 
 function getSuccessMessage(transactionDetails) {
