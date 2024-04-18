@@ -1,43 +1,42 @@
-var responseData;
-
-const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
-
-const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-};
-
-try {
-    const response = await fetch(apiUrl, requestOptions);
-
-    if (!response.ok) {
-        const errorData = await response.json();
-
-        console.log(errorData);
-
-        if (errorData.error === 'failed to get user from request') {
-            // need to do a data of just null event 
-            displayErrorMessage();
-        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-            // let's log user out the users session has expired
-            logUserOutIfTokenIsExpired();
-        }else {
-            displayErrorMessage();
-        }
-
-        return;
-    }
-
-    responseData = await response.json();
-} finally {
-
-}
+// document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', async function () {
-    getSuccessMessage(responseData)
+    const apiUrl = "https://payuee.onrender.com/payuee/get-latest-transaction";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            console.log(errorData);
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                displayErrorMessage();
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        getSuccessMessage(responseData)
+    } finally {
+
+    }
 });
 
 function getSuccessMessage(transactionDetails) {

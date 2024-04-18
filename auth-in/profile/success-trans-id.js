@@ -1,8 +1,6 @@
-    var responseData;
+// document.addEventListener('DOMContentLoaded', function() {
 
-getResponse();
-
-async function getResponse() {
+document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -43,18 +41,11 @@ async function getResponse() {
             return;
         }
 
-        responseData = await response.json();
+        const responseData = await response.json();
+        getSuccessMessage(responseData)
     } finally {
 
     }
-} 
-
-document.addEventListener('DOMContentLoaded', async function () {
-    getSuccessMessage(responseData)
-document.getElementById('download_receipt').addEventListener('click', function(event) {
-    event.preventDefault();
-    downloadReceipt();
-});
 });
 
 function getSuccessMessage(transactionDetails) {
@@ -472,6 +463,11 @@ try {
         // do nothing
     }
 }
+
+document.getElementById('download_receipt').addEventListener('click', function(event) {
+    event.preventDefault();
+    downloadReceipt();
+});
 
 function downloadReceipt() {
     // Create a new element to contain the content to be included in the PDF
