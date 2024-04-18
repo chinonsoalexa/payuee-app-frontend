@@ -1,4 +1,4 @@
-    var responseData;
+document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -39,14 +39,11 @@
             return;
         }
 
-        responseData = await response.json();
+        const responseData = await response.json();
+        getSuccessMessage(responseData)
     } finally {
 
     }
-
-document.addEventListener('DOMContentLoaded', async function () {
-    getSuccessMessage(responseData)
-
 });
 
 function getSuccessMessage(transactionDetails) {
@@ -466,7 +463,7 @@ try {
 }
 
 document.getElementById('download_receipt').addEventListener('click', function(event) {
-    event.preventDefault();
+    event.preventDefault;
     downloadReceipt();
 });
 
