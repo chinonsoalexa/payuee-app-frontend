@@ -444,7 +444,7 @@ try {
 }
 
 document.getElementById('download_receipt').addEventListener('click', function(event) {
-    event.preventDefault;
+    event.preventDefault();
     downloadReceipt();
 });
 
