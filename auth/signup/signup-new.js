@@ -360,7 +360,7 @@ document.getElementById('password-field').addEventListener('input', function() {
                     showError('passwordError', 'User already exists. Please signin.');
                 } else if  (errorData.error === 'User already exist, please verify your email ID') {
                     // redirect user to verify email ID
-                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
+                    showErrorUserExist('passwordError', 'User already exist, please verify your email Address.');
                     // window.location.href = '/verify';
                 } else if  (errorData.error === 'email verification failed') {
                     // Handle other error cases
