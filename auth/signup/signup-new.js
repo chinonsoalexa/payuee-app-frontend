@@ -1,282 +1,280 @@
-    var buttonClicks = 0;
+var buttonClicks = 0;
 
-    var nameError = document.getElementById("nameError");
-    var lastNameError = document.getElementById("lastNameError");
-    var emailError = document.getElementById("emailError");
+var nameError = document.getElementById("nameError");
+var lastNameError = document.getElementById("lastNameError");
+var emailError = document.getElementById("emailError");
 
-    // sign up data
-    var nameInput;
-    var last_nameInput;
-    var emailInput;
-    var codeInput;
-    var first_name;
-    var last_name;
-    var email;
-    var code;
-    var referralCode;
+// sign up data
+var nameInput;
+var last_nameInput;
+var emailInput;
+var codeInput;
+var first_name;
+var last_name;
+var email;
+var code;
+var referralCode;
 
-    window.addEventListener('DOMContentLoaded', () => {
-        // Get the current URL
-        const currentUrl = new URL(window.location.href);
+window.addEventListener('DOMContentLoaded', () => {
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
 
-        // Extract parameters using URLSearchParams
-        const params = new URLSearchParams(currentUrl.search);
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
 
-        // Get individual parameter values
-        referralCode = params.get("referral-code");
+    // Get individual parameter values
+    referralCode = params.get("referral-code");
 
-        // Get the input element
-        const inputBox = document.getElementById('referrer-code');
+    // Get the input element
+    const inputBox = document.getElementById('referrer-code');
 
-        // Set the value of the input box
-        inputBox.value = referralCode;
-    });
-    
-    // this event listener clears an existing error
-    document.getElementById('fname').addEventListener('input', function() {
-        clearError('nameError');
-    });
+    // Set the value of the input box
+    inputBox.value = referralCode;
+});
 
-    document.getElementById('lname').addEventListener('input', function() {
-        clearError('lastNameError');
-    });
+// this event listener clears an existing error
+document.getElementById('fname').addEventListener('input', function() {
+    clearError('nameError');
+});
 
-    document.getElementById('email').addEventListener('input', function() {
-        clearError('emailError');
-    });
+document.getElementById('lname').addEventListener('input', function() {
+    clearError('lastNameError');
+});
 
-    // this is an event listener that adds an error again if criteria does not meet
-    document.getElementById('fname').addEventListener('input', function() {
-        const firstName = this.value.trim(); // Trim to remove leading and trailing whitespaces
+document.getElementById('email').addEventListener('input', function() {
+    clearError('emailError');
+});
 
-        if (firstName === '') {
-            showErrorAgain('nameError', "Please enter your first name.");
-            return;
-        } else if (!isValidUsername(firstName)) {
-            showError('nameError', "Invalid username. It should contain letters, numbers, and underscores only.");
-            return;
-        } else if (firstName.length > 30) {
-            showError('nameError', "Your first name should be less than 30 characters long.")
-            return;
-        }
-    });
-    
-    document.getElementById('lname').addEventListener('input', function() {
-        const lastName = this.value.trim(); // Trim to remove leading and trailing whitespaces
+// this is an event listener that adds an error again if criteria does not meet
+document.getElementById('fname').addEventListener('input', function() {
+    const firstName = this.value.trim(); // Trim to remove leading and trailing whitespaces
 
-        if (lastName === '') {
-            showErrorAgain('lastNameError', "Please enter your last name.");
-            return;
-        } else if (!isValidUsername(lastName)) {
-            showError('lastNameError', "Invalid username. It should contain letters, numbers, and underscores only.");
-            return;
-        } else if (lastName.length > 30) {
-            showError('lastNameError', "Your last name should be less than 30 characters long.")
-            return;
-        }
-    });
-    
-    document.getElementById('email').addEventListener('input', function() {
-        const email = this.value.trim(); // Trim to remove leading and trailing whitespaces
-
-        if (email === "") {
-            showError('emailError', "Please enter your email address.");
-            return;
-        } else if (!isValidEmail(email)) {
-            showError('emailError', "Please enter a valid email address.");
-            return;
-        }
-    });
-
-    // this event listener runs only when the sign up button is triggered
-    document.getElementById('signupButton').addEventListener('click', sign_up);
-
-function sign_up() {
-    buttonClicks += 1
-
-    nameInput = document.getElementById("fname");
-    last_nameInput = document.getElementById("lname");
-    emailInput = document.getElementById("email");
-    codeInput = document.getElementById("referrer-code");
-
-    first_name = nameInput.value.trim();
-    last_name = last_nameInput.value.trim();
-    email = emailInput.value.trim();
-    code = codeInput.value.trim();
-
-    // Checking if any of the fields is empty
-    if (first_name === "") {
-        showError('nameError', "Please enter your first name.");
-    } else if (!isValidUsername(first_name)) {
+    if (firstName === '') {
+        showErrorAgain('nameError', "Please enter your first name.");
+        return;
+    } else if (!isValidUsername(firstName)) {
         showError('nameError', "Invalid username. It should contain letters, numbers, and underscores only.");
-    } else if (last_name.length > 30) {
+        return;
+    } else if (firstName.length > 30) {
         showError('nameError', "Your first name should be less than 30 characters long.")
-        return
+        return;
     }
+});
 
-    if (last_name === "") {
-        showError('lastNameError', "Please enter your last name.");
-    } else if (!isValidUsername(last_name)) {
+document.getElementById('lname').addEventListener('input', function() {
+    const lastName = this.value.trim(); // Trim to remove leading and trailing whitespaces
+
+    if (lastName === '') {
+        showErrorAgain('lastNameError', "Please enter your last name.");
+        return;
+    } else if (!isValidUsername(lastName)) {
         showError('lastNameError', "Invalid username. It should contain letters, numbers, and underscores only.");
-    } else if (last_name.length > 30) {
+        return;
+    } else if (lastName.length > 30) {
         showError('lastNameError', "Your last name should be less than 30 characters long.")
+        return;
     }
+});
+
+document.getElementById('email').addEventListener('input', function() {
+    const email = this.value.trim(); // Trim to remove leading and trailing whitespaces
 
     if (email === "") {
         showError('emailError', "Please enter your email address.");
+        return;
     } else if (!isValidEmail(email)) {
         showError('emailError', "Please enter a valid email address.");
+        return;
     }
+});
 
-    if (first_name !== "" && last_name !== "" && email !== "") {
-       if (isValidUsername(first_name) && isValidUsername(last_name) && isValidEmail(email)) {
+// this event listener runs only when the sign up button is triggered
+document.getElementById('signupButton').addEventListener('click', sign_up);
 
-            disableSignUpDiv();
-            validateSignUpPassword(first_name, last_name, email);
-        }
+function sign_up() {
+buttonClicks += 1
+
+nameInput = document.getElementById("fname");
+last_nameInput = document.getElementById("lname");
+emailInput = document.getElementById("email");
+codeInput = document.getElementById("referrer-code");
+
+first_name = nameInput.value.trim();
+last_name = last_nameInput.value.trim();
+email = emailInput.value.trim();
+code = codeInput.value.trim();
+
+// Checking if any of the fields is empty
+if (first_name === "") {
+    showError('nameError', "Please enter your first name.");
+} else if (!isValidUsername(first_name)) {
+    showError('nameError', "Invalid username. It should contain letters, numbers, and underscores only.");
+} else if (last_name.length > 30) {
+    showError('nameError', "Your first name should be less than 30 characters long.")
+    return
+}
+
+if (last_name === "") {
+    showError('lastNameError', "Please enter your last name.");
+} else if (!isValidUsername(last_name)) {
+    showError('lastNameError', "Invalid username. It should contain letters, numbers, and underscores only.");
+} else if (last_name.length > 30) {
+    showError('lastNameError', "Your last name should be less than 30 characters long.")
+}
+
+if (email === "") {
+    showError('emailError', "Please enter your email address.");
+} else if (!isValidEmail(email)) {
+    showError('emailError', "Please enter a valid email address.");
+}
+
+if (first_name !== "" && last_name !== "" && email !== "") {
+   if (isValidUsername(first_name) && isValidUsername(last_name) && isValidEmail(email)) {
+
+        disableSignUpDiv();
+        validateSignUpPassword(first_name, last_name, email);
     }
+}
 }
 
 function showError(id, message) {
-    // Show error message
-    var errorElement = document.getElementById(id);
-    errorElement.textContent = message;
-    errorElement.style.display = 'block'; // Change display to 'block'
+// Show error message
+var errorElement = document.getElementById(id);
+errorElement.textContent = message;
+errorElement.style.display = 'block'; // Change display to 'block'
 }
 
 function showErrorAgain(id, message) {
-    // Show error message
-    if (buttonClicks > 0) {
-    var errorElement = document.getElementById(id);
-    errorElement.textContent = message;
-    errorElement.style.display = 'block'; // Change display to 'block'
-    }
+// Show error message
+if (buttonClicks > 0) {
+var errorElement = document.getElementById(id);
+errorElement.textContent = message;
+errorElement.style.display = 'block'; // Change display to 'block'
+}
 }
 
 function clearError(id) {
-    // Construct the error message element ID
-    const errorId = id;
-    
-    // Get the error message element
-    const errorElement = document.getElementById(errorId);
+// Construct the error message element ID
+const errorId = id;
 
-    // Check if the error element exists before manipulating it
-    if (errorElement) {
-        errorElement.textContent = ''; // Clear the error message
-        // errorElement.style.display = 'none'; // Hide the error message
-        return;
-    }
+// Get the error message element
+const errorElement = document.getElementById(errorId);
+
+// Check if the error element exists before manipulating it
+if (errorElement) {
+    errorElement.textContent = ''; // Clear the error message
+    // errorElement.style.display = 'none'; // Hide the error message
+    return;
+}
 }
 
 function isValidEmail(email) {
-    // Simple email validation
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+// Simple email validation
+var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return emailRegex.test(email);
 }
 
 // Function to show the popup
 function showErrorPopup(message) {
-    // Create the popup element
-    var popup = document.createElement('div');
-    popup.className = 'popup';
+// Create the popup element
+var popup = document.createElement('div');
+popup.className = 'popup';
 
-    // Create the close button
-    var closeBtn = document.createElement('span');
-    closeBtn.className = 'close-btn';
-    closeBtn.innerHTML = '&times;'; // HTML code for the "x" symbol
-    closeBtn.onclick = function () {
-        document.body.removeChild(popup);
-    };
+// Create the close button
+var closeBtn = document.createElement('span');
+closeBtn.className = 'close-btn';
+closeBtn.innerHTML = '&times;'; // HTML code for the "x" symbol
+closeBtn.onclick = function () {
+    document.body.removeChild(popup);
+};
 
-    // Create the message element
-    var messageElement = document.createElement('p');
-    messageElement.textContent = message;
+// Create the message element
+var messageElement = document.createElement('p');
+messageElement.textContent = message;
 
-    // Append elements to the popup
-    popup.appendChild(closeBtn);
-    popup.appendChild(messageElement);
+// Append elements to the popup
+popup.appendChild(closeBtn);
+popup.appendChild(messageElement);
 
-    // Set display property to 'block'
-    popup.style.display = 'block';
+// Set display property to 'block'
+popup.style.display = 'block';
 
-    // Append the popup to the body
-    document.body.appendChild(popup);
+// Append the popup to the body
+document.body.appendChild(popup);
 
-    console.log('Popup created and appended to the body');
+console.log('Popup created and appended to the body');
 }
 
 function isValidUsername(username) {
-    // Regular expression to match letters, numbers, and underscores
-    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+// Regular expression to match letters, numbers, and underscores
+const usernameRegex = /^[a-zA-Z0-9_]+$/;
 
-    // Test if the username matches the regular expression
-    return usernameRegex.test(username);
+// Test if the username matches the regular expression
+return usernameRegex.test(username);
 }
 
 // Function to disable the div and its content
 function disableSignUpDiv() {
-    document.getElementById('sign-up-form').classList.add('disabled');
-    document.getElementById('sign-up-form').disabled = true;
+document.getElementById('sign-up-form').classList.add('disabled');
+document.getElementById('sign-up-form').disabled = true;
 
-    document.getElementById('sign-up-password').classList.remove('disabled');
-    document.getElementById('sign-up-password').disabled = false;
+document.getElementById('sign-up-password').classList.remove('disabled');
+document.getElementById('sign-up-password').disabled = false;
 }
 
 // Function to enable the div and its content
 function enableSignUpPasswordDiv() {
-    document.getElementById('sign-up-form').classList.remove('disabled');
-    document.getElementById('sign-up-form').disabled = false;
+document.getElementById('sign-up-form').classList.remove('disabled');
+document.getElementById('sign-up-form').disabled = false;
 
-    document.getElementById('sign-up-password').classList.add('disabled');
-    document.getElementById('sign-up-password').disabled = true;
+document.getElementById('sign-up-password').classList.add('disabled');
+document.getElementById('sign-up-password').disabled = true;
 }
 
 function validateSignUpPassword(FirstName, LastName, Email) {
-    var buttonClicks = 0
-    
-    // this event listener runs only when the sign up button is triggered
-    document.getElementById('submitPassword').addEventListener('click', async function(event) {
-        event.preventDefault(); // Prevent the form from submitting
-        await submit_password() ;
-    }) ;
+var buttonClicks = 0
 
-    // this event listener clears an existing error
-    document.getElementById('password-field').addEventListener('input', function() {
-        clearError('passwordError');
-        clearError('confirmPasswordError');
-    });
+// this event listener runs only when the sign up button is triggered
+document.getElementById('submitPassword').addEventListener('click', async function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    await submit_password() ;
+}) ;
 
-    document.getElementById('toggle-password2').addEventListener('input', function() {
-        clearError('confirmPasswordError');
-    });
+// this event listener clears an existing error
+document.getElementById('password-field').addEventListener('input', function() {
+    clearError('passwordError');
+    clearError('confirmPasswordError');
+});
 
-    // this is an event listener that adds an error again if criteria does not meet
-    document.getElementById('password-field').addEventListener('input', function() {
-        const password = this.value.trim(); // Trim to remove leading and trailing white spaces
-        var confirmPassword = document.getElementById('toggle-password2').value;
+document.getElementById('toggle-password2').addEventListener('input', function() {
+    clearError('confirmPasswordError');
+});
 
-            // Define password criteria
-        var hasUpperCase = /[A-Z]/.test(password);
-        var hasLowerCase = /[a-z]/.test(password);
-        var hasNumber = /\d/.test(password);
-        var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+// this is an event listener that adds an error again if criteria does not meet
+document.getElementById('password-field').addEventListener('input', function() {
+    const password = this.value.trim(); // Trim to remove leading and trailing white spaces
+    var confirmPassword = document.getElementById('toggle-password2').value;
 
-        // Check if password meets the criteria
-        if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-            showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
-            return
-        }
+        // Define password criteria
+    var hasUpperCase = /[A-Z]/.test(password);
+    var hasLowerCase = /[a-z]/.test(password);
+    var hasNumber = /\d/.test(password);
 
-        if (confirmPassword === '') {
-            showError('confirmPasswordError', "Please confirm your password.");
-            return
-        }
+    // Check if password meets the criteria
+    if (!hasUpperCase || !hasLowerCase || !hasNumber || password.length < 8) {
+        return
+    }
 
-        if (confirmPassword !== password) {
-            showError('confirmPasswordError', "Passwords do not match.");
-            return
-        }
-    });
+    if (confirmPassword === '') {
+        showError('confirmPasswordError', "Please confirm your password.");
+        return
+    }
+
+    if (confirmPassword !== password) {
+        showError('confirmPasswordError', "Passwords do not match.");
+        return
+    }
+});
 
     document.getElementById('toggle-password2').addEventListener('input', function() {
         const confirmPassword = this.value.trim(); // Trim to remove leading and trailing white spaces
@@ -293,9 +291,9 @@ function validateSignUpPassword(FirstName, LastName, Email) {
         }
     });
 
-async function submit_password() {
-    var auth_check = true
-    buttonClicks += 1
+    async function submit_password() {
+    var auth_check = true;
+    buttonClicks += 1;
     var password = document.getElementById('password-field').value;
     var confirmPassword = document.getElementById('toggle-password2').value;
 
@@ -303,23 +301,22 @@ async function submit_password() {
     var hasUpperCase = /[A-Z]/.test(password);
     var hasLowerCase = /[a-z]/.test(password);
     var hasNumber = /\d/.test(password);
-    var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
     // Check if password meets the criteria
-    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || password.length < 8) {
-        auth_check = false
-        showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
+    if (!hasUpperCase || !hasLowerCase || !hasNumber || password.length < 8) {
+        auth_check = false;
+        showError('passwordError', "Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), and a number (e.g., '1')");
         return
     }
 
     if (confirmPassword === '') {
-        auth_check = false
+        auth_check = false;
         showError('confirmPasswordError', "Please confirm your password.");
         return
     }
 
     if (confirmPassword !== password) {
-        auth_check = false
+        auth_check = false;
         showError('confirmPasswordError', "Passwords do not match.");
         return
     }
@@ -337,19 +334,19 @@ async function submit_password() {
             password: confirmPassword,
             email: Email,
             RefereeCode: referralCode,
-          };
+        };
 
-          const apiUrl = "https://payuee.onrender.com/sign-up";
+        const apiUrl = "https://payuee.onrender.com/sign-up";
 
-          const requestOptions = {
+        const requestOptions = {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+            "Content-Type": "application/json",
             },
             credentials: 'include', // set credentials to include cookies
             body: JSON.stringify(user),
-          };
-          
+        };
+        
         try {
             deactivateButtonStyles()
             const response = await fetch(apiUrl, requestOptions);
@@ -377,27 +374,27 @@ async function submit_password() {
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
-                  reactivateButtonStyles();
+                reactivateButtonStyles();
                 return;
             }
             // const data = await response.json();
             reactivateButtonStyles();
             window.location.href = 'signup-confirm-otp-new.html'
         } finally{
-           // do nothing cause error has been handled
+        // do nothing cause error has been handled
         }
         reactivateButtonStyles();
     }
-}
+    }
 
-function showError(id, message) {
+    function showError(id, message) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
     errorElement.style.display = 'block'; // Change display to 'block'
     errorElement.style.color = 'red'; // Set text color to red
-}
+    }
 
-function showErrorUserExist(id, message, duration = 6000) {
+    function showErrorUserExist(id, message, duration = 6000) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
     errorElement.style.display = 'block'; // Change display to 'block'
@@ -410,9 +407,9 @@ function showErrorUserExist(id, message, duration = 6000) {
         // redirect user to verify his email address
         window.location.href = 'signup-confirm-otp-new.html';
     }, duration);
-}
+    }
 
-function clearError(id) {
+    function clearError(id) {
     // Construct the error message element ID
     const errorId = id;
 
@@ -422,20 +419,89 @@ function clearError(id) {
         errorElement.textContent = ''; // Clear the error message
         // errorElement.style.display = 'none'; // Hide the error message
     }
-}
+    }
 
-// Add this function to remove onclick and on hover styles
-function deactivateButtonStyles() {
+    // Add this function to remove onclick and on hover styles
+    function deactivateButtonStyles() {
     var resendButton = document.getElementById('submitPassword');
     resendButton.classList.add('deactivated'); // Add a class to the button
-}
+    }
 
-// Add this function to reactivate the button styles
-function reactivateButtonStyles() {
+    // Add this function to reactivate the button styles
+    function reactivateButtonStyles() {
     var resendButton = document.getElementById('submitPassword');
     // Remove all existing classes
     resendButton.className = '';
     // Add the original class 'cmn__btn'
     resendButton.classList.add('cmn__btn');
+    }
 }
+
+
+var inputBox = document.querySelector('.dropdown-input');
+var dropdownContainer = document.getElementById('dropdownContainer');
+var dropdownContent = document.getElementById('dropdownContent');
+
+inputBox.addEventListener('input', function() {
+    var inputValue = inputBox.value.trim();
+    var hasUppercase = /[A-Z]/.test(inputValue);
+    var hasLowercase = /[a-z]/.test(inputValue);
+    var hasNumber = /\d/.test(inputValue);
+    var hasLength = inputValue.length >= 8;
+
+    if (inputValue == "") {
+        dropdownContent.style.display = 'none';
+    } else {
+        dropdownContent.style.display = 'block';
+    }
+
+    if (hasUppercase && hasLowercase && hasNumber && hasLength) {
+        inputBox.style.borderColor = 'green';
+        dropdownContent.style.display = 'none';
+        // dropdownContainer.classList.remove('active');
+    } else {
+        inputBox.style.borderColor = '#ccc';
+        dropdownContainer.classList.add('active');
+    }
+
+    // Clear existing popups
+    var existingPopups = document.querySelectorAll('.popup');
+    existingPopups.forEach(function(popup) {
+        popup.remove();
+    });
+
+    // Update option based on its ID
+    var option1 = document.getElementById('option1');
+    updateOption(option1, hasUppercase, hasLowercase, hasNumber, hasLength);
+});
+
+function updateOption(option, hasUppercase, hasLowercase, hasNumber, hasLength) {
+    var popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    if (hasLength) {
+        popup.innerHTML += '<span class="green-text">✓ 8 characters</span><br>';
+    } else {
+        popup.innerHTML += '<span class="red-text">✗ 8 characters</span><br>';
+    }
+
+    if (hasUppercase) {
+        popup.innerHTML += '<span class="green-text">✓ One uppercase letter</span><br>';
+    } else {
+        popup.innerHTML += '<span class="red-text">✗ One uppercase letter</span><br>';
+    }
+
+    if (hasLowercase) {
+        popup.innerHTML += '<span class="green-text">✓ One lowercase letter</span><br>';
+    } else {
+        popup.innerHTML += '<span class="red-text">✗ One lowercase letter</span><br>';
+    }
+
+    if (hasNumber) {
+        popup.innerHTML += '<span class="green-text">✓ One number</span><br>';
+    } else {
+        popup.innerHTML += '<span class="red-text">✗ One number</span><br>';
+    }
+
+    option.appendChild(popup);
 }
