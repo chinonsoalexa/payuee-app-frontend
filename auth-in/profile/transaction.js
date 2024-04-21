@@ -288,51 +288,6 @@ function renderTransactionHistoryLoading() {
     return; // Exit the function
 }
 
-const testData = [
-    {
-        date: '01 Jan 2024',
-        service: 'Mobile Recharge',
-        price: '₦750.00',
-        charge: '-₦50.00',
-        status: 'success',
-    },
-    {
-        date: '27 Jan 2022',
-        service: 'Electric Bill',
-        price: '₦320.00',
-        charge: '-₦15.00',
-        status: 'failed',
-    },
-    {
-        date: '24 Feb',
-        service: 'Cable TV Bill',
-        price: '₦410.00',
-        charge: '-₦30.00',
-        status: 'success',
-    },
-    {
-        date: '7 Mar',
-        service: 'Flight Booking',
-        price: '₦777.00',
-        charge: '-₦10.00',
-        status: 'success',
-    },
-    {
-        date: '27 Apr',
-        service: 'Gas Bill',
-        price: '₦450.00',
-        charge: '-₦5.00',
-        status: 'failed',
-    },
-    {
-        date: '01 Jun',
-        service: 'Flight Booking',
-        price: '₦440.00',
-        charge: '-₦10.00',
-        status: 'pending',
-    },
-];
-
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
         style: 'currency',
