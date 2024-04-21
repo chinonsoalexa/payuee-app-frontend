@@ -1,4 +1,4 @@
-window.addEventListener('onbeforeunload', function() {
+window.addEventListener('beforeunload', function() {
     // Clear analytics data from local storage
     localStorage.removeItem('analyticsData');
 });
