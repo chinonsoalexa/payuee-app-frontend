@@ -471,23 +471,27 @@ async function continueResendTimer() {
                 } else if  (errorData.error === 'OTP not found') {
                     // Handle other error cases
                     magicLinkHeader.textContent = 'Magic link not recognized...';
+                    magicLinkHeader.style.color = 'red'; // Set text color to red
                     document.getElementById('loading-icon').classList.add('disabled');
                     document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'Magic link not recognized...');
                 }else if  (errorData.error === 'Wrong OTP') {
                     // Handle other error cases
                     magicLinkHeader.textContent = 'Incorrect magic link...';
+                    magicLinkHeader.style.color = 'red'; // Set text color to red
                     document.getElementById('loading-icon').classList.add('disabled');
                     document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'Incorrect magic link...');
                 }else if  (errorData.error === 'Magic Link Expired') {
                     // Handle other error cases
                     magicLinkHeader.textContent = 'Magic link expired...';
+                    magicLinkHeader.style.color = 'red'; // Set text color to red
                     document.getElementById('loading-icon').classList.add('disabled');
                     document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'Magic link expired...');
                 } else {
                     magicLinkHeader.textContent = 'An error occurred. Please try again.';
+                    magicLinkHeader.style.color = 'red'; // Set text color to red
                     document.getElementById('loading-icon').classList.add('disabled');
                     document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'An error occurred. Please try again.');
