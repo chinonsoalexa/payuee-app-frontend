@@ -27,7 +27,6 @@ signInWithEmail.addEventListener('click', async function() {
     }
     if (enabled) {
         validated = true;
-        console.log("this is the email am getting: " + signInWithEmailBox.value)
         if (signInWithEmailBox.value === "") {
             validated = false;
             showError('emailErrorMagic', "Please enter your email address.");
@@ -86,7 +85,6 @@ signInWithEmail.addEventListener('click', async function() {
         reactivateButtonStyles2();
     }
     }
-    
     }
 });
 
@@ -471,6 +469,7 @@ async function continueResendTimer() {
                     // window.location.href = '/verify';
                 } else if  (errorData.error === 'OTP not found') {
                     // Handle other error cases
+                    magicLinkHeader.textContent = 'Magic link not recognized...';
                     showError('magicLinkError', 'Magic link not recognized.');
                 }else if  (errorData.error === 'Wrong OTP') {
                     // Handle other error cases
@@ -487,7 +486,7 @@ async function continueResendTimer() {
             // const data = await response.json();
             reactivateButtonStyles();
             localStorage.setItem('auth', 'true');
-            window.location.href = '../../index-in.html';
+            // window.location.href = '../../index-in.html';
         } finally{
            // do nothing cause error has been handled
         }
