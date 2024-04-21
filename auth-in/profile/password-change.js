@@ -15,7 +15,6 @@ document.getElementById('submitPassword').addEventListener('click', async functi
     var hasNewUpperCase = /[A-Z]/.test(newPassword);
     var hasNewLowerCase = /[a-z]/.test(newPassword);
     var hasNewNumber = /\d/.test(newPassword);
-    var hasNewSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
 
     if (newPassword === '') {
         showError("Please enter a new password!");
@@ -23,7 +22,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
     }
 
     // Check if password meets the criteria
-    if (!hasNewUpperCase || !hasNewLowerCase || !hasNewNumber || !hasNewSymbol || newPassword.length < 8) {
+    if (!hasNewUpperCase || !hasNewLowerCase || !hasNewNumber || newPassword.length < 8) {
         showError("Your password must be at least 8 characters long and include a mix of uppercase and lowercase letters (e.g., 'Aa'), a number (e.g., '1'), and a special character (e.g., '@')");
         return
     }
@@ -47,10 +46,9 @@ document.getElementById('submitPassword').addEventListener('click', async functi
     var hasUpperCase = /[A-Z]/.test(presentPassword);
     var hasLowerCase = /[a-z]/.test(presentPassword);
     var hasNumber = /\d/.test(presentPassword);
-    var hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(presentPassword);
 
     // Check if password meets the criteria
-    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSymbol || presentPassword.length < 8) {
+    if (!hasUpperCase || !hasLowerCase || !hasNumber || presentPassword.length < 8) {
         showError("Incorrect Present Password");
         return
     }
@@ -119,8 +117,6 @@ document.getElementById('submitPassword').addEventListener('click', async functi
         reactivateButtonStyles2();
     }
 });
-
-
 
 function showError(message) {
     const installPopup = document.getElementById('password-popup');
