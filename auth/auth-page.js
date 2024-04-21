@@ -1,4 +1,4 @@
-window.addEventListener('beforeunload', function(event) {
+window.addEventListener('beforeunload', function() {
     // Clear analytics data from local storage
     localStorage.removeItem('analyticsData');
 });
@@ -11,24 +11,28 @@ document.addEventListener('DOMContentLoaded', function () {
         // Key does not exist in localStorage
         localStorage.setItem('analyticsData', 'true');
 
-        fetch('https://payuee.onrender.com/payuee-analytics')
-        .then(response => {
-            // Check if the response is OK (status code 200)
-            if (!response.ok) {
-                // throw new Error('Network response was not ok');
-                return;
-            }
-            // Parse the JSON response
-            return response.json();
-        })
-        .then(data => {
-            // Do something with the JSON data
-            // console.log(data);
-        })
-        .finally(() => {
-            // This block will execute regardless of success or failure
-            // You can use it for cleanup or any other operations
+        fetch('https://payuee.onrender.com/payuee-analytics', {
+            method: 'GET'
         });
+
+        // fetch('https://payuee.onrender.com/payuee-analytics')
+        // .then(response => {
+        //     // Check if the response is OK (status code 200)
+        //     if (!response.ok) {
+        //         // throw new Error('Network response was not ok');
+        //         return;
+        //     }
+        //     // Parse the JSON response
+        //     return response.json();
+        // })
+        // .then(data => {
+        //     // Do something with the JSON data
+        //     // console.log(data);
+        // })
+        // .finally(() => {
+        //     // This block will execute regardless of success or failure
+        //     // You can use it for cleanup or any other operations
+        // });
     }
 
     // Run the authentication status check function
