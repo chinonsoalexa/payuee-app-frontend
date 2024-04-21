@@ -430,6 +430,7 @@ async function continueResendTimer() {
         magicLinkHeader.textContent = 'Please wait a minute verifying your login link';
         document.getElementById('magicLinkText').classList.add('disabled');
         document.getElementById('magicLinkText').disabled = true;
+
         // Append the magic login email template into the loading icon div
         document.getElementById('loading-icon').classList.remove('disabled');
         document.getElementById('loading-icon').disabled = false;
@@ -470,14 +471,25 @@ async function continueResendTimer() {
                 } else if  (errorData.error === 'OTP not found') {
                     // Handle other error cases
                     magicLinkHeader.textContent = 'Magic link not recognized...';
-                    showError('magicLinkError', 'Magic link not recognized.');
+                    document.getElementById('loading-icon').classList.add('disabled');
+                    document.getElementById('loading-icon').disabled = true;
+                    showError('magicLinkError', 'Magic link not recognized...');
                 }else if  (errorData.error === 'Wrong OTP') {
                     // Handle other error cases
+                    magicLinkHeader.textContent = 'Incorrect magic link...';
+                    document.getElementById('loading-icon').classList.add('disabled');
+                    document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'Incorrect magic link...');
                 }else if  (errorData.error === 'Magic Link Expired') {
                     // Handle other error cases
-                    showError('magicLinkError', 'Magic link expired.');
+                    magicLinkHeader.textContent = 'Magic link expired...';
+                    document.getElementById('loading-icon').classList.add('disabled');
+                    document.getElementById('loading-icon').disabled = true;
+                    showError('magicLinkError', 'Magic link expired...');
                 } else {
+                    magicLinkHeader.textContent = 'An error occurred. Please try again.';
+                    document.getElementById('loading-icon').classList.add('disabled');
+                    document.getElementById('loading-icon').disabled = true;
                     showError('magicLinkError', 'An error occurred. Please try again.');
                 }
                   reactivateButtonStyles();
