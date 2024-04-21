@@ -1,7 +1,3 @@
-window.addEventListener('beforeunload', function() {
-    // Clear analytics data from local storage
-    localStorage.removeItem('analyticsData');
-});
 
 // Listen for the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function () {

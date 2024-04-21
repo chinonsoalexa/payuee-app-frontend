@@ -1,15 +1,11 @@
-window.addEventListener('beforeunload', function() {
-    // Clear analytics data from local storage
-    localStorage.removeItem('analyticsData');
-});
 
 // Listen for the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function () {
-    var analyticsData = localStorage.getItem('analyticsData');
+    var analyticsData = sessionStorage.getItem('analyticsData');
 
     if (analyticsData === null) {
         // Key does not exist in localStorage
-        localStorage.setItem('analyticsData', 'true');
+        sessionStorage.setItem('analyticsData', 'true');
 
         fetch('https://payuee.onrender.com/payuee-analytics', {
             method: 'GET'
