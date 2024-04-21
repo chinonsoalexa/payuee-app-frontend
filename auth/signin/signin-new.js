@@ -327,6 +327,10 @@ document.getElementById('resend-otp').addEventListener('click', async function (
 
 async function resendButtonOTP() {
     startResendTimer()
+    let magicLinkHeader = document.getElementById('magicLinkHeader');
+    magicLinkHeader.textContent = 'Please wait a minute verifying your login link';
+    magicLinkHeader.style.color = 'black'; // Set text color to red
+
     const details = {
         Email: signInWithEmailBox.value,
       };
