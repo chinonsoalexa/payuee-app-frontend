@@ -315,7 +315,7 @@ document.getElementById('editMagicEmail').addEventListener('click', async functi
     let magicLinkHeader = document.getElementById('magicLinkHeader');
     magicLinkHeader.textContent = 'Please wait a minute verifying your login link';
     magicLinkHeader.style.color = 'black'; // Set text color to red
-    
+
     document.getElementById('loading-icon').classList.add('disabled');
     document.getElementById('loading-icon').disabled = true;
     document.getElementById('magicLinkText').classList.remove('disabled');
@@ -510,7 +510,7 @@ async function continueResendTimer() {
             // const data = await response.json();
             reactivateButtonStyles();
             localStorage.setItem('auth', 'true');
-            // window.location.href = '../../index-in.html';
+            window.location.href = '../../index-in.html';
         } finally{
            // do nothing cause error has been handled
         }
