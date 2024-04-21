@@ -312,6 +312,10 @@ function showErrorUserDontExist(id, message, duration = 5000) {
 
 // event listener to resend otp
 document.getElementById('editMagicEmail').addEventListener('click', async function () {
+    let magicLinkHeader = document.getElementById('magicLinkHeader');
+    magicLinkHeader.textContent = 'Please wait a minute verifying your login link';
+    magicLinkHeader.style.color = 'black'; // Set text color to red
+    
     document.getElementById('loading-icon').classList.add('disabled');
     document.getElementById('loading-icon').disabled = true;
     document.getElementById('magicLinkText').classList.remove('disabled');
