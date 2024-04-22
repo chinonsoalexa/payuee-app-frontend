@@ -81,7 +81,7 @@ function blogPost(postsData) {
 const testData = [
     {
         postImageSrc: 'assets/img/blog/list6.jpg',
-        dateMonth: '17 apr',
+        dateMonth: '17 Apr',
         dateYear: '2024',
         postTitle: 'The Evolution of Digital Payments: How Payuee is Transforming the Landscape...',
         adminComments: 12,
@@ -89,7 +89,7 @@ const testData = [
     },
     {
         postImageSrc: 'assets/img/blog/list2.jpg',
-        dateMonth: '06 apr',
+        dateMonth: '06 Apr',
         dateYear: '2024',
         postTitle: "Empowering Small Businesses: Payuee's Impact on Entrepreneurship...",
         adminComments: 15,
@@ -97,7 +97,7 @@ const testData = [
     },
     {
         postImageSrc: 'assets/img/blog/list3.jpg',
-        dateMonth: '02 apr',
+        dateMonth: '02 Apr',
         dateYear: '2024',
         postTitle: "Navigating the Future of Financial Inclusion: Payuee's Role in Bridging the Gap...",
         adminComments: 43,
@@ -105,7 +105,7 @@ const testData = [
     },
     {
         postImageSrc: 'assets/img/blog/list4.jpg',
-        dateMonth: '13 mar',
+        dateMonth: '13 Mar',
         dateYear: '2024',
         postTitle: 'Securing Digital Transactions: How Payuee Protects Your Financial Information...',
         adminComments: 19,
@@ -113,7 +113,7 @@ const testData = [
     },
     {
         postImageSrc: 'assets/img/blog/list5.jpg',
-        dateMonth: '05 feb',
+        dateMonth: '05 Feb',
         dateYear: '2024',
         postTitle: "Driving Financial Literacy: PayUee's Initiatives for Educating Users About Money Management...",
         adminComments: 34,
@@ -121,7 +121,7 @@ const testData = [
     },
     {
         postImageSrc: 'assets/img/blog/list1.jpg',
-        dateMonth: '23 nov',
+        dateMonth: '23 Nov',
         dateYear: '2022',
         postTitle: 'Sustainability in Fintech: How Payuee is Driving Environmental Responsibility...',
         adminComments: 43,
@@ -170,19 +170,19 @@ function popularBlogPost(popularPostData) {
 // Define an array of test data for multiple posts
 const popularBlogPostData = [
     {
-        postImageSrc: '../assets/img/blog/liss1.jpg',
-        postDate: 'December 19, 2022',
+        postImageSrc: 'assets/img/blog/liss1.jpg',
+        postDate: 'February 05, 2024',
         postTitle: 'Recharge to enable card payments...',
         },
     {
-        postImageSrc: '../assets/img/blog/list2.jpg',
-        postDate: 'November 23, 2021',
-        postTitle: 'Stop auto payment in Paytm, turn off this...',
+        postImageSrc: 'assets/img/blog/list2.jpg',
+        postDate: 'April 06, 2024',
+        postTitle: 'Empowering Small Businesses...',
     },
     {
-        postImageSrc: '../assets/img/blog/list3.jpg',
-        postDate: 'October 17, 2020',
-        postTitle: 'Paytm KYC- How to Complete Paytm...',
+        postImageSrc: 'assets/img/blog/list3.jpg',
+        postDate: 'April 02, 2024',
+        postTitle: "Navigating the Future of Financial Inclusion...",
     },
 ];
 
