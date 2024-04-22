@@ -3,10 +3,24 @@ let lastResendTime = 0;
 let checkIfStillCounting = false
 
 // Focus on the first input field when the page loads
-window.onload = function () {
+window.addEventListener('DOMContentLoaded', async () => {
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    const userEmail = params.get("email");
+    
     // Retrieve the last reset time and continue if available
     continueResendTimer()
-};
+
+    if (userEmail) {
+        localStorage.setItem('email', userEmail);
+        await resendButtonOTP();
+    }
+});
 
 // event listener to resend otp
 document.getElementById('resend-otp').addEventListener('click', async function () {

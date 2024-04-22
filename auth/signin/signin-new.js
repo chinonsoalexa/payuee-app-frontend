@@ -237,10 +237,10 @@ async function sign_in() {
                     return;
                 } else if (data.error == 'User already exist, please verify your email ID') {
                     // redirect user to verify email ID
-                    showErrorUserExist('emailError', 'User already exist, please verify your email ID.', 5000);
+                    showErrorUserExist('emailError', 'User already exist, please verify your email ID.', email, 5000);
                     return;
                 } else if (data.error == 'User do not exist, please sign up') {
-                    // redirect user to verify email ID
+                    // redirect user to sign up page
                     showErrorUserDontExist('emailError', 'User do not exist, please sign up.', 5000);
                     return;
                 } else if (data.error == 'Invalid email or password') {
@@ -280,7 +280,7 @@ function showError(id, message, duration = 5000) {
     }, duration);
 }
 
-function showErrorUserExist(id, message, duration = 5000) {
+function showErrorUserExist(id, message, emailTo, duration = 5000) {
     var errorElement = document.getElementById(id);
     errorElement.textContent = message;
     errorElement.style.display = 'block'; // Change display to 'block'
@@ -291,7 +291,7 @@ function showErrorUserExist(id, message, duration = 5000) {
         errorElement.textContent = ''; // Clear the error message
         errorElement.style.display = 'none'; // Hide the error message
         // redirect user to verify his email address
-        window.location.href = 'verify-email.html';
+        window.location.href = 'signup-confirm-otp-new.html?email=' + emailTo;
     }, duration);
 }
 
