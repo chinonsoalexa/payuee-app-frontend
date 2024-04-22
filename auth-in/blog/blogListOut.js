@@ -80,52 +80,52 @@ function blogPost(postsData) {
 // Define an array of test data for multiple posts
 const testData = [
     {
-        postImageSrc: '../assets/img/blog/list1.jpg',
-        dateMonth: '17 dec',
-        dateYear: '2023',
-        postTitle: 'Why you should think twice before booking the Maldives...',
-        adminComments: 12,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
-    },
-    {
-        postImageSrc: '../assets/img/blog/list2.jpg',
-        dateMonth: '24 jan',
+        postImageSrc: 'assets/img/blog/list6.jpg',
+        dateMonth: '17 apr',
         dateYear: '2024',
-        postTitle: 'Flight booking service integrated with Pilot eTravel...',
+        postTitle: 'The Evolution of Digital Payments: How Payuee is Transforming the Landscape...',
+        adminComments: 12,
+        postDescription: 'In this blog post, we would begin by providing a comprehensive overview of the history and evolution of digital payments...'
+    },
+    {
+        postImageSrc: 'assets/img/blog/list2.jpg',
+        dateMonth: '06 apr',
+        dateYear: '2024',
+        postTitle: "Empowering Small Businesses: Payuee's Impact on Entrepreneurship...",
         adminComments: 15,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
+        postDescription: "This blog post would center around Payuee's dedication to supporting small businesses and entrepreneurs..."
     },
     {
-        postImageSrc: '../assets/img/blog/list3.jpg',
-        dateMonth: '13 oct',
-        dateYear: '2023',
-        postTitle: 'American Airlines brings back free 24-hour reservation hold...',
+        postImageSrc: 'assets/img/blog/list3.jpg',
+        dateMonth: '02 apr',
+        dateYear: '2024',
+        postTitle: "Navigating the Future of Financial Inclusion: Payuee's Role in Bridging the Gap...",
         adminComments: 43,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
+        postDescription: "This blog post would focus on Payuee's efforts to promote financial inclusion and address the disparities between the banked and unbanked populations..."
     },
     {
-        postImageSrc: '../assets/img/blog/list4.jpg',
-        dateMonth: '13 feb',
-        dateYear: '2019',
-        postTitle: 'Payuee rectifies technical Smart in bill payment service...',
+        postImageSrc: 'assets/img/blog/list4.jpg',
+        dateMonth: '13 mar',
+        dateYear: '2024',
+        postTitle: 'Securing Digital Transactions: How Payuee Protects Your Financial Information...',
         adminComments: 19,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
+        postDescription: "In this blog post, we would dive into the topic of cybersecurity and the measures PayUee takes to ensure the safety of its users' financial information..."
     },
     {
-        postImageSrc: '../assets/img/blog/list5.jpg',
-        dateMonth: '05 may',
-        dateYear: '2020',
-        postTitle: 'Credit card bill payment platform Cred Payuee...',
-        adminComments: 68,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
+        postImageSrc: 'assets/img/blog/list5.jpg',
+        dateMonth: '05 feb',
+        dateYear: '2024',
+        postTitle: "Driving Financial Literacy: PayUee's Initiatives for Educating Users About Money Management...",
+        adminComments: 34,
+        postDescription: "This blog post would explore Payuee's efforts to promote financial literacy among its users. We would discuss the importance of understanding basic financial concepts..."
     },
     {
-        postImageSrc: '../assets/img/blog/list6.jpg',
+        postImageSrc: 'assets/img/blog/list1.jpg',
         dateMonth: '23 nov',
         dateYear: '2022',
-        postTitle: 'Payuee announces new album, world tour...',
+        postTitle: 'Sustainability in Fintech: How Payuee is Driving Environmental Responsibility...',
         adminComments: 43,
-        postDescription: 'There are many variations of passages of Lorem ipsum available, but the majority have suffered alteration in some form...'
+        postDescription: "In this blog post, we would examine Payuee's commitment to sustainability and environmental responsibility. We would discuss the environmental impact of digital transactions..."
     },
 ];
 
