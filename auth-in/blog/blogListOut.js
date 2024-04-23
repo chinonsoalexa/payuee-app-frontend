@@ -137,7 +137,7 @@ function popularBlogPost(popularPostData) {
     const parentElement = document.getElementById('popularBlogPosts');
 
     popularPostData.forEach((popularPostData, index) => {
-        const postId = `post_${index}_${Date.now()}`;
+        const postId = `post_${index}_`;
         const divContainer = document.createElement('div');
         divContainer.classList.add('blog__list__item', 'mb__30');
 
@@ -161,8 +161,7 @@ function popularBlogPost(popularPostData) {
         const popularBlogClickEvent = divContainer.querySelector('.recent__item');
         popularBlogClickEvent.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('Read more button clicked for post:', postId);
-            prompt('Read more button clicked for post:', postId);
+            window.location.href = 'blog-details.html?post=' + postId;
         });
         });
 }
