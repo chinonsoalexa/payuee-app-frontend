@@ -178,7 +178,7 @@ function renderSubscriptionHistory(historyData) {
             <td>No Subscription Yet</td>
             <td>No Subscription Yet</td>
             <td>
-                <a id="addSub" href="payment.html" class="purchase">
+                <a id="addSub" class="purchase">
                     <span>
                         Add Subscription
                     </span>
