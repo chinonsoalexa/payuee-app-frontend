@@ -178,14 +178,14 @@ function renderSubscriptionHistory(historyData) {
             <td>No Subscription Yet</td>
             <td>No Subscription Yet</td>
             <td>
-                <a id="addSub" class="purchase">
+                <a id="addSub" href="#" class="purchase">
                     <span>
                         Add Subscription
                     </span>
                 </a>
             </td>
             <td>
-                <a href="#" class="edit">
+                <a id="cancelSub" href="#" class="edit">
                     <img src="assets/img/svg/edits.svg" alt="img">
                 </a>
             </td>
@@ -197,7 +197,13 @@ function renderSubscriptionHistory(historyData) {
         // Add event listener to the row element
         document.getElementById("addSub").addEventListener('click', function(event) {
         event.preventDefault();
-    });
+        alert('hi just testing')
+        });
+
+        document.getElementById("cancelSub").addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('hi just testing 2')
+        });
 
         return; // Exit the function
     }
