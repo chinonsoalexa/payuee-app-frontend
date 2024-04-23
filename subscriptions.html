@@ -372,98 +372,15 @@
                             <th>Transaction</th>
                             <th>Number</th>
                             <th>Purchase</th>
-                            <th>Edit</th>
+                            <th>Cancel</th>
                           </tr>
                         </thead>
                         <tbody id="table_body_id">
-                           <tr>
-                              <td>
-                                <span class="oparetor">
-                                   <img src="assets/img/svg/phone.svg" alt="img" style="width: 35%; height: 50%;">
-                                </span>
-                              </td>
-                              <td>Airtime</td>
-                              <td>(813) 680-45 98</td>
-                              <td>
-                                 <a href="payment.html" class="purchase">
-                                    <span>
-                                       Recharge Now
-                                      </span>
-                                   </a>
-                                </td>
-                                <td>
-                                 <a href="javascript:void(0)" class="edit">
-                                    <img src="assets/img/svg/edits.svg" alt="img">
-                                 </a>
-                                </td>
-                          </tr>
-                          <tr>
-                           <td> 
-                              <span class="oparetor">
-                                  <img src="assets/img/svg/broadband.svg" alt="img" style="width: 50%; height: 50%;">
-                              </span>
-                          </td>
-                            <td>Data Subscription</td>
-                            <td>(0818) 979-9992</td>
-                            <td>
-                               <a href="payment.html" class="purchase">
-                                  <span>
-                                     Recharge Now
-                                    </span>
-                                 </a>
-                              </td>
-                              <td>
-                                 <a href="javascript:void(0)" class="edit">
-                                    <img src="assets/img/svg/edits.svg" alt="img">
-                                 </a>
-                              </td>
-                          </tr>
-                          <tr>
-                           <td>
-                             <span class="oparetor">
-                                <img src="assets/img/svg/eletricity.svg" alt="img" style="width: 50%; height: 50%;">
-                             </span>
-                           </td>
-                           <td>Electric Bill</td>
-                           <td>4600</td>
-                           <td>
-                              <a href="payment.html" class="purchase">
-                                 <span>
-                                    Recharge Now
-                                 </span>
-                              </a>
-                           </td>
-                           <td>
-                              <a href="javascript:void(0)" class="edit">
-                                 <img src="assets/img/svg/edits.svg" alt="img">
-                              </a>
-                           </td>
-                         </tr>
-                         <tr>
-                           <td>
-                             <span class="oparetor">
-                                <img src="assets/img/svg/tv.svg" alt="img" style="width: 50%; height: 50%;">
-                             </span>
-                           </td>
-                           <td>TV/Decoder Subscription</td>
-                           <td>8829</td>
-                           <td>
-                               <a href="payment.html" class="purchase">
-                                 <span>
-                                    Recharge Now
-                                   </span>
-                                </a>
-                             </td>
-                             <td>
-                              <a href="javascript:void(0)" class="edit">
-                                 <img src="assets/img/svg/edits.svg" alt="img">
-                              </a>
-                             </td>
-                         </tr>
+                           <!--  this is where the subscription data would be displayed -->
                         </tbody>
                       </table>
                   </div>
-                  <ul id="paginationList" class="pagination justify-content-end disabled" style="margin-top: 20px;">
+                  <ul id="paginationList" class="pagination justify-content-end" style="margin-top: 20px;">
                      <li id="previousPage">
                         <a href="#">
                            <span class="icon">
@@ -535,6 +452,24 @@
    </div>
 </section>
 <!-- order End -->
+
+<!-- Popup box -->
+<!-- <div id="balance-popup" class="popup">
+<div class="popup-content">
+   <p id="contentData1"></p>
+   <button class="verify-button" id="submit-verification-btn">Submit</button>
+   <button class="cancel-button" id="cancel-verification-btn">Cancel</button>
+</div>
+</div> -->
+
+<!-- Popup box for unavailable data -->
+<!-- <div id="subErrorPopup" class="popup">
+   <div class="popup-content">
+      <p id="contentData2"></p>
+      <button class="verify-button" id="submit-verification-btn">Submit</button>
+      <button class="cancel-button" id="cancel-verification-btn">Cancel</button>
+   </div>
+</div> -->
 
 <!-- footer Here -->
 <footer class="footer__section bgsection pt-120">
@@ -684,8 +619,6 @@
    </div>
 </footer>
 <!-- footer End -->
-
-
 
    <!--Jquery 3 6 0 Min Js-->
    <script src="assets/js/jquery-3.6.0.min.js"></script>

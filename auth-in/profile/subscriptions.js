@@ -197,8 +197,6 @@ function renderSubscriptionHistory(historyData) {
         // Add event listener to the row element
         document.getElementById("addSub").addEventListener('click', function(event) {
         event.preventDefault();
-        
-        alert("added new subscription");
     });
 
         return; // Exit the function
@@ -207,29 +205,30 @@ function renderSubscriptionHistory(historyData) {
     historyData.forEach((historyItem) => {
         // Create a new table row element for each history item
         const rowElement = document.createElement('tr');
-
+    
         let subscriptionIcon;
         let serviceID;
-        let iconStyle
+        let iconStyle;
+    
         // let's check the status of the transaction
         if (historyItem.UniqueID == 'airtime') {
             subscriptionIcon = 'assets/img/svg/phone.svg';
             serviceID = 'Airtime Top-Up';
-            iconStyle = 'width: 35%; height: 50%;'
+            iconStyle = 'width: 35%; height: 50%;';
         } else if (historyItem.UniqueID == 'data') {
             subscriptionIcon = 'assets/img/svg/broadband.svg';
             serviceID = 'Data Subscription';
-            iconStyle = 'width: 50%; height: 50%;'
+            iconStyle = 'width: 50%; height: 50%;';
         } else if (historyItem.UniqueID == 'electricity') {
             subscriptionIcon = 'assets/img/svg/eletricity.svg';
             serviceID = 'Electric Bill';
-            iconStyle = 'width: 50%; height: 50%;'
+            iconStyle = 'width: 50%; height: 50%;';
         } else if (historyItem.UniqueID == 'decoder') {
             subscriptionIcon = 'assets/img/svg/tv.svg';
             serviceID = 'TV/Decoder Subscription';
-            iconStyle = 'width: 50%; height: 50%;'
+            iconStyle = 'width: 50%; height: 50%;';
         }
-
+    
         rowElement.innerHTML = `
             <td>
                 <span class="oparetor">
@@ -239,33 +238,44 @@ function renderSubscriptionHistory(historyData) {
             <td>${serviceID}</td>
             <td>${historyItem.MobileNumber}</td>
             <td>
-                <a id="autoRecharge" href="#" class= "purchase">
+                <a id="autoRecharge_${historyItem.ID}" href="#" class="purchase">
                     <span>
                         Recharge Now
                     </span>
                 </a>
             </td>
             <td>
-                <a href="#" class="edit">
-                    <img src="assets/img/svg/edits.svg" alt="img">
+                <a id="edit_${historyItem.ID}" href="#" class="edit">
+                    <img src="assets/img/svg/cross.svg" alt="img">
                 </a>
             </td>
         `;
-
+    
         // Set the ID of the row element
         rowElement.id = historyItem.ID;
-
+    
         // Append the row to the table body
         tableBody.appendChild(rowElement);
-
-        // Add event listener to the row element
-        rowElement.addEventListener('click', function(event) {
+    
+        // Add event listener to the edit link
+        const editLink = rowElement.querySelector(`#edit_${historyItem.ID}`);
+        editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
-            alert(`this is the row id: ${rowId}`);
+            alert(`Edit button clicked for row with ID: ${rowId}`);
+        });
+    
+        // Add event listener to the autoRecharge link
+        const autoRechargeLink = rowElement.querySelector(`#autoRecharge_${historyItem.ID}`);
+        autoRechargeLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            // Retrieve the ID of the clicked row
+            const rowId = event.target.closest('tr').id;
+            alert(`Auto recharge button clicked for row with ID: ${rowId}`);
         });
     });
+    
     if (historyData.length > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
@@ -274,36 +284,36 @@ function renderSubscriptionHistory(historyData) {
 }
 
 const testData = [
-    {
-        UniqueID: 'airtime',
-        MobileNumber: '(813) 680-45 98',
-        ID: 1,
-    },
-    {
-        UniqueID: 'data',
-        MobileNumber: '(813) 670-45 38',
-        ID: 2,
-    },
-    {
-        UniqueID: 'electricity',
-        MobileNumber: '(813) 980-45 18',
-        ID: 3,
-    },
-    {
-        UniqueID: 'decoder',
-        MobileNumber: '(818) 680-45 98',
-        ID: 4,
-    },
-    {
-        UniqueID: 'data',
-        MobileNumber: '(811) 680-45 98',
-        ID: 5,
-    },
-    {
-        UniqueID: 'airtime',
-        MobileNumber: '(810) 680-45 98',
-        ID: 6,
-    },
+    // {
+    //     UniqueID: 'airtime',
+    //     MobileNumber: '(813) 680-45 98',
+    //     ID: 1,
+    // },
+    // {
+    //     UniqueID: 'data',
+    //     MobileNumber: '(813) 670-45 38',
+    //     ID: 2,
+    // },
+    // {
+    //     UniqueID: 'electricity',
+    //     MobileNumber: '(813) 980-45 18',
+    //     ID: 3,
+    // },
+    // {
+    //     UniqueID: 'decoder',
+    //     MobileNumber: '(818) 680-45 98',
+    //     ID: 4,
+    // },
+    // {
+    //     UniqueID: 'data',
+    //     MobileNumber: '(811) 680-45 98',
+    //     ID: 5,
+    // },
+    // {
+    //     UniqueID: 'airtime',
+    //     MobileNumber: '(810) 680-45 98',
+    //     ID: 6,
+    // },
 ];
 
 renderSubscriptionHistory(testData)
