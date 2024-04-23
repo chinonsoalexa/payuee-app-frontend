@@ -2,7 +2,7 @@ function blogPost(postsData) {
     const parentElement = document.getElementById('blogPostContents');
 
     postsData.forEach((postData, index) => {
-        const postId = `post_${index}_${Date.now()}`;
+        const postId = `post_${index}_`;
 
         const divContainer = document.createElement('div');
         divContainer.classList.add('blog__list__item', 'mb__30');
@@ -61,18 +61,15 @@ function blogPost(postsData) {
         const image = divContainer.querySelector('.thumb');
         readMoreButton.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('Read more button clicked for post:', postId);
-            prompt('Read more button clicked for post:', postId);
+            window.location.href = 'blog-details.html?post=' + postId;
         });
         title.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('Read more button clicked for post:', postId);
-            prompt('Read more button clicked for post:', postId);
+            window.location.href = 'blog-details.html?post=' + postId;
         });
         image.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('Read more button clicked for post:', postId);
-            prompt('Read more button clicked for post:', postId);
+            window.location.href = 'blog-details.html?post=' + postId;
         });
     });
 }
