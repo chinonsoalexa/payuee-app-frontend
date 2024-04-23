@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const blogDetails = [
     {
         postID: 'post_0_',
-        postImageSrc: 'assets/img/blog/list6.jpg',
+        postImageSrc: '../assets/img/blog/list6.jpg',
         dateMonth: '17 Apr',
         dateYear: '2024',
         postTitle: 'The Evolution of Digital Payments: How Payuee is Transforming the Landscape...',
@@ -47,7 +47,7 @@ const blogDetails = [
     },
     {
         postID: 'post_1_',
-        postImageSrc: 'assets/img/blog/list2.jpg',
+        postImageSrc: '../assets/img/blog/list2.jpg',
         dateMonth: '06 Apr',
         dateYear: '2024',
         postTitle: "Empowering Small Businesses: Payuee's Impact on Entrepreneurship...",
@@ -60,7 +60,7 @@ const blogDetails = [
     },
     {
         postID: 'post_2_',
-        postImageSrc: 'assets/img/blog/list3.jpg',
+        postImageSrc: '../assets/img/blog/list3.jpg',
         dateMonth: '02 Apr',
         dateYear: '2024',
         postTitle: "Navigating the Future of Financial Inclusion: Payuee's Role in Bridging the Gap...",
@@ -73,7 +73,7 @@ const blogDetails = [
     },
     {
         postID: 'post_3_',
-        postImageSrc: 'assets/img/blog/list4.jpg',
+        postImageSrc: '../assets/img/blog/list4.jpg',
         dateMonth: '13 Mar',
         dateYear: '2024',
         postTitle: 'Securing Digital Transactions: How Payuee Protects Your Financial Information...',
@@ -82,7 +82,7 @@ const blogDetails = [
     },
     {
         postID: 'post_4_',
-        postImageSrc: 'assets/img/blog/list5.jpg',
+        postImageSrc: '../assets/img/blog/list5.jpg',
         dateMonth: '05 Feb',
         dateYear: '2024',
         postTitle: "Driving Financial Literacy: Payuee's Initiatives for Educating Users About Money Management...",
@@ -91,7 +91,7 @@ const blogDetails = [
     },
     {
         postID: 'post_5_',
-        postImageSrc: 'assets/img/blog/list1.jpg',
+        postImageSrc: '../assets/img/blog/list1.jpg',
         dateMonth: '23 Nov',
         dateYear: '2022',
         postTitle: 'Sustainability in Fintech: How Payuee is Driving Environmental Responsibility...',
