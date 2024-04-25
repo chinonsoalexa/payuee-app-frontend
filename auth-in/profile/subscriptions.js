@@ -220,7 +220,7 @@ function renderSubscriptionHistory(historyData) {
         if (historyItem.UniqueID == 'airtime') {
             subscriptionIcon = 'assets/img/svg/phone.svg';
             serviceID = 'Airtime Top-Up';
-            iconStyle = 'width: 35%; height: 50%;';
+            iconStyle = 'width: 35%; height: 50%; fill: red;';
         } else if (historyItem.UniqueID == 'data') {
             subscriptionIcon = 'assets/img/svg/broadband.svg';
             serviceID = 'Data Subscription';
@@ -238,7 +238,8 @@ function renderSubscriptionHistory(historyData) {
         rowElement.innerHTML = `
             <td>
                 <span class="oparetor">
-                    <img src="${subscriptionIcon}" alt="img" style="${iconStyle}">
+                    <img id="settingSvg" src="${subscriptionIcon}" alt="img" fill="red" style="${iconStyle}">
+                </svg>
                 </span>
             </td>
             <td>${serviceID}</td>
@@ -252,11 +253,13 @@ function renderSubscriptionHistory(historyData) {
             </td>
             <td>
                 <a id="edit_${historyItem.ID}" href="#" class="edit">
-                    <img src="assets/img/svg/cross.svg" alt="img">
+                    <i class="material-symbols-outlined" style="font-size: 24px;">
+                        delete
+                    </i>
                 </a>
             </td>
         `;
-    
+
         // Set the ID of the row element
         rowElement.id = historyItem.ID;
     
@@ -269,7 +272,24 @@ function renderSubscriptionHistory(historyData) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
-            alert(`Edit button clicked for row with ID: ${rowId}`);
+            const confirmPopup = document.getElementById('confirm-popup');
+            const cancelButton = document.getElementById('cancel-verification-btn');
+            const verifyButton = document.getElementById('submit-verification-btn');
+            const contentData1 = document.getElementById('contentData1');
+        
+            confirmPopup.style.display = 'block';
+
+            contentData1.textContent = 'Are you sure you want to cancel this subscription?';
+        
+            // Cancel button click event
+            cancelButton.addEventListener('click', () => {
+                confirmPopup.style.display = 'none';
+            });
+
+            verifyButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                alert(`Edit button clicked for row with ID: ${rowId}`);
+            });
         });
     
         // Add event listener to the autoRecharge link
@@ -278,7 +298,24 @@ function renderSubscriptionHistory(historyData) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
-            alert(`Auto recharge button clicked for row with ID: ${rowId}`);
+            const confirmPopup = document.getElementById('confirm-popup2');
+            const cancelButton = document.getElementById('cancel-verification-btn2');
+            const verifyButton = document.getElementById('submit-verification-btn2');
+            const contentData1 = document.getElementById('contentData2');
+        
+            confirmPopup.style.display = 'block';
+
+            contentData1.textContent = 'Are you sure you want to renew this subscription?';
+        
+            // Cancel button click event
+            cancelButton.addEventListener('click', () => {
+                confirmPopup.style.display = 'none';
+            });
+
+            verifyButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                alert(`Auto recharge button clicked for row with ID: ${rowId}`);
+            });
         });
     });
     
@@ -290,36 +327,36 @@ function renderSubscriptionHistory(historyData) {
 }
 
 const testData = [
-    // {
-    //     UniqueID: 'airtime',
-    //     MobileNumber: '(813) 680-45 98',
-    //     ID: 1,
-    // },
-    // {
-    //     UniqueID: 'data',
-    //     MobileNumber: '(813) 670-45 38',
-    //     ID: 2,
-    // },
-    // {
-    //     UniqueID: 'electricity',
-    //     MobileNumber: '(813) 980-45 18',
-    //     ID: 3,
-    // },
-    // {
-    //     UniqueID: 'decoder',
-    //     MobileNumber: '(818) 680-45 98',
-    //     ID: 4,
-    // },
-    // {
-    //     UniqueID: 'data',
-    //     MobileNumber: '(811) 680-45 98',
-    //     ID: 5,
-    // },
-    // {
-    //     UniqueID: 'airtime',
-    //     MobileNumber: '(810) 680-45 98',
-    //     ID: 6,
-    // },
+    {
+        UniqueID: 'airtime',
+        MobileNumber: '(813) 680-45 98',
+        ID: 1,
+    },
+    {
+        UniqueID: 'data',
+        MobileNumber: '(813) 670-45 38',
+        ID: 2,
+    },
+    {
+        UniqueID: 'electricity',
+        MobileNumber: '(813) 980-45 18',
+        ID: 3,
+    },
+    {
+        UniqueID: 'decoder',
+        MobileNumber: '(818) 680-45 98',
+        ID: 4,
+    },
+    {
+        UniqueID: 'data',
+        MobileNumber: '(811) 680-45 98',
+        ID: 5,
+    },
+    {
+        UniqueID: 'airtime',
+        MobileNumber: '(810) 680-45 98',
+        ID: 6,
+    },
 ];
 
 renderSubscriptionHistory(testData)
@@ -817,3 +854,59 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
+
+// Add event listener to connect button
+document.getElementById('connectWhatsapp').addEventListener('click',  (event) => {
+    
+    event.preventDefault()
+    const installPopup = document.getElementById('whatsapp-connect-popup');
+    const cancelButton = document.getElementById('whatsapp-cancel-btn');
+    const verifyButton = document.getElementById('verify-btn');
+    const whatsappNumberInput = document.getElementById('whatsapp-number');
+
+    installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+        installPopup.style.display = 'none';
+    });
+
+    // Verify button click event
+    verifyButton.addEventListener('click', async (event) => {
+        event.preventDefault()
+        const whatsappNumber = whatsappNumberInput.value;
+
+        // Send request to send OTP
+        const sendOtpResponse = await sendOtpToWhatsappNumber(whatsappNumber);
+        console.log(sendOtpResponse);
+
+        // Display verification popup
+        installPopup.style.display = 'none';
+        const verificationPopup = document.getElementById('whatsapp-verification-popup');
+        verificationPopup.style.display = 'block';
+
+        // Handle verification submit button click
+        const submitButton = document.getElementById('submit-verification-btn');
+        const verificationCodeInput = document.getElementById('verification-code');
+        submitButton.addEventListener('click', async () => {
+            verificationPopup.style.display = 'none';
+            const whatsappOtp = verificationCodeInput.value;
+
+            // Send request to verify OTP
+            const verifyOtpResponse = await verifyWhatsappOtpCode(whatsappNumber, whatsappOtp);
+            console.log(verifyOtpResponse);
+
+            // Display verification message
+            const verificationMessagePopup = document.getElementById('whatsapp-verification-popup2');
+            const whatsappAuthMessage = document.getElementById('whatsappAuthMessage');
+            whatsappAuthMessage.textContent = verifyOtpResponse;
+            verificationMessagePopup.style.display = 'block';
+
+            // Handle message popup close button click
+            const closeButton = document.getElementById('message-cancel-btn');
+            closeButton.addEventListener('click', () => {
+                verificationMessagePopup.style.display = 'none';
+            });
+        });
+    });
+});
