@@ -305,7 +305,7 @@ async function addEventListeners(historyItem) {
 
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                // alert(`Edit button clicked for row with ID: ${rowId}`);
+                console.log(`Edit button clicked for row with ID: ${rowId}`);
 
                 const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
 
@@ -378,7 +378,7 @@ async function addEventListeners(historyItem) {
 
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                // alert(`Auto recharge button clicked for row with ID: ${rowId}`);
+                console.log(`Auto recharge button clicked for row with ID: ${rowId}`);
 
                 const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
 
