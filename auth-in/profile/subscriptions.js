@@ -345,12 +345,13 @@ async function addEventListeners(historyItem) {
                     // Process the responseData as needed
                     // Assuming you have a function to render the subscription history, you can call it here
                     // renderSubscriptionHistory(responseData);
-                } catch (error) {
+                confirmPopup.style.display = 'none';
+            } catch (error) {
                     // console.error('Error fetching data:', error);
                     // Handle error, maybe display an error message to the user
                     // displayErrorMessage();
-                }                
                 confirmPopup.style.display = 'none';
+            }                
             });
         });
     }
@@ -378,7 +379,7 @@ async function addEventListeners(historyItem) {
 
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                alert(`Auto recharge button clicked for row with ID: ${rowId}`);
+                // alert(`Auto recharge button clicked for row with ID: ${rowId}`);
 
                 const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
 
@@ -417,12 +418,13 @@ async function addEventListeners(historyItem) {
                     // Process the responseData as needed
                     // Assuming you have a function to render the subscription history, you can call it here
                     // renderSubscriptionHistory(responseData);
+                    confirmPopup.style.display = 'none';
                 } catch (error) {
-                    // console.error('Error fetching data:', error);
-                    // Handle error, maybe display an error message to the user
-                    // displayErrorMessage();
+                        // console.error('Error fetching data:', error);
+                        // Handle error, maybe display an error message to the user
+                        // displayErrorMessage();
+                    confirmPopup.style.display = 'none';
                 }                
-                confirmPopup.style.display = 'none';
             });
         });
     }
