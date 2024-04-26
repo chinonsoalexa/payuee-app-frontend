@@ -284,7 +284,7 @@ function renderSubscriptionHistory(historyData) {
 
 function addEventListeners(historyItem) {
     // Add event listener to the edit link
-    const editLink = document.getElementById(`edit_${historyItem.ID}`);
+    const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
@@ -315,7 +315,6 @@ function addEventListeners(historyItem) {
     const autoRechargeLink = document.getElementById(`autoRecharge_${historyItem.ServiceID}`);
     if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
-            event.preventDefault();
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
