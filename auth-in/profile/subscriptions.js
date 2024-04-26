@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
-                // displayErrorMessage();
+                displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
                 
@@ -204,10 +204,10 @@ function renderSubscriptionHistory(historyData) {
         // alert('hi just testing')
         });
 
-        // document.getElementById("cancelSub").addEventListener('click', function(event) {
-        //     event.preventDefault();
-        //     alert('hi just testing 2')
-        // });
+        document.getElementById("cancelSub").addEventListener('click', function(event) {
+            event.preventDefault();
+            // alert('hi just testing 2')
+        });
 
         return; // Exit the function
     }
