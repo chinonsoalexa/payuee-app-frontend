@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const responseData = await response.json();
 
         console.log('this is the response data', responseData);
+        console.log('this is the success data', responseData.success);
 
         // render the transaction history
         renderSubscriptionHistory(responseData.success);
