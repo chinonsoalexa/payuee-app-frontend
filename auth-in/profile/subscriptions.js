@@ -247,7 +247,7 @@ function renderSubscriptionHistory(historyData) {
                 </span>
             </td>
             <td>${serviceID}</td>
-            <td>${historyItem.MobileNumber}</td>
+            <td>${historyItem.ServiceNumber}</td>
             <td>
                 <a id="autoRecharge_${historyItem.ServiceID}" href="#" class="purchase">
                     <span>
@@ -256,7 +256,7 @@ function renderSubscriptionHistory(historyData) {
                 </a>
             </td>
             <td>
-                <a id="edit_${historyItem.ID}" href="#" class="edit">
+                <a id="edit_${historyItem.ServiceID}" href="#" class="edit">
                     <i class="material-symbols-outlined" style="font-size: 24px;">
                         delete
                     </i>
@@ -288,26 +288,26 @@ function addEventListeners(historyItem) {
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
-              // Retrieve the ID of the clicked row
-              const rowId = event.target.closest('tr').id;
-              const confirmPopup = document.getElementById('confirm-popup');
-              const cancelButton = document.getElementById('cancel-verification-btn');
-              const verifyButton = document.getElementById('submit-verification-btn');
-              const contentData1 = document.getElementById('contentData1');
-          
-              confirmPopup.style.display = 'block';
-  
-              contentData1.textContent = 'Are you sure you want to cancel this subscription?';
-          
-              // Cancel button click event
-              cancelButton.addEventListener('click', () => {
-                  confirmPopup.style.display = 'none';
-              });
-  
-              verifyButton.addEventListener('click', async (event) => {
-                  event.preventDefault();
-                  alert(`Edit button clicked for row with ID: ${rowId}`);
-              });
+            // Retrieve the ID of the clicked row
+            const rowId = event.target.closest('tr').id;
+            const confirmPopup = document.getElementById('confirm-popup');
+            const cancelButton = document.getElementById('cancel-verification-btn');
+            const verifyButton = document.getElementById('submit-verification-btn');
+            const contentData1 = document.getElementById('contentData1');
+        
+            confirmPopup.style.display = 'block';
+
+            contentData1.textContent = 'Are you sure you want to cancel this subscription?';
+        
+            // Cancel button click event
+            cancelButton.addEventListener('click', () => {
+                confirmPopup.style.display = 'none';
+            });
+
+            verifyButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                alert(`Edit button clicked for row with ID: ${rowId}`);
+            });
         });
     }
 
