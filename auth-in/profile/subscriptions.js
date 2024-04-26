@@ -168,7 +168,7 @@ function renderSubscriptionHistory(historyData) {
 
     // Check if historyData is empty
     console.log('this is the history data', historyData);
-    if (historyData.length === 0) {
+    if (historyData.length === 0 || historyData == null) {
         // Create a new table row element
         const rowElement = document.createElement('tr');
 
