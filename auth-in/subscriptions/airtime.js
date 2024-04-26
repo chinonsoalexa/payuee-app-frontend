@@ -106,7 +106,6 @@ function buy_airtime(){
    let  amountInputNumber = parseInt(amountInput.value, 10);
     // let's get the selected value
     selectedCarrierValue = getSelectedValue("carrierSelect");
-    console.log(selectedCarrierValue)
 
     if (phone.length > 11 || phone.length < 11) {
         validated = false

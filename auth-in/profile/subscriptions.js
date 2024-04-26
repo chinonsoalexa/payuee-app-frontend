@@ -6,152 +6,154 @@ var TwoBeforePageOnLoad;
 var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 
-// document.addEventListener('DOMContentLoaded', async function () {
-//     // Get the current URL
-//     const currentUrl = new URL(window.location.href);
+document.addEventListener('DOMContentLoaded', async function () {
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
 
-//     // Extract parameters using URLSearchParams
-//     const params = new URLSearchParams(currentUrl.search);
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
 
-//     // Get individual parameter values
-//     let pageNumber = params.get("page");
-//     if (pageNumber == null) {
-//         pageNumber = "1";
-//     }
+    // Get individual parameter values
+    let pageNumber = params.get("page");
+    if (pageNumber == null) {
+        pageNumber = "1";
+    }
 
-//     const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + pageNumber;
 
-//     const requestOptions = {
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         credentials: 'include', // set credentials to include cookies
-//     };
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
 
-//     try {
-//         const response = await fetch(apiUrl, requestOptions);
+    try {
+        const response = await fetch(apiUrl, requestOptions);
 
-//         if (!response.ok) {
-//             const errorData = await response.json();
+        if (!response.ok) {
+            const errorData = await response.json();
 
-//             if (errorData.error === 'failed to get user from request') {
-//                 // need to do a data of just null event 
-//                 // displayErrorMessage();
-//             } else if (errorData.error === 'failed to get transaction history') {
-//                 // need to do a data of just null event 
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
                 
-//             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-//                 // let's log user out the users session has expired
-//                 logUserOutIfTokenIsExpired();
-//             }else {
-//                 // displayErrorMessage();
-//             }
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                // let's log user out the users session has expired
+                logUserOutIfTokenIsExpired();
+            }else {
+                // displayErrorMessage();
+            }
 
-//             return;
-//         }
+            return;
+        }
 
-//         const responseData = await response.json();
+        const responseData = await response.json();
 
-//         // render the transaction history
-//         renderSubscriptionHistory(responseData.success);
+        console.log('this is the response data', responseData);
+
+        // render the transaction history
+        renderSubscriptionHistory(responseData.success);
         
-//         NextPageOnLoad = responseData.pagination.NextPage;
-//         PreviousPageOnLoad = responseData.pagination.PreviousPage;
-//         CurrentPageOnLoad = responseData.pagination.CurrentPage;
-//         TotalPageOnLoad = responseData.pagination.TotalPages;
-//         TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
-//         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
-//         ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
-//         if (TotalPageOnLoad > 6) {
-//             // let's disable the next page navigation button
-//             document.getElementById('paginationList').classList.remove('disabled');
-//             document.getElementById('paginationList').disabled = false;
-//         }
+        NextPageOnLoad = responseData.pagination.NextPage;
+        PreviousPageOnLoad = responseData.pagination.PreviousPage;
+        CurrentPageOnLoad = responseData.pagination.CurrentPage;
+        TotalPageOnLoad = responseData.pagination.TotalPages;
+        TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
+        TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
+        ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
+        if (TotalPageOnLoad > 6) {
+            // let's disable the next page navigation button
+            document.getElementById('paginationList').classList.remove('disabled');
+            document.getElementById('paginationList').disabled = false;
+        }
 
-//         if (CurrentPageOnLoad <= 1) {
-//             deactivatePreviousButton();
-//             deactivateBeforeButton();
-//         } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
-//             deactivateNextButton();
-//         }
+        if (CurrentPageOnLoad <= 1) {
+            deactivatePreviousButton();
+            deactivateBeforeButton();
+        } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
+            deactivateNextButton();
+        }
 
-//         if (CurrentPageOnLoad < 4) {
-//             // let's disable the next page navigation button
-//             document.getElementById('constantBeforePage').classList.add('disabled');
-//             document.getElementById('constantBeforePage').disabled = true;
-//         }
+        if (CurrentPageOnLoad < 4) {
+            // let's disable the next page navigation button
+            document.getElementById('constantBeforePage').classList.add('disabled');
+            document.getElementById('constantBeforePage').disabled = true;
+        }
 
-//         if (CurrentPageOnLoad < 5) {
-//             // let's disable the next page navigation button
-//             document.getElementById('dotBeforePage').classList.add('disabled');
-//             document.getElementById('dotBeforePage').disabled = true;
-//         }
+        if (CurrentPageOnLoad < 5) {
+            // let's disable the next page navigation button
+            document.getElementById('dotBeforePage').classList.add('disabled');
+            document.getElementById('dotBeforePage').disabled = true;
+        }
 
-//         if (CurrentPageOnLoad > 2) {
-//             // let's update the pagination with the next page
-//             var currentPageElement = document.getElementById("twoBeforePage");
-//             var currentPageAnchor = currentPageElement.querySelector("a");
-//             currentPageAnchor.textContent = TwoBeforePageOnLoad;
-//         } else {
-//             // let's disable the next page navigation button
-//             document.getElementById('twoBeforePage').classList.add('disabled');
-//             document.getElementById('twoBeforePage').disabled = true;
-//         }
+        if (CurrentPageOnLoad > 2) {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("twoBeforePage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TwoBeforePageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('twoBeforePage').classList.add('disabled');
+            document.getElementById('twoBeforePage').disabled = true;
+        }
 
-//         // let's update the pagination with the next page
-//         var currentPageElement = document.getElementById("beforePage");
-//         var currentPageAnchor = currentPageElement.querySelector("a");
-//         currentPageAnchor.textContent = PreviousPageOnLoad;
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("beforePage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = PreviousPageOnLoad;
 
-//         // let's update the pagination with the current page
-//         var currentPageElement = document.getElementById("currentPage");
-//         var currentPageAnchor = currentPageElement.querySelector("a");
-//         currentPageAnchor.textContent = CurrentPageOnLoad;
-//         deactivateCurrentButton();
+        // let's update the pagination with the current page
+        var currentPageElement = document.getElementById("currentPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = CurrentPageOnLoad;
+        deactivateCurrentButton();
 
-//         if (CurrentPageOnLoad >= TotalPageOnLoad) {
-//             // let's disable the next page navigation button
-//             document.getElementById('afterPage').classList.add('disabled');
-//             document.getElementById('afterPage').disabled = true;
-//         } else {
-//             // let's update the pagination with the next page
-//             var currentPageElement = document.getElementById("afterPage");
-//             var currentPageAnchor = currentPageElement.querySelector("a");
-//             currentPageAnchor.textContent = NextPageOnLoad;
-//         }
+        if (CurrentPageOnLoad >= TotalPageOnLoad) {
+            // let's disable the next page navigation button
+            document.getElementById('afterPage').classList.add('disabled');
+            document.getElementById('afterPage').disabled = true;
+        } else {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("afterPage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = NextPageOnLoad;
+        }
 
-//         if (TwoAfterPageOnLoad < TotalPageOnLoad) {
-//             // let's update the pagination with the next page
-//             var currentPageElement = document.getElementById("twoAfterPage");
-//             var currentPageAnchor = currentPageElement.querySelector("a");
-//             currentPageAnchor.textContent = TwoAfterPageOnLoad;
-//         } else {
-//             // let's disable the next page navigation button
-//             document.getElementById('twoAfterPage').classList.add('disabled');
-//             document.getElementById('twoAfterPage').disabled = true;
-//         }
+        if (TwoAfterPageOnLoad < TotalPageOnLoad) {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("twoAfterPage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TwoAfterPageOnLoad;
+        } else {
+            // let's disable the next page navigation button
+            document.getElementById('twoAfterPage').classList.add('disabled');
+            document.getElementById('twoAfterPage').disabled = true;
+        }
 
-//         if (TwoAfterPageOnLoad > TotalPageOnLoad) {
-//             // let's disable the next page navigation button
-//             document.getElementById('constantAfterPage').classList.add('disabled');
-//             document.getElementById('constantAfterPage').disabled = true;
-//         } else {
-//             // let's update the pagination with the next page
-//             var currentPageElement = document.getElementById("constantAfterPage");
-//             var currentPageAnchor = currentPageElement.querySelector("a");
-//             currentPageAnchor.textContent = TotalPageOnLoad;
-//         }
+        if (TwoAfterPageOnLoad > TotalPageOnLoad) {
+            // let's disable the next page navigation button
+            document.getElementById('constantAfterPage').classList.add('disabled');
+            document.getElementById('constantAfterPage').disabled = true;
+        } else {
+            // let's update the pagination with the next page
+            var currentPageElement = document.getElementById("constantAfterPage");
+            var currentPageAnchor = currentPageElement.querySelector("a");
+            currentPageAnchor.textContent = TotalPageOnLoad;
+        }
 
-//         if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
-//             // let's disable the next page navigation button
-//             document.getElementById('dotAfterPage').classList.add('disabled');
-//             document.getElementById('dotAfterPage').disabled = true;
-//         }
-// } finally {
+        if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
+            // let's disable the next page navigation button
+            document.getElementById('dotAfterPage').classList.add('disabled');
+            document.getElementById('dotAfterPage').disabled = true;
+        }
+} finally {
 
-//     }
-// });
+    }
+});
 
 
 function renderSubscriptionHistory(historyData) {
@@ -395,7 +397,7 @@ try {
 document.getElementById("previousPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -430,7 +432,7 @@ document.getElementById("previousPage").addEventListener("click", async function
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + PreviousPageOnLoad;
     } finally {
     
         }
@@ -439,7 +441,7 @@ document.getElementById("previousPage").addEventListener("click", async function
 document.getElementById("constantBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + "1";
+    const apiUrl = "https://payuee.onrender.com/subscription/" + "1";
     
         const requestOptions = {
             method: "GET",
@@ -474,7 +476,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + "1";
+            window.location.href = 'subscriptions.html?page=' + "1";
     } finally {
     
         }
@@ -483,7 +485,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
 document.getElementById("beforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -518,7 +520,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + PreviousPageOnLoad;
     } finally {
     
         }
@@ -527,7 +529,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
 document.getElementById("twoBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TwoBeforePageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + TwoBeforePageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -562,7 +564,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + TwoBeforePageOnLoad;
     } finally {
     
         }
@@ -571,7 +573,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
 document.getElementById("currentPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + CurrentPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + CurrentPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -606,7 +608,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + CurrentPageOnLoad;
     } finally {
     
     }
@@ -615,7 +617,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -650,7 +652,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + NextPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + NextPageOnLoad;
     } finally {
     
     }
@@ -659,7 +661,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
 document.getElementById("constantAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TotalPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + TotalPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -694,7 +696,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TotalPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + TotalPageOnLoad;
     } finally {
     
     }
@@ -703,7 +705,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
 document.getElementById("afterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -738,7 +740,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + NextPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + NextPageOnLoad;
     } finally {
     
     }
@@ -747,7 +749,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
 document.getElementById("twoAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TwoAfterPageOnLoad;
+    const apiUrl = "https://payuee.onrender.com/subscription/" + TwoAfterPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -782,7 +784,7 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TwoAfterPageOnLoad;
+            window.location.href = 'subscriptions.html?page=' + TwoAfterPageOnLoad;
     } finally {
     
         }
@@ -854,59 +856,3 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
-
-// Add event listener to connect button
-document.getElementById('connectWhatsapp').addEventListener('click',  (event) => {
-    
-    event.preventDefault()
-    const installPopup = document.getElementById('whatsapp-connect-popup');
-    const cancelButton = document.getElementById('whatsapp-cancel-btn');
-    const verifyButton = document.getElementById('verify-btn');
-    const whatsappNumberInput = document.getElementById('whatsapp-number');
-
-    installPopup.style.display = 'block';
-
-    // Cancel button click event
-    cancelButton.addEventListener('click', () => {
-        installPopup.style.display = 'none';
-    });
-
-    // Verify button click event
-    verifyButton.addEventListener('click', async (event) => {
-        event.preventDefault()
-        const whatsappNumber = whatsappNumberInput.value;
-
-        // Send request to send OTP
-        const sendOtpResponse = await sendOtpToWhatsappNumber(whatsappNumber);
-        console.log(sendOtpResponse);
-
-        // Display verification popup
-        installPopup.style.display = 'none';
-        const verificationPopup = document.getElementById('whatsapp-verification-popup');
-        verificationPopup.style.display = 'block';
-
-        // Handle verification submit button click
-        const submitButton = document.getElementById('submit-verification-btn');
-        const verificationCodeInput = document.getElementById('verification-code');
-        submitButton.addEventListener('click', async () => {
-            verificationPopup.style.display = 'none';
-            const whatsappOtp = verificationCodeInput.value;
-
-            // Send request to verify OTP
-            const verifyOtpResponse = await verifyWhatsappOtpCode(whatsappNumber, whatsappOtp);
-            console.log(verifyOtpResponse);
-
-            // Display verification message
-            const verificationMessagePopup = document.getElementById('whatsapp-verification-popup2');
-            const whatsappAuthMessage = document.getElementById('whatsappAuthMessage');
-            whatsappAuthMessage.textContent = verifyOtpResponse;
-            verificationMessagePopup.style.display = 'block';
-
-            // Handle message popup close button click
-            const closeButton = document.getElementById('message-cancel-btn');
-            closeButton.addEventListener('click', () => {
-                verificationMessagePopup.style.display = 'none';
-            });
-        });
-    });
-});
