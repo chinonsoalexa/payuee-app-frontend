@@ -221,19 +221,19 @@ function renderSubscriptionHistory(historyData) {
         let iconStyle;
     
         // let's check the status of the transaction
-        if (historyItem.UniqueID == 'airtime') {
+        if (historyItem.ServiceName == 'airtime') {
             subscriptionIcon = 'assets/img/svg/phone.svg';
             serviceID = 'Airtime Top-Up';
             iconStyle = 'width: 35%; height: 50%; fill: red;';
-        } else if (historyItem.UniqueID == 'data') {
+        } else if (historyItem.ServiceName == 'data') {
             subscriptionIcon = 'assets/img/svg/broadband.svg';
             serviceID = 'Data Subscription';
             iconStyle = 'width: 50%; height: 50%;';
-        } else if (historyItem.UniqueID == 'electricity') {
+        } else if (historyItem.ServiceName == 'electricity') {
             subscriptionIcon = 'assets/img/svg/eletricity.svg';
             serviceID = 'Electric Bill';
             iconStyle = 'width: 50%; height: 50%;';
-        } else if (historyItem.UniqueID == 'decoder') {
+        } else if (historyItem.ServiceName == 'decoder') {
             subscriptionIcon = 'assets/img/svg/tv.svg';
             serviceID = 'TV/Decoder Subscription';
             iconStyle = 'width: 50%; height: 50%;';
@@ -249,7 +249,7 @@ function renderSubscriptionHistory(historyData) {
             <td>${serviceID}</td>
             <td>${historyItem.MobileNumber}</td>
             <td>
-                <a id="autoRecharge_${historyItem.ID}" href="#" class="purchase">
+                <a id="autoRecharge_${historyItem.ServiceID}" href="#" class="purchase">
                     <span>
                         Recharge Now
                     </span>
