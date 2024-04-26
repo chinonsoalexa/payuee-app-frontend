@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log('this is the success data', responseData.success);
 
         // render the transaction history
-        // renderSubscriptionHistory(responseData.success);
+        renderSubscriptionHistory(responseData.success);
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
@@ -269,36 +269,53 @@ function renderSubscriptionHistory(historyData) {
     
         // Append the row to the table body
         tableBody.appendChild(rowElement);
+    });
+
+    historyData.forEach((historyItem) => {
+        addEventListeners(historyItem);
+    });
     
-        // Add event listener to the edit link
-        const editLink = rowElement.querySelector(`#edit_${historyItem.ID}`);
+    if (historyData.length > 6) {
+        // let's disable the next page navigation button
+        document.getElementById('paginationList').classList.remove('disabled');
+        document.getElementById('paginationList').disabled = false;
+    }
+}
+
+function addEventListeners(historyItem) {
+    // Add event listener to the edit link
+    const editLink = document.getElementById(`edit_${historyItem.ID}`);
+    if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
-            // Retrieve the ID of the clicked row
-            const rowId = event.target.closest('tr').id;
-            const confirmPopup = document.getElementById('confirm-popup');
-            const cancelButton = document.getElementById('cancel-verification-btn');
-            const verifyButton = document.getElementById('submit-verification-btn');
-            const contentData1 = document.getElementById('contentData1');
-        
-            confirmPopup.style.display = 'block';
-
-            contentData1.textContent = 'Are you sure you want to cancel this subscription?';
-        
-            // Cancel button click event
-            cancelButton.addEventListener('click', () => {
-                confirmPopup.style.display = 'none';
-            });
-
-            verifyButton.addEventListener('click', async (event) => {
-                event.preventDefault();
-                alert(`Edit button clicked for row with ID: ${rowId}`);
-            });
+              // Retrieve the ID of the clicked row
+              const rowId = event.target.closest('tr').id;
+              const confirmPopup = document.getElementById('confirm-popup');
+              const cancelButton = document.getElementById('cancel-verification-btn');
+              const verifyButton = document.getElementById('submit-verification-btn');
+              const contentData1 = document.getElementById('contentData1');
+          
+              confirmPopup.style.display = 'block';
+  
+              contentData1.textContent = 'Are you sure you want to cancel this subscription?';
+          
+              // Cancel button click event
+              cancelButton.addEventListener('click', () => {
+                  confirmPopup.style.display = 'none';
+              });
+  
+              verifyButton.addEventListener('click', async (event) => {
+                  event.preventDefault();
+                  alert(`Edit button clicked for row with ID: ${rowId}`);
+              });
         });
-    
-        // Add event listener to the autoRecharge link
-        const autoRechargeLink = rowElement.querySelector(`#autoRecharge_${historyItem.ID}`);
+    }
+
+    // Add event listener to the autoRecharge link
+    const autoRechargeLink = document.getElementById(`autoRecharge_${historyItem.ServiceID}`);
+    if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
+            event.preventDefault();
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
@@ -321,12 +338,6 @@ function renderSubscriptionHistory(historyData) {
                 alert(`Auto recharge button clicked for row with ID: ${rowId}`);
             });
         });
-    });
-    
-    if (historyData.length > 6) {
-        // let's disable the next page navigation button
-        document.getElementById('paginationList').classList.remove('disabled');
-        document.getElementById('paginationList').disabled = false;
     }
 }
 
@@ -363,7 +374,7 @@ const testData = [
     },
 ];
 
-renderSubscriptionHistory(testData)
+// renderSubscriptionHistory(testData)
 
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
