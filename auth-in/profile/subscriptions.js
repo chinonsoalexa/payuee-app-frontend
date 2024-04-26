@@ -363,7 +363,7 @@ const testData = [
     },
 ];
 
-renderSubscriptionHistory(testData)
+// renderSubscriptionHistory(testData)
 
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
