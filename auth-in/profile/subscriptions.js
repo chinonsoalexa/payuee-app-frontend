@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const responseData = await response.json();
 
-        console.log('this is the response data', responseData);
-        console.log('this is the success data', responseData.success);
+        // console.log('this is the response data', responseData);
+        // console.log('this is the success data', responseData.success);
 
         // render the transaction history
         renderSubscriptionHistory(responseData.success);
@@ -167,7 +167,6 @@ function renderSubscriptionHistory(historyData) {
     }
 
     // Check if historyData is empty
-    console.log('this is the history data', historyData);
     if (historyData == null || historyData.length === 0) {
         // Create a new table row element
         const rowElement = document.createElement('tr');
@@ -515,7 +514,7 @@ document.getElementById("previousPage").addEventListener("click", async function
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -559,7 +558,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -603,7 +602,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -647,7 +646,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -691,7 +690,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -735,7 +734,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -779,7 +778,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -823,7 +822,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -867,7 +866,7 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log(errorData);
+                // console.log(errorData);
     
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
