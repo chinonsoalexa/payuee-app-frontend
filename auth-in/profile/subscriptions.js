@@ -332,34 +332,34 @@ function renderSubscriptionHistory(historyData) {
 
 const testData = [
     {
-        UniqueID: 'airtime',
-        MobileNumber: '(813) 680-45 98',
-        ID: 1,
+        ServiceName: 'airtime',
+        ServiceNumber: '(813) 680-45 98',
+        ServiceID: 1,
     },
     {
-        UniqueID: 'data',
-        MobileNumber: '(813) 670-45 38',
-        ID: 2,
+        ServiceName: 'data',
+        ServiceNumber: '(813) 670-45 38',
+        ServiceID: 2,
     },
     {
         UniqueID: 'electricity',
-        MobileNumber: '(813) 980-45 18',
-        ID: 3,
+        ServiceNumber: '(813) 980-45 18',
+        ServiceID: 3,
     },
     {
-        UniqueID: 'decoder',
-        MobileNumber: '(818) 680-45 98',
-        ID: 4,
+        ServiceName: 'decoder',
+        ServiceNumber: '(818) 680-45 98',
+        ServiceID: 4,
     },
     {
-        UniqueID: 'data',
-        MobileNumber: '(811) 680-45 98',
-        ID: 5,
+        ServiceName: 'data',
+        ServiceNumber: '(811) 680-45 98',
+        ServiceID: 5,
     },
     {
-        UniqueID: 'airtime',
-        MobileNumber: '(810) 680-45 98',
-        ID: 6,
+        ServiceName: 'airtime',
+        ServiceNumber: '(810) 680-45 98',
+        ServiceID: 6,
     },
 ];
 
