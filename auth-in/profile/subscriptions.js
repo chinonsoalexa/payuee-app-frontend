@@ -201,13 +201,13 @@ function renderSubscriptionHistory(historyData) {
         // Add event listener to the row element
         document.getElementById("addSub").addEventListener('click', function(event) {
         event.preventDefault();
-        alert('hi just testing')
+        // alert('hi just testing')
         });
 
-        document.getElementById("cancelSub").addEventListener('click', function(event) {
-            event.preventDefault();
-            alert('hi just testing 2')
-        });
+        // document.getElementById("cancelSub").addEventListener('click', function(event) {
+        //     event.preventDefault();
+        //     alert('hi just testing 2')
+        // });
 
         return; // Exit the function
     }
