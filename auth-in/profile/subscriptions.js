@@ -282,7 +282,7 @@ function renderSubscriptionHistory(historyData) {
     }
 }
 
-function addEventListeners(historyItem) {
+async function addEventListeners(historyItem) {
     // Add event listener to the edit link
     const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     if (editLink) {
@@ -306,7 +306,51 @@ function addEventListeners(historyItem) {
 
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                alert(`Edit button clicked for row with ID: ${rowId}`);
+                // alert(`Edit button clicked for row with ID: ${rowId}`);
+
+                const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
+
+                const requestOptions = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                };
+                
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+                
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                
+                        if (errorData.error === 'failed to get user from request') {
+                            // Need to do a data of just null event 
+                            // displayErrorMessage();
+                        } else if (errorData.error === 'failed to get transaction history') {
+                            // Need to do a data of just null event 
+                            // displayNullData();
+                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                            // Let's log user out the users session has expired
+                            logUserOutIfTokenIsExpired();
+                        } else {
+                            // Display error message
+                            // displayErrorMessage();
+                        }
+                
+                        return;
+                    }
+                
+                    const responseData = await response.json();
+                    // Process the responseData as needed
+                    // Assuming you have a function to render the subscription history, you can call it here
+                    // renderSubscriptionHistory(responseData);
+                } catch (error) {
+                    // console.error('Error fetching data:', error);
+                    // Handle error, maybe display an error message to the user
+                    // displayErrorMessage();
+                }                
+                confirmPopup.style.display = 'none';
             });
         });
     }
@@ -335,6 +379,50 @@ function addEventListeners(historyItem) {
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
                 alert(`Auto recharge button clicked for row with ID: ${rowId}`);
+
+                const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
+
+                const requestOptions = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                };
+                
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+                
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                
+                        if (errorData.error === 'failed to get user from request') {
+                            // Need to do a data of just null event 
+                            // displayErrorMessage();
+                        } else if (errorData.error === 'failed to get transaction history') {
+                            // Need to do a data of just null event 
+                            // displayNullData();
+                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                            // Let's log user out the users session has expired
+                            logUserOutIfTokenIsExpired();
+                        } else {
+                            // Display error message
+                            // displayErrorMessage();
+                        }
+                
+                        return;
+                    }
+                
+                    const responseData = await response.json();
+                    // Process the responseData as needed
+                    // Assuming you have a function to render the subscription history, you can call it here
+                    // renderSubscriptionHistory(responseData);
+                } catch (error) {
+                    // console.error('Error fetching data:', error);
+                    // Handle error, maybe display an error message to the user
+                    // displayErrorMessage();
+                }                
+                confirmPopup.style.display = 'none';
             });
         });
     }
