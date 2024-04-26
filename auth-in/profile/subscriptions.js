@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log('this is the success data', responseData.success);
 
         // render the transaction history
-        renderSubscriptionHistory(responseData.success);
+        // renderSubscriptionHistory(responseData.success);
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
@@ -363,7 +363,7 @@ const testData = [
     },
 ];
 
-// renderSubscriptionHistory(testData)
+renderSubscriptionHistory(testData)
 
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
