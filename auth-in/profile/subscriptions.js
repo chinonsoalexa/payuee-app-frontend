@@ -287,6 +287,7 @@ async function addEventListeners(historyItem) {
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
+            alert("this is the role id: ", rowId)
             // Retrieve the ID of the clicked row
             const rowId = event.target.closest('tr').id;
             const confirmPopup = document.getElementById('confirm-popup');
@@ -368,6 +369,7 @@ async function addEventListeners(historyItem) {
 
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
+                alert("this is the role id: ", rowId)
                 const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
 
                 const requestOptions = {
