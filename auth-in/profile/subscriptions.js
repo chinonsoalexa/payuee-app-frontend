@@ -284,12 +284,12 @@ function renderSubscriptionHistory(historyData) {
 async function addEventListeners(historyItem) {
     console.log('history items 1:', historyItem);
     // Add event listener to the edit link
-    const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
+    const editLink = document.querySelector(`[id^="edit_${historyItem.ServiceID}"]`);
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            let rowId = event.target.closest('tr').id; // Declare rowId using let
+            let rowId = editLink.closest('tr').id; // Using editLink instead of event.target
             const confirmPopup = document.getElementById('confirm-popup');
             const cancelButton = document.getElementById('cancel-verification-btn');
             const verifyButton = document.getElementById('submit-verification-btn');
@@ -350,12 +350,12 @@ async function addEventListeners(historyItem) {
 
     console.log('history items 2:', historyItem);
     // Add event listener to the autoRecharge link
-    const autoRechargeLink = document.getElementById(`autoRecharge_${historyItem.ServiceID}`);
+    const autoRechargeLink = document.querySelector(`[id^="autoRecharge_${historyItem.ServiceID}"]`);
     if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            let rowId = event.target.closest('tr').id; // Declare rowId using let
+            let rowId = autoRechargeLink.closest('tr').id; // Using autoRechargeLink instead of event.target
             const confirmPopup = document.getElementById('confirm-popup2');
             const cancelButton = document.getElementById('cancel-verification-btn2');
             const verifyButton = document.getElementById('submit-verification-btn2');
