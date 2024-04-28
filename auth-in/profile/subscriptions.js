@@ -156,7 +156,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-
 function renderSubscriptionHistory(historyData) {
     // Assuming you have a reference to the table body element
     const tableBody = document.getElementById('table_body_id');
@@ -416,7 +415,6 @@ async function addEventListeners(historyItem) {
         });
     }
 }
-
 
 const testData = [
     {
