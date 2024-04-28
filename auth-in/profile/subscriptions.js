@@ -285,11 +285,13 @@ async function addEventListeners(historyItem) {
     console.log('history items 1:', historyItem);
     // Add event listener to the edit link
     const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
+    // Get all elements with class 'edit'
+    // const editButtons = document.querySelectorAll('.edit');
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            let rowId = editLink.target.closest('tr').id; // Declare rowId using let
+            const rowId = this.id; // Declare rowId using let
             const confirmPopup = document.getElementById('confirm-popup');
             const cancelButton = document.getElementById('cancel-verification-btn');
             const verifyButton = document.getElementById('submit-verification-btn');
@@ -355,7 +357,7 @@ async function addEventListeners(historyItem) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            let rowId = autoRechargeLink.target.closest('tr').id; // Declare rowId using let
+            let rowId = this.id; // Declare rowId using let
             const confirmPopup = document.getElementById('confirm-popup2');
             const cancelButton = document.getElementById('cancel-verification-btn2');
             const verifyButton = document.getElementById('submit-verification-btn2');
