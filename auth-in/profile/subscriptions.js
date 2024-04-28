@@ -284,6 +284,7 @@ function renderSubscriptionHistory(historyData) {
 let rowId;
 
 async function addEventListeners(historyItem) {
+    console.log('history items:', historyItem);
     // Add event listener to the edit link
     const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     if (editLink) {
