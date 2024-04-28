@@ -281,7 +281,6 @@ function renderSubscriptionHistory(historyData) {
 }
 
 async function addEventListeners(historyItem) {
-    console.log('history items 1:', historyItem);
     // Add event listener to the edit link
     const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     // Get all elements with class 'edit'
@@ -295,8 +294,7 @@ async function addEventListeners(historyItem) {
             const cancelButton = document.getElementById('cancel-verification-btn');
             const verifyButton = document.getElementById('submit-verification-btn');
             const contentData1 = document.getElementById('contentData1');
-            console.log("this is the first id: ",  rowId);
-        
+
             confirmPopup.style.display = 'block';
 
             contentData1.textContent = 'Are you sure you want to cancel this subscription?';
@@ -307,6 +305,7 @@ async function addEventListeners(historyItem) {
             });
 
             verifyButton.addEventListener('click', async (event) => {
+                confirmPopup.style.display = 'none';
                 event.preventDefault();
                 const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
 
@@ -347,7 +346,6 @@ async function addEventListeners(historyItem) {
         });
     }
 
-    console.log('history items 2:', historyItem);
     // Add event listener to the autoRecharge link
     const autoRechargeLink = document.getElementById(`renew_${historyItem.ServiceID}`);
     if (autoRechargeLink) {
