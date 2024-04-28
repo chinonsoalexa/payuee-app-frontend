@@ -249,14 +249,14 @@ function renderSubscriptionHistory(historyData) {
             <td>${serviceID}</td>
             <td>${historyItem.ServiceNumber}</td>
             <td>
-                <a id="${historyItem.ServiceID}" href="#" class="purchase">
+                <a id="renew_${historyItem.ServiceID}" href="#" class="purchase">
                     <span>
                         Recharge Now
                     </span>
                 </a>
             </td>
             <td>
-                <a id="${historyItem.ServiceID}" href="#" class="edit">
+                <a id="edit_${historyItem.ServiceID}" href="#" class="edit">
                     <i class="material-symbols-outlined" style="font-size: 24px;">
                         delete
                     </i>
@@ -281,38 +281,10 @@ function renderSubscriptionHistory(historyData) {
     }
 }
 
-// async function addEventListeners(historyItem) {
-//     console.log('history items 1:', historyItem);
-//     // Add event listener to the edit link
-//     const editLink = document.getElementById(historyItem.ServiceID);
-//     if (editLink) {
-//         editLink.addEventListener('click', function(event) {
-//             event.preventDefault();
-//             // Retrieve the ID of the clicked row
-//             const rowId = editLink.closest('tr').id; // Declare rowId using let
-//             // handle edit action
-//             console.log("Edit link clicked, ID:", rowId);
-//         });
-//     }
-
-//     console.log('history items 2:', historyItem);
-//     // Add event listener to the autoRecharge link
-//     const autoRechargeLink = document.getElementById(historyItem.ServiceID);
-//     if (autoRechargeLink) {
-//         autoRechargeLink.addEventListener('click', function(event) {
-//             event.preventDefault();
-//             // Retrieve the ID of the clicked row
-//             const rowId = autoRechargeLink.closest('tr').id; // Declare rowId using let
-//             // handle autoRecharge action
-//             console.log("AutoRecharge link clicked, ID:", rowId);
-//         });
-//     }
-// }
-
 async function addEventListeners(historyItem) {
     console.log('history items 1:', historyItem);
     // Add event listener to the edit link
-    const editLink = document.getElementById(historyItem.ServiceID);
+    const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     // Get all elements with class 'edit'
     // const editButtons = document.querySelectorAll('.edit');
     if (editLink) {
@@ -379,7 +351,7 @@ async function addEventListeners(historyItem) {
 
     console.log('history items 2:', historyItem);
     // Add event listener to the autoRecharge link
-    const autoRechargeLink = document.getElementById(historyItem.ServiceID);
+    const autoRechargeLink = document.getElementById(`renew_${historyItem.ServiceID}`);
     if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
@@ -400,6 +372,8 @@ async function addEventListeners(historyItem) {
             });
 
             verifyButton.addEventListener('click', async (event) => {
+                confirmPopup.style.display = 'none';
+
                 event.preventDefault();
                 
                 const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
