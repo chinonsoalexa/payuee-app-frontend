@@ -265,7 +265,7 @@ function renderSubscriptionHistory(historyData) {
         `;
 
         // Set the ID of the row element
-        rowElement.id = historyItem.ID;
+        rowElement.id = historyItem.ServiceID;
     
         // Append the row to the table body
         tableBody.appendChild(rowElement);
@@ -289,7 +289,7 @@ async function addEventListeners(historyItem) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            const rowId = this.id; // Declare rowId using let
+            const rowId = editLink.closest('tr').id; // Declare rowId using let
             // handle edit action
             console.log("Edit link clicked, ID:", rowId);
         });
@@ -302,7 +302,7 @@ async function addEventListeners(historyItem) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            const rowId = this.id; // Declare rowId using let
+            const rowId = autoRechargeLink.closest('tr').id; // Declare rowId using let
             // handle autoRecharge action
             console.log("AutoRecharge link clicked, ID:", rowId);
         });
