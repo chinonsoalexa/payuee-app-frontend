@@ -5,6 +5,7 @@ var TotalPageOnLoad;
 var TwoBeforePageOnLoad;
 var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
+var AllRecordsOnPageLoad;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
@@ -63,7 +64,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
         ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
-        if (TotalPageOnLoad > 6) {
+        AllRecordsOnPageLoad = responseData.pagination.AllRecords;
+        if (AllRecordsOnPageLoad > 6) {
             // let's disable the next page navigation button
             document.getElementById('paginationList').classList.remove('disabled');
             document.getElementById('paginationList').disabled = false;
