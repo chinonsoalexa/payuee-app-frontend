@@ -197,15 +197,16 @@ function renderSubscriptionHistory(historyData) {
         // Append the row to the table body
         tableBody.appendChild(rowElement);
 
-        // Add event listener to the row element
+        // Add event listener to the addSub link
         document.getElementById("addSub").addEventListener('click', function(event) {
-        event.preventDefault();
-        // alert('hi just testing')
+            event.preventDefault();
+            // handle add subscription action
         });
 
+        // Add event listener to the cancelSub link
         document.getElementById("cancelSub").addEventListener('click', function(event) {
             event.preventDefault();
-            // alert('hi just testing 2')
+            // handle cancel subscription action
         });
 
         return; // Exit the function
@@ -248,14 +249,14 @@ function renderSubscriptionHistory(historyData) {
             <td>${serviceID}</td>
             <td>${historyItem.ServiceNumber}</td>
             <td>
-                <a id="autoRecharge_${historyItem.ServiceID}" href="#" class="purchase">
+                <a id="${historyItem.ServiceID}" href="#" class="purchase">
                     <span>
                         Recharge Now
                     </span>
                 </a>
             </td>
             <td>
-                <a id="edit_${historyItem.ServiceID}" href="#" class="edit">
+                <a id="${historyItem.ServiceID}" href="#" class="edit">
                     <i class="material-symbols-outlined" style="font-size: 24px;">
                         delete
                     </i>
@@ -268,12 +269,11 @@ function renderSubscriptionHistory(historyData) {
     
         // Append the row to the table body
         tableBody.appendChild(rowElement);
-    });
 
-    historyData.forEach((historyItem) => {
+        // Add event listeners for edit and autoRecharge links
         addEventListeners(historyItem);
     });
-    
+
     if (historyData.length > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
@@ -284,137 +284,165 @@ function renderSubscriptionHistory(historyData) {
 async function addEventListeners(historyItem) {
     console.log('history items 1:', historyItem);
     // Add event listener to the edit link
-    const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
-    // Get all elements with class 'edit'
-    // const editButtons = document.querySelectorAll('.edit');
+    const editLink = document.getElementById(historyItem.ServiceID);
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
             const rowId = this.id; // Declare rowId using let
-            const confirmPopup = document.getElementById('confirm-popup');
-            const cancelButton = document.getElementById('cancel-verification-btn');
-            const verifyButton = document.getElementById('submit-verification-btn');
-            const contentData1 = document.getElementById('contentData1');
-            console.log("this is the first id: ",  rowId);
-        
-            confirmPopup.style.display = 'block';
-
-            contentData1.textContent = 'Are you sure you want to cancel this subscription?';
-        
-            // Cancel button click event
-            cancelButton.addEventListener('click', () => {
-                confirmPopup.style.display = 'none';
-            });
-
-            verifyButton.addEventListener('click', async (event) => {
-                event.preventDefault();
-                const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
-                console.log("this is the second id: ",  rowId);
-
-                const requestOptions = {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: 'include', // set credentials to include cookies
-                };
-                
-                try {
-                    const response = await fetch(apiUrl, requestOptions);
-                
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        if (errorData.error === 'failed to get user from request') {
-                            // Handle error
-                        } else if (errorData.error === 'failed to get transaction history') {
-                            // Handle error
-                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-                            // Handle error
-                        } else {
-                            // Handle error
-                        }
-                
-                        return;
-                    }
-                
-                    const responseData = await response.json();
-                    // Process the responseData as needed
-                    // renderSubscriptionHistory(responseData);
-                    confirmPopup.style.display = 'none';
-                } catch (error) {
-                    // Handle error
-                    confirmPopup.style.display = 'none';
-                }                
-            });
+            // handle edit action
+            console.log("Edit link clicked, ID:", rowId);
         });
     }
 
     console.log('history items 2:', historyItem);
     // Add event listener to the autoRecharge link
-    const autoRechargeLink = document.getElementById(`autoRecharge_${historyItem.ServiceID}`);
+    const autoRechargeLink = document.getElementById(historyItem.ServiceID);
     if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            let rowId = this.id; // Declare rowId using let
-            const confirmPopup = document.getElementById('confirm-popup2');
-            const cancelButton = document.getElementById('cancel-verification-btn2');
-            const verifyButton = document.getElementById('submit-verification-btn2');
-            const contentData1 = document.getElementById('contentData2');
-        
-            confirmPopup.style.display = 'block';
-
-            contentData1.textContent = 'Are you sure you want to renew this subscription?';
-        
-            // Cancel button click event
-            cancelButton.addEventListener('click', () => {
-                confirmPopup.style.display = 'none';
-            });
-
-            verifyButton.addEventListener('click', async (event) => {
-                event.preventDefault();
-                alert("this is the role id: ", rowId)
-                const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
-
-                const requestOptions = {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: 'include', // set credentials to include cookies
-                };
-                
-                try {
-                    const response = await fetch(apiUrl, requestOptions);
-                
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        if (errorData.error === 'failed to get user from request') {
-                            // Handle error
-                        } else if (errorData.error === 'failed to get transaction history') {
-                            // Handle error
-                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-                            // Handle error
-                        } else {
-                            // Handle error
-                        }
-                
-                        return;
-                    }
-                
-                    const responseData = await response.json();
-                    // Process the responseData as needed
-                    // renderSubscriptionHistory(responseData);
-                    confirmPopup.style.display = 'none';
-                } catch (error) {
-                    // Handle error
-                    confirmPopup.style.display = 'none';
-                }                
-            });
+            const rowId = this.id; // Declare rowId using let
+            // handle autoRecharge action
+            console.log("AutoRecharge link clicked, ID:", rowId);
         });
     }
 }
+
+// async function addEventListeners(historyItem) {
+//     console.log('history items 1:', historyItem);
+//     // Add event listener to the edit link
+//     const editLink = document.getElementById(historyItem.ServiceID);
+//     // Get all elements with class 'edit'
+//     // const editButtons = document.querySelectorAll('.edit');
+//     if (editLink) {
+//         editLink.addEventListener('click', function(event) {
+//             event.preventDefault();
+//             // Retrieve the ID of the clicked row
+//             const rowId = this.id; // Declare rowId using let
+//             const confirmPopup = document.getElementById('confirm-popup');
+//             const cancelButton = document.getElementById('cancel-verification-btn');
+//             const verifyButton = document.getElementById('submit-verification-btn');
+//             const contentData1 = document.getElementById('contentData1');
+//             console.log("this is the first id: ",  rowId);
+        
+//             confirmPopup.style.display = 'block';
+
+//             contentData1.textContent = 'Are you sure you want to cancel this subscription?';
+        
+//             // Cancel button click event
+//             cancelButton.addEventListener('click', () => {
+//                 confirmPopup.style.display = 'none';
+//             });
+
+//             verifyButton.addEventListener('click', async (event) => {
+//                 event.preventDefault();
+//                 const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
+//                 console.log("this is the second id: ",  rowId);
+
+//                 const requestOptions = {
+//                     method: "GET",
+//                     headers: {
+//                         "Content-Type": "application/json",
+//                     },
+//                     credentials: 'include', // set credentials to include cookies
+//                 };
+                
+//                 try {
+//                     const response = await fetch(apiUrl, requestOptions);
+                
+//                     if (!response.ok) {
+//                         const errorData = await response.json();
+//                         if (errorData.error === 'failed to get user from request') {
+//                             // Handle error
+//                         } else if (errorData.error === 'failed to get transaction history') {
+//                             // Handle error
+//                         } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+//                             // Handle error
+//                         } else {
+//                             // Handle error
+//                         }
+                
+//                         return;
+//                     }
+                
+//                     const responseData = await response.json();
+//                     // Process the responseData as needed
+//                     // renderSubscriptionHistory(responseData);
+//                     confirmPopup.style.display = 'none';
+//                 } catch (error) {
+//                     // Handle error
+//                     confirmPopup.style.display = 'none';
+//                 }                
+//             });
+//         });
+//     }
+
+//     console.log('history items 2:', historyItem);
+//     // Add event listener to the autoRecharge link
+//     const autoRechargeLink = document.getElementById(historyItem.ServiceID);
+//     if (autoRechargeLink) {
+//         autoRechargeLink.addEventListener('click', function(event) {
+//             event.preventDefault();
+//             // Retrieve the ID of the clicked row
+//             let rowId = this.id; // Declare rowId using let
+//             const confirmPopup = document.getElementById('confirm-popup2');
+//             const cancelButton = document.getElementById('cancel-verification-btn2');
+//             const verifyButton = document.getElementById('submit-verification-btn2');
+//             const contentData1 = document.getElementById('contentData2');
+        
+//             confirmPopup.style.display = 'block';
+
+//             contentData1.textContent = 'Are you sure you want to renew this subscription?';
+        
+//             // Cancel button click event
+//             cancelButton.addEventListener('click', () => {
+//                 confirmPopup.style.display = 'none';
+//             });
+
+//             verifyButton.addEventListener('click', async (event) => {
+//                 event.preventDefault();
+//                 alert("this is the role id: ", rowId)
+//                 const apiUrl = "https://payuee.onrender.com/recharge-subscription/" + rowId;
+
+//                 const requestOptions = {
+//                     method: "GET",
+//                     headers: {
+//                         "Content-Type": "application/json",
+//                     },
+//                     credentials: 'include', // set credentials to include cookies
+//                 };
+                
+//                 try {
+//                     const response = await fetch(apiUrl, requestOptions);
+                
+//                     if (!response.ok) {
+//                         const errorData = await response.json();
+//                         if (errorData.error === 'failed to get user from request') {
+//                             // Handle error
+//                         } else if (errorData.error === 'failed to get transaction history') {
+//                             // Handle error
+//                         } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+//                             // Handle error
+//                         } else {
+//                             // Handle error
+//                         }
+                
+//                         return;
+//                     }
+                
+//                     const responseData = await response.json();
+//                     // Process the responseData as needed
+//                     // renderSubscriptionHistory(responseData);
+//                     confirmPopup.style.display = 'none';
+//                 } catch (error) {
+//                     // Handle error
+//                     confirmPopup.style.display = 'none';
+//                 }                
+//             });
+//         });
+//     }
+// }
 
 
 const testData = [
