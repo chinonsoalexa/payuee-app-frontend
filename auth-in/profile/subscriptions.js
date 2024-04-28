@@ -284,7 +284,7 @@ function renderSubscriptionHistory(historyData) {
 let rowId;
 
 async function addEventListeners(historyItem) {
-    console.log('history items:', historyItem);
+    console.log('history items 1:', historyItem);
     // Add event listener to the edit link
     const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
     if (editLink) {
@@ -351,6 +351,7 @@ async function addEventListeners(historyItem) {
         });
     }
 
+    console.log('history items 2:', historyItem);
     // Add event listener to the autoRecharge link
     const autoRechargeLink = document.getElementById(`autoRecharge_${historyItem.ServiceID}`);
     if (autoRechargeLink) {
