@@ -338,8 +338,7 @@ async function addEventListeners(historyItem) {
                 
                     const responseData = await response.json();
                     // Process the responseData as needed
-                    // renderSubscriptionHistory(responseData);
-                    confirmPopup.style.display = 'none';
+                    removeRowById(rowId);
                 } catch (error) {
                     // Handle error
                     confirmPopup.style.display = 'none';
@@ -406,7 +405,7 @@ async function addEventListeners(historyItem) {
                     const responseData = await response.json();
                     // Process the responseData as needed
                     // renderSubscriptionHistory(responseData);
-                    confirmPopup.style.display = 'none';
+                    removeRowById(rowId);
                 } catch (error) {
                     // Handle error
                     confirmPopup.style.display = 'none';
@@ -416,38 +415,12 @@ async function addEventListeners(historyItem) {
     }
 }
 
-const testData = [
-    {
-        ServiceName: 'airtime',
-        ServiceNumber: '(813) 680-45 98',
-        ServiceID: 1,
-    },
-    {
-        ServiceName: 'data',
-        ServiceNumber: '(813) 670-45 38',
-        ServiceID: 2,
-    },
-    {
-        UniqueID: 'electricity',
-        ServiceNumber: '(813) 980-45 18',
-        ServiceID: 3,
-    },
-    {
-        ServiceName: 'decoder',
-        ServiceNumber: '(818) 680-45 98',
-        ServiceID: 4,
-    },
-    {
-        ServiceName: 'data',
-        ServiceNumber: '(811) 680-45 98',
-        ServiceID: 5,
-    },
-    {
-        ServiceName: 'airtime',
-        ServiceNumber: '(810) 680-45 98',
-        ServiceID: 6,
-    },
-];
+function removeRowById(rowId) {
+    const rowToRemove = document.getElementById(rowId);
+    if (rowToRemove) {
+        rowToRemove.parentNode.removeChild(rowToRemove);
+    }
+}
 
 // renderSubscriptionHistory(testData)
 
