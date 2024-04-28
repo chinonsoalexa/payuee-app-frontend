@@ -294,6 +294,7 @@ async function addEventListeners(historyItem) {
             const cancelButton = document.getElementById('cancel-verification-btn');
             const verifyButton = document.getElementById('submit-verification-btn');
             const contentData1 = document.getElementById('contentData1');
+            console.log("this is the first id: ",  rowId);
         
             confirmPopup.style.display = 'block';
 
@@ -307,6 +308,7 @@ async function addEventListeners(historyItem) {
             verifyButton.addEventListener('click', async (event) => {
                 event.preventDefault();
                 const apiUrl = "https://payuee.onrender.com/cancel-subscription/" + rowId;
+                console.log("this is the second id: ",  rowId);
 
                 const requestOptions = {
                     method: "GET",
