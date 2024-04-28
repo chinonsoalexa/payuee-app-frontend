@@ -411,7 +411,6 @@ async function addEventListeners(historyItem) {
     }
 }
 
-
 const testData = [
     {
         ServiceName: 'airtime',
