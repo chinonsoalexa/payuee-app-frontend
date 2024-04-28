@@ -281,8 +281,6 @@ function renderSubscriptionHistory(historyData) {
     }
 }
 
-let rowId;
-
 async function addEventListeners(historyItem) {
     console.log('history items 1:', historyItem);
     // Add event listener to the edit link
@@ -290,9 +288,8 @@ async function addEventListeners(historyItem) {
     if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
-            // alert("this is the role id: ", rowId)
             // Retrieve the ID of the clicked row
-            rowId = event.target.closest('tr').id;
+            let rowId = event.target.closest('tr').id; // Declare rowId using let
             const confirmPopup = document.getElementById('confirm-popup');
             const cancelButton = document.getElementById('cancel-verification-btn');
             const verifyButton = document.getElementById('submit-verification-btn');
@@ -358,7 +355,7 @@ async function addEventListeners(historyItem) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            rowId = event.target.closest('tr').id;
+            let rowId = event.target.closest('tr').id; // Declare rowId using let
             const confirmPopup = document.getElementById('confirm-popup2');
             const cancelButton = document.getElementById('cancel-verification-btn2');
             const verifyButton = document.getElementById('submit-verification-btn2');
@@ -416,6 +413,7 @@ async function addEventListeners(historyItem) {
         });
     }
 }
+
 
 const testData = [
     {
