@@ -283,21 +283,11 @@ function renderSubscriptionHistory(historyData) {
 }
 
 async function addEventListeners(historyItem) {
-    const editLinkId = `edit_${historyItem.ServiceID}`;
-    const autoRechargeLinkId = `renew_${historyItem.ServiceID}`;
-    
-    // Check if event listeners have already been added
-    if (!document.getElementById(editLinkId).hasAttribute('data-event-listeners-added')) {
-        await addEditEventListener(editLinkId);
-    }
-
-    if (!document.getElementById(autoRechargeLinkId).hasAttribute('data-event-listeners-added')) {
-        await addAutoRechargeEventListener(autoRechargeLinkId);
-    }
-    
-
+    // Add event listener to the edit link
+    const editLink = document.getElementById(`edit_${historyItem.ServiceID}`);
+    // Get all elements with class 'edit'
     // const editButtons = document.querySelectorAll('.edit');
-    async function addEditEventListener(editLink) {
+    if (editLink) {
         editLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
@@ -358,7 +348,9 @@ async function addEventListeners(historyItem) {
         });
     }
 
-    async function addAutoRechargeEventListener(autoRechargeLink) {
+    // Add event listener to the autoRecharge link
+    const autoRechargeLink = document.getElementById(`renew_${historyItem.ServiceID}`);
+    if (autoRechargeLink) {
         autoRechargeLink.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
