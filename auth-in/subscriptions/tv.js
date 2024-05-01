@@ -488,6 +488,10 @@ function displaySecondaryList(data) {
         listItem.setAttribute('data-price', plan.price);
         listItem.textContent = `${plan.text}`;
 
+        // Add logic to change font size based on conditions
+        if (data.length >= 10) {
+            listItem.style.fontSize = '11px'; // Change font size to 11px
+        }
         // Add a click event listener to each listItem
         listItem.addEventListener('click', function (event) {
             decoderPlanValue = '';
