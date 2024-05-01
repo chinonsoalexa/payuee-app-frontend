@@ -21,13 +21,13 @@ document.getElementById('tv-button').addEventListener('click', function(event) {
 })
 
 var dstv = [
-    { value: 'dstv-padi', text: 'DStv Padi - ₦2,950', price: 2950 },
-    { value: 'dstv-yanga', text: 'DStv Yanga - ₦4,200', price: 4200 },
-    { value: 'dstv-confam', text: 'DStv Confam - ₦7,400', price: 7400 },
+    { value: 'dstv-padi', text: 'DStv Padi - ₦3,600', price: 3600 },
+    { value: 'dstv-yanga', text: 'DStv Yanga - ₦5,100', price: 5100 },
+    { value: 'dstv-confam', text: 'DStv Confam - ₦9,300', price: 9300 },
     { value: 'dstv6', text: 'DStv Asia - ₦9,900', price: 9900 },
-    { value: 'dstv79', text: 'DStv Compact - ₦12,500', price: 12500 },
-    { value: 'dstv7', text: 'DStv Compact Plus - ₦19,800', price: 19800 },
-    { value: 'dstv3', text: 'DStv Premium - ₦29,500', price: 29500 },
+    { value: 'dstv79', text: 'DStv Compact - ₦15,700', price: 17700 },
+    { value: 'dstv7', text: 'DStv Compact Plus - ₦25,000', price: 25000 },
+    { value: 'dstv3', text: 'DStv Premium - ₦37,000', price: 37000 },
     { value: 'dstv10', text: 'DStv Premium Asia - ₦33,000', price: 33000 },
     { value: 'dstv9', text: 'DStv Premium-French - ₦45,600', price: 45600 },
     { value: 'confam-extra', text: 'DStv Confam + ExtraView - ₦11,400', price: 11400 },
