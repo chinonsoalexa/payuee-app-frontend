@@ -57,11 +57,11 @@ var dstv = [
 ];
 
 var gotv = [
-    { value: 'gotv-smallie', text: 'GOtv Smallie - ₦1,300', price: 1300 },
-    { value: 'gotv-jinja', text: 'GOtv Jinja - ₦2,700', price: 2700 },
-    { value: 'gotv-jolli', text: 'GOtv Jolli - ₦3,950', price: 3950 },
-    { value: 'gotv-max', text: 'GOtv Max - ₦5,700', price: 5700 },
-    { value: 'gotv-supa', text: 'GOtv Supa - ₦7,600', price: 7600 },
+    { value: 'gotv-smallie', text: 'GOtv Smallie - ₦1,575', price: 1575 },
+    { value: 'gotv-jinja', text: 'GOtv Jinja - ₦3,300', price: 3300 },
+    { value: 'gotv-jolli', text: 'GOtv Jolli - ₦4,850', price: 4850 },
+    { value: 'gotv-max', text: 'GOtv Max - ₦7,200', price: 7200 },
+    { value: 'gotv-supa', text: 'GOtv Supa - ₦9,600', price: 9600 },
 ];
 
 var startime = [
