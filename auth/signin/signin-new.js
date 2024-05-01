@@ -507,10 +507,10 @@ async function continueResendTimer() {
                   reactivateButtonStyles();
                 return;
             }
-            // const data = await response.json();
+            const data = await response.json();
             reactivateButtonStyles();
             localStorage.setItem('auth', 'true');
-            // window.location.href = '../../index-in.html';
+            window.location.href = '../../index-in.html';
         } finally{
            // do nothing cause error has been handled
         }
