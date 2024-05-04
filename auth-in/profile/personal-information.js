@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 // displayErrorMessage();
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
-                // logUserOutIfTokenIsExpired();
+                logUserOutIfTokenIsExpired();
             }else {
                 document.getElementById('toggle-first-name-main').textContent = "...";
                 document.getElementById('toggle-last-name-main').textContent = "...";
