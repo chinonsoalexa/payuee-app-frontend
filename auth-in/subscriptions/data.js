@@ -43,7 +43,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
         // error message from paystack
         // {"message":"Invalid Amount Sent","status":false}
 
-        const apiUrl = "https://payuee-avev.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -346,7 +346,7 @@ async function getSelectedPlan(dataValue) {
 
 async function requestPlan(plan_id, plan_name) {
     try {
-        const url = `https://payuee-avev.onrender.com/plans/data?service=${plan_id}`;
+        const url = `https://payueebackendservice.onrender.com/plans/data?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
         };
@@ -588,7 +588,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee-avev.onrender.com/log-out";
+    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",

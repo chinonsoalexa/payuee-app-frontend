@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    const apiUrl = "https://payuee-avev.onrender.com/payuee/get-latest-transaction";
+    const apiUrl = "https://payueebackendservice.onrender.com/payuee/get-latest-transaction";
 
     const requestOptions = {
         method: "GET",
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     function logUserOutIfTokenIsExpired() {
         // also send a request to the logout api endpoint
-        const apiUrl = "https://payuee-avev.onrender.com/log-out";
+        const apiUrl = "https://payueebackendservice.onrender.com/log-out";
 
         const requestOptions = {
         method: "GET",

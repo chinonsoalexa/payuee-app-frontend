@@ -215,7 +215,7 @@ async function sendFunds() {
             Currency: Currency,
         };
     
-        const apiUrl = "https://payuee-avev.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
     
         const requestOptions = {
             method: "POST",
@@ -420,7 +420,7 @@ function getAccountDetails(inputValue) {
       if (inputValue.length == 10 && BankCode != "") {
         // Perform your desired action here
         // Make a GET request using fetch
-    fetch(`https://payuee-avev.onrender.com/paystack/verify-account/${inputValue}/${BankCode}`, {
+    fetch(`https://payueebackendservice.onrender.com/paystack/verify-account/${inputValue}/${BankCode}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -457,7 +457,7 @@ function getAccountDetails(inputValue) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee-avev.onrender.com/log-out";
+    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",

@@ -23,7 +23,7 @@ if (validated) {
         TranCharge:  transCharge,
     };
 
-    const apiUrl = "https://payuee-avev.onrender.com/payuee/init-transaction";
+    const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
 
     const requestOptions = {
         method: "POST",
