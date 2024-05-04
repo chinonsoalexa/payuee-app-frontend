@@ -37,7 +37,7 @@ async function resendButtonOTP() {
         Email: emailOTP,
     };
 
-    const apiUrl = "https://payuee.onrender.com/resend-otp";
+    const apiUrl = "https://payuee-avev.onrender.com/resend-otp";
 
     const requestOptions = {
         method: "POST",

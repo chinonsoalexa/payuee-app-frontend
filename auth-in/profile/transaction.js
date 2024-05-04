@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + pageNumber;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -300,7 +300,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
+    const apiUrl = "https://payuee-avev.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",
@@ -324,7 +324,7 @@ try {
 document.getElementById("previousPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -368,7 +368,7 @@ document.getElementById("previousPage").addEventListener("click", async function
 document.getElementById("constantBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + "1";
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + "1";
     
         const requestOptions = {
             method: "GET",
@@ -412,7 +412,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
 document.getElementById("beforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -456,7 +456,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
 document.getElementById("twoBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TwoBeforePageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + TwoBeforePageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -500,7 +500,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
 document.getElementById("currentPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + CurrentPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + CurrentPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -544,7 +544,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -588,7 +588,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
 document.getElementById("constantAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TotalPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + TotalPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -632,7 +632,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
 document.getElementById("afterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -676,7 +676,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
 document.getElementById("twoAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payuee.onrender.com/transactions/" + TwoAfterPageOnLoad;
+    const apiUrl = "https://payuee-avev.onrender.com/transactions/" + TwoAfterPageOnLoad;
     
         const requestOptions = {
             method: "GET",

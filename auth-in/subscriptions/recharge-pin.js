@@ -35,7 +35,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
             NumberOfPin: amountInput,
         };
 
-        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payuee-avev.onrender.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -295,7 +295,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
+    const apiUrl = "https://payuee-avev.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",

@@ -33,7 +33,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
     
-        const apiUrl = "https://payuee.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payuee-avev.onrender.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -212,7 +212,7 @@ function enableEducationDiv() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
+    const apiUrl = "https://payuee-avev.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",

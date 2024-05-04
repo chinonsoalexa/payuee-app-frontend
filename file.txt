@@ -1,7 +1,7 @@
 
 function logUserOutIfTokenIsExpired() {
         // also send a request to the logout api endpoint
-        const apiUrl = "https://payuee.onrender.com/log-out";
+        const apiUrl = "https://payuee-avev.onrender.com/log-out";
     
         const requestOptions = {
         method: "GET",

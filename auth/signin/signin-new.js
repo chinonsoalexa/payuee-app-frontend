@@ -43,7 +43,7 @@ signInWithEmail.addEventListener('click', async function() {
             Email: signInWithEmailBox.value,
           };
 
-          const apiUrl = "https://payuee.onrender.com/magic-link";
+          const apiUrl = "https://payuee-avev.onrender.com/magic-link";
 
           const requestOptions = {
             method: "POST",
@@ -214,7 +214,7 @@ async function sign_in() {
             Password: password,
             };
 
-            const apiUrl = "https://payuee.onrender.com/sign-in";
+            const apiUrl = "https://payuee-avev.onrender.com/sign-in";
 
             const requestOptions = {
             method: "POST",
@@ -339,7 +339,7 @@ async function resendButtonOTP() {
         Email: signInWithEmailBox.value,
       };
 
-      const apiUrl = "https://payuee.onrender.com/magic-link";
+      const apiUrl = "https://payuee-avev.onrender.com/magic-link";
 
       const requestOptions = {
         method: "POST",
@@ -447,7 +447,7 @@ async function continueResendTimer() {
             SentOTP: magicCode,
           };
 
-          const apiUrl = "https://payuee.onrender.com/verify/magic-link";
+          const apiUrl = "https://payuee-avev.onrender.com/verify/magic-link";
 
           const requestOptions = {
             method: "POST",

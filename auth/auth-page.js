@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Key does not exist in localStorage
         sessionStorage.setItem('analyticsData', 'true');
 
-        fetch('https://payuee.onrender.com/payuee-analytics', {
+        fetch('https://payuee-avev.onrender.com/payuee-analytics', {
             method: 'GET'
         });
     }
@@ -39,7 +39,7 @@ document.getElementById('logout-button2').addEventListener('click', async functi
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.onrender.com/log-out";
+    const apiUrl = "https://payuee-avev.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",
