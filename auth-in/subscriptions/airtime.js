@@ -65,8 +65,8 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
                     showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
                 } else if  (errorData.error === 'email verification failed') {
                     showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
-                } else if  (errorData.error === 'User already exist, please signin') {
-                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                } else if  (errorData.error === 'an error occurred while trying to buy airtime') {
+                    subscriptionError();
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
@@ -324,4 +324,16 @@ function calculateTotalCharge(originalPrice) {
     }
 
     return Math.ceil(secondPrice += 5);
+}
+
+function subscriptionError() {
+    const installPopup = document.getElementById('subErrorPopup');
+    const cancelButton = document.getElementById('okay-btn');
+
+    installPopup.style.display = 'block';
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+        installPopup.style.display = 'none';
+    });
 }
