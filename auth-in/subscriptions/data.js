@@ -37,11 +37,6 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             PhoneNumber: phone,
             AutoRenew:   autoRenew,
         };
-        // console.log('this is the data to be sent: ' + JSON.stringify(user));
-        // console.log('the plan id to be sent is: ' + planID);
-        // var value.data
-        // error message from paystack
-        // {"message":"Invalid Amount Sent","status":false}
 
         const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
 
@@ -57,11 +52,12 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
+            // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
+                alert("this is the error message: ", errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
