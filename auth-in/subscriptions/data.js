@@ -57,7 +57,6 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             if (!response.ok) {
                 const errorData = await response.json();
 
-                // console.log(errorData);
                 alert("this is the error message: ", errorData);
 
                 if (errorData.error === 'User already exist, please login') {
