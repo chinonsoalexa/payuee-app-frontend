@@ -51,13 +51,13 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
         try {
             const response = await fetch(apiUrl, requestOptions);
-            alert("this is the error message 1: ", response);
+            // alert("this is the error message 1: ", response);
 
             // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                alert("this is the error message: ", errorData);
+                // alert("this is the error message: ", errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
