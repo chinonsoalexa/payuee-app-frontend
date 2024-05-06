@@ -53,7 +53,7 @@ try {
     const response = await fetch(apiUrl, requestOptions);
     
     if (!response.ok) {
-            alert('an error occurred. Please try again');
+            // alert('an error occurred. Please try again');
         return;
       }
         const data = await response.json();
