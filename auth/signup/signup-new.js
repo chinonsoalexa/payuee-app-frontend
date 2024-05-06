@@ -322,7 +322,7 @@ document.getElementById('password-field').addEventListener('input', function() {
     }
 
     if (auth_check) {
-
+        
         if (referralCode === null || referralCode === undefined) {
             // console.log("in the referral code parameter is null or undefined");
             referralCode = code;
@@ -336,7 +336,7 @@ document.getElementById('password-field').addEventListener('input', function() {
             RefereeCode: referralCode,
         };
 
-        const apiUrl = "https://payuee.com/sign-up";
+        const apiUrl = "https://payueebackendservice.onrender.com/sign-up";
 
         const requestOptions = {
             method: "POST",

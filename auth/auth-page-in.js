@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Key does not exist in localStorage
         sessionStorage.setItem('analyticsData', 'true');
 
-        fetch('https://payuee.com/payuee-analytics', {
+        fetch('https://payueebackendservice.onrender.com/payuee-analytics', {
             method: 'GET'
         });
     }

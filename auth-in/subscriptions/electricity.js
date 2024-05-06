@@ -39,7 +39,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
 
-        const apiUrl = "https://payuee.com/payuee/init-transaction";
+        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -83,7 +83,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             const responseData = await response.json();
 
                 if (responseData.success == 'electricity token successfully bought') {
-                    window.location.href = "https://payuee.com/successful.html"
+                    window.location.href = "https://payueebackendservice.onrender.com/successful.html"
                     return
                 } else {
                 window.location.href = responseData.success.data.authorization_url;
@@ -334,7 +334,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payuee.com/log-out";
+    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
 
     const requestOptions = {
     method: "GET",

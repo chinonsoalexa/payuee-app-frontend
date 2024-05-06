@@ -23,7 +23,7 @@ if (validated) {
         TranCharge:  transCharge,
     };
 
-    const apiUrl = "https://payuee.com/payuee/init-transaction";
+    const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
 
     const requestOptions = {
         method: "POST",
@@ -73,7 +73,7 @@ if (validated) {
                 return
             }
         } else {
-            window.location.href = "https://payuee.com/successful.html"
+            window.location.href = "https://payueebackendservice.onrender.com/successful.html"
             return
         }
     } finally {
