@@ -33,7 +33,7 @@ async function resetPasswordEmail(currentInput) {
         Email: currentInput.value,
     };
 
-    const apiUrl = "https://payueebackendservice.onrender.com/forgotten-password-email";
+    const apiUrl = "https://server.payuee.com/forgotten-password-email";
 
     const requestOptions = {
         method: "POST",

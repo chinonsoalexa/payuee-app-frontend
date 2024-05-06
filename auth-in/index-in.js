@@ -11,6 +11,7 @@ const isiPhone = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const installPopup = document.getElementById('install-popup');
     const installButton = document.getElementById('install-btn');
     const cancelButton = document.getElementById('cancel-btn');

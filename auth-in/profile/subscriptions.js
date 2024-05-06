@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + pageNumber;
+    const apiUrl = "https://server.payuee.com/subscription/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -309,7 +309,7 @@ async function addEventListeners(historyItem) {
             verifyButton.addEventListener('click', async (event) => {
                 confirmPopup.style.display = 'none';
                 event.preventDefault();
-                const apiUrl = "https://payueebackendservice.onrender.com/cancel-subscription/" + rowId;
+                const apiUrl = "https://server.payuee.com/cancel-subscription/" + rowId;
 
                 const requestOptions = {
                     method: "GET",
@@ -374,7 +374,7 @@ async function addEventListeners(historyItem) {
 
                 event.preventDefault();
                 
-                const apiUrl = "https://payueebackendservice.onrender.com/recharge-subscription/" + rowId;
+                const apiUrl = "https://server.payuee.com/recharge-subscription/" + rowId;
 
                 const requestOptions = {
                     method: "GET",
@@ -434,7 +434,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://server.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
@@ -458,7 +458,7 @@ try {
 document.getElementById("previousPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + PreviousPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -502,7 +502,7 @@ document.getElementById("previousPage").addEventListener("click", async function
 document.getElementById("constantBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + "1";
+    const apiUrl = "https://server.payuee.com/subscription/" + "1";
     
         const requestOptions = {
             method: "GET",
@@ -546,7 +546,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
 document.getElementById("beforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + PreviousPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -590,7 +590,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
 document.getElementById("twoBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + TwoBeforePageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + TwoBeforePageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -634,7 +634,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
 document.getElementById("currentPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + CurrentPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + CurrentPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -678,7 +678,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + NextPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -722,7 +722,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
 document.getElementById("constantAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + TotalPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + TotalPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -766,7 +766,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
 document.getElementById("afterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + NextPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -810,7 +810,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
 document.getElementById("twoAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
 
-    const apiUrl = "https://payueebackendservice.onrender.com/subscription/" + TwoAfterPageOnLoad;
+    const apiUrl = "https://server.payuee.com/subscription/" + TwoAfterPageOnLoad;
     
         const requestOptions = {
             method: "GET",

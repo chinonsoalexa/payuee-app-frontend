@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Email: emailValue,
         };
 
-        const apiUrl = "https://payueebackendservice.onrender.com/email-subscriber";
+        const apiUrl = "https://server.payuee.com/email-subscriber";
 
         const requestEmailSub = {
             method: "POST",

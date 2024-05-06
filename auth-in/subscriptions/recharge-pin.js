@@ -35,7 +35,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
             NumberOfPin: amountInput,
         };
 
-        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://server.payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -83,7 +83,7 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 
             if (responseData.success == 'recharge pin successfully bought') {
                 console.log('here 2')
-                window.location.href = "https://payueebackendservice.onrender.com/successful.html"
+                window.location.href = "https://server.payuee.com/successful.html"
                 return
             } else {
             console.log('here 3')
@@ -295,7 +295,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://server.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

@@ -33,7 +33,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
     
-        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://server.payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -82,7 +82,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
                 console.log('here 1')
                 if (responseData.success == 'educational pin successfully bought') {
                     console.log('here 2')
-                    window.location.href = "https://payueebackendservice.onrender.com/successful.html"
+                    window.location.href = "https://server.payuee.com/successful.html"
                     return
                 } else {
                 console.log('here 3')
@@ -212,7 +212,7 @@ function enableEducationDiv() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://server.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
