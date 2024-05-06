@@ -37,7 +37,7 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         // error message from paystack
         // {"message":"Invalid Amount Sent","status":false}
 
-        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -275,7 +275,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

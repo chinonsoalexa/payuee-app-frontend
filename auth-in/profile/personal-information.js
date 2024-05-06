@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
     document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
-    const apiUrl = "https://payueebackendservice.onrender.com/profile";
+    const apiUrl = "https://payuee.com/profile";
 
     const requestOptions = {
         method: "GET",
@@ -115,7 +115,7 @@ document.getElementById('edit_button').addEventListener('click', async function 
                     ReferralCode:   "",
                   };
         
-                  const apiUrl = "https://payueebackendservice.onrender.com/profile/update";
+                  const apiUrl = "https://payuee.com/profile/update";
         
                   const requestOptions = {
                     method: "POST",
@@ -245,7 +245,7 @@ function referralLinkCopier() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
@@ -318,7 +318,7 @@ address.addEventListener('input', function (event) {
 // // Function to send OTP code to WhatsApp number
 // async function sendOtpToWhatsappNumber(whatsappNumber) {
 //     console.log('Number to send OTP to:', whatsappNumber);
-//     const apiUrl = 'https://payueebackendservice.onrender.com/link-whatsapp/' + whatsappNumber;
+//     const apiUrl = 'https://payuee.com/link-whatsapp/' + whatsappNumber;
 
 //     const requestOptions = {
 //         method: 'GET',
@@ -358,7 +358,7 @@ address.addEventListener('input', function (event) {
 
 // // Function to verify WhatsApp OTP code
 // async function verifyWhatsappOtpCode(whatsappNumber, sentOtp) {
-//     const url = 'https://payueebackendservice.onrender.com/verify-whatsapp';
+//     const url = 'https://payuee.com/verify-whatsapp';
 //     try {
 //         const response = await fetch(url, {
 //             method: 'POST',

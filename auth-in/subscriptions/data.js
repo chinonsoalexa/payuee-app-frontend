@@ -38,7 +38,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             AutoRenew:   autoRenew,
         };
 
-        const apiUrl = "https://payueebackendservice.onrender.com/payuee/init-transaction";
+        const apiUrl = "https://payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -342,7 +342,7 @@ async function getSelectedPlan(dataValue) {
 
 async function requestPlan(plan_id, plan_name) {
     try {
-        const url = `https://payueebackendservice.onrender.com/plans/data?service=${plan_id}`;
+        const url = `https://payuee.com/plans/data?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
         };
@@ -584,7 +584,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://payueebackendservice.onrender.com/log-out";
+    const apiUrl = "https://payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

@@ -863,7 +863,7 @@ $('.video-btn').magnificPopup({
 				date: selectedDate,
 			  };
 	
-			  const apiUrl = "https://payueebackendservice.onrender.com/transaction/date";
+			  const apiUrl = "https://payuee.com/transaction/date";
 	
 			  const requestOptions = {
 				method: "POST",

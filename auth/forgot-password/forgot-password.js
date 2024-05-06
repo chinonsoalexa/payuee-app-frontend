@@ -108,7 +108,7 @@ if (!auth_check) {
         Password: confirmPassword,
       };
 
-      const apiUrl = "https://payueebackendservice.onrender.com/forgotten-password-verification";
+      const apiUrl = "https://payuee.com/forgotten-password-verification";
 
       const requestOptions = {
         method: "POST",
