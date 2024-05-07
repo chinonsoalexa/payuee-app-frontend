@@ -1,7 +1,7 @@
 // document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const apiUrl = "https://server.payuee.com/payuee/get-latest-transaction";
+    const apiUrl = "https://api.payuee.com/payuee/get-latest-transaction";
 
     const requestOptions = {
         method: "GET",
@@ -422,7 +422,7 @@ function showCardPin(serverData) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://server.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

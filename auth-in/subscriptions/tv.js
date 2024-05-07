@@ -99,7 +99,7 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
 
-        const apiUrl = "https://server.payuee.com/payuee/init-transaction";
+        const apiUrl = "https://api.payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -148,7 +148,7 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
                 // console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
                     // console.log('here 2')
-                    window.location.href = "https://server.payuee.com/successful.html"
+                    window.location.href = "https://api.payuee.com/successful.html"
                     return
                 } else {
                 // console.log('here 3')
@@ -364,7 +364,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://server.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

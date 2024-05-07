@@ -29,7 +29,7 @@ async function resendButtonOTP() {
         Email: emailOTP,
     };
 
-    const apiUrl = "https://server.payuee.com/resend-otp";
+    const apiUrl = "https://api.payuee.com/resend-otp";
 
     const requestOptions = {
         method: "POST",

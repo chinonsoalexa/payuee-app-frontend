@@ -38,7 +38,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
             AutoRenew:   autoRenew,
         };
 
-        const apiUrl = "https://server.payuee.com/payuee/init-transaction";
+        const apiUrl = "https://api.payuee.com/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -87,7 +87,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
                 console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
-                    window.location.href = "https://server.payuee.com/successful.html"
+                    window.location.href = "https://api.payuee.com/successful.html"
                     return
                 } else {
                 window.location.href = responseData.success.data.authorization_url;
@@ -342,7 +342,7 @@ async function getSelectedPlan(dataValue) {
 
 async function requestPlan(plan_id, plan_name) {
     try {
-        const url = `https://server.payuee.com/plans/data?service=${plan_id}`;
+        const url = `https://api.payuee.com/plans/data?service=${plan_id}`;
         const headers = {
             'Content-Type': 'application/json',
         };
@@ -584,7 +584,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://server.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

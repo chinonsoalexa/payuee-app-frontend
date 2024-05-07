@@ -1,5 +1,5 @@
 window.onload = async function () {
-    const apiUrl = "https://server.payuee.com/paystack/get-latest-transaction";
+    const apiUrl = "https://api.payuee.com/paystack/get-latest-transaction";
 
     const requestOptions = {
         method: "GET",
