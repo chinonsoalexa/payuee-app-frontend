@@ -219,7 +219,7 @@ document.getElementById('referral_link').addEventListener('click', function (eve
     event.preventDefault();
 
     // Select and copy the content
-    navigator.clipboard.writeText('https://api.payuee.com/page/signup-new?referral-code=' + ReferralCode)
+    navigator.clipboard.writeText('https://payuee.com/page/signup-new?referral-code=' + ReferralCode)
     .then(() => {
         // Success
         referralLinkCopier();
