@@ -35,29 +35,23 @@ document.addEventListener('click', function (event) {
     event.preventDefault();
     // Check if the clicked link has a specific class or ID
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
-        scrollToSection('airtime-section');
-        scrollToSection('airtime-invoice-section');
+        scrollToSection('airtime-section1');
     } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
-        scrollToSection('card-pin-section');
-        scrollToSection('card-pin-invoice-section');
+        scrollToSection('card-pin-section1');
     } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {
-        scrollToSection('data-section');
-        scrollToSection('data-invoice-section');
+        scrollToSection('data-section1');
     } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id') {
         scrollToSection('education-section');
-        scrollToSection('education-invoice-section');
     } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id') {
-        scrollToSection('tv-section');
-        scrollToSection('tv-invoice-section');
+        scrollToSection('tv-section1');
     } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id') {
-        scrollToSection('electricity-section');
-        scrollToSection('electricity-invoice-section');
+        scrollToSection('electricity-section1');
     } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id') {
-        scrollToSection('wallet-section');
+        scrollToSection('wallet-section1');
     } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
-        scrollToSection('send-funds-section');
+        scrollToSection('send-funds-section1');
     } else if (event.target.classList.contains('withdraw-funds-id') || event.target.id === 'withdraw-funds-id') {
-        scrollToSection('withdraw-funds-section');
+        scrollToSection('withdraw-funds-section1');
     }
 });
 
