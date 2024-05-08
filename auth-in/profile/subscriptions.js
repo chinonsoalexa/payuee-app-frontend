@@ -326,12 +326,16 @@ async function addEventListeners(historyItem) {
                         const errorData = await response.json();
                         if (errorData.error === 'failed to get user from request') {
                             // Handle error
+                            errorFunction("failed to cancel subscription");
                         } else if (errorData.error === 'failed to get transaction history') {
                             // Handle error
+                            errorFunction("failed to cancel subscription");
                         } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                             // Handle error
+                            logUserOutIfTokenIsExpired();
                         } else {
                             // Handle error
+                            errorFunction("an unknown error occurred");
                         }
                 
                         return;
@@ -340,6 +344,7 @@ async function addEventListeners(historyItem) {
                     const responseData = await response.json();
                     // Process the responseData as needed
                     removeRowById(rowId);
+                    errorFunction("subscription successfully canceled");
                 } catch (error) {
                     // Handle error
                     confirmPopup.style.display = 'none';
@@ -413,6 +418,7 @@ async function addEventListeners(historyItem) {
                     // Process the responseData as needed
                     // renderSubscriptionHistory(responseData);
                     removeRowById(rowId);
+                    errorFunction("subscription successfully renewed");
                 } catch (error) {
                     // Handle error
                     confirmPopup.style.display = 'none';
