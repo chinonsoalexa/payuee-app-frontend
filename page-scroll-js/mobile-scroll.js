@@ -1,7 +1,6 @@
 // Handle scrolling when a link is clicked
 document.addEventListener('DOMContentLoaded', function (event) {
     // Check if the clicked link has a specific class or ID
-    event.preventDefault();
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
         scrollToSection('airtime-section');
         scrollToSection('airtime-invoice-section');
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 // Handle scrolling when a link is clicked
 document.addEventListener('click', function (event) {
-    event.preventDefault();
     // Check if the clicked link has a specific class or ID
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
         scrollToSection('airtime-section1');
