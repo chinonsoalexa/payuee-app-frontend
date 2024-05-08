@@ -10,30 +10,27 @@ document.addEventListener('DOMContentLoaded', function(event) {
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id' || pathName === '/airtime') {
         event.preventDefault();
         scrollToSection('airtime-section1');
-    } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
+    } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id' || pathName === '/recharge-pin') {
         event.preventDefault();
         scrollToSection('card-pin-section1');
-    } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {
+    } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id' || pathName === '/data') {
         event.preventDefault();
         scrollToSection('data-section1');
-    } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id') {
+    } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id' || pathName === '/educational-payments') {
         event.preventDefault();
         scrollToSection('education-section');
-    } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id') {
+    } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id' || pathName === '/tv') {
         event.preventDefault();
         scrollToSection('tv-section1');
-    } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id') {
+    } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id' || pathName === '/electricity') {
         event.preventDefault();
         scrollToSection('electricity-section1');
-    } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id') {
+    } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id' || pathName === '/fund-wallet') {
         event.preventDefault();
         scrollToSection('wallet-section1');
-    } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
+    } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id' || pathName === '/send-funds') {
         event.preventDefault();
         scrollToSection('send-funds-section1');
-    } else if (event.target.classList.contains('withdraw-funds-id') || event.target.id === 'withdraw-funds-id') {
-        event.preventDefault();
-        scrollToSection('withdraw-funds-section1');
     }
 });
 
@@ -64,9 +61,6 @@ document.addEventListener('click', function (event) {
     } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
         event.preventDefault();
         scrollToSection('send-funds-section1');
-    } else if (event.target.classList.contains('withdraw-funds-id') || event.target.id === 'withdraw-funds-id') {
-        event.preventDefault();
-        scrollToSection('withdraw-funds-section1');
     }
 });
 
