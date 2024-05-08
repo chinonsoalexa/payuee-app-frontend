@@ -7,29 +7,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const pathName =  currentUrl.pathname;
 
     // Check if the clicked link has a specific class or ID
-    if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id' || pathName === '/airtime') {
-        event.preventDefault();
+    if (pathName === '/airtime') {
         scrollToSection('airtime-section1');
-    } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id' || pathName === '/recharge-pin') {
-        event.preventDefault();
+    } else if (pathName === '/recharge-pin') {
         scrollToSection('card-pin-section1');
-    } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id' || pathName === '/data') {
-        event.preventDefault();
+    } else if (pathName === '/data') {
         scrollToSection('data-section1');
-    } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id' || pathName === '/educational-payments') {
-        event.preventDefault();
+    } else if (pathName === '/educational-payments') {
         scrollToSection('education-section');
-    } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id' || pathName === '/tv') {
-        event.preventDefault();
+    } else if (pathName === '/tv') {
         scrollToSection('tv-section1');
-    } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id' || pathName === '/electricity') {
-        event.preventDefault();
+    } else if (pathName === '/electricity') {
         scrollToSection('electricity-section1');
-    } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id' || pathName === '/fund-wallet') {
-        event.preventDefault();
+    } else if (pathName === '/fund-wallet') {
         scrollToSection('wallet-section1');
-    } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id' || pathName === '/send-funds') {
-        event.preventDefault();
+    } else if (pathName === '/send-funds') {
         scrollToSection('send-funds-section1');
     }
 });
