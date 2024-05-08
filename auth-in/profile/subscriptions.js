@@ -403,7 +403,7 @@ async function addEventListeners(historyItem) {
                             logUserOutIfTokenIsExpired();
                         } else {
                             // Handle error
-                            errorFunction("an unknown error occured");
+                            errorFunction("an unknown error occurred");
                         }
                 
                         return;
