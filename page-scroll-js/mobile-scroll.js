@@ -61,34 +61,20 @@ document.addEventListener('click', function (event) {
         // Check if the clicked link has a specific class or ID
         if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
             event.preventDefault();
-            // scrollToSection('airtime-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
             event.preventDefault();
-            // scrollToSection('card-pin-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {
             event.preventDefault();
-            // scrollToSection('data-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id') {
             event.preventDefault();
-            // scrollToSection('education-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id') {
             event.preventDefault();
-            // scrollToSection('tv-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id') {
             event.preventDefault();
-            // scrollToSection('electricity-section');
-            // scrollToSection('invoice-section');
         } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id') {
             event.preventDefault();
-            // scrollToSection('wallet-section');
         } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
             event.preventDefault();
-            // scrollToSection('send-funds-section');
         }
     }
 });
