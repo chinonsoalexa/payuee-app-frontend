@@ -399,7 +399,7 @@ async function addEventListeners(historyItem) {
                             errorFunction("failed to renew subscription");
                         } else if (errorData.error === 'insufficient balance') {
                             // Handle error
-                            errorFunction("sorry you have insufficient balance to complete this transaction");
+                            errorFunction("sorry you don't have sufficient funds to complete this transaction");
                         }else if (errorData.error === 'failed to get transaction history') {
                             // Handle error
                             errorFunction("failed to renew subscription");
