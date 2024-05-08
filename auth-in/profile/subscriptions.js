@@ -391,12 +391,19 @@ async function addEventListeners(historyItem) {
                         const errorData = await response.json();
                         if (errorData.error === 'failed to get user from request') {
                             // Handle error
-                        } else if (errorData.error === 'failed to get transaction history') {
+                            errorFunction("failed to renew subscription");
+                        } else if (errorData.error === 'insufficient balance') {
                             // Handle error
+                            errorFunction("sorry you have insufficient balance to complete this transaction");
+                        }else if (errorData.error === 'failed to get transaction history') {
+                            // Handle error
+                            errorFunction("failed to renew subscription");
                         } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                             // Handle error
+                            logUserOutIfTokenIsExpired();
                         } else {
                             // Handle error
+                            errorFunction("an unknown error occured");
                         }
                 
                         return;
@@ -413,6 +420,23 @@ async function addEventListeners(historyItem) {
             });
         });
     }
+}
+
+function errorFunction(errorMessage) {
+    const confirmPopup = document.getElementById('confirm-message');
+    const cancelButton = document.getElementById('cancel-verification-btn2');
+    // const verifyButton = document.getElementById('submit-verification-btn2');
+    const contentData1 = document.getElementById('contentData3');
+
+    confirmPopup.style.display = 'block';
+
+    contentData1.textContent = errorMessage;
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+        confirmPopup.style.display = 'none';
+    });
+
 }
 
 function removeRowById(rowId) {
