@@ -416,8 +416,6 @@ async function addEventListeners(historyItem) {
                 
                     const responseData = await response.json();
                     // Process the responseData as needed
-                    // renderSubscriptionHistory(responseData);
-                    removeRowById(rowId);
                     errorFunction("subscription successfully renewed");
                 } catch (error) {
                     // Handle error
