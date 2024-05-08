@@ -1,21 +1,25 @@
 // Handle scrolling when a link is clicked
 document.addEventListener('DOMContentLoaded', function (event) {
     // Check if the clicked link has a specific class or ID
+    event.preventDefault();
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
         scrollToSection('airtime-section');
-        scrollToSection('invoice-section');
+        scrollToSection('airtime-invoice-section');
     } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
         scrollToSection('card-pin-section');
+        scrollToSection('card-pin-invoice-section');
     } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {
         scrollToSection('data-section');
+        scrollToSection('data-invoice-section');
     } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id') {
         scrollToSection('education-section');
+        scrollToSection('education-invoice-section');
     } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id') {
         scrollToSection('tv-section');
+        scrollToSection('tv-invoice-section');
     } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id') {
         scrollToSection('electricity-section');
-    } else if (event.target.classList.contains('bet-id') || event.target.id === 'bet-id') {
-        scrollToSection('bet-section');
+        scrollToSection('electricity-invoice-section');
     } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id') {
         scrollToSection('wallet-section');
     } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
@@ -28,22 +32,26 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 // Handle scrolling when a link is clicked
 document.addEventListener('click', function (event) {
+    event.preventDefault();
     // Check if the clicked link has a specific class or ID
     if (event.target.classList.contains('airtime-id') || event.target.id === 'airtime-id') {
         scrollToSection('airtime-section');
-        scrollToSection('invoice-section');
+        scrollToSection('airtime-invoice-section');
     } else if (event.target.classList.contains('card-id') || event.target.id === 'card-pin-id') {
         scrollToSection('card-pin-section');
+        scrollToSection('card-pin-invoice-section');
     } else if (event.target.classList.contains('data-id') || event.target.id === 'data-id') {
         scrollToSection('data-section');
+        scrollToSection('data-invoice-section');
     } else if (event.target.classList.contains('education-id') || event.target.id === 'education-id') {
         scrollToSection('education-section');
+        scrollToSection('education-invoice-section');
     } else if (event.target.classList.contains('tv-id') || event.target.id === 'tv-id') {
         scrollToSection('tv-section');
+        scrollToSection('tv-invoice-section');
     } else if (event.target.classList.contains('electricity-id') || event.target.id === 'electricity-id') {
         scrollToSection('electricity-section');
-    } else if (event.target.classList.contains('bet-id') || event.target.id === 'bet-id') {
-        scrollToSection('bet-section');
+        scrollToSection('electricity-invoice-section');
     } else if (event.target.classList.contains('wallet-id') || event.target.id === 'wallet-id') {
         scrollToSection('wallet-section');
     } else if (event.target.classList.contains('send-funds-id') || event.target.id === 'send-funds-id') {
@@ -60,6 +68,5 @@ function scrollToSection(sectionId) {
         targetElement.scrollIntoView({
             behavior: 'smooth'
         });
-        event.preventDefault();
     }
 }
