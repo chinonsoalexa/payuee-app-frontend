@@ -1,29 +1,32 @@
 // Focus on the first input field when the page loads
 document.addEventListener('DOMContentLoaded', function(event) {
-    // Get the current URL
-    const currentUrl = new URL(window.location.href);
+    if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        // Code to run only on mobile phones or ipads
 
-    // Extract origin and pathname
-    const pathName =  currentUrl.pathname;
+        // Get the current URL
+        const currentUrl = new URL(window.location.href);
+        const pathName = currentUrl.pathname;
 
-    // Check if the clicked link has a specific class or ID
-    if (pathName === '/airtime') {
-        scrollToSection('airtime-section1');
-    } else if (pathName === '/recharge-pin') {
-        scrollToSection('card-pin-section1');
-    } else if (pathName === '/data') {
-        scrollToSection('data-section1');
-    } else if (pathName === '/educational-payments') {
-        scrollToSection('education-section');
-    } else if (pathName === '/tv') {
-        scrollToSection('tv-section1');
-    } else if (pathName === '/electricity') {
-        scrollToSection('electricity-section1');
-    } else if (pathName === '/fund-wallet') {
-        scrollToSection('wallet-section1');
-    } else if (pathName === '/send-funds') {
-        scrollToSection('send-funds-section1');
+        // Check if the clicked link has a specific class or ID
+        if (pathName === '/airtime') {
+            scrollToSection('airtime-section1');
+        } else if (pathName === '/recharge-pin') {
+            scrollToSection('card-pin-section1');
+        } else if (pathName === '/data') {
+            scrollToSection('data-section1');
+        } else if (pathName === '/educational-payments') {
+            scrollToSection('education-section');
+        } else if (pathName === '/tv') {
+            scrollToSection('tv-section1');
+        } else if (pathName === '/electricity') {
+            scrollToSection('electricity-section1');
+        } else if (pathName === '/fund-wallet') {
+            scrollToSection('wallet-section1');
+        } else if (pathName === '/send-funds') {
+            scrollToSection('send-funds-section1');
+        }
     }
+
 });
 
 // Handle scrolling when a link is clicked
