@@ -430,8 +430,7 @@ async function addEventListeners(historyItem) {
 
 function errorFunction(errorMessage) {
     const confirmPopup = document.getElementById('confirm-message');
-    const cancelButton = document.getElementById('cancel-verification-btn2');
-    // const verifyButton = document.getElementById('submit-verification-btn2');
+    const cancelButton = document.getElementById('cancel-verification-btn3');
     const contentData1 = document.getElementById('contentData3');
 
     confirmPopup.style.display = 'block';
