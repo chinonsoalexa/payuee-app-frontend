@@ -478,6 +478,12 @@ function downloadReceipt() {
     var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
     pdfContentElement.appendChild(clonedSuccessReceipt);
 
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
+
     // Create the company logo element dynamically
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
