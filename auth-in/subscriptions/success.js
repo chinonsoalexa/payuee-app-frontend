@@ -1,6 +1,5 @@
 // document.addEventListener('DOMContentLoaded', function() {
-var transID;
-
+var transID
 document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = "https://api.payuee.com/payuee/get-latest-transaction";
 
@@ -456,21 +455,25 @@ function downloadReceipt() {
 
     // Copy the content you want to include to the new element
     var successReceiptElement = document.getElementById('successReceipt');
-    var paymentHeaderElement = document.getElementById('paymentHeader');
-    var airtimeSectionElement = document.getElementById('airtime-section');
+    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+    pdfContentElement.appendChild(clonedSuccessReceipt);
 
-    pdfContentElement.appendChild(successReceiptElement);
-    pdfContentElement.appendChild(paymentHeaderElement);
-    pdfContentElement.appendChild(airtimeSectionElement);
+    // Optionally, you can remove specific elements you want to exclude
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
+    elementsToExclude.forEach(function(element) {
+        element.remove();
+    });
 
     // Create the company logo element dynamically
     var companyLogoElement = document.createElement('img');
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
     companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-    companyLogoElement.style.left = '10px';  // Adjust the left position as needed
-    pdfContentElement.appendChild(companyLogoElement);    
+    companyLogoElement.style.top = '50%'; // Force the logo to start from the top
+    companyLogoElement.style.left = '50%';
+    // companyLogoElement.style.transform = 'translateX(-50%)'; // Center the logo horizontally
+    companyLogoElement.style.opacity = '0.5'; // Set opacity to 0.5 (50% transparency)
+    pdfContentElement.appendChild(companyLogoElement); 
 
     var options = {
         filename: 'Payuee Receipt ' + transID+ '.pdf',
