@@ -460,7 +460,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(clonedSuccessReceipt);
 
     // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section, .dbutton');
     elementsToExclude.forEach(function(element) {
         element.remove();
     });
