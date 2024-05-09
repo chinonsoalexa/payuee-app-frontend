@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isAppInstalled() && !isiPhone()) {
         setTimeout(() => {
             installPopup.style.display = 'block';
-        }, 5000);
+        }, 2000);
     }
 
     // Install button click event
