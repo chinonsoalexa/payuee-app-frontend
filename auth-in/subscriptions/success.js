@@ -1,4 +1,5 @@
 // document.addEventListener('DOMContentLoaded', function() {
+var transID;
 
 document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = "https://api.payuee.com/payuee/get-latest-transaction";
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         const responseData = await response.json();
-        getSuccessMessage(responseData)
+        getSuccessMessage(responseData);
+        transID = responseData.success.transaction_id;
     } finally {
 
     }
@@ -473,7 +475,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(companyLogoElement);    
 
     var options = {
-        filename: 'payuee receipt.pdf',
+        filename: 'Payuee Receipt ' + transID+ '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
     };  // Use default options
 

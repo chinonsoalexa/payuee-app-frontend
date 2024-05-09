@@ -479,7 +479,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(clonedSuccessReceipt);
 
     // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
     elementsToExclude.forEach(function(element) {
         element.remove();
     });
@@ -494,7 +494,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(companyLogoElement);    
 
     var options = {
-        filename: 'payuee receipt ' + transID+ '.pdf',
+        filename: 'Payuee Receipt ' + transID+ '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
     };  // Use default options
 
