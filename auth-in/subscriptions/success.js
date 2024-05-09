@@ -456,14 +456,12 @@ function downloadReceipt() {
 
     // Copy the content you want to include to the new element
     var successReceiptElement = document.getElementById('successReceipt');
-    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-    pdfContentElement.appendChild(clonedSuccessReceipt);
+    var paymentHeaderElement = document.getElementById('paymentHeader');
+    var airtimeSectionElement = document.getElementById('airtime-section');
 
-    // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section, .dbutton');
-    elementsToExclude.forEach(function(element) {
-        element.remove();
-    });
+    pdfContentElement.appendChild(successReceiptElement);
+    pdfContentElement.appendChild(paymentHeaderElement);
+    pdfContentElement.appendChild(airtimeSectionElement);
 
     // Create the company logo element dynamically
     var companyLogoElement = document.createElement('img');
