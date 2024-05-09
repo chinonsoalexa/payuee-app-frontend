@@ -489,9 +489,9 @@ function downloadReceipt() {
     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
     companyLogoElement.alt = 'Payuee';
     companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '0'; // Force the logo to start from the top
+    companyLogoElement.style.top = '50'%; // Force the logo to start from the top
     companyLogoElement.style.left = '50%';
-    companyLogoElement.style.transform = 'translateX(-50%)'; // Center the logo horizontally
+    // companyLogoElement.style.transform = 'translateX(-50%)'; // Center the logo horizontally
     companyLogoElement.style.opacity = '0.5'; // Set opacity to 0.5 (50% transparency)
     pdfContentElement.appendChild(companyLogoElement); 
 
