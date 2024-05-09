@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded', function() {
+var transID;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const params = new URLSearchParams(currentUrl.search);
 
     // Get individual parameter values
-    let transID = params.get("id");
+    transID = params.get("id");
 
     const apiUrl = "https://api.payuee.com/transaction/" + transID;
 
@@ -479,7 +479,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(clonedSuccessReceipt);
 
     // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
+    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
     elementsToExclude.forEach(function(element) {
         element.remove();
     });
@@ -494,7 +494,7 @@ function downloadReceipt() {
     pdfContentElement.appendChild(companyLogoElement);    
 
     var options = {
-        filename: 'payuee receipt.pdf',
+        filename: 'payuee receipt ' + transID+ '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
     };  // Use default options
 
