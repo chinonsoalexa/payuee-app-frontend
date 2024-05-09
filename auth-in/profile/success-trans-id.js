@@ -476,22 +476,25 @@ function downloadReceipt() {
     // Copy the content you want to include to the new element
     var successReceiptElement = document.getElementById('successReceipt');
     var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-    pdfContentElement.appendChild(clonedSuccessReceipt);
-    
-    // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, .footer-download-section');
-    elementsToExclude.forEach(function(element) {
-        element.remove();
+
+    // Filter out elements with the 'disabled' class
+    var elementsToInclude = clonedSuccessReceipt.querySelectorAll(':not(.disabled)');
+
+    // Append only the elements without the 'disabled' class
+    elementsToInclude.forEach(function(element) {
+        pdfContentElement.appendChild(element.cloneNode(true)); // Clone the node to avoid moving it
     });
 
     // Create the company logo element dynamically
-    // var companyLogoElement = document.createElement('img');
-    // companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
-    // companyLogoElement.alt = 'Payuee';
-    // companyLogoElement.style.position = 'absolute';
-    // companyLogoElement.style.top = '10px';  // Adjust the top position as needed
-    // companyLogoElement.style.left = '10px';  // Adjust the left position as needed
-    // pdfContentElement.appendChild(companyLogoElement);    
+    var companyLogoElement = document.createElement('img');
+    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+    companyLogoElement.alt = 'Payuee';
+    companyLogoElement.style.position = 'fixed';
+    companyLogoElement.style.top = '50%';
+    companyLogoElement.style.left = '50%';
+    companyLogoElement.style.transform = 'translate(-50%, -50%)'; // Center the logo horizontally and vertically
+    companyLogoElement.style.opacity = '0.5'; // Set opacity to 0.5 (50% transparency)
+    pdfContentElement.appendChild(companyLogoElement); 
 
     var options = {
         filename: 'Payuee Receipt ' + transID+ '.pdf',
