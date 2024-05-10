@@ -87,7 +87,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
                 console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
-                    window.location.href = "https://api.payuee.com/successful.html"
+                    window.location.href = "https://payuee.com/successful.html"
                     return
                 } else {
                 window.location.href = responseData.success.data.authorization_url;
