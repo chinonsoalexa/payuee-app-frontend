@@ -83,7 +83,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             const responseData = await response.json();
 
                 if (responseData.success == 'electricity token successfully bought') {
-                    window.location.href = "https://api.payuee.com/successful.html"
+                    window.location.href = "https://payuee.com/successful.html"
                     return
                 } else {
                 window.location.href = responseData.success.data.authorization_url;

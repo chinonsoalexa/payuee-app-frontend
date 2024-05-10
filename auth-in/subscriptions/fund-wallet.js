@@ -23,7 +23,7 @@ if (validated) {
         TranCharge:  transCharge,
     };
 
-    const apiUrl = "https://api.payuee.com/payuee/init-transaction";
+    const apiUrl = "https://payuee.com/payuee/init-transaction";
 
     const requestOptions = {
         method: "POST",

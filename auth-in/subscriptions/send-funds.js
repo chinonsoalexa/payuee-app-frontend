@@ -258,7 +258,7 @@ async function sendFunds() {
                     return
                 }
             } else {
-                window.location.href = "https://api.payuee.com/successful.html"
+                window.location.href = "https://payuee.com/successful.html"
                 return
             }
         } finally {
