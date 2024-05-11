@@ -4,6 +4,7 @@ var meterNumber;
 var electricBill;
 var electricSelectValue;
 var electricSelectText;
+var electricityType;
 var paymentMethod;
 var validated = true; 
 var transCharge = 0;
@@ -30,6 +31,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
             ServiceID: "electricity",
             PaymentType: paymentMethod,
             Region:       electricSelectText,
+            VariationID: electricityType,
             RegionID:      electricSelectValue,
             MeterNumber: meterNumber,
             PhoneNumber: phone,
@@ -133,9 +135,8 @@ if (meterNumber === '') {
 // console.log(meterNumber);
 
 // let's check the radio button that was checked
-paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
-
-// console.log('Checked radio button:', paymentMethod);
+paymentMethod = radioButtonCheck('input[name="paymentOption"]');
+electricityType = radioButtonCheck('input[name="electricityType"]');
 
 var autorenewCheckbox = document.getElementById("autoRenewElectric");
 
@@ -156,9 +157,9 @@ if (validated) {
         var payment_method = document.getElementById('payment_method');
         var phone_number = document.getElementById('phone_number');
         var invoice_electric_region = document.getElementById('invoice_electric_region');
-        // var invoice_electric_region_id = document.getElementById('invoice_electric_region_id');
         var invoice_electric_auto_renew = document.getElementById('invoice_electric_auto_renew');
         var invoice_electric_meter_number = document.getElementById('invoice_electric_meter_number');
+        var electricityTypeId = document.getElementById('electricityType');
         var invoice_charge = document.getElementById('invoice_charge');
         var invoice_service_charge = document.getElementById('invoice_service_charge');
         var invoice_total_charge = document.getElementById('invoice_total_charge');
@@ -185,6 +186,11 @@ if (validated) {
         phone_number.textContent = phone;
         invoice_electric_region.textContent = electricSelectText;
         invoice_electric_meter_number.textContent = meterNumber;
+        if (electricityType === "prepaid") {
+            electricityTypeId.textContent = "Prepaid";
+        } else if (electricityType === "postpaid") {
+            electricityTypeId.textContent = "Postpaid";
+        }
         invoice_electric_auto_renew.textContent = autoRenew;
 }
 }

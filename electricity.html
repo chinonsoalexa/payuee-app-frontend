@@ -409,20 +409,37 @@
                      <h5 class="mb-4">
                         Pay your Electricity Bill
                      </h5>
+                     
                      <div class="prepaid__option">
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="wallet" checked>
-                           <label class="form-check-label" for="wallet">
-                             Wallet
-                           </label>
-                         </div>
+                            <input class="form-check-input" type="radio" name="paymentOption" id="wallet" checked>
+                            <label class="form-check-label" for="wallet">
+                                Wallet
+                            </label>
+                        </div>
                         <div class="prepaid__check">
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="paystack">
-                           <label class="form-check-label" for="paystack">
-                             External Bank
-                           </label>
-                         </div>
-                     </div>
+                            <input class="form-check-input" type="radio" name="paymentOption" id="paystack">
+                            <label class="form-check-label" for="paystack">
+                                External Bank
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="prepaid__option">
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="electricityType" id="prepaid" checked>
+                            <label class="form-check-label" for="prepaid">
+                                Prepaid
+                            </label>
+                        </div>
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="electricityType" id="postpaid">
+                            <label class="form-check-label" for="postpaid">
+                                Postpaid
+                            </label>
+                        </div>
+                    </div>
+                    
                      <form action="#" class="mb-3">
                         <div class="row g-4">
                            <div class="col-lg-6">
@@ -718,6 +735,14 @@
                            </span>
                            <span id="phone_number" class="counting">
                               08136804598
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Electricity Type
+                           </span>
+                           <span id="electricityType" class="counting">
+                              Prepaid
                            </span>
                         </div>
                      </div>

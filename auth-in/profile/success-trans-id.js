@@ -248,6 +248,8 @@ function getSuccessMessage(transactionDetails) {
         let electric_region = document.getElementById('electric_region');
         let electric_meter_number = document.getElementById('electric_meter_number');
         let electric_auto_renew = document.getElementById('electric_auto_renew');
+        let electric_meter_token = document.getElementById('electric_meter_token');
+        let electric_meter_units = document.getElementById('electric_meter_units');
         // Access properties within the success object using dot notation
         electric_transaction_id.textContent = transactionDetails.success.transaction_id;
         // Parse the timestamp string
@@ -261,6 +263,8 @@ function getSuccessMessage(transactionDetails) {
         electric_region.textContent = transactionDetails.service.region;
         electric_recharged_number.textContent = transactionDetails.service.phone_number;
         electric_meter_number.textContent = transactionDetails.service.meter_number;
+        electric_meter_token.textContent = transactionDetails.service.token;
+        electric_meter_units.textContent = transactionDetails.service.units;
         electric_auto_renew.textContent = transactionDetails.service.auto_renew;
         let electricityBackLink = document.getElementById('backLink');
         electricityBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
