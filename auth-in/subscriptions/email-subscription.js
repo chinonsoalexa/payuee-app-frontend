@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const responseData = await response.json();
             showPopup(responseData.success);
         } catch (error) {
-            console.error("An error occurred:", error);
             showPopupError("An error occurred while trying to add email");
         }
     });
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             position: "center-end",
             icon: "warning",
             title: message,
-            showConfirmButton: !1,
+            showConfirmButton: false,
             timer: 1500
         })
     }
