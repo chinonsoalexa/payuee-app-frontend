@@ -851,15 +851,26 @@ function getNextPageByClick(responseData, currentPageNumber) {
         // let's disable the next page navigation button
         document.getElementById('constantBeforePage').classList.add('disabled');
         document.getElementById('constantBeforePage').disabled = true;
+    } else {
+        // let's disable the next page navigation button
+        document.getElementById('constantBeforePage').classList.remove('disabled');
+        document.getElementById('constantBeforePage').disabled = false;
     }
 
     if (CurrentPageOnLoad < 5) {
         // let's disable the next page navigation button
         document.getElementById('dotBeforePage').classList.add('disabled');
         document.getElementById('dotBeforePage').disabled = true;
+    }else {
+        // let's enable the next page navigation button
+        document.getElementById('dotBeforePage').classList.remove('disabled');
+        document.getElementById('dotBeforePage').disabled = false;
     }
 
     if (CurrentPageOnLoad > 2) {
+        // let's enable the next page navigation button
+        document.getElementById('twoBeforePage').classList.remove('disabled');
+        document.getElementById('twoBeforePage').disabled = false;
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("twoBeforePage");
         var currentPageAnchor = currentPageElement.querySelector("a");
