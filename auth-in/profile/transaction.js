@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
         ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
         AllRecordsOnPageLoad = responseData.pagination.AllRecords;
-        console.log(responseData);
+        // console.log(responseData);
         if (AllRecordsOnPageLoad > 6) {
             // let's disable the next page navigation button
             document.getElementById('paginationList').classList.remove('disabled');
@@ -826,6 +826,7 @@ function getNextPageByClick(responseData, currentPageNumber) {
     TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
+
     if (AllRecordsOnPageLoad > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
