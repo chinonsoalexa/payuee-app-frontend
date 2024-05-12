@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let emailInputFinal = document.getElementById('email_rocket_subscription');
         emailInputFinal.value = "";
         Swal.fire({
-            position: "top-end",
+            position: "center-end",
             icon: "success",
             title: message,
             showConfirmButton: !1,
