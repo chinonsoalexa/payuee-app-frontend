@@ -791,6 +791,11 @@ document.getElementById('refreshHistory').addEventListener('click', function(eve
 });
 
 function getNextPageByClick(responseData, currentPageNumber) {
+    // Get individual parameter values
+    if (currentPageNumber == null) {
+        currentPageNumber = "1";
+    }
+
     // render the transaction history
     renderTransactionHistory(responseData.success);
 
