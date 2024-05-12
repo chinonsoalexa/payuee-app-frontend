@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('paginationList').disabled = false;
         } 
         
-        if (CurrentPageOnLoad > TotalPages) {
+        if (CurrentPageOnLoad > TotalPageOnLoad) {
             document.getElementById('paginationList').classList.add('disabled');
             document.getElementById('paginationList').disabled = true;
         }
