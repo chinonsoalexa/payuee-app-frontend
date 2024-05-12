@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (CurrentPageOnLoad <= 1) {
             deactivatePreviousButton();
             deactivateBeforeButton();
-        } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
+        } else if (CurrentPageOnLoad >= TotalPageOnLoad) {
             deactivateNextButton();
         }
 
@@ -833,7 +833,9 @@ function getNextPageByClick(responseData, currentPageNumber) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
         document.getElementById('paginationList').disabled = false;
-    } else if (CurrentPageOnLoad < AllRecordsOnPageLoad) {
+    }
+       
+    if (CurrentPageOnLoad > TotalPageOnLoad) {
         document.getElementById('paginationList').classList.add('disabled');
         document.getElementById('paginationList').disabled = true;
     }
