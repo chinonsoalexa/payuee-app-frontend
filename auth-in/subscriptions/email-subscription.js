@@ -1,4 +1,4 @@
-// document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('rocket_subscription_form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -62,4 +62,4 @@
             timer: 1500
         })
     }
-// });
+});
