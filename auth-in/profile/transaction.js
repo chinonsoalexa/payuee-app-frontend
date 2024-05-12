@@ -830,7 +830,7 @@ function getNextPageByClick(responseData, currentPageNumber) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
         document.getElementById('paginationList').disabled = false;
-    } else if (currentPageNumber < TotalPageOnLoad) {
+    } else if (CurrentPageOnLoad < AllRecordsOnPageLoad) {
         document.getElementById('paginationList').classList.add('disabled');
         document.getElementById('paginationList').disabled = true;
     }
