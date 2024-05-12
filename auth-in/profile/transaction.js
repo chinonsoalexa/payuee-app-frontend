@@ -807,10 +807,14 @@ function getNextPageByClick(responseData, currentPageNumber) {
     TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
+
     if (AllRecordsOnPageLoad > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
         document.getElementById('paginationList').disabled = false;
+    } else {
+        document.getElementById('paginationList').classList.add('disabled');
+        document.getElementById('paginationList').disabled = true;
     }
 
     if (CurrentPageOnLoad <= 1) {
@@ -824,17 +828,25 @@ function getNextPageByClick(responseData, currentPageNumber) {
         // let's disable the next page navigation button
         document.getElementById('constantBeforePage').classList.add('disabled');
         document.getElementById('constantBeforePage').disabled = true;
+    } else if (CurrentPageOnLoad > 4) {
+        document.getElementById('constantBeforePage').classList.remove('disabled');
+        document.getElementById('constantBeforePage').disabled = false;
     }
 
     if (CurrentPageOnLoad < 5) {
         // let's disable the next page navigation button
         document.getElementById('dotBeforePage').classList.add('disabled');
         document.getElementById('dotBeforePage').disabled = true;
+    } else if (CurrentPageOnLoad > 4) {
+        document.getElementById('dotBeforePage').classList.remove('disabled');
+        document.getElementById('dotBeforePage').disabled = false;
     }
 
     if (CurrentPageOnLoad > 2) {
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("twoBeforePage");
+        currentPageElement.classList.remove('disabled');
+        currentPageElement.disabled = false;
         var currentPageAnchor = currentPageElement.querySelector("a");
         currentPageAnchor.textContent = TwoBeforePageOnLoad;
     } else {
