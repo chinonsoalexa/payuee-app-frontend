@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-
+    renderTransactionHistoryLoading();
     const apiUrl = "https://api.payuee.com/transactions/" + pageNumber;
 
     const requestOptions = {
