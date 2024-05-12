@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate email format using regex
         var emailRegex = /\S+@\S+\.\S+/;
         if (!emailRegex.test(emailValue)) {
-            showPopup("Please enter a valid email address.");
+            showPopupError("Please enter a valid email address.");
             return;
         }
 
