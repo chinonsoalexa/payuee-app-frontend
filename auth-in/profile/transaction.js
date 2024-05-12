@@ -323,6 +323,7 @@ try {
 
 document.getElementById("previousPage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + PreviousPageOnLoad;
     
@@ -359,7 +360,8 @@ document.getElementById("previousPage").addEventListener("click", async function
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
+            getNextPageByClick(responseData, PreviousPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
     } finally {
     
         }
@@ -367,6 +369,7 @@ document.getElementById("previousPage").addEventListener("click", async function
 
 document.getElementById("constantBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + "1";
     
@@ -403,7 +406,8 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + "1";
+            getNextPageByClick(responseData, "1");
+            // window.location.href = 'transaction.html?page=' + "1";
     } finally {
     
         }
@@ -411,6 +415,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
 
 document.getElementById("beforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + PreviousPageOnLoad;
     
@@ -447,7 +452,8 @@ document.getElementById("beforePage").addEventListener("click", async function(e
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
+            getNextPageByClick(responseData, PreviousPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + PreviousPageOnLoad;
     } finally {
     
         }
@@ -455,6 +461,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
 
 document.getElementById("twoBeforePage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + TwoBeforePageOnLoad;
     
@@ -491,7 +498,8 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
+            getNextPageByClick(responseData, TwoBeforePageOnLoad);
+            // window.location.href = 'transaction.html?page=' + TwoBeforePageOnLoad;
     } finally {
     
         }
@@ -499,6 +507,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
 
 document.getElementById("currentPage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + CurrentPageOnLoad;
     
@@ -535,7 +544,8 @@ document.getElementById("currentPage").addEventListener("click", async function(
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
+            getNextPageByClick(responseData, CurrentPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + CurrentPageOnLoad;
     } finally {
     
     }
@@ -588,6 +598,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
 
 document.getElementById("constantAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + TotalPageOnLoad;
     
@@ -624,7 +635,8 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TotalPageOnLoad;
+            getNextPageByClick(responseData, TotalPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + TotalPageOnLoad;
     } finally {
     
     }
@@ -632,6 +644,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
 
 document.getElementById("afterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + NextPageOnLoad;
     
@@ -668,7 +681,8 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + NextPageOnLoad;
+            getNextPageByClick(responseData, NextPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + NextPageOnLoad;
     } finally {
     
     }
@@ -676,6 +690,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
 
 document.getElementById("twoAfterPage").addEventListener("click", async function(event){
     event.preventDefault(); 
+    renderTransactionHistoryLoading();
 
     const apiUrl = "https://api.payuee.com/transactions/" + TwoAfterPageOnLoad;
         const requestOptions = {
@@ -711,7 +726,8 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
             }
     
             const responseData = await response.json();
-            window.location.href = 'transaction.html?page=' + TwoAfterPageOnLoad;
+            getNextPageByClick(responseData, TwoAfterPageOnLoad);
+            // window.location.href = 'transaction.html?page=' + TwoAfterPageOnLoad;
     } finally {
     
         }
