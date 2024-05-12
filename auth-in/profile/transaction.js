@@ -841,12 +841,12 @@ function getNextPageByClick(responseData, currentPageNumber) {
     if (CurrentPageOnLoad <= 1) {
         deactivatePreviousButton();
         deactivateBeforeButton();
-    } else {
-        // var resendButton = document.getElementById('previousPage');
-        // resendButton.classList.remove('deactivated'); // Add a class to the button
+    } else if (CurrentPageOnLoad > 1){
+        var resendButton = document.getElementById('previousPage');
+        resendButton.classList.remove('deactivated'); // Add a class to the button
 
-        // var resendButton = document.getElementById('beforePage');
-        // resendButton.classList.add('deactivated'); // Add a class to the button
+        var resendButton = document.getElementById('beforePage');
+        resendButton.classList.add('deactivated'); // Add a class to the button
     }
     
     if (CurrentPageOnLoad >= TotalPageOnLoad) {
