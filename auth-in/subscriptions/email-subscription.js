@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Function to create and display the popup box
     function showPopup(message) {
+        let emailInputFinal = document.getElementById('email_rocket_subscription');
+        emailInputFinal.value = "";
         Swal.fire({
             position: "top-end",
             icon: "success",
