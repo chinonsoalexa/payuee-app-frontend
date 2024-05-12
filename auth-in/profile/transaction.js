@@ -846,7 +846,7 @@ function getNextPageByClick(responseData, currentPageNumber) {
         resendButton.classList.remove('deactivated'); // Add a class to the button
 
         var resendButton = document.getElementById('beforePage');
-        resendButton.classList.add('deactivated'); // Add a class to the button
+        resendButton.classList.remove('deactivated'); // Add a class to the button
     }
     
     if (CurrentPageOnLoad >= TotalPageOnLoad) {
