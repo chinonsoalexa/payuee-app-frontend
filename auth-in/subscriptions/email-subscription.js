@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             icon: "success",
             title: message,
             showConfirmButton: !1,
-            timer: 1500
+            timer: 2000
         })
     }
     // Function to create and display the popup box
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
             icon: "warning",
             title: message,
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         })
     }
 });
