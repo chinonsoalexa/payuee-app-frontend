@@ -779,19 +779,16 @@ function formatTimestampForPlaceholder(timestamp) {
 
 function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
-    // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 function deactivateBeforeButton() {
     var resendButton = document.getElementById('beforePage');
-    // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 function deactivateNextButton() {
     var resendButton = document.getElementById('nextPage');
-    // resendButton.className = '';
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
@@ -843,8 +840,19 @@ function getNextPageByClick(responseData, currentPageNumber) {
     if (CurrentPageOnLoad <= 1) {
         deactivatePreviousButton();
         deactivateBeforeButton();
-    } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
+    } else {
+        var resendButton = document.getElementById('previousPage');
+        resendButton.classList.remove('deactivated'); // Add a class to the button
+
+        var resendButton = document.getElementById('beforePage');
+        resendButton.classList.add('deactivated'); // Add a class to the button
+    }
+    
+    if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
         deactivateNextButton();
+    } else {
+        var resendButton = document.getElementById('nextPage');
+        resendButton.classList.remove('deactivated'); // Add a class to the button
     }
 
     if (CurrentPageOnLoad < 4) {
@@ -897,6 +905,8 @@ function getNextPageByClick(responseData, currentPageNumber) {
         document.getElementById('afterPage').classList.add('disabled');
         document.getElementById('afterPage').disabled = true;
     } else {
+        document.getElementById('afterPage').classList.remove('disabled');
+        document.getElementById('afterPage').disabled = false;
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("afterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
@@ -904,6 +914,9 @@ function getNextPageByClick(responseData, currentPageNumber) {
     }
 
     if (TwoAfterPageOnLoad < TotalPageOnLoad) {
+        // let's enable the next page navigation button
+        document.getElementById('twoAfterPage').classList.remove('disabled');
+        document.getElementById('twoAfterPage').disabled = false;
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("twoAfterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
@@ -919,6 +932,9 @@ function getNextPageByClick(responseData, currentPageNumber) {
         document.getElementById('constantAfterPage').classList.add('disabled');
         document.getElementById('constantAfterPage').disabled = true;
     } else {
+        // let's disable the next page navigation button
+        document.getElementById('constantAfterPage').classList.remove('disabled');
+        document.getElementById('constantAfterPage').disabled = false;
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("constantAfterPage");
         var currentPageAnchor = currentPageElement.querySelector("a");
@@ -929,6 +945,10 @@ function getNextPageByClick(responseData, currentPageNumber) {
         // let's disable the next page navigation button
         document.getElementById('dotAfterPage').classList.add('disabled');
         document.getElementById('dotAfterPage').disabled = true;
+    } else {
+        // let's disable the next page navigation button
+        document.getElementById('dotAfterPage').classList.remove('disabled');
+        document.getElementById('dotAfterPage').disabled = false;
     }
 
     // Update the URL parameter without reloading the page
