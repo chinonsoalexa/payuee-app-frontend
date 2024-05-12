@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             // let's disable the next page navigation button
             document.getElementById('paginationList').classList.remove('disabled');
             document.getElementById('paginationList').disabled = false;
-        } else if (CurrentPageOnLoad < AllRecordsOnPageLoad) {
+        } else if (CurrentPageOnLoad > TotalPages) {
             document.getElementById('paginationList').classList.add('disabled');
             document.getElementById('paginationList').disabled = true;
         }
