@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const errorData = await response.json();
 
                 if (errorData.error === 'Failed to read body' || errorData.error === 'error adding new email subscriber') {
-                    showPopup("An error occurred while trying to add email");
+                    showPopupError("An error occurred while trying to add email");
                 } else if (errorData.error === 'user with email already exists') {
-                    showPopup("User with email already exists");
+                    showPopupError("User with email already exists");
                 } else {
-                    showPopup("An error occurred while trying to add email");
+                    showPopupError("An error occurred while trying to add email");
                 }
 
                 return;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showPopup(responseData.success);
         } catch (error) {
             console.error("An error occurred:", error);
-            showPopup("An error occurred while trying to add email");
+            showPopupError("An error occurred while trying to add email");
         }
     });
     
@@ -59,6 +59,18 @@ document.addEventListener("DOMContentLoaded", function() {
         Swal.fire({
             position: "center-end",
             icon: "success",
+            title: message,
+            showConfirmButton: !1,
+            timer: 1500
+        })
+    }
+    // Function to create and display the popup box
+    function showPopupError(message) {
+        let emailInputFinal = document.getElementById('email_rocket_subscription');
+        emailInputFinal.value = "";
+        Swal.fire({
+            position: "center-end",
+            icon: "warning",
             title: message,
             showConfirmButton: !1,
             timer: 1500
