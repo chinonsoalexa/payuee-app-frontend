@@ -823,7 +823,7 @@ function getNextPageByClick(responseData, currentPageNumber) {
     TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
-    if (AllRecordsOnPageLoad > 6) {
+    if (AllRecordsOnPageLoad > 6 || currentPageNumber >TotalPageOnLoad) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
         document.getElementById('paginationList').disabled = false;
