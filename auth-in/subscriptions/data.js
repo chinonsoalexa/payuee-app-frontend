@@ -121,7 +121,7 @@ function buy_data(){
 
     if (!planPrefixes.includes(servicePlanID)) {
         validated = false;
-        showError('phone-error', phone + ' do not match the selected bundle plan');
+        showError('phone-error', phone + ' do not match the selected bundle plan network');
     }
 
     // let's check the radio button that was checked to determine the payment option
@@ -199,6 +199,7 @@ function showError(id, message, duration = 5000) {
     errorElement.textContent = message;
     errorElement.style.display = 'block'; // Change display to 'block'
     errorElement.style.color = 'red'; // Set text color to red
+    errorElement.style.fontSize = "15px"; // Set font size to smaller
 
     // Set a timeout to hide the error message after the specified duration
     setTimeout(function () {
