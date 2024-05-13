@@ -122,15 +122,7 @@ function buy_data(){
 
     if (!planPrefixes.includes(servicePlanID)) {
         validated = false;
-        if (NetworkCheck == "MTN") {
-            showError('phone-error', phone + ' is not an MTN Number');
-        } else if (NetworkCheck == "GLO") {
-            showError('phone-error', phone + ' is not a GLO Number');
-        } else if (NetworkCheck == "AIRTEL") {
-            showError('phone-error', phone + ' is not an AIRTEL Number');
-        } else if (NetworkCheck == "9MOBILE") {
-            showError('phone-error', phone + ' is not a 9MOBILE Number');
-        } 
+        showError('phone-error', phone + ' do not match the selected network plan');
     }
 
     // let's check the radio button that was checked to determine the payment option
