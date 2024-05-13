@@ -118,11 +118,10 @@ function buy_data(){
 
    let NetworkCheck = checkOperator(phone);
    const planPrefixes = prefixes[NetworkCheck];
-    // servicePlanID
 
     if (!planPrefixes.includes(servicePlanID)) {
         validated = false;
-        showError('phone-error', phone + ' do not match the selected network plan');
+        showError('phone-error', phone + ' do not match the selected bundle plan');
     }
 
     // let's check the radio button that was checked to determine the payment option
