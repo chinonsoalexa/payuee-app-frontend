@@ -37,7 +37,7 @@ if (validated) {
     try {
         const response = await fetch(apiUrl, requestOptions);
 
-        console.log(response);
+        console.log(response.json());
         if (!response.ok) {
             const errorData = await response.json();
 
