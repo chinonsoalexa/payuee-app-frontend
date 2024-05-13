@@ -39,13 +39,13 @@ if (validated) {
     try {
         const response = await fetch(apiUrl, requestOptions);
 
-    console.log("here 3")
-    console.log(response.json());
+    // console.log("here 3")
+    // console.log(response.json());
         if (!response.ok) {
             const errorData = await response.json();
 
-    console.log("here 4")
-    console.log(errorData);
+    // console.log("here 4")
+    // console.log(errorData);
 
             if (errorData.error === 'User already exist, please login') {
                 showError('passwordError', 'User already exists. Please signin.');
