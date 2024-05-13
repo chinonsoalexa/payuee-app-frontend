@@ -109,6 +109,30 @@ function buy_data(){
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
 
+    const prefixes = {
+        'MTN': ['mtn_sme', 'mtn_gifting', 'mtn_cg'],
+        'GLO': ['glo_data'],
+        'AIRTEL': ['airtel_cg'],
+        '9MOBILE': ['etisalat_data']
+    };
+
+   let NetworkCheck = checkOperator(phone);
+   const planPrefixes = prefixes[NetworkCheck];
+    // servicePlanID
+
+    if (!planPrefixes.includes(servicePlanID)) {
+        validated = false;
+        if (NetworkCheck == "MTN") {
+            showError('phone-error', phone + ' is not an MTN Number');
+        } else if (NetworkCheck == "GLO") {
+            showError('phone-error', phone + ' is not a GLO Number');
+        } else if (NetworkCheck == "AIRTEL") {
+            showError('phone-error', phone + ' is not an AIRTEL Number');
+        } else if (NetworkCheck == "9MOBILE") {
+            showError('phone-error', phone + ' is not a 9MOBILE Number');
+        } 
+    }
+
     // let's check the radio button that was checked to determine the payment option
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
 
@@ -303,40 +327,32 @@ async function getSelectedPlan(dataValue) {
 
     // Check if the selected value is not the default option
     if (dataValue !== '1') {
-        // var plansSelect = document.getElementById('planSelectId');
-        // plansSelect.innerHTML = '<option value="plans">Select a Plan</option>';
 
         // Perform a task based on the selected value
         switch (dataValue) {
             case '2':
                 await requestPlan('mtn_sme', 'MTN SME');
                 servicePlanID = 'mtn_sme'
-                // console.log('running 2')
                 break;
             case '3':
                 await requestPlan('mtn_gifting', 'MTN Gifting');
                 servicePlanID = 'mtn_gifting'
-                // console.log('running 3')
                 break;
             case '7':
                 await requestPlan('mtn_cg', 'MTN Corporate');
                 servicePlanID = 'mtn_cg'
-                // console.log('running 3')
                 break;
             case '4':
                 await requestPlan('airtel_cg', "Airtel CG");
                 servicePlanID = 'airtel_cg'
-                // console.log('running 4')
                 break;
             case '5':
                 await requestPlan('etisalat_data', '9mobile');
                 servicePlanID = 'etisalat_data'
-                // console.log('running 5')
                 break;
             case '6':
                 await requestPlan('glo_data', 'GLO');
                 servicePlanID = 'glo_data'
-                // console.log('running 6')
                 break;
             default:
                 // Handle other cases
@@ -624,4 +640,24 @@ function reactivateButtonStyles() {
     resendButton.className = '';
     // Add the original class 'cmn__btn'
     resendButton.classList.add('cmn__btn');
+}
+
+function checkOperator(number) {
+    const prefixes = {
+        'MTN': ['0703', '0706', '0803', '0806', '0810', '0813', '0814', '0816', '0903', '0906'],
+        'GLO': ['0705', '0805', '0807', '0811', '0815', '0905'],
+        'AIRTEL': ['0701', '0708', '0802', '0808', '0812', '0902', '0907', '0901'],
+        '9MOBILE': ['0809', '0817', '0818', '0908']
+    };
+
+    const numStr = number.toString();
+    const prefix = numStr.substring(0, 4);
+
+    for (const operator in prefixes) {
+        if (prefixes[operator].includes(prefix)) {
+            return operator;
+        }
+    }
+
+    return "Unknown";
 }
