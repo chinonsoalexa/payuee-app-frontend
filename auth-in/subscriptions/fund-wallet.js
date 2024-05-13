@@ -16,6 +16,7 @@ if (firstBillAmount < 100) {
 }
 
 if (validated) {
+    console.log("here 1")
     deactivateButtonStyles();
     const user = {
         ServiceID: "fundWallet",
@@ -25,6 +26,7 @@ if (validated) {
 
     const apiUrl = "https://payuee.com/payuee/init-transaction";
 
+    console.log("here 2")
     const requestOptions = {
         method: "POST",
         headers: {
@@ -37,11 +39,13 @@ if (validated) {
     try {
         const response = await fetch(apiUrl, requestOptions);
 
-        console.log(response.json());
+    console.log("here 3")
+    console.log(response.json());
         if (!response.ok) {
             const errorData = await response.json();
 
-            console.log(errorData);
+    console.log("here 4")
+    console.log(errorData);
 
             if (errorData.error === 'User already exist, please login') {
                 showError('passwordError', 'User already exists. Please signin.');
@@ -66,14 +70,16 @@ if (validated) {
         }
 
         const responseData = await response.json();
+        console.log("here 5")
 
         if (responseData.hasOwnProperty('success')){
-            if (responseData.success.hasOwnProperty('data')) {
+    console.log("here 6")
+    if (responseData.success.hasOwnProperty('data')) {
                 window.location.href = responseData.success.data.authorization_url;
                 return
             }
         } else {
-            window.location.href = "https://api.payuee.com/successful.html"
+            window.location.href = "https://payuee.com/successful.html"
             return
         }
     } finally {
