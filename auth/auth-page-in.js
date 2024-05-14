@@ -23,3 +23,58 @@ function get_auth_status() {
         window.location.href = '../index-in.html';
     }
 }
+
+	//--Preloader--//
+	setTimeout(function(){
+		$('.preloader__wrap').fadeToggle();
+	}, 1000);
+	//--Preloader--//
+	
+	function onRequestSent() {
+		// Code to execute when a request is sent
+		// Trigger the preloader fadeToggle 
+			$('.preloader__wrap').fadeToggle();
+	}
+	
+	function onRequestComplete() {
+		// Code to execute when a request is complete
+		// Trigger the preloader fadeToggle 
+			$('.preloader__wrap').fadeToggle();
+	}
+	
+	(function() {
+		// Save reference to the original fetch function
+		const originalFetch = window.fetch;
+	
+		// Override the fetch function with our own custom implementation
+		window.fetch = function() {
+
+			if (!navigator.onLine) {
+				// Handle the case when there's no internet connection
+                // onRequestComplete();
+                Swal.fire({
+					title: "No Internet?",
+					text: "Please Connect to the Internet!!!",
+					icon: "question",
+					confirmButtonColor: "#556ee6"
+				  })
+				return Promise.reject(new Error("No internet connection."));
+			}
+	
+			// Trigger onRequestSent when a request is sent
+			onRequestSent();
+	
+			// Call the original fetch function
+			const fetchPromise = originalFetch.apply(this, arguments);
+	
+        // When the fetch request is complete, trigger onRequestComplete
+        fetchPromise.then(() => {
+            onRequestComplete();
+        }).catch(error => {
+            onRequestComplete();
+        });
+	
+			// Return the fetch promise
+			return fetchPromise;
+		};
+	})();

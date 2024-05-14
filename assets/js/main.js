@@ -935,47 +935,59 @@ $('.video-btn').magnificPopup({
 	new WOW().init();
 	//--Wow Animation--//
 
-	//--Preloader--//
-	setTimeout(function(){
-		$('.preloader__wrap').fadeToggle();
-	}, 1000);
-	//--Preloader--//
+	// //--Preloader--//
+	// setTimeout(function(){
+	// 	$('.preloader__wrap').fadeToggle();
+	// }, 1000);
+	// //--Preloader--//
 	
-	function onRequestSent() {
-		// Code to execute when a request is sent
-		// Trigger the preloader fadeToggle 
-			$('.preloader__wrap').fadeToggle();
-	}
+	// function onRequestSent() {
+	// 	// Code to execute when a request is sent
+	// 	// Trigger the preloader fadeToggle 
+	// 		$('.preloader__wrap').fadeToggle();
+	// }
 	
-	function onRequestComplete() {
-		// Code to execute when a request is complete
-		// Trigger the preloader fadeToggle 
-			$('.preloader__wrap').fadeToggle();
-	}
+	// function onRequestComplete() {
+	// 	// Code to execute when a request is complete
+	// 	// Trigger the preloader fadeToggle 
+	// 		$('.preloader__wrap').fadeToggle();
+	// }
 	
-	(function() {
-		// Save reference to the original fetch function
-		const originalFetch = window.fetch;
+	// (function() {
+	// 	// Save reference to the original fetch function
+	// 	const originalFetch = window.fetch;
 	
-		// Override the fetch function with our own custom implementation
-		window.fetch = function() {
-			// Trigger onRequestSent when a request is sent
-			onRequestSent();
+	// 	// Override the fetch function with our own custom implementation
+	// 	window.fetch = function() {
+
+	// 		if (!navigator.onLine) {
+	// 			// Handle the case when there's no internet connection
+	// 			Swal.fire({
+	// 				title: "No Internet?",
+	// 				text: "Please Connect to the Internet!!!",
+	// 				icon: "question",
+	// 				confirmButtonColor: "#556ee6"
+	// 			  })
+	// 			return Promise.reject(new Error("No internet connection."));
+	// 		}
 	
-			// Call the original fetch function
-			const fetchPromise = originalFetch.apply(this, arguments);
+	// 		// Trigger onRequestSent when a request is sent
+	// 		onRequestSent();
 	
-        // When the fetch request is complete, trigger onRequestComplete
-        fetchPromise.then(() => {
-            onRequestComplete();
-        }).catch(error => {
-            onRequestComplete();
-        });
+	// 		// Call the original fetch function
+	// 		const fetchPromise = originalFetch.apply(this, arguments);
 	
-			// Return the fetch promise
-			return fetchPromise;
-		};
-	})();
+    //     // When the fetch request is complete, trigger onRequestComplete
+    //     fetchPromise.then(() => {
+    //         onRequestComplete();
+    //     }).catch(error => {
+    //         onRequestComplete();
+    //     });
+	
+	// 		// Return the fetch promise
+	// 		return fetchPromise;
+	// 	};
+	// })();
 
 	// range sliger
 	function getVals(){
