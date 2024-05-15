@@ -22,10 +22,6 @@ function get_auth_status() {
 	sessionStorage.setItem('analyticsData', 'true');
 
         // send a post request with the email and password
-        const otp = {
-            Email: email,
-            Password: password,
-            };
 
             const apiUrl = "https://api.payuee.com/auth-status";
 
