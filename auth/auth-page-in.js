@@ -18,9 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // this would be for unauthenticated pages
 function get_auth_status() {
 
-	// Key does not exist in localStorage
-	sessionStorage.setItem('analyticsData', 'true');
-
         // send a post request with the email and password
 
             const apiUrl = "https://api.payuee.com/auth-status";
