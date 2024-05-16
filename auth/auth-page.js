@@ -164,9 +164,9 @@ function check_auth_status() {
         
 
         if (!response.ok) {
-            const errorData = response.json();
+            // const errorData = response.json();
 
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            // if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
                 Swal.fire({
                     title: "Session Expired",
@@ -191,12 +191,12 @@ function check_auth_status() {
                         // Call your function or execute your code here
                     }
                 });
-            } else {
-                logUserOutIfTokenIsExpired();
-                localStorage.removeItem('auth');
-                window.location.href = 'page/signin-new.html';
-                // showError('passwordError', 'An error occurred. Please try again.');
-            }
+            // } else {
+            //     logUserOutIfTokenIsExpired();
+            //     localStorage.removeItem('auth');
+            //     window.location.href = 'page/signin-new.html';
+            //     // showError('passwordError', 'An error occurred. Please try again.');
+            // }
 
             return;
         }
