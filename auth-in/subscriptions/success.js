@@ -44,7 +44,7 @@ function getSuccessMessage(transactionDetails) {
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
-    
+
     let availableBalanceString = transactionDetails.balance;
     
     if (transactionDetails.success.transaction_status === "success") {
@@ -249,7 +249,7 @@ function getSuccessMessage(transactionDetails) {
         electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_meter_token.textContent = transactionDetails.service.token;
         electric_meter_units.textContent = transactionDetails.service.units;
-        electric_auto_renew.textContent = transactionDetails.service.auto_renew;
+        electric_auto_renew.textContent = transactionDetails.success.auto_renew;
         let electricityBackLink = document.getElementById('backLink');
         electricityBackLink.href = "electricity.html"; // Let's redirect back to transaction page
         break;
