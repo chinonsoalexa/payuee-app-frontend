@@ -270,7 +270,7 @@ function getSuccessMessage(transactionDetails) {
         electric_meter_number.textContent = transactionDetails.service.meter_number;
         electric_meter_token.textContent = transactionDetails.service.token;
         electric_meter_units.textContent = transactionDetails.service.units;
-        electric_auto_renew.textContent = transactionDetails.service.auto_renew;
+        electric_auto_renew.textContent = transactionDetails.success.auto_renew;
         let electricityBackLink = document.getElementById('backLink');
         electricityBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
         break;
