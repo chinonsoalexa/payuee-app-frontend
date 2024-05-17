@@ -59,16 +59,8 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
                 // alert("this is the error message: ", errorData);
 
-                if (errorData.error === 'User already exist, please login') {
-                    showError('passwordError', 'User already exists. Please signin.');
-                } else if  (errorData.error === 'Please login using your google account') {
-                    showError('passwordError', 'Please login using your google account.');
-                } else if  (errorData.error === 'User already exist, please verify your email ID') {
-                    showErrorUserExist('passwordError', 'User already exist, please verify your email ID.');
-                } else if  (errorData.error === 'email verification failed') {
-                    showError('passwordError', 'An error occurred while sending you a verification email. Please try resending.');
-                } else if  (errorData.error === 'User already exist, please signin') {
-                    showError('passwordError', 'Please login, you already have an existing account with us.');
+                if (errorData.error === 'Failed to unmarshal data request from client side...') {
+                    showError('passwordError', 'incorrect body format');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
