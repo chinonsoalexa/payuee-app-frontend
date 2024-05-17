@@ -118,21 +118,21 @@ try {
 		// Override the fetch function with our own custom implementation
 		window.fetch = function() {
             // Check if the request URL matches the specific URL to exclude
-            if (arguments[0] === "https://api.payuee.com/auth-status") {
-                // Call the original fetch function without triggering event handling
-                return originalFetch.apply(this, arguments);
-            }
-			if (!navigator.onLine) {
-				// Handle the case when there's no internet connection
-                onRequestComplete();
-                Swal.fire({
-					title: "No Internet?",
-					text: "Please Connect to the Internet!!!",
-					icon: "question",
-					confirmButtonColor: "#556ee6"
-				  })
-				return Promise.reject(new Error("No internet connection."));
-			}
+            // if (arguments[0] === "https://api.payuee.com/auth-status") {
+            //     // Call the original fetch function without triggering event handling
+            //     return originalFetch.apply(this, arguments);
+            // }
+			// if (!navigator.onLine) {
+			// 	// Handle the case when there's no internet connection
+            //     onRequestComplete();
+            //     Swal.fire({
+			// 		title: "No Internet?",
+			// 		text: "Please Connect to the Internet!!!",
+			// 		icon: "question",
+			// 		confirmButtonColor: "#556ee6"
+			// 	  })
+			// 	return Promise.reject(new Error("No internet connection."));
+			// }
 	
 			// Trigger onRequestSent when a request is sent
 			onRequestSent();
