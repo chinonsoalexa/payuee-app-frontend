@@ -40,6 +40,7 @@ function get_auth_status() {
                 // Call your function or execute your code here
             } else {
                 // Task to perform if the user clicks outside the dialog or cancels
+                logout();
                 logUserOutIfTokenIsExpired();
                 // let's redirect to a non-authenticated page cause the user is not authenticated
                 localStorage.removeItem('auth');
