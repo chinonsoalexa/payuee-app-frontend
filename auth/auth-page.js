@@ -79,6 +79,10 @@ try {
     
     if (!response.ok) {
             // alert('an error occurred. Please try again');
+            if (!response.ok) {
+                // alert('an error occurred. Please try again');
+                return;
+            }
         return;
       }
         const data = await response.json();
