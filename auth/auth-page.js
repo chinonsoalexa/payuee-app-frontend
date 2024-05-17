@@ -34,22 +34,22 @@ function get_auth_status() {
             // Check if the user clicked the confirmation button
             if (result.isConfirmed) {
                 // Task to perform after the user clicks OK
-                logUserOutIfTokenIsExpired();
-                localStorage.removeItem('auth');
-                window.location.href = 'page/signin-new.html';
+                logout();
+                // logUserOutIfTokenIsExpired();
+                // localStorage.removeItem('auth');
+                // window.location.href = 'page/signin-new.html';
                 // Call your function or execute your code here
             } else {
                 // Task to perform if the user clicks outside the dialog or cancels
                 logout();
-                logUserOutIfTokenIsExpired();
+                // logUserOutIfTokenIsExpired();
                 // let's redirect to a non-authenticated page cause the user is not authenticated
                 localStorage.removeItem('auth');
                 window.location.href = 'page/signin-new.html';
             }
     });
-    } else {
-        // check_auth_status();
     }
+        check_auth_status();
 }
 
 // this is to log users out
@@ -158,6 +158,8 @@ function check_auth_status() {
 
     // send a post request with the email and password
 
+        console.log('this is before 001 the session expire pop-up');
+
         const apiUrl = "https://api.payuee.com/auth-status";
 
         const requestOptions = {
@@ -167,15 +169,18 @@ function check_auth_status() {
         },
         credentials: 'include', // set credentials to include cookies
         };
+        console.log('this is before 0 the session expire pop-up');
         
     try {
         const response = fetch(apiUrl, requestOptions);
         
+        console.log('this is before 1 the session expire pop-up');
 
         if (!response.ok) {
             // const errorData = response.json();
 
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                console.log('this is before the session expire pop-up');
+                if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
                 Swal.fire({
                     title: "Session Expired",
@@ -186,28 +191,15 @@ function check_auth_status() {
                     // Check if the user clicked the confirmation button
                     if (result.isConfirmed) {
                         // Task to perform after the user clicks OK
+                        console.log('this is after the session expire pop-up');
                         logout();
-                        // logUserOutIfTokenIsExpired();
-                        // localStorage.removeItem('auth');
-                        // window.location.href = 'page/signin-new.html';
-                        // console.log("User clicked OK");
-                        // Call your function or execute your code here
                     } else {
                         // Task to perform if the user clicks outside the dialog or cancels
                         logout();
-                        // logUserOutIfTokenIsExpired();
-                        // localStorage.removeItem('auth');
-                        // window.location.href = 'page/signin-new.html';
-                        // console.log("User clicked outside the dialog or cancelled");
-                        // Call your function or execute your code here
                     }
                 });
             } else {
-                        logout();
-                //         logUserOutIfTokenIsExpired();
-                // localStorage.removeItem('auth');
-                // window.location.href = 'page/signin-new.html';
-                // showError('passwordError', 'An error occurred. Please try again.');
+                    logout();
             }
 
             return;
@@ -217,35 +209,35 @@ function check_auth_status() {
         
     }
 
-if (localStorage.getItem('auth') === 'true') {
-    // let's redirect to a authenticated page cause the user is not authenticated
-    window.location.href = 'page/signin-new.html';
-}
-}
-
-function logUserOutIfTokenIsExpired() {
-    // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
-
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-    };
-    
-try {
-    const response = fetch(apiUrl, requestOptions);
-    
-    if (!response.ok) {
-            // alert('an error occurred. Please try again');
-        return;
-      }
-        // const data = response.json();
-        localStorage.removeItem('auth')
-        window.location.href = 'page/signin-new.html'
-    } finally{
-        // do nothing
+    if (localStorage.getItem('auth') !== 'true') {
+        // let's redirect to a authenticated page cause the user is not authenticated
+        window.location.href = 'page/signin-new.html';
     }
 }
+
+// function logUserOutIfTokenIsExpired() {
+//     // also send a request to the logout api endpoint
+//     const apiUrl = "https://api.payuee.com/log-out";
+
+//     const requestOptions = {
+//     method: "GET",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     credentials: 'include', // set credentials to include cookies
+//     };
+    
+// try {
+//     const response = fetch(apiUrl, requestOptions);
+    
+//     if (!response.ok) {
+//             // alert('an error occurred. Please try again');
+//         return;
+//       }
+//         // const data = response.json();
+//         localStorage.removeItem('auth')
+//         window.location.href = 'page/signin-new.html'
+//     } finally{
+//         // do nothing
+//     }
+// }
