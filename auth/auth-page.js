@@ -177,7 +177,7 @@ function check_auth_status() {
         console.log('this is before 1 the session expire pop-up');
 
         if (!response.ok) {
-            // const errorData = response.json();
+            const errorData = response.json();
 
                 console.log('this is before the session expire pop-up');
                 if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
