@@ -65,7 +65,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                     // let's log user out the users session has expired
-                    logUserOutIfTokenIsExpired();
+                    await logUserOutIfTokenIsExpired();
                 } else if  (errorData.error === 'insufficient funds') {
                     insufficientFunds();
                 } else {
@@ -437,7 +437,7 @@ async function requestPlan(plan_id, plan_name) {
 
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 // let's log user out the users session has expired
-                logUserOutIfTokenIsExpired();
+                await logUserOutIfTokenIsExpired();
             }
         }
         
