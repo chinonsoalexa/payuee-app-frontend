@@ -22,33 +22,33 @@ function get_auth_status() {
         // let's redirect to a authenticated page cause the user is not authenticated
         window.location.href = '../index-in.html';
     }
-    // if (localStorage.getItem('auth') !== 'true') {
-    //     // let's clear auth local storage item
-    //     //  let's log user out the users session has expired
-    //      Swal.fire({
-    //         title: "Session Expired",
-    //         text: "Please Try To Login Again Your Session Has Expired!!!",
-    //         icon: "info",
-    //         confirmButtonColor: "#556ee6"
-    //     }).then((result) => {
-    //         // Check if the user clicked the confirmation button
-    //         if (result.isConfirmed) {
-    //             // Task to perform after the user clicks OK
-    //             logUserOutIfTokenIsExpired();
-    //             localStorage.removeItem('auth');
-    //             window.location.href = 'page/signin-new.html';
-    //             // Call your function or execute your code here
-    //         } else {
-    //             // Task to perform if the user clicks outside the dialog or cancels
-    //             logUserOutIfTokenIsExpired();
-    //             // let's redirect to a non-authenticated page cause the user is not authenticated
-    //             localStorage.removeItem('auth');
-    //             window.location.href = 'page/signin-new.html';
-    //         }
-    // });
-    // } else {
-    //     // check_auth_status();
-    // }
+    if (localStorage.getItem('auth') !== 'true') {
+        // let's clear auth local storage item
+        //  let's log user out the users session has expired
+         Swal.fire({
+            title: "Session Expired",
+            text: "Please Try To Login Again Your Session Has Expired!!!",
+            icon: "info",
+            confirmButtonColor: "#556ee6"
+        }).then((result) => {
+            // Check if the user clicked the confirmation button
+            if (result.isConfirmed) {
+                // Task to perform after the user clicks OK
+                logUserOutIfTokenIsExpired();
+                localStorage.removeItem('auth');
+                window.location.href = 'page/signin-new.html';
+                // Call your function or execute your code here
+            } else {
+                // Task to perform if the user clicks outside the dialog or cancels
+                logUserOutIfTokenIsExpired();
+                // let's redirect to a non-authenticated page cause the user is not authenticated
+                localStorage.removeItem('auth');
+                window.location.href = 'page/signin-new.html';
+            }
+    });
+    } else {
+        // check_auth_status();
+    }
 }
 
 // this is to log users out
@@ -79,10 +79,10 @@ try {
     
     if (!response.ok) {
             // alert('an error occurred. Please try again');
-            if (!response.ok) {
-                // alert('an error occurred. Please try again');
-                return;
-            }
+                if (!response.ok) {
+        // alert('an error occurred. Please try again');
+        return;
+    }
         return;
       }
         const data = await response.json();
@@ -111,46 +111,46 @@ try {
 			$('.preloader__wrap').fadeToggle();
 	}
 	
-	// (function() {
-	// 	// Save reference to the original fetch function
-	// 	const originalFetch = window.fetch;
+	(function() {
+		// Save reference to the original fetch function
+		const originalFetch = window.fetch;
 	
-	// 	// Override the fetch function with our own custom implementation
-	// 	window.fetch = function() {
-    //         // Check if the request URL matches the specific URL to exclude
-    //         if (arguments[0] === "https://api.payuee.com/auth-status") {
-    //             // Call the original fetch function without triggering event handling
-    //             return originalFetch.apply(this, arguments);
-    //         }
-	// 		if (!navigator.onLine) {
-	// 			// Handle the case when there's no internet connection
-    //             onRequestComplete();
-    //             Swal.fire({
-	// 				title: "No Internet?",
-	// 				text: "Please Connect to the Internet!!!",
-	// 				icon: "question",
-	// 				confirmButtonColor: "#556ee6"
-	// 			  })
-	// 			return Promise.reject(new Error("No internet connection."));
-	// 		}
+		// Override the fetch function with our own custom implementation
+		window.fetch = function() {
+            // Check if the request URL matches the specific URL to exclude
+            if (arguments[0] === "https://api.payuee.com/auth-status") {
+                // Call the original fetch function without triggering event handling
+                return originalFetch.apply(this, arguments);
+            }
+			if (!navigator.onLine) {
+				// Handle the case when there's no internet connection
+                onRequestComplete();
+                Swal.fire({
+					title: "No Internet?",
+					text: "Please Connect to the Internet!!!",
+					icon: "question",
+					confirmButtonColor: "#556ee6"
+				  })
+				return Promise.reject(new Error("No internet connection."));
+			}
 	
-	// 		// Trigger onRequestSent when a request is sent
-	// 		onRequestSent();
+			// Trigger onRequestSent when a request is sent
+			onRequestSent();
 	
-	// 		// Call the original fetch function
-	// 		const fetchPromise = originalFetch.apply(this, arguments);
+			// Call the original fetch function
+			const fetchPromise = originalFetch.apply(this, arguments);
 	
-    //     // When the fetch request is complete, trigger onRequestComplete
-    //     fetchPromise.then(() => {
-    //         onRequestComplete();
-    //     }).catch(error => {
-    //         onRequestComplete();
-    //     });
+        // When the fetch request is complete, trigger onRequestComplete
+        fetchPromise.then(() => {
+            onRequestComplete();
+        }).catch(error => {
+            onRequestComplete();
+        });
 	
-	// 		// Return the fetch promise
-	// 		return fetchPromise;
-	// 	};
-	// })();
+			// Return the fetch promise
+			return fetchPromise;
+		};
+	})();
 
     // this would be for authenticated pages
 // function check_auth_status() {
