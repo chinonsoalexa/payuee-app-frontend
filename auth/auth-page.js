@@ -153,68 +153,6 @@ try {
 		};
 	})();
 
-    // this would be for authenticated pages
-function check_auth_status() {
-
-    // send a post request with the email and password
-
-        console.log('this is before 001 the session expire pop-up');
-
-        const apiUrl = "https://api.payuee.com/auth-status";
-
-        const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        };
-        console.log('this is before 0 the session expire pop-up');
-        
-    try {
-        const response = fetch(apiUrl, requestOptions);
-        
-        console.log('this is before 1 the session expire pop-up');
-
-        if (!response.ok) {
-            const errorData = response.json();
-
-                console.log('this is before the session expire pop-up');
-                if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
-                // let's log user out the users session has expired
-                Swal.fire({
-                    title: "Session Expired",
-                    text: "Please Try To Login Again Your Session Has Expired!!!",
-                    icon: "info",
-                    confirmButtonColor: "#556ee6"
-                }).then((result) => {
-                    // Check if the user clicked the confirmation button
-                    if (result.isConfirmed) {
-                        // Task to perform after the user clicks OK
-                        console.log('this is after the session expire pop-up');
-                        logout();
-                    } else {
-                        // Task to perform if the user clicks outside the dialog or cancels
-                        logout();
-                    }
-                });
-            } else {
-                    logout();
-            }
-
-            return;
-        }
-        localStorage.setItem('auth', 'true');
-    } finally{
-        
-    }
-
-    if (localStorage.getItem('auth') !== 'true') {
-        // let's redirect to a authenticated page cause the user is not authenticated
-        window.location.href = 'page/signin-new.html';
-    }
-}
-
 async function check_auth_status() {
     const apiUrl = "https://api.payuee.com/auth-status";
 
@@ -257,31 +195,3 @@ async function check_auth_status() {
         }
     }
 }
-
-
-// function logUserOutIfTokenIsExpired() {
-//     // also send a request to the logout api endpoint
-//     const apiUrl = "https://api.payuee.com/log-out";
-
-//     const requestOptions = {
-//     method: "GET",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     credentials: 'include', // set credentials to include cookies
-//     };
-    
-// try {
-//     const response = fetch(apiUrl, requestOptions);
-    
-//     if (!response.ok) {
-//             // alert('an error occurred. Please try again');
-//         return;
-//       }
-//         // const data = response.json();
-//         localStorage.removeItem('auth')
-//         window.location.href = 'page/signin-new.html'
-//     } finally{
-//         // do nothing
-//     }
-// }
