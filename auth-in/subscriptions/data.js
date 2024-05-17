@@ -607,7 +607,7 @@ try {
 
         const data = response.json();
         localStorage.removeItem('auth')
-        window.location.href = 'index-in.html'
+        window.location.href = '../index-in.html'
     } finally{
         // do nothing
     }
