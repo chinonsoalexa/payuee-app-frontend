@@ -111,46 +111,46 @@ try {
 			$('.preloader__wrap').fadeToggle();
 	}
 	
-	(function() {
-		// Save reference to the original fetch function
-		const originalFetch = window.fetch;
+	// (function() {
+	// 	// Save reference to the original fetch function
+	// 	const originalFetch = window.fetch;
 	
-		// Override the fetch function with our own custom implementation
-		window.fetch = function() {
-            // Check if the request URL matches the specific URL to exclude
-            if (arguments[0] === "https://api.payuee.com/auth-status") {
-                // Call the original fetch function without triggering event handling
-                return originalFetch.apply(this, arguments);
-            }
-			if (!navigator.onLine) {
-				// Handle the case when there's no internet connection
-                onRequestComplete();
-                Swal.fire({
-					title: "No Internet?",
-					text: "Please Connect to the Internet!!!",
-					icon: "question",
-					confirmButtonColor: "#556ee6"
-				  })
-				return Promise.reject(new Error("No internet connection."));
-			}
+	// 	// Override the fetch function with our own custom implementation
+	// 	window.fetch = function() {
+    //         // Check if the request URL matches the specific URL to exclude
+    //         if (arguments[0] === "https://api.payuee.com/auth-status") {
+    //             // Call the original fetch function without triggering event handling
+    //             return originalFetch.apply(this, arguments);
+    //         }
+	// 		if (!navigator.onLine) {
+	// 			// Handle the case when there's no internet connection
+    //             onRequestComplete();
+    //             Swal.fire({
+	// 				title: "No Internet?",
+	// 				text: "Please Connect to the Internet!!!",
+	// 				icon: "question",
+	// 				confirmButtonColor: "#556ee6"
+	// 			  })
+	// 			return Promise.reject(new Error("No internet connection."));
+	// 		}
 	
-			// Trigger onRequestSent when a request is sent
-			onRequestSent();
+	// 		// Trigger onRequestSent when a request is sent
+	// 		onRequestSent();
 	
-			// Call the original fetch function
-			const fetchPromise = originalFetch.apply(this, arguments);
+	// 		// Call the original fetch function
+	// 		const fetchPromise = originalFetch.apply(this, arguments);
 	
-        // When the fetch request is complete, trigger onRequestComplete
-        fetchPromise.then(() => {
-            onRequestComplete();
-        }).catch(error => {
-            onRequestComplete();
-        });
+    //     // When the fetch request is complete, trigger onRequestComplete
+    //     fetchPromise.then(() => {
+    //         onRequestComplete();
+    //     }).catch(error => {
+    //         onRequestComplete();
+    //     });
 	
-			// Return the fetch promise
-			return fetchPromise;
-		};
-	})();
+	// 		// Return the fetch promise
+	// 		return fetchPromise;
+	// 	};
+	// })();
 
     // this would be for authenticated pages
 // function check_auth_status() {
