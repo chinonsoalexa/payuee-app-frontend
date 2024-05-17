@@ -21,30 +21,30 @@ function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
         // let's clear auth local storage item
         //  let's log user out the users session has expired
-        //  Swal.fire({
-        //     title: "Session Expired",
-        //     text: "Please Try To Login Again Your Session Has Expired!!!",
-        //     icon: "info",
-        //     confirmButtonColor: "#556ee6"
-        // }).then((result) => {
-        //     // Check if the user clicked the confirmation button
-        //     if (result.isConfirmed) {
-        //         // Task to perform after the user clicks OK
-        //         logUserOutIfTokenIsExpired();
-        //         localStorage.removeItem('auth');
-        //         window.location.href = 'page/signin-new.html';
-        //         // Call your function or execute your code here
-        //     } else {
+         Swal.fire({
+            title: "Session Expired",
+            text: "Please Try To Login Again Your Session Has Expired!!!",
+            icon: "info",
+            confirmButtonColor: "#556ee6"
+        }).then((result) => {
+            // Check if the user clicked the confirmation button
+            if (result.isConfirmed) {
+                // Task to perform after the user clicks OK
+                logUserOutIfTokenIsExpired();
+                localStorage.removeItem('auth');
+                window.location.href = 'page/signin-new.html';
+                // Call your function or execute your code here
+            } else {
                 // Task to perform if the user clicks outside the dialog or cancels
                 logUserOutIfTokenIsExpired();
                 // let's redirect to a non-authenticated page cause the user is not authenticated
                 localStorage.removeItem('auth');
                 window.location.href = 'page/signin-new.html';
             }
-    // });
-    // } else {
-    //     // check_auth_status();
-    // }
+    });
+    } else {
+        check_auth_status();
+    }
 }
 
 // this is to log users out
