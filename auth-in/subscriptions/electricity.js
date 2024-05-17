@@ -355,7 +355,7 @@ try {
 
         // const data = response.json();
         localStorage.removeItem('auth')
-        window.location.href = '../index.html'
+        window.location.href = 'page/signin-new.html'
     } finally{
         // do nothing
     }
