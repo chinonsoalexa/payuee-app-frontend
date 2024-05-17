@@ -200,3 +200,37 @@ function calculateTotalCharge(originalPrice) {
 
     return Math.ceil(secondPrice += 5);
 }
+
+async function logUserOutIfTokenIsExpired() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://api.payuee.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    console.log("am here logging out12")
+    const response = await fetch(apiUrl, requestOptions);
+
+    // Check if the fetch request was successful
+    if (!response.ok) {
+        throw new Error('Logout request failed');
+    }
+
+    console.log("am here logging out")
+        const data = response.json();
+        localStorage.removeItem('auth')
+    console.log("am here logging out3")
+    window.location.href = '../index-in.html'
+    console.log("am here logging out2")
+} finally{
+        localStorage.removeItem('auth')
+        window.location.href = '../index-in.html'
+        // do nothing
+    }
+}
