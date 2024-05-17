@@ -590,7 +590,7 @@ function formatNumberToNaira(number) {
     }).format(number);
 }
 
-function logUserOutIfTokenIsExpired() {
+async function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
 
@@ -604,8 +604,13 @@ function logUserOutIfTokenIsExpired() {
     
 try {
     console.log("am here logging out12")
-    const response = fetch(apiUrl, requestOptions);
+    const response = await fetch(apiUrl, requestOptions);
 
+    // Check if the fetch request was successful
+    if (!response.ok) {
+        throw new Error('Logout request failed');
+    }
+    
     console.log("am here logging out")
         const data = response.json();
         localStorage.removeItem('auth')
