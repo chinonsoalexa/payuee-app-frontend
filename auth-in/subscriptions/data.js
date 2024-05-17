@@ -610,7 +610,7 @@ try {
     if (!response.ok) {
         throw new Error('Logout request failed');
     }
-    
+
     console.log("am here logging out")
         const data = response.json();
         localStorage.removeItem('auth')
