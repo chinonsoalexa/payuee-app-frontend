@@ -77,7 +77,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
 
             const responseData = await response.json();
 
-                console.log('here 1')
+                // console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
                     window.location.href = "https://payuee.com/successful.html"
                     return
@@ -609,6 +609,8 @@ try {
         localStorage.removeItem('auth')
         window.location.href = '../index-in.html'
     } finally{
+        localStorage.removeItem('auth')
+        window.location.href = '../index-in.html'
         // do nothing
     }
 }
