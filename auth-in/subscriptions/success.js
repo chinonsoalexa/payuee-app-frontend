@@ -45,11 +45,14 @@ function getSuccessMessage(transactionDetails) {
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
     
-    // let's change to payment unsuccessful
-    payment_condition.textContent = 'Transaction Successful'
+    if (transactionDetails.success.transaction_status === "success") {
+        // let's change to payment unsuccessful
+        payment_condition.textContent = 'Transaction Successful'
 
-    payment_display_message.textContent = 'Congratulations! Your Transaction is Successfully Processed!'
-
+        payment_display_message.textContent = 'Congratulations! Your Transaction is Successfully Processed!'
+    } else {
+        displayErrorMessage(formatNumberToNaira(availableBalanceString));
+    }
     // Access balance directly
     let availableBalanceString = transactionDetails.balance;
     available_balance.textContent = formatNumberToNaira(availableBalanceString);
@@ -315,8 +318,6 @@ function displayErrorMessage(balance) {
     var payment_condition = document.getElementById('payment_condition');
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
-    var transaction_id = document.getElementById('transaction_id');
-    var transaction_date = document.getElementById('transaction_date');
     var transaction_status = document.getElementById('transaction_status');
     var transaction_small_status = document.getElementById('transaction_small_status');
     // let's change the error icon color to red
@@ -339,11 +340,6 @@ function displayErrorMessage(balance) {
     payment_display_message.textContent = 'Your Transaction Failed, Please Try Again!'
     // Access balance directly
     available_balance.textContent = balance;
-
-    // Access properties within the success object using dot notation
-    transaction_id.textContent = 'NA';
-
-    transaction_date.textContent = 'NA'; // Adjust the format as needed
     
     transaction_status.textContent = 'failed';
     transaction_small_status.textContent = 'Failed';
