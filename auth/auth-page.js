@@ -114,13 +114,13 @@ try {
 		// Override the fetch function with our own custom implementation
 		window.fetch = function() {
             // Check if the request URL matches the specific URL to exclude
-            // if (arguments[0] === "https://api.payuee.com/auth-status") {
-            //     // Call the original fetch function without triggering event handling
-            //     return originalFetch.apply(this, arguments);
-            // }
+            if (arguments[0] === "https://api.payuee.com/auth-status") {
+                // Call the original fetch function without triggering event handling
+                return originalFetch.apply(this, arguments);
+            }
 			if (!navigator.onLine) {
 				// Handle the case when there's no internet connection
-                // onRequestComplete();
+                onRequestComplete();
                 Swal.fire({
 					title: "No Internet?",
 					text: "Please Connect to the Internet!!!",
