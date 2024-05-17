@@ -45,6 +45,8 @@ function getSuccessMessage(transactionDetails) {
     var payment_display_message = document.getElementById('payment_display_message');
     var available_balance = document.getElementById('available_balance');
     
+    let availableBalanceString = transactionDetails.balance;
+    
     if (transactionDetails.success.transaction_status === "success") {
         // let's change to payment unsuccessful
         payment_condition.textContent = 'Transaction Successful'
@@ -54,7 +56,6 @@ function getSuccessMessage(transactionDetails) {
         displayErrorMessage(formatNumberToNaira(availableBalanceString));
     }
     // Access balance directly
-    let availableBalanceString = transactionDetails.balance;
     available_balance.textContent = formatNumberToNaira(availableBalanceString);
     
     let serviceType = transactionDetails.success.service_type;
