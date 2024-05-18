@@ -173,7 +173,7 @@ async function check_auth_status() {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                 Swal.fire({
                     title: "Session Expired",
-                    text: "Please Try To Login Again Your Session Has Expired!!!",
+                    text: "Please Try To Logging Again Your Session Has Expired!!!",
                     icon: "info",
                     confirmButtonColor: "#556ee6"
                 }).then((result) => {
