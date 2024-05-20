@@ -173,7 +173,88 @@ function buy_data(){
 
 
     }
-}
+    function buy_data(){
+        let validated = true;
+        // let's take all fields and validate
+        let phone = document.getElementById("phone-number").value;
+    
+        if (phone.length > 11 || phone.length < 11) {
+            validated = false;
+            showError('phone-error', 'Phone number should be exactly 11 digits.');
+        }
+    
+        const prefixes = {
+            'MTN': ['mtn_sme', 'mtn_gifting', 'mtn_cg'],
+            'GLO': ['glo_data'],
+            'AIRTEL': ['airtel_cg'],
+            '9MOBILE': ['etisalat_data']
+        };
+    
+        let NetworkCheck = checkOperator(phone);
+        console.log('NetworkCheck:', NetworkCheck); // Debugging line
+        const planPrefixes = prefixes[NetworkCheck];
+    
+        if (!planPrefixes) {
+            validated = false;
+            showError('phone-error', 'Invalid network detected for the phone number.');
+            console.error('Invalid network:', NetworkCheck); // Debugging line
+        } else if (!planPrefixes.includes(servicePlanID)) {
+            validated = false;
+            showError('phone-error', phone + ' does not match the selected bundle plan network');
+            console.error('servicePlanID not in planPrefixes:', servicePlanID); // Debugging line
+        }
+    
+        // let's check the radio button that was checked to determine the payment option
+        let paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
+    
+        let autorenewCheckbox = document.getElementById("autorenew");
+    
+        // Check if the checkbox is checked
+        let autoRenew = autorenewCheckbox.checked;
+    
+        // let's send a post request to make an airtime purchase
+    
+        if (validated) {
+            disableDataDiv();
+            // now our invoice div is enabled let's supply it data gotten from the airtime div
+            // Get the span element by its id
+            var invoice_date = document.getElementById('invoice_date');
+            var payment_method = document.getElementById('payment_method');
+            var phone_number = document.getElementById('phone_number');
+            var invoice_data_plan = document.getElementById('invoice_data_plan');
+            var invoice_bundle = document.getElementById('invoice_bundle');
+            var invoice_auto_renew = document.getElementById('invoice_auto_renew');
+            var invoice_charge = document.getElementById('invoice_charge');
+            var invoice_service_charge = document.getElementById('invoice_service_charge');
+            var invoice_total_charge = document.getElementById('invoice_total_charge');
+    
+            // let's update all fields to user entered fields
+            // let's update the date field
+            invoice_date.textContent = getCurrentDate();
+    
+            // let's update the payment method field
+            console.log('payment method: ' + paymentMethod);
+            if (paymentMethod == "wallet") {
+                payment_method.textContent = "Wallet";
+                invoice_charge.textContent = '₦' + '0.00';
+                invoice_total_charge.textContent = formatNumberToNaira(totalCharge);
+                invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
+            } else if (paymentMethod == "paystack") {
+                payment_method.textContent = "Paystack";
+                // let's get the transaction charge of this transaction
+                let updatedTransactionCharge = calculateTotalCharge(totalCharge);
+                invoice_charge.textContent = formatNumberToNaira(updatedTransactionCharge);
+                transCharge = updatedTransactionCharge;
+                invoice_service_charge.textContent = formatNumberToNaira(totalCharge);
+                invoice_total_charge.textContent = formatNumberToNaira(totalCharge + transCharge);
+            }
+            // let's update the phone number to be recharged
+            phone_number.textContent = phone;
+            invoice_data_plan.textContent = plan;
+            invoice_bundle.textContent = bundle;
+            invoice_auto_renew.textContent = autoRenew;
+        }
+    }    
 
 function getSelectedValue(id) {
     // Get the select element by its ID
