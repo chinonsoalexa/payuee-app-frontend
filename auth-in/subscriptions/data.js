@@ -60,9 +60,9 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                 // alert("this is the error message: ", errorData);
 
                 if (errorData.error === 'Failed to unmarshal data request from client side...') {
-                    showError('passwordError', 'incorrect body format');
+                    showError('NAN', 'incorrect body format');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
-                    showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
+                    showError('NAN', 'This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
                     // let's log user out the users session has expired
                     await logUserOutIfTokenIsExpired();

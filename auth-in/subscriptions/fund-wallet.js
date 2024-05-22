@@ -154,6 +154,8 @@ billAmountInput.addEventListener('input', function() {
 function checkAndProcessInput(inputValue) {
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
+    } else if (parseInt(inputValue) >= 20000){
+        displayInput.value = "₦0.00";
     } else {
         transCharge = calculateTotalCharge(parseInt(inputValue));      
         // Modify the value property
@@ -194,7 +196,11 @@ function calculateTotalCharge(originalPrice) {
     let secondPrice = totalAmount - originalPrice;
     // console.log("second price amount is " + Math.ceil(secondPrice));
 
-    if (originalPrice > 5000) {
+    if (originalPrice >= 20000) {
+        return Math.ceil(secondPrice);
+    }
+
+    if (originalPrice >= 5000) {
         return Math.ceil(secondPrice += 25);
     }
 
