@@ -108,11 +108,11 @@ electricBill = parseInt(amountInput.value, 10);
 
 // let's get the selected value for electric state
 electricSelectValue = getSelectedValue("electricSelect");
-// console.log("selected electric value: ", electricSelectValue);
+console.log("selected electric value: ", electricSelectValue);
 
 // let's get the selected text for electric state
 electricSelectText = getSelectedText("electricSelect");
-// console.log("selected electric text: ", electricSelectText);
+console.log("selected electric text: ", electricSelectText);
 
 if (phone.length > 11 || phone.length < 11) {
     validated = false;
