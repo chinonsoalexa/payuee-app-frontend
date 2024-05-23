@@ -150,7 +150,7 @@ function buy_data(){
         // let's update the date field
         invoice_date.textContent = getCurrentDate();
         invoice_service_charge
-        // let's update the payment method field
+        // let's update the payment method field  j
         // console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
