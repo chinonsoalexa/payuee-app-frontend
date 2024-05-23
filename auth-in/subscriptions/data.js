@@ -151,7 +151,7 @@ function buy_data(){
         invoice_date.textContent = getCurrentDate();
         invoice_service_charge
         // let's update the payment method field
-        console.log('payment method: ' + paymentMethod)
+        // console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
