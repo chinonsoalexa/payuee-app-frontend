@@ -202,6 +202,7 @@ function renderSubscriptionHistory(historyData) {
         document.getElementById("addSub").addEventListener('click', function(event) {
             event.preventDefault();
             // handle add subscription action
+            windows.location.href = 'data.html'
         });
 
         // Add event listener to the cancelSub link
@@ -448,8 +449,6 @@ function removeRowById(rowId) {
         rowToRemove.parentNode.removeChild(rowToRemove);
     }
 }
-
-// renderSubscriptionHistory(testData)
 
 function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {

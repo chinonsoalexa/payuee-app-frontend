@@ -101,20 +101,22 @@ function buy_data(){
         showError('phone-error', 'Phone number should be at least 11 digits.');
     }
 
-    const prefixes = {
-        'MTN': ['mtn_sme', 'mtn_gifting', 'mtn_cg'],
-        'GLO': ['glo_data'],
-        'AIRTEL': ['airtel_cg'],
-        '9MOBILE': ['etisalat_data']
-    };
+//     const prefixes = {
+//         'MTN': ['mtn_sme', 'mtn_gifting', 'mtn_cg'],
+//         'GLO': ['glo_data'],
+//         'AIRTEL': ['airtel_cg'],
+//         '9MOBILE': ['etisalat_data']
+//     };
 
-   let NetworkCheck = checkOperator(phone);
-   const planPrefixes = prefixes[NetworkCheck];
+//    let NetworkCheck = checkOperator(phone);
+//    const planPrefixes = prefixes[NetworkCheck];
 
-    if (!planPrefixes.includes(servicePlanID)) {
-        validated = false;
-        showError('phone-error', phone + ' do not match the selected bundle plan network');
-    }
+//     if (!planPrefixes.includes(servicePlanID)) {
+//         validated = false;
+//         showError('phone-error', phone + ' do not match the selected bundle plan network');
+//     } else if (planPrefixes.includes(servicePlanID)) {
+//         showError('phone-error', phone + ' not recognized');
+//     }
 
     // let's check the radio button that was checked to determine the payment option
     paymentMethod = radioButtonCheck('input[name="flexRadioDefault"]');
@@ -639,7 +641,7 @@ function reactivateButtonStyles() {
 
 function checkOperator(number) {
     const prefixes = {
-        'MTN': ['0703', '0706', '0803', '0806', '0810', '0813', '0814', '0816', '0903', '0906'],
+        'MTN': ['0703', '0704', '0706', '0803', '0806', '0810', '0813', '0814', '0816', '0903', '0906'],
         'GLO': ['0705', '0805', '0807', '0811', '0815', '0905', '0915'],
         'AIRTEL': ['0701', '0708', '0802', '0808', '0812', '0902', '0907', '0901'],
         '9MOBILE': ['0809', '0817', '0818', '0908']
