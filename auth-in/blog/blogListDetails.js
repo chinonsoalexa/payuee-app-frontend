@@ -8,10 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Get individual parameter values
     const blogPost = params.get("post");
 
+    if (blogPost == undefined) {
+        blogPost = "post_0_";
+    }
+
     blogDetails.forEach(function(blog) {
         // Perform actions with the data
         if (blog.postID === blogPost) {
-            // Select the <h3> element by its ID
             const postHeader = document.getElementById('postHeader');
             const postImage = document.getElementById('postImage');
             const postComments = document.getElementById('postComments');
