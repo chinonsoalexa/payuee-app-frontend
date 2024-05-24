@@ -87,7 +87,7 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
         const user = {
             PaymentType: paymentMethod,
             ServiceID: "decoder",
-            Price:  decoderPlanPrice, 
+            Price:  Number(decoderPlanPrice), 
             TranCharge: transCharge,
             PhoneNumber: mobileNumber,
             Operator:      decoderType,
