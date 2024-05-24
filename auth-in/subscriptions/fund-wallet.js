@@ -57,6 +57,7 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
             reactivateButtonStyles();
         }
     }
+    validated = true;
 });
 
 // Get the radio buttons by name
