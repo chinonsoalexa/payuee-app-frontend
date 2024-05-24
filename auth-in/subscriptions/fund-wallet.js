@@ -47,10 +47,10 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
 
             const responseData = await response.json();
             if (responseData.hasOwnProperty('success') && responseData.success.hasOwnProperty('data')) {
-                // window.location.href = responseData.success.data.authorization_url;
+                window.location.href = responseData.success.data.authorization_url;
                 return;
             } else {
-                // window.location.href = "https://payuee.com/successful.html";
+                window.location.href = "https://payuee.com/successful.html";
                 return;
             }
         } finally {
@@ -114,10 +114,6 @@ document.getElementById('billAmountInput').addEventListener('input', function() 
 });
 
 function checkAndProcessInput(inputValue) {
-    // Trim the input to remove any leading or trailing spaces
-    // inputValue = parseInt(inputValue.trim(), 10);
-    // console.log("this is the inputValue amount: ", inputValue);
-    
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
     } else if (parseInt(inputValue, 10) >= 20000){
