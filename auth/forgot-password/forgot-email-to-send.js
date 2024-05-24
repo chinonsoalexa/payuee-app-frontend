@@ -52,7 +52,9 @@ async function resetPasswordEmail(currentInput) {
             let data = await response.json();
             if (data.error == 'Failed to get previous email OTP') {
                 showError('emailError', "Email not found, please re-enter your email address.");
-            } else {
+            } else if (data.error == 'failed to find user by email') {
+                showError('emailError', 'Sorry user do not exist with us.');
+            }else {
                 showError('emailError', 'An error occurred. Please try again.');
             }
             return;
