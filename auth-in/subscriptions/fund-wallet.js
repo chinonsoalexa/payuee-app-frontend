@@ -114,14 +114,21 @@ document.getElementById('billAmountInput').addEventListener('input', function() 
 });
 
 function checkAndProcessInput(inputValue) {
+    // Trim the input to remove any leading or trailing spaces
+    // inputValue = parseInt(inputValue.trim(), 10);
+    // console.log("this is the inputValue amount: ", inputValue);
+    
     if (inputValue.length === 0) {
         displayInput.value = 'Transaction Charge';
-    } else if (parseInt(inputValue) >= 20000){
+    } else if (parseInt(inputValue, 10) >= 20000){
         transCharge = 0;
         displayInput.value = "₦0.00";
+        billAmount = parseInt(inputValue, 10);
+        // console.log("this is the bill amount: ", parseInt(inputValue, 10));
     } else {
-        transCharge = calculateTotalCharge(parseInt(inputValue));      
-        billAmount = parseInt(inputValue);
+        transCharge = calculateTotalCharge(parseInt(inputValue, 10));      
+        billAmount = parseInt(inputValue, 10);
+        // console.log("this is the bill amount: ", parseInt(inputValue, 10));
         displayInput.value = formatNumberToNaira(transCharge);
     }
 }
