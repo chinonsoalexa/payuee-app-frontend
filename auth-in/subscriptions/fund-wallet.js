@@ -198,7 +198,7 @@ function calculateTotalCharge(originalPrice) {
     // console.log("second price amount is " + Math.ceil(secondPrice));
 
     if (originalPrice >= 20000) {
-        return Math.ceil(secondPrice);
+        return 0;
     }
 
     if (originalPrice >= 5000) {
