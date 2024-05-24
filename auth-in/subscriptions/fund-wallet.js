@@ -22,6 +22,7 @@ if (validated) {
         Amount:  billAmount,
         TranCharge:  transCharge,
     };
+    console.log("this is the request output: ", JSON.stringify(user));
 
     const apiUrl = "https://api.payuee.com/payuee/init-transaction";
 
@@ -71,11 +72,11 @@ if (validated) {
         if (responseData.hasOwnProperty('success')){
     console.log("here 6")
     if (responseData.success.hasOwnProperty('data')) {
-                window.location.href = responseData.success.data.authorization_url;
+                // window.location.href = responseData.success.data.authorization_url;
                 return
             }
         } else {
-            window.location.href = "https://payuee.com/successful.html"
+            // window.location.href = "https://payuee.com/successful.html"
             return
         }
     } finally {
