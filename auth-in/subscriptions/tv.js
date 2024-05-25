@@ -61,12 +61,12 @@ var gotv = [
     { value: 'gotv-jinja', text: 'GOtv Jinja - ₦3,300', price: 3300 },
     { value: 'gotv-jolli', text: 'GOtv Jolli - ₦4,850', price: 4850 },
     { value: 'gotv-max', text: 'GOtv Max - ₦7,200', price: 7200 },
-    { value: 'gotv-supa', text: 'GOtv Supa - ₦9,600', price: 9600 },
+    { value: 'gotv-supa', text: 'GOtv Supa - ₦15,700', price: 15700 },
 ];
 
 var startime = [
     { value: 'nova', text: 'Startimes Nova - ₦1,500', price: 1500 },
-    { value: 'basic', text: 'Startimes Basic - ₦2,600', price: 2600 },
+    { value: 'basic', text: 'Startimes Basic - ₦3,000', price: 3000 },
     { value: 'smart', text: 'Startimes Smart - ₦3,500', price: 3500 },
     { value: 'classic', text: 'Startimes Classic - ₦3,800', price: 3800 },
     { value: 'super', text: 'Startimes Super - ₦6,500', price: 6500 },
