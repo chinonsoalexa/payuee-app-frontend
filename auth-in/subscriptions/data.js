@@ -503,8 +503,8 @@ listUl.className = 'list';
 var options = [
     { value: '2', text: 'MTN-SME-Data (*461*4#)' },
     { value: '3', text: 'MTN-Gifting-Data (*323*4#)' },
-    { value: '7', text: 'MTN-Corporate (Send 2 - > 312)' },
-    { value: '4', text: 'Airtel-Corporate-Gifting (*323)' },
+    { value: '7', text: 'MTN-Corporate (Send 2 - > 323)' },
+    { value: '4', text: 'Airtel-Corporate-Gifting (*323#)' },
     { value: '5', text: '9mobile-Data (*323#)' },
     { value: '6', text: 'Glo-Corporate-Gifting (*323#)' }
 ];
