@@ -316,7 +316,11 @@ async function getSelectedPlan(dataValue) {
         switch (dataValue) {
             case '2':
                 await requestPlan('mtn_sme', 'MTN SME');
-                // servicePlanID = 'mtn_cg_lite'
+                servicePlanID = 'mtn_sme'
+                break;
+            case '7':
+                await requestPlan('mtn_cg_lite', 'MTN SME 2.0');
+                servicePlanID = 'mtn_cg_lite'
                 servicePlanID = 'mtn_sme'
                 break;
             case '3':
@@ -503,7 +507,7 @@ listUl.className = 'list';
 // Sample array of options
 var options = [
     { value: '2', text: 'MTN-SME-Data (*461*4#)' },
-    // { value: '7', text: 'MTN-SME-Data-2 (*323*4#)' },
+    { value: '7', text: 'MTN-SME-Data-2.0 (*323*4#)' },
     { value: '3', text: 'MTN-Gifting-Data (*323*4#)' },
     { value: '7', text: 'MTN-Corporate (Send 2 - > 323)' },
     { value: '4', text: 'Airtel-Corporate-Gifting (*323#)' },
