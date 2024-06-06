@@ -68,6 +68,8 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                     await logUserOutIfTokenIsExpired();
                 } else if  (errorData.error === 'insufficient funds') {
                     insufficientFunds();
+                }  else if  (errorData.error === 'an error occurred while trying to buy data') {
+                    showError('NAN', 'Transaction reversed please check number properly before trying again.');
                 } else {
                     showError('passwordError', 'An error occurred. Please try again.');
                 }
