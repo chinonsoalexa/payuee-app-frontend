@@ -326,7 +326,7 @@ document.getElementById('password-field').addEventListener('input', function() {
         if (referralCode === null || referralCode === undefined) {
             // console.log("in the referral code parameter is null or undefined");
             referralCode = code;
-        }
+        } 
 
         const user = {
             FirstName: FirstName,
