@@ -220,6 +220,7 @@ function getSuccessMessage(transactionDetails) {
         let decoder_recharged_number = document.getElementById('decoder_recharged_number');
         let decoder_operator = document.getElementById('decoder_operator');
         let decoder_plan = document.getElementById('decoder_plan');
+        let decoder_number = document.getElementById('decoder_number');
         let decoder_auto_renew = document.getElementById('decoder_auto_renew');
         // Access properties within the success object using dot notation
         decoder_transaction_id.textContent = transactionDetails.success.transaction_id;
@@ -234,6 +235,7 @@ function getSuccessMessage(transactionDetails) {
         decoder_operator.textContent = transactionDetails.service.service_id;
         decoder_recharged_number.textContent = transactionDetails.service.phone_number;
         decoder_plan.textContent = transactionDetails.service.plan;
+        decoder_number.textContent = transactionDetails.service.decoder_number;
         decoder_auto_renew.textContent = transactionDetails.service.auto_renew;
         let decoderBackLink = document.getElementById('backLink');
         decoderBackLink.href = "transaction.html?page=" + pageNumber; // Let's redirect back to transaction page
