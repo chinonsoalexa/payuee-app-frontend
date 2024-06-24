@@ -336,7 +336,7 @@ document.getElementById('password-field').addEventListener('input', function() {
             RefereeCode: referralCode,
         };
 
-        const apiUrl = "https://api.payuee.com/web/sign-up";
+        const apiUrl = "https://api.payuee.com/sign-up";
 
         const requestOptions = {
             method: "POST",

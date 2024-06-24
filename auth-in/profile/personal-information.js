@@ -245,7 +245,7 @@ function referralLinkCopier() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/web/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
@@ -318,7 +318,7 @@ address.addEventListener('input', function (event) {
 // // Function to send OTP code to WhatsApp number
 // async function sendOtpToWhatsappNumber(whatsappNumber) {
 //     console.log('Number to send OTP to:', whatsappNumber);
-//     const apiUrl = 'https://api.payuee.com/web/link-whatsapp/' + whatsappNumber;
+//     const apiUrl = 'https://api.payuee.com/link-whatsapp/' + whatsappNumber;
 
 //     const requestOptions = {
 //         method: 'GET',
@@ -358,7 +358,7 @@ address.addEventListener('input', function (event) {
 
 // // Function to verify WhatsApp OTP code
 // async function verifyWhatsappOtpCode(whatsappNumber, sentOtp) {
-//     const url = 'https://api.payuee.com/web/verify-whatsapp';
+//     const url = 'https://api.payuee.com/verify-whatsapp';
 //     try {
 //         const response = await fetch(url, {
 //             method: 'POST',

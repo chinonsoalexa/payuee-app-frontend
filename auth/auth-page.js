@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Key does not exist in localStorage
         sessionStorage.setItem('analyticsData', 'true');
 
-        fetch('https://api.payuee.com/web/payuee-analytics', {
+        fetch('https://api.payuee.com/payuee-analytics', {
             method: 'GET'
         });
     }
@@ -65,7 +65,7 @@ document.getElementById('logout-button2').addEventListener('click', async functi
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/web/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
