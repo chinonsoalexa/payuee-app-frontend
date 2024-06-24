@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get individual parameter values
     transID = params.get("id");
 
-    const apiUrl = "https://api.payuee.com/transaction/" + transID;
+    const apiUrl = "https://api.payuee.com/web/transaction/" + transID;
 
     const requestOptions = {
         method: "GET",
@@ -452,7 +452,7 @@ function showCardPin(serverData) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/web/log-out";
 
     const requestOptions = {
     method: "GET",

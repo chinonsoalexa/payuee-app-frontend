@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Key does not exist in localStorage
         sessionStorage.setItem('analyticsData', 'true');
 
-        fetch('https://api.payuee.com/payuee-analytics', {
+        fetch('https://api.payuee.com/web/payuee-analytics', {
             method: 'GET'
         });
     }
@@ -65,7 +65,7 @@ document.getElementById('logout-button2').addEventListener('click', async functi
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/web/log-out";
 
     const requestOptions = {
     method: "GET",
@@ -119,7 +119,7 @@ try {
 		// Override the fetch function with our own custom implementation
 		window.fetch = function() {
             // Check if the request URL matches the specific URL to exclude
-            if (arguments[0] === "https://api.payuee.com/auth-status") {
+            if (arguments[0] === "https://api.payuee.com/web/auth-status") {
                 // Call the original fetch function without triggering event handling
                 return originalFetch.apply(this, arguments);
             }
@@ -154,7 +154,7 @@ try {
 	})();
 
 async function check_auth_status() {
-    const apiUrl = "https://api.payuee.com/auth-status";
+    const apiUrl = "https://api.payuee.com/web/auth-status";
 
     const requestOptions = {
         method: "GET",

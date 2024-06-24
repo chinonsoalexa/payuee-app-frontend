@@ -41,7 +41,7 @@ document.getElementById('continue-sub-electricity').addEventListener('click', as
         };
         // console.log('this is the data to be sent: ' + JSON.stringify(user));
 
-        const apiUrl = "https://api.payuee.com/payuee/init-transaction";
+        const apiUrl = "https://api.payuee.com/web/payuee/init-transaction";
 
         const requestOptions = {
             method: "POST",
@@ -340,7 +340,7 @@ function insufficientFunds() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/web/log-out";
 
     const requestOptions = {
     method: "GET",

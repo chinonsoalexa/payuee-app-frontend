@@ -59,7 +59,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
             NewPassword: newPassword,
           };
 
-          const apiUrl = "https://api.payuee.com/profile/update/password";
+          const apiUrl = "https://api.payuee.com/web/profile/update/password";
 
           const requestOptions = {
             method: "POST",
@@ -165,7 +165,7 @@ function reactivateButtonStyles2() {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
+    const apiUrl = "https://api.payuee.com/web/log-out";
 
     const requestOptions = {
     method: "GET",
