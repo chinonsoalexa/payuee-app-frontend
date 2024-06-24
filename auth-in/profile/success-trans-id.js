@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get individual parameter values
     transID = params.get("id");
 
-    const apiUrl = "https://api.payuee.com/web/transaction/" + transID;
+    const apiUrl = "https://api.payuee.com/transaction/" + transID;
 
     const requestOptions = {
         method: "GET",

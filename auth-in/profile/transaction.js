@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
     renderTransactionHistoryLoading();
-    const apiUrl = "https://api.payuee.com/web/transactions/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/transactions/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -331,7 +331,7 @@ document.getElementById("previousPage").addEventListener("click", async function
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -377,7 +377,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + "1";
+    const apiUrl = "https://api.payuee.com/transactions/" + "1";
     
         const requestOptions = {
             method: "GET",
@@ -423,7 +423,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + PreviousPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + PreviousPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -469,7 +469,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + TwoBeforePageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + TwoBeforePageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -515,7 +515,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + CurrentPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + CurrentPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -560,7 +560,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
 document.getElementById("nextPage").addEventListener("click", async function(event){
     event.preventDefault(); 
     renderTransactionHistoryLoading();
-    const apiUrl = "https://api.payuee.com/web/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -606,7 +606,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + TotalPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + TotalPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -652,7 +652,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + NextPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + NextPageOnLoad;
     
         const requestOptions = {
             method: "GET",
@@ -698,7 +698,7 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
     event.preventDefault(); 
     renderTransactionHistoryLoading();
 
-    const apiUrl = "https://api.payuee.com/web/transactions/" + TwoAfterPageOnLoad;
+    const apiUrl = "https://api.payuee.com/transactions/" + TwoAfterPageOnLoad;
         const requestOptions = {
             method: "GET",
             headers: {
