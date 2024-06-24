@@ -59,7 +59,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
             NewPassword: newPassword,
           };
 
-          const apiUrl = "https://api.payuee.com/web/profile/update/password";
+          const apiUrl = "https://api.payuee.com/profile/update/password";
 
           const requestOptions = {
             method: "POST",

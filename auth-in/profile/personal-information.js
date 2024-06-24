@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
     document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
-    const apiUrl = "https://api.payuee.com/web/profile";
+    const apiUrl = "https://api.payuee.com/profile";
 
     const requestOptions = {
         method: "GET",
@@ -115,7 +115,7 @@ document.getElementById('edit_button').addEventListener('click', async function 
                     ReferralCode:   "",
                   };
         
-                  const apiUrl = "https://api.payuee.com/web/profile/update";
+                  const apiUrl = "https://api.payuee.com/profile/update";
         
                   const requestOptions = {
                     method: "POST",
