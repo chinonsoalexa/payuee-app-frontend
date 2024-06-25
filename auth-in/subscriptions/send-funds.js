@@ -426,7 +426,8 @@ function getAccountDetails(inputValue) {
             'Content-Type': 'application/json',
             // Add any additional headers if needed
         },
-        // Add any additional options if needed
+        credentials: 'include', // set credentials to include cookies
+            // Add any additional options if needed
     })
         .then(response => {
             if (!response.ok) {
