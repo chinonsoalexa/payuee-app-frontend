@@ -325,7 +325,7 @@ async function getSelectedPlan(dataValue) {
             //     servicePlanID = 'mtn_cg_lite'
             //     break;
             case '7':
-                await requestPlan('mtn_cg_lite', 'MTN Data Share');
+                await requestPlan('mtn_datashare', 'MTN Data Share');
                 servicePlanID = 'mtn_datashare'
                 break;
             case '3':
