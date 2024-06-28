@@ -407,7 +407,7 @@ accountNumberInput.addEventListener('input', function () {
         this.value = inputValue.slice(0, 10);
     }
     getAccountDetails(inputValue)
-});
+});  
 
 function fillInTheAccountName(accountName) {
     AccountName = accountName;
