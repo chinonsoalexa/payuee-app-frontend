@@ -15,6 +15,31 @@ var Currency = "NGN";
 var banksData = null; // Variable to store the loaded JSON data
 var GetName = 0
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("sendMoney").addEventListener("click", handleSendMoneyClick);
+    document.getElementById('cancel-btn').addEventListener('click', hidePopup);
+    document.getElementById('send-btn').addEventListener('click', handleSendFunds);
+    document.getElementById('cancel-btn2').addEventListener('click', hideErrorPopup);
+});
+
+function handleSendMoneyClick(event) {
+    event.preventDefault();
+    validateAndSendFunds();
+}
+
+function hidePopup() {
+    document.getElementById('balance-popup').style.display = 'none';
+}
+
+function handleSendFunds() {
+    document.getElementById('balance-popup').style.display = 'none';
+    sendFunds();
+}
+
+function hideErrorPopup() {
+    document.getElementById('error-popup').style.display = 'none';
+}
+
 // Get the radio buttons by name
 const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
@@ -68,20 +93,19 @@ function enableTransferDiv() {
     document.getElementById('fund_external_bank4').disabled = true;
 }    
 
-document.getElementById("sendMoney").addEventListener("click", function(event) {
-    event.preventDefault();
-        validated = true;
+function validateAndSendFunds() {
+    validated = true;
     if (sendFundsToStatus == "payuee") {
-        BankType = "payuee"
+        BankType = "payuee";
         payueeEmailId = document.getElementById("payueeEmailId").value;
         payueeAmount = document.getElementById("payueeAmount").value;
-        if (payueeEmailId  == "") {
+        if (payueeEmailId == "") {
             validated = false;
-            showError('emailError', "Please enter an  email address");
+            showError('emailError', "Please enter an email address");
         } else if (!isValidEmail(payueeEmailId)) {
             validated = false;
             showError('emailError', "Please enter a valid email address");
-        } 
+        }
         if (payueeAmount == "") {
             validated = false;
             showError('amountError', "Please enter an amount to transfer");
@@ -91,18 +115,18 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         } else if (payueeAmount > 100000) {
             validated = false;
             showError('amountError', "Please maximum transfer amount is ₦100,000");
-        } 
-    }else if (sendFundsToStatus == "paystack") {
-        BankType = "paystack"
+        }
+    } else if (sendFundsToStatus == "paystack") {
+        BankType = "paystack";
         AccountNumber = document.getElementById("AccountNumber").value;
         paystackAmount = document.getElementById("AmountToTransfer").value;
-        if (AccountNumber  == "") {
+        if (AccountNumber == "") {
             validated = false;
-            showError('accountNumberError', "Please enter an  account number");
-        } else if (AccountNumber.length < 10 ) {
+            showError('accountNumberError', "Please enter an account number");
+        } else if (AccountNumber.length < 10) {
             validated = false;
             showError('accountNumberError', "Please enter a complete account number");
-        } 
+        }
         if (paystackAmount == "") {
             validated = false;
             showError('amountToTransferError', "Please enter an amount to transfer");
@@ -112,22 +136,23 @@ document.getElementById("sendMoney").addEventListener("click", function(event) {
         } else if (paystackAmount > 100000) {
             validated = false;
             showError('amountToTransferError', "Please maximum transfer amount is ₦100,000");
-        } 
-    }
-        if (validated == true) {
-            console.log("this is the bank status: ", sendFundsToStatus);
-            if (sendFundsToStatus == "payuee") {
-                FundsToSendToPayuee(payueeEmailId, payueeAmount);
-            } else if (sendFundsToStatus == "paystack"){
-                FundsToSendToPaystack(AccountName, paystackAmount);
-            }
         }
-});
+    }
+    if (validated == true) {
+        console.log("this is the bank status: ", sendFundsToStatus);
+        if (sendFundsToStatus == "payuee") {
+            FundsToSendToPayuee(payueeEmailId, payueeAmount);
+        } else if (sendFundsToStatus == "paystack") {
+            FundsToSendToPaystack(AccountName, paystackAmount);
+        }
+    }
+}
+
 
 function FundsToSendToPayuee(email, amount) {
     const installPopup = document.getElementById('balance-popup');
-    const cancelButton = document.getElementById('cancel-btn');
-    const sendButton = document.getElementById('send-btn');
+    // const cancelButton = document.getElementById('cancel-btn');
+    // const sendButton = document.getElementById('send-btn');
     const FundsToSend = document.getElementById('FundsToSend');
     const UserToSendTo = document.getElementById('UserToSendTo');
 
@@ -136,21 +161,21 @@ function FundsToSendToPayuee(email, amount) {
 
       installPopup.style.display = 'block';
 
-    // Cancel button click event
-    cancelButton.addEventListener('click', () => {
-      installPopup.style.display = 'none';
-    });
-    sendButton.addEventListener('click', async () => {
-        // let's approve and send the transaction
-        installPopup.style.display = 'none';
-        await sendFunds()
-      });
+    // // Cancel button click event
+    // cancelButton.addEventListener('click', () => {
+    //   installPopup.style.display = 'none';
+    // });
+    // sendButton.addEventListener('click', async () => {
+    //     // let's approve and send the transaction
+    //     installPopup.style.display = 'none';
+    //     await sendFunds()
+    //   });
 }
 
 function FundsToSendToPaystack(name, amount) {
     const installPopup = document.getElementById('balance-popup');
-    const cancelButton = document.getElementById('cancel-btn');
-    const sendButton = document.getElementById('send-btn');
+    // const cancelButton = document.getElementById('cancel-btn');
+    // const sendButton = document.getElementById('send-btn');
     const FundsToSend = document.getElementById('FundsToSend');
     const UserToSendTo = document.getElementById('UserToSendTo');
 
@@ -159,15 +184,15 @@ function FundsToSendToPaystack(name, amount) {
 
       installPopup.style.display = 'block';
 
-    // Cancel button click event
-    cancelButton.addEventListener('click', () => {
-      installPopup.style.display = 'none';
-    });
-    sendButton.addEventListener('click', async () => {
-        // let's approve and send the transaction
-        installPopup.style.display = 'none';
-        await sendFunds()
-      });
+    // // Cancel button click event
+    // cancelButton.addEventListener('click', () => {
+    //   installPopup.style.display = 'none';
+    // });
+    // sendButton.addEventListener('click', async () => {
+    //     // let's approve and send the transaction
+    //     installPopup.style.display = 'none';
+    //     await sendFunds()
+    //   });
 }
 
 function formatNumberToNaira(number) {
