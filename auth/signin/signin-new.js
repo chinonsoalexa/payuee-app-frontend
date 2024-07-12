@@ -247,6 +247,10 @@ async function sign_in() {
                     // redirect user to verify email ID
                     showError('emailError', 'Invalid email or password.', 5000);
                     return;
+                } else if (data.error == 'Your account has been suspended. Please contact support for more details.') {
+                    // redirect user to verify email ID
+                    showError('emailError', 'Your account has been suspended. Please contact support for more details.', 15000);
+                    return;
                 } else {
                     showError('otpError', `an error occurred. Please try again.`);
                 }
@@ -367,6 +371,10 @@ async function resendButtonOTP() {
             } else if  (errorData.error === 'User already exist, please verify your email ID') {
                 // redirect user to verify email ID
                 showErrorUserExist('magicLinkError', 'User already exist, please verify your email ID.');
+                // window.location.href = '/verify';
+            } else if  (errorData.error === 'Your account has been suspended. Please contact support for more details.') {
+                // redirect user to verify email ID
+                showErrorUserExist('magicLinkError', 'Your account has been suspended. Please contact support for more details.');
                 // window.location.href = '/verify';
             } else {
                 showError('magicLinkError', 'An error occurred. Please try again.');
