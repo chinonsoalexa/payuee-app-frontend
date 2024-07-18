@@ -226,7 +226,7 @@ async function sendFunds() {
     if (validated) {
         deactivateButtonStyles();
         const user = {
-            ServiceID: "sendFund",
+            ServiceID: "sendFunds",
             BankType: BankType,
             BankCountryType: BankCountryType,
             EmailID: payueeEmailId,
