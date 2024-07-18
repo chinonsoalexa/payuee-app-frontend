@@ -113,11 +113,11 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
+            // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');

@@ -614,7 +614,7 @@ async function logUserOutIfTokenIsExpired() {
     };
     
 try {
-    console.log("am here logging out12")
+    // console.log("am here logging out12")
     const response = await fetch(apiUrl, requestOptions);
 
     // Check if the fetch request was successful
@@ -622,12 +622,12 @@ try {
         throw new Error('Logout request failed');
     }
 
-    console.log("am here logging out")
+    // console.log("am here logging out")
         const data = response.json();
         localStorage.removeItem('auth')
-    console.log("am here logging out3")
+    // console.log("am here logging out3")
     window.location.href = '../index-in.html'
-    console.log("am here logging out2")
+    // console.log("am here logging out2")
 } finally{
         localStorage.removeItem('auth')
         window.location.href = '../index-in.html'

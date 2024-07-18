@@ -47,11 +47,11 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
+            // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
@@ -79,13 +79,13 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
 
             const responseData = await response.json();
 
-                console.log('here 1')
+                // console.log('here 1')
                 if (responseData.success == 'educational pin successfully bought') {
-                    console.log('here 2')
+                    // console.log('here 2')
                     window.location.href = "https://payuee.com/successful.html"
                     return
                 } else {
-                console.log('here 3')
+                // console.log('here 3')
                 window.location.href = responseData.success.data.authorization_url;
                 return
                 }

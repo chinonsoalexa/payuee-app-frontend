@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            console.log(errorData);
+            // console.log(errorData);
 
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 

@@ -47,7 +47,7 @@ const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]')
 radioButtons.forEach(button => {
     button.addEventListener('change', function () {
         // Perform your desired action here
-        console.log(`Selected option: ${this.id}`);
+        // console.log(`Selected option: ${this.id}`);
 
         if (this.id === "payuee") {
             enableTransferDiv();
@@ -139,7 +139,7 @@ function validateAndSendFunds() {
         }
     }
     if (validated == true) {
-        console.log("this is the bank status: ", sendFundsToStatus);
+        // console.log("this is the bank status: ", sendFundsToStatus);
         if (sendFundsToStatus == "payuee") {
             FundsToSendToPayuee(payueeEmailId, payueeAmount);
         } else if (sendFundsToStatus == "paystack") {

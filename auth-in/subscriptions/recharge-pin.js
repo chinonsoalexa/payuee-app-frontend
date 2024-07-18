@@ -23,8 +23,8 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 
     if (validated) {
         deactivateButtonStyles();
-        console.log('total charge: ', totalCharge)
-        console.log('transaction charge: ', transCharge)
+        // console.log('total charge: ', totalCharge)
+        // console.log('transaction charge: ', transCharge)
         const user = {
             ServiceID: "rechargePin",
             PaymentType: paymentMethod,
@@ -49,11 +49,11 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
+            // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
@@ -82,11 +82,11 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
             const responseData = await response.json();
 
             if (responseData.success == 'recharge pin successfully bought') {
-                console.log('here 2')
+                // console.log('here 2')
                 window.location.href = "https://payuee.com/successful.html"
                 return
             } else {
-            console.log('here 3')
+            // console.log('here 3')
             window.location.href = responseData.success.data.authorization_url;
             return
             }

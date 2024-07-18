@@ -51,11 +51,11 @@ document.getElementById('continue-buy-airtime').addEventListener('click', async 
         try {
             const response = await fetch(apiUrl, requestOptions);
 
-            console.log(response);
+            // console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
 
-                console.log(errorData);
+                // console.log(errorData);
 
                 if (errorData.error === 'User already exist, please login') {
                     showError('passwordError', 'User already exists. Please signin.');
@@ -139,7 +139,7 @@ function buy_airtime(){
         invoice_date.textContent = getCurrentDate();
         invoice_service_charge
         // let's update the payment method field
-        console.log('payment method: ' + paymentMethod)
+        // console.log('payment method: ' + paymentMethod)
         if (paymentMethod == "wallet") {
             payment_method.textContent = "Wallet";
             invoice_charge.textContent = '₦' + '0.00';
@@ -150,10 +150,10 @@ function buy_airtime(){
             payment_method.textContent = "Paystack";
                 // let's get the transaction charge of this transaction
             transCharge = calculateTotalCharge(amountInputNumber);      
-            console.log('transCharge: '+ transCharge);
+            // console.log('transCharge: '+ transCharge);
             invoice_charge.textContent = formatNumberToNaira(transCharge);
             totalCharge = amountInputNumber;
-            console.log('TotalCharge: '+ totalCharge);
+            // console.log('TotalCharge: '+ totalCharge);
             invoice_service_charge.textContent = formatNumberToNaira(amountInputNumber);
             invoice_total_charge.textContent = formatNumberToNaira(totalCharge + transCharge);
         }
