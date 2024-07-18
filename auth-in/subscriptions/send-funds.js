@@ -257,8 +257,6 @@ async function sendFunds() {
             if (!response.ok) {
                 const errorData = await response.json();
     
-                console.log("This is the response error data: ",errorData);
-    
                 if  (errorData.error === 'a user with this email was not found') {
                     returnedErrorMessageDisplay('Sorry no user with ' + errorData.email + ' was found');
                 }else if  (errorData.error === 'insufficient funds') {
