@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <script src="auth/auth-page.js" defer></script>
+<script src="auth-in/subscriptions/email-subscription.js"></script>
+   <!-- js scroll to data link -->
+   <script src="page-scroll-js/mobile-scroll.js" defer></script>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Payuee - Recharge & Bill Payment</title>
+   <!--Favicon img-->
+   <link rel="shortcut icon" href="assets/img/logo/favicon2.png">
+   <!--nice select css-->
+   <link rel="stylesheet" href="assets/css/nice-select.css">
+   <!--datepicker css-->
+   <link rel="stylesheet" href="assets/css/datepickerboot.css">
+   <!--main css-->
+      <link rel="stylesheet" href="assets/css/main.css">
+   <!-- popup css -->
+   <link rel="stylesheet" href="assets/css/index.css">
+   <link rel="stylesheet" href="assets/css/index2.css">
+
+<!-- SEO Meta Tags -->
+    <meta name="description" content="Payuee - Your one-stop destination for online recharge and bill payments. Recharge your mobile, data subscription, tv subscription, pay bills for electricity, and more with ease.">
+    <meta name="keywords" content="payuee, payue, payuee, PayUee, payee, recharge, bill payment, online payment, mobile recharge, tv subscription, airtime card recharge, data subscription, electricity bill payment, utility bill payment">
+    <meta name="author" content="Payuee">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Payuee - Recharge & Bill Payment">
+    <meta property="og:description" content="Payuee - Your one-stop destination for online recharge and bill payments. Recharge your mobile, data subscription, tv subscription, pay bills for electricity, and more with ease.">
+    <meta property="og:url" content="https://www.payuee.com">
+<meta name="theme-color" content="#2c3e50">
+    <meta property="og:image" content="https://www.payuee.com/assets/img/logo/favicon2.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Payuee - Recharge & Bill Payment">
+    <meta property="twitter:description" content="Payuee - Your one-stop destination for online recharge and bill payments. Recharge your mobile, data subscription, tv subscription, pay bills for electricity, and more with ease.">
+    <meta property="twitter:url" content="https://www.payuee.com">
+    <meta property="twitter:image" content="https://www.payuee.com/assets/img/logo/favicon2.png">
+    
+    <!-- Instagram -->
+    <meta property="og:instagram" content="payuee_">
+    
+    <!-- WhatsApp -->
+    <meta property="og:whatsapp" content="https://wa.me/2348189799992">
+    
+    <!-- TikTok -->
+    <meta property="og:tiktok" content="@payuee">
+    
+    <!-- YouTube -->
+    <meta property="og:youtube" content="https://www.youtube.com/channel/payuee">
+<style>
+   body {
+   margin: 0;
+   font-family: Arial, sans-serif;
+   position: relative; /* Ensure the body has a relative position */
+   }
+   
+   .popup {
+   display: none;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #fff;
+   padding: 20px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   z-index: 1000; /* Set a higher z-index value */
+   }
+   
+   .popup-content {
+   text-align: center;
+   }
+   
+   button {
+   margin: 10px;
+   padding: 8px 16px;
+   cursor: pointer;
+   }
+   
+   .install-button {
+   background-color: green;
+   color: #fff;
+   border: none;
+   }
+   
+   .cancel-button {
+   background-color: red;
+   color: #fff;
+   border: none;
+   }
+   
+</style>
+</head>
+
+<body>
+
+<!-- Preloader Start Here -->
+<div class="preloader__wrap">
+   <div class="preloader__box">
+      <div class="circle">
+         <img src="assets/img/preloader/preloader.png" alt="preloader">
+      </div>
+      <div class="recharge">
+         <img src="assets/img/preloader/rechage.png" alt="rechage">
+      </div>
+      <span class="pretext">
+         Payuee
+      </span>
+   </div>
+</div>
+<!-- Preloader End Here -->
+
+<!-- Header top Here -->
+<header class="header-section header__threestyle">
+   <div class="container">
+      <div class="header-wrapper">
+         <div class="logo-menu">
+            <a href="../index-in.html" class="logo">
+               <img src="assets/img/logo/logo-blue.png" alt="logo">
+            </a>
+            <a href="../index-in.html" class="small__logo d-xl-none">
+               <img src="assets/img/logo/favicon.png" alt="logo">
+            </a>
+         </div>
+         <div class="menu__right__components d-flex align-items-center">
+            <div class="sigup__grp d-lg-none">
+            </div>
+            <div class="header-bar d-lg-none">
+               <span></span>
+               <span></span>
+               <span></span>
+            </div>
+         </div>
+                  <ul class="main-menu">
+            <li class="grid__style">
+               <a href="index-in.html" class="d-flex">
+                  <span>
+                     Home 
+                  </span>
+                </a>
+            <li class="grid__style">
+               <a href="javascript:void(0)" class="d-flex">
+                  <span>
+                     Recharge & Bill Payment 
+                  </span>
+                   <span class="icons">
+                      <i class="material-symbols-outlined">
+                         expand_more
+                      </i>
+                   </span>
+                </a>
+               <ul class="sub-menu submenu__recharge">
+                  <li>
+                     <a href="airtime.html">Airtime</a>
+                  </li>
+                  <li>
+                     <a href="recharge-pin.html">Recharge Pin</a>
+                  </li>
+                  <li>
+                     <a href="data.html">Data</a>
+                  </li>
+                  <li>
+                     <a href="educational-payments.html">Educational Payments</a>
+                  </li>
+                  <li>
+                     <a href="tv.html">TV/Decoder</a>
+                  </li>
+                  <li>
+                     <a href="electricity.html">Electricity</a>
+                  </li>
+                  <li>
+                     <a href="fund-wallet.html">Fund Wallet</a>
+                  </li>
+                  <li>
+                     <a href="send-funds.html">Send Funds</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="grid__style">
+               <a href="blog-list.html" class="d-flex">
+                  <span>
+                     Blog 
+                  </span>
+                </a>
+            </li>
+            <li class="grid__style">
+               <a href="javascript:void(0)" class="d-flex">
+                   <span>
+                     Info
+                  </span>
+                   <span class="icons">
+                      <i class="material-symbols-outlined">
+                         expand_more
+                      </i>
+                   </span>
+                </a>
+               <ul class="sub-menu">
+                  <li class="subtwohober">
+                     <a href="javascript:void(0)" class="d-flex align-items-center justify-content-between">
+                        <span class="text">
+                           About
+                        </span>
+                        <span class="icon">
+                           <i class="material-symbols-outlined">
+                              add
+                           </i>
+                        </span>  
+                     </a>
+                     <ul class="sub-two">
+                        <li>
+                           <a href="about.html">
+                              About us
+                           </a>
+                        </li>
+                        <li>
+                           <a href="chat-us.html">
+                              Chat us
+                           </a>
+                        </li>
+                        <li>
+                           <a href="help.html">
+                              Help page
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="subtwohober">
+                     <a href="javascript:void(0)" class="d-flex align-items-center justify-content-between">
+                        <span class="text">
+                           Support
+                        </span>
+                        <span class="icon">
+                           <i class="material-symbols-outlined">
+                              add
+                           </i>
+                        </span>  
+                     </a>
+                     <ul class="sub-two">
+                        <li>
+                           <a href="help-support.html">
+                             Support
+                           </a>
+                        </li>
+                        <li>
+                           <a href="help-knowledge.html">
+                              Support Knowledge
+                           </a>
+                        </li>
+                        <li>
+                           <a href="help-knowledge-details.html">
+                              Support Details
+                           </a>
+                        </li>
+                        <li>
+                           <a href="video-tutorial.html">
+                              Support Tutorial
+                           </a>
+                        </li>
+
+                     </ul>
+                  </li>
+                  <li class="subtwohober">
+                     <a href="javascript:void(0)" class="d-flex align-items-center justify-content-between">
+                        <span class="text">
+                           My Profile
+                        </span>
+                        <span class="icon">
+                           <i class="material-symbols-outlined">
+                              add
+                           </i>
+                        </span>  
+                     </a>
+                     <ul class="sub-two">
+                        <li>
+                           <a href="personal-information.html">
+                             Personal info
+                           </a>
+                        </li>
+                        <li>
+                           <a href="subscriptions.html">
+                              Subscriptions
+                           </a>
+                        </li>
+                        <li>
+                           <a href="transaction.html">
+                              Transaction
+                           </a>
+                        </li>
+                        <li>
+                           <a href="password-change.html">
+                              Change Password
+                           </a>
+                        </li>
+                        <li>
+                           <a href="notification.html">
+                              Notification
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li><a href="faq.html">Faq Page</a></li>
+               </ul>
+            </li>
+            <li class="sigup__grp d-lg-none d-flex align-items-center">
+               <a href="" id="logout-button" class="cmn__btn outline__btn">
+                  <span>
+                     Logout
+                  </span>
+               </a>
+            </li>
+         </ul>
+         <div class="sigin__grp d-flex align-items-center">
+            <a href="" id="logout-button2" class="cmn__btn outline__btn">
+               <span>
+                  Logout
+               </span>
+            </a>
+         </div>
+      </div>
+   </div>
+</header>
+<!-- Header top End -->
+
+<!-- Banner two Here -->
+<section class="banner__section__two">
+   <!--electricity-->
+   <div class="banner__wrapper__two">
+      <div class="container">
+         <div class="row g-4 justify-content-center">
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 wow fadeInUp" data-wow-duration="1.5s">
+               <div class="fasilities__wrapper pb__40">
+                  <div class="fasilities__inner fasilities__innertwo">
+                     <a href="airtime.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/phone.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Airtime
+                        </span>
+                     </a>
+                     <a href="recharge-pin.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/card.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Recharge Pin
+                        </span>
+                     </a>
+                     <a href="data.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/broadband.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Data
+                        </span>
+                     </a>
+                     <a href="educational-payments.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/forums.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Educational Payments
+                        </span>
+                     </a>
+                      <a href="tv.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/tv.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           TV/Decoder
+                        </span>
+                     </a>
+                     <a href="electricity.html" id="electricity-id" class="fasilities__item active align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/eletricity.svg" alt="icon" id="electricity-id">
+                        </span>
+                        <span class="fz-18 pratext d-block" id="electricity-id">
+                           Electricity
+                        </span>
+                     </a>
+                     <a href="fund-wallet.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/checktwo.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Fund Wallet
+                        </span>
+                     </a>
+                      <a id="electricity-section1" href="send-funds.html" class="fasilities__item align-items-center d-flex">
+                        <span class="icon">
+                           <img src="assets/img/svg/recharge.svg" alt="icon">
+                        </span>
+                        <span class="fz-18 pratext d-block">
+                           Send Funds
+                        </span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+            <!-- section for electric payment -->
+            <div id="electricity-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-duration="2.5s">
+               <div class="recharge__paymentbox mb__30">
+                  <div class="mobile__recharge text-center">
+                     <h5 class="mb-4">
+                        Pay your Electricity Bill
+                     </h5>
+                     
+                     <div class="prepaid__option">
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="paymentOption" id="wallet" checked>
+                            <label class="form-check-label" for="wallet">
+                                Wallet
+                            </label>
+                        </div>
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="paymentOption" id="paystack">
+                            <label class="form-check-label" for="paystack">
+                                External Bank
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="prepaid__option">
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="electricityType" id="prepaid" checked>
+                            <label class="form-check-label" for="prepaid">
+                                Prepaid
+                            </label>
+                        </div>
+                        <div class="prepaid__check">
+                            <input class="form-check-input" type="radio" name="electricityType" id="postpaid">
+                            <label class="form-check-label" for="postpaid">
+                                Postpaid
+                            </label>
+                        </div>
+                    </div>
+                    
+                     <form action="#" class="mb-3">
+                        <div class="row g-4">
+                           <div class="col-lg-6">
+                              <select name="niceselect" id="electricSelect">
+                                 <option value="portharcourt-electric">
+                                    Port (PHED)
+                                 </option>
+                                 <option value="abuja-electric">
+                                    Abuja (AEDC)
+                                 </option>
+                                 <!-- <option value="benin-electric">
+                                    Benin-Electric (BEDC)
+                                 </option> -->
+                                 <option value="eko-electric">
+                                    Eko (EKEDC)
+                                 </option>
+                                 <option value="ibadan-electric">
+                                    Ibadan (IBEDC)
+                                 </option>
+                                 <option value="ikeja-electric">
+                                    Ikeja (IKEDC)
+                                 </option>
+                                 <option value="jos-electric">
+                                    Jos (JEDplc)
+                                 </option>
+                                 <option value="kaduna-electric">
+                                    Kaduna (KAEDCO)
+                                 </option>
+                                 <option value="kano-electric">
+                                    Kano (KEDCO)
+                                 </option>
+                              </select>
+                           </div>
+                           <div class="col-lg-6">
+                              <input id="meter-number" type="number" placeholder="Enter Meter Number">
+                              <p id="meter-error"></p>
+                           </div>
+                           <div class="col-lg-6">
+                              <input id="phone-number" type="number" placeholder="Enter Mobile Number">
+                              <p id="phone-error"></p>
+                           </div>
+                           <div class="col-lg-6">
+                              <input id="bill-amount" type="number" placeholder="Enter Bill Amount">
+                              <p id="bill-error"></p>
+                           </div>
+                        </div>
+                     </form>
+                     <div class="payment__check d-flex justify-content-start">
+                        <input class="form-check-input" type="checkbox" id="autoRenewElectric">
+                        <label class="form-check-label" for="autoRenewElectric">
+                           Save to subscriptions
+                        </label>
+                     </div>
+                     <a id="electricity-button" href="#" class="cmn__btn mt-5">
+                        <span>
+                           Continue recharge
+                        </span>
+                     </a>
+                  </div>
+               </div>
+               <h4 class="promo__title mb__30">
+                  Electricity
+               </h4>
+               <div class="promo__sponsor__wrappertwo owl-theme owl-carousel">
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/port.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              PHED
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/abuja.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              AEDC
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/kano.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              KEDCO
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/jos.jpeg" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              JEDplc
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/kaduna.jpeg" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              KAEDCO
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/ikeja.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              IKEDC
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/ibadan.jpeg" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              IBEDC
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/eko.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              EKEDC
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="promo__sponsor__item">
+                     <div class="promo__box">
+                        <div class="thumb">
+                           <img src="assets/img/payment/benin.png" alt="img">
+                        </div>
+                        <div class="content">
+                           <span class="fz-16 link">
+                              BEDC
+                           </span>
+                           <a href="javascript:void(0)">
+                              <span>
+                                 Buy
+                              </span>
+                              <span class="icon">
+                                 <i class="material-symbols-outlined">
+                                    north
+                                 </i>
+                              </span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- section for invoice -->
+            <div id="invoice-section" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 disabled">
+               <div class="order__wrappers invoice__wrapper">
+                  <div class="invoice__textwrapper mb__30">
+                     <div class="invoice__leftbox">
+                        <h3>
+                           Invoice
+                        </h3>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Order Date
+                           </span>
+                           <span id="invoice_date" class="counting">
+                              07/11/2023
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Payment Method
+                           </span>
+                           <span id="payment_method" class="counting">
+                              Paystack
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Phone
+                           </span>
+                           <span id="phone_number" class="counting">
+                              08136804598
+                           </span>
+                        </div>
+                        <div class="invoice__leftnumber">
+                           <span class="bage">
+                              Electricity Type
+                           </span>
+                           <span id="electricityType" class="counting">
+                              Prepaid
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="order__summary__wrapper mb__40">
+                     <div class="over__responsive">
+                     <h5 class="summary__title">Order Summary</h5>
+                     <div class="order__table__fluid">
+                        <div class="order__table__items bg__add">
+                           <span>
+                              Service
+                           </span>
+                           <span>
+                              Region
+                           </span>
+                           <span>
+                              Meter Number
+                           </span>
+                           <span>
+                              Save Subscription
+                           </span>
+                           <span>
+                              Transaction Charge
+                           </span>
+                           <span>
+                              Amount
+                           </span>
+                        </div>
+                        <div class="order__table__items">
+                           <span id="invoice_service">
+                              Electricity Bill
+                           </span>
+                           <span id="invoice_electric_region">
+                              Port (PHED)
+                           </span>
+                           <span id="invoice_electric_meter_number">
+                              1032323283
+                           </span>
+                           <span id="invoice_electric_auto_renew">
+                              True
+                           </span>
+                           <span id="invoice_charge">
+                              ₦0.00
+                           </span>
+                           <span id="invoice_service_charge">
+                              ₦500.00
+                           </span>
+                        </div>
+                     </div>
+                     <div class="order__table__box">
+                        <div class="order__graph">
+                           <ul>
+                              <li>
+                                 <span>Total:</span>
+                                 <span id="invoice_total_charge" class="bg">₦500.00</span>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+                  <p class="note">
+                     Note: Before completing a purchase using your wallet, please ensure your wallet is funded. Transactions made with your wallet incur a 0% charge
+                  </p>
+                  <div class="print__point__btn d-flex align-items-center gap-3">
+                     <a id="back-to-tv" href="#" class="cmn__btn">
+                        <span>
+                           <i class="material-symbols-outlined">
+                              keyboard_backspace
+                           </i>
+                        </span>
+                        <span class="print">
+                           Back
+                        </span>
+                     </a>
+                     <a id="continue-sub-electricity" href="#" class="cmn__btn">
+                        <span class="print">
+                           Continue
+                        </span>
+                        <span>
+                           <i class="material-symbols-outlined">
+                              arrow_forward
+                           </i>
+                        </span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1.5s">
+               <div class="pay__sponsor__thumbtwo">
+                  <img src="assets/img/banner/eletronic2.jpg" alt="img">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Banner two End -->
+
+<!--home two refer start-->
+<section class="refer__section__two pt-120 pb-120">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-6">
+            <div class="section__header section__center pb__40 wow fadeInDown">
+               <h2>
+                  Refer & Earn
+               </h2>
+               <p>
+                  Welcome to Payuee where your subscriptions become a gateway to endless benefits! We believe that sharing the joy of incredible services should be rewarding, and that's why we've introduced our exclusive "Earn as You Refer a Friend" program.
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="row pb__40 g-4 align-items-center">
+         <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInDown" data-wow-duration="0.5s">
+            <div class="refer__item refer__item__grid">
+               <div class="icon">
+                  <img src="assets/img/refer/boxspeaker.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     <a href="personal-information.html" class="dtext">
+                        Refer your friends
+                     </a>
+                  </h5>
+                  <p>Share your referral link with your friends.</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInDown" data-wow-duration="0.9s">
+            <div class="refer__item refer__item__grid">
+               <div class="icon">
+                  <img src="assets/img/refer/boxregister.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     <a href="personal-information.html" class="dtext">
+                        Register yor friends
+                     </a>
+                  </h5>
+                  <p>Register your friends using your referral link.</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInDown" data-wow-duration="1s">
+            <div class="refer__item refer__item__grid">
+               <div class="icon">
+                  <img src="assets/img/refer/boxamount.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     <a href="personal-information.html" class="dtext">
+                        Earn You
+                     </a>
+                  </h5>
+                  <p>Refer your friends and earn up to ₦50 for each referral.</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInDown" data-wow-duration="1.5s">
+            <div class="refer__item refer__item__grid">
+               <div class="icon">
+                  <img src="assets/img/refer/boxwithdrow.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     <a href="personal-information.html" class="dtext">
+                        Withdraw
+                     </a>
+                  </h5>
+                  <p>₦50. You can use these credits to take recharge.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="more text-center wow fadeInDown" data-wow-duration="1.9s">
+         <a href="personal-information.html" class="cmn__btn">
+            <span>
+               Get Started Earn
+            </span>
+         </a>
+      </div>
+   </div>
+   <div class="refercard">
+      <img src="assets/img/refer/redercards.png" alt="img">
+   </div>
+   <div class="referman">
+      <img src="assets/img/refer/referman.png" alt="img">
+   </div>
+</section>
+<!--home two refer end-->
+
+<!--home two working start-->
+<section class="working__section__two pt-120 pb-120">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-6">
+            <div class="section__header section__center minusten pb__40 wow fadeInUp">
+               <h2>
+                  How It Works
+               </h2>
+               <p>
+                  New users start by clicking on the "Sign Up" button. The registration process is straight forward, requiring basic information such as name, email, and a secure password. Users have the option to opt-in for newsletters or promotional updates.
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+         <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="1.2s">
+            <div class="working__itemstwo">
+               <span class="list">
+                  01
+               </span>
+               <div class="icon">
+                  <img src="assets/img/working/chossetouch.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     Personalized Onboarding
+                  </h5>
+                  <p>
+                     After registration, users are guided through a brief onboarding process. They have the opportunity to specify their preferences and interests, helping the platform tailor service recommendations.
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="1.5s">
+            <div class="working__itemstwo">
+               <span class="list">
+                  02
+               </span>
+               <div class="icon">
+                  <img src="assets/img/working/find.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     Service Exploration
+                  </h5>
+                  <p>
+                     Users navigate to the main dashboard where they can explore various subscription services. Categories such as Credit, Data Plans, TV Services, and more are easily accessible. Detailed descriptions, pricing, and package details help users make informed decisions.
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="1.9s">
+            <div class="working__itemstwo">
+               <span class="list">
+                  03
+               </span>
+               <div class="icon">
+                  <img src="assets/img/working/code.png" alt="img">
+               </div>
+               <div class="content">
+                  <h5>
+                     Subscription Selection
+                  </h5>
+                  <p>
+                     Users select the services they're interested in and proceed to the checkout. A seamless and secure payment gateway allows them to enter billing details and complete the subscription process.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--home two working end-->
+
+<!--home two qustions start-->
+<section class="question__section pt-120 pb-120">
+   <div class="container">
+      <div class="row justify-content-center wow fadeInDown">
+         <div class="col-lg-6">
+            <div class="section__header section__center pb__40">
+               <h2>
+                  If you got questions we have answers
+               </h2>
+              <p>
+               Certainly! Here are some frequently asked questions (FAQs) related to payments on our platform.
+              </p>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center">
+         <div class="col-xl-8">
+            <div class="qustion__content">
+               <div class="accordion__wrap">
+                  <div class="accordion" id="accordionExample">
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="0.9s">
+                        <h2 class="accordion-header" id="headingOne">
+                           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              What services do we offer?
+                           </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 We offer a diverse array of services, including credit plans, data packages, TV streaming services, and more. Explore our categories to find the perfect subscription that suits your needs.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1s">
+                        <h2 class="accordion-header" id="headingTwo">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              How can I manage my subscriptions?
+                           </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 Managing your subscriptions is easy. Once logged in, navigate to your personalized dashboard. Here, you can view and manage your active subscriptions, make upgrades, or cancel services.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1.4s">
+                        <h2 class="accordion-header" id="headingThree">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              What payment methods do we accept?
+                           </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 We support a variety of payment methods, including debit cards,  and other secure online payment options. Choose the method that suits you best during the checkout process.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1.6s">
+                        <h2 class="accordion-header" id="headingThreem">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreem" aria-expanded="false" aria-controls="collapseThreem">
+                              Are there any additional fees or hidden charges?
+                           </button>
+                        </h2>
+                        <div id="collapseThreem" class="accordion-collapse collapse" aria-labelledby="headingThreem" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 We believe in transparency. The pricing you see during the subscription process is what you pay. There are no hidden fees or additional charges.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1.8s">
+                        <h2 class="accordion-header" id="headingThreemm">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreemm" aria-expanded="false" aria-controls="collapseThreemm">
+                              How often do you update your services?
+                           </button>
+                        </h2>
+                        <div id="collapseThreemm" class="accordion-collapse collapse" aria-labelledby="headingThreemm" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 We are committed to continuous improvement. Our services are regularly updated with new features and offerings. Stay tuned for exciting updates!
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1.9s">
+                        <h2 class="accordion-header" id="headingThreemmm">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreemmm" aria-expanded="false" aria-controls="collapseThreemmm">
+                              How can I get in touch with customer support?
+                           </button>
+                        </h2>
+                        <div id="collapseThreemmm" class="accordion-collapse collapse" aria-labelledby="headingThreemmm" data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <p>
+                                 Our customer support team is here to assist you. Visit the "Help & Support" section on your dashboard for FAQs, tutorials, and contact options. Feel free to reach out if you have any questions or need assistance.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!--Accordion items-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--home two qustions start-->
+
+<!-- Popup box -->
+<div id="balance-popup" class="popup">
+<div class="popup-content">
+   <p>Sorry you currently don't have up to <span id="insufficientFunds">₦ NA</span> in your wallet</p>
+   <button class="cancel-button" id="cancel-btn">Close</button>
+</div>
+</div>
+
+<!-- footer Here -->
+<footer class="footer__section bgsection pt-120">
+   <div class="container">
+      <div class="footer__wrapper">
+         <div class="footer__top pb-120">
+            <div class="row gy-5 gx-5">
+               <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="footer__widget">
+                     <div class="widget__head mb__20">
+                        <a href="../index-in.html" class="footer__logo">
+                           <img src="assets/img/logo/logo-blue.png" alt="logo">
+                        </a>
+                     </div>
+                     <p class="pratext mb__20 fz-18">
+                        Payuee is one of Nigerian's best online leading platform to pay for your daily bills with ease of use and provided tutorials on how to use...
+                     </p>
+                     <ul class="social d-flex gap-3">
+                        <li>
+                           <a href="javascript:void(0)" class="social__icon">
+                              <img src="assets/img/svg/facebook.svg" alt="svg">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://www.instagram.com/payuee_/" class="social__icon">
+                              <img src="assets/img/svg/instagram.svg" alt="svg">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://x.com/payuee_" class="social__icon">
+                              <img src="assets/img/svg/twitter.svg" alt="svg">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://ng.linkedin.com/in/payuee-payuee-38a5012b9" class="social__icon">
+                              <img src="assets/img/svg/linkedin.svg" alt="svg">
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="footer__widget">
+                     <div class="widget__head mb__20">
+                        <h4 class="fz-24 pratext">
+                           Quick Links
+                        </h4>
+                     </div>
+                     <div class="widget__link">
+                        <a href="../index-in.html" class="link fz-18 pratext">
+                           Home
+                        </a>
+                        <a href="about.html" class="link fz-18 pratext">
+                           About
+                        </a>
+                        <a href="airtime.html" class="link fz-18 pratext">
+                          Rechage & Bill Payment
+                        </a>
+                        <a href="blog-list.html" class="link fz-18 pratext">
+                           Blog
+                        </a>
+                        <a href="chat-us.html" class="link fz-18 pratext">
+                           Contact
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="footer__widget">
+                     <div class="widget__head mb__20">
+                        <h4 class="fz-24 pratext">
+                           Address
+                        </h4>
+                     </div>
+                     <div class="widget__link">
+                        <a href="javascript:void(0)" class="link fz-18 pratext">
+                          <span class="d-block">
+                           (0813) 680-4598
+                          </span>
+                          <span>
+                           (0818) 979-9992
+                          </span>
+                        </a>
+                        <a href="javascript:void(0)" class="link fz-18 pratext">
+                           <span class="d-block">
+                              <span class="__cf_email__" data-cfemail="2a4e4f4b44444b04495f585e43596a4f524b475a464f04494547">devs@payuee.com</span>
+                           </span>
+                           <span>
+                              <span class="__cf_email__" data-cfemail="d1b5b4b3a3b0ffb9bebda591b4a9b0bca1bdb4ffb2bebc">support@payuee.com</span>
+                           </span>
+                        </a>
+                        <a href="javascript:void(0)" class="link fz-18 pratext">
+                           Road 7 Agip Estate, Rivers State, Port Harcourt, Nigeria
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <div class="footer__widget">
+                     <div class="widget__head mb__20">
+                        <h4 class="fz-24 pratext">
+                           Newsletter
+                        </h4>
+                     </div>
+                     <div class="widget__link">
+                        <p class="fz-18 pratext mb__30">
+                           Subscribe our newsletter to get our latest update & news
+                        </p>
+                       <form action="#" class="d-flex justify-content-between" id="rocket_subscription_form">
+                           <input type="email" placeholder="Your mail address" id="email_rocket_subscription">
+                           <button type="submit" class="cmn__btn">
+                             <span>
+                                 <i class="material-symbols-outlined">
+                                    rocket_launch
+                                 </i>
+                             </span>
+                           </button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer__bottom d-flex">
+            <p class="fz-18 pratext">
+               Copyright &copy; <script>document.write(new Date().getFullYear())</script> <a href="javascript:void(0)" class="base">Payuee.</a> All Rights Reserved
+            </p>
+            <ul class="footer__bottom__link">
+               <li>
+                  <a href="help-support.html">
+                     Support
+                  </a>
+               </li>
+               <li>
+                  <a href="#0">
+                     Terms of Use
+                  </a>
+               </li>
+               <li>
+                  <a href="#0">
+                     Privacy Policy
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</footer>
+<!-- footer End -->
+
+
+
+   <!--Jquery 3 6 0 Min Js-->
+   <script src="assets/js/jquery-3.6.0.min.js"></script>
+   <!--Bootstrap bundle Js-->
+   <script src="assets/js/bootstrap.bundle.min.js"></script>
+   <!--Viewport Jquery Js-->
+   <script src="assets/js/viewport.jquery.js"></script>
+   <!--Odometer min Js-->
+   <script src="assets/js/odometer.min.js"></script>
+   <!--date picker Js-->
+   <script src="assets/js/bootstrap-datepicker.js"></script>
+   <!--Magnifiw Popup Js-->
+   <script src="assets/js/jquery.magnific-popup.min.js"></script>
+   <!--nice select Js-->
+   <script src="assets/js/jquery.nice-select.min.js"></script>
+   <!--Wow min Js-->
+   <script src="assets/js/wow.min.js"></script>
+   <!--Owl carousel min Js-->
+   <script src="assets/js/owl.carousel.min.js"></script>
+   <!--Prijm Js-->
+   <script src="assets/js/prism.js"></script>
+   <!--main Js-->
+   <script src="assets/js/main.js"></script>
+   <!-- popup library -->
+   <script src="auth-in/popUps/index2.js"></script>
+   <!-- this is used to pay bills for electricity and validation -->
+   <script src="auth-in/subscriptions/electricity.js"></script>
+</body>
+
+</html>
