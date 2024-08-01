@@ -316,14 +316,14 @@ async function getSelectedPlan(dataValue) {
 
         // Perform a task based on the selected value
         switch (dataValue) {
-            // case '2':
-            //     await requestPlan('mtn_sme', 'MTN SME');
-            //     servicePlanID = 'mtn_sme'
-            //     break;
-            case '1':
-                await requestPlan('mtn_cg_lite', 'MTN SME 2.0');
-                servicePlanID = 'mtn_cg_lite'
+            case '2':
+                await requestPlan('mtn_sme', 'MTN SME');
+                servicePlanID = 'mtn_sme'
                 break;
+            // case '7':
+            //     await requestPlan('mtn_cg_lite', 'MTN SME 2.0');
+            //     servicePlanID = 'mtn_cg_lite'
+            //     break;
             case '7':
                 await requestPlan('mtn_datashare', 'MTN Data Share');
                 servicePlanID = 'mtn_datashare'
@@ -332,10 +332,10 @@ async function getSelectedPlan(dataValue) {
                 await requestPlan('mtn_gifting', 'MTN Gifting');
                 servicePlanID = 'mtn_gifting'
                 break;
-            // case '1':
-            //     await requestPlan('mtn_cg', 'MTN Corporate');
-            //     servicePlanID = 'mtn_cg'
-            //     break;
+            case '1':
+                await requestPlan('mtn_cg', 'MTN Corporate');
+                servicePlanID = 'mtn_cg'
+                break;
             case '4':
                 await requestPlan('airtel_cg', "Airtel CG");
                 servicePlanID = 'airtel_cg'
@@ -512,9 +512,9 @@ listUl.className = 'list';
 // Sample array of options
 var options = [
     { value: '2', text: 'MTN-SME-Data (*323*4#)' },
-    { value: '1', text: 'MTN SME 2.0 (Send 2 - > 323)' },
     { value: '7', text: 'MTN-Data-Share (*323*4#)' },
     { value: '3', text: 'MTN-Gifting-Data (*323*4#)' },
+    // { value: '1', text: 'MTN-Corporate (Send 2 - > 323)' },
     { value: '4', text: 'Airtel-Corporate-Gifting (*323#)' },
     { value: '5', text: '9mobile-Data (*323#)' },
     { value: '6', text: 'Glo-Corporate-Gifting (*323#)' }
