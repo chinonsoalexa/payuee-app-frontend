@@ -635,6 +635,28 @@
                   <input type="radio" name="size" id="swatch-5">
                   <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">1kg</label>
                 </div>
+                <div class="accordion" id="size-filters">
+                  <div class="accordion-item mb-4">
+                    <h5 class="accordion-header" id="accordion-heading-size">
+                      <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-filter-size" aria-expanded="true" aria-controls="accordion-filter-size">
+                        Sizes
+                        <svg class="accordion-button__icon" viewBox="0 0 14 14"><g aria-hidden="true" stroke="none" fill-rule="evenodd"><path class="svg-path-vertical" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path><path class="svg-path-horizontal" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path></g></svg>
+                      </button>
+                    </h5>
+                    <div id="accordion-filter-size" class="accordion-collapse collapse show border-0" aria-labelledby="accordion-heading-size" data-bs-parent="#size-filters">
+                      <div class="accordion-body px-0 pb-0">
+                        <div class="d-flex flex-wrap">
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">XS</a>
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">S</a>
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">M</a>
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">L</a>
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">XL</a>
+                          <a href="#" class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter">XXL</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /.accordion-item -->
+                </div><!-- /.accordion -->
                 <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Administration</a>
               </div>
               <div class="product-swatch color-swatches">
@@ -1639,6 +1661,113 @@
 
   <!-- Go To Top -->
   <div id="scrollTop" class="visually-hidden end-0"></div>
+
+  <!-- Sizeguide -->
+  <div class="modal fade" id="sizeGuide" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog size-guide">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Size Guide</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="size-guide__wrapper">
+            <div class="size-guide__image">
+              <img loading="lazy" src="../images/size-guide.jpg" alt="">
+            </div>
+            <div class="size-guide__detail">
+              <h5>JEANS</h5>
+              <table>
+                <thead>
+                  <tr>
+                    <th>SIZE</th>
+                    <th>XS</th>
+                    <th>S</th>
+                    <th>M</th>
+                    <th>L</th>
+                    <th>XL</th>
+                    <th>XXL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BUST</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                  </tr>
+                  <tr>
+                    <td>WAIST</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                  </tr>
+                  <tr>
+                    <td>HIPS</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5>FOOTWEAR</h5>
+              <table>
+                <thead>
+                  <tr>
+                    <th>SIZE</th>
+                    <th>XS</th>
+                    <th>S</th>
+                    <th>M</th>
+                    <th>L</th>
+                    <th>XL</th>
+                    <th>XXL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BUST</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                  </tr>
+                  <tr>
+                    <td>WAIST</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>67</td>
+                  </tr>
+                  <tr>
+                    <td>HIPS</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                    <td>87</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.size-guide position-fixed-->
 
   <!-- Page Overlay -->
   <div class="page-overlay"></div><!-- /.page-overlay -->
