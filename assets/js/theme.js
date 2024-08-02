@@ -1351,11 +1351,13 @@ function pureFadeOut(e) {
     return false;
   });
 
-  if($('[data-fancybox="gallery"]').length > 0) {
-    $('[data-fancybox="gallery"]').fancybox({
-      backFocus: false
-    });
-  }
+  // if($('[data-fancybox="gallery"]').length > 0) {
+  //   $('[data-fancybox="gallery"]').fancybox({
+  //     backFocus: false
+  //   });
+  // }
+
+
 
   $(window).on("scroll", function() {
     if($(".mobile_fixed-btn_wrapper").length > 0) {
