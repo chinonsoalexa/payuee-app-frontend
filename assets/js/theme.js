@@ -734,9 +734,9 @@ function pureFadeOut(e) {
       },
 
       _stickyScrollHander() {
-        if (this.$header.classList.contains("sticky_disabled")) {
-          return;
-        }
+        // if (this.$header.classList.contains("sticky_disabled")) {
+        //   return;
+        // }
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (currentScrollTop > this.lastScrollTop || currentScrollTop < this.stickyMinPos) {
