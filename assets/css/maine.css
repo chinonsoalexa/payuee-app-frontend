@@ -1208,4 +1208,341 @@ input:focus {
     }
   }
 
+  .pt__60 {
+    padding-top: 60px;
+  }
   
+  .pb__60 {
+    padding-bottom: 60px;
+  }
+
+  .breadcumnd__banner {
+    padding: 180px 0 110px;
+    background: var(--base);
+  }
+  @media (max-width: 575px) {
+    .breadcumnd__banner {
+      padding: 160px 0 85px;
+    }
+  }
+
+  .breadcumnd__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .bread__title {
+    color: var(--white);
+    margin-right: 20px;
+  }
+  @media (max-width: 767px) {
+    .bread__title {
+      font-size: 2.625rem;
+    }
+  }
+  @media (max-width: 575px) {
+    .bread__title {
+      font-size: 2.25rem;
+    }
+  }
+
+  .banner__section__two .breadcumnd__link li {
+    color: var(--text);
+    font-weight: 500 !important;
+    font-family: "Lato", sans-serif;
+  }
+  .banner__section__two .breadcumnd__link li a {
+    color: var(--text);
+    font-weight: 500 !important;
+    font-family: "Lato", sans-serif;
+  }
+
+  .breadcumnd__link {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0px 3px;
+  }
+  .breadcumnd__link li {
+    font-size: 1.125rem;
+    color: var(--white);
+    font-weight: 500;
+    font-family: "Lato", sans-serif;
+  }
+  .breadcumnd__link li a {
+    font-size: 1.125rem;
+    color: var(--white);
+    font-weight: 500;
+    font-family: "Lato", sans-serif;
+  }
+  .breadcumnd__link li i {
+    color: var(--white);
+    font-size: 1.5rem;
+  }
+
+  
+.personal__infotabs {
+  background: linear-gradient(90deg, rgba(41, 66, 203, 0.05) 0%, rgba(39, 61, 177, 0.05) 100%);
+  border-radius: 10px;
+  padding: 10px;
+}
+@media (max-width: 991px) {
+  .personal__infotabs {
+    margin-bottom: 30px;
+  }
+}
+.personal__infotabs .nav {
+  border: unset;
+  display: inline;
+}
+.personal__infotabs .nav .nav-item .nav-link {
+  text-align: left;
+  border-radius: 5px;
+  padding: 13px 20px 13px;
+  width: 100%;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.personal__infotabs .nav .nav-item .nav-link span {
+  font-size: 1.125rem;
+  font-weight: 500;
+  font-family: "Lato", sans-serif;
+  color: var(--text);
+}
+.personal__infotabs .nav .nav-item .nav-link.active {
+  background: linear-gradient(90deg, #2942CB 0%, #273DB1 100%);
+  border-radius: 5px;
+}
+.personal__infotabs .nav .nav-item .nav-link.active .icon img {
+  filter: brightness(25);
+}
+.personal__infotabs .nav .nav-item .nav-link.active span {
+  color: var(--white);
+}
+
+@media (max-width: 1199px) {
+  .personal__favorites {
+    overflow-x: scroll;
+  }
+  .personal__favorites .personal__info__box {
+    width: 700px;
+  }
+}
+
+
+.personal__info__box {
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 24px 30px;
+}
+@media (max-width: 500px) {
+  .personal__info__box {
+    width: 500px;
+  }
+}
+.personal__info__box .per__ittle {
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.personal__info__box .per__ittle h5 {
+  color: var(--text);
+  font-weight: 700;
+}
+.personal__info__box .per__ittle .edit span {
+  color: var(--text);
+}
+.personal__info__box .per__ittle .delete {
+  border: 1px solid var(--borderthree);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.personal__info__box .per__ittle .delete i {
+  font-size: 24px;
+  color: var(--base);
+  margin-top: 0;
+}
+.personal__info__box .personal__details__name {
+  padding: 20px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--bordertwo);
+}
+.personal__info__box .personal__details__name li {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+.personal__info__box .personal__details__name li:not(:last-child) {
+  border-bottom: 1px solid var(--bordertwo);
+}
+.personal__info__box .personal__details__name li:last-child {
+  padding-bottom: 0;
+}
+.personal__info__box .personal__details__name li:first-child {
+  padding-top: 0;
+}
+.personal__info__box .personal__details__name li .namebold {
+  width: 50%;
+  color: var(--text);
+  font-family: "Lato", sans-serif;
+}
+.personal__info__box .personal__details__name li span {
+  font-size: 1rem;
+  color: var(--text);
+  font-family: "Lato", sans-serif;
+  width: 50%;
+}
+.personal__info__box .personal__details__name li span a {
+  color: var(--base);
+}
+.personal__info__box .personal__details__name li .actbe {
+  color: var(--base);
+}
+.personal__info__box .closeaccount {
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.personal__info__box .closeaccount .icon i {
+  color: var(--base);
+  font-size: 26px;
+}
+.personal__info__box .closeaccount span {
+  color: var(--text);
+}
+.personal__info__box .table1 {
+  width: 100%;
+}
+.personal__info__box .table1 thead th {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 15px 20px;
+  color: var(--text);
+  font-family: "Lato", sans-serif;
+  background: linear-gradient(90deg, rgba(41, 66, 203, 0.05) 0%, rgba(39, 61, 177, 0.05) 100%);
+}
+.personal__info__box .table1 tbody tr:nth-child(even) {
+  background: linear-gradient(90deg, rgba(41, 66, 203, 0.05) 0%, rgba(39, 61, 177, 0.05) 100%);
+}
+.personal__info__box .table1 tbody tr td {
+  padding: 15px 20px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text);
+  font-family: "Lato", sans-serif;
+}
+.personal__info__box .table1 tbody tr td .purchase {
+  border: 1px solid #DFE2F6;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  color: var(--base);
+  padding: 10px 8px 13px;
+  width: 140px;
+  display: block;
+  text-align: center;
+  border-radius: 5px;
+}
+.personal__info__box .table1 tbody tr td .edit img {
+  filter: brightness(0);
+}
+.personal__info__box .debit__creadit {
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.personal__info__box .debit__creadit .card__boxed {
+  background: linear-gradient(90deg, rgba(41, 66, 203, 0.1) 0%, rgba(39, 61, 177, 0.1) 100%);
+  border-radius: 10.2563px;
+  padding: 21px;
+  text-align: center;
+  width: 200px;
+  height: 120px;
+}
+.personal__info__box .debit__creadit .card__boxed img {
+  margin: 0 auto 8px;
+  display: block;
+}
+.personal__info__box .debit__creadit .card__boxed span {
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: "Lato", sans-serif;
+  color: var(--text);
+}
+.personal__info__box .calender__date {
+  position: relative;
+  margin-bottom: 24px;
+}
+.personal__info__box .calender__date input {
+  width: 100%;
+  padding: 21px 20px 21px 60px;
+  border: 1px solid var(--bordertwo);
+  border-radius: 5px;
+  outline: none;
+}
+.personal__info__box .calender__date ::-moz-placeholder {
+  font-size: 1.125rem;
+  color: var(--text);
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+}
+.personal__info__box .calender__date ::placeholder {
+  font-size: 1.125rem;
+  color: var(--text);
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+}
+.personal__info__box .calender__date i {
+  position: absolute;
+  left: 20px;
+  top: 13px;
+  font-size: 26px;
+  color: var(--base);
+}
+
+.personal__info__boxtwo {
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 24px 30px;
+}
+.personal__info__boxtwo .per__ittle {
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.personal__info__boxtwo .per__ittle h5 {
+  color: var(--text);
+  font-weight: 700;
+}
+.personal__info__boxtwo .per__ittle .edit span {
+  color: var(--text);
+}
+.personal__info__boxtwo .per__ittle .delete {
+  border: 1px solid var(--borderthree);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.personal__info__boxtwo .per__ittle .delete i {
+  font-size: 24px;
+  color: var(--base);
+  margin-top: 0;
+}
+
+@media (max-width: 1199px) {
+  .personal__favorites {
+    overflow-x: scroll;
+  }
+  .personal__favorites .personal__info__box {
+    width: 700px;
+  }
+}
