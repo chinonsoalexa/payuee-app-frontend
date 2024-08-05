@@ -22,19 +22,35 @@ function renderProducts(product) {
     rowElement.classList.add('product-card-wrapper');
     rowElement.id = product.ID; // Set the ID of the row
     let price;
+    let percentage;
 
     if (product.current_price !== 0) {
         price = `
         <div class="product-card__price d-flex">
             <span class="money price price-old">${formatNumberToNaira(product.previous_price)}</span>
             <span class="money price price-sale">${formatNumberToNaira(product.current_price)}</span>
-        </div>`
+        </div>`;
+        let currentPercent = calculatePercentageOff(product.previous_price, product.current_price)
+        percentage = `
+        <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+                <div class="pc-labels__right ms-auto">
+                    <span class="pc-label pc-label_sale d-block text-white">-${currentPercent}%</span>
+                </div>
+            </div>
+        `
     } else {
         price = `
         <div class="product-card__price d-flex">
             <span class="money price">${formatNumberToNaira(product.price)}</span>
         </div>`
+        percentage = `
+        `
     }
+
+    // Determine if the button should be disabled and what text to display
+    const isOutOfStock = product.stock_remaining === 0;
+    const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+    const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
@@ -52,7 +68,7 @@ function renderProducts(product) {
                     <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
                     <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
                 </div>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
@@ -72,14 +88,10 @@ function renderProducts(product) {
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
                 </button>
             </div>
-            <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                <div class="pc-labels__right ms-auto">
-                    <span class="pc-label pc-label_sale d-block text-white">-67%</span>
-                </div>
-            </div>
+            ${percentage}
             <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
                 <div class="pc-labels__left">
-                    <span class="pc-label pc-label_new d-block bg-white">100g</span>
+                    <span class="pc-label pc-label_new d-block bg-white">${product.grams}g</span>
                 </div>
             </div>
         </div>
@@ -93,12 +105,22 @@ function renderProducts(product) {
     imgWrapper.addEventListener('mouseover', function() {
         console.log('Image Wrapper ID:', rowElement.id);
     });
-
+    if (!isOutOfStock) {
     // Add event listener to the 'Add To Cart' button
     const addToCartButton = rowElement.querySelector('.pc__atc');
     addToCartButton.addEventListener('click', function() {
         console.log('Add To Cart Button ID:', rowElement.id);
     });
+    }
+}
+
+function calculatePercentageOff(previousPrice, currentPrice) {
+    if (previousPrice <= 0) {
+        return 0; // Prevent division by zero or negative values
+    }
+    const discount = previousPrice - currentPrice;
+    const percentageOff = (discount / previousPrice) * 100;
+    return percentageOff.toFixed(0); // Return the result rounded to two decimal places
 }
 
 function formatNumberToNaira(number) {
