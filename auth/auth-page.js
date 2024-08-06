@@ -30,10 +30,10 @@ function get_auth_status() {
             // Check if the user clicked the confirmation button
             if (result.isConfirmed) {
                 // Task to perform after the user clicks OK
-                //  // logout();
+               logout();
             } else {
                 // Task to perform if the user clicks outside the dialog or cancels
-                 // logout();
+                logout();
             }
     });
     }
@@ -166,13 +166,13 @@ async function check_auth_status() {
                     confirmButtonColor: "#556ee6"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                         // logout();
+                        logout();
                     } else {
-                         // logout();
+                        logout();
                     }
                 });
             } else {
-                 // logout();
+                logout();
             }
             return;
         }
