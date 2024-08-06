@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // this is for authenticated pages
 function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
+        // let's redirect to a authenticated page cause the user is not authenticated
+        window.location.href = 'page/signin-new.html';
+    }
+    if (localStorage.getItem('auth') !== 'true') {
         // let's clear auth local storage item
         //  let's log user out the users session has expired
          Swal.fire({
@@ -30,10 +34,18 @@ function get_auth_status() {
             // Check if the user clicked the confirmation button
             if (result.isConfirmed) {
                 // Task to perform after the user clicks OK
-               logout();
+                logout();
+                // logUserOutIfTokenIsExpired();
+                // localStorage.removeItem('auth');
+                // window.location.href = 'page/signin-new.html';
+                // Call your function or execute your code here
             } else {
                 // Task to perform if the user clicks outside the dialog or cancels
                 logout();
+                // logUserOutIfTokenIsExpired();
+                // let's redirect to a non-authenticated page cause the user is not authenticated
+                localStorage.removeItem('auth');
+                window.location.href = 'page/signin-new.html';
             }
     });
     }
@@ -178,6 +190,8 @@ async function check_auth_status() {
         }
         localStorage.setItem('auth', 'true');
     } finally {
-        // do nothing here
+        if (localStorage.getItem('auth') !== 'true') {
+            window.location.href = 'page/signin-new.html';
+        }
     }
 }
