@@ -82,7 +82,7 @@ function renderProducts(product) {
                         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
                         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
                     </div>
-                    <span class="reviews-note text-lowercase text-secondary ms-1">${product.reviews}k+ reviews</span>
+                    <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.reviews)} reviews</span>
                 </div>
                 <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
@@ -176,6 +176,22 @@ function renderLoading() {
     productBody.appendChild(rowElement);
 }
 
+function formatNumber(value) {
+    if (value >= 1_000_000_000) {
+        // Handle billions
+        return (value / 1_000_000_000).toFixed(1) + 'B';
+    } else if (value >= 1_000_000) {
+        // Handle millions
+        return (value / 1_000_000).toFixed(1) + 'M';
+    } else if (value >= 1_000) {
+        // Handle thousands
+        return (value / 1_000).toFixed(1) + 'k';
+    } else {
+        // Handle values less than a thousand
+        return value.toString();
+    }
+}
+
 products = [
     {
         "ID": 1,
@@ -185,10 +201,10 @@ products = [
         "previous_price": 5000,
         "current_price": 0,
         "grams": 100,
-        "stock_remaining": 200,
+        "stock_remaining": 0,
         "image1": "images/products/product_0.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 200000,
     },
     {
         "ID": 2,
@@ -198,49 +214,49 @@ products = [
         "previous_price": 5000,
         "current_price": 0,
         "grams": 100,
-        "stock_remaining": 200,
+        "stock_remaining": 0,
         "image1": "images/home/demo9/product-2-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 3500,
     },
     {
         "ID": 3,
         "title": "Hypertension Tea",
         "category": "Herbal Tea",
         "price": 5000,
-        "previous_price": 5000,
-        "current_price": 3000,
+        "previous_price": 6000,
+        "current_price": 2000,
         "grams": 100,
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-3-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 400,
     },
     {
         "ID": 4,
         "title": "Double Strength Tea",
         "category": "Herbal Tea",
         "price": 5000,
-        "previous_price": 5000,
-        "current_price": 3000,
+        "previous_price": 9000,
+        "current_price": 5000,
         "grams": 100,
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-4-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 500,
     },
     {
         "ID": 5,
         "title": "Green Coffe",
         "category": "Herbal Tea",
         "price": 5000,
-        "previous_price": 5000,
-        "current_price": 3000,
+        "previous_price": 4000,
+        "current_price": 1500,
         "grams": 100,
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-5-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 50,
     },
     {
         "ID": 6,
@@ -261,12 +277,12 @@ products = [
         "category": "Herbal Tea",
         "price": 5000,
         "previous_price": 5000,
-        "current_price": 3000,
+        "current_price": 4000,
         "grams": 100,
-        "stock_remaining": 200,
+        "stock_remaining": 0,
         "image1": "images/home/demo9/product-7-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 2500,
     },
     {
         "ID": 8,
@@ -279,7 +295,7 @@ products = [
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-8-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 25000000,
     },
     {
         "ID": 9,
@@ -292,7 +308,7 @@ products = [
         "stock_remaining": 200,
         "image1": "images/products/product_0.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 4500000,
     },
     {
         "ID": 10,
@@ -305,7 +321,7 @@ products = [
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-2-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 6700,
     },
     {
         "ID": 11,
@@ -313,12 +329,12 @@ products = [
         "category": "Herbal Tea",
         "price": 5000,
         "previous_price": 5000,
-        "current_price": 3000,
+        "current_price": 4500,
         "grams": 100,
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-3-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 2800,
     },
     {
         "ID": 12,
@@ -331,6 +347,6 @@ products = [
         "stock_remaining": 200,
         "image1": "images/home/demo9/product-4-1.jpg",
         "image2": "images/products/product_0-1.jpg",
-        "reviews": 200,
+        "reviews": 2200,
     },
 ]
