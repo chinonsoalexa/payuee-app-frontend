@@ -340,6 +340,10 @@ async function getSelectedPlan(dataValue) {
                 await requestPlan('airtel_cg', "Airtel CG");
                 servicePlanID = 'airtel_cg'
                 break;
+            case '8':
+            await requestPlan('airtel_sme', "Airtel SME");
+            servicePlanID = 'airtel_sme'
+            break;
             case '5':
                 await requestPlan('etisalat_data', '9mobile');
                 servicePlanID = 'etisalat_data'
@@ -517,6 +521,7 @@ var options = [
     { value: '3', text: 'MTN-Gifting-Data (*323*4#)' },
     // { value: '1', text: 'MTN-Corporate (Send 2 - > 323)' },
     { value: '4', text: 'Airtel-Corporate-Gifting (*323#)' },
+    { value: '8', text: 'Airtel SME (*323#)' },
     { value: '5', text: '9mobile-Data (*323#)' },
     { value: '6', text: 'Glo-Corporate-Gifting (*323#)' }
 ];
