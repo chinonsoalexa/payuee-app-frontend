@@ -1137,7 +1137,7 @@ function pureFadeOut(e) {
     return StarRating;
   })();
 
-  class Uomo {
+  class Payuee {
     constructor() {
       this.initCookieConsient();
       this.initAccessories();
@@ -1301,7 +1301,7 @@ function pureFadeOut(e) {
   document.addEventListener("DOMContentLoaded", function() {
     // Init theme
     UomoHelpers.isMobile = UomoHelpers.updateDeviceSize();
-    new Uomo();
+    new Payuee();
   });
 
   $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
