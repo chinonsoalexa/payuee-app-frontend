@@ -798,8 +798,8 @@ document.querySelectorAll('.menu-link').forEach(link => {
         // Update the UI with the min and max values
         const $minEl = $se.parentElement.querySelector(selectors.minElement);
         const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-        $minEl.innerText = `${currency}${currentMin}`;
-        $maxEl.innerText = `${currency}${currentMax}`;
+        $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+        $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
 
         // Optionally trigger some action with these values (e.g., filter products)
         updateFilterBasedOnPrice(currentMin, currentMax);
