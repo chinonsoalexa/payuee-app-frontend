@@ -1146,7 +1146,7 @@ function pureFadeOut(e) {
       new PayueeElements.JsHoverContent();
       new PayueeElements.Search();
       new PayueeElements.Aside();
-      new PayueeElements.QtyControl();
+      // new PayueeElements.QtyControl();
       new PayueeElements.ScrollToTop();
       new PayueeElements.Countdown();
       new PayueeElements.ShopViewChange();

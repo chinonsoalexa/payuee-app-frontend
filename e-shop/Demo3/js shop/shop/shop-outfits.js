@@ -13,8 +13,8 @@ const loader = Array.from({ length: 15 }, (_, i) => i);
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
-    // updateCartNumber();
-    // updateCartDrawer();
+    updateCartNumber();
+    updateCartDrawer();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
@@ -625,6 +625,29 @@ function removeFromCart(productId) {
     updateCartDrawer();
     updateCartNumber();
     calculateCartSubtotal();
+}
+
+function calculateCartSubtotal() {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Initialize subtotal
+    let subtotal = 0;
+
+    // Loop through each item in the cart and calculate the subtotal
+    cart.forEach(item => {
+        // Calculate the item's total price
+        let itemTotal;
+        if (item.selling_price < item.initial_cost) {
+            itemTotal = item.selling_price * item.quantity;
+        } else {
+            itemTotal = item.initial_cost * item.quantity;
+        }
+        subtotal += itemTotal;
+    });
+
+    // Update the subtotal element in the UI
+    document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
 }
 
 var products = [
