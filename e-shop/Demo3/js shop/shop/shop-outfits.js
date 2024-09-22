@@ -744,28 +744,46 @@ document.querySelectorAll('.menu-link').forEach(link => {
     });
   });
   
-  // Add event listener for search field input (brand filter)
-  document.querySelector('.search-field__input').addEventListener('input', function(event) {
-    event.preventDefault();
-    const searchQuery = this.value.trim();
-    console.log('Search Query:', searchQuery);
-    // Handle the search query (e.g., filter brands)
-    loading();
+// Get the search input field by its ID
+const searchInput = document.getElementById('searchField');
+  
+// Add an event listener to capture input changes
+searchInput.addEventListener('input', function(event) {
+  const searchQuery = event.target.value;  // Get the current input value
+  
+  // Perform actions with the search query
+  console.log('Search query:', searchQuery);
+  
+  // You can call a function to handle the search here, e.g., make an API request or filter results
+  performSearch(searchQuery);
+});
+
+// Example search function (you can replace it with your logic)
+function performSearch(query) {
+  if (query.length > 0) {
+    console.log('Performing search for:', query);
+    // Add your search logic here, such as making an API call or filtering displayed results
+          // Handle the color selection
+          loading();
     
-    setTimeout(() => {
-    // Clear current product grid
-    document.getElementById('products-grid').innerHTML = '';
-
-    // Shuffle products array before rendering
-    const shuffledProducts = shuffleArray(products);
-
-    // Render the shuffled products
-    shuffledProducts.forEach((product) => {
-        renderProducts(product);
-    });
-
-    }, 3000);
-  });
+          setTimeout(() => {
+          // Clear current product grid
+          document.getElementById('products-grid').innerHTML = '';
+      
+          // Shuffle products array before rendering
+          const shuffledProducts = shuffleArray(products);
+      
+          // Render the shuffled products
+          shuffledProducts.forEach((product) => {
+              renderProducts(product);
+          });
+      
+          }, 3000);
+  } else {
+    console.log('Search query is empty');
+    // Clear or reset search results if the input is empty
+  }
+}
 
   const selectors = {
     elementClass: '.price-range-slider',
@@ -808,6 +826,22 @@ document.querySelectorAll('.menu-link').forEach(link => {
         function updateFilterBasedOnPrice(minPrice, maxPrice) {
             // Your logic to filter products or update UI based on the price range
             console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
+                  // Handle the color selection
+      loading();
+    
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
         }
     }
   });
