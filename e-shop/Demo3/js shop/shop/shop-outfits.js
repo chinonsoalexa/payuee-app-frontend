@@ -868,7 +868,7 @@ var products = [
         "Image1": "../images/products/product_0-1.jpg",
         "Image2": "../images/products/product_0-2.jpg",
         "product_review_count": 200000,
-        "product_url_id": "cropped-faux-leather-jacket-1"
+        // "product_url_id": "cropped-faux-leather-jacket-1"
     },
     {
         "ID": 2,
@@ -881,7 +881,7 @@ var products = [
         "Image1": "../images/products/product_0-3.jpg",
         "Image2": "../images/products/product_0-9.jpg",
         "product_review_count": 3500,
-        "product_url_id": "calvin-shorts-2"
+        // "product_url_id": "calvin-shorts-2"
     },
     {
         "ID": 3,
@@ -894,7 +894,7 @@ var products = [
         "Image1": "../images/products/product_0-5.jpg",
         "Image2": "../images/products/product_0-6.jpg",
         "product_review_count": 400,
-        "product_url_id": "hypertension-tea-3"
+        // "product_url_id": "hypertension-tea-3"
     },
     {
         "ID": 4,
@@ -907,7 +907,7 @@ var products = [
         "Image1": "../images/products/product_0-7.jpg",
         "Image2": "../images/products/product_0-8.jpg",
         "product_review_count": 500,
-        "product_url_id": "double-strength-tea-4"
+        // "product_url_id": "double-strength-tea-4"
     },
     {
         "ID": 5,
@@ -920,7 +920,7 @@ var products = [
         "Image1": "../images/products/product_0-9.jpg",
         "Image2": "../images/products/product_0-10.jpg",
         "product_review_count": 50,
-        "product_url_id": "green-coffee-5"
+        // "product_url_id": "green-coffee-5"
     },
     {
         "ID": 6,
@@ -933,7 +933,7 @@ var products = [
         "Image1": "../images/products/product_0-11.jpg",
         "Image2": "../images/products/product_0-12.jpg",
         "product_review_count": 200,
-        "product_url_id": "english-breakfast-6"
+        // "product_url_id": "english-breakfast-6"
     },
     {
         "ID": 7,
@@ -946,7 +946,7 @@ var products = [
         "Image1": "../images/products/product_0-13.jpg",
         "Image2": "../images/products/product_0.jpg",
         "product_review_count": 2500,
-        "product_url_id": "cropped-faux-leather-jacket-7"
+        // "product_url_id": "cropped-faux-leather-jacket-7"
     },
     {
         "ID": 8,
@@ -959,7 +959,7 @@ var products = [
         "Image1": "../images/products/product_1-1.jpg",
         "Image2": "../images/products/product_1.jpg",
         "product_review_count": 25000000,
-        "product_url_id": "cropped-faux-leather-jacket-8"
+        // "product_url_id": "cropped-faux-leather-jacket-8"
     },
     {
         "ID": 9,
@@ -972,7 +972,7 @@ var products = [
         "Image1": "../images/products/product_2-1.jpg",
         "Image2": "../images/products/product_2.jpg",
         "product_review_count": 4500000,
-        "product_url_id": "infection-cleanse-9"
+        // "product_url_id": "infection-cleanse-9"
     },
     {
         "ID": 10,
@@ -985,7 +985,7 @@ var products = [
         "Image1": "../images/products/product_3-1.jpg",
         "Image2": "../images/products/product_3.jpg",
         "product_review_count": 6700,
-        "product_url_id": "fibroid-fertility-tea-10"
+        // "product_url_id": "fibroid-fertility-tea-10"
     },
     {
         "ID": 11,
@@ -998,7 +998,7 @@ var products = [
         "Image1": "../images/products/product_4-1.jpg",
         "Image2": "../images/products/product_4.jpg",
         "product_review_count": 2800,
-        "product_url_id": "hypertension-tea-11"
+        // "product_url_id": "hypertension-tea-11"
     },
     {
         "ID": 12,
@@ -1011,6 +1011,6 @@ var products = [
         "Image1": "../images/products/product_5-1.jpg",
         "Image2": "../images/products/product_5.jpg",
         "product_review_count": 2200,
-        "product_url_id": "double-strength-tea-12"
+        // "product_url_id": "double-strength-tea-12"
     },
 ];
