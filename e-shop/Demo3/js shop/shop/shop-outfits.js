@@ -15,20 +15,21 @@ document.addEventListener('DOMContentLoaded', async function () {
     loading();
     updateCartNumber();
     updateCartDrawer();
+    sortingAlgo();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
     setTimeout(() => {
-        console.log('m here')
+        // console.log('m here')
         // updateProductsFromData(productts);
             // render the store products
             document.getElementById('products-grid').innerHTML = '';
     products.forEach((product) => {
         renderProducts(product);
     });
-        console.log('just finished here')
+        // console.log('just finished here')
     }, 3000);
 
     // Extract parameters using URLSearchParams
@@ -644,6 +645,38 @@ function calculateCartSubtotal() {
 
     // Update the subtotal element in the UI
     document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
+}
+
+function sortingAlgo() {
+// Add event listener to the select element
+document.getElementById('sortingSelect').addEventListener('change', function() {
+    const selectedValue = this.value;  // Get the selected option value
+    console.log('Selected sorting option value:', selectedValue);
+    loading();
+    
+    setTimeout(() => {
+    // Clear current product grid
+    document.getElementById('products-grid').innerHTML = '';
+
+    // Shuffle products array before rendering
+    const shuffledProducts = shuffleArray(products);
+
+    // Render the shuffled products
+    shuffledProducts.forEach((product) => {
+        renderProducts(product);
+    });
+
+    }, 3000);
+});
+}
+
+// Shuffle function using Fisher-Yates algorithm
+function shuffleArray(array) {
+for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+}
+return array;
 }
 
 var products = [
