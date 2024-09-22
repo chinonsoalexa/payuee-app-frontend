@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+    renderLoadingDetails();
     renderProductDetails();
 })
 
 function renderProductDetails() {
         // Assuming you have a reference to the container element
-        const productBody = document.getElementById('products-details-grid');
+        var productBody = document.getElementById('products-details-grid');
 
         // Create a new product card element
         const rowElement = document.createElement('div');
         rowElement.classList.add('row');
         // rowElement.id = product.ID; // Set the ID of the row
         // Remove all child elements of the tbody
-        while (productBody.firstChild) {
-          productBody.removeChild(productBody.firstChild);
-      }
-
+        productBody.innerHTML = ''
+        
         // Create the HTML string with dynamic data using template literals
         rowElement.innerHTML = `
         <div class="col-lg-7">
@@ -190,4 +189,28 @@ function renderProductDetails() {
         // Append the new element to the container
         productBody.appendChild(rowElement);
         // renderUseGuide(product);
+}
+
+function renderLoadingDetails() {
+    // Assuming you have a reference to the container element
+    const productBody = document.getElementById('products-details-grid');
+  
+    // Create a new element for the skeleton loader
+    const rowElement = document.createElement('div');
+    rowElement.classList.add('skeleton-wrapper');
+  
+    // Create the HTML string with dynamic data using template literals
+    rowElement.innerHTML = `
+          <div class="skeleton-column">
+            <div class="skeleton skeleton-img-small"></div>
+            <div class="skeleton skeleton-img-small"></div>
+            <div class="skeleton skeleton-img-small"></div>
+            <div class="skeleton skeleton-img-small"></div>
+          </div>
+          
+          <div class="skeleton skeleton-large"></div>
+    `;
+  
+    // Append the new element to the container
+    productBody.appendChild(rowElement);
 }

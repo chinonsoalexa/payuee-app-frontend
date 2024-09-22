@@ -206,7 +206,7 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     zoom: 3,
     center: position_1,
-    mapId: "UomoMap",
+    mapId: "PayueeMap",
     mapTypeControlOptions: {
       mapTypeIds: ["styled_map"],
     },

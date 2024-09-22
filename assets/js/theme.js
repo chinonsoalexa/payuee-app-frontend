@@ -2,10 +2,10 @@
 // eslint-disable-next-line no-undef
 var $ = jQuery.noConflict();
 
-let UomoSections = {};
-let UomoElements = {};
+let PayueeSections = {};
+let PayueeElements = {};
 
-let UomoSelectors = {
+let PayueeSelectors = {
   pageBackDropActiveClass: 'page-overlay_visible',
   quantityControl: '.qty-control',
   scrollToTopId: 'scrollTop',
@@ -16,7 +16,7 @@ let UomoSelectors = {
 }
 
 // Utility functions
-let UomoHelpers = {
+let PayueeHelpers = {
   isMobile: false,
   sideStkEl: {},
 
@@ -37,16 +37,16 @@ let UomoHelpers = {
   },
 
   showPageBackdrop: () => {
-    UomoSelectors.$pageBackDrop && UomoSelectors.$pageBackDrop.classList.add(UomoSelectors.pageBackDropActiveClass);
+    PayueeSelectors.$pageBackDrop && PayueeSelectors.$pageBackDrop.classList.add(PayueeSelectors.pageBackDropActiveClass);
     document.body.classList.add('overflow-hidden');
-    document.body.style.paddingRight = UomoSelectors.scrollWidth;
+    document.body.style.paddingRight = PayueeSelectors.scrollWidth;
     document.querySelectorAll('.header_sticky, .footer-mobile').forEach(element => {
-      element.style.borderRight = UomoSelectors.scrollWidth + ' solid transparent';
+      element.style.borderRight = PayueeSelectors.scrollWidth + ' solid transparent';
     });
   },
 
   hidePageBackdrop: () => {
-    UomoSelectors.$pageBackDrop && UomoSelectors.$pageBackDrop.classList.remove(UomoSelectors.pageBackDropActiveClass);
+    PayueeSelectors.$pageBackDrop && PayueeSelectors.$pageBackDrop.classList.remove(PayueeSelectors.pageBackDropActiveClass);
     document.body.classList.remove('overflow-hidden');
     document.body.style.paddingRight = '';
     document.querySelectorAll('.header_sticky, .footer-mobile').forEach(element => {
@@ -55,8 +55,8 @@ let UomoHelpers = {
   },
 
   hideHoverComponents: () => {
-    document.querySelectorAll(UomoSelectors.jsContentVisible).forEach( el => {
-      el.classList.remove(UomoSelectors.jsContentVisible.substring(1));
+    document.querySelectorAll(PayueeSelectors.jsContentVisible).forEach( el => {
+      el.classList.remove(PayueeSelectors.jsContentVisible.substring(1));
     });
   },
 
@@ -93,9 +93,9 @@ function pureFadeOut(e) {
   const scrollBarWidth = window.innerWidth - document.body.clientWidth
 
   // Components appear after click
-  UomoElements.JsHoverContent = (function () {
+  PayueeElements.JsHoverContent = (function () {
     function JsHoverContent () {
-      const visibleClass = UomoSelectors.jsContentVisible.substring(1);
+      const visibleClass = PayueeSelectors.jsContentVisible.substring(1);
 
       document.querySelectorAll('.js-hover__open').forEach(el => {
         el.addEventListener('click', (e) => {
@@ -106,15 +106,15 @@ function pureFadeOut(e) {
             $container.classList.remove(visibleClass);
             // e.stopPropagation();
           } else {
-            UomoHelpers.hideHoverComponents();
+            PayueeHelpers.hideHoverComponents();
             $container.classList.add(visibleClass);
           }
         });
       });
 
       document.addEventListener('click', (e) => {
-        if (!e.target.closest(UomoSelectors.jsContentVisible)) {
-          UomoHelpers.hideHoverComponents();
+        if (!e.target.closest(PayueeSelectors.jsContentVisible)) {
+          PayueeHelpers.hideHoverComponents();
         }
       });
     }
@@ -123,9 +123,9 @@ function pureFadeOut(e) {
     return JsHoverContent;
   })();
 
-  UomoElements.QtyControl = (function () {
+  PayueeElements.QtyControl = (function () {
     function QtyControl () {
-      document.querySelectorAll(UomoSelectors.quantityControl).forEach(function($qty) {
+      document.querySelectorAll(PayueeSelectors.quantityControl).forEach(function($qty) {
         if ($qty.classList.contains('qty-initialized')) {
           return;
         }
@@ -148,9 +148,9 @@ function pureFadeOut(e) {
     return QtyControl;
   })();
 
-  UomoElements.ScrollToTop = (function () {
+  PayueeElements.ScrollToTop = (function () {
     function ScrollToTop () {
-      const $scrollTop = document.getElementById(UomoSelectors.scrollToTopId);
+      const $scrollTop = document.getElementById(PayueeSelectors.scrollToTopId);
 
       if (!$scrollTop) {
         return;
@@ -179,7 +179,7 @@ function pureFadeOut(e) {
     return ScrollToTop;
   })();
 
-  UomoElements.Search = (function() {
+  PayueeElements.Search = (function() {
     function Search() {
       // Declare variables
       this.selectors = {
@@ -288,7 +288,7 @@ function pureFadeOut(e) {
         })
       },
 
-      _handleAjaxSearch: UomoHelpers.debounce((event, _this) => {
+      _handleAjaxSearch: PayueeHelpers.debounce((event, _this) => {
         const $form = event.target.closest(_this.selectors.container);
         const method = $form ? $form.method : 'GET';
         const url = _this.selectors.ajaxURL;
@@ -324,7 +324,7 @@ function pureFadeOut(e) {
   })();
 
   // Aside Popup
-  UomoElements.Aside = (function () {
+  PayueeElements.Aside = (function () {
     function Aside () {
       this.selectors = {
         activator:    '.js-open-aside',
@@ -349,7 +349,7 @@ function pureFadeOut(e) {
             const targetElId = event.currentTarget.dataset.aside;
             const $targetAside = document.getElementById(targetElId);
 
-            UomoHelpers.showPageBackdrop();
+            PayueeHelpers.showPageBackdrop();
             $targetAside && $targetAside.classList.add(_this.selectors.activeClass);
           });
         });
@@ -366,15 +366,15 @@ function pureFadeOut(e) {
       },
 
       _initBackDropClick() {
-        if (UomoSelectors.$pageBackDrop) {
-          UomoSelectors.$pageBackDrop.addEventListener('click', () => {
+        if (PayueeSelectors.$pageBackDrop) {
+          PayueeSelectors.$pageBackDrop.addEventListener('click', () => {
             this._closeAside();
           });
         }
       },
 
       _closeAside: function () {
-        UomoHelpers.hidePageBackdrop();
+        PayueeHelpers.hidePageBackdrop();
         document.querySelectorAll('.' + this.selectors.activeClass).forEach( el => {
           el.classList.remove(this.selectors.activeClass);
         });
@@ -384,7 +384,7 @@ function pureFadeOut(e) {
     return Aside;
   })();
 
-  UomoElements.Countdown = (function () {
+  PayueeElements.Countdown = (function () {
     function Countdown (container) {
       this.selectors = {
         element: '.js-countdown'
@@ -416,7 +416,7 @@ function pureFadeOut(e) {
     return Countdown;
   })();
 
-  UomoElements.ShopViewChange = (function () {
+  PayueeElements.ShopViewChange = (function () {
     function ShopViewChange () {
       this.selectors = {
         element: '.js-cols-size',
@@ -464,7 +464,7 @@ function pureFadeOut(e) {
     return ShopViewChange;
   })();
 
-  UomoElements.Filters = (function () {
+  PayueeElements.Filters = (function () {
     function Filters () {
       this.selectors = {
         element: '.js-filter',
@@ -500,7 +500,7 @@ function pureFadeOut(e) {
     return Filters;
   })();
 
-  UomoElements.StickyElement = (function () {
+  PayueeElements.StickyElement = (function () {
     function StickyElement () {
       this.selectors = {
         element: '.side-sticky'
@@ -513,7 +513,7 @@ function pureFadeOut(e) {
 
     StickyElement.prototype = Object.assign({}, StickyElement.prototype, {
       _init: function () {
-        if (UomoHelpers.isMobile) {
+        if (PayueeHelpers.isMobile) {
           return;
         }
 
@@ -522,14 +522,14 @@ function pureFadeOut(e) {
           const $target = $grid.offsetHeight > $sticky.offsetHeight ? $sticky : $grid;
 
           $target.lastKnownY = window.scrollY;
-          if (!UomoHelpers.sideStkEl.currentTop) {
-            UomoHelpers.sideStkEl.currentTop = 0;
+          if (!PayueeHelpers.sideStkEl.currentTop) {
+            PayueeHelpers.sideStkEl.currentTop = 0;
           } else {
             return;
           }
 
 
-          UomoHelpers.sideStkEl.initialTopOffset = parseInt(window.getComputedStyle($target).top);
+          PayueeHelpers.sideStkEl.initialTopOffset = parseInt(window.getComputedStyle($target).top);
         });
 
         window.addEventListener('scroll', this._updateStatus);
@@ -543,20 +543,20 @@ function pureFadeOut(e) {
           const $target = $grid.offsetHeight > $sticky.offsetHeight ? $sticky : $grid;
 
           var bounds = $target.getBoundingClientRect(),
-              maxTop = bounds.top + window.scrollY - $target.offsetTop + UomoHelpers.sideStkEl.initialTopOffset,
+              maxTop = bounds.top + window.scrollY - $target.offsetTop + PayueeHelpers.sideStkEl.initialTopOffset,
               minTop = $target.clientHeight - window.innerHeight + 30;
 
           if (window.scrollY < $target.lastKnownY) {
-            UomoHelpers.sideStkEl.currentTop -= window.scrollY - $target.lastKnownY;
+            PayueeHelpers.sideStkEl.currentTop -= window.scrollY - $target.lastKnownY;
           } else {
-            UomoHelpers.sideStkEl.currentTop += $target.lastKnownY - window.scrollY;
+            PayueeHelpers.sideStkEl.currentTop += $target.lastKnownY - window.scrollY;
           }
 
 
-          UomoHelpers.sideStkEl.currentTop = Math.min(Math.max(UomoHelpers.sideStkEl.currentTop, -minTop), maxTop, UomoHelpers.sideStkEl.initialTopOffset);
+          PayueeHelpers.sideStkEl.currentTop = Math.min(Math.max(PayueeHelpers.sideStkEl.currentTop, -minTop), maxTop, PayueeHelpers.sideStkEl.initialTopOffset);
           $target.lastKnownY = window.scrollY;
 
-          $target.style.top = UomoHelpers.sideStkEl.currentTop + 'px';
+          $target.style.top = PayueeHelpers.sideStkEl.currentTop + 'px';
         });
       }
     });
@@ -566,7 +566,7 @@ function pureFadeOut(e) {
   })();
 
   // Header Section
-  UomoSections.Header = (function () {
+  PayueeSections.Header = (function () {
     function Header () {
       this.selectors = {
         header: '.header',
@@ -593,7 +593,7 @@ function pureFadeOut(e) {
 
     Header.prototype = Object.assign({}, Header.prototype, {
       _init: function () {
-        const headerClass = UomoHelpers.isMobile ? this.selectors.mobileHeader : this.selectors.header;
+        const headerClass = PayueeHelpers.isMobile ? this.selectors.mobileHeader : this.selectors.header;
 
         this.lastScrollTop = 0;
         this.$header = document.querySelector(headerClass);
@@ -602,7 +602,7 @@ function pureFadeOut(e) {
           return;
         }
 
-        if (!UomoHelpers.isMobile) {
+        if (!PayueeHelpers.isMobile) {
           this._initMenuPosition();
         } else {
           this._initMobileMenu();
@@ -626,8 +626,8 @@ function pureFadeOut(e) {
               $mobileDropdown.style.paddingRight = '';
             } else {
               document.body.classList.add(_this.selectors.mobileMenuActiveClass);
-              _this.$header.style.paddingRight = UomoSelectors.scrollWidth;
-              $mobileDropdown.style.paddingRight = UomoSelectors.scrollWidth;
+              _this.$header.style.paddingRight = PayueeSelectors.scrollWidth;
+              $mobileDropdown.style.paddingRight = PayueeSelectors.scrollWidth;
             }
           });
 
@@ -756,7 +756,7 @@ function pureFadeOut(e) {
   })();
 
   // Footer Section
-  UomoSections.Footer = (function () {
+  PayueeSections.Footer = (function () {
     function Footer () {
       this.selectors = {
         footer: '.footer-mobile'
@@ -770,7 +770,7 @@ function pureFadeOut(e) {
 
     Footer.prototype = Object.assign({}, Footer.prototype, {
       _init: function() {
-        if (!this.$footer || !UomoHelpers.isMobile) {
+        if (!this.$footer || !PayueeHelpers.isMobile) {
           return;
         }
 
@@ -795,7 +795,7 @@ function pureFadeOut(e) {
   })();
 
   // Customer login form
-  UomoSections.CustomerSideForm = (function () {
+  PayueeSections.CustomerSideForm = (function () {
     function CustomerSideForm () {
       this.selectors = {
         aside:        '.aside.customer-forms',
@@ -834,7 +834,7 @@ function pureFadeOut(e) {
     return CustomerSideForm;
   })();
 
-  UomoSections.CartDrawer = (function () {
+  PayueeSections.CartDrawer = (function () {
     function CartDrawer () {
       this.selectors = {
         aside:            '.aside.cart-drawer',
@@ -863,7 +863,7 @@ function pureFadeOut(e) {
 
     CartDrawer.prototype = Object.assign({}, CartDrawer.prototype, {
       _initCartItemsList: function () {
-        if (!UomoHelpers.isMobile) {
+        if (!PayueeHelpers.isMobile) {
           return;
         }
 
@@ -896,7 +896,7 @@ function pureFadeOut(e) {
     return CartDrawer;
   })();
 
-  UomoSections.SwiperSlideshow = (function () {
+  PayueeSections.SwiperSlideshow = (function () {
     function SwiperSlideshow () {
       this.selectors = {
         container: '.js-swiper-slider'
@@ -955,7 +955,7 @@ function pureFadeOut(e) {
     return SwiperSlideshow;
   })();
 
-  UomoSections.ProductSingleMedia = (function () {
+  PayueeSections.ProductSingleMedia = (function () {
     function ProductSingleMedia () {
       this.selectors = {
         container: '.product-single__media'
@@ -1095,9 +1095,9 @@ function pureFadeOut(e) {
     return ProductSingleMedia;
   })();
 
-  UomoElements.StarRating = (function () {
+  PayueeElements.StarRating = (function () {
     function StarRating () {
-      let stars = Array.from(document.querySelectorAll(UomoSelectors.starRatingControl));
+      let stars = Array.from(document.querySelectorAll(PayueeSelectors.starRatingControl));
       let user_selected_star = document.querySelector('#form-input-rating');
 
       stars.forEach(star => {
@@ -1145,23 +1145,23 @@ function pureFadeOut(e) {
       this.initBsTooltips();
       this.initRangeSlider();
 
-      new UomoElements.JsHoverContent();
-      new UomoElements.Search();
-      new UomoElements.Aside();
-      new UomoElements.QtyControl();
-      new UomoElements.ScrollToTop();
-      new UomoElements.Countdown();
-      new UomoElements.ShopViewChange();
-      new UomoElements.Filters();
-      new UomoElements.StickyElement();
-      new UomoElements.StarRating();
+      new PayueeElements.JsHoverContent();
+      new PayueeElements.Search();
+      new PayueeElements.Aside();
+      new PayueeElements.QtyControl();
+      new PayueeElements.ScrollToTop();
+      new PayueeElements.Countdown();
+      new PayueeElements.ShopViewChange();
+      new PayueeElements.Filters();
+      new PayueeElements.StickyElement();
+      new PayueeElements.StarRating();
 
-      new UomoSections.Header();
-      new UomoSections.Footer();
-      new UomoSections.CustomerSideForm();
-      new UomoSections.CartDrawer();
-      new UomoSections.SwiperSlideshow();
-      new UomoSections.ProductSingleMedia();
+      new PayueeSections.Header();
+      new PayueeSections.Footer();
+      new PayueeSections.CustomerSideForm();
+      new PayueeSections.CartDrawer();
+      new PayueeSections.SwiperSlideshow();
+      new PayueeSections.ProductSingleMedia();
     }
 
     initCookieConsient() {
@@ -1202,7 +1202,7 @@ function pureFadeOut(e) {
     initAccessories() {
       // Check if device is mobile on resize
       window.addEventListener('resize', function() {
-        UomoHelpers.isMobile = UomoHelpers.updateDeviceSize();
+        PayueeHelpers.isMobile = PayueeHelpers.updateDeviceSize();
       });
     }
 
@@ -1300,7 +1300,7 @@ function pureFadeOut(e) {
 
   document.addEventListener("DOMContentLoaded", function() {
     // Init theme
-    UomoHelpers.isMobile = UomoHelpers.updateDeviceSize();
+    PayueeHelpers.isMobile = PayueeHelpers.updateDeviceSize();
     new Payuee();
   });
 
