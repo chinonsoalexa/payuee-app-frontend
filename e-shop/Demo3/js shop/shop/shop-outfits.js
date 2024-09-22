@@ -767,44 +767,50 @@ document.querySelectorAll('.menu-link').forEach(link => {
     }, 3000);
   });
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Assuming the slider value is controlled via input change event
-    const priceSlider = document.querySelector('.price-range-slider');
-    const minPriceElement = document.querySelector('.price-range__min');
-    const maxPriceElement = document.querySelector('.price-range__max');
-  
-    // Add event listener to the price range slider
-    priceSlider.addEventListener('input', function() {
-      const sliderValue = priceSlider.value.split(','); // Assuming the value is in [min, max] format
-      const minPrice = sliderValue[0];
-      const maxPrice = sliderValue[1];
-  
-      // Update min and max price in the UI
-      minPriceElement.textContent = `₦${minPrice}`;
-      maxPriceElement.textContent = `₦${maxPrice}`;
-  
-      console.log('Price Range Changed:', { minPrice, maxPrice });
-  
-      // Handle the price range filter (e.g., filter products based on min and max price)
-      filterProductsByPrice(minPrice, maxPrice);
-    });
-    
-    // Function to filter products by price
-    function filterProductsByPrice(minPrice, maxPrice) {
-      // Clear the products grid
-      document.getElementById('products-grid').innerHTML = '';
-  
-      // Filter the products based on the price range and render them
-      const filteredProducts = products.filter(product => {
-        return product.price >= minPrice && product.price <= maxPrice;
+  const selectors = {
+    elementClass: '.price-range-slider',
+    minElement: '.price-range__min',
+    maxElement: '.price-range__max'
+  };
+
+  // Iterate over each slider element
+  document.querySelectorAll(selectors.elementClass).forEach($se => {
+    const currency = $se.dataset.currency || '₦'; // Default currency if not provided
+
+    if ($se) {
+      // Initialize the slider using the Slider library
+      const priceRange = new Slider($se, {
+        tooltip_split: true,
+        formatter: function(value) {
+          return currency + value;
+        },
       });
-  
-      filteredProducts.forEach(product => {
-        renderProducts(product);
+
+      // Event listener to get current min and max when slider stops moving
+      priceRange.on('slideStop', (value) => {
+        const currentMin = value[0];  // This is the current minimum value
+        const currentMax = value[1];  // This is the current maximum value
+
+        // Log or use the min and max values however you need
+        console.log('Current Min:', currentMin);
+        console.log('Current Max:', currentMax);
+
+        // Update the UI with the min and max values
+        const $minEl = $se.parentElement.querySelector(selectors.minElement);
+        const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+        $minEl.innerText = `${currency}${currentMin}`;
+        $maxEl.innerText = `${currency}${currentMax}`;
+
+        // Optionally trigger some action with these values (e.g., filter products)
+        updateFilterBasedOnPrice(currentMin, currentMax);
       });
+        // You can have a separate function that handles additional logic like filtering products
+        function updateFilterBasedOnPrice(minPrice, maxPrice) {
+            // Your logic to filter products or update UI based on the price range
+            console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
+        }
     }
   });
-  
 }
 
 // Shuffle function using Fisher-Yates algorithm

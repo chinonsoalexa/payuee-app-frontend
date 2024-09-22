@@ -1141,7 +1141,7 @@ function pureFadeOut(e) {
       this.initAccessories();
       this.initMultiSelect();
       this.initBsTooltips();
-      this.initRangeSlider();
+      // this.initRangeSlider();
 
       new PayueeElements.JsHoverContent();
       // new PayueeElements.Search();
@@ -1265,35 +1265,35 @@ function pureFadeOut(e) {
       });
     }
 
-    initRangeSlider() {
-      const selectors = {
-        elementClass: '.price-range-slider',
-        minElement: '.price-range__min',
-        maxElement: '.price-range__max'
-      }
+    // initRangeSlider() {
+    //   const selectors = {
+    //     elementClass: '.price-range-slider',
+    //     minElement: '.price-range__min',
+    //     maxElement: '.price-range__max'
+    //   }
 
-      document.querySelectorAll(selectors.elementClass).forEach($se => {
-        // $se = sliderElement
-        const currency = $se.dataset.currency;
+    //   document.querySelectorAll(selectors.elementClass).forEach($se => {
+    //     // $se = sliderElement
+    //     const currency = $se.dataset.currency;
 
-        if ($se) {
-          // eslint-disable-next-line no-undef
-          const priceRange = new Slider($se, {
-            tooltip_split: true,
-            formatter: function(value) {
-              return currency + value;
-            },
-          });
+    //     if ($se) {
+    //       // eslint-disable-next-line no-undef
+    //       const priceRange = new Slider($se, {
+    //         tooltip_split: true,
+    //         formatter: function(value) {
+    //           return currency + value;
+    //         },
+    //       });
 
-          priceRange.on('slideStop', (value) => {
-            const $minEl = $se.parentElement.querySelector(selectors.minElement);
-            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-            $minEl.innerText = currency + value[0];
-            $maxEl.innerText = currency + value[1];
-          });
-        }
-      });
-    }
+    //       priceRange.on('slideStop', (value) => {
+    //         const $minEl = $se.parentElement.querySelector(selectors.minElement);
+    //         const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+    //         $minEl.innerText = currency + value[0];
+    //         $maxEl.innerText = currency + value[1];
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   document.addEventListener("DOMContentLoaded", function() {
