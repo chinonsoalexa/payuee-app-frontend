@@ -679,7 +679,7 @@ var products = [
     },
     {
         "ID": 3,
-        "title": "Hypertension Tea Updated",
+        "title": "Kirby T-Shirt",
         "category": "Herbal Tea",
         "initial_cost": 6000,
         "selling_price": 6000,
@@ -692,7 +692,7 @@ var products = [
     },
     {
         "ID": 4,
-        "title": "Double Strength Tea Updated",
+        "title": "Cableknit Shawl",
         "category": "Herbal Tea",
         "initial_cost": 9000,
         "selling_price": 5000,
@@ -705,7 +705,7 @@ var products = [
     },
     {
         "ID": 5,
-        "title": "Green Coffee Updated",
+        "title": "Colorful Jacket",
         "category": "Herbal Tea",
         "initial_cost": 4000,
         "selling_price": 1500,
@@ -718,7 +718,7 @@ var products = [
     },
     {
         "ID": 6,
-        "title": "English Breakfast Updated",
+        "title": "Shirt In Botanical Cheetah Print",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 0,
@@ -731,7 +731,7 @@ var products = [
     },
     {
         "ID": 7,
-        "title": "Cropped Faux Leather Jacket Updated",
+        "title": "Cotton Jersey T-Shirt",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 4000,
@@ -744,7 +744,7 @@ var products = [
     },
     {
         "ID": 8,
-        "title": "Cropped Faux Leather Jacket Updated",
+        "title": "Zessi Dresses",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 0,
@@ -757,7 +757,7 @@ var products = [
     },
     {
         "ID": 9,
-        "title": "Infection Cleanse Updated",
+        "title": "Cropped Faux Leather Jacket",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 3000,
@@ -770,7 +770,7 @@ var products = [
     },
     {
         "ID": 10,
-        "title": "Fibroid & Fertility Tea Updated",
+        "title": "Cotton Jersey T-Shirt",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 0,
@@ -783,7 +783,7 @@ var products = [
     },
     {
         "ID": 11,
-        "title": "Hypertension Tea Updated",
+        "title": "Colorful Jacket",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 4500,
@@ -796,7 +796,7 @@ var products = [
     },
     {
         "ID": 12,
-        "title": "Double Strength Tea Updated",
+        "title": "Kirby T-Shirt",
         "category": "Herbal Tea",
         "initial_cost": 5000,
         "selling_price": 0,
