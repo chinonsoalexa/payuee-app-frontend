@@ -672,140 +672,140 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
 // Add event listeners to category links
 document.querySelectorAll('.menu-link').forEach(link => {
     link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default navigation
-        const selectedCategory = this.textContent.trim();
-        console.log('Selected Category:', selectedCategory);
-        // Handle the category selection
-        loading();
+      event.preventDefault(); // Prevent default navigation
+      const selectedCategory = this.textContent.trim();
+      console.log('Selected Category:', selectedCategory);
+      // Handle the category selection
+      loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
     });
-    });
-    
-    // Add event listeners to color swatches
-    document.querySelectorAll('.swatch-color').forEach(swatch => {
+  });
+  
+  // Add event listeners to color swatches
+  document.querySelectorAll('.swatch-color').forEach(swatch => {
     swatch.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedColor = this.style.color;
-        console.log('Selected Color:', selectedColor);
-        // Handle the color selection
-        loading();
+      event.preventDefault(); // Prevent default behavior
+      const selectedColor = this.style.color;
+      console.log('Selected Color:', selectedColor);
+      // Handle the color selection
+      loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
     });
-    });
-    
-    // Add event listeners to size buttons
-    document.querySelectorAll('.swatch-size').forEach(sizeButton => {
+  });
+  
+  // Add event listeners to size buttons
+  document.querySelectorAll('.swatch-size').forEach(sizeButton => {
     sizeButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedSize = this.textContent.trim();
-        console.log('Selected Size:', selectedSize);
-        // Handle the size selection
-        loading();
+      event.preventDefault(); // Prevent default behavior
+      const selectedSize = this.textContent.trim();
+      console.log('Selected Size:', selectedSize);
+      // Handle the size selection
+      loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
     });
-    });
-    
+  });
+  
 // Get the search input field by its ID
 const searchInput = document.getElementById('searchField');
-    
+  
 // Add an event listener to capture input changes
 searchInput.addEventListener('input', function(event) {
-    const searchQuery = event.target.value;  // Get the current input value
-    
-    // Perform actions with the search query
-    console.log('Search query:', searchQuery);
-    
-    // You can call a function to handle the search here, e.g., make an API request or filter results
-    performSearch(searchQuery);
+  const searchQuery = event.target.value;  // Get the current input value
+  
+  // Perform actions with the search query
+  console.log('Search query:', searchQuery);
+  
+  // You can call a function to handle the search here, e.g., make an API request or filter results
+  performSearch(searchQuery);
 });
 
 // Example search function (you can replace it with your logic)
 function performSearch(query) {
-    if (query.length > 0) {
+  if (query.length > 0) {
     console.log('Performing search for:', query);
     // Add your search logic here, such as making an API call or filtering displayed results
-            // Handle the color selection
-            loading();
+          // Handle the color selection
+          loading();
     
-            setTimeout(() => {
-            // Clear current product grid
-            document.getElementById('products-grid').innerHTML = '';
-        
-            // Shuffle products array before rendering
-            const shuffledProducts = shuffleArray(products);
-        
-            // Render the shuffled products
-            shuffledProducts.forEach((product) => {
-                renderProducts(product);
-            });
-        
-            }, 3000);
-    } else {
+          setTimeout(() => {
+          // Clear current product grid
+          document.getElementById('products-grid').innerHTML = '';
+      
+          // Shuffle products array before rendering
+          const shuffledProducts = shuffleArray(products);
+      
+          // Render the shuffled products
+          shuffledProducts.forEach((product) => {
+              renderProducts(product);
+          });
+      
+          }, 3000);
+  } else {
     console.log('Search query is empty');
     // Clear or reset search results if the input is empty
-    }
+  }
 }
 
-    const selectors = {
+  const selectors = {
     elementClass: '.price-range-slider',
     minElement: '.price-range__min',
     maxElement: '.price-range__max'
-    };
+  };
 
-    // Iterate over each slider element
-    document.querySelectorAll(selectors.elementClass).forEach($se => {
+  // Iterate over each slider element
+  document.querySelectorAll(selectors.elementClass).forEach($se => {
     const currency = $se.dataset.currency || '₦'; // Default currency if not provided
 
     if ($se) {
-        // Initialize the slider using the Slider library
-        const priceRange = new Slider($se, {
+      // Initialize the slider using the Slider library
+      const priceRange = new Slider($se, {
         tooltip_split: true,
         formatter: function(value) {
-            return currency + value;
+          return currency + value;
         },
-        });
+      });
 
-        // Event listener to get current min and max when slider stops moving
-        priceRange.on('slideStop', (value) => {
+      // Event listener to get current min and max when slider stops moving
+      priceRange.on('slideStop', (value) => {
         const currentMin = value[0];  // This is the current minimum value
         const currentMax = value[1];  // This is the current maximum value
 
@@ -821,30 +821,30 @@ function performSearch(query) {
 
         // Optionally trigger some action with these values (e.g., filter products)
         updateFilterBasedOnPrice(currentMin, currentMax);
-        });
+      });
         // You can have a separate function that handles additional logic like filtering products
         function updateFilterBasedOnPrice(minPrice, maxPrice) {
             // Your logic to filter products or update UI based on the price range
             console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
-                    // Handle the color selection
-        loading();
+                  // Handle the color selection
+      loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
         }
     }
-    });
+  });
 }
 
 // Shuffle function using Fisher-Yates algorithm
@@ -855,7 +855,7 @@ for (let i = array.length - 1; i > 0; i--) {
 }
 return array;
 }
-  
+
 var products = [
     {
         "ID": 1,
