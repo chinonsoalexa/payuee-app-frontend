@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.Payueewellness.com/products/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -116,9 +116,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://Payueewellness.com/shop?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/shop?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://Payueewellness.com/shop?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/shop?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -310,7 +310,7 @@ function renderProducts(product) {
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                <a href="https://Payueewellness.com/shop/${product.product_url_id}" class="pc__btn-wl-wrapper">
+                <a href="https://payuee.com/shop-outfits/${product.product_url_id}" class="pc__btn-wl-wrapper">
                     <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_retweet" />
@@ -349,7 +349,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://Payueewellness.com/shop/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/shop-outfits/${product.product_url_id}`;
     });
 
     // Add event listener to the 'Add To Cart' button
