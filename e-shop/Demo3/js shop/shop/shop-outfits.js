@@ -746,6 +746,7 @@ document.querySelectorAll('.menu-link').forEach(link => {
   
   // Add event listener for search field input (brand filter)
   document.querySelector('.search-field__input').addEventListener('input', function(event) {
+    event.preventDefault();
     const searchQuery = this.value.trim();
     console.log('Search Query:', searchQuery);
     // Handle the search query (e.g., filter brands)
@@ -764,6 +765,44 @@ document.querySelectorAll('.menu-link').forEach(link => {
     });
 
     }, 3000);
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Assuming the slider value is controlled via input change event
+    const priceSlider = document.querySelector('.price-range-slider');
+    const minPriceElement = document.querySelector('.price-range__min');
+    const maxPriceElement = document.querySelector('.price-range__max');
+  
+    // Add event listener to the price range slider
+    priceSlider.addEventListener('input', function() {
+      const sliderValue = priceSlider.value.split(','); // Assuming the value is in [min, max] format
+      const minPrice = sliderValue[0];
+      const maxPrice = sliderValue[1];
+  
+      // Update min and max price in the UI
+      minPriceElement.textContent = `₦${minPrice}`;
+      maxPriceElement.textContent = `₦${maxPrice}`;
+  
+      console.log('Price Range Changed:', { minPrice, maxPrice });
+  
+      // Handle the price range filter (e.g., filter products based on min and max price)
+      filterProductsByPrice(minPrice, maxPrice);
+    });
+    
+    // Function to filter products by price
+    function filterProductsByPrice(minPrice, maxPrice) {
+      // Clear the products grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Filter the products based on the price range and render them
+      const filteredProducts = products.filter(product => {
+        return product.price >= minPrice && product.price <= maxPrice;
+      });
+  
+      filteredProducts.forEach(product => {
+        renderProducts(product);
+      });
+    }
   });
   
 }
