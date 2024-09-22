@@ -15,32 +15,32 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     renderLoadingDetails();
-    getProduct(productId);
-  //   setTimeout(() => {
-  //   // Check if productId exists
-  //   if (productId) {
-  //       // Find the product by ID
-  //       const product = products.find(product => product.ID === productId);
+    // getProduct(productId);
+    setTimeout(() => {
+    // Check if productId exists
+    if (productId) {
+        // Find the product by ID
+        const product = products.find(product => product.ID === 2);
 
-  //       if (product) {
-  //           renderLoadingDetails();
-  //           renderProductDetails(product);
-  //       } else {
-  //           // If product not found, default to product with ID 1
-  //           const product2 = products.find(product => product.ID === 1);
-  //           productId = 1; // Update productId to default
-  //           renderLoadingDetails();
-  //           renderProductDetails(product2);
-  //       }
-  //   } else {
-  //       // If no productId in URL, render the first product by default
-  //       // If product not found, default to product with ID 1
-  //       const product2 = products.find(product => product.ID === 1);
-  //       productId = 1; // Update productId to default
-  //         renderLoadingDetails();
-  //         renderProductDetails(product2);
-  //   }
-  // }, 3000);
+        if (product) {
+            renderLoadingDetails();
+            renderProductDetails(product);
+        } else {
+            // If product not found, default to product with ID 1
+            const product2 = products.find(product => product.ID === 1);
+            productId = 1; // Update productId to default
+            renderLoadingDetails();
+            renderProductDetails(product2);
+        }
+    } else {
+        // If no productId in URL, render the first product by default
+        // If product not found, default to product with ID 1
+        const product2 = products.find(product => product.ID === 1);
+        productId = 1; // Update productId to default
+          renderLoadingDetails();
+          renderProductDetails(product2);
+    }
+  }, 3000);
   // Other initializations...
 });
 
@@ -190,12 +190,10 @@ function renderProductDetails(product) {
 
     // Create a new product card element
     const rowElement = document.createElement('section');
-    rowElement.classList.add('product-single', 'container', 'product-single__type-9');
-    rowElement.id = product.ID; // Set the ID of the row
+    rowElement.classList.add('row');
+    // rowElement.id = product.ID; // Set the ID of the row
     // Remove all child elements of the tbody
-    while (productBody.firstChild) {
-      productBody.removeChild(productBody.firstChild);
-  }
+      productBody.innerHTML = "";
     // console.log(product);
     let percentage;
    ReviewCount = product.product_review_count;
@@ -220,11 +218,11 @@ function renderProductDetails(product) {
 
   let cartButton;
   let commentRender;
-  if (product.product_review_count > 0) {
-      commentRender = generateReviewsHTML(product.customer_review);
-  } else {
-    commentRender = '';
-  }
+  // if (product.product_review_count > 0) {
+  //     commentRender = generateReviewsHTML(product.customer_review);
+  // } else {
+  //   commentRender = '';
+  // }
 
   if (product.product_stock < 1) {
     cartButton = `
@@ -249,34 +247,34 @@ function renderProductDetails(product) {
   }
 
     // Create the HTML string with dynamic data using template literals
-    rowElement.innerHTML = `
-        <div class="row">
-        <div class="col-lg-7">
+        // Create the HTML string with dynamic data using template literals
+        rowElement.innerHTML = `
+                <div class="col-lg-7">
           <div class="product-single__media" data-media-type="vertical-thumbnail">
             <div class="product-single__image">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image1}" width="674" height="674" alt="${product.title}">
-                    <a data-fancybox="gallery" href="${"https://dorngwellness.com/image/"+product.Image1}" data-bs-toggle="tooltip" data-bs-placement="left" title="${product.title}">
+                    <img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image2}" width="674" height="674" alt="${product.title}">
-                    <a data-fancybox="gallery" href="${"https://dorngwellness.com/image/"+product.Image2}" data-bs-toggle="tooltip" data-bs-placement="left" title="${product.title}">
+                    <img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image1}" width="674" height="674" alt="${product.title}">
-                    <a data-fancybox="gallery" href="${"https://dorngwellness.com/image/"+product.Image1}" data-bs-toggle="tooltip" data-bs-placement="left" title="${product.title}">
+                    <img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image2}" width="674" height="674" alt="${product.title}">
-                    <a data-fancybox="gallery" href="${"https://dorngwellness.com/image/"+product.Image2}" data-bs-toggle="tooltip" data-bs-placement="left" title="${product.title}">
+                    <img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
@@ -288,30 +286,29 @@ function renderProductDetails(product) {
             <div class="product-single__thumbnail">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image1}" width="104" height="104" alt="${product.title}"></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image2}" width="104" height="104" alt="${product.title}"></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image1}" width="104" height="104" alt="${product.title}"></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="${"https://dorngwellness.com/image/"+product.Image2}" width="104" height="104" alt="${product.title}"></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
                 </div>
               </div>
             </div>
-              ${percentage}
           </div>
         </div>
         <div class="col-lg-5">
           <div class="d-flex justify-content-between mb-4 pb-md-2">
             <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
-              <a href="index.html" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
+              <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
               <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-              <a href="shop.html" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
-            </div>
+              <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
+            </div><!-- /.breadcrumb -->
     
             <div class="product-single__prev-next d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
               <a id="previousDetail" href="#" class="text-uppercase fw-medium"><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_md" /></svg><span class="menu-link menu-link_us-s">Prev</span></a>
               <a id="nextDetail" href="#" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
-            </div>
+            </div><!-- /.shop-acs -->
           </div>
-          <h1 class="product-single__name">${product.title}</h1>
+          <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
           <div class="product-single__rating">
             <div class="reviews-group d-flex">
               <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
@@ -320,68 +317,77 @@ function renderProductDetails(product) {
               <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
               <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
             </div>
-            <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
+            <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
           <div class="product-single__price">
-            ${price}
+            <span class="current-price">₦449</span>
           </div>
           <div class="product-single__short-desc">
-            <p>${product.description}</p>
+            <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
           </div>
           <form name="addtocart-form" method="post">
             <div class="product-single__swatches">
               <div class="product-swatch text-swatches">
-                <label>Net Weight</label>
+                <label>Sizes</label>
                 <div class="swatch-list">
                   <input type="radio" name="size" id="swatch-1">
-                  <label class="swatch js-swatch" for="swatch-1" aria-label="Grams" data-bs-toggle="tooltip" data-bs-placement="top" title="Grams">${product.net_weight}g</label>
+                  <label class="swatch js-swatch" for="swatch-1" aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Small">XS</label>
                   <input type="radio" name="size" id="swatch-2" checked>
+                  <label class="swatch js-swatch" for="swatch-2" aria-label="Small" data-bs-toggle="tooltip" data-bs-placement="top" title="Small">S</label>
+                  <input type="radio" name="size" id="swatch-3">
+                  <label class="swatch js-swatch" for="swatch-3" aria-label="Middle" data-bs-toggle="tooltip" data-bs-placement="top" title="Middle">M</label>
+                  <input type="radio" name="size" id="swatch-4">
+                  <label class="swatch js-swatch" for="swatch-4" aria-label="Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Large">L</label>
+                  <input type="radio" name="size" id="swatch-5">
+                  <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                 </div>
-                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#useGuide">Administration</a>
+                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+              </div>
+              <div class="product-swatch color-swatches">
+                <label>Color</label>
+                <div class="swatch-list">
+                  <input type="radio" name="color" id="swatch-11">
+                  <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
+                  <input type="radio" name="color" id="swatch-12" checked>
+                  <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
+                  <input type="radio" name="color" id="swatch-13">
+                  <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
+                </div>
               </div>
             </div>
             <div class="product-single__addtocart">
               <div class="qty-control position-relative">
                 <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
-                <div class="qty-control__reduce" data-id="${product.ID}">-</div>
-                <div class="qty-control__increase" data-id="${product.ID}">+</div>
-              </div>
-              ${cartButton}
+                <div class="qty-control__reduce">-</div>
+                <div class="qty-control__increase">+</div>
+              </div><!-- .qty-control -->
+              <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
             </div>
           </form>
           <div class="product-single__addtolinks">
+            <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
             <share-button class="share-button">
               <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
-                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_sharing" />
-                </svg>
+                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
                 <span>Share</span>
               </button>
-              <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden>
+              <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
+                <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>
                 <div id="Article-share-template__main" class="share-button__fallback flex items-center absolute top-full left-0 w-full px-2 py-4 bg-container shadow-theme border-t z-10">
                   <div class="field grow mr-4">
                     <label class="field__label sr-only" for="url">Link</label>
-                    <input type="text" class="field__input w-full" value="${getCurrentUrl(product.title, product.description)}" id="url" placeholder="Link" onclick="this.select();" readonly>
-                    <button class="share-button__copy no-js-hidden">
+                    <input type="text" class="field__input w-full" id="url" value="https://payuee-crystal.myshopify.com/blogs/news/go-to-wellness-tips-for-mental-health" placeholder="Link" onclick="this.select();" readonly="">
+                  </div>
+                  <button class="share-button__copy no-js-hidden">
                     <svg class="icon icon-clipboard inline-block mr-1" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 11 13">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                     </svg>
                     <span class="sr-only">Copy link</span>
                   </button>
-                  </div>
-                </div>
-                <div class="social-media-share-buttons">
-                  <a href="https://www.facebook.com/sharer/sharer.php?${getCurrentUrlU(product.title, product.description)}" target="_blank">
-                    <button class="btn btn-primary">Facebook</button>
-                  </a>
-                  <a href="https://twitter.com/intent/tweet?${getCurrentUrl(product.title, product.description)}" target="_blank">
-                    <button class="btn btn-primary">Twitter</button>
-                  </a>
                 </div>
               </details>
-              <div id="ShareMessage" class="hidden" aria-hidden="true" hidden>Link copied to clipboard!</div>
             </share-button>
-            
+            <script src="js/details-disclosure.js" defer="defer"></script>
             <script src="js/share.js" defer="defer"></script>
           </div>
           <div class="product-single__meta-info">
@@ -391,177 +397,43 @@ function renderProductDetails(product) {
             </div>
             <div class="meta-item">
               <label>Categories:</label>
-              <span>${product.category}</span>
+              <span>Casual & Urban Wear, Jackets, Men</span>
             </div>
             <div class="meta-item">
               <label>Tags:</label>
-              <span>${product.category}</span>
-            </div>
-          </div>
-          <div id="product_single_details_accordion" class="product-single__details-accordion accordion">
-            <div class="accordion-item">
-              <h5 class="accordion-header" id="accordion-heading-11">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-1" aria-expanded="true" aria-controls="accordion-collapse-1">
-                  Description
-                  <svg class="accordion-button__icon" viewBox="0 0 14 14"><g aria-hidden="true" stroke="none" fill-rule="evenodd"><path class="svg-path-vertical" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path><path class="svg-path-horizontal" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path></g></svg>
-                </button>
-              </h5>
-              <div id="accordion-collapse-1" class="accordion-collapse collapse show" aria-labelledby="accordion-heading-11" data-bs-parent="#product_single_details_accordion">
-                <div class="accordion-body">
-                  <div class="product-single__description">
-                    <h3 class="block-title mb-4">${product.title}</h3>
-                    <p class="content">${product.description}</p>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <h3 class="block-title">Why choose ${product.title}?</h3>
-                        <ul class="list text-list">
-                          <li>${product.title}</li>
-                          <li>${product.title}</li>
-                          <li>${product.title}</li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-6">
-                        <h3 class="block-title">Features</h3>
-                        <ol class="list text-list">
-                          <li>${product.title}</li>
-                          <li>${product.title}</li>
-                          <li>${product.title}</li>
-                        </ol>
-                      </div>
-                    </div>
-                    <h3 class="block-title mb-0">Lining</h3>
-                    <p class="content">100% Polyester, Main: 100% Polyester.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h5 class="accordion-header" id="accordion-heading-2">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-2" aria-expanded="false" aria-controls="accordion-collapse-2">
-                  Additional Information
-                  <svg class="accordion-button__icon" viewBox="0 0 14 14"><g aria-hidden="true" stroke="none" fill-rule="evenodd"><path class="svg-path-vertical" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path><path class="svg-path-horizontal" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path></g></svg>
-                </button>
-              </h5>
-              <div id="accordion-collapse-2" class="accordion-collapse collapse" aria-labelledby="accordion-heading-2" data-bs-parent="#product_single_details_accordion">
-                <div class="accordion-body">
-                  <div class="product-single__addtional-info">
-                    <div class="item">
-                      <label class="h6">Weight</label>
-                      <span>${product.net_weight}g</span>
-                    </div>
-                    <div class="item">
-                      <label class="h6">Dimensions</label>
-                      <span>90 x 60 x 90 cm</span>
-                    </div>
-                    <div class="item">
-                      <label class="h6">Storage</label>
-                      <span>Store in a cool dry place</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h5 class="accordion-header" id="accordion-heading-3">
-                <button id='review-button' class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3" aria-expanded="false" aria-controls="accordion-collapse-3">
-                  Reviews (${product.product_review_count})
-                  <svg class="accordion-button__icon" viewBox="0 0 14 14"><g aria-hidden="true" stroke="none" fill-rule="evenodd"><path class="svg-path-vertical" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path><path class="svg-path-horizontal" d="M14,6 L14,8 L0,8 L0,6 L14,6"></path></g></svg>
-                </button>
-              </h5>
-              <div id="accordion-collapse-3" class="accordion-collapse collapse" aria-labelledby="accordion-heading-3" data-bs-parent="#product_single_details_accordion">
-                <div class="accordion-body">
-                  <h2 class="product-single__reviews-title">Reviews</h2>
-
-                  <div id="comment_posts" class="product-single__reviews-list">
-                    ${commentRender}
-                  </div>
-
-                ${showMore}
-
-                  <div class="product-single__review-form">
-                    <form name="customer-review-form">
-                      <h5>Help others by sharing your thoughts on “${product.title}”</h5>
-                      <p>Your opinion adds value! Help others by sharing your experience and tips for using this product. Required fields are marked *</p>
-                      <div class="select-star-rating">
-                        <label>Your rating *</label>
-                        <span class="star-rating">
-                          <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
-                          </svg>
-                          <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
-                          </svg>
-                          <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
-                          </svg>
-                          <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
-                          </svg>
-                          <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
-                          </svg>
-                        </span>
-                        <input type="hidden" id="form-input-rating" value="">
-                      </div>
-                      <div class="mb-4">
-                        <textarea id="form-input-review" class="form-control form-control_gray" placeholder="Your Review *" cols="30" rows="8"></textarea>
-                      </div>
-                      <div class="form-label-fixed mb-4">
-                        <label for="form-input-name" class="form-label">Name *</label>
-                        <input id="form-input-name" class="form-control form-control-md form-control_gray">
-                      </div>
-                      <div class="form-label-fixed mb-4">
-                        <label for="form-input-email" class="form-label">Email address *</label>
-                        <input id="form-input-email" class="form-control form-control-md form-control_gray">
-                      </div>
-                      <div class="form-check mb-4">
-                        <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="mailing_list_checkbox">
-                        <label class="form-check-label" for="mailing_list_checkbox">
-                          Would you like to be added to our mailing list for updates and special offers?
-                        </label>
-                      </div>
-                      <div class="form-action">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              <span>biker, black, bomber, leather</span>
             </div>
           </div>
         </div>
-      </div>
-    `;
+        `;
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
-    renderUseGuide(product);
+    // renderUseGuide(product);
 
 // Reinitialize the CartDrawer
-if (typeof DorngSections.CartDrawer !== 'undefined') {
-  new DorngSections.CartDrawer();
+if (typeof PayueeSections.CartDrawer !== 'undefined') {
+  new PayueeSections.CartDrawer();
 }
 
 // Reinitialize the SwiperSlideshow
-if (typeof DorngSections.SwiperSlideshow !== 'undefined') {
-  new DorngSections.SwiperSlideshow()._initSliders();
+if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
+  new PayueeSections.SwiperSlideshow()._initSliders();
 }
 
 // Reinitialize the ProductSingleMedia
-if (typeof DorngSections.ProductSingleMedia !== 'undefined') {
-  new DorngSections.ProductSingleMedia()._initProductMedia();
+if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
+  new PayueeSections.ProductSingleMedia()._initProductMedia();
 }
 
 // Reinitialize the StarRating
-if (typeof DorngElements.StarRating !== 'undefined') {
-  new DorngElements.StarRating();
+if (typeof PayueeElements.StarRating !== 'undefined') {
+  new PayueeElements.StarRating();
 }
 
 // Reinitialize Aside
-if (typeof DorngElements.Aside === 'function') {
-  new DorngElements.Aside();
+if (typeof PayueeElements.Aside === 'function') {
+  new PayueeElements.Aside();
 }
 
 // Add event listeners for quantity update buttons
@@ -819,6 +691,8 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
+  renderProductDescription();
+
 }
 
 function renderUseGuide(product) {
@@ -890,10 +764,164 @@ function renderUseGuide(product) {
 
   // Append the new element to the container
   useGuideElement.appendChild(rowElement);
+}
 
-  // Initialize and show the Bootstrap modal
-  // const modal = new bootstrap.Modal(useGuideElement);
-  // modal.show();
+function renderProductDescription(product) {
+  const useGuideElement = document.getElementById('product-description');
+  
+  
+  // Create a new use guide card element
+  const rowElement = document.createElement('div');
+
+  rowElement.innerHTML = `
+   <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="tab-description-tab">
+          <div class="product-single__description">
+            <h3 class="block-title mb-4">Sed do eiusmod tempor incididunt ut labore</h3>
+            <p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <div class="row">
+              <div class="col-lg-6">
+                <h3 class="block-title">Why choose product?</h3>
+                <ul class="list text-list">
+                  <li>Creat by cotton fibric with soft and smooth</li>
+                  <li>Simple, Configurable (e.g. size, color, etc.), bundled</li>
+                  <li>Downloadable/Digital Products, Virtual Products</li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <h3 class="block-title">Sample Number List</h3>
+                <ol class="list text-list">
+                  <li>Create Store-specific attrittbutes on the fly</li>
+                  <li>Simple, Configurable (e.g. size, color, etc.), bundled</li>
+                  <li>Downloadable/Digital Products, Virtual Products</li>
+                </ol>
+              </div>
+            </div>
+            <h3 class="block-title mb-0">Lining</h3>
+            <p class="content">100% Polyester, Main: 100% Polyester.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="tab-additional-info" role="tabpanel" aria-labelledby="tab-additional-info-tab">
+          <div class="product-single__addtional-info">
+            <div class="item">
+              <label class="h6">Weight</label>
+              <span>1.25 kg</span>
+            </div>
+            <div class="item">
+              <label class="h6">Dimensions</label>
+              <span>90 x 60 x 90 cm</span>
+            </div>
+            <div class="item">
+              <label class="h6">Size</label>
+              <span>XS, S, M, L, XL</span>
+            </div>
+            <div class="item">
+              <label class="h6">Color</label>
+              <span>Black, Orange, White</span>
+            </div>
+            <div class="item">
+              <label class="h6">Storage</label>
+              <span>Relaxed fit shirt-style dress with a rugged</span>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="tab-reviews" role="tabpanel" aria-labelledby="tab-reviews-tab">
+          <h2 class="product-single__reviews-title">Reviews</h2>
+          <div class="product-single__reviews-list">
+            <div class="product-single__reviews-item">
+              <div class="customer-avatar">
+                <img loading="lazy" src="../images/avatar.jpg" alt="">
+              </div>
+              <div class="customer-review">
+                <div class="customer-name">
+                  <h6>Janice Miller</h6>
+                  <div class="reviews-group d-flex">
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                  </div>
+                </div>
+                <div class="review-date">April 06, 2023</div>
+                <div class="review-text">
+                  <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-single__reviews-item">
+              <div class="customer-avatar">
+                <img loading="lazy" src="../images/avatar.jpg" alt="">
+              </div>
+              <div class="customer-review">
+                <div class="customer-name">
+                  <h6>Benjam Porter</h6>
+                  <div class="reviews-group d-flex">
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                  </div>
+                </div>
+                <div class="review-date">April 06, 2023</div>
+                <div class="review-text">
+                  <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-single__review-form">
+            <form name="customer-review-form">
+              <h5>Be the first to review “Message Cotton T-Shirt”</h5>
+              <p>Your email address will not be published. Required fields are marked *</p>
+              <div class="select-star-rating">
+                <label>Your rating *</label>
+                <span class="star-rating">
+                  <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
+                  </svg>
+                  <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
+                  </svg>
+                  <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
+                  </svg>
+                  <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
+                  </svg>
+                  <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z"/>
+                  </svg>
+                </span>
+                <input type="hidden" id="form-input-rating" value="">
+              </div>
+              <div class="mb-4">
+                <textarea id="form-input-review" class="form-control form-control_gray" placeholder="Your Review" cols="30" rows="8"></textarea>
+              </div>
+              <div class="form-label-fixed mb-4">
+                <label for="form-input-name" class="form-label">Name *</label>
+                <input id="form-input-name" class="form-control form-control-md form-control_gray">
+              </div>
+              <div class="form-label-fixed mb-4">
+                <label for="form-input-email" class="form-label">Email address *</label>
+                <input id="form-input-email" class="form-control form-control-md form-control_gray">
+              </div>
+              <div class="form-check mb-4">
+                <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="remember_checkbox">
+                <label class="form-check-label" for="remember_checkbox">
+                  Save my name, email, and website in this browser for the next time I comment.
+                </label>
+              </div>
+              <div class="form-action">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  `;
+
+  // Append the new element to the container
+  useGuideElement.appendChild(rowElement);
 }
 
 // function renderRecommendedProduct(product) {
@@ -1024,64 +1052,64 @@ function renderUseGuide(product) {
 // }
 
 // function reinitComponents() {
-//   if (typeof DorngElements.JsHoverContent !== 'undefined') {
-//     new DorngElements.JsHoverContent();
+//   if (typeof PayueeElements.JsHoverContent !== 'undefined') {
+//     new PayueeElements.JsHoverContent();
 //   }
 
-//   if (typeof DorngElements.Search !== 'undefined') {
-//     new DorngElements.Search();
+//   if (typeof PayueeElements.Search !== 'undefined') {
+//     new PayueeElements.Search();
 //   }
 
-//   if (typeof DorngElements.Aside === 'function') {
-//     new DorngElements.Aside();
+//   if (typeof PayueeElements.Aside === 'function') {
+//     new PayueeElements.Aside();
 //   }
 
-//   if (typeof DorngElements.ScrollToTop === 'function') {
-//     new DorngElements.ScrollToTop();
+//   if (typeof PayueeElements.ScrollToTop === 'function') {
+//     new PayueeElements.ScrollToTop();
 //   }
 
-//   if (typeof DorngElements.Countdown !== 'undefined') {
-//     new DorngElements.Countdown();
+//   if (typeof PayueeElements.Countdown !== 'undefined') {
+//     new PayueeElements.Countdown();
 //   }
 
-//   if (typeof DorngElements.ShopViewChange !== 'undefined') {
-//     new DorngElements.ShopViewChange();
+//   if (typeof PayueeElements.ShopViewChange !== 'undefined') {
+//     new PayueeElements.ShopViewChange();
 //   }
 
-//   if (typeof DorngElements.Filters !== 'undefined') {
-//     new DorngElements.Filters();
+//   if (typeof PayueeElements.Filters !== 'undefined') {
+//     new PayueeElements.Filters();
 //   }
 
-//   if (typeof DorngElements.StickyElement !== 'undefined') {
-//     new DorngElements.StickyElement();
+//   if (typeof PayueeElements.StickyElement !== 'undefined') {
+//     new PayueeElements.StickyElement();
 //   }
 
-//   if (typeof DorngElements.StarRating !== 'undefined') {
-//     new DorngElements.StarRating();
+//   if (typeof PayueeElements.StarRating !== 'undefined') {
+//     new PayueeElements.StarRating();
 //   }
 
-//   if (typeof DorngSections.Header !== 'undefined') {
-//     new DorngSections.Header();
+//   if (typeof PayueeSections.Header !== 'undefined') {
+//     new PayueeSections.Header();
 //   }
 
-//   if (typeof DorngSections.Footer !== 'undefined') {
-//     new DorngSections.Footer();
+//   if (typeof PayueeSections.Footer !== 'undefined') {
+//     new PayueeSections.Footer();
 //   }
 
-//   if (typeof DorngSections.CustomerSideForm !== 'undefined') {
-//     new DorngSections.CustomerSideForm();
+//   if (typeof PayueeSections.CustomerSideForm !== 'undefined') {
+//     new PayueeSections.CustomerSideForm();
 //   }
 
-//   if (typeof DorngSections.CartDrawer !== 'undefined') {
-//     new DorngSections.CartDrawer();
+//   if (typeof PayueeSections.CartDrawer !== 'undefined') {
+//     new PayueeSections.CartDrawer();
 //   }
 
-//   if (typeof DorngSections.SwiperSlideshow !== 'undefined') {
-//     new DorngSections.SwiperSlideshow()._initSliders();
+//   if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
+//     new PayueeSections.SwiperSlideshow()._initSliders();
 //   }
 
-//   if (typeof DorngSections.ProductSingleMedia !== 'undefined') {
-//     new DorngSections.ProductSingleMedia()._initProductMedia();
+//   if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
+//     new PayueeSections.ProductSingleMedia()._initProductMedia();
 //   }
 // }
 
@@ -1510,3 +1538,162 @@ function renderReviews(review) {
     const reviewButton = document.getElementById('review-button');
 
 }
+
+var products = [
+  {
+      "ID": 1,
+      "title": "Cropped Faux Leather Jacket",
+      "category": "Outfit",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 100,
+      "product_stock": 0,
+      "Image1": "../images/products/product_0-1.jpg",
+      "Image2": "../images/products/product_0-2.jpg",
+      "product_review_count": 200000,
+      // "product_url_id": "cropped-faux-leather-jacket-1"
+  },
+  {
+      "ID": 2,
+      "title": "Calvin Shorts",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 200,
+      "product_stock": 0,
+      "Image1": "../images/products/product_0-3.jpg",
+      "Image2": "../images/products/product_0-9.jpg",
+      "product_review_count": 3500,
+      // "product_url_id": "calvin-shorts-2"
+  },
+  {
+      "ID": 3,
+      "title": "Kirby T-Shirt",
+      "category": "Herbal Tea",
+      "initial_cost": 6000,
+      "selling_price": 6000,
+      "net_weight": 50,
+      "product_stock": 5,
+      "Image1": "../images/products/product_0-5.jpg",
+      "Image2": "../images/products/product_0-6.jpg",
+      "product_review_count": 400,
+      // "product_url_id": "hypertension-tea-3"
+  },
+  {
+      "ID": 4,
+      "title": "Cableknit Shawl",
+      "category": "Herbal Tea",
+      "initial_cost": 9000,
+      "selling_price": 5000,
+      "net_weight": 300,
+      "product_stock": 200,
+      "Image1": "../images/products/product_0-7.jpg",
+      "Image2": "../images/products/product_0-8.jpg",
+      "product_review_count": 500,
+      // "product_url_id": "double-strength-tea-4"
+  },
+  {
+      "ID": 5,
+      "title": "Colorful Jacket",
+      "category": "Herbal Tea",
+      "initial_cost": 4000,
+      "selling_price": 1500,
+      "net_weight": 250,
+      "product_stock": 200,
+      "Image1": "../images/products/product_0-9.jpg",
+      "Image2": "../images/products/product_0-10.jpg",
+      "product_review_count": 50,
+      // "product_url_id": "green-coffee-5"
+  },
+  {
+      "ID": 6,
+      "title": "Shirt In Botanical Cheetah Print",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 500,
+      "product_stock": 200,
+      "Image1": "../images/products/product_0-11.jpg",
+      "Image2": "../images/products/product_0-12.jpg",
+      "product_review_count": 200,
+      // "product_url_id": "english-breakfast-6"
+  },
+  {
+      "ID": 7,
+      "title": "Cotton Jersey T-Shirt",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 4000,
+      "net_weight": 100,
+      "product_stock": 0,
+      "Image1": "../images/products/product_0-13.jpg",
+      "Image2": "../images/products/product_0.jpg",
+      "product_review_count": 2500,
+      // "product_url_id": "cropped-faux-leather-jacket-7"
+  },
+  {
+      "ID": 8,
+      "title": "Zessi Dresses",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 100,
+      "product_stock": 200,
+      "Image1": "../images/products/product_1-1.jpg",
+      "Image2": "../images/products/product_1.jpg",
+      "product_review_count": 25000000,
+      // "product_url_id": "cropped-faux-leather-jacket-8"
+  },
+  {
+      "ID": 9,
+      "title": "Cropped Faux Leather Jacket",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 3000,
+      "net_weight": 100,
+      "product_stock": 200,
+      "Image1": "../images/products/product_2-1.jpg",
+      "Image2": "../images/products/product_2.jpg",
+      "product_review_count": 4500000,
+      // "product_url_id": "infection-cleanse-9"
+  },
+  {
+      "ID": 10,
+      "title": "Cotton Jersey T-Shirt",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 100,
+      "product_stock": 200,
+      "Image1": "../images/products/product_3-1.jpg",
+      "Image2": "../images/products/product_3.jpg",
+      "product_review_count": 6700,
+      // "product_url_id": "fibroid-fertility-tea-10"
+  },
+  {
+      "ID": 11,
+      "title": "Colorful Jacket",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 4500,
+      "net_weight": 100,
+      "product_stock": 200,
+      "Image1": "../images/products/product_4-1.jpg",
+      "Image2": "../images/products/product_4.jpg",
+      "product_review_count": 2800,
+      // "product_url_id": "hypertension-tea-11"
+  },
+  {
+      "ID": 12,
+      "title": "Kirby T-Shirt",
+      "category": "Herbal Tea",
+      "initial_cost": 5000,
+      "selling_price": 0,
+      "net_weight": 100,
+      "product_stock": 200,
+      "Image1": "../images/products/product_5-1.jpg",
+      "Image2": "../images/products/product_5.jpg",
+      "product_review_count": 2200,
+      // "product_url_id": "double-strength-tea-12"
+  },
+];

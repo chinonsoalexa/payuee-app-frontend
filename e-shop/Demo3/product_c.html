@@ -717,12 +717,25 @@
   
   <main>
     <div class="mb-md-1 pb-md-3"></div>
-    <section class="product-single container product-single__type-9"  id="products-details-grid">
-      <div class="row">
+    <section  id="products-details-grid" class="product-single container product-single__type-9">
         <!-- where product is being rendered -->
-      </div>
     </section>
-
+    <div class="product-single__details-tab">
+      <ul class="nav nav-tabs" id="myTab1" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link nav-link_underscore active" id="tab-description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Description</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link nav-link_underscore" id="tab-additional-info-tab" data-bs-toggle="tab" href="#tab-additional-info" role="tab" aria-controls="tab-additional-info" aria-selected="false">Additional Information</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link nav-link_underscore" id="tab-reviews-tab" data-bs-toggle="tab" href="#tab-reviews" role="tab" aria-controls="tab-reviews" aria-selected="false">Reviews (2)</a>
+        </li>
+      </ul>
+      <div id="product-description" class="tab-content">
+        <!-- render product description -->
+      </div>
+    </div>
     <!-- related product rendered -->
     <section class="products-carousel container">
       <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">Related <strong>Products</strong></h2>
