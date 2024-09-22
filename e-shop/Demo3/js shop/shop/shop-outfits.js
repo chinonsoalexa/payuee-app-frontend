@@ -20,10 +20,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
-    // products.forEach((product) => {
-    //     renderProducts(product);
-    // });
-
     setTimeout(() => {
         console.log('m here')
         // updateProductsFromData(productts);
