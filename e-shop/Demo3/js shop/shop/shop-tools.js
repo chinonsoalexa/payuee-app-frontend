@@ -668,6 +668,104 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
 
     }, 3000);
 });
+
+// Add event listeners to category links
+document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default navigation
+        const selectedCategory = this.textContent.trim();
+        console.log('Selected Category:', selectedCategory);
+        // Handle the category selection
+        loading();
+    
+        setTimeout(() => {
+        // Clear current product grid
+        document.getElementById('products-grid').innerHTML = '';
+    
+        // Shuffle products array before rendering
+        const shuffledProducts = shuffleArray(products);
+    
+        // Render the shuffled products
+        shuffledProducts.forEach((product) => {
+            renderProducts(product);
+        });
+    
+        }, 3000);
+    });
+    });
+    
+    // Add event listeners to color swatches
+    document.querySelectorAll('.swatch-color').forEach(swatch => {
+    swatch.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default behavior
+        const selectedColor = this.style.color;
+        console.log('Selected Color:', selectedColor);
+        // Handle the color selection
+        loading();
+    
+        setTimeout(() => {
+        // Clear current product grid
+        document.getElementById('products-grid').innerHTML = '';
+    
+        // Shuffle products array before rendering
+        const shuffledProducts = shuffleArray(products);
+    
+        // Render the shuffled products
+        shuffledProducts.forEach((product) => {
+            renderProducts(product);
+        });
+    
+        }, 3000);
+    });
+    });
+    
+    // Add event listeners to size buttons
+    document.querySelectorAll('.swatch-size').forEach(sizeButton => {
+    sizeButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default behavior
+        const selectedSize = this.textContent.trim();
+        console.log('Selected Size:', selectedSize);
+        // Handle the size selection
+        loading();
+    
+        setTimeout(() => {
+        // Clear current product grid
+        document.getElementById('products-grid').innerHTML = '';
+    
+        // Shuffle products array before rendering
+        const shuffledProducts = shuffleArray(products);
+    
+        // Render the shuffled products
+        shuffledProducts.forEach((product) => {
+            renderProducts(product);
+        });
+    
+        }, 3000);
+    });
+    });
+    
+    // Add event listener for search field input (brand filter)
+    document.querySelector('.search-field__input').addEventListener('input', function(event) {
+    const searchQuery = this.value.trim();
+    console.log('Search Query:', searchQuery);
+    // Handle the search query (e.g., filter brands)
+    loading();
+    
+    setTimeout(() => {
+    // Clear current product grid
+    document.getElementById('products-grid').innerHTML = '';
+
+    // Shuffle products array before rendering
+    const shuffledProducts = shuffleArray(products);
+
+    // Render the shuffled products
+    shuffledProducts.forEach((product) => {
+        renderProducts(product);
+    });
+
+    }, 3000);
+    });
+    
 }
 
 // Shuffle function using Fisher-Yates algorithm
