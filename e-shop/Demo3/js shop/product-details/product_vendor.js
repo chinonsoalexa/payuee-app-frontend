@@ -24,14 +24,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Check if productId exists
     if (productId) {
         // Find the product by ID
-        const product = products.find(product => product.ID === 2);
+        const product = products.find(product => product.ID === 3);
 
         if (product) {
             renderLoadingDetails();
             renderProductDetails(product);
         } else {
             // If product not found, default to product with ID 1
-            const product2 = products.find(product => product.ID === 1);
+            const product2 = products.find(product => product.ID === 3);
             productId = 1; // Update productId to default
             renderLoadingDetails();
             renderProductDetails(product2);
@@ -199,6 +199,17 @@ function renderProductDetails(product) {
     // Remove all child elements of the tbody
       productBody.innerHTML = "";
     // console.log(product);
+    let cartButton;
+    if (product.product_stock < 0) {
+      cartButton = `
+      <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
+      `
+    } else {
+      cartButton = `
+      <button id="addToCartButton" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+      `
+    }
+
     let percentage;
    ReviewCount = product.product_review_count;
               
@@ -220,7 +231,6 @@ function renderProductDetails(product) {
       percentage = ``
   }      
 
-  let cartButton;
   let commentRender;
   // if (product.product_review_count > 0) {
   //     commentRender = generateReviewsHTML(product.customer_review);
@@ -365,7 +375,7 @@ function renderProductDetails(product) {
                 <div class="qty-control__reduce">-</div>
                 <div class="qty-control__increase">+</div>
               </div><!-- .qty-control -->
-              <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+              ${cartButton}
             </div>
           </form>
           <div class="product-single__addtolinks">
@@ -415,58 +425,71 @@ function renderProductDetails(product) {
     productBody.appendChild(rowElement);
     // renderUseGuide(product);
 
-// Reinitialize the CartDrawer
-if (typeof PayueeSections.CartDrawer !== 'undefined') {
-  new PayueeSections.CartDrawer();
-}
+  // Reinitialize the CartDrawer
+  if (typeof PayueeSections.CartDrawer !== 'undefined') {
+    new PayueeSections.CartDrawer();
+  }
 
-// Reinitialize the SwiperSlideshow
-if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
-  new PayueeSections.SwiperSlideshow()._initSliders();
-}
+  // Reinitialize the SwiperSlideshow
+  if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
+    new PayueeSections.SwiperSlideshow()._initSliders();
+  }
 
-// Reinitialize the ProductSingleMedia
-if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
-  new PayueeSections.ProductSingleMedia()._initProductMedia();
-}
+  // Reinitialize the ProductSingleMedia
+  if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
+    new PayueeSections.ProductSingleMedia()._initProductMedia();
+  }
 
-// Reinitialize the StarRating
-if (typeof PayueeElements.StarRating !== 'undefined') {
-  new PayueeElements.StarRating();
-}
+  // Reinitialize the StarRating
+  if (typeof PayueeElements.StarRating !== 'undefined') {
+    new PayueeElements.StarRating();
+  }
 
-// Reinitialize Aside
-if (typeof PayueeElements.Aside === 'function') {
-  new PayueeElements.Aside();
-}
+  // Reinitialize Aside
+  if (typeof PayueeElements.Aside === 'function') {
+    new PayueeElements.Aside();
+  }
 
-// Add event listeners for quantity update buttons
-const reduceButton = productBody.querySelector('.qty-control__reduce');
-const increaseButton = productBody.querySelector('.qty-control__increase');
-const quantityInput = productBody.querySelector('.qty-control__number');
+  // Add event listeners for quantity update buttons
+  const reduceButton = productBody.querySelector('.qty-control__reduce');
+  const increaseButton = productBody.querySelector('.qty-control__increase');
+  const quantityInput = productBody.querySelector('.qty-control__number');
 
-let newQuantity1 = 1;
+  let newQuantity1 = 1;
 
-reduceButton.addEventListener('click', () => {
-    let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity > 1) {
-        quantityInput.value = currentQuantity - 1;
-        newQuantity1-=1
+  reduceButton.addEventListener('click', () => {
+      let currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity > 1) {
+          quantityInput.value = currentQuantity - 1;
+          newQuantity1-=1
+      }
+  });
+
+  increaseButton.addEventListener('click', () => {
+      let currentQuantity = parseInt(quantityInput.value);
+      quantityInput.value = currentQuantity + 1;
+      newQuantity1+=1
+  });
+
+  quantityInput.addEventListener('change', () => {
+    let newQuantity = parseInt(quantityInput.value);
+      if (newQuantity < 1) {
+          quantityInput.value = 1;
+      }
+  });
+
+    // Add event listener to the 'Add To Cart' button
+    if (!product.product_stock < 1) {
+      const addToCartButton = document.getElementById('addToCartButton');
+      if (addToCartButton) {
+        addToCartButton.addEventListener('click', function() {
+          // event.preventDefault();
+          addToCart(product, newQuantity1);
+          updateCartNumber();
+          updateCartDrawer();
+        });
+      }
     }
-});
-
-increaseButton.addEventListener('click', () => {
-    let currentQuantity = parseInt(quantityInput.value);
-    quantityInput.value = currentQuantity + 1;
-    newQuantity1+=1
-});
-
-quantityInput.addEventListener('change', () => {
-  let newQuantity = parseInt(quantityInput.value);
-    if (newQuantity < 1) {
-        quantityInput.value = 1;
-    }
-});
 
   // Add event listener to the image wrapper
   const previousButton = document.getElementById('previousDetail');
