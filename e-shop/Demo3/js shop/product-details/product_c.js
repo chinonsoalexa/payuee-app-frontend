@@ -3,6 +3,9 @@ var productId;
 var ReviewCount;
 var pageNumber = 1;
 
+// Initialize loader array with 8 elements (e.g., with null values)
+const loader = Array.from({ length: 15 }, (_, i) => i);
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Get URL parameters
     const url = window.location.pathname;
@@ -14,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Update cart number and drawer
     updateCartNumber();
     updateCartDrawer();
+    loading();
     renderLoadingDetails();
     // getProduct(productId);
     setTimeout(() => {
@@ -691,7 +695,7 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
-  renderProductDescription();
+  renderProductDescription(product);
 
 }
 
@@ -916,62 +920,96 @@ function renderProductDescription(product) {
         </div>
   `;
 
-  renderRecommendedProduct();
+  // renderRecommendedProduct(product);
+      // Shuffle products array before rendering
+      // const shuffledProducts = shuffleArray(products);
+
+      // Render the shuffled products
+      // shuffledProducts.forEach((product) => {
+        renderRecommendedProduct(product);
+      // });
 }
 
-function renderRecommendedProduct(product) {
-  const recommendElement = document.getElementById('related_products_container');
-  
-  // Create a new product card element
-  const rowElement = document.createElement('div');
-  rowElement.classList.add('swiper-slide', 'product-card'); 
-  rowElement.id = product.ID;
+// Shuffle function using Fisher-Yates algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+  }
+  return array;
+}
 
-  // Determine if the button should be disabled and what text to display
-  const isOutOfStock = product.stock_remaining === 0;
-  const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
-  const buttonDisabled = isOutOfStock ? 'disabled' : '';
+function renderRecommendedProduct() {
 
-  rowElement.innerHTML = `
-   <div class="pc__img-wrapper">
-      <a href="#">
-        <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-        <img loading="lazy" src="${"https://payuee.com/image/"+product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
-      </a>
-      <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-    </div>
+  // Shuffle products array before rendering
+  const shuffledProducts = shuffleArray(products);
+  document.getElementById('related_products_container').innerHTML = '';
 
-    <div class="pc__info position-relative">
-      <p class="pc__category">${product.category}</p>
-      <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
-      <div class="product-card__price d-flex">
-        <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+  // Render the shuffled products
+  shuffledProducts.forEach((product) => {
+    const recommendElement = document.getElementById('related_products_container');
+    
+    // Create a new product card element
+    const rowElement = document.createElement('div');
+    rowElement.classList.add('swiper-slide', 'product-card'); 
+    // rowElement.id = product.ID;
+
+    // Determine if the button should be disabled and what text to display
+    // const isOutOfStock = product.stock_remaining === 0;
+    const isOutOfStock = 7 === 0;
+    const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+    const buttonDisabled = isOutOfStock ? 'disabled' : '';
+
+    rowElement.innerHTML = `
+    <div class="pc__img-wrapper">
+        <a href="#">
+          <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+        </a>
+        <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
-    </div>
-    <div class="product-card__review d-flex align-items-center">
-      <div class="reviews-group d-flex">
-        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+
+      <div class="pc__info position-relative">
+        <p class="pc__category">${product.category}</p>
+        <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <div class="product-card__price d-flex">
+          <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+        </div>
       </div>
-      <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.reviews)} reviews</span>
-    </div>
-  `;
+      <div class="product-card__review d-flex align-items-center">
+        <div class="reviews-group d-flex">
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+        </div>
+        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
+      </div>
+    `;
 
-  // Append the new element to the container
-  recommendElement.appendChild(rowElement);
+    // Append the new element to the container
+    recommendElement.appendChild(rowElement);
+        // Add event listener to the 'Add To Cart' button
+        if (!isOutOfStock) {
+          const addToCartButton = rowElement.querySelector('.pc__atc');
+          addToCartButton.addEventListener('click', function() {
+              addToCart(product);
+              updateCartNumber();
+              updateCartDrawer();
+          });
+      }
+  });
 
-  // Reinitialize Swiper
-  reinitializeSwiper();
+    // Reinitialize Swiper
+    reinitializeSwiper();
 }
 
 // Function to reinitialize Swiper
 function reinitializeSwiper() {
-  // Destroy the existing Swiper instance if needed (to prevent multiple initializations)
+  // Destroy the existing Swiper instance if it exists
   const existingSwiper = document.querySelector('.swiper-container.js-swiper-slider.swiper-initialized');
-  if (existingSwiper) {
+  if (existingSwiper && existingSwiper.swiper) {
     existingSwiper.swiper.destroy(true, true); // Destroy old instance
   }
 
@@ -1011,172 +1049,40 @@ function reinitializeSwiper() {
   });
 }
 
-// Example of initializing cart button events after re-render
-function initializeCartButtonEvents() {
-  const addToCartButtons = document.querySelectorAll('.js-add-cart');
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Your add to cart logic here
-      console.log("Product added to cart");
-    });
+function loading() {
+  // Render loading skeletons for each element in the loader array
+  document.getElementById('related_products_container').innerHTML = '';
+  loader.forEach(() => {
+      renderLoading();
   });
 }
 
+function renderLoading() {
+  // Assuming you have a reference to the container element
+  const productBody = document.getElementById('related_products_container');
 
-// Example of initializing cart button events after re-render
-function initializeCartButtonEvents() {
-  const addToCartButtons = document.querySelectorAll('.js-add-cart');
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Your add to cart logic here
-      console.log("Product added to cart");
-    });
-  });
+  // Create a new element for the skeleton loader
+  const rowElement = document.createElement('div');
+  rowElement.classList.add('product-card-wrapper');
+
+  // Create the HTML string with dynamic data using template literals
+  rowElement.innerHTML = `
+      <div class="product-card mb-3 mb-md-4 mb-xxl-5">
+          <!-- Skeleton Loader -->
+          <div class="skeleton-wrapperr">
+              <div class="skeletonn skeleton-imgg loading-cursorr"></div>
+              <div class="skeletonn skeleton-titlee loading-cursorr"></div>
+              <div class="skeletonn skeleton-categoryy loading-cursorr"></div>
+              <div class="skeletonn skeleton-pricee loading-cursorr"></div>
+              <div class="skeletonn skeleton-revieww loading-cursorr"></div>
+              <div class="skeletonn skeleton-labell loading-cursorr"></div>
+          </div>
+      </div>
+  `;
+
+  // Append the new element to the container
+  productBody.appendChild(rowElement);
 }
-
-// function updateProductsFromData(products) {
-//   const productBody = document.getElementById('recommendedProduct');
-
-//   if (!productBody) {
-//       console.error('Error: recommendedProduct element not found');
-//       return;
-//   }
-
-//   // Initially hide all product elements
-//   const productDivs = Array.from(productBody.children);
-//   productDivs.forEach(productDiv => productDiv.classList.add('hidden'));
-
-//   // Update product details
-//   products.forEach((product, index) => {
-//       const productDiv = productDivs[index]; // Get the product card by its position
-      
-//       if (productDiv) {
-//           // Update product details
-//           const imgElement = productDiv.querySelector('.pc__img');
-//           const titleElement = productDiv.querySelector('.pc__title');
-//           const priceElement = productDiv.querySelector('.pc__price');
-//           const stockElement = productDiv.querySelector('.product-card__review');
-
-//           if (imgElement) imgElement.src = "https://payuee.com/image/"+product.Image1;
-//           if (titleElement) titleElement.textContent = product.title;
-//           if (priceElement) priceElement.innerHTML = product.selling_price < product.initial_cost 
-//               ? `<span class="money price price-old">${formatNumberToNaira(product.initial_cost)}</span>
-//                  <span class="money price price-sale">${formatNumberToNaira(product.selling_price)}</span>` 
-//               : `<span class="money price">${formatNumberToNaira(product.initial_cost)}</span>`;
-//           if (stockElement) {
-//               const reviewStars = stockElement.querySelectorAll('.review-star');
-//               reviewStars.forEach((star, i) => {
-//                   if (i < product.rating) {
-//                       star.classList.add('filled');
-//                   } else {
-//                       star.classList.remove('filled');
-//                   }
-//               });
-//               const reviewsNote = stockElement.querySelector('.reviews-note');
-//               if (reviewsNote) reviewsNote.textContent = `${formatNumber(product.reviews)} reviews`;
-//           }
-
-//           // Handle image wrapper update
-//           const imgWrapper = productDiv.querySelector('.pc__img-wrapper');
-//           if (imgWrapper) {
-//               const newImgWrapper = imgWrapper.cloneNode(true);
-//               imgWrapper.parentNode.replaceChild(newImgWrapper, imgWrapper);
-
-//               // Add new event listener to the image wrapper
-//               newImgWrapper.addEventListener('click', function(event) {
-//                   event.preventDefault();
-//                   window.location.href = `https://payuee.com/shop/${product.product_url_id}`;
-//               });
-//           } else {
-//               console.error('Error: .pc__img-wrapper not found in', productDiv);
-//           }
-
-//           // Handle 'Add To Cart' button
-//           if (product.product_stock > 0) {
-//               const addToCartButton = productDiv.querySelector('.pc__atc');
-//               if (addToCartButton) {
-//                   const newAddToCartButton = addToCartButton.cloneNode(true);
-//                   addToCartButton.parentNode.replaceChild(newAddToCartButton, addToCartButton);
-
-//                   newAddToCartButton.addEventListener('click', function() {
-//                       addToCart(product);
-//                       updateCartNumber();
-//                       updateCartDrawer();
-//                   });
-//               } else {
-//                   console.error('Error: .pc__atc button not found in', productDiv);
-//               }
-//           }
-
-//           // Make the product visible
-//           productDiv.classList.remove('hidden');
-//       }
-//   });
-
-//   console.log('Finished updating products...');
-// }
-
-// function reinitComponents() {
-//   if (typeof PayueeElements.JsHoverContent !== 'undefined') {
-//     new PayueeElements.JsHoverContent();
-//   }
-
-//   if (typeof PayueeElements.Search !== 'undefined') {
-//     new PayueeElements.Search();
-//   }
-
-//   if (typeof PayueeElements.Aside === 'function') {
-//     new PayueeElements.Aside();
-//   }
-
-//   if (typeof PayueeElements.ScrollToTop === 'function') {
-//     new PayueeElements.ScrollToTop();
-//   }
-
-//   if (typeof PayueeElements.Countdown !== 'undefined') {
-//     new PayueeElements.Countdown();
-//   }
-
-//   if (typeof PayueeElements.ShopViewChange !== 'undefined') {
-//     new PayueeElements.ShopViewChange();
-//   }
-
-//   if (typeof PayueeElements.Filters !== 'undefined') {
-//     new PayueeElements.Filters();
-//   }
-
-//   if (typeof PayueeElements.StickyElement !== 'undefined') {
-//     new PayueeElements.StickyElement();
-//   }
-
-//   if (typeof PayueeElements.StarRating !== 'undefined') {
-//     new PayueeElements.StarRating();
-//   }
-
-//   if (typeof PayueeSections.Header !== 'undefined') {
-//     new PayueeSections.Header();
-//   }
-
-//   if (typeof PayueeSections.Footer !== 'undefined') {
-//     new PayueeSections.Footer();
-//   }
-
-//   if (typeof PayueeSections.CustomerSideForm !== 'undefined') {
-//     new PayueeSections.CustomerSideForm();
-//   }
-
-//   if (typeof PayueeSections.CartDrawer !== 'undefined') {
-//     new PayueeSections.CartDrawer();
-//   }
-
-//   if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
-//     new PayueeSections.SwiperSlideshow()._initSliders();
-//   }
-
-//   if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
-//     new PayueeSections.ProductSingleMedia()._initProductMedia();
-//   }
-// }
 
 function formatNumber(value) {
   if (value >= 1_000_000_000) {

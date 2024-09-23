@@ -100,9 +100,102 @@
       opacity: 0.7; /* Slightly transparent */
     }
   
-    .hidden {
-      display: none;
+    /* related product preloader */
+    .skeleton-wrapperr {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .skeletonn {
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skeletonn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .skeletonn.skeleton-imgg {
+      width: 100%;
+      height: 200px;
+    }
+
+    .skeletonn.skeleton-titlee {
+      width: 60%;
+      height: 20px;
+    }
+
+    .skeletonn.skeleton-categoryy {
+      width: 40%;
+      height: 15px;
+    }
+
+    .skeleton.skeletonn-pricee {
+      width: 30%;
+      height: 20px;
+    }
+
+    .skeletonn.skeleton-revieww {
+      width: 80%;
+      height: 15px;
+    }
+
+    .skeletonn.skeleton-labell {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 20px;
+      background-color: #bdbdbd;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    /* Loading Cursor Style */
+    .loading-cursorr {
+      cursor: progress;
+    }
+
+    /* Disabled button styling */
+  .pc__atc[disabled] {
+      background-color: #cccccc; /* Gray background for disabled state */
+      color: #666666; /* Gray text color for disabled state */
+      cursor: not-allowed; /* Show 'not allowed' cursor for disabled state */
+      opacity: 0.7; /* Slightly transparent */
   }
+
+  .disabled {
+    display: none;
+  }
+
+.deactivated {
+    pointer-events: none; /* Disable click events */
+    opacity: 0.5; /* Adjust opacity to visually indicate it's deactivated */
+}
+.hidden {
+    display: none;
+}
   
   </style>
 
@@ -741,7 +834,7 @@
       <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">Related <strong>Products</strong></h2>
       
       <div class="position-relative">
-        <div id="related_products_container" class="swiper js-swiper-slider"
+        <div class="swiper-container js-swiper-slider"
           data-settings='{
             "autoplay": false,
             "slidesPerView": 4,
@@ -775,15 +868,22 @@
               }
             }
           }'>
-          <div class="swiper-wrapper">
+          <div id="related_products_container" class="swiper-wrapper">
             <!-- Your product slides here -->
           </div>
         </div>
-    
-        <div class="products-pagination"></div>
-        <div class="products-carousel__next"></div>
-        <div class="products-carousel__prev"></div>
-      </div>
+
+        <div class="products-carousel__prev position-absolute top-50 d-flex align-items-center justify-content-center">
+          <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_md" /></svg>
+        </div><!-- /.products-carousel__prev -->
+        <div class="products-carousel__next position-absolute top-50 d-flex align-items-center justify-content-center">
+          <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg>
+        </div><!-- /.products-carousel__next -->
+
+        <div class="products-pagination mt-4 mb-5 d-flex align-items-center justify-content-center"></div>
+        <!-- /.products-pagination -->
+      </div><!-- /.position-relative -->
+
     </section><!-- /.products-carousel container -->
   </main>
 
