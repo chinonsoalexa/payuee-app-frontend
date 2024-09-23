@@ -915,6 +915,8 @@ function renderProductDescription(product) {
           </div>
         </div>
   `;
+
+  renderRecommendedProduct();
 }
 
 function renderRecommendedProduct(product) {
@@ -922,8 +924,8 @@ function renderRecommendedProduct(product) {
   
   // Create a new product card element
   const rowElement = document.createElement('div');
-  rowElement.classList.add('swiper-slide', 'product-card'); // Add 'hidden' class
-  rowElement.id = product.ID; // Set the ID of the row
+  rowElement.classList.add('swiper-slide', 'product-card'); 
+  rowElement.id = product.ID;
 
   // Determine if the button should be disabled and what text to display
   const isOutOfStock = product.stock_remaining === 0;
@@ -965,12 +967,12 @@ function renderRecommendedProduct(product) {
   reinitializeSwiper();
 }
 
-
 // Function to reinitialize Swiper
 function reinitializeSwiper() {
   // Destroy the existing Swiper instance if needed (to prevent multiple initializations)
-  if (typeof swiper !== 'undefined' && swiper !== null) {
-    swiper.destroy(true, true); // Destroy old instance
+  const existingSwiper = document.querySelector('.swiper-container.js-swiper-slider.swiper-initialized');
+  if (existingSwiper) {
+    existingSwiper.swiper.destroy(true, true); // Destroy old instance
   }
 
   // Initialize Swiper for the new related products
@@ -981,13 +983,13 @@ function reinitializeSwiper() {
     effect: 'none',
     loop: true,
     pagination: {
-      el: '#related_products .products-pagination',
+      el: '.products-pagination',  // Updated selector
       type: 'bullets',
       clickable: true,
     },
     navigation: {
-      nextEl: '#related_products .products-carousel__next',
-      prevEl: '#related_products .products-carousel__prev',
+      nextEl: '.products-carousel__next',  // Correct selector
+      prevEl: '.products-carousel__prev',
     },
     breakpoints: {
       320: {
@@ -1007,10 +1009,19 @@ function reinitializeSwiper() {
       },
     },
   });
-
-  // Reinitialize any other necessary JS components (e.g., cart functionality)
-  initializeCartButtonEvents(); // Example function
 }
+
+// Example of initializing cart button events after re-render
+function initializeCartButtonEvents() {
+  const addToCartButtons = document.querySelectorAll('.js-add-cart');
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Your add to cart logic here
+      console.log("Product added to cart");
+    });
+  });
+}
+
 
 // Example of initializing cart button events after re-render
 function initializeCartButtonEvents() {
