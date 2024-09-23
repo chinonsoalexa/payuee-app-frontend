@@ -54,7 +54,7 @@ function getCurrentUrl(title, description) {
 }
 
 async function getProduct(productID) {
-  const apiUrl = "https://api.dorngwellness.com/product/" + productID;
+  const apiUrl = "https://api.payuee.com/product/" + productID;
 
   const requestOptions = {
       method: "GET",
@@ -95,7 +95,7 @@ async function getProduct(productID) {
 }
 
 async function getNextProduct(productID) {
-  const apiUrl = "https://api.dorngwellness.com/next-product/" + productID;
+  const apiUrl = "https://api.payuee.com/next-product/" + productID;
 
   const requestOptions = {
       method: "GET",
@@ -502,7 +502,7 @@ quantityInput.addEventListener('change', () => {
     // console.log("adding click event to link if true");
     pageNumber += 1
     // Perform the action you want on click
-    const apiUrl = `https://api.dorngwellness.com/get-comment/${pageNumber}/${product.ID}`;
+    const apiUrl = `https://api.payuee.com/get-comment/${pageNumber}/${product.ID}`;
 
     const requestOptions = {
         method: "GET",
@@ -613,7 +613,7 @@ quantityInput.addEventListener('change', () => {
         add_email: isSubscribedToMailingList,
     };
 
-      const apiUrl = "https://api.dorngwellness.com/post-comment";
+      const apiUrl = "https://api.payuee.com/post-comment";
   
       const requestOptions = {
           method: "POST",
@@ -713,7 +713,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://dorngwellness.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -768,12 +768,8 @@ function renderUseGuide(product) {
 
 function renderProductDescription(product) {
   const useGuideElement = document.getElementById('product-description');
-  
-  
-  // Create a new use guide card element
-  const rowElement = document.createElement('div');
 
-  rowElement.innerHTML = `
+  useGuideElement.innerHTML = `
    <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="tab-description-tab">
           <div class="product-single__description">
             <h3 class="block-title mb-4">Sed do eiusmod tempor incididunt ut labore</h3>
@@ -919,55 +915,113 @@ function renderProductDescription(product) {
           </div>
         </div>
   `;
-
-  // Append the new element to the container
-  useGuideElement.appendChild(rowElement);
 }
 
-// function renderRecommendedProduct(product) {
-//   const recommendElement = document.getElementById('recommendedProduct');
+function renderRecommendedProduct(product) {
+  const recommendElement = document.getElementById('related_products_container');
   
-//   // Create a new product card element
-//   const rowElement = document.createElement('div');
-//   rowElement.classList.add('swiper-slide', 'product-card', 'hidden'); // Add 'hidden' class
-//   rowElement.id = product.ID + 2; // Set the ID of the row
+  // Create a new product card element
+  const rowElement = document.createElement('div');
+  rowElement.classList.add('swiper-slide', 'product-card'); // Add 'hidden' class
+  rowElement.id = product.ID; // Set the ID of the row
 
-//   // Determine if the button should be disabled and what text to display
-//   const isOutOfStock = product.stock_remaining === 0;
-//   const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
-//   const buttonDisabled = isOutOfStock ? 'disabled' : '';
+  // Determine if the button should be disabled and what text to display
+  const isOutOfStock = product.stock_remaining === 0;
+  const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+  const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
-//   rowElement.innerHTML = `
-//    <div class="pc__img-wrapper">
-//       <a href="#">
-//         <img loading="lazy" src="${"https://dorngwellness.com/image/"+product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-//         <img loading="lazy" src="${"https://dorngwellness.com/image/"+product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
-//       </a>
-//       <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-//     </div>
+  rowElement.innerHTML = `
+   <div class="pc__img-wrapper">
+      <a href="#">
+        <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+        <img loading="lazy" src="${"https://payuee.com/image/"+product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+      </a>
+      <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+    </div>
 
-//     <div class="pc__info position-relative">
-//       <p class="pc__category">${product.category}</p>
-//       <h6 class="pc__title"><a href="https://dorngwellness.com/shop/${product.product_url_id}">${product.title}</a></h6>
-//       <div class="product-card__price d-flex">
-//         <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
-//       </div>
-//     </div>
-//     <div class="product-card__review d-flex align-items-center">
-//       <div class="reviews-group d-flex">
-//         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-//         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-//         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-//         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-//         <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-//       </div>
-//       <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.reviews)} reviews</span>
-//     </div>
-//   `;
+    <div class="pc__info position-relative">
+      <p class="pc__category">${product.category}</p>
+      <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+      <div class="product-card__price d-flex">
+        <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+      </div>
+    </div>
+    <div class="product-card__review d-flex align-items-center">
+      <div class="reviews-group d-flex">
+        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+      </div>
+      <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.reviews)} reviews</span>
+    </div>
+  `;
 
-//   // Append the new element to the container
-//   recommendElement.appendChild(rowElement);
-// }
+  // Append the new element to the container
+  recommendElement.appendChild(rowElement);
+
+  // Reinitialize Swiper
+  reinitializeSwiper();
+}
+
+
+// Function to reinitialize Swiper
+function reinitializeSwiper() {
+  // Destroy the existing Swiper instance if needed (to prevent multiple initializations)
+  if (typeof swiper !== 'undefined' && swiper !== null) {
+    swiper.destroy(true, true); // Destroy old instance
+  }
+
+  // Initialize Swiper for the new related products
+  const swiper = new Swiper('.js-swiper-slider', {
+    autoplay: false,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+    effect: 'none',
+    loop: true,
+    pagination: {
+      el: '#related_products .products-pagination',
+      type: 'bullets',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '#related_products .products-carousel__next',
+      prevEl: '#related_products .products-carousel__prev',
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 14,
+      },
+      768: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 24,
+      },
+      992: {
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+        spaceBetween: 30,
+      },
+    },
+  });
+
+  // Reinitialize any other necessary JS components (e.g., cart functionality)
+  initializeCartButtonEvents(); // Example function
+}
+
+// Example of initializing cart button events after re-render
+function initializeCartButtonEvents() {
+  const addToCartButtons = document.querySelectorAll('.js-add-cart');
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Your add to cart logic here
+      console.log("Product added to cart");
+    });
+  });
+}
 
 // function updateProductsFromData(products) {
 //   const productBody = document.getElementById('recommendedProduct');
@@ -992,7 +1046,7 @@ function renderProductDescription(product) {
 //           const priceElement = productDiv.querySelector('.pc__price');
 //           const stockElement = productDiv.querySelector('.product-card__review');
 
-//           if (imgElement) imgElement.src = "https://dorngwellness.com/image/"+product.Image1;
+//           if (imgElement) imgElement.src = "https://payuee.com/image/"+product.Image1;
 //           if (titleElement) titleElement.textContent = product.title;
 //           if (priceElement) priceElement.innerHTML = product.selling_price < product.initial_cost 
 //               ? `<span class="money price price-old">${formatNumberToNaira(product.initial_cost)}</span>
@@ -1020,7 +1074,7 @@ function renderProductDescription(product) {
 //               // Add new event listener to the image wrapper
 //               newImgWrapper.addEventListener('click', function(event) {
 //                   event.preventDefault();
-//                   window.location.href = `https://dorngwellness.com/shop/${product.product_url_id}`;
+//                   window.location.href = `https://payuee.com/shop/${product.product_url_id}`;
 //               });
 //           } else {
 //               console.error('Error: .pc__img-wrapper not found in', productDiv);
@@ -1295,7 +1349,7 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="${"https://dorngwellness.com/image/"+cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
