@@ -9,10 +9,6 @@
   <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
   <!-- <link rel="preconnect" href="../../fonts.gstatic.com/index.html"> -->
 
-  <!-- Fonts -->
-  <!-- <link href="../../fonts.googleapis.com/css217b2.css?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-  <link href="../../fonts.googleapis.com/css28433.css?family=Allura&amp;display=swap" rel="stylesheet"> -->
-
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/plugins/swiper.min.css" type="text/css">
   <link rel="stylesheet" href="css/plugins/jquery.fancybox.css" type="text/css">
@@ -23,181 +19,6 @@
 
   <!-- Document Title -->
   <title>Outfit Details | Payuee e-Shop</title>
-
-  <style>
-    .error-message {
-    font-size: 12px;
-    margin-top: 5px;
-    color: red;
-  }
-  
-    /* Skeleton Loader Styles */
-    .skeleton-wrapper {
-      display: flex;
-      gap: 20px; /* Space between the left and right sections */
-      position: relative;
-    }
-  
-    .skeleton-column {
-      display: flex;
-      flex-direction: column;
-      gap: 10px; /* Space between the small images */
-    }
-  
-    /* General skeleton style */
-    .skeleton {
-      background-color: #e0e0e0;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-  
-    .skeleton::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-      animation: shimmer 1.5s infinite;
-    }
-  
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
-    }
-  
-    /* Skeleton for the smaller images on the left */
-    .skeleton-img-small {
-      width: 80px; /* Adjust width to match your layout */
-      height: 80px; /* Adjust height to match your layout */
-      border-radius: 4px;
-    }
-  
-    /* Skeleton for the larger main image on the right */
-    .skeleton-large {
-      /* flex-grow: 1; */
-      width: 500px; /* Adjust width to match your layout */
-      height: 450px; /* Height for the main image */
-      border-radius: 4px;
-    }
-  
-    /* Loading Cursor Style */
-    .loading-cursor {
-      cursor: progress;
-    }
-  
-    /* Disabled button styling */
-    .pc__atc[disabled] {
-      background-color: #cccccc; /* Gray background for disabled state */
-      color: #666666; /* Gray text color for disabled state */
-      cursor: not-allowed; /* Show 'not allowed' cursor for disabled state */
-      opacity: 0.7; /* Slightly transparent */
-    }
-  
-    /* related product preloader */
-    .skeleton-wrapperr {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      position: relative;
-    }
-
-    .skeletonn {
-      background-color: #e0e0e0;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skeletonn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-      animation: shimmer 1.5s infinite;
-    }
-
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-    .skeletonn.skeleton-imgg {
-      width: 100%;
-      height: 200px;
-    }
-
-    .skeletonn.skeleton-titlee {
-      width: 60%;
-      height: 20px;
-    }
-
-    .skeletonn.skeleton-categoryy {
-      width: 40%;
-      height: 15px;
-    }
-
-    .skeleton.skeletonn-pricee {
-      width: 30%;
-      height: 20px;
-    }
-
-    .skeletonn.skeleton-revieww {
-      width: 80%;
-      height: 15px;
-    }
-
-    .skeletonn.skeleton-labell {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 40px;
-      height: 20px;
-      background-color: #bdbdbd;
-      border-radius: 4px;
-      z-index: 10;
-    }
-
-    /* Loading Cursor Style */
-    .loading-cursorr {
-      cursor: progress;
-    }
-
-    /* Disabled button styling */
-  .pc__atc[disabled] {
-      background-color: #cccccc; /* Gray background for disabled state */
-      color: #666666; /* Gray text color for disabled state */
-      cursor: not-allowed; /* Show 'not allowed' cursor for disabled state */
-      opacity: 0.7; /* Slightly transparent */
-  }
-
-  .disabled {
-    display: none;
-  }
-
-.deactivated {
-    pointer-events: none; /* Disable click events */
-    opacity: 0.5; /* Adjust opacity to visually indicate it's deactivated */
-}
-.hidden {
-    display: none;
-}
-  
-  </style>
 
 </head>
 
@@ -552,8 +373,6 @@
           <label for="footerSettingsCurrency_mobile" class="me-2 text-secondary">Currency</label>
           <select id="footerSettingsCurrency_mobile" class="form-select form-select-sm bg-transparent border-0" aria-label="Default select example" name="store-language">
             <option selected>₦ NGN</option>
-            <option value="1">£ GBP</option>
-            <option value="2">€ EURO</option>
           </select>
         </div>
 
