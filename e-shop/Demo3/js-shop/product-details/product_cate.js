@@ -259,41 +259,41 @@ function renderProductDetails(product) {
               <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/js-shop/product-details/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_zoom" /></svg>
+                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-1.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_zoom" /></svg>
+                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-1.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-2.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_zoom" /></svg>
+                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-2.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-3.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_zoom" /></svg>
+                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-3.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                 </div>
-                <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_prev_sm" /></svg></div>
-                <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_next_sm" /></svg></div>
+                <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></div>
+                <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></div>
               </div>
             </div>
             <div class="product-single__thumbnail">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/js-shop/product-details/../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
                 </div>
               </div>
             </div>
@@ -302,24 +302,24 @@ function renderProductDetails(product) {
         <div class="col-lg-5">
           <div class="d-flex justify-content-between mb-4 pb-md-2">
             <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
-              <a href="/e-shop/Demo3/js-shop/product-details/#" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
+              <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
               <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-              <a href="/e-shop/Demo3/js-shop/product-details/#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
+              <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
             </div><!-- /.breadcrumb -->
     
             <div class="product-single__prev-next d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-              <a id="previousDetail" href="/e-shop/Demo3/js-shop/product-details/#" class="text-uppercase fw-medium"><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_prev_md" /></svg><span class="menu-link menu-link_us-s">Prev</span></a>
-              <a id="nextDetail" href="/e-shop/Demo3/js-shop/product-details/#" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_next_md" /></svg></a>
+              <a id="previousDetail" href="#" class="text-uppercase fw-medium"><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_md" /></svg><span class="menu-link menu-link_us-s">Prev</span></a>
+              <a id="nextDetail" href="#" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
             </div><!-- /.shop-acs -->
           </div>
           <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
           <div class="product-single__rating">
             <div class="reviews-group d-flex">
-              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
+              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+              <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
             </div>
             <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
@@ -345,7 +345,7 @@ function renderProductDetails(product) {
                   <input type="radio" name="size" id="swatch-5">
                   <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                 </div>
-                <a href="/e-shop/Demo3/js-shop/product-details/#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
               </div>
               <div class="product-swatch color-swatches">
                 <label>Color</label>
@@ -369,10 +369,10 @@ function renderProductDetails(product) {
             </div>
           </form>
           <div class="product-single__addtolinks">
-            <a href="/e-shop/Demo3/js-shop/product-details/#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_retweet" /></svg><span>Re-post Product</span></a>
+            <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
             <share-button class="share-button">
               <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
-                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_sharing" /></svg>
+                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
                 <span>Share</span>
               </button>
               <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
@@ -829,17 +829,17 @@ function renderProductDescription(product) {
           <div class="product-single__reviews-list">
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
                   <h6>Janice Miller</h6>
                   <div class="reviews-group d-flex">
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
                   </div>
                 </div>
                 <div class="review-date">April 06, 2023</div>
@@ -850,17 +850,17 @@ function renderProductDescription(product) {
             </div>
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
                   <h6>Benjam Porter</h6>
                   <div class="reviews-group d-flex">
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
                   </div>
                 </div>
                 <div class="review-date">April 06, 2023</div>
@@ -962,7 +962,7 @@ function renderRecommendedProduct() {
 
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
-        <a href="/e-shop/Demo3/js-shop/product-details/#">
+        <a href="#">
           <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
           <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
@@ -978,11 +978,11 @@ function renderRecommendedProduct() {
       </div>
       <div class="product-card__review d-flex align-items-center">
         <div class="reviews-group d-flex">
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
         </div>
         <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
       </div>
@@ -1370,10 +1370,10 @@ function removeFromCart(productId) {
 function createStarRating(rating) {
   let stars = '';
   for (let i = 0; i < rating; i++) {
-    stars += `<svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star" /></svg>`;
+    stars += `<svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>`;
   }
   for (let i = rating; i < 5; i++) {
-    stars += `<svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="/e-shop/Demo3/js-shop/product-details/#icon_star_outline" /></svg>`;
+    stars += `<svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star_outline" /></svg>`;
   }
   return stars;
 }
