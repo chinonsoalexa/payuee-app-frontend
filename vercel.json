@@ -3,7 +3,7 @@
     "rewrites": [
         {
           "source": "/outfits/:nameAndId",
-          "destination": "e-shop/Demo3/js shop/product-details/product_cate"
+          "destination": "e-shop/Demo3/js-shop/product-details/product_cate"
         }
       ]
 }
