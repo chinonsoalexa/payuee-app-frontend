@@ -717,7 +717,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -963,15 +963,15 @@ function renderRecommendedProduct() {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="#">
-          <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+          <img loading="lazy" src="/e-shop/images${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="/e-shop/images${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="/e-shop/Demo3/js-shop/product-details/https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
           <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
         </div>
@@ -1486,7 +1486,7 @@ function renderReviews(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details//images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
