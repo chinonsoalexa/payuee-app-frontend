@@ -279,12 +279,12 @@ function renderProducts(product) {
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="https://payuee.com/product_cate/${product.product_url_id}" class="product-link1">
-                                <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
+                                <img loading="lazy" src="/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="https://payuee.com/product_cate/${product.product_url_id}" class="product-link2">
-                                <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                                <img loading="lazy" src="/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
                             </a>
                         </div>
                     </div>
@@ -480,7 +480,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="../images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="/../images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -515,7 +515,7 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://dorngwellness.com/image/"+cartProduct.Image1}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" src="/${"https://dorngwellness.com/image/"+cartProduct.Image1}" alt="">
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
