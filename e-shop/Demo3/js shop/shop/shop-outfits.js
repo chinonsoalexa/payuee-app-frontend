@@ -202,7 +202,7 @@ async function getProducts(pageNumber) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/product_cate?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -278,12 +278,12 @@ function renderProducts(product) {
                 <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/product_cate/${product.product_url_id}" class="product-link1">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link1">
                                 <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/product_cate/${product.product_url_id}" class="product-link2">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
                                 <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
                             </a>
                         </div>
@@ -295,7 +295,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/product_cate/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -307,7 +307,7 @@ function renderProducts(product) {
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                <a href="https://payuee.com/product_cate/${product.product_url_id}" class="pc__btn-wl-wrapper">
+                <a href="https://payuee.com/outfits/${product.product_url_id}" class="pc__btn-wl-wrapper">
                     <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_retweet" />
@@ -346,7 +346,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/product_cate/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
     });
 
     // Add event listener to the 'Add To Cart' button
