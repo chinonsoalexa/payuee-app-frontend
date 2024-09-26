@@ -1386,7 +1386,7 @@ function generateReviewsHTML(reviews) {
     const reviewHTML = `
       <div class="product-single__reviews-item">
         <div class="customer-avatar">
-          <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details//images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
