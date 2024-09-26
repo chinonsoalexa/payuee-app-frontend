@@ -260,25 +260,25 @@ function renderProductDetails(product) {
                 <div class="swiper-wrapper">
                   <div class="swiper-slide product-single__image-item">
                     <img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
                     <img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
                     <img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
                     <img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
@@ -971,7 +971,7 @@ function renderRecommendedProduct() {
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="https://payuee.com/kids/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
           <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
         </div>
