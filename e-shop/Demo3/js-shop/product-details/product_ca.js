@@ -704,7 +704,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="/e-shop/Demo3/${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -950,8 +950,8 @@ function renderRecommendedProduct() {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="#">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+          <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
@@ -1253,7 +1253,7 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
