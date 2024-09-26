@@ -346,7 +346,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/product_car/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/cars/${product.product_url_id}`;
     });
 
     // Add event listener to the 'Add To Cart' button
