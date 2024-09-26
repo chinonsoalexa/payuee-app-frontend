@@ -269,26 +269,26 @@ function renderProductDetails(product) {
               <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-1.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-2.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
                   <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                    <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-3.jpg" width="674" height="674" alt="">
+                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
                     </a>
                   </div>
@@ -300,10 +300,10 @@ function renderProductDetails(product) {
             <div class="product-single__thumbnail">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
+                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
                 </div>
               </div>
             </div>
@@ -401,8 +401,8 @@ function renderProductDetails(product) {
                 </div>
               </details>
             </share-button>
-            <script src="js/details-disclosure.js" defer="defer"></script>
-            <script src="js/share.js" defer="defer"></script>
+            <script src="/e-shop/Demo3/js/details-disclosure.js" defer="defer"></script>
+            <script src="/e-shop/Demo3/js/share.js" defer="defer"></script>
           </div>
           <div class="product-single__meta-info">
             <div class="meta-item">
@@ -740,7 +740,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="/e-shop/Demo3/${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -852,7 +852,7 @@ function renderProductDescription(product) {
           <div class="product-single__reviews-list">
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
@@ -873,7 +873,7 @@ function renderProductDescription(product) {
             </div>
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
@@ -986,15 +986,15 @@ function renderRecommendedProduct() {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="#">
-          <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+          <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="/e-shop/Demo3/https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
           <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
         </div>
@@ -1254,7 +1254,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3//images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -1289,7 +1289,7 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -1409,7 +1409,7 @@ function generateReviewsHTML(reviews) {
     const reviewHTML = `
       <div class="product-single__reviews-item">
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1468,7 +1468,7 @@ function addNewComment(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1509,7 +1509,7 @@ function renderReviews(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
