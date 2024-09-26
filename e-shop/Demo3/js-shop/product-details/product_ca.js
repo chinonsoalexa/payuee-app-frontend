@@ -258,16 +258,16 @@ function renderProductDetails(product) {
           <div class="product-single__media" data-media-type="center-image">
             <div class="product-single__image d-flex flex-column gap-2">
               <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="../images/products/product_0-5.jpg" width="553" height="775" alt="">
+                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-5.jpg" width="553" height="775" alt="">
               </div>
               <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="../images/products/product_0-6.jpg" width="553" height="775" alt="">
+                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-6.jpg" width="553" height="775" alt="">
               </div>
               <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="../images/products/product_0-7.jpg" width="553" height="775" alt="">
+                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-7.jpg" width="553" height="775" alt="">
               </div>
               <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="../images/products/product_0-8.jpg" width="553" height="775" alt="">
+                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-8.jpg" width="553" height="775" alt="">
               </div>
             </div>
           </div>
@@ -372,8 +372,8 @@ function renderProductDetails(product) {
                   </div>
                 </details>
               </share-button>
-              <script src="js/details-disclosure.js" defer="defer"></script>
-              <script src="js/share.js" defer="defer"></script>
+              <script src="/e-shop/Demo3/js/details-disclosure.js" defer="defer"></script>
+              <script src="/e-shop/Demo3/js/share.js" defer="defer"></script>
             </div>
             <div class="product-single__meta-info">
               <div class="meta-item">
@@ -704,7 +704,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="/e-shop/Demo3/${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -816,7 +816,7 @@ function renderUseGuide(product) {
 //           <div class="product-single__reviews-list">
 //             <div class="product-single__reviews-item">
 //               <div class="customer-avatar">
-//                 <img loading="lazy" src="../images/avatar.jpg" alt="">
+//                 <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
 //               </div>
 //               <div class="customer-review">
 //                 <div class="customer-name">
@@ -837,7 +837,7 @@ function renderUseGuide(product) {
 //             </div>
 //             <div class="product-single__reviews-item">
 //               <div class="customer-avatar">
-//                 <img loading="lazy" src="../images/avatar.jpg" alt="">
+//                 <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
 //               </div>
 //               <div class="customer-review">
 //                 <div class="customer-name">
@@ -950,8 +950,8 @@ function renderRecommendedProduct() {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="#">
-          <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+          <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
@@ -1218,7 +1218,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3//images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -1253,7 +1253,7 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -1373,7 +1373,7 @@ function generateReviewsHTML(reviews) {
     const reviewHTML = `
       <div class="product-single__reviews-item">
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1432,7 +1432,7 @@ function addNewComment(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1473,7 +1473,7 @@ function renderReviews(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
