@@ -486,6 +486,7 @@ quantityInput.addEventListener('change', () => {
 
   // Add event listener to the 'Add To Cart' button
   if (!product.product_stock < 1) {
+    console.log("here1");
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
       addToCartButton.addEventListener('click', function() {
