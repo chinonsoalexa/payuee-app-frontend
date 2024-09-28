@@ -1336,7 +1336,7 @@ function calculateCartSubtotal() {
       if (item.selling_price !== 0) {
           itemTotal = item.selling_price * item.quantity;
       } else {
-          itemTotal = item.price * item.quantity;
+          itemTotal = item.initial_cost * item.quantity;
       }
       subtotal += itemTotal;
   });
@@ -1346,7 +1346,7 @@ function calculateCartSubtotal() {
 
   // Check if the element exists before updating its innerText
   if (subtotalElement) {
-      subtotalElement.innerText = formatNumberToNaira(1233);
+      subtotalElement.innerText = formatNumberToNaira(subtotal);
   } else {
       console.error('Element with ID cart_sub_total_price not found');
   }

@@ -1346,7 +1346,7 @@ function calculateCartSubtotal() {
       if (item.selling_price !== 0) {
           itemTotal = item.selling_price * item.quantity;
       } else {
-          itemTotal = item.price * item.quantity;
+          itemTotal = item.initial_cost * item.quantity;
       }
       subtotal += itemTotal;
   });
