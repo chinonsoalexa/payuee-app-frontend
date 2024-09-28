@@ -346,7 +346,7 @@ function renderProductDetails(product) {
                   <div class="qty-control__reduce">-</div>
                   <div class="qty-control__increase">+</div>
                 </div><!-- .qty-control -->
-                <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+                ${cartButton}
               </div>
             </form>
             <div class="product-single__addtolinks">

@@ -237,16 +237,6 @@ function renderProductDetails(product) {
   // } else {
   //   commentRender = '';
   // }
-
-  if (product.product_stock < 1) {
-    cartButton = `
-    <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
-    `
-  } else {
-    cartButton = `
-    <button id="addToCartButton" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
-    `
-  }
   
   var showMore;
 
