@@ -1346,7 +1346,7 @@ function calculateCartSubtotal() {
 
   // Check if the element exists before updating its innerText
   if (subtotalElement) {
-      subtotalElement.innerText = formatNumberToNaira(subtotal);
+      subtotalElement.innerText = formatNumberToNaira(1233);
   } else {
       console.error('Element with ID cart_sub_total_price not found');
   }
