@@ -695,6 +695,7 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
+  console.log("this is product: ", product)
   renderProductDescription(product);
 
 }
