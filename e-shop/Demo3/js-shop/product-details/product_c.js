@@ -489,7 +489,8 @@ quantityInput.addEventListener('change', () => {
     console.log("here1");
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
-      addToCartButton.addEventListener('click', function() {
+    console.log("here2");
+    addToCartButton.addEventListener('click', function() {
         // event.preventDefault();
         addToCart(product, newQuantity1);
         updateCartNumber();
