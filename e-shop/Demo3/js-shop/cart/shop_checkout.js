@@ -617,7 +617,7 @@ placeOrderButton.addEventListener("click", function(event) {
     const modalInstance = new bootstrap.Modal(modalElement);
 
     modalInstance.show();    // Show the modal programmatically
-
+    return;
     // Collecting form data
     const formData = {
         firstName: document.getElementById("checkout_first_name").value.trim(),
