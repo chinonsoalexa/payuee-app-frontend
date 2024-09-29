@@ -667,103 +667,100 @@ placeOrderButton.addEventListener("click", function(event) {
     // }
 
     // Get the modal element
-    const modalElement = document.getElementById('checkoutModal');
+    const paymentModalElement = document.getElementById('checkoutModal');
+    const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
 
     // Create a new instance of the Bootstrap modal
-    const modalInstance = new bootstrap.Modal(modalElement);
-
-    modalInstance.show();    // Show the modal programmatically
-    return;
-});
-
-const paymentButton = document.getElementById('paymentButton');
-
-paymentButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the form from submitting traditionally
-    // insufficient balance modal
-    const modalElement = document.getElementById('checkoutModal');
-    const paymentModal = new bootstrap.Modal(modalElement);
+    const paymentModal = new bootstrap.Modal(paymentModalElement);
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
 
-    // Hide the payment modal
-    paymentModal.hide();
+    paymentModal.show();    // Show the modal programmatically
 
-    // Show the insufficient balance modal after hiding the payment modal
-    setTimeout(function () {
-      insufficientBalanceModal.show();
-      return;
-    }, 300); // Delay to ensure smooth transition
+    const paymentButton = document.getElementById('paymentButton');
 
-    // Collecting form data
-    const formData = {
-        firstName: document.getElementById("checkout_first_name").value.trim(),
-        lastName: document.getElementById("checkout_last_name").value.trim(),
-        companyName: document.getElementById("checkout_company_name").value.trim() || "",
-        state: document.getElementById("search-dropdown").value.trim(),
-        city: document.getElementById("city-dropdown").value.trim(),
-        streetAddress1: document.getElementById("checkout_street_address").value.trim(),
-        streetAddress2: document.getElementById("checkout_city").value.trim() || "",
-        zipcode: document.getElementById("checkout_zipcode").value.trim(),
-        province: document.getElementById("checkout_province").value.trim(),
-        phone: document.getElementById("checkout_phone").value.trim(),
-        email: document.getElementById("checkout_email").value.trim(),
-        shipDifferent: document.getElementById("ship_different_address").checked,
-        orderNotes: document.querySelector("textarea").value.trim() || "",
-        paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
-    };
+    paymentButton.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the form from submitting traditionally
+        // insufficient balance modal
+        // Hide the payment modal
+        paymentModal.hide();
 
-    // Dynamically assign variables using form data
-    orderCost = totalCharge;  
-    orderSubTotalCost = totalCharge - shippingCost;  
-    shippingCost = shippingCost;  
-    orderDiscount = calculateDiscount();
-    customerEmail = formData.email;
-    orderNotes = formData.orderNotes;
-    customerFName = formData.firstName;
-    customerSName = formData.lastName;
-    customerCompanyName = formData.companyName;
-    customerState = formData.state;
-    customerCity = formData.city;
-    customerStreetAddress1 = formData.streetAddress1;
-    customerStreetAddress2 = formData.streetAddress2;
-    customerZipCode = formData.zipcode;
-    customerProvince = formData.province;
-    customerPhoneNumber = formData.phone;
+        // Show the insufficient balance modal after hiding the payment modal
+        setTimeout(function () {
+        insufficientBalanceModal.show();
+        }, 300); // Delay to ensure smooth transition
 
-    // if all fields are valid let's show account number for transfer
-    const content = document.createElement('div');
-    content.innerHTML = `
-        Transfer <strong>${formatNumberToNaira(+orderCost)}</strong> to the below Account Details<br>
-        <strong>Account Name:</strong> DORNG GLOBAL CONCEPT<br>
-        <strong>Account Number:</strong> 177533623<br>
-        <strong>Bank Name:</strong> Access Bank
-    `;
-    
-    swal({
-        title: "Account Details",
-        content: content,
-        icon: "info",
-        buttons: {
-            cancel: true,
-            confirm: true,
-        },
-    }).then((result) => {
-        if (result) {
-             // Let's make order request
-             placeOrder();
-            // Perform actions when confirmed
-            swal("We would contact you with the provided Email Address and Phone number once the order process is confirmed", {
-                icon: "success",
-                buttons: {
-                    confirm: true,
-                },
-              }).then(() => {
-               
-              });
-        } else {
-            // Perform actions when canceled
-        }
+        // Collecting form data
+        const formData = {
+            firstName: document.getElementById("checkout_first_name").value.trim(),
+            lastName: document.getElementById("checkout_last_name").value.trim(),
+            companyName: document.getElementById("checkout_company_name").value.trim() || "",
+            state: document.getElementById("search-dropdown").value.trim(),
+            city: document.getElementById("city-dropdown").value.trim(),
+            streetAddress1: document.getElementById("checkout_street_address").value.trim(),
+            streetAddress2: document.getElementById("checkout_city").value.trim() || "",
+            zipcode: document.getElementById("checkout_zipcode").value.trim(),
+            province: document.getElementById("checkout_province").value.trim(),
+            phone: document.getElementById("checkout_phone").value.trim(),
+            email: document.getElementById("checkout_email").value.trim(),
+            shipDifferent: document.getElementById("ship_different_address").checked,
+            orderNotes: document.querySelector("textarea").value.trim() || "",
+            paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
+        };
+
+        // Dynamically assign variables using form data
+        orderCost = totalCharge;  
+        orderSubTotalCost = totalCharge - shippingCost;  
+        shippingCost = shippingCost;  
+        orderDiscount = calculateDiscount();
+        customerEmail = formData.email;
+        orderNotes = formData.orderNotes;
+        customerFName = formData.firstName;
+        customerSName = formData.lastName;
+        customerCompanyName = formData.companyName;
+        customerState = formData.state;
+        customerCity = formData.city;
+        customerStreetAddress1 = formData.streetAddress1;
+        customerStreetAddress2 = formData.streetAddress2;
+        customerZipCode = formData.zipcode;
+        customerProvince = formData.province;
+        customerPhoneNumber = formData.phone;
+
+        // if all fields are valid let's show account number for transfer
+        const content = document.createElement('div');
+        content.innerHTML = `
+            Transfer <strong>${formatNumberToNaira(+orderCost)}</strong> to the below Account Details<br>
+            <strong>Account Name:</strong> DORNG GLOBAL CONCEPT<br>
+            <strong>Account Number:</strong> 177533623<br>
+            <strong>Bank Name:</strong> Access Bank
+        `;
+        
+        swal({
+            title: "Account Details",
+            content: content,
+            icon: "info",
+            buttons: {
+                cancel: true,
+                confirm: true,
+            },
+        }).then((result) => {
+            if (result) {
+                // Let's make order request
+                placeOrder();
+                // Perform actions when confirmed
+                swal("We would contact you with the provided Email Address and Phone number once the order process is confirmed", {
+                    icon: "success",
+                    buttons: {
+                        confirm: true,
+                    },
+                }).then(() => {
+                
+                });
+            } else {
+                // Perform actions when canceled
+            }
+        });
     });
+    return;
 });
 
 function showError(fieldId, message) {
