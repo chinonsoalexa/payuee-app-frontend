@@ -609,60 +609,60 @@ addInputEventListeners();
 placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
   // Resetting previous errors
-    resetErrors();
+    // resetErrors();
 
-    // Validate required fields
-    let isValid = true;
+    // // Validate required fields
+    // let isValid = true;
 
-    if (!formData.firstName) {
-        isValid = false;
-        showError("checkout_first_name", "First Name is required.");
-    }
-    if (!formData.lastName) {
-        isValid = false;
-        showError("checkout_last_name", "Last Name is required.");
-    }
-    if (!formData.state) {
-        isValid = false;
-        showError("search-dropdown", "State/Region is required.");
-    }
-    if (!formData.city) {
-        isValid = false;
-        showError("city-dropdown", "City is required.");
-    }
-    if (!formData.streetAddress1) {
-        isValid = false;
-        showError("checkout_street_address", "Street Address 1 is required.");
-    }
-    if (!formData.zipcode) {
-        isValid = false;
-        showError("checkout_zipcode", "Postcode/ZIP is required.");
-    }
-    if (!formData.province) {
-        isValid = false;
-        showError("checkout_province", "Province is required.");
-    }
-    if (!formData.phone) {
-        isValid = false;
-        showError("checkout_phone", "Phone number is required.");
-    }
-    if (formData.phone.length !== 11) {
-        isValid = false;
-        showError("checkout_phone", "Invalid phone number.");
-    }
-    if (!formData.email) {
-        isValid = false;
-        showError("checkout_email", "Email is required.");
-    }
-    if (!isValidEmail(formData.email)) {
-        isValid = false;
-        showError("checkout_email", "Invalid Email Address.");
-    }
+    // if (!formData.firstName) {
+    //     isValid = false;
+    //     showError("checkout_first_name", "First Name is required.");
+    // }
+    // if (!formData.lastName) {
+    //     isValid = false;
+    //     showError("checkout_last_name", "Last Name is required.");
+    // }
+    // if (!formData.state) {
+    //     isValid = false;
+    //     showError("search-dropdown", "State/Region is required.");
+    // }
+    // if (!formData.city) {
+    //     isValid = false;
+    //     showError("city-dropdown", "City is required.");
+    // }
+    // if (!formData.streetAddress1) {
+    //     isValid = false;
+    //     showError("checkout_street_address", "Street Address 1 is required.");
+    // }
+    // if (!formData.zipcode) {
+    //     isValid = false;
+    //     showError("checkout_zipcode", "Postcode/ZIP is required.");
+    // }
+    // if (!formData.province) {
+    //     isValid = false;
+    //     showError("checkout_province", "Province is required.");
+    // }
+    // if (!formData.phone) {
+    //     isValid = false;
+    //     showError("checkout_phone", "Phone number is required.");
+    // }
+    // if (formData.phone.length !== 11) {
+    //     isValid = false;
+    //     showError("checkout_phone", "Invalid phone number.");
+    // }
+    // if (!formData.email) {
+    //     isValid = false;
+    //     showError("checkout_email", "Email is required.");
+    // }
+    // if (!isValidEmail(formData.email)) {
+    //     isValid = false;
+    //     showError("checkout_email", "Invalid Email Address.");
+    // }
 
-    // If form is not valid, prevent submission
-    if (!isValid) {
-        return;
-    }
+    // // If form is not valid, prevent submission
+    // if (!isValid) {
+    //     return;
+    // }
 
     // Get the modal element
     const modalElement = document.getElementById('checkoutModal');
