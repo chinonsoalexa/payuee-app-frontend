@@ -5,7 +5,7 @@
 
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="author" content="flexkit">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
   <link rel="preconnect" href="../../fonts.gstatic.com/index.html">
 
@@ -1353,45 +1353,69 @@
     </div><!-- /.modal-dialog modal-fullscreen -->
   </div><!-- /.sitemap position-fixed w-100 -->
 
-  <!-- Checkout Modal -->
-  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModal" aria-hidden="true">
-    <div class="modal-dialog delivery-modal">
+  <!-- Payment Modal -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+        <!-- Modal Header -->
         <div class="modal-header">
           <h5 class="modal-title d-flex align-items-center">
-            <!-- Logo image of Payuee e-Pay-->
             <img src="../images/payuee_signin.png" alt="Payuee e-Pay Logo" class="me-2" style="width: 30px; height: 30px;">
-            Payuee e-Pay
+            Payuee e-Pay - Secure Payment
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
+        <!-- Modal Body -->
         <div class="modal-body">
-          <div class="delivery-modal__wrapper">
-            <div class="d-flex align-items-center justify-content-between">
-              <h6>Next day delivery in store</h6>
-              <span class="third-color">FREE</span>
+          <!-- Payment Breakdown Section -->
+          <div class="mb-4">
+            <h6>Order Summary</h6>
+            <div class="d-flex justify-content-between">
+              <span>Subtotal:</span>
+              <span>$290</span>
             </div>
-            <p>Buy before 6pm to receive your order next day.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <h6>Next day delivery</h6>
-              <span>4 USD</span>
+            <div class="d-flex justify-content-between">
+              <span>Shipping:</span>
+              <span>$10</span>
             </div>
-            <p>Orders before 6pm from Monday to Saturday (or before 1pm on Sunday) will be delivered Next working day (except Northern Ireland and Highlands).<br>Orders placed after 6pm (after 1pm on Sunday) or for Northern Ireland and Highlands will be delivered in 2 working days.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <h6>Drop Point</h6>
-              <span>8 USD</span>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <strong>Total:</strong>
+              <strong>$300</strong>
             </div>
-            <p>In 2-3 working days. Pick up your parcel in one of the many different collection points available and during a wide range of hours.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <h6>Same day delivery in London:</h6>
-              <span>9 USD</span>
+          </div>
+
+          <!-- Payment Methods -->
+          <div class="mb-4">
+            <h6>Select Payment Method</h6>
+            <div class="d-flex align-items-center">
+              <input type="radio" id="payuee" name="paymentMethod" checked class="me-2">
+              <label for="payuee" class="me-4">Payuee e-Pay</label>
+              <input type="radio" id="creditCard" name="paymentMethod" class="me-2">
+              <label for="creditCard">Credit Card</label>
             </div>
-            <p>Place your order before 13:00 to get it today!.<br>If you order later on, you’ll receive it the next day and if you order on Sunday, you’ll receive it the next working day.</p>
+          </div>
+
+          <!-- Secure Payment Message -->
+          <div class="alert alert-info text-center">
+            <i class="bi bi-shield-lock-fill"></i> Your payment is 100% secure.
+          </div>
+
+          <!-- Pay Button -->
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary btn-lg">Pay $300</button>
           </div>
         </div>
+
+        <!-- Modal Footer (Optional) -->
+        <div class="modal-footer">
+          <p class="text-muted small">By completing your purchase, you agree to our <a href="#">Terms & Conditions</a>.</p>
+        </div>
       </div>
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.delivery-modal position-fixed-->
+    </div>
+  </div>
+
 
   <!-- Quick View -->
   <div class="modal fade" id="quickView" tabindex="-1">
