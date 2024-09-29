@@ -1,0 +1,902 @@
+var stateIsoCode;
+var stateSelected;
+var citySelected;
+var totalCharge;
+var htmlContent;
+
+var returnedOrderID;
+
+var customerName;
+var customerAddress1;
+var customerAddress2;
+
+var shippingCostPerKilo = 0;
+
+// Declare variables for order details
+var orderCost = 11040.00;
+var orderSubTotalCost = 12000.00;
+var shippingCost = 100.00;
+var orderDiscount = 0.00;
+var customerEmail = "john.doe@example.com";
+var orderNotes = "";
+var customerFName = "John";
+var customerSName = "Doe";
+var customerCompanyName = "Doe Inc.";
+var customerState = "Illinois";
+var customerCity = "Springfield";
+var customerStreetAddress1 = "123 Main St";
+var customerStreetAddress2 = "Apt 4B";
+var customerZipCode = "62701";
+var customerProvince = "Sangamon";
+var customerPhoneNumber = "+1234567890";
+
+document.addEventListener('DOMContentLoaded', async function () {
+    // Call the loading function to render the skeleton loaders
+    updateCartNumber();
+    updateCartDrawer();
+    renderCheckoutProducts();
+    await loadStates();
+    
+    document.getElementById('shippingFee').addEventListener('click', function(event) {
+        event.preventDefault();
+        swal("Please select STATE & CITY to get Shipping fee.", {
+            icon: "info",
+            buttons: {
+                confirm: true,
+            },
+          })
+    });
+    // make request to get current shipping fees by Kilometer
+    // console.log("finished to calculate cart subtotal: ...")
+    await getShippingFees();
+});
+
+// Function to fetch and populate state data
+async function loadStates() {
+    try {
+        // Update the URL to the correct path of your JSON file
+        const response = await fetch('nigeria_states.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const states = await response.json();
+        
+        renderStates(states);
+        const searchInput = document.getElementById('stateSearchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value;
+            filterStates(searchTerm, states);
+        });
+
+    } catch (error) {
+        console.error('Error fetching state data:', error);
+    }
+}
+
+// Function to fetch and populate city data based on state_iso2
+async function loadCities(stateIso2) {
+    try {
+        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const cities = await response.json();
+        
+        // Filter cities by state_iso2
+        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+
+        // Sort cities alphabetically by name
+        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
+
+        renderCities(filteredCities);
+
+        const searchInput = document.getElementById('citySearchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value;
+            filterCities(searchTerm, filteredCities);
+        });
+
+    } catch (error) {
+        console.error('Error fetching city data:', error);
+    }
+}
+
+function renderStates(states) {
+    const stateList = document.getElementById('state-list');
+    stateList.innerHTML = ''; // Clear existing items
+
+    if (states.length === 0) {
+        // No states found
+        const noResultsItem = document.createElement('li');
+        noResultsItem.textContent = 'No states found';
+        noResultsItem.classList.add('search-suggestion__item');
+        stateList.appendChild(noResultsItem);
+    } else {
+        // Render the states
+        states.forEach(state => {
+            const listItem = document.createElement('li');
+            listItem.textContent = state.name;
+            listItem.id = state.id;
+            listItem.classList.add('search-suggestion__item', 'js-search-select');
+            listItem.dataset.iso2 = state.iso2; // Store ISO2 code in data attribute
+            stateList.appendChild(listItem); // Append list item to the list
+        });
+    }
+
+    // Add click event listener to each list item
+    stateList.addEventListener('click', async function (event) {
+        if (event.target.classList.contains('js-search-select')) {
+            const selectedState = event.target.textContent;
+            const isoCode = event.target.dataset.iso2;
+            document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
+            document.getElementById('city-dropdown').value = ''; // Reset the city input value
+            CalculateCartSubtotal() 
+            // console.log(`Selected State: ${selectedState}, ISO Code: ${isoCode}`);
+            stateSelected = selectedState;
+            citySelected = '';
+            toggleClassById("formeStateList", "js-content_visible");
+            await loadCities(isoCode);
+        }
+    });
+}
+
+// Function to render cities to the DOM
+function renderCities(cities) {
+    const cityList = document.getElementById('city-list');
+    cityList.innerHTML = ''; // Clear existing items
+
+    if (cities.length === 0) {
+        const noResultsItem = document.createElement('li');
+        noResultsItem.textContent = 'No cities found';
+        noResultsItem.classList.add('search-suggestion__item');
+        cityList.appendChild(noResultsItem);
+    } else {
+        cities.forEach(city => {
+            const listItem = document.createElement('li');
+            listItem.textContent = city.name;
+            listItem.classList.add('search-suggestion__item', 'js-search-select');
+            listItem.dataset.cityName = city.name; // Store city name in data attribute
+            listItem.dataset.latitude = city.latitude; // Store latitude in data attribute
+            listItem.dataset.longitude = city.longitude; // Store longitude in data attribute
+            cityList.appendChild(listItem);
+        });
+    }
+
+    // Add click event listener to each city list item
+    cityList.addEventListener('click', function (event) {
+        if (event.target.classList.contains('js-search-select')) {
+            const selectedCity = event.target.dataset.cityName;
+            const latitude = parseFloat(event.target.dataset.latitude);
+            const longitude = parseFloat(event.target.dataset.longitude);
+
+            // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
+            const storeLat = 4.8156; 
+            const storeLon = 7.0498; 
+
+            // Calculate distance between store and selected city in kilometers
+            const distance = calculateDistance(storeLat, storeLon, latitude, longitude);
+
+            const shippingFee = distance * shippingCostPerKilo;
+            shippingCost = shippingFee;
+
+            // Get the element by its ID
+            const shippingFeeElement = document.getElementById('shippingFee');
+
+            // Set the new shipping fee value
+            shippingFeeElement.textContent = `₦${shippingFee.toLocaleString()}`;
+
+            // Update the input value and other elements
+            document.getElementById('city-dropdown').value = selectedCity;
+
+            CalculateCartSubtotal();
+            // Perform additional actions if needed, such as toggling visibility
+            toggleClassById("formeCityList", "js-content_visible");
+        }
+    });
+}
+
+function filterStates(term, states) {
+    const filtered = states.filter(state => 
+        state.name.toLowerCase().includes(term.toLowerCase())
+    );
+    renderStates(filtered);
+}
+
+function filterCities(term, cities) {
+    const filtered = cities.filter(state => 
+        state.name.toLowerCase().includes(term.toLowerCase())
+    );
+    renderCities(filtered);
+}
+
+function toggleClassById(elementId, className) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        if (element.classList.contains(className)) {
+            // If the class exists, remove it
+            element.classList.remove(className);
+        } else {
+            // If the class does not exist, add it
+            element.classList.add(className);
+        }
+    }
+}
+
+function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    }).format(number);
+}
+
+// Function to update the cart number displayed on the page
+function updateCartNumber() {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Calculate the number of distinct products in the cart
+    let numberOfProducts = cart.length;
+    
+    // Update the cart number element
+    document.getElementById('cartNumber').innerHTML = numberOfProducts;
+    document.getElementById('cartNumber2').innerHTML = numberOfProducts;
+    document.getElementById('cartNumber3').innerHTML = numberOfProducts;
+    document.getElementById('cartNumber4').innerHTML = numberOfProducts;
+}
+
+function renderCheckoutProducts() {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Get reference to the cart drawer element
+    const detailsCheckoutProducts = document.getElementById('detailsCheckoutProducts');
+    
+    // Clear the cart drawer
+    detailsCheckoutProducts.innerHTML = '';
+
+    // Check if the cart is empty
+    if (cart.length === 0) {
+        // Create and append a "No products added yet" message
+        const emptyMessage = document.createElement('div');
+        emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
+        emptyMessage.innerHTML = `
+        <div class="position-relative">
+          <img loading="lazy" class="cart-drawer-item__img" src="../images/product_not_available.jpg" alt="">
+        </div>
+        <div class="cart-drawer-item__info flex-grow-1">
+          <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
+          <p class="cart-drawer-item__option text-secondary">Select Product</p>
+          <p class="cart-drawer-item__option text-secondary">"Add To Cart"</p>
+          <div class="d-flex align-items-center justify-content-between mt-1">
+            <div class="qty-control position-relative"></div>
+            <span class="cart-drawer-item__price money price"></span>
+          </div>
+        </div>
+        `;
+        detailsCheckoutProducts.appendChild(emptyMessage);
+    } else {
+        // Loop through each item in the cart
+        cart.forEach(cartProduct => {
+            let price;
+        
+            if (cartProduct.selling_price < cartProduct.initial_cost) {
+                price = `
+                <td>${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</td>
+                `;
+            } else {
+                price = `
+                 <td>${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</td>
+                `;
+            }
+
+            // Create a new cart item element
+            const cartItem = document.createElement('tr');
+
+            // Generate the HTML for the cart item
+            cartItem.innerHTML = `
+                <td>
+                ${cartProduct.title}
+                      </td>
+                      ${price}
+            `;
+
+            // Append the new cart item to the cart drawer
+            detailsCheckoutProducts.appendChild(cartItem);
+
+        });
+    }
+    console.log("trying to calculate cart subtotal: ...");
+    CalculateCartSubtotal();
+    console.log("done calculating cart subtotal: ...");
+}
+
+function updateCartDrawer() {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Get reference to the cart drawer element
+    const cartDrawer = document.getElementById('cartDrawer1');
+    
+    // Clear the cart drawer
+    cartDrawer.innerHTML = '';
+
+    // Check if the cart is empty
+    if (cart.length === 0) {
+        // Create and append a "No products added yet" message
+        const emptyMessage = document.createElement('div');
+        emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
+        emptyMessage.innerHTML = `
+        <div class="position-relative">
+          <img loading="lazy" class="cart-drawer-item__img" src="images/product_not_available.jpg" alt="">
+        </div>
+        <div class="cart-drawer-item__info flex-grow-1">
+          <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
+          <p class="cart-drawer-item__option text-secondary">Select Product</p>
+          <p class="cart-drawer-item__option text-secondary">"Add To Cart"</p>
+          <div class="d-flex align-items-center justify-content-between mt-1">
+            <div class="qty-control position-relative"></div>
+            <span class="cart-drawer-item__price money price"></span>
+          </div>
+        </div>
+        `;
+        cartDrawer.appendChild(emptyMessage);
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
+        checkoutButton.disabled = true;
+    } else {
+        // Loop through each item in the cart
+        cart.forEach(cartProduct => {
+            let price;
+        
+            if (cartProduct.selling_price !== 0) {
+                price = `
+                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                `;
+            } else {
+                price = `
+                 <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                `;
+            }
+
+            // Create a new cart item element
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
+
+            // Generate the HTML for the cart item
+            cartItem.innerHTML = `
+                <div class="position-relative">
+                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://dorngwellness.com/image/"+cartProduct.Image1}" alt="">
+                </div>
+                <div class="cart-drawer-item__info flex-grow-1">
+                  <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
+                  <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
+                  <p class="cart-drawer-item__option text-secondary">Net Weight: ${cartProduct.net_weight}</p>
+                  <div class="d-flex align-items-center justify-content-between mt-1">
+                    <div class="qty-control position-relative">
+                      <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
+                      <div class="qty-control__reduce text-start" data-id="${cartProduct.ID}">-</div>
+                      <div class="qty-control__increase text-end" data-id="${cartProduct.ID}">+</div>
+                    </div>
+                    ${price}
+                  </div>
+                </div>
+                <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"></button>
+            `;
+
+            // Append the new cart item to the cart drawer
+            cartDrawer.appendChild(cartItem);
+
+            // Create and append the divider element
+            const divider = document.createElement('hr');
+            divider.classList.add('cart-drawer-divider');
+            cartDrawer.appendChild(divider);
+
+            // Add event listeners for quantity update buttons
+            const reduceButton = cartItem.querySelector('.qty-control__reduce');
+            const increaseButton = cartItem.querySelector('.qty-control__increase');
+            const quantityInput = cartItem.querySelector('.qty-control__number');
+            const removeButton = cartItem.querySelector('.js-cart-item-remove');
+
+            reduceButton.addEventListener('click', () => {
+                updateQuantity(cartProduct.ID, 'reduce', cartProduct.stock_remaining);
+            });
+
+            increaseButton.addEventListener('click', () => {
+                updateQuantity(cartProduct.ID, 'increase', cartProduct.stock_remaining);
+            });
+
+            quantityInput.addEventListener('change', () => {
+                updateQuantity(cartProduct.ID, 'set', cartProduct.stock_remaining, parseInt(quantityInput.value));
+            });
+
+            // Add event listener for remove button
+            removeButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                removeFromCart(cartProduct.ID);
+            });
+        });
+    }
+    CalculateCartSubtotal();
+    renderCheckoutProducts();
+}
+
+function updateQuantity(productId, action, stock_remaining, value = 1) {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Find the product in the cart
+    const productIndex = cart.findIndex(item => item.ID === productId);
+
+    if (productIndex !== -1) {
+        // Update the quantity based on action
+        if (action === 'increase') {stock_remaining
+            if (cart[productIndex].quantity == stock_remaining) {
+                // do nothing
+            } else {
+                cart[productIndex].quantity++;
+            }
+        } else if (action === 'reduce') {
+            cart[productIndex].quantity = cart[productIndex].quantity > 1 ? cart[productIndex].quantity - 1 : 1;
+        } else if (action === 'set') {
+            cart[productIndex].quantity = value > 0 ? value : 1;
+        }
+
+        // Re-calculate the product price based on the quantity
+        const product = cart[productIndex];
+        if (product.selling_price !== 0) {
+            product.totalPrice = product.selling_price * product.quantity;
+        } else {
+            product.totalPrice = product.initial_cost * product.quantity;
+        }
+
+        // Save the updated cart to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Re-render the cart drawer
+        CalculateCartSubtotal();
+        updateCartDrawer();
+    }
+}
+
+// Function to remove a product from the cart
+function removeFromCart(productId) {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Filter out the product to be removed
+    cart = cart.filter(item => item.ID !== productId);
+
+    // Save the updated cart to local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Re-render the cart drawer
+    updateCartDrawer();
+    updateCartNumber();
+    CalculateCartSubtotal();
+}
+
+function CalculateCartSubtotal() {
+    // Get cart from local storage
+    // console.log("Started calculating cart subtotal.krk");
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // console.log("Initial subtotal 1:");
+    // Initialize subtotal
+    let subtotal = 0;
+    // console.log("Initial subtotal:", subtotal);
+
+    // Loop through each item in the cart and calculate the subtotal
+    cart.forEach(item => {
+        // console.log("Processing item:", item);
+
+        // Ensure item properties are present and valid
+        if (item.selling_price !== undefined && item.initial_cost !== undefined && item.quantity !== undefined) {
+            // Calculate the item's total price
+            let itemTotal;
+            if (item.selling_price < item.initial_cost) {
+                itemTotal = item.selling_price * item.quantity;
+            } else {
+                itemTotal = item.initial_cost * item.quantity;
+            }
+            subtotal += itemTotal;
+        } else {
+            // console.warn("Item missing properties:", item);
+        }
+    });
+
+    // console.log("Subtotal after calculation:", subtotal);
+
+    // Update the subtotal and total elements in the UI
+    document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
+    document.getElementById('subtotalMain2').innerText = formatNumberToNaira(subtotal);
+    document.getElementById('totalMain').innerText = formatNumberToNaira(subtotal + shippingCost);
+    
+    totalCharge = subtotal + shippingCost;
+    // console.log("Total charge after including shipping:", totalCharge);
+}
+
+const placeOrderButton = document.getElementById('placeOrderButton');
+
+// Function to add event listeners to input fields for real-time validation
+function addInputEventListeners() {
+    const fields = document.querySelectorAll(".form-control");
+    fields.forEach(function(field) {
+        field.addEventListener("input", function() {
+            validateField(field);
+        });
+    });
+}
+
+// Function to validate individual fields
+function validateField(field) {
+    const fieldId = field.id;
+    let isValid = true;
+
+    switch(fieldId) {
+        case "checkout_first_name":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "First Name is required.");
+            }
+            break;
+        case "checkout_last_name":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Last Name is required.");
+            }
+            break;
+        case "search-dropdown":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "State/Region is required.");
+            }
+            break;
+        case "city-dropdown":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "City is required.");
+            }
+            break;
+        case "checkout_street_address":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Street Address 1 is required.");
+            }
+            break;
+        case "checkout_zipcode":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Postcode/ZIP is required.");
+            }
+            break;
+        case "checkout_province":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Province is required.");
+            }
+            break;
+        case "checkout_phone":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Phone number is required.");
+            } else if (field.value.trim().length !== 11) {
+                isValid = false;
+                showError(fieldId, "Invalid phone number.");
+            }
+            break;
+        case "checkout_email":
+            if (!field.value.trim()) {
+                isValid = false;
+                showError(fieldId, "Email is required.");
+            } else if (!isValidEmail(field.value.trim())) {
+                isValid = false;
+                showError(fieldId, "Invalid Email Address.");
+            }
+            break;
+        default:
+            break;
+    }
+
+    if (isValid) {
+        resetErrors(fieldId);
+    }
+}
+
+// Add event listeners to all input fields when the page loads
+addInputEventListeners();
+
+
+placeOrderButton.addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+
+    // Collecting form data
+    const formData = {
+        firstName: document.getElementById("checkout_first_name").value.trim(),
+        lastName: document.getElementById("checkout_last_name").value.trim(),
+        companyName: document.getElementById("checkout_company_name").value.trim() || "",
+        state: document.getElementById("search-dropdown").value.trim(),
+        city: document.getElementById("city-dropdown").value.trim(),
+        streetAddress1: document.getElementById("checkout_street_address").value.trim(),
+        streetAddress2: document.getElementById("checkout_city").value.trim() || "",
+        zipcode: document.getElementById("checkout_zipcode").value.trim(),
+        province: document.getElementById("checkout_province").value.trim(),
+        phone: document.getElementById("checkout_phone").value.trim(),
+        email: document.getElementById("checkout_email").value.trim(),
+        shipDifferent: document.getElementById("ship_different_address").checked,
+        orderNotes: document.querySelector("textarea").value.trim() || "",
+        paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
+    };
+
+    // Dynamically assign variables using form data
+    orderCost = totalCharge;  
+    orderSubTotalCost = totalCharge - shippingCost;  
+    shippingCost = shippingCost;  
+    orderDiscount = calculateDiscount();
+    customerEmail = formData.email;
+    orderNotes = formData.orderNotes;
+    customerFName = formData.firstName;
+    customerSName = formData.lastName;
+    customerCompanyName = formData.companyName;
+    customerState = formData.state;
+    customerCity = formData.city;
+    customerStreetAddress1 = formData.streetAddress1;
+    customerStreetAddress2 = formData.streetAddress2;
+    customerZipCode = formData.zipcode;
+    customerProvince = formData.province;
+    customerPhoneNumber = formData.phone;
+
+    // Resetting previous errors
+    resetErrors();
+
+    // Validate required fields
+    let isValid = true;
+
+    if (!formData.firstName) {
+        isValid = false;
+        showError("checkout_first_name", "First Name is required.");
+    }
+    if (!formData.lastName) {
+        isValid = false;
+        showError("checkout_last_name", "Last Name is required.");
+    }
+    if (!formData.state) {
+        isValid = false;
+        showError("search-dropdown", "State/Region is required.");
+    }
+    if (!formData.city) {
+        isValid = false;
+        showError("city-dropdown", "City is required.");
+    }
+    if (!formData.streetAddress1) {
+        isValid = false;
+        showError("checkout_street_address", "Street Address 1 is required.");
+    }
+    if (!formData.zipcode) {
+        isValid = false;
+        showError("checkout_zipcode", "Postcode/ZIP is required.");
+    }
+    if (!formData.province) {
+        isValid = false;
+        showError("checkout_province", "Province is required.");
+    }
+    if (!formData.phone) {
+        isValid = false;
+        showError("checkout_phone", "Phone number is required.");
+    }
+    if (formData.phone.length !== 11) {
+        isValid = false;
+        showError("checkout_phone", "Invalid phone number.");
+    }
+    if (!formData.email) {
+        isValid = false;
+        showError("checkout_email", "Email is required.");
+    }
+    if (!isValidEmail(formData.email)) {
+        isValid = false;
+        showError("checkout_email", "Invalid Email Address.");
+    }
+
+    // If form is not valid, prevent submission
+    if (!isValid) {
+        return;
+    }
+
+    // if all fields are valid let's show account number for transfer
+    const content = document.createElement('div');
+    content.innerHTML = `
+        Transfer <strong>${formatNumberToNaira(+orderCost)}</strong> to the below Account Details<br>
+        <strong>Account Name:</strong> DORNG GLOBAL CONCEPT<br>
+        <strong>Account Number:</strong> 177533623<br>
+        <strong>Bank Name:</strong> Access Bank
+    `;
+    
+    swal({
+        title: "Account Details",
+        content: content,
+        icon: "info",
+        buttons: {
+            cancel: true,
+            confirm: true,
+        },
+    }).then((result) => {
+        if (result) {
+             // Let's make order request
+             placeOrder();
+            // Perform actions when confirmed
+            swal("We would contact you with the provided Email Address and Phone number once the order process is confirmed", {
+                icon: "success",
+                buttons: {
+                    confirm: true,
+                },
+              }).then(() => {
+               
+              });
+        } else {
+            // Perform actions when canceled
+        }
+    });
+});
+
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    field.style.borderColor = "red"; // Change the border color to red
+
+    // Create an error message element
+    const errorElement = document.createElement("div");
+    errorElement.className = "error-message";
+    errorElement.style.color = "red";
+    errorElement.style.marginTop = "5px";
+    errorElement.innerText = message;
+
+    // Insert the error message after the input field
+    if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('error-message')) {
+        field.parentNode.insertBefore(errorElement, field.nextSibling);
+    }
+}
+
+function resetErrors() {
+    const fields = document.querySelectorAll(".form-control");
+    fields.forEach(function(field) {
+        field.style.borderColor = ""; // Reset border color
+        const nextElement = field.nextElementSibling;
+        if (nextElement && nextElement.classList.contains('error-message')) {
+            nextElement.remove(); // Remove the error message
+        }
+    });
+}
+
+function isValidEmail(email) {
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a = 
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in km
+    return distance;
+}
+
+function calculateDiscount() {
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Initialize subtotal
+    let discount = 0.00;
+    // Loop through each item in the cart and calculate the subtotal
+    cart.forEach(item => {
+        // Calculate the item's total price
+        if (item.initial_cost <= 0) {
+            return 0; // Prevent division by zero or negative values
+        };
+        if (item.selling_price < item.initial_cost) {
+            discount += item.selling_price - item.initial_cost;
+        };
+    });
+    
+    return discount; // Return the result rounded to two decimal places
+}
+
+function placeOrder() {
+    let OrderCost = 0.0;
+
+    // Construct the order history body
+    const orderHistoryBody = {
+        order_cost: parseFloat(OrderCost.toFixed(2)),
+        order_sub_total_cost: parseFloat(orderSubTotalCost.toFixed(2)),
+        shipping_cost: parseFloat(shippingCost.toFixed(2)),
+        order_discount: parseFloat(orderDiscount.toFixed(2)),
+        customer_email: customerEmail,
+        order_note: orderNotes,
+        customer_fname: customerFName,
+        customer_user_sname: customerSName,
+        customer_company_name: customerCompanyName,
+        customer_state: customerState,
+        customer_city: customerCity,
+        customer_street_address_1: customerStreetAddress1,
+        customer_street_address_2: customerStreetAddress2,
+        customer_zip_code: customerZipCode,
+        customer_province: customerProvince,
+        customer_phone_number: customerPhoneNumber
+    };
+
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Iterate through each product in the cart
+    cart.forEach((product) => {
+        if (product.selling_price < product.initial_cost) {
+            // Add or update the field for products where selling_price is less than initial_cost
+            product.order_cost = parseFloat(product.selling_price.toFixed(2));
+            OrderCost += product.selling_price;
+        } else {
+            // Add or update the field for other products
+            product.order_cost = parseFloat(product.initial_cost.toFixed(2));
+            OrderCost += product.initial_cost;
+        }
+    });
+
+    // Update order_cost with the final value after the loop
+    orderHistoryBody.order_cost = parseFloat(OrderCost.toFixed(2));
+
+    // Construct the request body
+    const requestBody = {
+        order_history_body: orderHistoryBody,
+        product_order_body: cart,
+    };
+    
+    // Send POST request using Fetch API
+    fetch('https://api.dorngwellness.com/place-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        localStorage.removeItem('cart');
+        window.location.href = 'shop_order_complete.html?OrderId=' + data.order;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+async function getShippingFees() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://api.dorngwellness.com/get-shipping-fee";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+        // alert('an error occurred. Please try again');
+        if (!response.ok) {
+            alert('an error occurred. Please try again');
+            return;
+        }
+        return;
+      }
+        const data = await response.json();
+        shippingCostPerKilo = data.success;
+    } finally{
+        // do nothing
+    }
+}

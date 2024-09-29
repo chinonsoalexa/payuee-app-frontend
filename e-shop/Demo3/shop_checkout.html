@@ -664,7 +664,7 @@
           </span>
         </a>
       </div>
-      <form name="checkout-form" action="https://payuee-html.flexkitux.com/Demo3/shop_order_complete.html">
+      <form name="checkout-form" action="#">
         <div class="checkout-form">
           <div class="billing-info__wrapper">
             <h4>BILLING DETAILS</h4>
@@ -672,13 +672,13 @@
               <div class="col-md-6">
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" id="checkout_first_name" placeholder="First Name">
-                  <label for="checkout_first_name">First Name</label>
+                  <label for="checkout_first_name">First Name*</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" id="checkout_last_name" placeholder="Last Name">
-                  <label for="checkout_last_name">Last Name</label>
+                  <label for="checkout_last_name">Last Name*</label>
                 </div>
               </div>
               <div class="col-md-12">
@@ -689,39 +689,51 @@
               </div>
               <div class="col-md-12">
                 <div class="search-field my-3">
-                  <div class="form-label-fixed hover-container">
-                    <label for="search-dropdown" class="form-label">Country / Region*</label>
-                    <div class="js-hover__open">
-                      <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a location...">
+                  <div class="form-label-fixed hover-container" id="formeStateList">
+                    <label for="search-dropdown" class="form-label">States / Region*</label>
+                    <div class="js-hover__open" id="statesInput">
+                      <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a State...">
                     </div>
                     <div class="filters-container js-hidden-content mt-2">
                       <div class="search-field__input-wrapper">
-                        <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
+                        <input id="stateSearchInput" type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
                       </div>
-                      <ul class="search-suggestion list-unstyled">
-                        <li class="search-suggestion__item js-search-select">Australia</li>
-                        <li class="search-suggestion__item js-search-select">Canada</li>
-                        <li class="search-suggestion__item js-search-select">United Kingdom</li>
-                        <li class="search-suggestion__item js-search-select">United States</li>
-                        <li class="search-suggestion__item js-search-select">Turkey</li>
+                      <ul class="search-suggestion list-unstyled" id="state-list">
+                        <!-- this is where states would be rendered -->
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-md-12">
+                <div class="search-field my-3">
+                    <div class="form-label-fixed hover-container" id="formeCityList">
+                        <label for="city-dropdown" class="form-label">Town / City*</label>
+                        <div class="js-hover__open" id="citiesInput">
+                            <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="city-dropdown" name="search-keyword" readonly placeholder="Choose a City...">
+                        </div>
+                        <div class="filters-container js-hidden-content mt-2">
+                            <div class="search-field__input-wrapper">
+                                <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" id="citySearchInput" placeholder="Search">
+                            </div>
+                            <ul class="search-suggestion list-unstyled" id="city-list">
+                                <!-- This is where cities would be rendered -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+              <div class="col-md-12">
                 <div class="form-floating mt-3 mb-3">
                   <input type="text" class="form-control" id="checkout_street_address" placeholder="Street Address *">
-                  <label for="checkout_company_name">Street Address *</label>
-                </div>
-                <div class="form-floating mt-3 mb-3">
-                  <input type="text" class="form-control" id="checkout_street_address_2">
+                  <label for="checkout_company_name">Street Address 1*</label>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" id="checkout_city" placeholder="Town / City *">
-                  <label for="checkout_city">Town / City *</label>
+                  <label for="checkout_city">Street Address 2</label>
                 </div>
               </div>
               <div class="col-md-12">
@@ -749,10 +761,6 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <div class="form-check mt-3">
-                  <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="create_account">
-                  <label class="form-check-label" for="create_account">CREATE AN ACCOUNT?</label>
-                </div>
                 <div class="form-check mb-3">
                   <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="ship_different_address">
                   <label class="form-check-label" for="ship_different_address">SHIP TO A DIFFERENT ADDRESS?</label>
@@ -776,23 +784,8 @@
                       <th>SUBTOTAL</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        Zessi Dresses x 2
-                      </td>
-                      <td>
-                        ₦32.50
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Kirby T-Shirt
-                      </td>
-                      <td>
-                        ₦29.90
-                      </td>
-                    </tr>
+                  <tbody id="detailsCheckoutProducts">
+                    <!-- this is where the checkout products list are rendered -->
                   </tbody>
                 </table>
                 <h3></h3>
@@ -827,15 +820,15 @@
                   <tbody>
                     <tr>
                       <th>SUBTOTAL</th>
-                      <td>₦62.40</td>
+                      <td id="subtotalMain2">₦NA</td>
                     </tr>
                     <tr>
-                      <th>VAT</th>
-                      <td>₦19</td>
+                      <th>SHIPPING</th>
+                      <td id="shippingFee">₦100</td>
                     </tr>
                     <tr>
                       <th>TOTAL</th>
-                      <td>₦81.40</td>
+                      <td id="totalMain">₦NA</td>
                     </tr>
                   </tbody>
                 </table>
@@ -850,38 +843,11 @@
                     </span>
                   </label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_2">
-                  <label class="form-check-label" for="checkout_payment_method_2">
-                    Check payments
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_3">
-                  <label class="form-check-label" for="checkout_payment_method_3">
-                    Cash on delivery
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_4">
-                  <label class="form-check-label" for="checkout_payment_method_4">
-                    Paypal
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
-                  </label>
-                </div>
                 <div class="policy-text">
                   Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="terms.html" target="_blank">privacy policy</a>.
                 </div>
               </div>
-              <button class="btn btn-primary btn-checkout">PLACE ORDER</button>
+              <button id="placeOrderButton" type="button" class="btn btn-primary btn-checkout">PLACE ORDER</button>
             </div>
           </div>
         </div>
@@ -1523,6 +1489,9 @@
   <!-- Page Overlay -->
   <div class="page-overlay"></div><!-- /.page-overlay -->
 
+  <!-- js shop import -->
+  <script src="js-shop/cart/shop_checkout.js"></script>
+
   <!-- External JavaScripts -->
   <script src="js/plugins/jquery.min.js"></script>
   <script src="js/plugins/bootstrap.bundle.min.js"></script>
@@ -1534,6 +1503,9 @@
 
   <!-- Footer Scripts -->
   <script src="js/theme.js"></script>
+
+  <!-- sweet alert -->
+  <script src="js/sweet-alert/sweetalert.min.js"></script>
 
 </body>
 
