@@ -681,6 +681,7 @@ const paymentButton = document.getElementById('paymentButton');
 paymentButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
     // insufficient balance modal
+    const modalElement = document.getElementById('checkoutModal');
     const paymentModal = new bootstrap.Modal(modalElement);
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
 
