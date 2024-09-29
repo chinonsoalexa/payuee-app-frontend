@@ -606,6 +606,8 @@ function validateField(field) {
 // Add event listeners to all input fields when the page loads
 addInputEventListeners();
 
+const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal');
+
 placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
   // Resetting previous errors
@@ -666,7 +668,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
     // Get the modal element
     const modalElement = document.getElementById('checkoutModal');
-    
+
     // Create a new instance of the Bootstrap modal
     const modalInstance = new bootstrap.Modal(modalElement);
 
@@ -678,6 +680,17 @@ const paymentButton = document.getElementById('paymentButton');
 
 paymentButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
+    // insufficient balance modal
+    const paymentModal = new bootstrap.Modal(modalElement);
+    const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
+
+    // Hide the payment modal
+    paymentModal.hide();
+
+    // Show the insufficient balance modal after hiding the payment modal
+    setTimeout(function () {
+      insufficientBalanceModal.show();
+    }, 300); // Delay to ensure smooth transition
 
     // Collecting form data
     const formData = {

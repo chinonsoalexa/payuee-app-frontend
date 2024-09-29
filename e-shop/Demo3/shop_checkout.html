@@ -1420,6 +1420,24 @@
     </div>
   </div>
 
+  <!-- Insufficient Balance Modal -->
+  <div class="modal fade" id="insufficientBalanceModal" tabindex="-1" aria-labelledby="insufficientBalanceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Insufficient Balance</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>You have insufficient funds in your wallet.</p>
+          <button type="button" class="btn btn-success d-flex align-items-center" id="fundWalletButton">
+            <i class="bi bi-wallet-fill me-2"></i> Fund Wallet
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Quick View -->
   <div class="modal fade" id="quickView" tabindex="-1">
     <div class="modal-dialog quick-view modal-dialog-centered">
