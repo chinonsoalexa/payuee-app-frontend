@@ -610,6 +610,14 @@ addInputEventListeners();
 placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
 
+    // Get the modal element
+    const modalElement = document.getElementById('checkoutModal');
+    
+    // Create a new instance of the Bootstrap modal
+    const modalInstance = new bootstrap.Modal(modalElement);
+
+    modalInstance.show();    // Show the modal programmatically
+
     // Collecting form data
     const formData = {
         firstName: document.getElementById("checkout_first_name").value.trim(),
