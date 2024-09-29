@@ -687,6 +687,7 @@ placeOrderButton.addEventListener("click", function(event) {
         // Show the insufficient balance modal after hiding the payment modal
         setTimeout(function () {
         insufficientBalanceModal.show();
+        return;
         }, 300); // Delay to ensure smooth transition
 
         // Collecting form data
