@@ -686,8 +686,14 @@ placeOrderButton.addEventListener("click", function(event) {
 
         // Show the insufficient balance modal after hiding the payment modal
         setTimeout(function () {
-        insufficientBalanceModal.show();
-        return;
+            insufficientBalanceModal.show();
+            // Fund Wallet button logic (you can customize this for your wallet integration)
+            const fundWalletButton = document.getElementById('fundWalletButton');
+            fundWalletButton.addEventListener('click', function () {
+                // Logic to fund the wallet goes here
+                window.location.href = 'https://payuee.com/fund-wallet';
+            });
+            return;
         }, 300); // Delay to ensure smooth transition
 
         // Collecting form data
