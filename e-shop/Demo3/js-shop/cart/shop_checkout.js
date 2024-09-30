@@ -669,10 +669,12 @@ placeOrderButton.addEventListener("click", function(event) {
     // Get the modal element
     const paymentModalElement = document.getElementById('checkoutModal');
     const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
+    const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
 
     // Create a new instance of the Bootstrap modal
     const paymentModal = new bootstrap.Modal(paymentModalElement);
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
+    const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
 
     paymentModal.show();    // Show the modal programmatically
 
@@ -683,8 +685,12 @@ placeOrderButton.addEventListener("click", function(event) {
         // insufficient balance modal
         // Hide the payment modal
         paymentModal.hide();
+        // Simulate checking balance - assuming this condition for demonstration
+        const hasSufficientBalance = true; // Change this to your actual balance check logic
 
-        // Show the insufficient balance modal after hiding the payment modal
+        if (!hasSufficientBalance) {
+        // Hide checkout modal and show insufficient balance modal
+        checkoutModal.hide();
         setTimeout(function () {
             insufficientBalanceModal.show();
             // Fund Wallet button logic (you can customize this for your wallet integration)
@@ -694,7 +700,17 @@ placeOrderButton.addEventListener("click", function(event) {
                 window.location.href = 'https://payuee.com/fund-wallet';
             });
             return;
-        }, 300); // Delay to ensure smooth transition
+        }, 300); // Delay for smooth transition
+        } else {
+        // Hide checkout modal and simulate a successful transaction
+        checkoutModal.hide();
+
+        // Simulate a delay for transaction processing (e.g., 2 seconds)
+        setTimeout(function () {
+            // Show the transaction success modal
+            transactionSuccessModal.show();
+        }, 2000); // 2 seconds delay to simulate payment processing
+        }
 
         // Collecting form data
         const formData = {
