@@ -686,7 +686,7 @@ placeOrderButton.addEventListener("click", function(event) {
         // Hide the payment modal
         // paymentModal.hide();
         // Simulate checking balance - assuming this condition for demonstration
-        const hasSufficientBalance = false; // Change this to your actual balance check logic
+        const hasSufficientBalance = true; // Change this to your actual balance check logic
 
         if (!hasSufficientBalance) {
         // Hide checkout modal and show insufficient balance modal
