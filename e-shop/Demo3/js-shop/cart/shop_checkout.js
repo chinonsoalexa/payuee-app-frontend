@@ -684,13 +684,13 @@ placeOrderButton.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
         // insufficient balance modal
         // Hide the payment modal
-        paymentModal.hide();
+        // paymentModal.hide();
         // Simulate checking balance - assuming this condition for demonstration
         const hasSufficientBalance = false; // Change this to your actual balance check logic
 
         if (!hasSufficientBalance) {
         // Hide checkout modal and show insufficient balance modal
-        checkoutModal.hide();
+        paymentModal.hide();
         setTimeout(function () {
             insufficientBalanceModal.show();
             // Fund Wallet button logic (you can customize this for your wallet integration)
@@ -703,7 +703,7 @@ placeOrderButton.addEventListener("click", function(event) {
         }, 300); // Delay for smooth transition
         } else {
         // Hide checkout modal and simulate a successful transaction
-        checkoutModal.hide();
+        paymentModal.hide();
 
         // Simulate a delay for transaction processing (e.g., 2 seconds)
         setTimeout(function () {
