@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <title>Dorng - Nature's Wellness Admin</title>
+</head>
+<body style="margin: 20px auto; text-align: center; font-family: work-Sans, sans-serif; background-color: #f6f7fb; display: block; width: 650px; padding: 0 12px;">
+    <table class="main-section" align="center" border="0" cellpadding="0" cellspacing="0" style="padding: 0 30px;background-color: #fff; -webkit-box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);width: 100%; border-radius:10px; padding-bottom:30px;">
+      <tbody>
+        <tr>
+          <td>
+            <table align="left" border="0" cellpadding="0" cellspacing="0" style="text-align: left;" width="100%">
+              <tbody>
+                <tr>
+                  <td style="text-align: center;"><img src="images/email-template/delivery-2.png" alt="" style="margin-bottom: 30px;border-radius:10px;"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <p style="font-size: 14px; color:#717171;">
+                      <h4>Hi John Doe,</h4>
+                    </p>
+                    <p style="font-size: 14px; color:#717171;">Your order has been successfully processed and is on its way!</p>
+                    <p style="font-size: 14px; color:#717171;">Transaction ID: {{.OrderID}}</p>
+                    <p style="font-size: 14px; color:#717171;">You can track your order using the link below:</p>
+                    <p style="font-size: 14px; color:#717171;">
+                      <a href="https://dorngwellness.com/shop_order_tracking?OrderID={{.OrderID}}" style="color: #0066cc;">Track My Order</a>
+                    </p>
+                  </td>                  
+                </tr>
+              </tbody>
+            </table>
+            <table class="content-detail" cellpadding="0" cellspacing="0" border="0" align="left" style="width: 100%;margin-top: 10px; margin-bottom: 10px;">
+              <tbody>
+                <tr>
+                  <td style="background-color: rgba(62,95,206,0.02);border: 1px solid #eeeeee; padding: 15px;letter-spacing: 0.3px;width: 50%; border-radius:10px;">
+                    <h5 style="font-size: 16px; font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">Your Shipping Address 1:</h5>
+                    <p style="text-align: left; font-weight: normal; font-size: 14px; color: #717171; line-height: 21px; margin-top: 0; word-wrap: break-word;">
+                      268 Cambridge Lane New Albany, IN 47150 268 Cambridge Lane New Albany, IN 47150
+                    </p>
+                  </td>
+                  <td><img src="images/email-template/space.jpg" alt=" " height="25" width="30"></td>
+                  <td style="background-color: rgba(62,95,206,0.02);border: 1px solid #eeeeee;padding: 15px;letter-spacing: 0.3px;width: 50%; border-radius:10px;">
+                    <h5 style="font-size: 16px;font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">Your Billing Address 2:</h5>
+                    <p style="text-align: left;font-weight: normal; font-size: 14px; color: #717171;line-height: 21px; margin-top: 0; word-wrap: break-word;">
+                      268 Cambridge Lane New Albany, IN 47150 268 Cambridge Lane New Albany, IN 47150
+                    </p>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+            <table class="order-template" border="0" cellpadding="0" cellspacing="0" align="left" style="width: 100%; margin-bottom: 50px;">
+              <tbody>
+                <tr align="left">
+                  <th style="font-size: 16px; padding: 15px; text-align: left; background: #fafafa;">PRODUCT</th>
+                  <th style="padding-left: 15px; font-size: 16px; padding: 15px; text-align: left; background: #fafafa;">DESCRIPTION</th>
+                  <th style="font-size: 16px; padding: 15px; text-align: left; background: #fafafa;">QUANTITY</th>
+                  <th style="font-size: 16px; padding: 15px; text-align: left; background: #fafafa;">PRICE </th>
+                </tr>
+                <tr>
+                  <td><img src="images/email-template/1.png" alt="" width="80"></td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="margin-top: 15px;">AirPods Pro Case, Soft Silicone Skin Case.</h5>
+                  </td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="font-size: 14px; color:#444;margin-top: 10px;">QTY : <span>1</span></h5>
+                  </td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="font-size: 14px; color:#444;margin-top:15px"><b>$1000</b></h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/email-template/4.png" alt="" width="80"></td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="margin-top: 15px;">Black Mobile Vision 1 Pro with No Cost  EMI/Additional Exchange Offers</h5>
+                  </td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="font-size: 14px; color:#444;margin-top: 10px;">QTY : <span>1</span></h5>
+                  </td>
+                  <td valign="top" style="padding-left: 15px;">
+                    <h5 style="font-size: 14px; color:#444;margin-top:15px"><b>$5000</b></h5>
+                  </td>
+                </tr>
+                <tr class="pad-left-right-space">
+                  <td class="m-t-5" colspan="2" align="left">
+                    <p style="font-size: 14px;">Subtotal : </p>
+                  </td>
+                  <td class="m-t-5" colspan="2" align="right"><b>$12000</b></td>
+                </tr>
+                <tr class="pad-left-right-space">
+                  <td colspan="2" align="left">
+                    <p style="font-size: 14px;">SHIPPING Charge :</p>
+                  </td>
+                  <td colspan="2" align="right"><b>$10</b></td>
+                </tr>
+                <tr class="pad-left-right-space">
+                  <td colspan="2" align="left">
+                    <p style="font-size: 14px;">Discount :</p>
+                  </td>
+                  <td colspan="2" align="right"><b> $1000</b></td>
+                </tr>
+                <tr class="pad-left-right-space">
+                  <td class="m-b-5" colspan="2" align="left">
+                    <p style="font-size: 14px;">Total :</p>
+                  </td>
+                  <td class="m-b-5" colspan="2" align="right"><b>$11040</b></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="temp-social main-bg-light text-center" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:30px; background-color: rgba(62, 95, 206, 0.03); border-radius: 15px;">
+              <tbody>
+                <tr>
+                  <td style="padding: 30px;">
+                    <div>
+                      <h4 class="title" style="margin:0; text-align:center; color: #444444; font-size: 22px; font-weight: bold; margin-top: 10px; margin-bottom: 10px;">Follow us</h4>
+                    </div>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                      <tbody>
+                        <tr>
+                          <td style="text-align:center;">
+                            <a href="https://www.facebook.com/">
+                              <img src="https://dorngwellness.com/admin/images/social/facebook.png" alt="facebook" style="width:24px;height:24px;border:0;">
+                            </a>
+                            <a href="https://twitter.com/">
+                              <img src="https://dorngwellness.com/admin/images/social/x.png" alt="twitter" style="width:24px;height:24px;border:0;">
+                            </a>
+                            <a href="https://www.instagram.com/">
+                              <img src="https://dorngwellness.com/admin/images/social/instagram.png" alt="instagram" style="width:24px;height:24px;border:0;">
+                            </a>
+                            <a href="https://wa.me/+2349067009539?text=Hello,+I+just+placed+an+order+and+would+like+more+information.+My+Order+ID+is+{{.OrderID}}">
+                              <img src="https://dorngwellness.com/admin/images/social/whatsapp1.png" alt="rss"style="width:24px;height:24px;border:0;">
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div style="border-top: 1px solid #dadada; margin-top: 30px; padding-top: 20px;">
+                      <p style="font-size:13px;margin:0;">2023 Copy Right by Dorng Wellness</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+
+</html>

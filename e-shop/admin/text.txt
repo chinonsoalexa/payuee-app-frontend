@@ -1,0 +1,175 @@
+back-arrow
+front-arrow
+product-detail
+product-gallery
+product-category
+pricing
+advance
+file-upload
+file-upload1
+
+<svg fill="none">
+<symbol id="back-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.97508 4.94165L2.91675 9.99998L7.97508 15.0583" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path opacity="0.4" d="M17.0833 10H3.05835" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="back-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.97508 4.94165L2.91675 9.99998L7.97508 15.0583" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path opacity="0.4" d="M17.0833 10H3.05835" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="front-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path opacity="0.4" d="M19.75 11.7256L4.75 11.7256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.7002 5.70124L19.7502 11.7252L13.7002 17.7502" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="front-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.0249 4.94189L17.0832 10.0002L12.0249 15.0586" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path opacity="0.4" d="M2.9165 10H16.9415" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="product-detail" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="mask0_979_920" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
+    <path d="M0 1.90735e-06H18V18H0V1.90735e-06Z" fill="white"/>
+    </mask>
+    <g mask="url(#mask0_979_920)">
+    <path d="M17.2969 7.73438V4.21875C17.2969 2.27711 15.7229 0.703127 13.7812 0.703127H4.21875C2.27711 0.703127 0.703125 2.27711 0.703125 4.21875V13.7813C0.703125 15.7229 2.27711 17.2969 4.21875 17.2969H7.875" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7.20703 3.86719H10.793" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17.2969 13.2539C17.2969 15.4868 15.4868 17.2969 13.2539 17.2969C11.021 17.2969 9.21094 15.4868 9.21094 13.2539C9.21094 11.021 11.021 9.21094 13.2539 9.21094C15.4868 9.21094 17.2969 11.021 17.2969 13.2539Z" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.2539 14.5195V11.9883" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.5195 13.2539H11.9883" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+</symbol>
+<symbol id="product-gallery" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.875 8.75C8.8415 8.75 9.625 7.9665 9.625 7C9.625 6.0335 8.8415 5.25 7.875 5.25C6.9085 5.25 6.125 6.0335 6.125 7C6.125 7.9665 6.9085 8.75 7.875 8.75Z" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.375 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V8.75" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.7812 4.375H18.5938" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M16.1875 6.78125V1.96875" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M2.3363 16.581L6.65005 13.6847C7.3413 13.221 8.3388 13.2735 8.96005 13.8072L9.2488 14.061C9.9313 14.6472 11.0338 14.6472 11.7163 14.061L15.3563 10.9372C16.0388 10.351 17.1413 10.351 17.8238 10.9372L19.2501 12.1622" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="product-category" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.3838 2.55479L16.5463 4.84728C18.0338 5.50353 18.0338 6.58853 16.5463 7.24478L11.3838 9.53729C10.7976 9.79979 9.83508 9.79979 9.24883 9.53729L4.08633 7.24478C2.59883 6.58853 2.59883 5.50353 4.08633 4.84728L9.24883 2.55479C9.83508 2.29229 10.7976 2.29229 11.3838 2.55479Z" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2.625 9.625C2.625 10.36 3.17625 11.2087 3.85 11.5062L9.79125 14.1488C10.2462 14.35 10.7625 14.35 11.2088 14.1488L17.15 11.5062C17.8238 11.2087 18.375 10.36 18.375 9.625" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2.625 14C2.625 14.8138 3.10625 15.5487 3.85 15.8812L9.79125 18.5238C10.2462 18.725 10.7625 18.725 11.2088 18.5238L17.15 15.8812C17.8938 15.5487 18.375 14.8138 18.375 14" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="pricing" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="mask0_118_328" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="19" height="19">
+    <path d="M19 0H0V19H19V0Z" fill="white"/>
+    </mask>
+    <g mask="url(#mask0_118_328)">
+    <mask id="mask1_118_328" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="19" height="19">
+    <path d="M0 1.90735e-06H19V19H0V1.90735e-06Z" fill="white"/>
+    </mask>
+    <g mask="url(#mask1_118_328)">
+    <path d="M12.1675 14.8436L15.7903 11.274C16.2641 10.8007 16.4996 10.1393 16.4317 9.47316L15.7968 3.24019L9.54761 2.60503C8.88131 2.5373 8.21991 2.7731 7.74673 3.24709L1.39301 9.57981C0.524982 10.4493 0.525279 11.8575 1.39371 12.7266L6.26792 17.6049C7.13706 18.4747 8.5468 18.4959 9.41668 17.6268" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.2032 5.82617C13.2032 5.82617 18.2598 5.56017 18.2577 1.80626V1.77672C18.2577 1.20535 17.7945 0.742188 17.2231 0.742188C17.2231 0.742188 14.5467 0.964844 13.8431 2.85742" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6.57315 12.5989L5.90039 13.248" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.4667 7.68174L10.7429 8.4292" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.9757 10.349C11.4095 9.91515 11.3762 9.22139 10.943 8.78822L10.4882 8.33348C9.96124 7.80645 9.1278 7.79127 8.6 8.31908L8.48281 8.43627C7.95504 8.96408 7.93626 9.83147 8.46325 10.3585L8.94415 10.8394C9.47118 11.3664 9.48576 12.2063 8.95795 12.7341L8.90333 12.7887C8.37556 13.3165 7.55114 13.2864 7.02411 12.7594L6.24255 11.9779C5.80937 11.5447 5.7854 10.8664 6.21921 10.4326" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    </g>
+</symbol>
+<symbol id="advance" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="mask0_118_291" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="21">
+    <path d="M0 0H21V21H0V0Z" fill="white"/>
+    </mask>
+    <g mask="url(#mask0_118_291)">
+    <path d="M2.61134 19.4551H0.615234V11.6118H2.61134C3.24561 11.6118 3.75978 12.126 3.75978 12.7602V18.3066C3.75978 18.9409 3.24561 19.4551 2.61134 19.4551Z" stroke-opacity="0.8" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M3.89758 13.5732C4.57738 12.7825 5.58443 12.2812 6.70904 12.2812C7.83369 12.2812 8.8407 12.7825 9.52054 13.5732H13.15C13.9145 13.5732 14.5343 14.193 14.5343 14.9575C14.5343 15.7221 13.9145 16.3418 13.15 16.3418H9.63977" stroke-opacity="0.8" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M3.89758 18.3386L7.20102 19.4551H14.5343L19.9614 14.2211C20.5192 13.6833 20.5273 12.7926 19.9795 12.2447C19.4569 11.7218 18.6158 11.7015 18.0685 12.1985L14.3428 15.5822" stroke-opacity="0.8" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M17.0395 6.16237C17.0395 5.89425 17.0122 5.63253 16.9603 5.37975L17.665 4.71612L16.6692 2.9912L15.741 3.27003C15.3518 2.92361 14.8923 2.65459 14.3865 2.487L14.1642 1.54495H12.1724L11.9501 2.487C11.4443 2.65459 10.9848 2.92361 10.5956 3.27003L9.66745 2.9912L8.67151 4.71612L9.37628 5.37975C9.3244 5.63253 9.29712 5.89425 9.29712 6.16237C9.29712 6.43049 9.3244 6.69221 9.37628 6.94499L8.67151 7.60862L9.66745 9.33353L10.5956 9.05471C10.9848 9.40113 11.4443 9.67015 11.9501 9.83774L12.1724 10.7798H14.1642L14.3865 9.83774C14.8923 9.67015 15.3518 9.40113 15.741 9.05471L16.6692 9.33353L17.665 7.60862L16.9603 6.94499C17.0122 6.69221 17.0395 6.43049 17.0395 6.16237Z" stroke-opacity="0.8" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M14.5899 6.16238C14.5899 6.94754 13.9534 7.58398 13.1683 7.58398C12.3832 7.58398 11.7467 6.94754 11.7467 6.16238C11.7467 5.37722 12.3832 4.74078 13.1683 4.74078C13.9534 4.74078 14.5899 5.37722 14.5899 6.16238Z" stroke-opacity="0.8" stroke-width="1.2" stroke-miterlimit="10"/>
+    </g>
+</symbol>
+<symbol id="file-upload" viewBox="0 0 48 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path opacity="0.2" d="M46.9738 15.9546V35.4873C47.116 36.7066 46.9805 37.9423 46.5774 39.1017C46.1742 40.2612 45.5139 41.3143 44.6459 42.1823C43.7779 43.0503 42.7247 43.7106 41.5653 44.1138C40.4058 44.5169 39.1702 44.6525 37.9509 44.5102H9.07768C7.85842 44.6525 6.62277 44.5169 5.46332 44.1138C4.30388 43.7106 3.2507 43.0503 2.3827 42.1823C1.5147 41.3143 0.854386 40.2612 0.451238 39.1017C0.0480899 37.9423 -0.0874406 36.7066 0.0548009 35.4873V11.4263C-0.0874406 10.2071 0.0480899 8.9714 0.451238 7.81196C0.854386 6.65251 1.5147 5.59933 2.3827 4.73133C3.2507 3.86333 4.30388 3.20302 5.46332 2.79987C6.62277 2.39672 7.85842 2.26119 9.07768 2.40343H30.2514C30.3578 2.40622 30.4624 2.43253 30.5575 2.48048C30.6526 2.52843 30.7359 2.59683 30.8014 2.68078C30.867 2.76472 30.9131 2.86213 30.9366 2.96602C30.9601 3.0699 30.9602 3.1777 30.9371 3.28166C30.3694 6.09302 30.9404 9.01477 32.5246 11.4056C34.1089 13.7965 36.5771 15.461 39.3874 16.034C41.6116 16.4787 43.9194 16.2136 45.9849 15.2761C46.095 15.2322 46.2143 15.2161 46.3321 15.2293C46.4499 15.2424 46.5626 15.2844 46.6604 15.3515C46.7581 15.4185 46.8379 15.5086 46.8925 15.6138C46.9472 15.719 46.9751 15.8361 46.9738 15.9546Z" fill="#5C61F2"/>
+    <path d="M43.153 28.6589L32.441 17.9469C31.9874 17.495 31.3731 17.2412 30.7327 17.2412C30.0923 17.2412 29.4781 17.495 29.0244 17.9469L17.1382 29.8331C16.9134 30.0535 16.611 30.177 16.2961 30.177C15.9812 30.177 15.6788 30.0535 15.454 29.8331L13.1922 27.5713C12.7386 27.1194 12.1243 26.8656 11.4839 26.8656C10.8435 26.8656 10.2292 27.1194 9.77556 27.5713L3.8758 33.4711C3.74039 33.6063 3.66423 33.7898 3.66406 33.9812V35.4874C3.66406 39.2891 5.27615 40.9011 9.07779 40.9011H37.951C41.7527 40.9011 43.3647 39.2891 43.3647 35.4874V29.169C43.3646 28.9776 43.2884 28.7941 43.153 28.6589Z" fill="#5C61F2"/>
+    <path d="M13.8896 19.2462C13.4946 19.2476 13.1032 19.1712 12.7378 19.0214C12.3723 18.8716 12.04 18.6512 11.7597 18.373C11.1936 17.8109 10.874 17.0471 10.8711 16.2494C10.8682 15.4517 11.1824 14.6856 11.7444 14.1195C12.3064 13.5535 13.0702 13.2338 13.8679 13.231H13.8896C14.6872 13.231 15.4522 13.5478 16.0163 14.1119C16.5803 14.6759 16.8972 15.4409 16.8972 16.2386C16.8972 17.0363 16.5803 17.8013 16.0163 18.3653C15.4522 18.9293 14.6872 19.2462 13.8896 19.2462Z" fill="#5C61F2"/>
+    <path d="M46.444 4.13592L42.8349 0.526762C42.4962 0.189411 42.0377 0 41.5596 0C41.0816 0 40.6231 0.189411 40.2844 0.526762L36.6752 4.13592C36.3565 4.478 36.183 4.93046 36.1912 5.39797C36.1994 5.86548 36.3888 6.31153 36.7195 6.64216C37.0501 6.97279 37.4962 7.16218 37.9637 7.17043C38.4312 7.17868 38.8836 7.00514 39.2257 6.68638L39.7551 6.15945V11.4264C39.7551 11.905 39.9452 12.364 40.2836 12.7024C40.622 13.0409 41.081 13.231 41.5596 13.231C42.0382 13.231 42.4972 13.0409 42.8357 12.7024C43.1741 12.364 43.3642 11.905 43.3642 11.4264V6.15945L43.8936 6.68638C44.2356 7.00514 44.6881 7.17868 45.1556 7.17043C45.6231 7.16218 46.0692 6.97279 46.3998 6.64216C46.7304 6.31153 46.9198 5.86548 46.9281 5.39797C46.9363 4.93046 46.7628 4.478 46.444 4.13592Z" fill="#5C61F2"/>
+</symbol>
+<symbol id="file-upload1" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M36.1465 16.9553H30.4869C25.8457 16.9553 22.0661 13.1757 22.0661 8.53442V2.87484C22.0661 1.79775 21.1848 0.916504 20.1077 0.916504H11.8044C5.77273 0.916504 0.896484 4.83317 0.896484 11.8244V29.1753C0.896484 36.1665 5.77273 40.0832 11.8044 40.0832H27.1969C33.2286 40.0832 38.1048 36.1665 38.1048 29.1753V18.9136C38.1048 17.8365 37.2236 16.9553 36.1465 16.9553ZM18.5802 23.4961C18.2865 23.7898 17.9144 23.9269 17.5423 23.9269C17.1702 23.9269 16.7982 23.7898 16.5044 23.4961L15.0944 22.0861V30.2915C15.0944 31.0944 14.4286 31.7603 13.6257 31.7603C12.8227 31.7603 12.1569 31.0944 12.1569 30.2915V22.0861L10.7469 23.4961C10.179 24.064 9.23898 24.064 8.67107 23.4961C8.10315 22.9282 8.10315 21.9882 8.67107 21.4203L12.5877 17.5036C12.7248 17.3861 12.8619 17.2882 13.0186 17.2098C13.0577 17.1903 13.1165 17.1707 13.1557 17.1511C13.2732 17.1119 13.3906 17.0923 13.5277 17.0728C13.5865 17.0728 13.6257 17.0728 13.6844 17.0728C13.8411 17.0728 13.9977 17.1119 14.1544 17.1707C14.174 17.1707 14.174 17.1707 14.1936 17.1707C14.3502 17.2294 14.5069 17.3469 14.6244 17.4644C14.644 17.484 14.6636 17.484 14.6636 17.5036L18.5802 21.4203C19.1481 21.9882 19.1481 22.9282 18.5802 23.4961Z" fill="#52526C" fill-opacity="0.2"/>
+    <path d="M30.134 14.2529C31.9944 14.2725 34.5794 14.2725 36.7923 14.2725C37.9085 14.2725 38.496 12.9604 37.7127 12.177C34.8927 9.33747 29.8402 4.22622 26.9419 1.32788C26.139 0.524966 24.7485 1.0733 24.7485 2.18955V9.02413C24.7485 11.8833 27.1769 14.2529 30.134 14.2529Z" fill="#52526C" fill-opacity="0.4"/>
+</symbol>
+</svg>
+
+<li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">
+<svg class="stroke-icon">
+<use href="#stroke-ecommerce"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-ecommerce"></use>
+</svg><span>Ecommerce</span></a>
+<ul class="sidebar-submenu">
+<li><a href="add-products.html">Add Product</a></li>
+<li><a href="product.html">Product</a></li>
+<li><a href="product-page.html">Product page</a></li>
+<li><a href="list-products.html">Product list</a></li>
+<li><a href="payment-details.html">Payment Details</a></li>
+<li><a href="order-history.html">Order History</a></li>
+<li><a class="submenu-title" href="#">Invoices
+<h5 class="sub-arrow"><i class="fa fa-angle-right"></i></h5></a>
+<ul class="submenu-content opensubmegamenu">
+<li><a href="invoice-1.html">Invoice-1</a></li>
+<li><a href="invoice-2.html">Invoice-2</a></li>
+<li><a href="invoice-3.html">Invoice-3</a></li>
+<li><a href="invoice-4.html">Invoice-4</a></li>
+<li><a href="invoice-5.html">Invoice-5</a></li>
+<li><a href="invoice-template.html">Invoice-6</a></li>
+</ul>
+</li>
+<li><a href="cart.html">Cart</a></li>
+<li><a href="list-wish.html">Wishlist</a></li>
+<li><a href="checkout.html">Checkout</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+</ul>
+</li>
+
+<ul class="s<ul class="sidebar-links" id="simple-bar">
+<li class="back-btn"><a href="index.html"><img class="img-fluid" src="images/logo/logo-icon.png"
+alt=""></a>
+<div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
+aria-hidden="true"></i></div>
+</li>
+<li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
+href="dashboard-02.html">
+<svg class="stroke-icon">
+<use href="#stroke-home"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-home"></use>
+</svg><span>Dashboard</span></a></li>
+
+<li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
+href="add-products.html">
+<svg class="stroke-icon">
+<use href="#stroke-ecommerce"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-ecommerce"></use>
+</svg><span>Add Product</span></a></li>
+
+<li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
+href="order-history.html">
+<svg class="stroke-icon">
+<use href="#stroke-layout"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-layout"></use>
+</svg><span>Order History</span></a>
+
+<li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
+href="add-blog.html">
+<svg class="stroke-icon">
+<use href="#stroke-gallery"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-gallery"></use>
+</svg><span>Blog Post</span></a>
+
+<li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
+href="add-blog.html">
+<svg class="stroke-icon">
+<use href="#stroke-email"></use>
+</svg>
+<svg class="fill-icon">
+<use href="#fill-email"></use>
+</svg><span>Send Email</span></a>
+</ul>
