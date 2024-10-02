@@ -1,7 +1,7 @@
 {
     "name": "Payuee",
     "short_name": "Payuee",
-    "description": "Recharge & Bill Payment",
+    "description": "Payuee - Escrow Payments",
     "start_url": "https://payuee.com",
     "display": "standalone",
     "background_color": "#ffffff",
