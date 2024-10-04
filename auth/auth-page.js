@@ -45,7 +45,7 @@ function get_auth_status() {
                 // logUserOutIfTokenIsExpired();
                 // let's redirect to a non-authenticated page cause the user is not authenticated
                 localStorage.removeItem('auth');
-                window.location.href = 'page/signin-new.html';
+                // window.location.href = 'page/signin-new.html';
             }
     });
     }
@@ -191,7 +191,7 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'page/signin-new.html';
+            // window.location.href = 'page/signin-new.html';
         }
     }
 }
