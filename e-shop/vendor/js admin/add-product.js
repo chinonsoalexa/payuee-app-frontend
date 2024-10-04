@@ -98,13 +98,9 @@ async function postProduct() {
     try {
         const response = await fetch('https://api.payuee.com/publish-product', { // Replace with your actual endpoint URL
             method: 'POST',
-            // headers: {
-            //     'Content-Type': 'multipart/form-data'
-            // },
             credentials: 'include', // Include credentials such as cookies or authorization headers
             body: formData,
         });
-        // // console.log("this is post data: ", formData);
         if (!response.ok) {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
@@ -138,7 +134,13 @@ function initializeDropzone() {
             this.on("addedfile", function (file) {
                 // Check if the number of uploaded images is already 2
                 if (imageArray.length >= 2) {
-                    alert("Only two images are allowed for a product");
+                    swal({
+                        title: "Only four (4) images are allowed for a product",
+                        icon: "warning",
+                        buttons: {
+                            cancel: true,
+                        },
+                    })
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
