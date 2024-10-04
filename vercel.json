@@ -2,6 +2,10 @@
     "cleanUrls": true,
     "rewrites": [
         {
+          "source": "/image/:path*",
+          "destination": "https://f005.backblazeb2.com/file/payuee/:path*"
+        },
+        {
           "source": "/outfits/:nameAndId",
           "destination": "e-shop/Demo3/product_cate"
         },
