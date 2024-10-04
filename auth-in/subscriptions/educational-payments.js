@@ -65,7 +65,7 @@ document.getElementById('continue-buy-pin').addEventListener('click', async func
                     showError('passwordError', 'Please login, you already have an existing account with us.');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('passwordError', 'This is an invalid email address. Please enter a valid email address.');
-                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 } else if  (errorData.error === 'insufficient funds') {

@@ -57,7 +57,7 @@ async function getProducts(pageNumber) {
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
                 
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
             }else {
@@ -298,7 +298,7 @@ async function deleteProduct(productID) {
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
                 
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 logout();
             }else {

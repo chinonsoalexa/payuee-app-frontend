@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
                 
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
             }else {
@@ -331,7 +331,7 @@ async function addEventListeners(historyItem) {
                         } else if (errorData.error === 'failed to get transaction history') {
                             // Handle error
                             errorFunction("failed to cancel subscription");
-                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                             // Handle error
                             logUserOutIfTokenIsExpired();
                         } else {
@@ -404,7 +404,7 @@ async function addEventListeners(historyItem) {
                         }else if (errorData.error === 'failed to get transaction history') {
                             // Handle error
                             errorFunction("failed to renew subscription");
-                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                        } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                             // Handle error
                             logUserOutIfTokenIsExpired();
                         } else {
@@ -508,7 +508,7 @@ document.getElementById("previousPage").addEventListener("click", async function
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -552,7 +552,7 @@ document.getElementById("constantBeforePage").addEventListener("click", async fu
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -596,7 +596,7 @@ document.getElementById("beforePage").addEventListener("click", async function(e
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -640,7 +640,7 @@ document.getElementById("twoBeforePage").addEventListener("click", async functio
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -684,7 +684,7 @@ document.getElementById("currentPage").addEventListener("click", async function(
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -728,7 +728,7 @@ document.getElementById("nextPage").addEventListener("click", async function(eve
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -772,7 +772,7 @@ document.getElementById("constantAfterPage").addEventListener("click", async fun
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -816,7 +816,7 @@ document.getElementById("afterPage").addEventListener("click", async function(ev
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {
@@ -860,7 +860,7 @@ document.getElementById("twoAfterPage").addEventListener("click", async function
                 } else if (errorData.error === 'failed to get transaction history') {
                     // need to do a data of just null event 
                     
-                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {

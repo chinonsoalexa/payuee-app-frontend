@@ -265,7 +265,7 @@ async function sendFunds() {
                     returnedErrorMessageDisplay('This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === "you can't send funds to self") {
                     returnedErrorMessageDisplay("you can't send funds to self");
-                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 }else {

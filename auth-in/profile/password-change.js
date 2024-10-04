@@ -95,7 +95,7 @@ document.getElementById('submitPassword').addEventListener('click', async functi
                 } else if  (errorData.error === "error updating user's password") {
                     // Handle other error cases
                     showError('an error occurred while updating your password');
-                }  else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                }  else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     logUserOutIfTokenIsExpired();
                 } else {

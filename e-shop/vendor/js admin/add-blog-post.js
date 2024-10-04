@@ -112,7 +112,7 @@ async function postBlog() {
         });
         // console.log("this is post data: ", formData);
         if (!response.ok) {
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
         } else {

@@ -63,7 +63,7 @@ document.getElementById('continue-buy-data').addEventListener('click', async fun
                     showError('NAN', 'incorrect body format');
                 } else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     showError('NAN', 'This is an invalid email address. Please enter a valid email address.');
-                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+                }else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                     // let's log user out the users session has expired
                     await logUserOutIfTokenIsExpired();
                 } else if  (errorData.error === 'insufficient funds') {
@@ -449,7 +449,7 @@ async function requestPlan(plan_id, plan_name) {
         } else {
             errorData = await response.json();
 
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!") {
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 await logUserOutIfTokenIsExpired();
             }
