@@ -130,17 +130,18 @@ function initializeDropzone() {
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
+        maxFiles: 4, // Maximum of 4 images allowed
         init: function () {
             this.on("addedfile", function (file) {
-                // Check if the number of uploaded images is already 2
-                if (imageArray.length >= 2) {
+                // Check if the number of uploaded images is already 4
+                if (imageArray.length >= 4) {
                     swal({
                         title: "Only four (4) images are allowed for a product",
                         icon: "warning",
                         buttons: {
                             cancel: true,
                         },
-                    })
+                    });
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
@@ -179,6 +180,18 @@ function initializeDropzone() {
                         file.previewElement.remove();
                     });
                 }
+            });
+
+            this.on("maxfilesexceeded", function (file) {
+                // Handle when a user tries to upload more than 4 images
+                swal({
+                    title: "You can only upload four (4) images",
+                    icon: "warning",
+                    buttons: {
+                        cancel: true,
+                    },
+                });
+                this.removeFile(file); // Remove the file if limit is exceeded
             });
         }
     };
