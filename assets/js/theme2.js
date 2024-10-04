@@ -1347,9 +1347,9 @@ function pureFadeOut(e) {
     }, 350);
   });
 
-  // document.querySelector('.js-show-register').addEventListener('click', function(e) {
-  //   document.querySelector(this.getAttribute("href")).click();
-  // });
+  document.querySelector('.js-show-register').addEventListener('click', function(e) {
+    document.querySelector(this.getAttribute("href")).click();
+  });
 
   $(document).on('click', 'button.js-add-wishlist, a.add-to-wishlist', function() {
     if($(this).hasClass("active"))
