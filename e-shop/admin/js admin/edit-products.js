@@ -35,7 +35,7 @@ function clearElementsByClass() {
 }
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.dorngwellness.com/products/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -103,9 +103,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://dorngwellness.com/admin/edit-products?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/admin/edit-products?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://dorngwellness.com/admin/edit-products?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/admin/edit-products?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -210,10 +210,10 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://dorngwellness.com/image/"+product.Image1}" alt="${product.title}">
+            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.Image1}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
-                <h6><a href="https://dorngwellness.com/shop/${product.product_url_id}">${product.title}</a></h6>
+                <h6><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
                 </div>
                 <div class="rating">${product.publish_status}</div>
                 <div class="price d-flex"> 
@@ -273,11 +273,11 @@ function renderProducts(product) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://dorngwellness.com/admin/edit-products?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://payuee.com/admin/edit-products?page=${pageNumber}`;
 }
 
 async function deleteProduct(productID) {
-    const apiUrl = "https://api.dorngwellness.com/delete-dorng-product/" + productID;
+    const apiUrl = "https://api.payuee.com/delete-dorng-product/" + productID;
   
     const requestOptions = {
         method: "GET",
@@ -395,7 +395,7 @@ function formatNumberToNaira(number) {
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

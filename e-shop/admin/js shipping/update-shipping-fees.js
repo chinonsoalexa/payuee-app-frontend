@@ -262,7 +262,7 @@ async function setShippingFees() {
     };
     
     // Send POST request using Fetch API
-    fetch('https://api.dorngwellness.com/set-shipping-fee', {
+    fetch('https://api.payuee.com/set-shipping-fee', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -295,7 +295,7 @@ async function setShippingFees() {
 
 async function getShippingFees() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/get-shipping-fee";
+    const apiUrl = "https://api.payuee.com/get-shipping-fee";
 
     const requestOptions = {
     method: "GET",
@@ -326,7 +326,7 @@ try {
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

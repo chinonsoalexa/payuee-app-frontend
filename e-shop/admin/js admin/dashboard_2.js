@@ -26,7 +26,7 @@ var dataSeries1; // For series1
 var dataSeries2; // Example modification for series2
 
 async function getDorngAnalytics() {
-    const apiUrl = "https://api.dorngwellness.com/get-dorng-analytics";
+    const apiUrl = "https://api.payuee.com/get-dorng-analytics";
 
     const requestOptions = {
         method: "GET",
@@ -346,7 +346,7 @@ chart1.render();
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

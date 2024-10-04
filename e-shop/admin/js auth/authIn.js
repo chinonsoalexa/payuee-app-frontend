@@ -22,7 +22,7 @@
 // }
 
 // async function check_auth_status() {
-//     const apiUrl = "https://api.dorngwellness.com/auth-status";
+//     const apiUrl = "https://api.payuee.com/auth-status";
 
 //     const requestOptions = {
 //         method: "GET",
@@ -55,7 +55,7 @@
 
 // async function logout() {
 //     // also send a request to the logout api endpoint
-//     const apiUrl = "https://api.dorngwellness.com/log-out";
+//     const apiUrl = "https://api.payuee.com/log-out";
 
 //     const requestOptions = {
 //     method: "GET",

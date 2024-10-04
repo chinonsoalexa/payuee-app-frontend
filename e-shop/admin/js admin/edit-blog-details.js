@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 async function updateBlog() {
 
-    const apiUrl = "https://api.dorngwellness.com/update-dorng-blog";
+    const apiUrl = "https://api.payuee.com/update-dorng-blog";
 
     // Construct the request body
     const requestBody = {
@@ -144,11 +144,11 @@ async function updateBlog() {
 
 document.getElementById('previewBlogPost').addEventListener('click', function(event) {
     event.preventDefault();
-    window.open('https://dorngwellness.com/blog_single?BlogID=' + blogIdToUpdate, '_blank');
+    window.open('https://payuee.com/blog_single?BlogID=' + blogIdToUpdate, '_blank');
 })
 
 async function getProduct(productID) {
-    const apiUrl = "https://api.dorngwellness.com/get-blog/" + productID;
+    const apiUrl = "https://api.payuee.com/get-blog/" + productID;
   
     const requestOptions = {
         method: "GET",
@@ -242,7 +242,7 @@ function updateFields(product) {
 
   async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

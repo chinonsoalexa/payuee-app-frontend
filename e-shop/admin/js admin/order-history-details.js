@@ -31,7 +31,7 @@ function clearElementsByClass(className) {
 }
 
 async function getProducts(OrderId) {
-    const apiUrl = `https://api.dorngwellness.com/get-dorng-order/${OrderId}`;
+    const apiUrl = `https://api.payuee.com/get-dorng-order/${OrderId}`;
 
     const requestOptions = {
         method: "GET",
@@ -167,9 +167,9 @@ function renderProducts(product) {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="img-fluid img-40" src="${"https://dorngwellness.com/image/"+product.Image1}" alt="${product.title}"></td>
+        <td><img class="img-fluid img-40" src="${"https://payuee.com/image/"+product.Image1}" alt="${product.title}"></td>
         <td>
-        <div class="product-name"><a href="https://dorngwellness.com/shop/${product.product_url_id}">${product.title}</a></div>
+        <div class="product-name"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
         </td>
         <td>${formatNumberToNaira(product.order_cost)}</td>
         <td>
@@ -185,7 +185,7 @@ function renderProducts(product) {
 }
 
 async function updateOrderStatus(orderID, orderStatus) {
-    const apiUrl = "https://api.dorngwellness.com/update-dorng-status";
+    const apiUrl = "https://api.payuee.com/update-dorng-status";
 
     // Construct the request body
     const requestBody = {
@@ -279,7 +279,7 @@ function formatNumberToNaira(number) {
 
 function logUserOutIfTokenIsExpired() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

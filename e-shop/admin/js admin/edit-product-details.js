@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function updateProduct() {
     setUpdatedJsonFields();
 
-    const apiUrl = "https://api.dorngwellness.com/update-dorng-product";
+    const apiUrl = "https://api.payuee.com/update-dorng-product";
 
     // Construct the request body
     const requestBody = {
@@ -401,7 +401,7 @@ function setUpdatedJsonFields() {
 }
 
 async function getProduct(productID) {
-    const apiUrl = "https://api.dorngwellness.com/product/" + productID;
+    const apiUrl = "https://api.payuee.com/product/" + productID;
   
     const requestOptions = {
         method: "GET",
@@ -443,7 +443,7 @@ async function getProduct(productID) {
 
   async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",

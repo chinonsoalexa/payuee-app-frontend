@@ -366,7 +366,7 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://dorngwellness.com/image/"+cartProduct.Image1}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -902,7 +902,7 @@ function placeOrder() {
     };
     
     // Send POST request using Fetch API
-    fetch('https://api.dorngwellness.com/place-order', {
+    fetch('https://api.payuee.com/place-order', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -921,7 +921,7 @@ function placeOrder() {
 
 async function getShippingFees() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/get-shipping-fee";
+    const apiUrl = "https://api.payuee.com/get-shipping-fee";
 
     const requestOptions = {
     method: "GET",

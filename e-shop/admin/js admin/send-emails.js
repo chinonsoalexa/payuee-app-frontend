@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function sendEmail() {
 
-    const apiUrl = "https://api.dorngwellness.com/send-dorng-email";
+    const apiUrl = "https://api.payuee.com/send-dorng-email";
 
     // Construct the request body
     const requestBody = {
@@ -125,7 +125,7 @@ async function sendEmail() {
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
