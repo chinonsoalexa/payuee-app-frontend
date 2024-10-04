@@ -96,7 +96,7 @@ async function postProduct() {
     });
 
     try {
-        const response = await fetch('https://api.dorngwellness.com/publish-product', { // Replace with your actual endpoint URL
+        const response = await fetch('https://api.payuee.com/publish-product', { // Replace with your actual endpoint URL
             method: 'POST',
             // headers: {
             //     'Content-Type': 'multipart/form-data'
@@ -462,7 +462,7 @@ function clearFields() {
 
 async function logout() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.dorngwellness.com/log-out";
+    const apiUrl = "https://api.payuee.com/log-out";
 
     const requestOptions = {
     method: "GET",
