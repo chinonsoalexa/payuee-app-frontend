@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     // Run your authentication status check function
-    get_auth_status();
+    // get_auth_status();
 });
 
 // this would be for unauthenticated pages
