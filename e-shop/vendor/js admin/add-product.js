@@ -188,7 +188,7 @@ function initializeDropzone() {
                     title: "You can only upload four (4) images",
                     icon: "warning",
                     buttons: {
-                        cancel: true,
+                        confirm: true,
                     },
                 });
                 this.removeFile(file); // Remove the file if limit is exceeded
