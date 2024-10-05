@@ -35,13 +35,13 @@ async function updateProduct() {
 
     // Construct the request body
     const requestBody = {
-        product_id: +productToUpdate,
+        product_id: +productToUpdate,  // Convert to number (if it's an integer)
         product_title: productTitle,
         product_description: productDescription,
-        initial_cost: +initialCost,
-        selling_price: +sellingPrice,
-        product_stock: +productStock,
-        net_weight: +netWeight,
+        initial_cost: parseFloat(initialCost),  // Convert to float
+        selling_price: parseFloat(sellingPrice),  // Convert to float
+        product_stock: +productStock,  // Convert to number (integer)
+        net_weight: +netWeight,  // Convert to number (integer)
         category: selectedCategory,
         tags: tags,
         publish_status: publishStatus,
