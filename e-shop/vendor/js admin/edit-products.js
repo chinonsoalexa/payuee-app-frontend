@@ -245,7 +245,7 @@ function renderProducts(product) {
         // Your delete logic here
         // console.log('Delete button clicked for product ID:', product.ID);21
         swal({
-            title: "Are you sure you want to delete this product",
+            title: "Are you sure you want to delete "+"'"+product.title+"'",
             icon: "warning",
             buttons: {
                 cancel: true,
