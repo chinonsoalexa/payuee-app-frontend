@@ -41,7 +41,7 @@ async function updateProduct() {
         initial_cost: parseFloat(initialCost),  // Convert to float
         selling_price: parseFloat(sellingPrice),  // Convert to float
         product_stock: +productStock,  // Convert to number (integer)
-        net_weight: +netWeight,  // Convert to number (integer)
+        net_weight: parseFloat(netWeight),  // Convert to number (integer)
         category: selectedCategory,
         tags: tags,
         publish_status: publishStatus,
