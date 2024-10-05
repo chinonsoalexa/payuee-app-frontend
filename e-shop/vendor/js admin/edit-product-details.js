@@ -401,7 +401,7 @@ function setUpdatedJsonFields() {
 }
 
 async function getProduct(productID) {
-    const apiUrl = "https://api.payuee.com/product/" + productID;
+    const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
   
     const requestOptions = {
         method: "GET",
