@@ -277,7 +277,7 @@ function updateLink(urlIdToUpdate, pageNumber) {
 }
 
 async function deleteProduct(productID) {
-    const apiUrl = "https://api.payuee.com/delete-vendor-product/" + productID;
+    const apiUrl = "https://api.payuee.com/vendor/delete-vendor-product/" + productID;
   
     const requestOptions = {
         method: "GET",
