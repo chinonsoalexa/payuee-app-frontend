@@ -364,7 +364,7 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/logo/logo.png" alt="#">
+            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/logo/logo.png" alt="Payuee e-Shop">
             <div class="skeleton loading-cursor flex-grow-1 ms-3">
                 <div class="skeleton loading-cursor product-name">
                 <h6><a href="#">Loading...</a></h6>

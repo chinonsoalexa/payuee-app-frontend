@@ -218,7 +218,7 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].Image1}" alt="${product.title}">
+            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_image[0].url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
                 <h6><a href="order-history-details.html?OrderId=${product.ID}">${product.product_orders[0].title}</a></h6>
@@ -322,12 +322,12 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/ecommerce/product-table-6.png" alt="#">
+            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/logo/logo.png" alt="Payuee e-Shop">
             <div class="skeleton loading-cursor flex-grow-1 ms-3">
                 <div class="skeleton loading-cursor product-name">
                 <h6><a href="#">Loading...</a></h6>
                 </div>
-                <div class="skeleton loading-cursor rating">Dorng Herbal</div>
+                <div class="skeleton loading-cursor rating">Payuee e-Shop</div>
                 <div class="skeleton loading-cursor price d-flex"> 
                 <div class="skeleton loading-cursor text-muted me-2">Price</div>: Loading...
                 </div>
