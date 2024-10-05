@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 async function updateProduct() {
     setUpdatedJsonFields();
+    // Disable the submit button
+    document.getElementById('publishButton').classList.add('disabled');
 
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
 
@@ -88,7 +90,8 @@ async function updateProduct() {
             
             });
 } finally {
-
+    // Re-enable the submit button after processing
+    document.getElementById('publishButton').classList.remove('disabled');
     }
 }
 
