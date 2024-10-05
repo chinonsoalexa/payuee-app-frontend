@@ -396,21 +396,14 @@
                                           </div>
                                           <div class="col-12">
                                             <select class="form-select" id="validationDefault04" required="">
-                                              <option selected="" value="Detox & Cleansing">Detox & Cleansing</option>
-                                              <option value="Digestive Health">Digestive Health</option>
-                                              <option value="Immune Support">Immune Support</option>
-                                              <option value="Stress & Anxiety Relief">Stress & Anxiety Relief</option>
-                                              <option value="Sleep Aids">Sleep Aids</option>
-                                              <option value="Energy & Vitality">Energy & Vitality</option>
-                                              <option value="Skin Health">Skin Health</option>
-                                              <option value="Weight Management">Weight Management</option>
-                                              <option value="Women's Health">Women's Health</option>
-                                              <option value="Men's Health">Men's Health</option>
-                                              <option value="Joint & Bone Health">Joint & Bone Health</option>
-                                              <option value="Heart & Circulation">Heart & Circulation</option>
-                                              <option value="Respiratory Health">Respiratory Health</option>
-                                              <option value="Cognitive Support">Cognitive Support</option>
-                                              <option value="Sexual Health">Sexual Health</option>
+                                              <option selected="" value="Outfits">Outfits</option>
+                                              <option value="Jewelry">Jewelry</option>
+                                              <option value="Kids Assesories">Kids Assesories</option>
+                                              <option value="Cars & Car Parts">Cars & Car Parts</option>
+                                              <option value="Tools">Tools</option>
+                                              <option value="Gadgets">Gadgets</option>
+                                              <option value="Hospital and Medical Equipment">Hospital and Medical Equipment</option>
+                                              <option value="Others">Others</option>
                                             </select>                                            
                                             <p class="f-light">A product can be added to a category</p>
                                           </div>
@@ -422,7 +415,7 @@
                                             <label class="form-label d-block m-0">Add Tag</label>
                                           </div>
                                           <div class="col-12">
-                                            <input id="tags" name="basic-tags" value="Natural Remedy, Organic Herbs, Holistic Health, Plant-Based, Ayurvedic Medicine, Traditional Medicine, Herbal Extracts, Immune Boost">
+                                            <input id="tags" name="basic-tags" value="Casual Wear, Sportswear, Party Dresses, Work Outfits, Baby Essentials, School Bags, Kids Jewelry, DIY Tools">
                                             <p class="f-light">Products can be tagged</p>
                                           </div>
                                         </div>
@@ -437,8 +430,6 @@
                                             <label class="form-label" for="publishStatus">Publish Status</label>
                                             <select class="form-select" id="publishStatus" required="">
                                               <option selected="" value="publish">Publish</option>
-                                              <!-- <option value="draft">Drafts</option> -->
-                                              <!-- <option>Unpublish</option> -->
                                             </select>
                                             <p class="f-light">Choose the status</p>
                                           </div>
@@ -505,35 +496,35 @@
                                           <span>Fixed Price</span>
                                         </label>
                                       </li>
-                                      <li>
+                                      <!-- <li>
                                         <input class="form-check-input" id="radio-bogo" type="radio" name="productDiscountType" value="bogo" checked>
                                         <label class="form-check-label" for="radio-bogo">
                                           <span>BOGO (Buy One, Get One)</span>
                                         </label>
-                                      </li>
-                                      <li>
+                                      </li> -->
+                                      <!-- <li>
                                         <input class="form-check-input" id="radio-seasonal" type="radio" name="productDiscountType" value="seasonal-holiday">
                                         <label class="form-check-label" for="radio-seasonal">
                                           <span>Seasonal or Holiday Discount</span>
                                         </label>
-                                      </li>
+                                      </li> -->
                                       <li>
                                         <input class="form-check-input" id="radio-percentage" type="radio" name="productDiscountType" value="percentage-based">
                                         <label class="form-check-label" for="radio-percentage">
                                           <span>Percentage-based Discount (%)</span>
                                         </label>
                                       </li>
-                                      <li>
+                                      <!-- <li>
                                         <input class="form-check-input" id="radio-volume" type="radio" name="productDiscountType" value="volume-bulk">
                                         <label class="form-check-label" for="radio-volume">
                                           <span>Volume or Bulk Discount</span>
                                         </label>
-                                      </li>
+                                      </li> -->
                                     </ul>
                                   </div>
                                   
                                 </div>
-                                <div class="product-buttons">
+                                <div id="publishButton" class="product-buttons">
                                   <div class="btn">
                                     <div id="nextButton" class="d-flex align-items-center gap-sm-2 gap-1">Publish
                                       <svg>
@@ -3117,7 +3108,7 @@
   <script src="js/height-equal.js"></script>
   <script src="js/tooltip-init.js"></script>
   <!-- Plugins JS Ends-->
-   
+
   <!-- Theme js-->
   <script src="js/script.js"></script>
   <script src="js/theme-customizer/customizer.js"></script>

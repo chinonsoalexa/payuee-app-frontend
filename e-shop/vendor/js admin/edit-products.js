@@ -35,7 +35,7 @@ function clearElementsByClass() {
 }
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/vendor/products/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -277,7 +277,7 @@ function updateLink(urlIdToUpdate, pageNumber) {
 }
 
 async function deleteProduct(productID) {
-    const apiUrl = "https://api.payuee.com/delete-dorng-product/" + productID;
+    const apiUrl = "https://api.payuee.com/delete-vendor-product/" + productID;
   
     const requestOptions = {
         method: "GET",
@@ -364,12 +364,12 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/ecommerce/product-table-6.png" alt="#">
+            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="images/logo/logo.png" alt="#">
             <div class="skeleton loading-cursor flex-grow-1 ms-3">
                 <div class="skeleton loading-cursor product-name">
                 <h6><a href="#">Loading...</a></h6>
                 </div>
-                <div class="skeleton loading-cursor rating">Dorng Herbal</div>
+                <div class="skeleton loading-cursor rating">Payuee e-Shop</div>
                 <div class="skeleton loading-cursor price d-flex"> 
                 <div class="skeleton loading-cursor text-muted me-2">Price</div>: Loading...
                 </div>

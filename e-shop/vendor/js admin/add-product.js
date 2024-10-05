@@ -35,8 +35,7 @@ submitButton.addEventListener('click', async function (event) {
     event.preventDefault();
 
     // Disable the submit button
-    this.classList.add('disabled');
-    this.disabled = true;
+    document.getElementById('publishButton').classList.add('disabled');
 
     // Get the product description and title
     productDescription = editor.innerText.trim();
@@ -66,8 +65,8 @@ submitButton.addEventListener('click', async function (event) {
     }
 
     // Re-enable the submit button after processing
-    this.classList.remove('disabled');
-    this.disabled = false;
+    document.getElementById('publishButton').classList.remove('disabled');
+    
 });
 
 });
@@ -125,18 +124,14 @@ async function postProduct() {
 }
 
 // Initialize space to upload images
-// Initialize space to upload images
 function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        maxFiles: 4, // Maximum of 4 images allowed
         init: function () {
-            let dz = this; // Reference to Dropzone instance
-
             this.on("addedfile", function (file) {
-                // Check if the number of uploaded images exceeds 4
+                // Check if the number of uploaded images is already 2
                 if (imageArray.length >= 4) {
                     swal({
                         title: "Only four (4) images are allowed for a product",
@@ -144,7 +139,7 @@ function initializeDropzone() {
                         buttons: {
                             confirm: true,
                         },
-                    });
+                    })
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
@@ -184,50 +179,9 @@ function initializeDropzone() {
                     });
                 }
             });
-
-            // Handle when user exceeds max files
-            this.on("maxfilesexceeded", function (file) {
-                swal({
-                    title: "You can only upload four (4) images",
-                    icon: "warning",
-                    buttons: {
-                        confirm: true,
-                    },
-                });
-                this.removeFile(file); // Remove the file if limit is exceeded
-            });
-
-            // Check minimum files before form submission or other actions
-            const form = document.getElementById('your-form-id'); // Adjust according to your form ID
-            form.addEventListener('submit', function (event) {
-                if (dz.getAcceptedFiles().length < 4) {
-                    swal({
-                        title: "You must upload exactly four (4) images.",
-                        icon: "warning",
-                        buttons: {
-                            confirm: true,
-                        },
-                    });
-                    event.preventDefault(); // Prevent form submission
-                }
-            });
-
-            // Handle when a file is removed
-            this.on("removedfile", function () {
-                if (dz.getAcceptedFiles().length < 4) {
-                    swal({
-                        title: "You need at least four (4) images.",
-                        icon: "warning",
-                        buttons: {
-                            cancel: true,
-                        },
-                    });
-                }
-            });
         }
     };
 }
-
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
