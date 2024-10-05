@@ -30,7 +30,9 @@ async function updateProduct() {
     setUpdatedJsonFields();
     // Disable the submit button
     document.getElementById('publishButton').classList.add('disabled');
-
+    // Validate fields before proceeding
+    if (validateFields()) {
+        // All fields are valid, proceed with posting the product
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
 
     // Construct the request body
@@ -89,10 +91,22 @@ async function updateProduct() {
             }).then(() => {
             
             });
-} finally {
+    } finally {
+
+        }
+    } else {
+        // If validation fails, you can display an error message or highlight invalid fields
+        swal({
+            title: "Please correct the highlighted errors",
+            icon: "warning",
+            buttons: {
+                cancel: true,
+                confirm: true,
+            },
+        })
+    }
     // Re-enable the submit button after processing
     document.getElementById('publishButton').classList.remove('disabled');
-    }
 }
 
 document.getElementById('updateButton').addEventListener('click', async function(event) {
@@ -135,6 +149,177 @@ function getFormData() {
 
     console.log('Form Data:', formData);
     return formData;
+}
+
+function validateFields() {
+    let isValid = true;
+
+    // Validate Product Title
+    const productTitleInput = document.getElementById('productTitle1');
+    const productTitle = productTitleInput.value.trim();
+    // console.log("Product Title:", productTitle);
+    if (!productTitle) {
+        productTitleInput.classList.add('is-invalid');
+        productTitleInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Product Title is invalid.");
+    } else {
+        productTitleInput.classList.remove('is-invalid');
+        productTitleInput.classList.add('is-valid');
+        // console.log("Product Title is valid.");
+    }
+
+    // Validate Description
+    const editor = document.getElementById('editor2');
+    const productDescription = editor.textContent.trim();
+    // console.log("Product Description:", productDescription);
+    if (!productDescription) {
+        editor.classList.add('is-invalid');
+        editor.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Product Description is invalid.");
+    } else {
+        editor.classList.remove('is-invalid');
+        editor.classList.add('is-valid');
+        // console.log("Product Description is valid.");
+    }
+
+    // Validate Initial Cost
+    const initialCostInput = document.getElementById('initialCost');
+    const initialCost = parseFloat(initialCostInput.value);
+    // console.log("Initial Cost:", initialCost);
+    if (isNaN(initialCost) || initialCost <= 0) {
+        initialCostInput.classList.add('is-invalid');
+        initialCostInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Initial Cost is invalid.");
+    } else {
+        initialCostInput.classList.remove('is-invalid');
+        initialCostInput.classList.add('is-valid');
+        // console.log("Initial Cost is valid.");
+    }
+
+    // Validate Selling Price
+    const sellingPriceInput = document.getElementById('sellingPrice');
+    const sellingPrice = parseFloat(sellingPriceInput.value);
+    // console.log("Selling Price:", sellingPrice);
+    if (isNaN(sellingPrice) || sellingPrice <= 0) {
+        sellingPriceInput.classList.add('is-invalid');
+        sellingPriceInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Selling Price is invalid.");
+    } else {
+        sellingPriceInput.classList.remove('is-invalid');
+        sellingPriceInput.classList.add('is-valid');
+        // console.log("Selling Price is valid.");
+    }
+
+    // Validate Product Stock
+    const productStockInput = document.getElementById('productStock1');
+    const productStock = parseInt(productStockInput.value, 10);
+    // console.log("Product Stock:", productStock);
+    if (isNaN(productStock) || productStock < 0) {
+        productStockInput.classList.add('is-invalid');
+        productStockInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Product Stock is invalid.");
+    } else {
+        productStockInput.classList.remove('is-invalid');
+        productStockInput.classList.add('is-valid');
+        // console.log("Product Stock is valid.");
+    }
+
+    // Validate Net Weight
+    const netWeightInput = document.getElementById('netWeight');
+    const netWeightVal = parseInt(netWeightInput.value, 10);
+    // console.log("Net Weight:", netWeightVal);
+    if (isNaN(netWeightVal) || netWeightVal < 0) {
+        netWeightInput.classList.add('is-invalid');
+        netWeightInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Net Weight is invalid.");
+    } else {
+        netWeightInput.classList.remove('is-invalid');
+        netWeightInput.classList.add('is-valid');
+        // console.log("Net Weight is valid.");
+    }
+
+    // Validate Currency
+    const currencySelect = document.getElementById('currencySelect');
+    const currency = currencySelect.value.trim();
+    // console.log("Currency:", currency);
+    if (!currency) {
+        currencySelect.classList.add('is-invalid');
+        currencySelect.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Currency is invalid.");
+    } else {
+        currencySelect.classList.remove('is-invalid');
+        currencySelect.classList.add('is-valid');
+        // console.log("Currency is valid.");
+    }
+
+    // Validate Category
+    const categorySelect = document.getElementById('validationDefault04');
+    const category = categorySelect.value.trim();
+    // console.log("Category:", category);
+    if (!category) {
+        categorySelect.classList.add('is-invalid');
+        categorySelect.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Category is invalid.");
+    } else {
+        categorySelect.classList.remove('is-invalid');
+        categorySelect.classList.add('is-valid');
+        // console.log("Category is valid.");
+    }
+
+    // Validate Tags
+    const tagsInput = document.getElementById('tags');
+    const tags = tagsInput.value.trim();
+    // console.log("Tags:", tags);
+    if (!tags) {
+        tagsInput.classList.add('is-invalid');
+        tagsInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Tags are invalid.");
+    } else {
+        tagsInput.classList.remove('is-invalid');
+        tagsInput.classList.add('is-valid');
+        // console.log("Tags are valid.");
+    }
+
+    // Validate Publish Status
+    const publishStatusInput = document.getElementById('publishStatus');
+    const publishStatus = publishStatusInput.value.trim();
+    // console.log("Publish Status:", publishStatus);
+    if (!publishStatus) {
+        publishStatusInput.classList.add('is-invalid');
+        publishStatusInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Publish Status is invalid.");
+    } else {
+        publishStatusInput.classList.remove('is-invalid');
+        publishStatusInput.classList.add('is-valid');
+        // console.log("Publish Status is valid.");
+    }
+
+    // Validate Featured Status
+    const featuredStatusInput = document.getElementById('featuredStatus');
+    const featuredStatus = featuredStatusInput.value.trim();
+    // console.log("Featured Status:", featuredStatus);
+    if (!featuredStatus) {
+        featuredStatusInput.classList.add('is-invalid');
+        featuredStatusInput.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Featured Status is invalid.");
+    } else {
+        featuredStatusInput.classList.remove('is-invalid');
+        featuredStatusInput.classList.add('is-valid');
+        // console.log("Featured Status is valid.");
+    }
+
+    return isValid;
 }
 
 // function to get product discount status
