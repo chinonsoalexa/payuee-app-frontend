@@ -256,7 +256,7 @@ function renderProducts(product) {
                  // Let's make a product delete request
                  await deleteProduct(product.ID);
                 // Perform actions when confirmed
-                swal("Product Successfully Deleted", {
+                swal("'"+product.title+"'"+" Successfully Deleted", {
                     icon: "success",
                     buttons: {
                         confirm: true,
