@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function updateProduct() {
     setUpdatedJsonFields();
 
-    const apiUrl = "https://api.payuee.com/update-dorng-product";
+    const apiUrl = "https://api.payuee.com/vendor/update-dorng-product";
 
     // Construct the request body
     const requestBody = {
