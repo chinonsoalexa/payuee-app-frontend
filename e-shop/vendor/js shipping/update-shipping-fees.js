@@ -108,7 +108,7 @@ function renderStates1(states) {
         if (selectedStateIso !== '0') {
             stateSelected = $('#state-select1 option:selected').text();
             // Extract latitude and longitude from the selected state's data attributes
-            storeState = selectedCity.dataset.state
+            storeState = selectedStateIso.dataset.state
             loadCities(selectedStateIso);  // Load cities when a state is selected
         } else {
             resetCitiesDropdown1();
