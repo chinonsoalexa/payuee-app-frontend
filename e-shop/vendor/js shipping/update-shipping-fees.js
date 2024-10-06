@@ -8,6 +8,8 @@ var vendorCityLat = 0.0;
 var vendorCityLon = 0.0;
 var storeCity;
 var storeState;
+var stateISO
+var cityISO
 var pricePerKM = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -72,6 +74,7 @@ async function loadCities1(stateIso2) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const cities = await response.json();
+        stateISO = stateIso2;
         const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
         filteredCities.sort((a, b) => a.name.localeCompare(b.name));
         renderCities1(filteredCities);
@@ -136,6 +139,7 @@ function renderCities1(cities) {
         option.value = city.name; // Use the city name as the value
         option.textContent = city.name; // Display city name
         option.dataset.city = city.name; // Store city location in data attribute
+        option.dataset.iso = city.state_iso2; // Store city iso code in data attribute
         option.dataset.latitude = city.latitude; // Store latitude in data attribute
         option.dataset.longitude = city.longitude; // Store longitude in data attribute
         citySelect.appendChild(option);
@@ -152,6 +156,7 @@ function renderCities1(cities) {
             // Extract latitude and longitude from the selected city's data attributes
             vendorCityLat = parseFloat(selectedCity.dataset.latitude);
             vendorCityLon = parseFloat(selectedCity.dataset.longitude);
+            cityISO = selectedCity.dataset.iso;
 
             // Extract latitude and longitude from the selected city's data attributes
             storeCity = selectedCity.dataset.city
@@ -423,6 +428,8 @@ async function setShippingFees() {
         store_longitude: convertToFloatIfInteger(vendorCityLon),
         store_state: storeState,
         store_city: storeCity,
+        state_iso: ,
+        city_iso: ,
     };
     
     // Send POST request using Fetch API
