@@ -6,11 +6,14 @@ var cityLat;
 var cityLon;
 var vendorCityLat = 0.0;
 var vendorCityLon = 0.0;
+var storeCity;
+var storeState;
 var pricePerKM = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Initialize and load states when the page is loaded
     getShippingFees();
+    await loadStates1();
     await loadStates();
 });
 
@@ -48,6 +51,125 @@ document.getElementById('validationCustom01').addEventListener('input', function
 });
 
 // Function to fetch and populate state data
+async function loadStates1() {
+    try {
+        const response = await fetch('nigeria_states.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const states = await response.json();
+        renderStates1(states);
+    } catch (error) {
+        console.error('Error fetching state data:', error);
+    }
+}
+
+// Function to fetch and populate city data based on state_iso2
+async function loadCities1(stateIso2) {
+    try {
+        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const cities = await response.json();
+        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
+        renderCities1(filteredCities);
+    } catch (error) {
+        console.error('Error fetching city data:', error);
+    }
+}
+
+// vendor store long and lat
+// Function to render states into the Select State dropdown
+function renderStates1(states) {
+    const stateSelect = document.getElementById('state-select1');
+    if (!stateSelect) {
+        console.error('State select element not found');
+        return;
+    }
+
+    stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
+    
+    states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.iso2; // Use the ISO code as the value
+        option.textContent = state.name; // Display state name
+        option.dataset.state = state.name; // Store State location in data attribute
+        stateSelect.appendChild(option);
+    });
+
+    // Initialize Select2 for better dropdown handling
+    $('#state-select1').select2();
+
+    // Attach Select2 event listener
+    $('#state-select1').on('change', function () {
+        const selectedStateIso = $(this).val();
+        if (selectedStateIso !== '0') {
+            stateSelected = $('#state-select1 option:selected').text();
+            // Extract latitude and longitude from the selected state's data attributes
+            storeState = selectedCity.dataset.state
+            loadCities(selectedStateIso);  // Load cities when a state is selected
+        } else {
+            resetCitiesDropdown1();
+        }
+    });
+}
+
+// Function to render cities into the Select City dropdown
+function renderCities1(cities) {
+    const citySelect = document.getElementById('city-select1');
+    // const latitudeDisplay = document.getElementById('city-latitude');  // Assume you have elements to display lat/lon
+    // const longitudeDisplay = document.getElementById('city-longitude'); 
+
+    if (!citySelect) {
+        console.error('City select element not found');
+        return;
+    }
+    
+    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
+
+    cities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.name; // Use the city name as the value
+        option.textContent = city.name; // Display city name
+        option.dataset.city = city.name; // Store city location in data attribute
+        option.dataset.latitude = city.latitude; // Store latitude in data attribute
+        option.dataset.longitude = city.longitude; // Store longitude in data attribute
+        citySelect.appendChild(option);
+    });
+
+    // Initialize Select2 on the citySelect element
+    $(citySelect).select2();
+
+    // Use the Select2 change event listener for city selection
+    $(citySelect).on('select2:select', function (e) {
+        const selectedCity = e.params.data.element; // Get selected option element
+
+        if (selectedCity.value !== '0') {
+            // Extract latitude and longitude from the selected city's data attributes
+            vendorCityLat = parseFloat(selectedCity.dataset.latitude);
+            vendorCityLon = parseFloat(selectedCity.dataset.longitude);
+
+            // Extract latitude and longitude from the selected city's data attributes
+            storeCity = selectedCity.dataset.city
+            
+        } else {
+            
+        }
+    });
+}
+
+// Function to reset city dropdown
+function resetCitiesDropdown1() {
+    const citySelect = document.getElementById('city-select1');
+    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Reset city options
+    // document.getElementById('city-latitude').textContent = ''; // Clear latitude
+    // document.getElementById('city-longitude').textContent = ''; // Clear longitude
+}
+
+// LOAD AND GET ESTIMATED SHIPPING FEES
+// Function to fetch and populate state data
 async function loadStates() {
     try {
         const response = await fetch('nigeria_states.json');
@@ -56,7 +178,6 @@ async function loadStates() {
         }
         const states = await response.json();
         renderStates(states);
-        renderStates1(states);
     } catch (error) {
         console.error('Error fetching state data:', error);
     }
@@ -73,7 +194,6 @@ async function loadCities(stateIso2) {
         const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
         filteredCities.sort((a, b) => a.name.localeCompare(b.name));
         renderCities(filteredCities);
-        renderCities1(filteredCities);
     } catch (error) {
         console.error('Error fetching city data:', error);
     }
@@ -141,7 +261,7 @@ function renderCities(cities) {
         const selectedCity = e.params.data.element; // Get selected option element
 
         if (selectedCity.value !== '0') {
-            // Extract latitude and longitude from the selected city's data attributes
+
             cityLat = parseFloat(selectedCity.dataset.latitude);
             cityLon = parseFloat(selectedCity.dataset.longitude);
             
@@ -157,6 +277,7 @@ function renderCities(cities) {
                 });
                 return;
             }
+
             // Calculate distance between store and selected city in kilometers
             const distance = calculateDistance(vendorCityLat, vendorCityLon, cityLat, cityLon);
 
@@ -199,87 +320,6 @@ function resetCitiesDropdown() {
     citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Reset city options
     document.getElementById('city-latitude').textContent = ''; // Clear latitude
     document.getElementById('city-longitude').textContent = ''; // Clear longitude
-}
-
-// vendor store long and lat
-// Function to render states into the Select State dropdown
-function renderStates1(states) {
-    const stateSelect = document.getElementById('state-select1');
-    if (!stateSelect) {
-        console.error('State select element not found');
-        return;
-    }
-
-    stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
-    
-    states.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state.iso2; // Use the ISO code as the value
-        option.textContent = state.name; // Display state name
-        stateSelect.appendChild(option);
-    });
-
-    // Initialize Select2 for better dropdown handling
-    $('#state-select1').select2();
-
-    // Attach Select2 event listener
-    $('#state-select1').on('change', function () {
-        const selectedStateIso = $(this).val();
-        if (selectedStateIso !== '0') {
-            stateSelected = $('#state-select1 option:selected').text();
-            loadCities(selectedStateIso);  // Load cities when a state is selected
-        } else {
-            resetCitiesDropdown1();
-        }
-    });
-}
-
-// Function to render cities into the Select City dropdown
-function renderCities1(cities) {
-    const citySelect = document.getElementById('city-select1');
-    // const latitudeDisplay = document.getElementById('city-latitude');  // Assume you have elements to display lat/lon
-    // const longitudeDisplay = document.getElementById('city-longitude'); 
-
-    if (!citySelect) {
-        console.error('City select element not found');
-        return;
-    }
-    
-    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
-
-    cities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city.name; // Use the city name as the value
-        option.textContent = city.name; // Display city name
-        option.dataset.latitude = city.latitude; // Store latitude in data attribute
-        option.dataset.longitude = city.longitude; // Store longitude in data attribute
-        citySelect.appendChild(option);
-    });
-
-    // Initialize Select2 on the citySelect element
-    $(citySelect).select2();
-
-    // Use the Select2 change event listener for city selection
-    $(citySelect).on('select2:select', function (e) {
-        const selectedCity = e.params.data.element; // Get selected option element
-
-        if (selectedCity.value !== '0') {
-            // Extract latitude and longitude from the selected city's data attributes
-            vendorCityLat = parseFloat(selectedCity.dataset.latitude);
-            vendorCityLon = parseFloat(selectedCity.dataset.longitude);
-            
-        } else {
-            
-        }
-    });
-}
-
-// Function to reset city dropdown
-function resetCitiesDropdown1() {
-    const citySelect = document.getElementById('city-select1');
-    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Reset city options
-    // document.getElementById('city-latitude').textContent = ''; // Clear latitude
-    // document.getElementById('city-longitude').textContent = ''; // Clear longitude
 }
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -349,13 +389,17 @@ document.getElementById('updateShippingFeesButton').addEventListener('click', as
 });
 
 async function setShippingFees() {
+    const shippingGreaterThan = document.getElementById("validationCustom021").value
+    const shippingLessThan = document.getElementById("validationCustom031").value
     // Construct the request body
     const requestBody = {
         shipping_fee_per_km: +pricePerKM,
-        shipping_fee_greater: ,
-        shipping_fee_less: ,
-        store_latitude: ,
-        store_longitude: ,
+        shipping_fee_greater: shippingGreaterThan,
+        shipping_fee_less: shippingLessThan,
+        store_latitude: vendorCityLat,
+        store_longitude: vendorCityLon,
+        store_state: storeState,
+        store_city: storeCity,
     };
     
     // Send POST request using Fetch API
