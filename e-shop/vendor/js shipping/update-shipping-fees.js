@@ -401,6 +401,16 @@ document.getElementById('updateShippingFeesButton').addEventListener('click', as
     }
 });
 
+function convertToFloatIfInteger(num) {
+    // Check if the number is an integer
+    if (Number.isInteger(num)) {
+        // Convert to float by adding a decimal place
+        return parseFloat(num.toFixed(2));
+    }
+    // If it's already a float, return the number as-is
+    return num;
+}
+
 async function setShippingFees() {
     const shippingGreaterThan = document.getElementById("validationCustom021").value
     const shippingLessThan = document.getElementById("validationCustom031").value
@@ -409,8 +419,8 @@ async function setShippingFees() {
         shipping_fee_per_km: +pricePerKM,
         shipping_fee_greater: +shippingGreaterThan,
         shipping_fee_less: +shippingLessThan,
-        store_latitude: vendorCityLat,
-        store_longitude: vendorCityLon,
+        store_latitude: convertToFloatIfInteger(vendorCityLat),
+        store_longitude: convertToFloatIfInteger(vendorCityLon),
         store_state: storeState,
         store_city: storeCity,
     };
