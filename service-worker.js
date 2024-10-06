@@ -94,10 +94,10 @@ const FILES_TO_CACHE = [
     './assets/css/tutorialsVideo.css',
 
     // images file cache
-    './assets/img/**/*.{jpg,jpeg,png,gif,svg}',
+    './assets/img/logo/payuee-logo.png',
 
     // js raw file cache
-    './assets/js/*.js',
+    // './assets/js/*.js',
 ];
 
 // Event listener for installing the service worker
@@ -109,28 +109,6 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// // Fetch resources from cache or network
-// const fetchResource = (event) => {
-//     return caches.match(event.request).then((response) => {
-//         if (response) {
-//             return response;
-//         }
-
-//         return fetch(event.request).then((res) => {
-//             if (!res || res.status !== 200 || res.type !== 'basic') {
-//                 return res;
-//             }
-
-//             const clonedResponse = res.clone();
-//             caches.open(CACHE_KEY).then((cache) => {
-//                 cache.put(event.request, clonedResponse);
-//             });
-
-//             return res;
-//         });
-//     });
-// };
-
 // Event listener for fetch requests
 self.addEventListener('fetch', (event) => {
     event.respondWith(
@@ -139,18 +117,3 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
-
-// Clean up old caches on activate
-// self.addEventListener('activate', (event) => {
-//     event.waitUntil(
-//         caches.keys().then((cacheNames) => {
-//             return Promise.all(
-//                 cacheNames.map((name) => {
-//                     if (name !== CACHE_KEY) {
-//                         return caches.delete(name);
-//                     }
-//                 })
-//             );
-//         })
-//     );
-// });
