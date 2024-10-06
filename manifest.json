@@ -1,7 +1,7 @@
 {
     "name": "Payuee",
     "short_name": "Payuee",
-    "description": "Payuee - Escrow Payments",
+    "description": "Payuee - Escrow Payments & Shopping",
     "start_url": "https://payuee.com",
     "display": "standalone",
     "background_color": "#ffffff",
