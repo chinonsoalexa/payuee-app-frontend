@@ -440,10 +440,10 @@ function selectStateByText(text) {
 
 function selectCityByText(city, iso) {
     const citySelect = document.getElementById('city-select1');
-    const options = citySelect.options;
+    // const options = citySelect.options;
 
     // Check if there are no options available
-    if (options.length <= 1) { // Assuming the first option is "Choose City"
+    // if (options.length <= 1) { // Assuming the first option is "Choose City"
         loadCities1(iso).then(() => {
             // Call the function to render cities with the desired city
             renderCities1(cities).then(() => {
@@ -451,11 +451,11 @@ function selectCityByText(city, iso) {
                 selectCity(city);
             });
         });
-        return; // Exit the function
-    }
+    //     return; // Exit the function
+    // }
 
     // If options are already present, select the city directly
-    selectCity(city);
+    // selectCity(city);
 }
 
 // Helper function to select a city
