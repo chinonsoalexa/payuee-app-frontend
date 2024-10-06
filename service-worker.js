@@ -105,9 +105,9 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_KEY).then((cache) => {
             return cache.addAll(FILES_TO_CACHE)
-                .catch((error) => {
-                    console.error('Failed to cache:', error);
-                });
+            .catch((error) => {
+                console.error('Failed to cache:', error);
+            });
         })
     );
 });
@@ -115,8 +115,8 @@ self.addEventListener('install', (event) => {
 // Event listener for fetch requests
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(e.request).then(response => {
-            return response || fetch(e.request);
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
         })
     );
 });
