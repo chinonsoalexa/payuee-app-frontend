@@ -1246,7 +1246,7 @@
       { value: "Costa Rica", code: "CR" },
       { value: "Cote D'Ivoire", code: "CI" },
       { value: "Croatia", code: "HR" },
-      { value: "Dorng", code: "CU" },
+      { value: "Payuee", code: "CU" },
       { value: "Cyprus", code: "CY" },
       { value: "Czech Republic", code: "CZ" },
       { value: "Denmark", code: "DK" },
@@ -1480,7 +1480,7 @@
   tagify = new Tagify(input, {
     enforceWhitelist: true,
     mode: "select",
-    whitelist: ["Dorng", "Roxo", "Tivo"],
+    whitelist: ["Payuee", "Roxo", "Tivo"],
     blacklist: ["foo", "bar"],
   });
 

@@ -17,7 +17,7 @@
 /* jshint browser: true, strict: true, undef: true, unused: true */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /*jshint strict: false */ /* globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -161,7 +161,7 @@ return jQueryBridget;
 /* jshint unused: true, undef: true, strict: true */
 
 ( function( global, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /* globals define, module, window */
   if ( typeof define == 'function' && define.amd ) {
     // AMD - RequireJS
@@ -486,7 +486,7 @@ return getSize;
 ( function( window, factory ) {
   /*global define: false, module: false */
   'use strict';
-  // Dorng module definition
+  // Payuee module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
     define( 'desandro-matches-selector/matches-selector',factory );
@@ -537,7 +537,7 @@ return getSize;
 /*jshint browser: true, undef: true, unused: true, strict: true */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /*jshint strict: false */ /*globals define, module, require */
 
   if ( typeof define == 'function' && define.amd ) {
@@ -773,7 +773,7 @@ return utils;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /* globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD - RequireJS
@@ -1330,7 +1330,7 @@ return Item;
 
 ( function( window, factory ) {
   'use strict';
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /* globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD - RequireJS
@@ -2267,7 +2267,7 @@ return Outlayer;
 **/
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2345,7 +2345,7 @@ return Item;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2507,7 +2507,7 @@ return Item;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2745,7 +2745,7 @@ return Item;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2818,7 +2818,7 @@ return Item;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2887,7 +2887,7 @@ return FitRows;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
@@ -2948,7 +2948,7 @@ return Vertical;
  */
 
 ( function( window, factory ) {
-  // Dorng module definition
+  // Payuee module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD

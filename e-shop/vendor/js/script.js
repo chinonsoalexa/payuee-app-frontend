@@ -1,5 +1,5 @@
 /*! -----------------------------------------------------------------------------------
-    Template Name: Dorng Admin
+    Template Name: Payuee Admin
     Template URI: https://admin.pixelstrap.net/crocs/template/
     Description: This is Admin theme
     Author: Pixelstrap
@@ -132,24 +132,24 @@
     const bodyModeDark = $("body").hasClass("dark-only");
     if (!bodyModeDark) {
       $(".mode").addClass("active");
-      localStorage.setItem("mode-Dorng", "dark-only");
+      localStorage.setItem("mode-Payuee", "dark-only");
       $("body").addClass("dark-only");
       $("body").removeClass("light");
     }
     if (bodyModeDark) {
       $(".mode").removeClass("active");
-      localStorage.setItem("mode-Dorng", "light");
+      localStorage.setItem("mode-Payuee", "light");
       $("body").removeClass("dark-only");
       $("body").addClass("light");
     }
   });
   $("body").addClass(
-    localStorage.getItem("mode-Dorng")
-      ? localStorage.getItem("mode-Dorng")
+    localStorage.getItem("mode-Payuee")
+      ? localStorage.getItem("mode-Payuee")
       : "light"
   );
   $(".mode").addClass(
-    localStorage.getItem("mode-Dorng") === "dark-only" ? "active" : " "
+    localStorage.getItem("mode-Payuee") === "dark-only" ? "active" : " "
   );
   // sidebar filter
   $(".md-sidebar .md-sidebar-toggle ").on("click", function (e) {

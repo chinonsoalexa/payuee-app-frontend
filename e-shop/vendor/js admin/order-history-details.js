@@ -253,7 +253,7 @@ function renderLoading() {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="skeleton loading-cursor img-fluid img-40" src="images/ecommerce/product-table-6.png" alt="Dorng Herbal Wellness"></td>
+        <td><img class="skeleton loading-cursor img-fluid img-40" src="images/ecommerce/product-table-6.png" alt="Payuee Herbal Wellness"></td>
         <td>
         <div class="skeleton loading-cursor product-name"><a href="#">Loading...</a></div>
         </td>

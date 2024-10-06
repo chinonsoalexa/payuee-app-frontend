@@ -368,7 +368,7 @@ function renderLoading() {
                 <div class="skeleton loading-cursor product-name">
                 <h6><a href="#">Loading...</a></h6>
                 </div>
-                <div class="skeleton loading-cursor rating">Dorng Herbal</div>
+                <div class="skeleton loading-cursor rating">Payuee Herbal</div>
                 <div class="skeleton loading-cursor price d-flex"> 
                 <div class="skeleton loading-cursor text-muted me-2">Price</div>: Loading...
                 </div>
