@@ -104,7 +104,10 @@ const FILES_TO_CACHE = [
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_KEY).then((cache) => {
-            return cache.addAll(FILES_TO_CACHE);
+            return cache.addAll(FILES_TO_CACHE)
+                .catch((error) => {
+                    console.error('Failed to cache:', error);
+                });
         })
     );
 });
