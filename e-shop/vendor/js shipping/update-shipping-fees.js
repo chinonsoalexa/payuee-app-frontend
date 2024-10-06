@@ -444,12 +444,24 @@ function selectCityByText(city, iso) {
 
     // Check if there are no options available
     if (options.length <= 1) { // Assuming the first option is "Choose City"
-        // Assuming 'Ikeja' is the city you want to auto-select
         loadCities1(iso).then(() => {
-            renderCities1(cities, city); 
+            // Call the function to render cities with the desired city
+            renderCities1(cities).then(() => {
+                // Now select the city after rendering is complete
+                selectCity(city);
+            });
         });
         return; // Exit the function
     }
+
+    // If options are already present, select the city directly
+    selectCity(city);
+}
+
+// Helper function to select a city
+function selectCity(city) {
+    const citySelect = document.getElementById('city-select1');
+    const options = citySelect.options;
 
     // Loop through options to find the matching text
     for (let i = 0; i < options.length; i++) {
@@ -544,9 +556,9 @@ try {
         pricePerKMm.value = data.success.shipping_fee_per_km;
         shippingGreaterThan.value = data.success.shipping_fee_greater;
         shippingLessThan.value = data.success.shipping_fee_less;
-        // Select 'Lagos' state
+        // Select state
         selectStateByText(data.success.store_state);
-        // Select 'Ikeja' city
+        // Select city
         selectCityByText(data.success.store_city, data.success.city_iso);
 
     } finally{
