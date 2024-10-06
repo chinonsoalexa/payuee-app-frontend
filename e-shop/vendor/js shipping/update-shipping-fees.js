@@ -95,7 +95,7 @@ function renderStates1(states) {
         const option = document.createElement('option');
         option.value = state.iso2; // Use the ISO code as the value
         option.textContent = state.name; // Display state name
-        option.dataset.state = state.name; // Store State location in data attribute
+        // option.dataset.state = state.name; // Store State location in data attribute
         stateSelect.appendChild(option);
     });
 
@@ -106,9 +106,9 @@ function renderStates1(states) {
     $('#state-select1').on('change', function () {
         const selectedStateIso = $(this).val();
         if (selectedStateIso !== '0') {
-            stateSelected = $('#state-select1 option:selected').text();
+            storeState = $('#state-select1 option:selected').text();
             // Extract latitude and longitude from the selected state's data attributes
-            storeState = selectedStateIso.dataset.state
+            // storeState = selectedStateIso.dataset.state
             loadCities(selectedStateIso);  // Load cities when a state is selected
         } else {
             resetCitiesDropdown1();
