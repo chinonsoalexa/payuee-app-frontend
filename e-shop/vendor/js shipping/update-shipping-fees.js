@@ -418,6 +418,15 @@ function selectStateByText(text) {
     const stateSelect = document.getElementById('state-select1');
     const options = stateSelect.options;
 
+    // Check if there are no options available
+    if (options.length <= 1) { // Assuming the first option is "Choose State"
+        loadStates1().then(() => {
+            renderStates1(states, text);  
+        });
+        return; // Exit the function
+    }
+
+    // Loop through options to find the matching text
     for (let i = 0; i < options.length; i++) {
         if (options[i].textContent === text) {
             options[i].selected = true;
@@ -429,12 +438,22 @@ function selectStateByText(text) {
     $('#state-select1').trigger('change');
 }
 
-function selectCityByText(text) {
+function selectCityByText(city, iso) {
     const citySelect = document.getElementById('city-select1');
     const options = citySelect.options;
 
+    // Check if there are no options available
+    if (options.length <= 1) { // Assuming the first option is "Choose City"
+        // Assuming 'Ikeja' is the city you want to auto-select
+        loadCities1(iso).then(() => {
+            renderCities1(cities, city); 
+        });
+        return; // Exit the function
+    }
+
+    // Loop through options to find the matching text
     for (let i = 0; i < options.length; i++) {
-        if (options[i].textContent === text) {
+        if (options[i].textContent === city) {
             options[i].selected = true;
             break;
         }
@@ -528,17 +547,7 @@ try {
         // Select 'Lagos' state
         selectStateByText(data.success.store_state);
         // Select 'Ikeja' city
-        selectCityByText(data.success.store_city);
-
-        // // Assuming 'Lagos' is the state you want to auto-select
-        // loadStates1().then(() => {
-        //     renderStates1(states, 'Lagos');  // 'Lagos' will be auto-selected
-        // });
-
-        // // Assuming 'Ikeja' is the city you want to auto-select
-        // loadCities1('LA').then(() => {
-        //     renderCities1(cities, 'Ikeja');  // 'Ikeja' will be auto-selected
-        // });
+        selectCityByText(data.success.store_city, data.success.city_iso);
 
     } finally{
         // do nothing
