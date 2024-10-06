@@ -109,9 +109,9 @@ function renderStates1(states) {
             storeState = $('#state-select1 option:selected').text();
             // Extract latitude and longitude from the selected state's data attributes
             
-            console.log("loading city");
+            // console.log("loading city");
             loadCities1(selectedStateIso);  // Load cities when a state is selected
-            console.log("done loading city");
+            // console.log("done loading city");
         } else {
             resetCitiesDropdown1();
         }
@@ -465,7 +465,10 @@ try {
     if (!response.ok) {
         // alert('an error occurred. Please try again');
         if (!response.ok) {
-            alert('an error occurred. Please try again');
+            if (response.error == "no shipping fee found for this vendor") {
+                return;
+            }
+            
             return;
         }
         return;
