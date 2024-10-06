@@ -5,6 +5,7 @@
     "start_url": "https://payuee.com",
     "display": "standalone",
     "background_color": "#ffffff",
+    "orientation": "portrait-primary",
     "theme_color": "#000000",
     "icons": [
       {
