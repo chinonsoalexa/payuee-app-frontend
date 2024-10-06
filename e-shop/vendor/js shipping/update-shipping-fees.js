@@ -488,7 +488,6 @@ async function setShippingFees() {
         store_state: storeState,
         store_city: storeCity,
         state_iso: stateISO,
-        city_iso: cityISO,
     };
     
     // Send POST request using Fetch API
