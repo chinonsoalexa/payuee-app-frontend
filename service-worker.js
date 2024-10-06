@@ -22,7 +22,7 @@ const FILES_TO_CACHE = [
     '/subscriptions.html', 
     '/transaction.html', 
     '/tv.html', 
-    '/verified-number.html', 
+    // '/verified-number.html', 
     '/help-support.html', 
     // '/no-internet-error.html', 
 
