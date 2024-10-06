@@ -259,6 +259,8 @@ async function setShippingFees() {
     // Construct the request body
     const requestBody = {
         shipping_fee_per_km: +pricePerKM,
+        // shipping_fee_greater: ,
+        // shipping_fee_less: ,
     };
     
     // Send POST request using Fetch API
