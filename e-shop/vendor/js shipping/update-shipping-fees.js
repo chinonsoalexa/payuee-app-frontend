@@ -438,34 +438,21 @@ function selectStateByText(text) {
     $('#state-select1').trigger('change');
 }
 
-function selectCityByText(city, iso) {
-    const citySelect = document.getElementById('city-select1');
-    // const options = citySelect.options;
-
-    // Check if there are no options available
-    // if (options.length <= 1) { // Assuming the first option is "Choose City"
-        loadCities1(iso).then(() => {
-            // Call the function to render cities with the desired city
-            renderCities1(cities).then(() => {
-                // Now select the city after rendering is complete
-                selectCity(city);
-            });
-        });
-    //     return; // Exit the function
-    // }
-
-    // If options are already present, select the city directly
-    // selectCity(city);
-}
-
-// Helper function to select a city
-function selectCity(city) {
+function selectCityByText(text) {
     const citySelect = document.getElementById('city-select1');
     const options = citySelect.options;
 
+    // Check if there are no options available
+    if (options.length <= 1) { // Assuming the first option is "Choose City"
+        // console.log('No cities available'); // Or perform any secondary action
+        // Example: Display a message or disable the dropdown
+        // alert("No cities available. Please try again later.");
+        return; // Exit the function
+    }
+
     // Loop through options to find the matching text
     for (let i = 0; i < options.length; i++) {
-        if (options[i].textContent === city) {
+        if (options[i].textContent === text) {
             options[i].selected = true;
             break;
         }
@@ -558,7 +545,7 @@ try {
         // Select state
         selectStateByText(data.success.store_state);
         // Select city
-        selectCityByText(data.success.store_city, data.success.city_iso);
+        selectCityByText(data.success.store_city);
 
     } finally{
         // do nothing
