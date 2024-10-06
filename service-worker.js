@@ -115,9 +115,34 @@ self.addEventListener('install', (event) => {
 
 // Event listener for fetch requests
 self.addEventListener('fetch', (event) => {
+    // Ignore cross-origin requests (like API calls)
+    if (event.request.mode !== 'navigate') {
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request).then(response => {
-            return response || fetch(event.request);
-        })
+        caches.match(event.request)
+            .then(response => {
+                // If there is a match in the cache, return it
+                if (response) {
+                    return response;
+                }
+
+                // Otherwise, fetch from the network
+                return fetch(event.request).then(networkResponse => {
+                    // Optionally cache the new network response (static files)
+                    if (event.request.url.startsWith(self.location.origin)) {
+                        return caches.open(CACHE_KEY).then(cache => {
+                            cache.put(event.request, networkResponse.clone());
+                            return networkResponse;
+                        });
+                    }
+                    return networkResponse;
+                });
+            })
+            .catch(() => {
+                // Fallback if neither cache nor network is available
+                return caches.match('/no-internet-error.html');
+            })
     );
 });
