@@ -394,8 +394,8 @@ async function setShippingFees() {
     // Construct the request body
     const requestBody = {
         shipping_fee_per_km: +pricePerKM,
-        shipping_fee_greater: shippingGreaterThan,
-        shipping_fee_less: shippingLessThan,
+        shipping_fee_greater: +shippingGreaterThan,
+        shipping_fee_less: +shippingLessThan,
         store_latitude: vendorCityLat,
         store_longitude: vendorCityLon,
         store_state: storeState,
