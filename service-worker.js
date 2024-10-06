@@ -5,7 +5,6 @@ const CACHE_KEY = CACHE_NAME + '-' + CACHE_VERSION;
 const FILES_TO_CACHE = [
     './',
     './index-in.html',
-    // '/index.html', // Add the page you want to show offline
     './data.html', 
     './airtime.html', 
     './electricity.html', 
