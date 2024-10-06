@@ -85,7 +85,7 @@ async function loadCities1(stateIso2) {
 
 // vendor store long and lat
 // Function to render states into the Select State dropdown
-function renderStates1(states) {
+function renderStates1(states, selectedStateName = null) {  // Optional parameter for default selection
     const stateSelect = document.getElementById('state-select1');
     if (!stateSelect) {
         console.error('State select element not found');
@@ -93,13 +93,17 @@ function renderStates1(states) {
     }
 
     stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
-    
+
     states.forEach(state => {
         const option = document.createElement('option');
         option.value = state.iso2; // Use the ISO code as the value
         option.textContent = state.name; // Display state name
-        // option.dataset.state = state.name; // Store State location in data attribute
         stateSelect.appendChild(option);
+
+        // Automatically select the option if it matches the selectedStateName
+        if (selectedStateName && state.name === selectedStateName) {
+            option.selected = true;
+        }
     });
 
     // Initialize Select2 for better dropdown handling
@@ -110,11 +114,7 @@ function renderStates1(states) {
         const selectedStateIso = $(this).val();
         if (selectedStateIso !== '0') {
             storeState = $('#state-select1 option:selected').text();
-            // Extract latitude and longitude from the selected state's data attributes
-            
-            // console.log("loading city");
             loadCities1(selectedStateIso);  // Load cities when a state is selected
-            // console.log("done loading city");
         } else {
             resetCitiesDropdown1();
         }
@@ -122,16 +122,14 @@ function renderStates1(states) {
 }
 
 // Function to render cities into the Select City dropdown
-function renderCities1(cities) {
+function renderCities1(cities, selectedCityName = null) {  // Optional parameter for default selection
     const citySelect = document.getElementById('city-select1');
-    // const latitudeDisplay = document.getElementById('city-latitude');  // Assume you have elements to display lat/lon
-    // const longitudeDisplay = document.getElementById('city-longitude'); 
-
+    
     if (!citySelect) {
         console.error('City select element not found');
         return;
     }
-    
+
     citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
 
     cities.forEach(city => {
@@ -143,6 +141,11 @@ function renderCities1(cities) {
         option.dataset.latitude = city.latitude; // Store latitude in data attribute
         option.dataset.longitude = city.longitude; // Store longitude in data attribute
         citySelect.appendChild(option);
+
+        // Automatically select the option if it matches the selectedCityName
+        if (selectedCityName && city.name === selectedCityName) {
+            option.selected = true;
+        }
     });
 
     // Initialize Select2 on the citySelect element
@@ -159,10 +162,7 @@ function renderCities1(cities) {
             cityISO = selectedCity.dataset.iso;
 
             // Extract latitude and longitude from the selected city's data attributes
-            storeCity = selectedCity.dataset.city
-            
-        } else {
-            
+            storeCity = selectedCity.dataset.city;
         }
     });
 }
@@ -414,6 +414,36 @@ function convertToFloatIfInteger(num) {
     return num;
 }
 
+function selectStateByText(text) {
+    const stateSelect = document.getElementById('state-select1');
+    const options = stateSelect.options;
+
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].textContent === text) {
+            options[i].selected = true;
+            break;
+        }
+    }
+
+    // Trigger the Select2 update if you're using Select2
+    $('#state-select1').trigger('change');
+}
+
+function selectCityByText(text) {
+    const citySelect = document.getElementById('city-select1');
+    const options = citySelect.options;
+
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].textContent === text) {
+            options[i].selected = true;
+            break;
+        }
+    }
+
+    // Trigger the Select2 update if you're using Select2
+    $('#city-select1').trigger('change');
+}
+
 async function setShippingFees() {
     const shippingGreaterThan = document.getElementById("validationCustom021").value
     const shippingLessThan = document.getElementById("validationCustom031").value
@@ -495,10 +525,15 @@ try {
         pricePerKMm.value = data.success.shipping_fee_per_km;
         shippingGreaterThan.value = data.success.shipping_fee_greater;
         shippingLessThan.value = data.success.shipping_fee_less;
-        const stateSelect = document.getElementById('state-select1');
-        stateSelect.innerHTML = `<option selected="" value="0">${data.success.store_state}</option>`; // Clear existing options
-        const citySelect = document.getElementById('city-select1');
-        citySelect.innerHTML = `<option selected="" value="0">${data.success.store_city}</option>`; // Reset city options
+        // Select 'Lagos' state
+        selectStateByText(data.success.store_state);
+        // Select 'Ikeja' city
+        selectCityByText(data.success.store_city);
+
+        // const stateSelect = document.getElementById('state-select1');
+        // stateSelect.innerHTML = `<option selected="" value="0">${data.success.store_state}</option>`; // Clear existing options
+        // const citySelect = document.getElementById('city-select1');
+        // citySelect.innerHTML = `<option selected="" value="0">${data.success.store_city}</option>`; // Reset city options
     } finally{
         // do nothing
     }
