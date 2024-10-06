@@ -110,7 +110,7 @@ function renderStates1(states) {
             // Extract latitude and longitude from the selected state's data attributes
             
             console.log("loading city");
-            loadCities(selectedStateIso);  // Load cities when a state is selected
+            loadCities1(selectedStateIso);  // Load cities when a state is selected
             console.log("done loading city");
         } else {
             resetCitiesDropdown1();
