@@ -42,17 +42,17 @@ const FILES_TO_CACHE = [
     '/page/signup-verify-otp-new.html', 
 
     // js auth pages to cache
-    '/forgot-password/forgot-email-to-send.js',
-    '/forgot-password/forgot-password.js',
-    '/forgot-password/forgot-sent-email.js',
-    '/otp-verification/signup-confirm-otp-new.js',
-    '/otp-verification/signup-verify-otp-new.js',
-    '/otp-verification/verify-email.js',
-    '/signin/signin-new.js',
-    '/signup-new.js',
-    '/404.js',
-    '/auth-page-in.js',
-    '/auth-page.js',
+    '/auth/forgot-password/forgot-email-to-send.js',
+    '/auth/forgot-password/forgot-password.js',
+    '/auth/forgot-password/forgot-sent-email.js',
+    '/auth/otp-verification/signup-confirm-otp-new.js',
+    '/auth/otp-verification/signup-verify-otp-new.js',
+    '/auth/otp-verification/verify-email.js',
+    '/auth/signin/signin-new.js',
+    '/auth/signup-new.js',
+    '/auth/404.js',
+    '/auth/auth-page-in.js',
+    '/auth/auth-page.js',
 
     // js auth-in page
     '/blog/blogList.js',
