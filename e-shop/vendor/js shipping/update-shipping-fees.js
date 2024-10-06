@@ -530,10 +530,16 @@ try {
         // Select 'Ikeja' city
         selectCityByText(data.success.store_city);
 
-        // const stateSelect = document.getElementById('state-select1');
-        // stateSelect.innerHTML = `<option selected="" value="0">${data.success.store_state}</option>`; // Clear existing options
-        // const citySelect = document.getElementById('city-select1');
-        // citySelect.innerHTML = `<option selected="" value="0">${data.success.store_city}</option>`; // Reset city options
+        // // Assuming 'Lagos' is the state you want to auto-select
+        // loadStates1().then(() => {
+        //     renderStates1(states, 'Lagos');  // 'Lagos' will be auto-selected
+        // });
+
+        // // Assuming 'Ikeja' is the city you want to auto-select
+        // loadCities1('LA').then(() => {
+        //     renderCities1(cities, 'Ikeja');  // 'Ikeja' will be auto-selected
+        // });
+
     } finally{
         // do nothing
     }
