@@ -428,8 +428,8 @@ async function setShippingFees() {
         store_longitude: convertToFloatIfInteger(vendorCityLon),
         store_state: storeState,
         store_city: storeCity,
-        state_iso: ,
-        city_iso: ,
+        state_iso: stateISO,
+        city_iso: cityISO,
     };
     
     // Send POST request using Fetch API
