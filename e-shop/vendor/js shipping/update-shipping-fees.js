@@ -284,26 +284,37 @@ function renderCities(cities) {
 
             // Calculate shipping fee based on distance
             const pricePerKMm = document.getElementById('validationCustom01');
-            pricePerKM = +pricePerKMm.value;
+            const pricePerKM = +pricePerKMm.value;
             const shippingFees = document.getElementById('validationCustom02');
             const shippingDistance = document.getElementById('validationCustom03');
-            if (+pricePerKM == 0) {
+            const shippingGreaterThan = +document.getElementById("validationCustom021").value; // Max shipping fee
+            const shippingLessThan = +document.getElementById("validationCustom031").value;   // Min shipping fee
+
+            // Check for valid price per kilometer
+            if (pricePerKM === 0) {
                 swal("Please enter a valid price per kilometer", {
                     icon: "warning",
                     buttons: {
                         confirm: true,
                     },
-                }).then(() => {
-                
-                });
+                }).then(() => { });
                 return;
             }
-            const shippingFee = distance * pricePerKM;
 
-            // console.log(`Distance to selected city: ${'₦'+distance.toFixed(2)} km`);
-            shippingFees.value = `Shipping Fee: ${'₦'+shippingFee.toFixed(2)}`;
+            // Calculate the shipping fee based on distance
+            let shippingFee = distance * pricePerKM;
+
+            // Ensure the shipping fee is not lower or higher than the defined limits
+            if (shippingFee < shippingLessThan) {
+                shippingFee = shippingLessThan;
+            } else if (shippingFee > shippingGreaterThan) {
+                shippingFee = shippingGreaterThan;
+            }
+
+            // Display the adjusted shipping fee and distance
+            shippingFees.value = `Shipping Fee: ₦${shippingFee.toFixed(2)}`;
             shippingDistance.value = `Distance to selected city: ${distance.toFixed(2)} km`;
-            // console.log(`Shipping Fee: ${'₦'+shippingFee.toFixed(2)}`);
+
 
             
         } else {
