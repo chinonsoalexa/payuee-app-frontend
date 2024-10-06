@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Run your authentication status check function
     get_auth_status();
+
+	// Register the service worker
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../service-worker.js')
+			.then(registration => {
+				//   console.log('Service Worker registered with scope:', registration.scope);
+			})
+			.catch(error => {
+				//   console.error('Service Worker registration failed:', error);
+			});
+	}
 });
 
 // this would be for unauthenticated pages
