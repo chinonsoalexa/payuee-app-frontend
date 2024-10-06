@@ -475,7 +475,11 @@ try {
       }
         const data = await response.json();
             const pricePerKMm = document.getElementById('validationCustom01');
-            pricePerKMm.value = data.success;
+            const shippingGreaterThan = document.getElementById("validationCustom021").value
+            const shippingLessThan = document.getElementById("validationCustom031").value
+            pricePerKMm.value = data.success.shipping_fee_per_km;
+            shippingGreaterThan.value = data.success.shipping_fee_greater;
+            shippingLessThan.value = data.success.shipping_fee_less;
     } finally{
         // do nothing
     }
