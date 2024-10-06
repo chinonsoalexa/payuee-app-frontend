@@ -49,7 +49,7 @@ const FILES_TO_CACHE = [
     '/auth/otp-verification/signup-verify-otp-new.js',
     // '/auth/otp-verification/verify-email.js',
     '/auth/signin/signin-new.js',
-    '/auth/signup-new.js',
+    // '/auth/signup-new.js',
     '/auth/404.js',
     '/auth/auth-page-in.js',
     '/auth/auth-page.js',
