@@ -45,7 +45,7 @@
     <link id="color" rel="stylesheet" href="css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-  <link rel="stylesheet" type="text/css" href="../admin/css/vendors/sweetalert2.css">
+  <link rel="stylesheet" type="text/css" href="css/vendors/sweetalert2.css">
 </head>
   <body> 
     <!-- loader starts-->
@@ -265,11 +265,26 @@
                     <form class="row needs-validation" novalidate="">
                       <div class="col-sm-12">
 
-                        <!-- Shipping Fees -->
+                      <!-- Shipping Fees -->
+                      <div class="mb-3">
+                        <label for="validationCustom01">Fee per Km:</label>
+                        <input class="form-control" id="validationCustom01" type="number" placeholder="Fee per Km" required="">
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="validationCustom021">Max Shipping Fee:</label>
+                        <input class="form-control" id="validationCustom021" type="number" placeholder="Max Fee" required="">
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="validationCustom031">Min Shipping Fee:</label>
+                        <input class="form-control" id="validationCustom031" type="number" placeholder="Min Fee" required="">
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
                         <div class="mb-3">
-                          <label for="validationCustom01">Shipping Fee Per Kilometer:</label>
-                          <input class="form-control" id="validationCustom01" type="number" placeholder="Enter Shipping Fee..." required="">
-                          <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <!-- state -->
@@ -2881,7 +2896,7 @@
     <script src="js shipping/update-shipping-fees.js"></script>
 
     <!-- sweet alert -->
-    <script src="../admin/js/sweet-alert/sweetalert.min.js"></script>
+    <script src="js/sweet-alert/sweetalert.min.js"></script>
   </body>
 
 </html>

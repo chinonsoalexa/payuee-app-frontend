@@ -262,7 +262,7 @@ async function setShippingFees() {
     };
     
     // Send POST request using Fetch API
-    fetch('https://api.payuee.com/set-shipping-fee', {
+    fetch('https://api.payuee.com/vendor/set-shipping-fee', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -295,7 +295,7 @@ async function setShippingFees() {
 
 async function getShippingFees() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/get-shipping-fee";
+    const apiUrl = "https://api.payuee.com/vendor/get-shipping-fee";
 
     const requestOptions = {
     method: "GET",
