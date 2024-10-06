@@ -4,6 +4,8 @@ var citySelected;
 
 var cityLat;
 var cityLon;
+var vendorCityLat = 0.0;
+var vendorCityLon = 0.0;
 var pricePerKM = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -143,12 +145,20 @@ function renderCities(cities) {
             cityLat = parseFloat(selectedCity.dataset.latitude);
             cityLon = parseFloat(selectedCity.dataset.longitude);
             
-            // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
-            const storeLat = 4.8156; 
-            const storeLon = 7.0498; 
-
+            // Coordinates of the store/warehouse 
+            if (vendorCityLat == 0.0 || vendorCityLon == 0.0) {
+                swal("Please select a valid store location", {
+                    icon: "warning",
+                    buttons: {
+                        confirm: true,
+                    },
+                }).then(() => {
+                
+                });
+                return;
+            }
             // Calculate distance between store and selected city in kilometers
-            const distance = calculateDistance(storeLat, storeLon, cityLat, cityLon);
+            const distance = calculateDistance(vendorCityLat, vendorCityLon, cityLat, cityLon);
 
 
             // Calculate shipping fee based on distance
@@ -191,6 +201,7 @@ function resetCitiesDropdown() {
     document.getElementById('city-longitude').textContent = ''; // Clear longitude
 }
 
+// vendor store long and lat
 // Function to render states into the Select State dropdown
 function renderStates1(states) {
     const stateSelect = document.getElementById('state-select1');
@@ -254,45 +265,11 @@ function renderCities1(cities) {
 
         if (selectedCity.value !== '0') {
             // Extract latitude and longitude from the selected city's data attributes
-            cityLat = parseFloat(selectedCity.dataset.latitude);
-            cityLon = parseFloat(selectedCity.dataset.longitude);
-            
-            // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
-            const storeLat = 4.8156; 
-            const storeLon = 7.0498; 
-
-            // Calculate distance between store and selected city in kilometers
-            const distance = calculateDistance(storeLat, storeLon, cityLat, cityLon);
-
-
-            // Calculate shipping fee based on distance
-            const pricePerKMm = document.getElementById('validationCustom01');
-            pricePerKM = +pricePerKMm.value;
-            const shippingFees = document.getElementById('validationCustom02');
-            const shippingDistance = document.getElementById('validationCustom03');
-            if (+pricePerKM == 0) {
-                swal("Please enter a valid price per kilometer", {
-                    icon: "warning",
-                    buttons: {
-                        confirm: true,
-                    },
-                }).then(() => {
-                
-                });
-                return;
-            }
-            const shippingFee = distance * pricePerKM;
-
-            // console.log(`Distance to selected city: ${'₦'+distance.toFixed(2)} km`);
-            shippingFees.value = `Shipping Fee: ${'₦'+shippingFee.toFixed(2)}`;
-            shippingDistance.value = `Distance to selected city: ${distance.toFixed(2)} km`;
-            // console.log(`Shipping Fee: ${'₦'+shippingFee.toFixed(2)}`);
-
+            vendorCityLat = parseFloat(selectedCity.dataset.latitude);
+            vendorCityLon = parseFloat(selectedCity.dataset.longitude);
             
         } else {
-            // Reset city selection and clear displayed latitude/longitude if "Choose City" is selected
-            // latitudeDisplay.textContent = '';
-            // longitudeDisplay.textContent = '';
+            
         }
     });
 }
@@ -375,10 +352,10 @@ async function setShippingFees() {
     // Construct the request body
     const requestBody = {
         shipping_fee_per_km: +pricePerKM,
-        // shipping_fee_greater: ,
-        // shipping_fee_less: ,
-        // store_latitude: ,
-        // store_longitude: ,
+        shipping_fee_greater: ,
+        shipping_fee_less: ,
+        store_latitude: ,
+        store_longitude: ,
     };
     
     // Send POST request using Fetch API
