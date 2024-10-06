@@ -24,7 +24,7 @@ const FILES_TO_CACHE = [
     '/tv.html', 
     '/verified-number.html', 
     '/help-support.html', 
-    '/no-internet-error.html', 
+    // '/no-internet-error.html', 
 
     // auth page to cache
     '/page/about.html', 
