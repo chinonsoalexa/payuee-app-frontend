@@ -222,6 +222,11 @@ function renderStates(states) {
         const selectedStateIso = $(this).val();
         if (selectedStateIso !== '0') {
             stateSelected = $('#state-select option:selected').text();
+            if (+pricePerKM < 1 || isNaN(+pricePerKM)) {
+                // Check if pricePerKM is empty or not a number
+                showToastMessage("Please enter a valid price for shipping fee per km.");
+                return; // Exit early if input is invalid
+            }
             loadCities(selectedStateIso);  // Load cities when a state is selected
         } else {
             resetCitiesDropdown();
