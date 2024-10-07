@@ -333,6 +333,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 }
 
 document.getElementById('updateShippingFeesButton').addEventListener('click', async function() {
+    
     if (+pricePerKM < 1 || isNaN(+pricePerKM)) {
         // Check if pricePerKM is empty or not a number
         showToastMessage("Please enter a valid price for shipping fee per km.");
