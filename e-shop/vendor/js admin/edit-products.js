@@ -103,9 +103,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/vendor/edit-products?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/vendor/edit-products?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -273,7 +273,7 @@ function renderProducts(product) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/vendor/edit-products?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://payuee.com/e-shop/vendor/edit-products?page=${pageNumber}`;
 }
 
 async function deleteProduct(productID) {
