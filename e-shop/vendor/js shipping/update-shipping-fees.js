@@ -467,15 +467,14 @@ async function setShippingFees() {
     })
     .then(response => response.json())
     .then(response => {
-       if (!response.ok) {
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+        if (response.ok) {  // Check for a successful response
+            showToastMessage("Shipping fees updated successfully.");
+        } else {
+            const errorData = response; // Handle error if response is not ok
+            if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
-            return;
         }
-
-        // localStorage.removeItem('cart');
-        showToastMessage("Shipping fees updated successfully.")
     })
     .catch((error) => {
         console.error('Error:', error);
