@@ -95,7 +95,7 @@ async function postProduct() {
     });
 
     try {
-        const response = await fetch('https://api.payuee.com/publish-product', { // Replace with your actual endpoint URL
+        const response = await fetch('https://api.payuee.com/vendor/publish-product', { // Replace with your actual endpoint URL
             method: 'POST',
             credentials: 'include', // Include credentials such as cookies or authorization headers
             body: formData,
