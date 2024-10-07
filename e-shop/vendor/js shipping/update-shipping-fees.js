@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await loadStates();
 });
 
-document.getElementById('validationCustom01').addEventListener('input', function(event) {
+document.getElementById('validationCustom01').addEventListener('input', function(event) { 
     const shippingFeePerKm = event.target.value
     pricePerKM = +shippingFeePerKm;
 
@@ -28,14 +28,7 @@ document.getElementById('validationCustom01').addEventListener('input', function
     const storeLon = 7.0498; 
 
     if (cityLat == "") {
-        swal("Please Select State and City", {
-            icon: "warning",
-            buttons: {
-                confirm: true,
-            },
-          }).then(() => {
-           
-          });
+        showToastMessageE("Please Select State and City");
         return;
     }
 
@@ -272,14 +265,7 @@ function renderCities(cities) {
             
             // Coordinates of the store/warehouse 
             if (vendorCityLat == 0.0 || vendorCityLon == 0.0) {
-                swal("Please select a valid store location", {
-                    icon: "warning",
-                    buttons: {
-                        confirm: true,
-                    },
-                }).then(() => {
-                
-                });
+                showToastMessageE("Please select a valid store location");
                 return;
             }
 
@@ -297,12 +283,7 @@ function renderCities(cities) {
 
             // Check for valid price per kilometer
             if (pricePerKM === 0) {
-                swal("Please enter a valid price per kilometer", {
-                    icon: "warning",
-                    buttons: {
-                        confirm: true,
-                    },
-                }).then(() => { });
+                showToastMessageE("Please enter a valid price per kilometer");
                 return;
             }
 
@@ -445,6 +426,13 @@ function showToastMessage(message) {
 function showToastMessageS(message) {
     document.getElementById('toastMessage2').textContent = message;
     const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
     const toast = new bootstrap.Toast(toastElement); // Initialize the toast
     toast.show(); // Show the toast
 }
