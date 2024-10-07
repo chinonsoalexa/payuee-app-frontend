@@ -47,6 +47,7 @@
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
   <link rel="stylesheet" type="text/css" href="css/vendors/sweetalert2.css">
 </head>
+
   <body> 
     <!-- loader starts-->
     <div class="preloader__wrap loader-wrapper">
@@ -258,6 +259,17 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="card">
+
+                  <!-- <button class="btn btn-primary" id="liveToastBtn" type="button">Top-right toast</button> -->
+                  <div class="toast-container position-fixed top-0 end-0 p-3 toast-index toast-rtl">
+                    <div class="toast hide toast fade" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                      <div class="toast-header toast-img"><img class="rounded me-2" src="../assets/images/dashboard-8/profile.png" alt="profile"><strong class="me-auto">Crocs Theme</strong><small>5 min ago</small>
+                        <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                      <div class="toast-body toast-dark">Hello, I'm a web-designer.</div>
+                    </div>
+                  </div>
+
                   <div class="card-header pb-0">
                     <h4>Shipping Fees Calculation</h4>
                   </div>
@@ -312,6 +324,31 @@
                                 <option selected="" value="0">Choose City</option>
                                 <!-- where the city would be rendered -->
                             </select>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-header card-no-border pb-0">
+                            <h4>Calculate Shipping Fees Based on Product <code>Weight (kg)</code></h4>
+                            <span>Select this option if you want to charge customers by calculating shipping fees using the weight (in kg) of the product. The final shipping cost will be determined by the product's weight in combination with the delivery distance.</span>
+                          </div>
+                          <div class="card-body btn-group-showcase">
+                            <div class="row">
+                                <div class="col-xl-4 col-md-6 col-sm-12">
+                                    <div class="btn-group" data-bs-toggle="buttons">
+                                        <!-- Option 1: Yes -->
+                                        <label class="btn btn-primary">
+                                            <input type="radio" id="radio7" name="shipping" value="true"> Yes
+                                        </label>
+                                        <!-- Option 2: No -->
+                                        <label class="btn btn-primary active">
+                                            <input type="radio" id="radio8" name="shipping" value="false" checked> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                         </div>
                       </div>
 
@@ -2920,6 +2957,7 @@
   <!-- <script src="js/editors/quill.js"></script> -->
   <script src="js/custom-add-product.js"></script>
     <!-- Plugins JS Ends-->
+    <script src="js/notify/custom-notify.js"></script>
     <!-- Theme js-->
     <script src="js/script.js"></script>
     <script src="js/theme-customizer/customizer.js"></script>
@@ -2930,6 +2968,7 @@
 
     <!-- sweet alert -->
     <script src="js/sweet-alert/sweetalert.min.js"></script>
+    
   </body>
 
 </html>

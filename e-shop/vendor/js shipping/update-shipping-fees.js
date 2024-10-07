@@ -462,9 +462,15 @@ function selectCityByText(text) {
     $('#city-select1').trigger('change');
 }
 
+function stringToBool(str) {
+    return str === 'true'; // Returns true if the string is 'true', otherwise false
+}
+
 async function setShippingFees() {
     const shippingGreaterThan = document.getElementById("validationCustom021").value
     const shippingLessThan = document.getElementById("validationCustom031").value
+    // Get the selected radio button using querySelector
+    const selectedRadio = document.querySelector('input[name="shipping"]:checked').value;
     // Construct the request body
     const requestBody = {
         shipping_fee_per_km: +pricePerKM,
@@ -475,8 +481,20 @@ async function setShippingFees() {
         store_state: storeState,
         store_city: storeCity,
         state_iso: stateISO,
+        calculate_using_kg: stringToBool(selectedRadio),
     };
     
+
+    const toastTrigger = document.getElementById("liveToastBtn1");
+    const toastLiveExample = document.getElementById("liveToast1");
+    if (toastTrigger) {
+      toastTrigger.addEventListener("click", () => {
+        const toast = new bootstrap.Toast(toastLiveExample);
+  
+        toast.show();
+      });
+    }
+
     // Send POST request using Fetch API
     fetch('https://api.payuee.com/vendor/set-shipping-fee', {
         method: 'POST',
