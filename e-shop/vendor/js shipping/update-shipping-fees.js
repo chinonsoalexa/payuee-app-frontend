@@ -352,56 +352,24 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 }
 
 document.getElementById('updateShippingFeesButton').addEventListener('click', async function() {
-    if (pricePerKM === "" || isNaN(+pricePerKM)) {
+    if (+pricePerKM < 1 || isNaN(+pricePerKM)) {
         // Check if pricePerKM is empty or not a number
-        await swal({
-            title: "Invalid Input",
-            text: "Please enter a valid price for shipping fee per km.",
-            icon: "warning",
-            buttons: {
-                confirm: {
-                    text: "OK",
-                    value: true,
-                    closeModal: true
-                }
-            }
-        });
+        showToastMessage("Please enter a valid price for shipping fee per km.");
         return; // Exit early if input is invalid
     }
 
-    // Ask for confirmation before updating shipping fees
-    const willUpdate = await swal({
-        title: "Are you sure?",
-        text: `Do you want to update the shipping price to ₦${+pricePerKM} Per KM?`,
-        icon: "warning",
-        buttons: {
-            cancel: {
-                text: "Cancel",
-                value: false,
-                visible: true,
-                closeModal: true
-            },
-            confirm: {
-                text: "Confirm",
-                value: true,
-                closeModal: true
-            }
-        },
-        dangerMode: true
-    });
+    showToastMessageS(`Do you want to update the shipping price to ₦${pricePerKM} Per KM?`);
 
-    // Proceed based on user's choice
-    if (willUpdate) {
-        try {
-            await setShippingFees(); // Call the function to update the shipping fees
-            await swal("Success", "Shipping fees have been updated.", "success");
-        } catch (error) {
-            console.error("Error updating shipping fees:", error);
-            await swal("Error", "Failed to update shipping fees. Please try again.", "error");
-        }
-    } else {
-        await swal("Cancelled", "Shipping fee update was cancelled.", "info");
-    }
+    // Define a handler function for the confirmation
+    const handleConfirmation = async function() {
+        await setShippingFees(); // Call the function to update the shipping fees
+
+        // Remove this event listener after it runs once
+        document.getElementById('toastConfirmation').removeEventListener('click', handleConfirmation);
+    };
+
+    // Add the event listener to the confirmation button
+    document.getElementById('toastConfirmation').addEventListener('click', handleConfirmation);
 });
 
 function convertToFloatIfInteger(num) {
@@ -466,6 +434,21 @@ function stringToBool(str) {
     return str === 'true'; // Returns true if the string is 'true', otherwise false
 }
 
+// Function to show the toast when the event occurs
+function showToastMessage(message) {
+    document.getElementById('toastMessage').textContent = message;
+    const toastElement = document.getElementById('liveToast'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
 async function setShippingFees() {
     const shippingGreaterThan = document.getElementById("validationCustom021").value
     const shippingLessThan = document.getElementById("validationCustom031").value
@@ -483,17 +466,6 @@ async function setShippingFees() {
         state_iso: stateISO,
         calculate_using_kg: stringToBool(selectedRadio),
     };
-    
-
-    const toastTrigger = document.getElementById("liveToastBtn1");
-    const toastLiveExample = document.getElementById("liveToast1");
-    if (toastTrigger) {
-      toastTrigger.addEventListener("click", () => {
-        const toast = new bootstrap.Toast(toastLiveExample);
-  
-        toast.show();
-      });
-    }
 
     // Send POST request using Fetch API
     fetch('https://api.payuee.com/vendor/set-shipping-fee', {
@@ -510,17 +482,11 @@ async function setShippingFees() {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
-        } else {
-            const error = response.json();
-            console.error("Error posting product:", error);
+            return;
         }
+
         // localStorage.removeItem('cart');
-        swal("Successfully updated shipping fees to " + '₦'+ +pricePerKM, {
-            icon: "success",
-            buttons: {
-                confirm: true,
-            },
-          })
+        showToastMessage("Shipping fees updated successfully.")
     })
     .catch((error) => {
         console.error('Error:', error);
