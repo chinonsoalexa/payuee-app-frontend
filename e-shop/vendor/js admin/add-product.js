@@ -105,19 +105,19 @@ async function postProduct() {
                 logout();
             }
         } else {
-            const error = await response.json();
-            console.error("Error posting product:", error);
+            // const error = await response.json();
+            // console.error("Error posting product:", error);
+            const result = await response.json();
+            swal({
+                title: "Product posted successfully",
+                icon: "success",
+                buttons: {
+                    confirm: true,
+                },
+            })
+            clearFields();
         }
-        const result = await response.json();
-        swal({
-            title: "Product posted successfully",
-            icon: "success",
-            buttons: {
-                cancel: true,
-                confirm: true,
-            },
-        })
-        clearFields();
+
     } catch (error) {
         console.error("Network error:", error);
     }
