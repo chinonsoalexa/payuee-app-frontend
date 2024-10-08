@@ -21,16 +21,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
-    setTimeout(() => {
-        // console.log('m here')
-        // updateProductsFromData(productts);
-            // render the store products
-            document.getElementById('products-grid').innerHTML = '';
-    products.forEach((product) => {
-        renderProducts(product);
-    });
-        // console.log('just finished here')
-    }, 3000);
+    // setTimeout(() => {
+    //     // console.log('m here')
+    //     // updateProductsFromData(productts);
+    //         // render the store products
+    //         document.getElementById('products-grid').innerHTML = '';
+    // products.forEach((product) => {
+    //     renderProducts(product);
+    // });
+    //     // console.log('just finished here')
+    // }, 3000);
 
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
 
-    // await getProducts(pageNumber);
+    await getProducts(pageNumber);
 
 });
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/vendor/get-store-products/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -82,7 +82,7 @@ async function getProducts(pageNumber) {
 
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
-        clearElementsByClass('product-card-wrapper');
+        document.getElementById('products-grid').innerHTML = '';
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
