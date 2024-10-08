@@ -1,4 +1,36 @@
 {
-    "cleanUrls": true
-
+    "rewrites": [
+        {
+          "source": "/image/:path*",
+          "destination": "https://f005.backblazeb2.com/file/payuee/:path*"
+        },
+        {
+          "source": "/outfits/:nameAndId",
+          "destination": "e-shop/Demo3/product_cate"
+        },
+        {
+          "source": "/tools/:nameAndId",
+          "destination": "e-shop/Demo3/product_car"
+        },
+        {
+          "source": "/vendor/:nameAndId",
+          "destination": "e-shop/Demo3/product_vendor"
+        },
+        {
+          "source": "/cars/:nameAndId",
+          "destination": "e-shop/Demo3/product_car"
+        },
+        {
+          "source": "/jewelry/:nameAndId",
+          "destination": "e-shop/Demo3/product_ca"
+        },
+        {
+          "source": "/kids/:nameAndId",
+          "destination": "e-shop/Demo3/product_c"
+        },
+        {
+          "source": "/medical/:nameAndId",
+          "destination": "e-shop/Demo3/product_car"
+        }
+      ]
 }
