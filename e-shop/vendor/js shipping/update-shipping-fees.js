@@ -4,6 +4,7 @@ var citySelected;
 
 var cityLat;
 var cityLon;
+// Coordinates of the store/warehouse
 var vendorCityLat = 0.0;
 var vendorCityLon = 0.0;
 var storeCity;
@@ -23,17 +24,13 @@ document.getElementById('validationCustom01').addEventListener('input', function
     const shippingFeePerKm = event.target.value
     pricePerKM = +shippingFeePerKm;
 
-    // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
-    const storeLat = 4.8156; 
-    const storeLon = 7.0498; 
-
     if (cityLat == "") {
         showToastMessageE("Please Select State and City");
         return;
     }
 
     // Calculate distance between store and selected city in kilometers
-    const distance = calculateDistance(storeLat, storeLon, cityLat, cityLon);
+    const distance = calculateDistance(vendorCityLat, vendorCityLon, cityLat, cityLon);
     const shippingFees = document.getElementById('validationCustom02');
     const shippingDistance = document.getElementById('validationCustom03');
     
