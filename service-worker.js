@@ -104,9 +104,9 @@ const FILES_TO_CACHE = [
 // Event listener for installing the service worker
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_KEY).then((cache) => {
-            return cache.addAll(FILES_TO_CACHE)
-        })
+        // caches.open(CACHE_KEY).then((cache) => {
+        //     return cache.addAll(FILES_TO_CACHE)
+        // })
     );
 });
 
