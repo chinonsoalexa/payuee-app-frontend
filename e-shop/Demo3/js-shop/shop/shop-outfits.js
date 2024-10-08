@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/vendor/get-store-products/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/vendor/get-store-products/" + pageNumber + "/outfits";
 
     const requestOptions = {
         method: "GET",
