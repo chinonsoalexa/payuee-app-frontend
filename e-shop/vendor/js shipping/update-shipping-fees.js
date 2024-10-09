@@ -34,7 +34,14 @@ document.getElementById('validationCustom01').addEventListener('input', function
     const shippingFees = document.getElementById('validationCustom02');
     const shippingDistance = document.getElementById('validationCustom03');
     
-    const shippingFee = distance * shippingFeePerKm;
+    let shippingFee = distance * shippingFeePerKm;
+
+    // Ensure the shipping fee is not lower or higher than the defined limits
+    if (shippingFee < shippingLessThan) {
+        shippingFee = shippingLessThan;
+    } else if (shippingFee > shippingGreaterThan) {
+        shippingFee = shippingGreaterThan;
+    }
 
     // console.log(`Distance to selected city: ${'₦'+distance.toFixed(2)} km`);
     shippingFees.value = `Shipping Fee: ${'₦'+shippingFee.toFixed(2)}`;

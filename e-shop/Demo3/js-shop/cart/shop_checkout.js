@@ -30,6 +30,11 @@ var customerZipCode = "62701";
 var customerProvince = "Sangamon";
 var customerPhoneNumber = "+1234567890";
 
+// shipping fees calculation
+var latitude = 0.0;
+var longitude = 0.0;
+var shippingFee = 0;
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
@@ -119,6 +124,7 @@ function renderStates(states) {
             listItem.id = state.id;
             listItem.classList.add('search-suggestion__item', 'js-search-select');
             listItem.dataset.iso2 = state.iso2; // Store ISO2 code in data attribute
+            listItem.dataset.state = state.name; // Store State in data attribute
             stateList.appendChild(listItem); // Append list item to the list
         });
     }
@@ -128,6 +134,7 @@ function renderStates(states) {
         if (event.target.classList.contains('js-search-select')) {
             const selectedState = event.target.textContent;
             const isoCode = event.target.dataset.iso2;
+            customerState = event.target.dataset.state;
             document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
             document.getElementById('city-dropdown').value = ''; // Reset the city input value
             CalculateCartSubtotal() 
@@ -166,24 +173,18 @@ function renderCities(cities) {
     cityList.addEventListener('click', function (event) {
         if (event.target.classList.contains('js-search-select')) {
             const selectedCity = event.target.dataset.cityName;
-            const latitude = parseFloat(event.target.dataset.latitude);
-            const longitude = parseFloat(event.target.dataset.longitude);
+            latitude = parseFloat(event.target.dataset.latitude);
+            longitude = parseFloat(event.target.dataset.longitude);
 
             // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
-            const storeLat = 4.8156; 
-            const storeLon = 7.0498; 
+            // const storeLat = 4.8156; 
+            // const storeLon = 7.0498; 
 
-            // Calculate distance between store and selected city in kilometers
-            const distance = calculateDistance(storeLat, storeLon, latitude, longitude);
+            // // Calculate distance between store and selected city in kilometers
+            // const distance = calculateDistance(storeLat, storeLon, latitude, longitude);
 
-            const shippingFee = distance * shippingCostPerKilo;
-            shippingCost = shippingFee;
-
-            // Get the element by its ID
-            const shippingFeeElement = document.getElementById('shippingFee');
-
-            // Set the new shipping fee value
-            shippingFeeElement.textContent = `₦${shippingFee.toLocaleString()}`;
+            // const shippingFee = distance * shippingCostPerKilo;
+            // shippingCost = shippingFee;
 
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
@@ -818,7 +819,7 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function calculateDistance(lat1, lon1, lat2, lon2) {
+function calculateDistance(VenLat1, venLon1, lat2, lon2) {
     const R = 6371; // Radius of the Earth in km
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -937,7 +938,57 @@ function getUniqueVendorIds() {
     return Array.from(vendorIds);
 }
 
-async function getShippingFees(ids) {
+function updateShippingPrices(vendorsShippingFees) {
+    // Get reference to the tbody element where shipping fees will be displayed
+    const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
+    
+    // Clear the current table body content
+    shippingFeesTableBody.innerHTML = '';
+
+    // Check if there are any shipping fees data available
+    if (!vendorsShippingFees || vendorsShippingFees.length === 0) {
+        // Display a message when no shipping fees are available
+        const emptyRow = document.createElement('tr');
+        emptyRow.innerHTML = `
+          <td colspan="2">No shipping fees available</td>
+        `;
+        shippingFeesTableBody.appendChild(emptyRow);
+    } else {
+        // Loop through the vendors and append their shipping fees
+        vendorsShippingFees.forEach(fee => {
+            // Create a new table row element
+            const shippingFeeRow = document.createElement('tr');
+
+            // Calculate distance between store and selected city in kilometers
+            const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+            
+            shippingFee = distance * fee.shipping_fee_per_km;
+
+            // Ensure the shipping fee is not lower or higher than the defined limits
+            if (shippingFee < fee.shipping_fee_less) {
+                shippingFee = fee.shipping_fee_less;
+            } else if (shippingFee > fee.shipping_fee_greater) {
+                shippingFee = fee.shipping_fee_greater;
+            }
+
+            // Add the vendor name and shipping fee
+            shippingFeeRow.innerHTML = `
+              <td>${fee.store_name}</td>
+              <td>₦${formatNumberToNaira(shippingFee)}</td>
+            `;
+
+            // Append the new row to the table body
+            shippingFeesTableBody.appendChild(shippingFeeRow);
+        });
+    }
+}
+
+// Helper function to format numbers into Naira currency
+function formatNumberToNaira(amount) {
+    return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(amount);
+}
+
+async function getShippingFees() {
     // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
 
@@ -963,8 +1014,7 @@ async function getShippingFees(ids) {
 
         // Process the response data
         const data = await response.json();
-        const shippingCostPerKilo = data.success;  // Assuming success contains shipping fees
-        console.log(shippingCostPerKilo);
+        updateShippingPrices(data.success);
     } catch (error) {
         console.error('Error fetching shipping fees:', error);
     }
