@@ -30,9 +30,6 @@ var customerZipCode = "62701";
 var customerProvince = "Sangamon";
 var customerPhoneNumber = "+1234567890";
 
-// get shipping fees for all vendors
-var ids;
-
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
@@ -922,12 +919,32 @@ function placeOrder() {
     });
 }
 
+function getUniqueVendorIds() {
+    // Retrieve the cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Create a Set to store unique vendor IDs
+    let vendorIds = new Set();
+
+    // Loop through each item in the cart
+    cart.forEach(item => {
+        // Ensure the eshop_user_id exists
+        if (item.eshop_user_id !== undefined) {
+            // Add the vendor ID to the Set (duplicates will be ignored automatically)
+            vendorIds.add(item.eshop_user_id);
+        }
+    });
+
+    // Convert the Set back to an array and return
+    return Array.from(vendorIds);
+}
+
 async function getShippingFees(ids) {
     // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
 
     // Request body is just the array of IDs
-    const requestBody = ids;  // Directly send the array, not as an object
+    const requestBody = getUniqueVendorIds();  // Directly send the array, not as an object
     
     const requestOptions = {
         method: "POST",
