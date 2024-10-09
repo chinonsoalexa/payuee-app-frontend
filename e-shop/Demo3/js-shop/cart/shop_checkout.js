@@ -15,7 +15,7 @@ var shippingCostPerKilo = 0;
 // Declare variables for order details
 var orderCost = 11040.00;
 var orderSubTotalCost = 12000.00;
-var shippingCost = 100.00;
+var shippingCost = 0.0;
 var orderDiscount = 0.00;
 var customerEmail = "john.doe@example.com";
 var orderNotes = "";
