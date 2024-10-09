@@ -287,6 +287,16 @@ function renderProducts(product) {
                                 <img loading="lazy" src="https://payuee.com/image/${product.product_image[1].url}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
                             </a>
                         </div>
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[2].url}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[3].url}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            </a>
+                        </div>
                     </div>
                     <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
                     <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
