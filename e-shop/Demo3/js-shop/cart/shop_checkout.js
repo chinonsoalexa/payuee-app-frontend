@@ -921,7 +921,7 @@ function placeOrder() {
 
 async function getShippingFees() {
     // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/get-shipping-fee";
+    const apiUrl = "https://api.payuee.com/get-shipping-fee/1";
 
     const requestOptions = {
     method: "GET",
