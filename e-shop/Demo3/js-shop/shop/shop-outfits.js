@@ -279,12 +279,12 @@ function renderProducts(product) {
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link1">
-                                <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
-                                <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[1].url}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
                             </a>
                         </div>
                     </div>
