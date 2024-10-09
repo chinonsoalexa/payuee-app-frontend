@@ -202,7 +202,7 @@ async function getProducts(pageNumber) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
