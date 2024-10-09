@@ -113,9 +113,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/shop?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/shop?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
