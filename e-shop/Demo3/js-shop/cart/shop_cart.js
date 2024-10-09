@@ -85,7 +85,7 @@ function updateMainCart() {
             cartItem.innerHTML = `
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="${"https://payuee.com/image/"+cartProduct.Image1}" width="120" height="120" alt="">
+                    <img loading="lazy" src="${"/image/" + cartProduct.product_image[0].url}" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>
