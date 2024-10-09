@@ -510,6 +510,7 @@ function CalculateCartSubtotal() {
     // Update the subtotal and total elements in the UI
     document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
     document.getElementById('subtotalMain2').innerText = formatNumberToNaira(subtotal);
+    document.getElementById('shippingFee').innerText = formatNumberToNaira(shippingCost);
     document.getElementById('totalMain').innerText = formatNumberToNaira(subtotal + shippingCost);
     
     totalCharge = subtotal + shippingCost;
@@ -942,7 +943,7 @@ function getUniqueVendorIds() {
 function updateShippingPrices(vendorsShippingFees) {
     // Get reference to the tbody element where shipping fees will be displayed
     const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
-    
+
     // Clear the current table body content
     shippingFeesTableBody.innerHTML = '';
 
@@ -972,6 +973,7 @@ function updateShippingPrices(vendorsShippingFees) {
                 shippingFee = fee.shipping_fee_greater;
             }
 
+            shippingCost += shippingFee;
             // Add the vendor name and shipping fee
             shippingFeeRow.innerHTML = `
               <td>${fee.store_name}</td>
@@ -982,6 +984,7 @@ function updateShippingPrices(vendorsShippingFees) {
             shippingFeesTableBody.appendChild(shippingFeeRow);
         });
     }
+    CalculateCartSubtotal();
 }
 
 // Helper function to format numbers into Naira currency
