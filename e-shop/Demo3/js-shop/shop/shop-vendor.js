@@ -37,16 +37,17 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Get individual parameter values
     let pageNumber = params.get("page");
+    let storeVendor = params.get("vendor");
     if (pageNumber == null) {
         pageNumber = "1";
     }
 
-    await getProducts(pageNumber);
+    await getProducts(pageNumber, storeVendor);
 
 });
 
-async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/get-store-products/" + pageNumber;
+async function getProducts(pageNumber, storeVendor) {
+    const apiUrl = "https://api.payuee.com/get-store-products/" + pageNumber + "/" + storeVendor;
 
     const requestOptions = {
         method: "GET",
