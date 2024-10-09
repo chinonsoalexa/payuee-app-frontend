@@ -34,6 +34,7 @@ var customerPhoneNumber = "+1234567890";
 var latitude = 0.0;
 var longitude = 0.0;
 var shippingFee = 0;
+var shippingData;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -175,7 +176,7 @@ function renderCities(cities) {
             const selectedCity = event.target.dataset.cityName;
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
-
+            updateShippingPrices(shippingData);
             // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
             // const storeLat = 4.8156; 
             // const storeLon = 7.0498; 
@@ -819,10 +820,10 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function calculateDistance(VenLat1, venLon1, lat2, lon2) {
+function calculateDistance(VenLat1, VenLon1, CusLat2, CusLon2) {
     const R = 6371; // Radius of the Earth in km
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const dLat = (CusLat2 - VenLat1) * (Math.PI / 180);
+    const dLon = (CusLon2 - VenLon1) * (Math.PI / 180);
     const a = 
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
@@ -1014,6 +1015,7 @@ async function getShippingFees() {
 
         // Process the response data
         const data = await response.json();
+        shippingData = data.success;
         updateShippingPrices(data.success);
     } catch (error) {
         console.error('Error fetching shipping fees:', error);
