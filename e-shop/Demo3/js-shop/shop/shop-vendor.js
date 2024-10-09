@@ -133,7 +133,7 @@ async function getProducts(pageNumber, storeVendor) {
         if (CurrentPageOnLoad > 2) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("twoBeforePage");
-            updateLink(currentPageElement, TwoBeforePageOnLoad);
+            updateLink(currentPageElement, TwoBeforePageOnLoad, storeVendor);
             currentPageElement.textContent = TwoBeforePageOnLoad;
         } else {
             // let's disable the next page navigation button
@@ -143,12 +143,12 @@ async function getProducts(pageNumber, storeVendor) {
 
         // let's update the pagination with the next page
         var currentPageElement = document.getElementById("beforePage");
-        updateLink(currentPageElement, PreviousPageOnLoad);
+        updateLink(currentPageElement, PreviousPageOnLoad, storeVendor);
         currentPageElement.textContent = PreviousPageOnLoad;
 
         // let's update the pagination with the current page
         var currentPageElement = document.getElementById("currentPage");
-        updateLink(currentPageElement, CurrentPageOnLoad);
+        updateLink(currentPageElement, CurrentPageOnLoad, storeVendor);
         currentPageElement.textContent = CurrentPageOnLoad;
         deactivateCurrentButton();
 
@@ -159,14 +159,14 @@ async function getProducts(pageNumber, storeVendor) {
         } else {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("afterPage");
-            updateLink(currentPageElement, NextPageOnLoad);
+            updateLink(currentPageElement, NextPageOnLoad, storeVendor);
             currentPageElement.textContent = NextPageOnLoad;
         }
 
         if (TwoAfterPageOnLoad < TotalPageOnLoad) {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("twoAfterPage");
-            updateLink(currentPageElement, TwoAfterPageOnLoad);
+            updateLink(currentPageElement, TwoAfterPageOnLoad, storeVendor);
             currentPageElement.textContent = TwoAfterPageOnLoad;
         } else {
             // let's disable the next page navigation button
@@ -181,7 +181,7 @@ async function getProducts(pageNumber, storeVendor) {
         } else {
             // let's update the pagination with the next page
             var currentPageElement = document.getElementById("constantAfterPage");
-            updateLink(currentPageElement, TotalPageOnLoad);
+            updateLink(currentPageElement, TotalPageOnLoad, storeVendor);
             currentPageElement.textContent = TotalPageOnLoad;
         }
 
@@ -202,8 +202,8 @@ async function getProducts(pageNumber, storeVendor) {
     }
 }
 
-function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/vendor?page=${pageNumber}`;
+function updateLink(urlIdToUpdate, pageNumber, storeVendor) {
+        urlIdToUpdate.href = `https://payuee.com/vendor?page=${pageNumber}&vendor=${storeVendor}`;
 }
 
 function deactivatePreviousButton() {
