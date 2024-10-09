@@ -231,19 +231,19 @@ function deactivateCurrentButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-function displayImage(productURL, productTitle, imageURLarray) {
-    slideDiv = '';
-    // Loop through the product_image array and generate HTML
-    imageURLarray.forEach((image, index) => {
+// function displayImage(productURL, productTitle, imageURLarray) {
+//     slideDiv = '';
+//     // Loop through the product_image array and generate HTML
+//     imageURLarray.forEach((image, index) => {
         
-        slideDiv += `
-            <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
-                <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
-            </a>
-        `;
-    });
-    return slideDiv;
-}
+//         slideDiv += `
+//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
+//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
+//             </a>
+//         `;
+//     });
+//     return slideDiv;
+// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
@@ -291,7 +291,29 @@ function renderProducts(product) {
             <div class="pc__img-wrapper">
                 <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
-                        ${displayImage(product.product_url_id, product.title, product.product_image)}
+                        <div class="swiper-slide" id="product-swiper-${product.product_url_id}">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link1">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[0]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[1]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link3">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[2]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img3">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link4">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[3]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img4">
+                            </a>
+                        </div>
                     </div>
                     <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
                     <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
