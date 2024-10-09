@@ -1011,12 +1011,13 @@ async function getShippingFees() {
         if (!response.ok) {
             alert('An error occurred. Please try again');
             return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            shippingData = data.success;
+            updateShippingPrices(data.success);
         }
 
-        // Process the response data
-        const data = await response.json();
-        shippingData = data.success;
-        updateShippingPrices(data.success);
     } catch (error) {
         console.error('Error fetching shipping fees:', error);
     }
