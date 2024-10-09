@@ -826,7 +826,7 @@ function calculateDistance(VenLat1, VenLon1, CusLat2, CusLon2) {
     const dLon = (CusLon2 - VenLon1) * (Math.PI / 180);
     const a = 
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.cos(VenLat1 * (Math.PI / 180)) * Math.cos(CusLat2 * (Math.PI / 180)) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in km
