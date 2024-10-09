@@ -975,7 +975,7 @@ function updateShippingPrices(vendorsShippingFees) {
             // Add the vendor name and shipping fee
             shippingFeeRow.innerHTML = `
               <td>${fee.store_name}</td>
-              <td>₦${formatNumberToNaira(shippingFee)}</td>
+              <td>${formatNumberToNaira(shippingFee)}</td>
             `;
 
             // Append the new row to the table body
