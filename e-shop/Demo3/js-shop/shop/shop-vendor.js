@@ -278,14 +278,27 @@ function renderProducts(product) {
             <div class="pc__img-wrapper">
                 <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://payuee.com/vendor/${product.product_url_id}" class="product-link1">
-                                <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
+                        <div class="swiper-slide" id="product-swiper-${product.product_url_id}">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link1">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[0]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
+
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/vendor/${product.product_url_id}" class="product-link2">
-                                <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[1]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link3">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[2]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img3">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link4">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[3]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img4">
                             </a>
                         </div>
                     </div>
