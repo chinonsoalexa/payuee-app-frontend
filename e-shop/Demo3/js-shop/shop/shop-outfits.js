@@ -318,7 +318,7 @@ function renderProducts(product) {
             ${percentage}
             <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
                 <div class="pc-labels__left">
-                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}g</span>
+                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
                 </div>
             </div>
         </div>
