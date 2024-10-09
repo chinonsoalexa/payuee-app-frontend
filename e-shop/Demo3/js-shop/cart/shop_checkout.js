@@ -306,9 +306,7 @@ function renderCheckoutProducts() {
 
         });
     }
-    console.log("trying to calculate cart subtotal: ...");
     CalculateCartSubtotal();
-    console.log("done calculating cart subtotal: ...");
 }
 
 function updateCartDrawer() {
