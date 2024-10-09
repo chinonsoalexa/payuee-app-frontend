@@ -30,6 +30,9 @@ var customerZipCode = "62701";
 var customerProvince = "Sangamon";
 var customerPhoneNumber = "+1234567890";
 
+// get shipping fees for all vendors
+var ids;
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
@@ -366,7 +369,7 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.product_image[0].url}" alt="">
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -919,32 +922,35 @@ function placeOrder() {
     });
 }
 
-async function getShippingFees() {
-    // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/get-shipping-fee/1";
+async function getShippingFees(ids) {
+    // Endpoint URL
+    const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
 
+    // Request body is just the array of IDs
+    const requestBody = ids;  // Directly send the array, not as an object
+    
     const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',  // Include cookies with the request
+        body: JSON.stringify(requestBody)  // Send array as JSON
     };
     
-try {
-    const response = await fetch(apiUrl, requestOptions);
-    
-    if (!response.ok) {
-        // alert('an error occurred. Please try again');
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
         if (!response.ok) {
-            alert('an error occurred. Please try again');
+            alert('An error occurred. Please try again');
             return;
         }
-        return;
-      }
+
+        // Process the response data
         const data = await response.json();
-        shippingCostPerKilo = data.success;
-    } finally{
-        // do nothing
+        const shippingCostPerKilo = data.success;  // Assuming success contains shipping fees
+        console.log(shippingCostPerKilo);
+    } catch (error) {
+        console.error('Error fetching shipping fees:', error);
     }
 }
