@@ -992,6 +992,7 @@ function updateShippingPrices(vendorsShippingFees) {
             if (!fee.calculate_using_kg) {
                 shippingFee = distance * fee.shipping_fee_per_km;
             } else {
+                console.log("calculating from here: ", fee);
                 shippingFee = distance * fee.shipping_fee_per_km * calculateTotalWeightForVendor(fee.eshop_user_id);
             }
 
