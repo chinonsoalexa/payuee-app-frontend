@@ -523,6 +523,13 @@ try {
         pricePerKMm.value = data.success.shipping_fee_per_km;
         shippingGreaterThan.value = data.success.shipping_fee_greater;
         shippingLessThan.value = data.success.shipping_fee_less;
+
+        // Get the selected radio button for shipping
+        const selectedOption = document.querySelector('input[name="shipping"]:checked').value;
+        
+        // Convert the value to boolean (true or false)
+        selectedOption === data.success.calculate_using_kg;
+
         // Select state
         selectStateByText(data.success.store_state);
         // Select city
