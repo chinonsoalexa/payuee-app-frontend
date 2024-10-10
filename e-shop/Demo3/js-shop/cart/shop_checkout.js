@@ -663,10 +663,19 @@ placeOrderButton.addEventListener("click", function(event) {
     const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
     const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
 
+
+    const cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
+    const shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
+    const cartShippingTotalPopUp = document.getElementById('cartShippingTotalPopUp');
+
     // Create a new instance of the Bootstrap modal
     const paymentModal = new bootstrap.Modal(paymentModalElement);
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
     const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
+
+    cartSubTotalPopUp.value =  formatNumberToNaira(subtotal);
+    shippingSubTotalPopUp.value =  formatNumberToNaira(shippingCost);
+    cartShippingTotalPopUp.value =  formatNumberToNaira(subtotal + shippingCost);
 
     paymentModal.show();    // Show the modal programmatically
 
@@ -699,6 +708,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
         // Simulate a delay for transaction processing (e.g., 2 seconds)
         setTimeout(function () {
+            document.getElementById('amountToCharge').value = formatNumberToNaira(subtotal + shippingCost);
             // Show the transaction success modal
             transactionSuccessModal.show();
         }, 2000); // 2 seconds delay to simulate payment processing
