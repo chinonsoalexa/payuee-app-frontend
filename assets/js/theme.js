@@ -1332,7 +1332,7 @@ function pureFadeOut(e) {
   });
 
   $('.shopping-cart .btn-checkout').on('click', function() {
-    // window.location.href='./shop_checkout.html';
+    window.location.href='./shop_checkout.html';
   });
 
   $('.checkout-form .btn-checkout').on('click', function() {
