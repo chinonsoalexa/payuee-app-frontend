@@ -996,6 +996,7 @@ function updateShippingPrices(vendorsShippingFees) {
             }
 
             shippingCost += shippingFee;
+            console.log("this is shipping fees: ", shippingFee);
             // Add the vendor name and shipping fee
             shippingFeeRow.innerHTML = `
               <td>${fee.store_name}</td>
