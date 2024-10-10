@@ -959,7 +959,7 @@ function calculateTotalWeightForVendor(eshop_user_id) {
 function updateShippingPrices(vendorsShippingFees) {
     // Get reference to the tbody element where shipping fees will be displayed
     const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
-    shippingFee = 0;
+    shippingCost = 0;
     // Clear the current table body content
     shippingFeesTableBody.innerHTML = '';
 
