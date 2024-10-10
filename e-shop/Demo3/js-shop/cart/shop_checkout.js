@@ -1045,6 +1045,9 @@ async function getShippingFees() {
         }
 
     } catch (error) {
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
+        checkoutButton.disabled = true;
         console.error('Error fetching shipping fees:', error);
     }
 }
