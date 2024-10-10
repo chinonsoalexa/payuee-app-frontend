@@ -603,60 +603,60 @@ const insufficientBalanceModalElement = document.getElementById('insufficientBal
 placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
   // Resetting previous errors
-    // resetErrors();
+    resetErrors();
 
-    // // Validate required fields
-    // let isValid = true;
+    // Validate required fields
+    let isValid = true;
 
-    // if (!formData.firstName) {
-    //     isValid = false;
-    //     showError("checkout_first_name", "First Name is required.");
-    // }
-    // if (!formData.lastName) {
-    //     isValid = false;
-    //     showError("checkout_last_name", "Last Name is required.");
-    // }
-    // if (!formData.state) {
-    //     isValid = false;
-    //     showError("search-dropdown", "State/Region is required.");
-    // }
-    // if (!formData.city) {
-    //     isValid = false;
-    //     showError("city-dropdown", "City is required.");
-    // }
-    // if (!formData.streetAddress1) {
-    //     isValid = false;
-    //     showError("checkout_street_address", "Street Address 1 is required.");
-    // }
-    // if (!formData.zipcode) {
-    //     isValid = false;
-    //     showError("checkout_zipcode", "Postcode/ZIP is required.");
-    // }
-    // if (!formData.province) {
-    //     isValid = false;
-    //     showError("checkout_province", "Province is required.");
-    // }
-    // if (!formData.phone) {
-    //     isValid = false;
-    //     showError("checkout_phone", "Phone number is required.");
-    // }
-    // if (formData.phone.length !== 11) {
-    //     isValid = false;
-    //     showError("checkout_phone", "Invalid phone number.");
-    // }
-    // if (!formData.email) {
-    //     isValid = false;
-    //     showError("checkout_email", "Email is required.");
-    // }
-    // if (!isValidEmail(formData.email)) {
-    //     isValid = false;
-    //     showError("checkout_email", "Invalid Email Address.");
-    // }
+    if (!formData.firstName) {
+        isValid = false;
+        showError("checkout_first_name", "First Name is required.");
+    }
+    if (!formData.lastName) {
+        isValid = false;
+        showError("checkout_last_name", "Last Name is required.");
+    }
+    if (!formData.state) {
+        isValid = false;
+        showError("search-dropdown", "State/Region is required.");
+    }
+    if (!formData.city) {
+        isValid = false;
+        showError("city-dropdown", "City is required.");
+    }
+    if (!formData.streetAddress1) {
+        isValid = false;
+        showError("checkout_street_address", "Street Address 1 is required.");
+    }
+    if (!formData.zipcode) {
+        isValid = false;
+        showError("checkout_zipcode", "Postcode/ZIP is required.");
+    }
+    if (!formData.province) {
+        isValid = false;
+        showError("checkout_province", "Province is required.");
+    }
+    if (!formData.phone) {
+        isValid = false;
+        showError("checkout_phone", "Phone number is required.");
+    }
+    if (formData.phone.length !== 11) {
+        isValid = false;
+        showError("checkout_phone", "Invalid phone number.");
+    }
+    if (!formData.email) {
+        isValid = false;
+        showError("checkout_email", "Email is required.");
+    }
+    if (!isValidEmail(formData.email)) {
+        isValid = false;
+        showError("checkout_email", "Invalid Email Address.");
+    }
 
-    // // If form is not valid, prevent submission
-    // if (!isValid) {
-    //     return;
-    // }
+    // If form is not valid, prevent submission
+    if (!isValid) {
+        return;
+    }
 
     // Get the modal element
     const paymentModalElement = document.getElementById('checkoutModal');
@@ -691,99 +691,64 @@ placeOrderButton.addEventListener("click", function(event) {
 
         if (!hasSufficientBalance) {
         // Hide checkout modal and show insufficient balance modal
-        paymentModal.hide();
-        setTimeout(function () {
-            insufficientBalanceModal.show();
-            // Fund Wallet button logic (you can customize this for your wallet integration)
-            const fundWalletButton = document.getElementById('fundWalletButton');
-            fundWalletButton.addEventListener('click', function () {
-                // Logic to fund the wallet goes here
-                window.location.href = 'https://payuee.com/fund-wallet';
-            });
-            return;
-        }, 300); // Delay for smooth transition
+            paymentModal.hide();
+            setTimeout(function () {
+                insufficientBalanceModal.show();
+                // Fund Wallet button logic (you can customize this for your wallet integration)
+                const fundWalletButton = document.getElementById('fundWalletButton');
+                fundWalletButton.addEventListener('click', function () {
+                    // Logic to fund the wallet goes here
+                    window.location.href = 'https://payuee.com/fund-wallet';
+                });
+                return;
+            }, 300); // Delay for smooth transition
         } else {
-        // Hide checkout modal and simulate a successful transaction
-        paymentModal.hide();
+            // Hide checkout modal and simulate a successful transaction
+            paymentModal.hide();
+            // Collecting form data
+            const formData = {
+                firstName: document.getElementById("checkout_first_name").value.trim(),
+                lastName: document.getElementById("checkout_last_name").value.trim(),
+                companyName: document.getElementById("checkout_company_name").value.trim() || "",
+                state: document.getElementById("search-dropdown").value.trim(),
+                city: document.getElementById("city-dropdown").value.trim(),
+                streetAddress1: document.getElementById("checkout_street_address").value.trim(),
+                streetAddress2: document.getElementById("checkout_city").value.trim() || "",
+                zipcode: document.getElementById("checkout_zipcode").value.trim(),
+                province: document.getElementById("checkout_province").value.trim(),
+                phone: document.getElementById("checkout_phone").value.trim(),
+                email: document.getElementById("checkout_email").value.trim(),
+                shipDifferent: document.getElementById("ship_different_address").checked,
+                orderNotes: document.querySelector("textarea").value.trim() || "",
+                paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
+            };
 
-        // Simulate a delay for transaction processing (e.g., 2 seconds)
-        setTimeout(function () {
+            // Dynamically assign variables using form data
+            orderCost = totalCharge;  
+            orderSubTotalCost = totalCharge - shippingCost;  
+            shippingCost = shippingCost;  
+            orderDiscount = calculateDiscount();
+            customerEmail = formData.email;
+            orderNotes = formData.orderNotes;
+            customerFName = formData.firstName;
+            customerSName = formData.lastName;
+            customerCompanyName = formData.companyName;
+            customerState = formData.state;
+            customerCity = formData.city;
+            customerStreetAddress1 = formData.streetAddress1;
+            customerStreetAddress2 = formData.streetAddress2;
+            customerZipCode = formData.zipcode;
+            customerProvince = formData.province;
+            customerPhoneNumber = formData.phone;
+
+
+            placeOrder();
+            // Simulate a delay for transaction processing (e.g., 2 seconds)
             document.getElementById('amountToCharge').value = formatNumberToNaira(subtotal + shippingCost);
             // Show the transaction success modal
             transactionSuccessModal.show();
-        }, 2000); // 2 seconds delay to simulate payment processing
         }
 
-    //     // Collecting form data
-    //     const formData = {
-    //         firstName: document.getElementById("checkout_first_name").value.trim(),
-    //         lastName: document.getElementById("checkout_last_name").value.trim(),
-    //         companyName: document.getElementById("checkout_company_name").value.trim() || "",
-    //         state: document.getElementById("search-dropdown").value.trim(),
-    //         city: document.getElementById("city-dropdown").value.trim(),
-    //         streetAddress1: document.getElementById("checkout_street_address").value.trim(),
-    //         streetAddress2: document.getElementById("checkout_city").value.trim() || "",
-    //         zipcode: document.getElementById("checkout_zipcode").value.trim(),
-    //         province: document.getElementById("checkout_province").value.trim(),
-    //         phone: document.getElementById("checkout_phone").value.trim(),
-    //         email: document.getElementById("checkout_email").value.trim(),
-    //         shipDifferent: document.getElementById("ship_different_address").checked,
-    //         orderNotes: document.querySelector("textarea").value.trim() || "",
-    //         paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
-    //     };
-
-    //     // Dynamically assign variables using form data
-    //     orderCost = totalCharge;  
-    //     orderSubTotalCost = totalCharge - shippingCost;  
-    //     shippingCost = shippingCost;  
-    //     orderDiscount = calculateDiscount();
-    //     customerEmail = formData.email;
-    //     orderNotes = formData.orderNotes;
-    //     customerFName = formData.firstName;
-    //     customerSName = formData.lastName;
-    //     customerCompanyName = formData.companyName;
-    //     customerState = formData.state;
-    //     customerCity = formData.city;
-    //     customerStreetAddress1 = formData.streetAddress1;
-    //     customerStreetAddress2 = formData.streetAddress2;
-    //     customerZipCode = formData.zipcode;
-    //     customerProvince = formData.province;
-    //     customerPhoneNumber = formData.phone;
-
-    //     // if all fields are valid let's show account number for transfer
-    //     const content = document.createElement('div');
-    //     content.innerHTML = `
-    //         Transfer <strong>${formatNumberToNaira(+orderCost)}</strong> to the below Account Details<br>
-    //         <strong>Account Name:</strong> DORNG GLOBAL CONCEPT<br>
-    //         <strong>Account Number:</strong> 177533623<br>
-    //         <strong>Bank Name:</strong> Access Bank
-    //     `;
-        
-    //     swal({
-    //         title: "Account Details",
-    //         content: content,
-    //         icon: "info",
-    //         buttons: {
-    //             cancel: true,
-    //             confirm: true,
-    //         },
-    //     }).then((result) => {
-    //         if (result) {
-    //             // Let's make order request
-    //             placeOrder();
-    //             // Perform actions when confirmed
-    //             swal("We would contact you with the provided Email Address and Phone number once the order process is confirmed", {
-    //                 icon: "success",
-    //                 buttons: {
-    //                     confirm: true,
-    //                 },
-    //             }).then(() => {
-                
-    //             });
-    //         } else {
-    //             // Perform actions when canceled
-    //         }
-    //     });
     });
     return;
 });
