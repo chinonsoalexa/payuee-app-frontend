@@ -1021,7 +1021,9 @@ async function getShippingFees() {
 
     // Request body is just the array of IDs
     const requestBody = getUniqueVendorIds();  // Directly send the array, not as an object
+    const checkoutButton = document.getElementById('placeOrderButton');
     
+    checkoutButton.disabled = true;
     const requestOptions = {
         method: "POST",
         headers: {
@@ -1042,6 +1044,9 @@ async function getShippingFees() {
             const data = await response.json();
             shippingData = data.success;
             updateShippingPrices(data.success);
+            const checkoutButton = document.getElementById('placeOrderButton');
+    
+            checkoutButton.disabled = false;
         }
 
     } catch (error) {
