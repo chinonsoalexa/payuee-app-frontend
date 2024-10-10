@@ -177,15 +177,6 @@ function renderCities(cities) {
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
             updateShippingPrices(shippingData);
-            // Coordinates of the store/warehouse (assumed to be in Lagos for this example)
-            // const storeLat = 4.8156; 
-            // const storeLon = 7.0498; 
-
-            // // Calculate distance between store and selected city in kilometers
-            // const distance = calculateDistance(storeLat, storeLon, latitude, longitude);
-
-            // const shippingFee = distance * shippingCostPerKilo;
-            // shippingCost = shippingFee;
 
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
@@ -992,7 +983,7 @@ function updateShippingPrices(vendorsShippingFees) {
             if (!fee.calculate_using_kg) {
                 shippingFee = distance * fee.shipping_fee_per_km;
             } else {
-                console.log("calculating from here: ", fee);
+                console.log("calculating from here: ", fee, calculateTotalWeightForVendor(fee.eshop_user_id));
                 shippingFee = distance * fee.shipping_fee_per_km * calculateTotalWeightForVendor(fee.eshop_user_id);
             }
 
