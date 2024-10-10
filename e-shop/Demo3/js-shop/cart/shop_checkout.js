@@ -940,6 +940,31 @@ function getUniqueVendorIds() {
     return Array.from(vendorIds);
 }
 
+function calculateTotalWeightForVendor(eshop_user_id) {
+    // Retrieve cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Filter the products in the cart by the specific eshop_user_id
+    const vendorProducts = cart.filter(product => product.eshop_user_id === eshop_user_id);
+
+    // Initialize total weight
+    let totalWeightKg = 0;
+
+    // Loop through the filtered vendor products and calculate the total weight
+    vendorProducts.forEach(product => {
+        // Ensure net_weight and quantity are available and valid
+        if (product.net_weight && product.quantity) {
+            // Add the product's weight multiplied by its quantity
+            totalWeightKg += product.net_weight * product.quantity;
+        } else {
+            console.warn(`Product with ID ${product.ID} is missing net_weight or quantity`);
+        }
+    });
+
+    // Return the final total weight in kg
+    return totalWeightKg;
+}
+
 function updateShippingPrices(vendorsShippingFees) {
     // Get reference to the tbody element where shipping fees will be displayed
     const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
@@ -952,7 +977,7 @@ function updateShippingPrices(vendorsShippingFees) {
         // Display a message when no shipping fees are available
         const emptyRow = document.createElement('tr');
         emptyRow.innerHTML = `
-          <td colspan="2">No shipping fees available</td>
+          <td colspan="2">No shipping fees available for vendor</td>
         `;
         shippingFeesTableBody.appendChild(emptyRow);
     } else {
@@ -964,7 +989,11 @@ function updateShippingPrices(vendorsShippingFees) {
             // Calculate distance between store and selected city in kilometers
             const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
             
-            shippingFee = distance * fee.shipping_fee_per_km;
+            if (!fee.calculate_using_kg) {
+                shippingFee = distance * fee.shipping_fee_per_km;
+            } else {
+                shippingFee = distance * fee.shipping_fee_per_km * calculateTotalWeightForVendor(fee.eshop_user_id);
+            }
 
             // Ensure the shipping fee is not lower or higher than the defined limits
             if (shippingFee < fee.shipping_fee_less) {
