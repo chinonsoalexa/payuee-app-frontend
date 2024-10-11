@@ -691,9 +691,9 @@ placeOrderButton.addEventListener("click", function(event) {
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
     const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
 
-    cartSubTotalPopUp.value =  formatNumberToNaira(subtotal);
-    shippingSubTotalPopUp.value =  formatNumberToNaira(shippingCost);
-    cartShippingTotalPopUp.value =  formatNumberToNaira(subtotal + shippingCost);
+    cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
+    shippingSubTotalPopUp.textContent =  formatNumberToNaira(shippingCost);
+    cartShippingTotalPopUp.textContent =  formatNumberToNaira(subtotal + shippingCost);
 
     paymentModal.show();    // Show the modal programmatically
 
