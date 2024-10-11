@@ -703,13 +703,11 @@ placeOrderButton.addEventListener("click", function(event) {
 
     paymentButton.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
-        // insufficient balance modal
-        // Hide the payment modal
-        // paymentModal.hide();
-        // Simulate checking balance - assuming this condition for demonstration
-        const hasSufficientBalance = true; // Change this to your actual balance check logic
+        
+        // Simulate checking balance 
+        const customerBalance = getUsersBalance();
 
-        if (!hasSufficientBalance) {
+        if (totalCharge > customerBalance) {
         // Hide checkout modal and show insufficient balance modal
             paymentModal.hide();
             setTimeout(function () {
@@ -1032,4 +1030,35 @@ async function getShippingFees() {
         checkoutButton.disabled = true;
         console.error('Error fetching shipping fees:', error);
     }
+}
+
+async function getUsersBalance() {
+    let userBalance = 0;
+    // Endpoint URL
+    const apiUrl = "https://api.payuee.com/check-balance";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',  // Include cookies with the request
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+            alert('An error occurred. Please try again');
+            return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            userBalance = data.success;
+        }
+
+    } catch (error) {
+        console.error('Error fetching shipping fees:', error);
+    }
+    return userBalance;
 }
