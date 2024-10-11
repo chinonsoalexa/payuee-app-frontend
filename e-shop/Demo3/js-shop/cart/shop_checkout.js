@@ -685,6 +685,7 @@ placeOrderButton.addEventListener("click", function(event) {
     let cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
     let shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
     let cartShippingTotalPopUp = document.getElementById('cartShippingTotalPopUp');
+    let paymentButton1 = document.getElementById('paymentButton');
 
     // Create a new instance of the Bootstrap modal
     const paymentModal = new bootstrap.Modal(paymentModalElement);
@@ -694,6 +695,7 @@ placeOrderButton.addEventListener("click", function(event) {
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
     shippingSubTotalPopUp.textContent =  formatNumberToNaira(shippingCost);
     cartShippingTotalPopUp.textContent =  formatNumberToNaira(subtotal + shippingCost);
+    paymentButton1.textContent =  `Pay ${formatNumberToNaira(subtotal + shippingCost)}`;
 
     paymentModal.show();    // Show the modal programmatically
 
@@ -744,7 +746,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
 
             placeOrder();
-            // Simulate a delay for transaction processing (e.g., 2 seconds)
+            
             document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
             // Show the transaction success modal
             transactionSuccessModal.show();
