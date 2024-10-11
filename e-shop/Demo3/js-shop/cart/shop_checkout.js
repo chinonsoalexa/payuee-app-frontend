@@ -707,7 +707,7 @@ placeOrderButton.addEventListener("click", function(event) {
         // Simulate checking balance 
         const customerBalance = getUsersBalance();
 
-        if (totalCharge > customerBalance) {
+        if (totalCharge > customerBalance || customerBalance == null || customerBalance < 1) {
         // Hide checkout modal and show insufficient balance modal
             paymentModal.hide();
             setTimeout(function () {
