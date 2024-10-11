@@ -745,7 +745,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
             placeOrder();
             // Simulate a delay for transaction processing (e.g., 2 seconds)
-            document.getElementById('amountToCharge').value = formatNumberToNaira(orderCost);
+            document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
             // Show the transaction success modal
             transactionSuccessModal.show();
         }
