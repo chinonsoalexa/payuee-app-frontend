@@ -682,9 +682,9 @@ placeOrderButton.addEventListener("click", function(event) {
     const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
 
 
-    const cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
-    const shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
-    const cartShippingTotalPopUp = document.getElementById('cartShippingTotalPopUp');
+    let cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
+    let shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
+    let cartShippingTotalPopUp = document.getElementById('cartShippingTotalPopUp');
 
     // Create a new instance of the Bootstrap modal
     const paymentModal = new bootstrap.Modal(paymentModalElement);
