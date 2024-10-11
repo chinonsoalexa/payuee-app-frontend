@@ -879,8 +879,8 @@ function placeOrder() {
     })
     .then(response => response.json())
     .then(data => {
-        localStorage.removeItem('cart');
-        window.location.href = 'shop_order_complete.html?OrderId=' + data.order;
+        // localStorage.removeItem('cart');
+        // window.location.href = 'shop_order_complete.html?OrderId=' + data.order;
     })
     .catch((error) => {
         console.error('Error:', error);
