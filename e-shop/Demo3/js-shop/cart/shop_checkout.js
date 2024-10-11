@@ -35,6 +35,7 @@ var latitude = 0.0;
 var longitude = 0.0;
 var shippingFee = 0;
 var shippingData;
+var subtotal = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -474,7 +475,6 @@ function CalculateCartSubtotal() {
 
     // console.log("Initial subtotal 1:");
     // Initialize subtotal
-    let subtotal = 0;
     // console.log("Initial subtotal:", subtotal);
 
     // Loop through each item in the cart and calculate the subtotal
@@ -604,7 +604,7 @@ placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
   // Resetting previous errors
     resetErrors();
-    
+
     // Collecting form data
     const formData = {
         firstName: document.getElementById("checkout_first_name").value.trim(),

@@ -73,7 +73,7 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
         responseData.success.forEach((product) => {
-            product.product_review_count = 6500;
+            // product.product_review_count = 6500;
             renderProducts(product);
         });
         
