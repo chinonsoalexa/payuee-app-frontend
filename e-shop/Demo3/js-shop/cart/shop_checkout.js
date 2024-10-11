@@ -13,8 +13,8 @@ var customerAddress2;
 var shippingCostPerKilo = 0;
 
 // Declare variables for order details
-var orderCost = 11040.00;
-var orderSubTotalCost = 12000.00;
+var orderCost = 0.00;
+var orderSubTotalCost = 0.00;
 var shippingCost = 0.0;
 var orderDiscount = 0.00;
 var customerEmail = "john.doe@example.com";
@@ -472,7 +472,7 @@ function CalculateCartSubtotal() {
     // Get cart from local storage
     // console.log("Started calculating cart subtotal.krk");
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    subtotal = 0;
     // console.log("Initial subtotal 1:");
     // Initialize subtotal
     // console.log("Initial subtotal:", subtotal);
@@ -745,7 +745,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
             placeOrder();
             // Simulate a delay for transaction processing (e.g., 2 seconds)
-            document.getElementById('amountToCharge').value = formatNumberToNaira(subtotal + shippingCost);
+            document.getElementById('amountToCharge').value = formatNumberToNaira(orderCost);
             // Show the transaction success modal
             transactionSuccessModal.show();
         }
