@@ -604,6 +604,24 @@ placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
   // Resetting previous errors
     resetErrors();
+    
+    // Collecting form data
+    const formData = {
+        firstName: document.getElementById("checkout_first_name").value.trim(),
+        lastName: document.getElementById("checkout_last_name").value.trim(),
+        companyName: document.getElementById("checkout_company_name").value.trim() || "",
+        state: document.getElementById("search-dropdown").value.trim(),
+        city: document.getElementById("city-dropdown").value.trim(),
+        streetAddress1: document.getElementById("checkout_street_address").value.trim(),
+        streetAddress2: document.getElementById("checkout_city").value.trim() || "",
+        zipcode: document.getElementById("checkout_zipcode").value.trim(),
+        province: document.getElementById("checkout_province").value.trim(),
+        phone: document.getElementById("checkout_phone").value.trim(),
+        email: document.getElementById("checkout_email").value.trim(),
+        shipDifferent: document.getElementById("ship_different_address").checked,
+        orderNotes: document.querySelector("textarea").value.trim() || "",
+        paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
+    };
 
     // Validate required fields
     let isValid = true;
@@ -705,23 +723,6 @@ placeOrderButton.addEventListener("click", function(event) {
         } else {
             // Hide checkout modal and simulate a successful transaction
             paymentModal.hide();
-            // Collecting form data
-            const formData = {
-                firstName: document.getElementById("checkout_first_name").value.trim(),
-                lastName: document.getElementById("checkout_last_name").value.trim(),
-                companyName: document.getElementById("checkout_company_name").value.trim() || "",
-                state: document.getElementById("search-dropdown").value.trim(),
-                city: document.getElementById("city-dropdown").value.trim(),
-                streetAddress1: document.getElementById("checkout_street_address").value.trim(),
-                streetAddress2: document.getElementById("checkout_city").value.trim() || "",
-                zipcode: document.getElementById("checkout_zipcode").value.trim(),
-                province: document.getElementById("checkout_province").value.trim(),
-                phone: document.getElementById("checkout_phone").value.trim(),
-                email: document.getElementById("checkout_email").value.trim(),
-                shipDifferent: document.getElementById("ship_different_address").checked,
-                orderNotes: document.querySelector("textarea").value.trim() || "",
-                paymentMethod: document.querySelector('input[name="checkout_payment_method"]:checked').id,
-            };
 
             // Dynamically assign variables using form data
             orderCost = totalCharge;  
