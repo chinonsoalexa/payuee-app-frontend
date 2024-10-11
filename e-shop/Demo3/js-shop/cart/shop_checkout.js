@@ -701,11 +701,11 @@ placeOrderButton.addEventListener("click", function(event) {
 
     const paymentButton = document.getElementById('paymentButton');
 
-    paymentButton.addEventListener("click", function(event) {
+    paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
         
         // Simulate checking balance 
-        const customerBalance = getUsersBalance();
+        const customerBalance = await getUsersBalance();
         console.log(customerBalance);
 
         if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
