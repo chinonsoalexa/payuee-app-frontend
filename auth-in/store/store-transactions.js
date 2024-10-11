@@ -238,21 +238,6 @@ function renderProducts(product) {
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
-    // Reinitialize the SwiperSlideshow after adding the product
-    // if (typeof DorngSections.SwiperSlideshow !== 'undefined') {
-    //     new DorngSections.SwiperSlideshow()._initSliders();
-    // }
-
-    // // If there are more complex product media types, reinitialize them as well
-    // if (typeof DorngSections.ProductSingleMedia !== 'undefined') {
-    //     new DorngSections.ProductSingleMedia()._initProductMedia();
-    // }
-
-    // // Reinitialize Aside
-    // if (typeof DorngElements.Aside === 'function') {
-    //     new DorngElements.Aside();
-    // }
-
     // Add event listener to the image wrapper
     const imgWrapper = rowElement.querySelector('.align-self-center');
     imgWrapper.addEventListener('click', function(event) {
@@ -260,15 +245,6 @@ function renderProducts(product) {
         window.location.href = `https://payuee.com/e-shop/vendor/order-history/${product.product_url_id}`;
     });
 
-    // Add event listener to the 'Add To Cart' button
-    // if (!isOutOfStock) {
-    //     const addToCartButton = rowElement.querySelector('.pc__atc');
-    //     addToCartButton.addEventListener('click', function() {
-    //         addToCart(product);
-    //         updateCartNumber();
-    //         updateCartDrawer();
-    //     });
-    // }
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
@@ -323,7 +299,7 @@ function renderLoading() {
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
             <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="assets/img/logo/favicon.png" alt="Payuee e-Shop">
-            <div class="skeleton loading-cursor flex-grow-1 ms-3">
+            <div class="loading-cursor flex-grow-1 ms-3">
                 <div class="skeleton loading-cursor product-name">
                 <h6><a href="#">Loading...</a></h6>
                 </div>
