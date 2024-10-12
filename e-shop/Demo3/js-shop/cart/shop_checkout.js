@@ -1225,7 +1225,7 @@ async function getShippingFees() {
             const data = await response.json();
             shippingData = data.success;
             usersSavedAddress = data.address;
-            if(!usersSavedAddress) {
+            if(usersSavedAddress.save_shipping_address) {
                 updateFormFields(usersSavedAddress);
             }
             updateShippingPrices(data.success);
