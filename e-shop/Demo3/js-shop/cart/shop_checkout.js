@@ -938,38 +938,43 @@ function getAndCalculateProductsQuantityPerVendor(vendorId) {
 
 function calculateShippingFeePerVendor(vendorId) {
     let shippingFees = 0.00;
+    let totalWeight = 0.00;
+    let vendorShippingFee;
+    let distance;
 
     // Check if there are any shipping fees data available
     if (!shippingData || shippingData.length === 0) {
         // return 0 when no shipping fees are available
         return shippingFees;
-    } else {
-        // Loop through the vendors and append their shipping fees
-        let totalWeight;
-        let vendorShippingFee;
-        let distance;
-        shippingData.forEach(fee => {
-            if (fee.eshop_user_id === vendorId) {
-            // Calculate distance between store and selected city in kilometers
-            distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+    }
+
+    // Loop through the vendors and calculate their shipping fees
+    shippingData.forEach(fee => {
+        if (fee.eshop_user_id === vendorId) {
             vendorShippingFee = fee;
 
+            // Calculate the distance between the store and selected city in kilometers only once
+            distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+
+            // If shipping is not based on weight, calculate the fee using distance alone
             if (!fee.calculate_using_kg) {
-                shippingFees = distance * fee.shipping_fee_per_km;
+                shippingFees += distance * fee.shipping_fee_per_km;
             } else {
-                totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
+                // If shipping is based on weight, calculate total weight and fee accordingly
+                totalWeight = calculateTotalWeightForVendor(vendorId);
+                shippingFees += distance * fee.shipping_fee_per_km * totalWeight;
+            }
+
+            // Ensure the shipping fee is not lower or higher than the defined limits
+            if (shippingFees < fee.shipping_fee_less) {
+                shippingFees = fee.shipping_fee_less;
+            } else if (shippingFees > fee.shipping_fee_greater) {
+                shippingFees = fee.shipping_fee_greater;
             }
         }
-        });
-        // Ensure the shipping fee is not lower or higher than the defined limits
-        shippingFees = distance * vendorShippingFee.shipping_fee_per_km * totalWeight;
-        if (shippingFees < vendorShippingFee.shipping_fee_less) {
-            shippingFees = vendorShippingFee.shipping_fee_less;
-        } else if (shippingFees > vendorShippingFee.shipping_fee_greater) {
-            shippingFees = vendorShippingFee.shipping_fee_greater;
-        }
-        return shippingFees;
-    }
+    });
+
+    return shippingFees;
 }
 
 function placeOrder() {
