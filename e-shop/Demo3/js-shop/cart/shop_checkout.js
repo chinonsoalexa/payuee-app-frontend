@@ -927,6 +927,39 @@ function getAndCalculateProductsQuantityPerVendor(vendorId) {
     return quantity;
 }
 
+function calculateShippingFeeForPerVendor(vendorId) {
+    let shippingFees = 0;
+
+    // Check if there are any shipping fees data available
+    if (!shippingData || shippingData.length === 0) {
+        // return 0 when no shipping fees are available
+        return shippingFees;
+    } else {
+        // Loop through the vendors and append their shipping fees
+        shippingData.forEach(fee => {
+            if (fee.eshop_user_id === vendorId) {
+            // Calculate distance between store and selected city in kilometers
+            const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+            
+            if (!fee.calculate_using_kg) {
+                shippingFees = distance * fee.shipping_fee_per_km;
+            } else {
+                let totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
+                shippingFees = distance * fee.shipping_fee_per_km * totalWeight;
+            }
+
+            // Ensure the shipping fee is not lower or higher than the defined limits
+            if (shippingFees < fee.shipping_fee_less) {
+                shippingFees = fee.shipping_fee_less;
+            } else if (shippingFees > fee.shipping_fee_greater) {
+                shippingFees = fee.shipping_fee_greater;
+            }
+            return shippingFees;
+            }
+        });
+    }
+}
+
 function placeOrder() {
     let OrderCost = 0.0;
 
@@ -935,10 +968,10 @@ function placeOrder() {
 
     // Construct the order history body
     const orderHistoryBody = {
-        order_cost: parseFloat(OrderCost.toFixed(2)),
-        order_sub_total_cost: parseFloat(orderSubTotalCost.toFixed(2)),
-        shipping_cost: parseFloat(shippingCost.toFixed(2)),
-        order_discount: parseFloat(orderDiscount.toFixed(2)),
+        order_cost: parseFloat((OrderCost || 0.0).toFixed(2)),
+        order_sub_total_cost: parseFloat((orderSubTotalCost || 0.0).toFixed(2)),
+        shipping_cost: parseFloat((shippingCost || 0.0).toFixed(2)),
+        order_discount: parseFloat((orderDiscount || 0.0).toFixed(2)),
         quantity: 0,
         customer_email: customerEmail,
         order_note: orderNotes,
@@ -1128,39 +1161,6 @@ function updateShippingPrices(vendorsShippingFees) {
         });
     }
     CalculateCartSubtotal();
-}
-
-function calculateShippingFeeForPerVendor(vendorId) {
-    let shippingFees = 0;
-
-    // Check if there are any shipping fees data available
-    if (!shippingData || shippingData.length === 0) {
-        // return 0 when no shipping fees are available
-        return shippingFees;
-    } else {
-        // Loop through the vendors and append their shipping fees
-        shippingData.forEach(fee => {
-            if (fee.eshop_user_id === vendorId) {
-            // Calculate distance between store and selected city in kilometers
-            const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
-            
-            if (!fee.calculate_using_kg) {
-                shippingFees = distance * fee.shipping_fee_per_km;
-            } else {
-                let totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
-                shippingFees = distance * fee.shipping_fee_per_km * totalWeight;
-            }
-
-            // Ensure the shipping fee is not lower or higher than the defined limits
-            if (shippingFees < fee.shipping_fee_less) {
-                shippingFees = fee.shipping_fee_less;
-            } else if (shippingFees > fee.shipping_fee_greater) {
-                shippingFees = fee.shipping_fee_greater;
-            }
-            return shippingFees;
-            }
-        });
-    }
 }
 
 // Helper function to format numbers into Naira currency
