@@ -1053,6 +1053,7 @@ function placeOrder() {
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',  // Include cookies with the request
         body: JSON.stringify(requestBody)
     })
     .then(response => response.json())
