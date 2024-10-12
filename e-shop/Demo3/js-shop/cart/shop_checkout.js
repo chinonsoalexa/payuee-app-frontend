@@ -848,10 +848,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2));
-        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2)); // Adjust as necessary
-        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2)); // You can calculate and add shipping cost here if needed
-        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id).toFixed(2)); // You can add any applicable discounts here
+        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2));
+        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)); // Adjust as necessary
+        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id)); // You can calculate and add shipping cost here if needed
+        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id)); // You can add any applicable discounts here
         order.quantity += getAndCalculateProductsQuantityPerVendor(eshop_user_id); // You can calculate the quantity per vendor order here
 
         // Add product order details, keeping only desired fields
@@ -873,7 +873,7 @@ function getAndCalculateProductsPerVendor(vendorId) {
     // Retrieve the cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    let pricePerProductOrder = 0;
+    let pricePerProductOrder = 0.00;
 
     // Loop through each item in the cart
     cart.forEach(item => {
@@ -928,7 +928,7 @@ function getAndCalculateProductsQuantityPerVendor(vendorId) {
 }
 
 function calculateShippingFeeForPerVendor(vendorId) {
-    let shippingFees = 0;
+    let shippingFees = 0.00;
 
     // Check if there are any shipping fees data available
     if (!shippingData || shippingData.length === 0) {
