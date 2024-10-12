@@ -848,7 +848,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2));
+        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id));
         order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)); // Adjust as necessary
         order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id)); // You can calculate and add shipping cost here if needed
         order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id)); // You can add any applicable discounts here
