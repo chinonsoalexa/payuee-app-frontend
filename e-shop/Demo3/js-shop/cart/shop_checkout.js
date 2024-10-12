@@ -885,7 +885,6 @@ function getAndCalculateProductsPerVendor(vendorId) {
         // Ensure the eshop_user_id exists
         if (item.eshop_user_id === vendorId) {
             // Add the vendor ID to the Set (duplicates will be ignored automatically)
-            pricePerProductOrder += item.order_cost;
             if (item.selling_price < item.initial_cost) {
                 pricePerProductOrder += item.selling_price;
             };
