@@ -839,6 +839,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
                     order_sub_total_cost: 0,
                     shipping_cost: 0,
                     order_discount: 0,
+                    quantity: 0,
                     eshop_user_id: eshop_user_id // Update eshop_user_id from cart
                 },
                 product_order_body: []
@@ -847,10 +848,11 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += order_cost;
-        order.order_sub_total_cost += order_cost; // Adjust as necessary
-        order.shipping_cost += 0; // You can calculate and add shipping cost here if needed
-        order.order_discount += 0; // You can add any applicable discounts here
+        order.order_cost += getAndCalculateProductsPerVendor(eshop_user_id) + calculateShippingFeeForPerVendor(eshop_user_id);
+        order.order_sub_total_cost += getAndCalculateProductsPerVendor(eshop_user_id); // Adjust as necessary
+        order.shipping_cost += calculateShippingFeeForPerVendor(eshop_user_id); // You can calculate and add shipping cost here if needed
+        order.order_discount += getAndCalculateProductsDiscountsPerVendor(eshop_user_id); // You can add any applicable discounts here
+        order.quantity += getAndCalculateProductsQuantityPerVendor(eshop_user_id); // You can calculate the quantity per vendor order here
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
@@ -867,6 +869,64 @@ function createNewOrders(cartItems, orderHistoryBody) {
     return orders;
 }
 
+function getAndCalculateProductsPerVendor(vendorId) {
+    // Retrieve the cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let pricePerProductOrder = 0;
+
+    // Loop through each item in the cart
+    cart.forEach(item => {
+        // Ensure the eshop_user_id exists
+        if (item.eshop_user_id === vendorId) {
+            // Add the vendor ID to the Set (duplicates will be ignored automatically)
+            pricePerProductOrder += item.order_cost;
+        }
+    });
+
+    return pricePerProductOrder;
+}
+
+function getAndCalculateProductsDiscountsPerVendor(vendorId) {
+    // Retrieve the cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let discount = 0.00;
+
+    // Loop through each item in the cart
+    cart.forEach(item => {
+        // Ensure the eshop_user_id exists
+        if (item.eshop_user_id === vendorId) {
+           // Calculate the item's total price
+        if (item.initial_cost <= 0) {
+            return 0; // Prevent division by zero or negative values
+        };
+        if (item.selling_price < item.initial_cost) {
+            discount += item.selling_price - item.initial_cost;
+        };
+        }
+    });
+
+    return discount;
+}
+
+function getAndCalculateProductsQuantityPerVendor(vendorId) {
+    // Retrieve the cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let quantity = 0;
+
+    // Loop through each item in the cart
+    cart.forEach(item => {
+        // Ensure the eshop_user_id exists
+        if (item.eshop_user_id === vendorId) {
+            quantity += item.quantity;
+        }
+    });
+
+    return quantity;
+}
+
 function placeOrder() {
     let OrderCost = 0.0;
 
@@ -879,6 +939,7 @@ function placeOrder() {
         order_sub_total_cost: parseFloat(orderSubTotalCost.toFixed(2)),
         shipping_cost: parseFloat(shippingCost.toFixed(2)),
         order_discount: parseFloat(orderDiscount.toFixed(2)),
+        quantity: 0,
         customer_email: customerEmail,
         order_note: orderNotes,
         customer_fname: customerFName,
@@ -927,7 +988,9 @@ function placeOrder() {
         'order_cost',
         'net_weight',
         'quantity',
-        'product_image'
+        'product_image',
+        'initial_cost',
+        'selling_price'
     ];
 
     // Function to clean cart items
@@ -1065,6 +1128,39 @@ function updateShippingPrices(vendorsShippingFees) {
         });
     }
     CalculateCartSubtotal();
+}
+
+function calculateShippingFeeForPerVendor(vendorId) {
+    let shippingFees = 0;
+
+    // Check if there are any shipping fees data available
+    if (!shippingData || shippingData.length === 0) {
+        // return 0 when no shipping fees are available
+        return shippingFees;
+    } else {
+        // Loop through the vendors and append their shipping fees
+        shippingData.forEach(fee => {
+            if (fee.eshop_user_id === vendorId) {
+            // Calculate distance between store and selected city in kilometers
+            const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+            
+            if (!fee.calculate_using_kg) {
+                shippingFees = distance * fee.shipping_fee_per_km;
+            } else {
+                let totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
+                shippingFees = distance * fee.shipping_fee_per_km * totalWeight;
+            }
+
+            // Ensure the shipping fee is not lower or higher than the defined limits
+            if (shippingFees < fee.shipping_fee_less) {
+                shippingFees = fee.shipping_fee_less;
+            } else if (shippingFees > fee.shipping_fee_greater) {
+                shippingFees = fee.shipping_fee_greater;
+            }
+            return shippingFees;
+            }
+        });
+    }
 }
 
 // Helper function to format numbers into Naira currency
