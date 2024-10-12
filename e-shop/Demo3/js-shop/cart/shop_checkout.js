@@ -825,6 +825,9 @@ function calculateDiscount() {
 function placeOrder() {
     let OrderCost = 0.0;
 
+    const checkbox = document.getElementById('ship_different_address');
+    const isChecked = checkbox.checked;
+
     // Construct the order history body
     const orderHistoryBody = {
         order_cost: parseFloat(OrderCost.toFixed(2)),
@@ -842,7 +845,8 @@ function placeOrder() {
         customer_street_address_2: customerStreetAddress2,
         customer_zip_code: customerZipCode,
         customer_province: customerProvince,
-        customer_phone_number: customerPhoneNumber
+        customer_phone_number: customerPhoneNumber,
+        save_shipping_address: isChecked
     };
 
     // Get cart from local storage
@@ -896,8 +900,12 @@ function placeOrder() {
 
     // Construct the request body
     const requestBody = {
-        order_history_body: orderHistoryBody,
-        product_order_body: cleanedCartItem,
+        Orders: [
+            {
+                order_history_body: orderHistoryBody,
+                product_order_body: cleanedCartItem,
+            }
+        ],
     };
     
     // Send POST request using Fetch API
