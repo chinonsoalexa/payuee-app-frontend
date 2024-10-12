@@ -968,10 +968,10 @@ function placeOrder() {
 
     // Construct the order history body
     const orderHistoryBody = {
-        order_cost: parseFloat((OrderCost || 0.0).toFixed(2)),
-        order_sub_total_cost: parseFloat((orderSubTotalCost || 0.0).toFixed(2)),
-        shipping_cost: parseFloat((shippingCost || 0.0).toFixed(2)),
-        order_discount: parseFloat((orderDiscount || 0.0).toFixed(2)),
+        order_cost: parseFloat(OrderCost.toFixed(2)),
+        order_sub_total_cost: parseFloat(orderSubTotalCost.toFixed(2)),
+        shipping_cost: parseFloat(shippingCost.toFixed(2)),
+        order_discount: parseFloat(orderDiscount.toFixed(2)),
         quantity: 0,
         customer_email: customerEmail,
         order_note: orderNotes,
