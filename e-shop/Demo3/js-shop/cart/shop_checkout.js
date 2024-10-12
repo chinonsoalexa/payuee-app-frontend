@@ -947,10 +947,11 @@ function calculateShippingFeePerVendor(vendorId) {
         // Loop through the vendors and append their shipping fees
         let totalWeight;
         let vendorShippingFee;
+        let distance;
         shippingData.forEach(fee => {
             if (fee.eshop_user_id === vendorId) {
             // Calculate distance between store and selected city in kilometers
-            const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
+            distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
             vendorShippingFee = fee;
 
             if (!fee.calculate_using_kg) {
