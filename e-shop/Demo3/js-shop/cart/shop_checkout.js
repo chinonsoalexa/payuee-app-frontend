@@ -835,12 +835,12 @@ function createNewOrders(cartItems, orderHistoryBody) {
             ordersMap[eshop_user_id] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
+                    eshop_user_id: item.eshop_user_id, // Update eshop_user_id from cart
                     order_cost: 0.0,
                     order_sub_total_cost: 0.0,
                     shipping_cost: 0.0,
                     order_discount: 0.0,
-                    quantity: 0,
-                    eshop_user_id: item.eshop_user_id // Update eshop_user_id from cart
+                    quantity: 0
                 },
                 product_order_body: []
             };
@@ -848,11 +848,16 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(item.eshop_user_id));
-        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id)); // Adjust as necessary
-        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(item.eshop_user_id)); // You can calculate and add shipping cost here if needed
-        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id)); // You can add any applicable discounts here
-        order.quantity += getAndCalculateProductsQuantityPerVendor(item.eshop_user_id); // You can calculate the quantity per vendor order here
+        const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id));
+        const shippingCost = parseFloat(calculateShippingFeeForPerVendor(item.eshop_user_id));
+        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id));
+        quantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
+        
+        order.order_cost += productCost + shippingCost;
+        order.order_sub_total_cost += productCost;
+        order.shipping_cost += shippingCost;
+        order.order_discount += discount;
+        order.quantity += quantity;
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
@@ -881,6 +886,10 @@ function getAndCalculateProductsPerVendor(vendorId) {
         if (item.eshop_user_id === vendorId) {
             // Add the vendor ID to the Set (duplicates will be ignored automatically)
             pricePerProductOrder += item.order_cost;
+            if (item.selling_price < item.initial_cost) {
+                pricePerProductOrder += item.selling_price;
+            };
+            pricePerProductOrder += item.initial_cost;
         }
     });
 
