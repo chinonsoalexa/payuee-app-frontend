@@ -835,10 +835,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
             ordersMap[eshop_user_id] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
-                    order_cost: 0,
-                    order_sub_total_cost: 0,
-                    shipping_cost: 0,
-                    order_discount: 0,
+                    order_cost: 0.0,
+                    order_sub_total_cost: 0.0,
+                    shipping_cost: 0.0,
+                    order_discount: 0.0,
                     quantity: 0,
                     eshop_user_id: eshop_user_id // Update eshop_user_id from cart
                 },
@@ -848,10 +848,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += getAndCalculateProductsPerVendor(eshop_user_id) + calculateShippingFeeForPerVendor(eshop_user_id);
-        order.order_sub_total_cost += getAndCalculateProductsPerVendor(eshop_user_id); // Adjust as necessary
-        order.shipping_cost += calculateShippingFeeForPerVendor(eshop_user_id); // You can calculate and add shipping cost here if needed
-        order.order_discount += getAndCalculateProductsDiscountsPerVendor(eshop_user_id); // You can add any applicable discounts here
+        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2));
+        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2)); // Adjust as necessary
+        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id).toFixed(2)); // You can calculate and add shipping cost here if needed
+        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id).toFixed(2)); // You can add any applicable discounts here
         order.quantity += getAndCalculateProductsQuantityPerVendor(eshop_user_id); // You can calculate the quantity per vendor order here
 
         // Add product order details, keeping only desired fields
