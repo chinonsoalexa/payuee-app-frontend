@@ -37,6 +37,9 @@ var shippingFee = 0;
 var shippingData;
 var subtotal = 0;
 
+// saved address
+var usersSavedAddress;
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
@@ -1176,6 +1179,23 @@ function formatNumberToNaira(amount) {
     return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(amount);
 }
 
+function updateFormFields(formData) {
+    // Update input fields with formData values
+    document.getElementById("checkout_first_name").value = formData.customer_fname || "";
+    document.getElementById("checkout_last_name").value = formData.customer_user_sname || "";
+    document.getElementById("checkout_company_name").value = formData.customer_company_name || "";
+    document.getElementById("search-dropdown").value = formData.customer_state || "";
+    document.getElementById("city-dropdown").value = formData.customer_city || "";
+    document.getElementById("checkout_street_address").value = formData.customer_street_address_1 || "";
+    document.getElementById("checkout_city").value = formData.customer_street_address_2 || "";
+    document.getElementById("checkout_zipcode").value = formData.customer_zip_code || "";
+    document.getElementById("checkout_province").value = formData.customer_province || "";
+    document.getElementById("checkout_phone").value = formData.customer_phone_number || "";
+    document.getElementById("checkout_email").value = formData.customer_email || "";
+    document.querySelector("textarea").value = formData.order_note || "";
+}
+
+
 async function getShippingFees() {
     // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
@@ -1204,6 +1224,8 @@ async function getShippingFees() {
             // Process the response data
             const data = await response.json();
             shippingData = data.success;
+            usersSavedAddress = data.address;
+            updateFormFields(usersSavedAddress);
             updateShippingPrices(data.success);
             const checkoutButton = document.getElementById('placeOrderButton');
     
