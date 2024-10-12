@@ -745,6 +745,9 @@ placeOrderButton.addEventListener("click", function(event) {
     if (!isValid) {
         return;
     }
+    const paymentModalElement = document.getElementById('checkoutModal');
+    const paymentModal = new bootstrap.Modal(paymentModalElement);
+
 
     let cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
     let shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
