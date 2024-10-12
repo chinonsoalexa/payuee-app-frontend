@@ -864,10 +864,40 @@ function placeOrder() {
     // Update order_cost with the final value after the loop
     orderHistoryBody.order_cost = parseFloat(OrderCost.toFixed(2));
 
+    // Fields you want to keep
+    const desiredFields = [
+        'ID',
+        'category',
+        'title',
+        'description',
+        'user_id',
+        'eshop_user_id',
+        'product_url_id',
+        'currency',
+        'featured',
+        'order_cost',
+        'net_weight',
+        'quantity',
+        'product_image'
+    ];
+
+    // Function to clean cart items
+    const cleanCartItems = (items) => {
+        return items.map(item => {
+            return desiredFields.reduce((acc, field) => {
+                acc[field] = item[field];
+                return acc;
+            }, {});
+        });
+    };
+
+    // Clean the cart item
+    const cleanedCartItem = cleanCartItems(cart);
+
     // Construct the request body
     const requestBody = {
         order_history_body: orderHistoryBody,
-        product_order_body: cart,
+        product_order_body: cleanedCartItem,
     };
     
     // Send POST request using Fetch API
