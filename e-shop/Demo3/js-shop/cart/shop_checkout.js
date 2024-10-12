@@ -840,7 +840,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
                     shipping_cost: 0.0,
                     order_discount: 0.0,
                     quantity: 0,
-                    eshop_user_id: eshop_user_id // Update eshop_user_id from cart
+                    eshop_user_id: item.eshop_user_id // Update eshop_user_id from cart
                 },
                 product_order_body: []
             };
@@ -848,11 +848,11 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
-        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id));
-        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(eshop_user_id)); // Adjust as necessary
-        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(eshop_user_id)); // You can calculate and add shipping cost here if needed
-        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id)); // You can add any applicable discounts here
-        order.quantity += getAndCalculateProductsQuantityPerVendor(eshop_user_id); // You can calculate the quantity per vendor order here
+        order.order_cost += parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id)) +  parseFloat(calculateShippingFeeForPerVendor(item.eshop_user_id));
+        order.order_sub_total_cost +=  parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id)); // Adjust as necessary
+        order.shipping_cost +=  parseFloat(calculateShippingFeeForPerVendor(item.eshop_user_id)); // You can calculate and add shipping cost here if needed
+        order.order_discount +=  parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id)); // You can add any applicable discounts here
+        order.quantity += getAndCalculateProductsQuantityPerVendor(item.eshop_user_id); // You can calculate the quantity per vendor order here
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
