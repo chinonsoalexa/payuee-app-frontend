@@ -599,6 +599,76 @@ function validateField(field) {
 addInputEventListeners();
 
 const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal');
+const paymentButton = document.getElementById('paymentButton');
+
+function handlePayment(event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+
+    // Get the modal element
+    const paymentModalElement = document.getElementById('checkoutModal');
+    const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
+    const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
+
+    // Create a new instance of the Bootstrap modal
+    const paymentModal = new bootstrap.Modal(paymentModalElement);
+    const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
+    const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
+
+    // Simulate checking balance
+    getUsersBalance().then(customerBalance => {
+        console.log(customerBalance);
+
+        if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
+            // Hide checkout modal and show insufficient balance modal
+            paymentModal.hide();
+            setTimeout(function () {
+                insufficientBalanceModal.show();
+                // Fund Wallet button logic (you can customize this for your wallet integration)
+                const fundWalletButton = document.getElementById('fundWalletButton');
+                fundWalletButton.addEventListener('click', function () {
+                    // Logic to fund the wallet goes here
+                    window.location.href = 'https://payuee.com/fund-wallet';
+                });
+                return;
+            }, 300); // Delay for smooth transition
+        } else {
+            // Hide checkout modal and simulate a successful transaction
+            paymentModal.hide();
+
+            // Dynamically assign variables using form data
+            orderCost = totalCharge;  
+            orderSubTotalCost = totalCharge - shippingCost;  
+            shippingCost = shippingCost;  
+            orderDiscount = calculateDiscount();
+            customerEmail = formData.email;
+            orderNotes = formData.orderNotes;
+            customerFName = formData.firstName;
+            customerSName = formData.lastName;
+            customerCompanyName = formData.companyName;
+            customerState = formData.state;
+            customerCity = formData.city;
+            customerStreetAddress1 = formData.streetAddress1;
+            customerStreetAddress2 = formData.streetAddress2;
+            customerZipCode = formData.zipcode;
+            customerProvince = formData.province;
+            customerPhoneNumber = formData.phone;
+
+            placeOrder();
+
+            document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
+            // Show the transaction success modal
+            transactionSuccessModal.show();
+        }
+
+        // Remove the event listener once it's triggered
+        paymentButton.removeEventListener("click", handlePayment);
+    });
+}
+
+// Function to add the event listener when needed
+function addPaymentEventListener() {
+    paymentButton.addEventListener("click", handlePayment);
+}
 
 placeOrderButton.addEventListener("click", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
@@ -676,21 +746,10 @@ placeOrderButton.addEventListener("click", function(event) {
         return;
     }
 
-    // Get the modal element
-    const paymentModalElement = document.getElementById('checkoutModal');
-    const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
-    const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
-
-
     let cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
     let shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
     let cartShippingTotalPopUp = document.getElementById('cartShippingTotalPopUp');
     let paymentButton1 = document.getElementById('paymentButton');
-
-    // Create a new instance of the Bootstrap modal
-    const paymentModal = new bootstrap.Modal(paymentModalElement);
-    const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
-    const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
 
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
     shippingSubTotalPopUp.textContent =  formatNumberToNaira(shippingCost);
@@ -699,59 +758,9 @@ placeOrderButton.addEventListener("click", function(event) {
 
     paymentModal.show();    // Show the modal programmatically
 
-    const paymentButton = document.getElementById('paymentButton');
+    // Initially, attach the event listener
+    addPaymentEventListener();
 
-    paymentButton.addEventListener("click", async function(event) {
-        event.preventDefault(); // Prevent the form from submitting traditionally
-        
-        // Simulate checking balance 
-        const customerBalance = await getUsersBalance();
-        console.log(customerBalance);
-
-        if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
-        // Hide checkout modal and show insufficient balance modal
-            paymentModal.hide();
-            setTimeout(function () {
-                insufficientBalanceModal.show();
-                // Fund Wallet button logic (you can customize this for your wallet integration)
-                const fundWalletButton = document.getElementById('fundWalletButton');
-                fundWalletButton.addEventListener('click', function () {
-                    // Logic to fund the wallet goes here
-                    window.location.href = 'https://payuee.com/fund-wallet';
-                });
-                return;
-            }, 300); // Delay for smooth transition
-        } else {
-            // Hide checkout modal and simulate a successful transaction
-            paymentModal.hide();
-
-            // Dynamically assign variables using form data
-            orderCost = totalCharge;  
-            orderSubTotalCost = totalCharge - shippingCost;  
-            shippingCost = shippingCost;  
-            orderDiscount = calculateDiscount();
-            customerEmail = formData.email;
-            orderNotes = formData.orderNotes;
-            customerFName = formData.firstName;
-            customerSName = formData.lastName;
-            customerCompanyName = formData.companyName;
-            customerState = formData.state;
-            customerCity = formData.city;
-            customerStreetAddress1 = formData.streetAddress1;
-            customerStreetAddress2 = formData.streetAddress2;
-            customerZipCode = formData.zipcode;
-            customerProvince = formData.province;
-            customerPhoneNumber = formData.phone;
-
-
-            placeOrder();
-            
-            document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
-            // Show the transaction success modal
-            transactionSuccessModal.show();
-        }
-
-    });
     return;
 });
 
