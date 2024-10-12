@@ -875,20 +875,12 @@ function createNewOrders(cartItems, orderHistoryBody) {
 }
 
 function getAndCalculateProductsPerVendor(vendorId) {
-    // Retrieve the cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
     let pricePerProductOrder = 0.00;
 
-    // Loop through each item in the cart
     cart.forEach(item => {
-        // Ensure the eshop_user_id exists
         if (item.eshop_user_id === vendorId) {
-            // Add the vendor ID to the Set (duplicates will be ignored automatically)
-            if (item.selling_price < item.initial_cost) {
-                pricePerProductOrder += item.selling_price;
-            };
-            pricePerProductOrder += item.initial_cost;
+            pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
         }
     });
 
@@ -910,8 +902,8 @@ function getAndCalculateProductsDiscountsPerVendor(vendorId) {
             return 0; // Prevent division by zero or negative values
         };
         if (item.selling_price < item.initial_cost) {
-            // discount += item.initial_cost - item.selling_price; 
-            discount += item.selling_price - item.initial_cost;
+            discount += item.initial_cost - item.selling_price; 
+            // discount += item.selling_price - item.initial_cost;
         };
         }
     });
@@ -953,7 +945,7 @@ function calculateShippingFeePerVendor(vendorId) {
 
             // Calculate the distance between the store and selected city in kilometers only once
             distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
-
+            
             // If shipping is not based on weight, calculate the fee using distance alone
             if (!fee.calculate_using_kg) {
                 shippingFees += distance * fee.shipping_fee_per_km;
