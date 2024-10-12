@@ -849,8 +849,8 @@ function createNewOrders(cartItems, orderHistoryBody) {
         // Update the order totals in order history
         const order = ordersMap[eshop_user_id].order_history_body;
         const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id).toFixed());
-        const shippingCost = parseFloat(calculateShippingFeePerVendor(item.eshop_user_id));
-        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id));
+        const shippingCost = parseFloat(calculateShippingFeePerVendor(item.eshop_user_id).toFixed(2));
+        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id).toFixed(2));
         const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
         
         order.order_cost += productCost + shippingCost;
@@ -945,7 +945,7 @@ function calculateShippingFeePerVendor(vendorId) {
 
             // Calculate the distance between the store and selected city in kilometers only once
             distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
-            
+
             // If shipping is not based on weight, calculate the fee using distance alone
             if (!fee.calculate_using_kg) {
                 shippingFees += distance * fee.shipping_fee_per_km;
