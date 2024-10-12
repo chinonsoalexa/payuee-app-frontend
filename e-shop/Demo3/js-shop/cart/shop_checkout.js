@@ -851,7 +851,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
         const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id).toFixed());
         const shippingCost = parseFloat(calculateShippingFeePerVendor(item.eshop_user_id));
         const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id));
-        let historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
+        const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
         
         order.order_cost += productCost + shippingCost;
         order.order_sub_total_cost += productCost;
