@@ -822,6 +822,51 @@ function calculateDiscount() {
     return discount; // Return the result rounded to two decimal places
 }
 
+// Function to create new orders
+function createNewOrders(cartItems, orderHistoryBody) {
+    const ordersMap = {};
+
+    // Group products by eshop_user_id
+    cartItems.forEach(item => {
+        const { eshop_user_id, order_cost, quantity } = item;
+
+        if (!ordersMap[eshop_user_id]) {
+            // Initialize a new order for this eshop_user_id
+            ordersMap[eshop_user_id] = {
+                order_history_body: {
+                    ...orderHistoryBody, // Spread the order history body
+                    order_cost: 0,
+                    order_sub_total_cost: 0,
+                    shipping_cost: 0,
+                    order_discount: 0,
+                    eshop_user_id: eshop_user_id // Update eshop_user_id from cart
+                },
+                product_order_body: []
+            };
+        }
+
+        // Update the order totals in order history
+        const order = ordersMap[eshop_user_id].order_history_body;
+        order.order_cost += order_cost;
+        order.order_sub_total_cost += order_cost; // Adjust as necessary
+        order.shipping_cost += 0; // You can calculate and add shipping cost here if needed
+        order.order_discount += 0; // You can add any applicable discounts here
+
+        // Add product order details, keeping only desired fields
+        const productOrderBody = {
+            ID: Math.floor(Math.random() * 1000), // Replace with actual product ID if available
+            ...item // Use spread operator to include all product fields
+        };
+
+        // Add the product to the product_order_body array
+        ordersMap[eshop_user_id].product_order_body.push(productOrderBody);
+    });
+
+    // Convert ordersMap to an array
+    const orders = Object.values(ordersMap);
+    return orders;
+}
+
 function placeOrder() {
     let OrderCost = 0.0;
 
@@ -898,14 +943,12 @@ function placeOrder() {
     // Clean the cart item
     const cleanedCartItem = cleanCartItems(cart);
 
+    // Create new orders from the cart
+    const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
+
     // Construct the request body
     const requestBody = {
-        Orders: [
-            {
-                order_history_body: orderHistoryBody,
-                product_order_body: cleanedCartItem,
-            }
-        ],
+        Orders: newOrders,
     };
     
     // Send POST request using Fetch API
