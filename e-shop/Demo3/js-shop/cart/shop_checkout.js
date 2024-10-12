@@ -598,21 +598,20 @@ function validateField(field) {
 // Add event listeners to all input fields when the page loads
 addInputEventListeners();
 
-const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal');
 const paymentButton = document.getElementById('paymentButton');
 
+// Get the modal element
+const paymentModalElement = document.getElementById('checkoutModal');
+const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
+const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
+
+// Create a new instance of the Bootstrap modal
+const paymentModal = new bootstrap.Modal(paymentModalElement);
+const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
+const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
+    
 function handlePayment(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
-
-    // Get the modal element
-    const paymentModalElement = document.getElementById('checkoutModal');
-    const insufficientBalanceModalElement = document.getElementById('insufficientBalanceModal')
-    const transactionSuccessModalElement = document.getElementById('transactionSuccessModal');
-
-    // Create a new instance of the Bootstrap modal
-    const paymentModal = new bootstrap.Modal(paymentModalElement);
-    const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
-    const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
 
     // Simulate checking balance
     getUsersBalance().then(customerBalance => {
@@ -745,9 +744,6 @@ placeOrderButton.addEventListener("click", function(event) {
     if (!isValid) {
         return;
     }
-    const paymentModalElement = document.getElementById('checkoutModal');
-    const paymentModal = new bootstrap.Modal(paymentModalElement);
-
 
     let cartSubTotalPopUp = document.getElementById('cartSubTotalPopUp');
     let shippingSubTotalPopUp = document.getElementById('shippingSubTotalPopUp')
