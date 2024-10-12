@@ -856,10 +856,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
         const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id).toFixed(2));
         const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
         
-        order.order_cost = productCost.toFixed(2) + shippingCost.toFixed(2);
-        order.order_sub_total_cost = productCost.toFixed(2);
-        order.shipping_cost = shippingCost.toFixed(2);
-        order.order_discount = discount.toFixed(2);
+        order.order_cost = productCost + shippingCost;
+        order.order_sub_total_cost = productCost;
+        order.shipping_cost = shippingCost;
+        order.order_discount = discount;
         order.quantity = historyQuantity;
 
         // Add product order details, keeping only desired fields
