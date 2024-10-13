@@ -1299,7 +1299,8 @@ async function getShippingFees() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            showToastMessageE(`response: ${response}`);
+            const data = await response.json();
+            showToastMessageE(`response: ${data}`);
             return;
         }else {
             // Process the response data
@@ -1343,7 +1344,8 @@ async function getUsersBalance() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            showToastMessageE(`response: ${response}`);
+            const data = await response.json();
+            showToastMessageE(`response: ${data}`);
             return;
         }else {
             // Process the response data
