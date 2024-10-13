@@ -1126,9 +1126,10 @@ async function placeOrder() {
 
     // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
-
     // Construct the request body
     const requestBody = {
+        Latitude: latitude,
+        Longitude: longitude,
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
@@ -1306,6 +1307,8 @@ async function getShippingFees() {
             if(usersSavedAddress.save_shipping_address) {
                 updateFormFields(usersSavedAddress);
             }
+            latitude = data.address.latitude;
+            longitude = data.address.longitude;
             updateShippingPrices(data.success);
             transactionCodeStatus = data.status;
             const checkoutButton = document.getElementById('placeOrderButton');
