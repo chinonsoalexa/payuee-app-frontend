@@ -40,7 +40,7 @@ var subtotal = 0;
 // saved address
 var usersSavedAddress;
 var transactionCodeStatus = false;
-var vTransactionCode;
+var TransactionCode = "";
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -699,20 +699,15 @@ placeOrderButton.addEventListener("click", function(event) {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
     const createTransactionCodeSection = document.getElementById('createTransactionCodeSection');
     const forgotTransactionCodeLink = document.getElementById('forgotTransactionCodeLink');
-    let TransactionCode = "";
     
     if (transactionCodeStatus) {
         // If the user have a transaction code
         transactionCodeSection.classList.remove('d-none');
         createTransactionCodeSection.classList.add('d-none');
-        const transactionCode = document.getElementById('transactionCodeInput');
-        TransactionCode = transactionCode.value.trim();
     } else {
         // If the user does not have a transaction code
         createTransactionCodeSection.classList.remove('d-none');
         transactionCodeSection.classList.add('d-none');
-        const newTransactionCode = document.getElementById('createTransactionCodeInput');
-        TransactionCode = newTransactionCode.value.trim();
     }
 
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
@@ -728,6 +723,16 @@ placeOrderButton.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
 
         console.log(TransactionCode);
+        
+        if (transactionCodeStatus) {
+            // If the user have a transaction code
+            const transactionCode = document.getElementById('transactionCodeInput');
+            TransactionCode = transactionCode.value.trim();
+        } else {
+            // If the user does not have a transaction code
+            const newTransactionCode = document.getElementById('createTransactionCodeInput');
+            TransactionCode = newTransactionCode.value.trim();
+        }
 
         if (TransactionCode == "") {
             // display error to enter transaction code
@@ -740,7 +745,6 @@ placeOrderButton.addEventListener("click", function(event) {
             return
         }
 
-        vTransactionCode = TransactionCode;
         // Simulate checking balance 
         const customerBalance = await getUsersBalance();
 
@@ -1121,7 +1125,7 @@ async function placeOrder() {
 
     // Construct the request body
     const requestBody = {
-        TransCode: String(vTransactionCode),
+        TransCode: String(TransactionCode),
         Orders: newOrders,
     };
     
