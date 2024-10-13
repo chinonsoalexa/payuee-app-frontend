@@ -40,7 +40,7 @@ var subtotal = 0;
 // saved address
 var usersSavedAddress;
 var transactionCodeStatus = false;
-var TransactionCode;
+var TransactionCode = "";
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -726,7 +726,7 @@ placeOrderButton.addEventListener("click", function(event) {
     paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
 
-        if (TransactionCode == '') {
+        if (!TransactionCode) {
             // display error to enter transaction code
             showToastMessageE("please fill in the transaction code field");
             return
