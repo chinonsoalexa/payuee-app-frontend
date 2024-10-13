@@ -1086,6 +1086,7 @@ async function placeOrder() {
 
     // Construct the request body
     const requestBody = {
+        TransCode: String(TransactionCode),
         Orders: newOrders,
     };
     
@@ -1226,7 +1227,6 @@ function updateFormFields(formData) {
     document.getElementById("checkout_email").value = formData.customer_email || "";
     document.querySelector("textarea").value = formData.order_note || "";
 }
-
 
 async function getShippingFees() {
     // Endpoint URL
