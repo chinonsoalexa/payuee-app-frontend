@@ -40,7 +40,7 @@ var subtotal = 0;
 // saved address
 var usersSavedAddress;
 var transactionCodeStatus = false;
-var vTransactionCode = "";
+var vTransactionCode;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -1121,7 +1121,7 @@ async function placeOrder() {
 
     // Construct the request body
     const requestBody = {
-        TransCode: String(TransactionCode),
+        TransCode: String(vTransactionCode),
         Orders: newOrders,
     };
     
