@@ -780,8 +780,6 @@ placeOrderButton.addEventListener("click", function(event) {
             customerZipCode = formData.zipcode;
             customerProvince = formData.province;
             customerPhoneNumber = formData.phone;
-            let transactionCodeInput = document.getElementById('transactionCodeInput');
-            transactionCodeInput.value = "";
             try {
                 const result = await placeOrder();
                 if (result.success){
@@ -790,6 +788,8 @@ placeOrderButton.addEventListener("click", function(event) {
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
                     // Show the transaction success modal
                     transactionSuccessModal.show();
+                    let transactionCodeInput = document.getElementById('transactionCodeInput');
+                    transactionCodeInput.value = "";
                     return;
                 } else {
                     showToastMessageE(result.error)
