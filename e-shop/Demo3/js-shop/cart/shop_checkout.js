@@ -731,8 +731,6 @@ placeOrderButton.addEventListener("click", function(event) {
             const newTransactionCode = document.getElementById('createTransactionCodeInput');
             TransactionCode = newTransactionCode.value.trim();
         }
-        
-        console.log(TransactionCode);
 
         if (TransactionCode == "") {
             // display error to enter transaction code
@@ -783,12 +781,15 @@ placeOrderButton.addEventListener("click", function(event) {
             customerProvince = formData.province;
             customerPhoneNumber = formData.phone;
 
-
-            await placeOrder();
-            
-            document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
-            // Show the transaction success modal
-            transactionSuccessModal.show();
+            try {
+                const result = await placeOrder();
+                document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
+                // Show the transaction success modal
+                transactionSuccessModal.show();
+            } catch (error) {
+                // console.error('Failed to place order:', error);
+            }
+        
         }
 
         placeOrderButton.removeEventListener('click', paymentButton);
@@ -1075,11 +1076,9 @@ async function placeOrder() {
     // Iterate through each product in the cart
     cart.forEach((product) => {
         if (product.selling_price < product.initial_cost) {
-            // Add or update the field for products where selling_price is less than initial_cost
             product.order_cost = parseFloat(product.selling_price.toFixed(2));
             OrderCost += product.selling_price;
         } else {
-            // Add or update the field for other products
             product.order_cost = parseFloat(product.initial_cost.toFixed(2));
             OrderCost += product.initial_cost;
         }
@@ -1128,24 +1127,27 @@ async function placeOrder() {
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
-    
-    // Send POST request using Fetch API
-    fetch('https://api.payuee.com/place-order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',  // Include cookies with the request
-        body: JSON.stringify(requestBody)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // localStorage.removeItem('cart');
-        // window.location.href = 'shop_order_complete.html?OrderId=' + data.order;
-    })
-    .catch((error) => {
+
+    try {
+        // Send POST request using Fetch API and wait for the response
+        const response = await fetch('https://api.payuee.com/place-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',  // Include cookies with the request
+            body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+        
+        // Return the response data so the calling function can use it
+        return data;
+    } catch (error) {
+        // Handle any errors that occur
         console.error('Error:', error);
-    });
+        throw error; // Propagate the error so calling function can handle it
+    }
 }
 
 function getUniqueVendorIds() {
