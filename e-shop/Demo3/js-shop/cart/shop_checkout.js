@@ -788,8 +788,7 @@ placeOrderButton.addEventListener("click", function(event) {
                     // Show the transaction success modal
                     transactionSuccessModal.show();
                 }
-            } catch (error) {
-                showToastMessageE(error.error)
+                showToastMessageE(result.error)
             }
         
         }
