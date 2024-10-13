@@ -40,6 +40,7 @@ var subtotal = 0;
 // saved address
 var usersSavedAddress;
 var transactionCodeStatus = false;
+var TransactionCode;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -698,7 +699,6 @@ placeOrderButton.addEventListener("click", function(event) {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
     const createTransactionCodeSection = document.getElementById('createTransactionCodeSection');
     const forgotTransactionCodeLink = document.getElementById('forgotTransactionCodeLink');
-    let TransactionCode;
     
     if (transactionCodeStatus) {
         // If the user has a transaction code
@@ -731,7 +731,7 @@ placeOrderButton.addEventListener("click", function(event) {
             showToastMessageE("please fill in the transaction code field");
             return
         }
-        
+
         // Simulate checking balance 
         const customerBalance = await getUsersBalance();
 
