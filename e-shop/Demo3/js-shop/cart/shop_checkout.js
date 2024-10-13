@@ -1131,6 +1131,7 @@ async function placeOrder() {
     const requestBody = {
         Latitude: parseFloat(latitude.toFixed(2)),
         Longitude: parseFloat(longitude.toFixed(2)),
+        ShippingDetails: shippingData,
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
