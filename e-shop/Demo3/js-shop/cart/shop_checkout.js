@@ -39,6 +39,7 @@ var subtotal = 0;
 
 // saved address
 var usersSavedAddress;
+var transactionCodeStatus = false;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -1229,6 +1230,7 @@ async function getShippingFees() {
                 updateFormFields(usersSavedAddress);
             }
             updateShippingPrices(data.success);
+            transactionCodeStatus = data.status;
             const checkoutButton = document.getElementById('placeOrderButton');
     
             checkoutButton.disabled = false;
