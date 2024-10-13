@@ -49,18 +49,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     renderCheckoutProducts();
     await loadStates();
     
-    document.getElementById('shippingFee').addEventListener('click', function(event) {
-        event.preventDefault();
-        swal("Please select STATE & CITY to get Shipping fee.", {
-            icon: "info",
-            buttons: {
-                confirm: true,
-            },
-          })
-    });
-    // make request to get current shipping fees by Kilometer
-    // console.log("finished to calculate cart subtotal: ...")
-    await getShippingFees();
+    // Retrieve the cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if the cart has items (greater than or equal to 1)
+    if (cart.length > 0) {
+        // Make request to get current shipping fees by Kilometer
+        await getShippingFees();
+    }
 });
 
 // Function to fetch and populate state data
