@@ -749,6 +749,8 @@ placeOrderButton.addEventListener("click", function(event) {
         if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
         // Hide checkout modal and show insufficient balance modal
             paymentModal.hide();
+            let transactionCodeInput = document.getElementById('transactionCodeInput');
+            transactionCodeInput.value = "";
             setTimeout(function () {
                 insufficientBalanceModal.show();
                 // Fund Wallet button logic (you can customize this for your wallet integration)
@@ -778,7 +780,8 @@ placeOrderButton.addEventListener("click", function(event) {
             customerZipCode = formData.zipcode;
             customerProvince = formData.province;
             customerPhoneNumber = formData.phone;
-
+            let transactionCodeInput = document.getElementById('transactionCodeInput');
+            transactionCodeInput.value = "";
             try {
                 const result = await placeOrder();
                 if (result.success){
