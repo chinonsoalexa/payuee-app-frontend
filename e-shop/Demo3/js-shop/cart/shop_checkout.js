@@ -714,12 +714,6 @@ placeOrderButton.addEventListener("click", function(event) {
         TransactionCode = newTransactionCode;
     }
 
-    if (TransactionCode == '') {
-        // display error to enter transaction code
-        showToastMessageE("please fill in the transaction code field");
-        return
-    }
-
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
     shippingSubTotalPopUp.textContent =  formatNumberToNaira(shippingCost);
     cartShippingTotalPopUp.textContent =  formatNumberToNaira(subtotal + shippingCost);
@@ -731,6 +725,12 @@ placeOrderButton.addEventListener("click", function(event) {
 
     paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
+
+        if (TransactionCode == '') {
+            // display error to enter transaction code
+            showToastMessageE("please fill in the transaction code field");
+            return
+        }
         
         // Simulate checking balance 
         const customerBalance = await getUsersBalance();
