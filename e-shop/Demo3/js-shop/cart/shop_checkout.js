@@ -760,8 +760,6 @@ placeOrderButton.addEventListener("click", function(event) {
                 return;
             }, 300); // Delay for smooth transition
         } else {
-            // Hide checkout modal and simulate a successful transaction
-            paymentModal.hide();
 
             // Dynamically assign variables using form data
             orderCost = totalCharge;  
@@ -783,10 +781,12 @@ placeOrderButton.addEventListener("click", function(event) {
 
             try {
                 const result = await placeOrder();
-                document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
+               // Hide checkout modal and simulate a successful transaction
+                paymentModal.hide();
                 // Show the transaction success modal
                 transactionSuccessModal.show();
             } catch (error) {
+                showToastMessageE(error.error)
                 // console.error('Failed to place order:', error);
             }
         
