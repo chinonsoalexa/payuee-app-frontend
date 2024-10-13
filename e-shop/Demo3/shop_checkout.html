@@ -1370,7 +1370,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
+  
         <!-- Modal Body -->
         <div class="modal-body">
           <!-- Payment Breakdown Section -->
@@ -1387,10 +1387,10 @@
             <hr>
             <div class="d-flex justify-content-between">
               <strong>Total:</strong>
-              <strong  id="cartShippingTotalPopUp">₦3,100</strong>
+              <strong id="cartShippingTotalPopUp">₦3,100</strong>
             </div>
           </div>
-
+  
           <!-- Payment Methods -->
           <div class="mb-4">
             <h6>Payment Method</h6>
@@ -1399,18 +1399,33 @@
               <label for="payuee" class="me-4">Payuee e-Pay</label>
             </div>
           </div>
-
+  
           <!-- Secure Payment Message -->
           <div class="alert alert-info text-center">
             <i class="bi bi-shield-lock-fill"></i> Your payment is 100% secure.
           </div>
-
+  
+          <!-- Transaction Code Section (hidden initially) -->
+          <div id="transactionCodeSection" class="mb-4 d-none">
+            <h6>Enter Transaction Code</h6>
+            <input type="password" id="transactionCodeInput" class="form-control" placeholder="Enter your transaction code">
+            <div class="text-end mt-2">
+              <a href="#" id="forgotTransactionCodeLink">Forgot Transaction Code?</a>
+            </div>
+          </div>
+  
+          <!-- Create Transaction Code Section (hidden initially) -->
+          <div id="createTransactionCodeSection" class="mb-4 d-none">
+            <h6>Create Transaction Code</h6>
+            <input type="password" id="createTransactionCodeInput" class="form-control" placeholder="Create a transaction code">
+          </div>
+  
           <!-- Pay Button -->
           <div class="d-grid">
             <button id="paymentButton" type="button" class="btn btn-primary btn-lg">Pay ₦3,100</button>
           </div>
         </div>
-
+  
         <!-- Modal Footer (Optional) -->
         <div class="modal-footer justify-content-center">
           <p class="text-muted small text-center">
