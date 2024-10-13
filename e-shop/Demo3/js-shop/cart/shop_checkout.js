@@ -704,13 +704,13 @@ placeOrderButton.addEventListener("click", function(event) {
         // If the user has a transaction code
         transactionCodeSection.classList.remove('d-none');
         createTransactionCodeSection.classList.add('d-none');
-        const transactionCode = document.getElementById('transactionCodeInput').value;
+        const transactionCode = document.getElementById('transactionCodeInput').value.trim();
         TransactionCode = transactionCode;
     } else {
         // If the user does not have a transaction code
         createTransactionCodeSection.classList.remove('d-none');
         transactionCodeSection.classList.add('d-none');
-        const newTransactionCode = document.getElementById('createTransactionCodeInput').value;
+        const newTransactionCode = document.getElementById('createTransactionCodeInput').value.trim();
         TransactionCode = newTransactionCode;
     }
 
