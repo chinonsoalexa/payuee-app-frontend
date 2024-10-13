@@ -698,17 +698,26 @@ placeOrderButton.addEventListener("click", function(event) {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
     const createTransactionCodeSection = document.getElementById('createTransactionCodeSection');
     const forgotTransactionCodeLink = document.getElementById('forgotTransactionCodeLink');
+    let TransactionCode;
     
     if (transactionCodeStatus) {
         // If the user has a transaction code
         transactionCodeSection.classList.remove('d-none');
         createTransactionCodeSection.classList.add('d-none');
         const transactionCode = document.getElementById('transactionCodeInput').value;
+        TransactionCode = transactionCode;
     } else {
         // If the user does not have a transaction code
         createTransactionCodeSection.classList.remove('d-none');
         transactionCodeSection.classList.add('d-none');
         const newTransactionCode = document.getElementById('createTransactionCodeInput').value;
+        TransactionCode = newTransactionCode;
+    }
+
+    if (TransactionCode == '') {
+        // display error to enter transaction code
+        showToastMessageE("please fill in the transaction code field");
+        return
     }
 
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
@@ -773,6 +782,13 @@ placeOrderButton.addEventListener("click", function(event) {
     });
     return;
 });
+
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
 
 function showError(fieldId, message) {
     const field = document.getElementById(fieldId);
