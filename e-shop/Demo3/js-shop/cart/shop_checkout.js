@@ -783,6 +783,32 @@ placeOrderButton.addEventListener("click", function(event) {
     return;
 });
 
+const transactionCodeInput = document.getElementById('transactionCodeInput');
+
+// Restrict input to numeric values only and show error if non-numeric characters are entered
+transactionCodeInput.addEventListener('input', function () {
+    const nonNumericChars = /\D/g;
+    if (nonNumericChars.test(this.value)) {
+        // Show error message if non-numeric characters are found
+        showToastMessageE("Only numbers are allowed");
+    }
+    // Remove any non-digit characters from the input value
+    this.value = this.value.replace(nonNumericChars, '');
+});
+
+const createTransactionCodeInput = document.getElementById('createTransactionCodeInput');
+
+// Restrict input to numeric values only and show error if non-numeric characters are entered
+createTransactionCodeInput.addEventListener('input', function () {
+    const nonNumericChars = /\D/g;
+    if (nonNumericChars.test(this.value)) {
+        // Show error message if non-numeric characters are found
+        showToastMessageE("Only numbers are allowed");
+    }
+    // Remove any non-digit characters from the input value
+    this.value = this.value.replace(nonNumericChars, '');
+});
+
 function showToastMessageE(message) {
     document.getElementById('toastError').textContent = message;
     const toastElement = document.getElementById('liveToast1'); // Get the toast element
