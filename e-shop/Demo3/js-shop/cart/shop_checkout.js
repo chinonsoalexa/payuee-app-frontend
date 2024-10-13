@@ -698,12 +698,17 @@ placeOrderButton.addEventListener("click", function(event) {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
     const createTransactionCodeSection = document.getElementById('createTransactionCodeSection');
     const forgotTransactionCodeLink = document.getElementById('forgotTransactionCodeLink');
-  
+    
     if (transactionCodeStatus) {
         // If the user has a transaction code
         transactionCodeSection.classList.remove('d-none');
         createTransactionCodeSection.classList.add('d-none');
         const transactionCode = document.getElementById('transactionCodeInput').value;
+    } else {
+        // If the user does not have a transaction code
+        createTransactionCodeSection.classList.remove('d-none');
+        transactionCodeSection.classList.add('d-none');
+        const newTransactionCode = document.getElementById('createTransactionCodeInput').value;
     }
 
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
