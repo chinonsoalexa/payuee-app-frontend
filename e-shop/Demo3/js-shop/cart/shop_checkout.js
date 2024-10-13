@@ -1128,8 +1128,8 @@ async function placeOrder() {
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
     // Construct the request body
     const requestBody = {
-        Latitude: latitude,
-        Longitude: longitude,
+        Latitude: parseFloat(latitude.toFixed(2)),
+        Longitude: parseFloat(longitude.toFixed(2)),
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
