@@ -695,6 +695,16 @@ placeOrderButton.addEventListener("click", function(event) {
     const paymentModal = new bootstrap.Modal(paymentModalElement);
     const insufficientBalanceModal = new bootstrap.Modal(insufficientBalanceModalElement);
     const transactionSuccessModal = new bootstrap.Modal(transactionSuccessModalElement);
+    const transactionCodeSection = document.getElementById('transactionCodeSection');
+    const createTransactionCodeSection = document.getElementById('createTransactionCodeSection');
+    const forgotTransactionCodeLink = document.getElementById('forgotTransactionCodeLink');
+  
+    if (transactionCodeStatus) {
+        // If the user has a transaction code
+        transactionCodeSection.classList.remove('d-none');
+        createTransactionCodeSection.classList.add('d-none');
+        const transactionCode = document.getElementById('transactionCodeInput').value;
+    }
 
     cartSubTotalPopUp.textContent =  formatNumberToNaira(subtotal);
     shippingSubTotalPopUp.textContent =  formatNumberToNaira(shippingCost);
