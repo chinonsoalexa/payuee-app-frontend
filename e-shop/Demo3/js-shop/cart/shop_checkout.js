@@ -726,9 +726,14 @@ placeOrderButton.addEventListener("click", function(event) {
     paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
 
-        if (!TransactionCode) {
+        if (TransactionCode == "") {
             // display error to enter transaction code
             showToastMessageE("please fill in the transaction code field");
+            return
+        }
+        if (TransactionCode.length != 6) {
+            // display error to enter transaction code
+            showToastMessageE("transaction code should be 6 digits");
             return
         }
 
