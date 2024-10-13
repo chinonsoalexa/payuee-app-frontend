@@ -1299,7 +1299,7 @@ async function getShippingFees() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            alert('An error occurred. Please try again');
+            showToastMessageE("response: ", response);
             return;
         }else {
             // Process the response data
@@ -1343,7 +1343,7 @@ async function getUsersBalance() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            alert('An error occurred. Please try again');
+            showToastMessageE("response: ", response);
             return;
         }else {
             // Process the response data
