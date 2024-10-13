@@ -781,13 +781,13 @@ placeOrderButton.addEventListener("click", function(event) {
 
             try {
                 const result = await placeOrder();
-               // Hide checkout modal and simulate a successful transaction
+                // Hide checkout modal and simulate a successful transaction
                 paymentModal.hide();
+                document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
                 // Show the transaction success modal
                 transactionSuccessModal.show();
             } catch (error) {
                 showToastMessageE(error.error)
-                // console.error('Failed to place order:', error);
             }
         
         }
