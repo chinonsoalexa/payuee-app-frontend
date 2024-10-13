@@ -721,8 +721,6 @@ placeOrderButton.addEventListener("click", function(event) {
 
     paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); // Prevent the form from submitting traditionally
-
-        console.log(TransactionCode);
         
         if (transactionCodeStatus) {
             // If the user have a transaction code
@@ -733,6 +731,8 @@ placeOrderButton.addEventListener("click", function(event) {
             const newTransactionCode = document.getElementById('createTransactionCodeInput');
             TransactionCode = newTransactionCode.value.trim();
         }
+        
+        console.log(TransactionCode);
 
         if (TransactionCode == "") {
             // display error to enter transaction code
