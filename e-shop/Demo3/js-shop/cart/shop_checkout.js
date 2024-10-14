@@ -1300,7 +1300,8 @@ async function getShippingFees() {
         
         if (!response.ok) {
             const data = await response.json();
-            showToastMessageE(`response: ${data}`);
+            // showToastMessageE(`response: ${data}`);
+            updateShippingPrices() ;
             return;
         }else {
             // Process the response data
@@ -1345,7 +1346,7 @@ async function getUsersBalance() {
         
         if (!response.ok) {
             const data = await response.json();
-            showToastMessageE(`response: ${data}`);
+            // showToastMessageE(`response: ${data}`);
             return;
         }else {
             // Process the response data
