@@ -1127,6 +1127,11 @@ async function placeOrder() {
 
     // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
+
+    const checkoutButton = document.getElementById('placeOrderButton');
+    
+    checkoutButton.disabled = true;
+
     // Construct the request body
     const requestBody = {
         Latitude: parseFloat(latitude.toFixed(2)),
@@ -1148,10 +1153,17 @@ async function placeOrder() {
         });
 
         const data = await response.json();
-        
+
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
+        checkoutButton.disabled = false;
+
         // Return the response data so the calling function can use it
         return data;
     } catch (error) {
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
+        checkoutButton.disabled = false;
         // Handle any errors that occur
         console.error('Error:', error);
         throw error; // Propagate the error so calling function can handle it
