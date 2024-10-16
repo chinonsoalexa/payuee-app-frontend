@@ -446,19 +446,8 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
         // Save the updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Call the loading function to render the skeleton loaders
-        updateCartNumber();
-        updateCartDrawer();
-        renderCheckoutProducts();
-        
-        // Retrieve the cart from local storage
-        // let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-        // Check if the cart has items (greater than or equal to 1)
-        // if (cart.length > 0) {
-            // Make request to get current shipping fees by Kilometer
-            getShippingFees();
-        // }
+        // getShippingFees();
+
         // Re-render the cart drawer
         CalculateCartSubtotal();
         updateCartDrawer();
