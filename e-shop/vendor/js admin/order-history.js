@@ -35,7 +35,7 @@ function clearElementsByClass() {
 }
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/get-orders/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/vendor/get-orders/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -73,7 +73,7 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
         responseData.success.forEach((product) => {
-            product.product_review_count = 6500;
+            // product.product_review_count = 6500;
             renderProducts(product);
         });
         
