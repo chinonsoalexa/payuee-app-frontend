@@ -123,68 +123,123 @@ async function postProduct() {
     }
 }
 
-// Initialize space to upload images
-function initializeDropzone() {
-    // Initialize Dropzone
-    Dropzone.options.multiFileUploadA = {
-        acceptedFiles: 'image/*',
-        maxFilesize: 5, // Max file size in MB
-        init: function () {
-            this.on("addedfile", function (file) {
-                // Check if the number of uploaded images is already 2
-                if (imageArray.length >= 4) {
-                    swal({
-                        title: "Only four (4) images are allowed for a product",
-                        icon: "warning",
-                        buttons: {
-                            confirm: true,
-                        },
-                    })
-                    // Remove the new file preview and don't add it to the array
-                    file.previewElement.remove();
-                    return; // Exit the function
-                }
-
-                // Check if the file already exists in the array
-                const fileExists = imageArray.some(existingFile => 
-                    existingFile.name === file.name && existingFile.size === file.size
-                );
-
-                if (fileExists) {
-                    // File already exists, remove the new file preview and don't add it to the array
-                    file.previewElement.remove();
-                    return; // Exit the function
-                }
-
-                // Add the file to the array if it doesn't already exist
-                imageArray.push(file);
-
-                // Get the existing remove icon (dz-error-mark)
-                const removeIcon = file.previewElement.querySelector('.dz-error-mark');
-
-                if (removeIcon) {
-                    // Add event listener to remove the image on click
-                    removeIcon.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        // Remove the file from the array
-                        const index = imageArray.indexOf(file);
-                        if (index > -1) {
-                            imageArray.splice(index, 1);
-                        }
-
-                        // Remove the file preview
+    // Initialize space to upload images
+    function initializeDropzone() {
+        // Initialize Dropzone
+        Dropzone.options.multiFileUploadA = {
+            acceptedFiles: 'image/*',
+            maxFilesize: 5, // Max file size in MB
+            init: function () {
+                this.on("addedfile", function (file) {
+                    // Check if the number of uploaded images is already 4
+                    if (imageArray.length >= 4) {
+                        swal({
+                            title: "Only four (4) images are allowed for a product",
+                            icon: "warning",
+                            buttons: {
+                                confirm: true,
+                            },
+                        });
+                        // Remove the new file preview and don't add it to the array
                         file.previewElement.remove();
-                    });
-                }
-            });
-        }
-    };
-}
+                        return; // Exit the function
+                    }
 
-// Call the function to initialize Dropzone for images
-initializeDropzone();
+                    // Check if the file already exists in the array
+                    const fileExists = imageArray.some(existingFile => 
+                        existingFile.name === file.name && existingFile.size === file.size
+                    );
+
+                    if (fileExists) {
+                        // File already exists, remove the new file preview and don't add it to the array
+                        file.previewElement.remove();
+                        return; // Exit the function
+                    }
+
+                    // Add the file to the array if it doesn't already exist
+                    imageArray.push(file);
+
+                    // Load the image and check clarity
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const base64Image = event.target.result;
+                        checkImageClarity(base64Image, file);
+                    };
+                    reader.readAsDataURL(file);
+
+                    // Get the existing remove icon (dz-error-mark)
+                    const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+                    if (removeIcon) {
+                        // Add event listener to remove the image on click
+                        removeIcon.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Remove the file from the array
+                            const index = imageArray.indexOf(file);
+                            if (index > -1) {
+                                imageArray.splice(index, 1);
+                            }
+
+                            // Remove the file preview
+                            file.previewElement.remove();
+                        });
+                    }
+                });
+            }
+        };
+    }
+
+    // Function to check image clarity using OpenCV
+    function checkImageClarity(base64Image, file) {
+        const img = new Image();
+        img.src = base64Image;
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0); // Draw the base64 image onto the canvas
+            
+            // Convert canvas image to OpenCV format
+            const src = cv.imread(canvas);
+            const gray = new cv.Mat();
+            cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY); // Convert to grayscale
+
+            // Apply Laplacian filter to detect edges
+            const laplacian = new cv.Mat();
+            cv.Laplacian(gray, laplacian, cv.CV_64F);
+            
+            // Calculate sharpness (variance of Laplacian)
+            const mean = cv.mean(laplacian).w;
+            console.log("image clarity", mean);
+
+            // Rating the clarity of the image based on sharpness value
+            let clarityRating = '';
+            if (mean > 50) {
+                clarityRating = 'High Clarity';
+            } else if (mean > 30) {
+                clarityRating = 'Medium Clarity';
+            } else {
+                clarityRating = 'Low Clarity';
+            }
+
+            // Display clarity rating in the preview
+            const clarityElement = document.createElement('div');
+            clarityElement.innerHTML = `Clarity: ${clarityRating}`;
+            clarityElement.style.color = mean > 30 ? 'green' : 'red';
+            file.previewElement.appendChild(clarityElement);
+
+            // Clean up
+            src.delete();
+            gray.delete();
+            laplacian.delete();
+        };
+    }
+
+    // Call the function to initialize Dropzone for images
+    initializeDropzone();
 
 // Function to get product categories
 function getFormData() {
