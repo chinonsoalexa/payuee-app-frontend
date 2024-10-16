@@ -191,6 +191,26 @@ async function getProducts(pageNumber) {
     }
 }
 
+// Function to generate product status HTML based on the order status
+function getProductStatus(product) {
+    let productStatus = "";
+    
+    if (product.order_status === "cancelled") {
+        productStatus = `
+        <a class="btn btn-danger btn-xs" href="order-history-details.html?OrderId=${product.ID}">Cancelled</a><i class="close" data-feather="x"></i>
+        `;
+    } else if (product.order_status === "shipped") {
+        productStatus = `
+        <a class="btn btn-success btn-xs" href="order-history-details.html?OrderId=${product.ID}">Shipped</a><i class="close" data-feather="x"></i>
+        `;
+    } else {
+        productStatus = `
+        <a class="btn btn-primary btn-xs" href="order-history-details.html?OrderId=${product.ID}">Processing</a><i class="close" data-feather="x"></i>
+        `;
+    }
+    return productStatus;
+}
+
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
 
@@ -199,21 +219,7 @@ function renderProducts(product) {
     rowElement.classList.add('col-xxl-4', 'col-md-6');
     rowElement.id = product.ID; // Set the ID of the row
 
-    let productStatus;
-
-    if (product.order_status === "cancelled") {
-        productStatus = `
-        <a class="btn btn-danger btn-xs" href="order-history-details.html?OrderId=${product.ID}">Cancelled</a><i class="close" data-feather="x"></i>
-        `
-    } else if (product.order_status === "shipped") {
-        productStatus = `
-        <a class="btn btn-success btn-xs" href="order-history-details.html?OrderId=${product.ID}">Shipped</a><i class="close" data-feather="x"></i>
-        `
-    } else {
-        productStatus = `
-        <a class="btn btn-primary btn-xs" href="order-history-details.html?OrderId=${product.ID}">Processing</a><i class="close" data-feather="x"></i>
-        `
-    }
+    const productStatus = getProductStatus(product);
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
@@ -237,21 +243,6 @@ function renderProducts(product) {
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
-
-    // Reinitialize the SwiperSlideshow after adding the product
-    // if (typeof DorngSections.SwiperSlideshow !== 'undefined') {
-    //     new DorngSections.SwiperSlideshow()._initSliders();
-    // }
-
-    // // If there are more complex product media types, reinitialize them as well
-    // if (typeof DorngSections.ProductSingleMedia !== 'undefined') {
-    //     new DorngSections.ProductSingleMedia()._initProductMedia();
-    // }
-
-    // // Reinitialize Aside
-    // if (typeof DorngElements.Aside === 'function') {
-    //     new DorngElements.Aside();
-    // }
 
     // Add event listener to the image wrapper
     const imgWrapper = rowElement.querySelector('.align-self-center');
