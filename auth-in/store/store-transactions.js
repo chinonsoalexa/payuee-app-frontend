@@ -221,7 +221,7 @@ function renderProducts(product) {
             <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
-                <h6><a href="order-history-details.html?OrderId=${product.ID}">${product.product_orders[0].title}</a></h6>
+                <h6><a href="store-transactions?page=${product.ID}">${product.product_orders[0].title}</a></h6>
                 </div>
                 <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
                 <div class="price d-flex"> 
