@@ -35,7 +35,7 @@ function clearElementsByClass() {
 }
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/get-orders/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/get-user-orders/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
