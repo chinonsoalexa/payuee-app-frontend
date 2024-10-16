@@ -3098,6 +3098,33 @@ table tbody .border-bottom-warning td {
   display: block;
 }
 
+#paginationList ul.pagination {
+  display: flex;
+  flex-wrap: wrap; /* Ensures pagination items wrap to the next line if there's not enough space */
+  justify-content: center; /* Centers the pagination items */
+  gap: 10px; /* Adds space between the pagination items */
+}
+
+.page-item {
+  margin-bottom: 10px; /* Adds spacing below each pagination item to ensure proper wrapping */
+}
+
+.page-link {
+  min-width: 40px; /* Set a minimum width for the page links to avoid shrinking too much */
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  /* On smaller screens, increase the gap between items and allow more wrapping */
+  .pagination {
+    gap: 5px;
+  }
+
+  .page-link {
+    min-width: 30px;
+  }
+}
+
 .common-space {
   display: -webkit-box;
   display: -ms-flexbox;
