@@ -218,7 +218,7 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].product_image.url}" alt="${product.title}">
+            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].product_image[0].url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
                 <h6><a href="order-history-details.html?OrderId=${product.ID}">${product.product_orders[0].title}</a></h6>
