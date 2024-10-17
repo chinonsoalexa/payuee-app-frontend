@@ -544,6 +544,7 @@ function processPredictions(predictions) {
         if (unauthorizedCategories.includes(prediction.class)) {
             // console.warn(`Unauthorized content detected: ${prediction.class}`);
             // showToastMessageE("unauthorized content detected");
+            unauthorizedName = prediction.class;
             let errorMessage = '"' + prediction.class + '"' + " is not allow";
             showToastMessageE(String(errorMessage));
             unauthorizedDetected = true; // Set flag if unauthorized content is detected
