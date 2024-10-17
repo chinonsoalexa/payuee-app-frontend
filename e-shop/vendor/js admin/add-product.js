@@ -13,7 +13,7 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
-const compress = new Compress();
+// const compress = new Compress();
 
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
