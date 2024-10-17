@@ -76,13 +76,13 @@ submitButton.addEventListener('click', async function (event) {
 async function postProduct() {
     // Create a new FormData object
     const formData = new FormData();
-
+    calculateOverallQuality();
     // Append text fields to the FormData object
     formData.append("productTitle", productTitle);
     formData.append("productDescription", productDescription);
     formData.append("initialCost", initialCost);
     formData.append("netWeight", netWeight);
-    formData.append("imageQuality", calculateOverallQuality);
+    formData.append("imageQuality", imageQuality);
     formData.append("sellingPrice", sellingPrice);
     formData.append("currency", currency);
     formData.append("productStock", productStock);
@@ -195,7 +195,6 @@ function initializeDropzone() {
 }
 
 // Function to check image clarity using OpenCV
-// Function to check image clarity using OpenCV
 function checkImageClarity(base64Image, file) {
     const img = new Image();
     img.src = base64Image;
@@ -218,7 +217,7 @@ function checkImageClarity(base64Image, file) {
         cv.meanStdDev(laplacian, mean, stddev); // Get mean and standard deviation
 
         const sharpness = stddev.data64F[0];
-        console.log("image sharpness (stddev):", sharpness);
+        // console.log("image sharpness (stddev):", sharpness);
 
         sharpnessArray.push(sharpness); // Store sharpness value
 
@@ -259,16 +258,13 @@ function calculateOverallQuality() {
     const totalSharpness = sharpnessArray.reduce((sum, sharpness) => sum + sharpness, 0);
     const averageSharpness = totalSharpness / sharpnessArray.length;
     
-    let overallRating = 0;
     if (averageSharpness > 80) {
-        overallRating = 3;
+        imageQuality = 3;
     } else if (averageSharpness > 30) {
-        overallRating = 2;
+        imageQuality = 2;
     } else {
-        overallRating = 1;
+        imageQuality = 1;
     }
-    console.log("overall quality: ", overallRating)
-    return overallRating;
 }
 
 // Call the function to initialize Dropzone for images
