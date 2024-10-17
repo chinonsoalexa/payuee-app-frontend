@@ -171,6 +171,9 @@ function initializeDropzone() {
                     });
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
+                    if (imageArray.length < 1) {
+                        updateDropzoneUI()
+                    }
                     return; // Exit the function
                 }
 
