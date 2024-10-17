@@ -134,7 +134,7 @@ function initializeDropzone() {
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        autoProcessQueue: false, // Disable automatic uploads
+        autoProcessQueue: false,
         init: function () {
             this.on("addedfile", function (file) {
                 // Check if the number of uploaded images is already 4
@@ -162,48 +162,40 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // Optimize image before adding it to the upload queue
-                optimizeImage(file, (optimizedBlob, fileType) => {
-                    // Create a new File object from the optimized Blob
-                    const optimizedFile = new File([optimizedBlob], file.name.replace(/\.[^/.]+$/, "") + '.' + fileType, {
-                        type: optimizedBlob.type,
+                // Add the file to the array if it doesn't already exist
+                imageArray.push(optimizedFile);
+
+                // Load the image and check clarity
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Image = event.target.result;
+                    checkImageClarity(base64Image, file);
+                };
+                reader.readAsDataURL(file);
+
+                // Get the existing remove icon (dz-error-mark)
+                const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+                if (removeIcon) {
+                    // Add event listener to remove the image on click
+                    removeIcon.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Remove the file from the array
+                        const index = imageArray.indexOf(file);
+                        if (index > -1) {
+                            imageArray.splice(index, 1);
+                        }
+
+                        // Remove the file preview
+                        file.previewElement.remove();
                     });
-
-                    // Add optimized file to Dropzone's queue and image array
-                    this.emit("addedfile", optimizedFile);
-                    imageArray.push(optimizedFile); // Only add the optimized file to the array
-
-                    // Load the image and check clarity (for clarity analysis)
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const base64Image = event.target.result;
-                        checkImageClarity(base64Image, optimizedFile); // Pass the optimized file
-                    };
-                    reader.readAsDataURL(optimizedFile);
-
-                    // Handle remove icon for the optimized image
-                    const removeIcon = optimizedFile.previewElement.querySelector('.dz-error-mark');
-                    if (removeIcon) {
-                        removeIcon.addEventListener("click", function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-
-                            // Remove the file from the array
-                            const index = imageArray.indexOf(optimizedFile);
-                            if (index > -1) {
-                                imageArray.splice(index, 1);
-                            }
-
-                            // Remove the file preview
-                            optimizedFile.previewElement.remove();
-                        });
-                    }
-                });
+                }
             });
         }
     };
 }
-
 
 // Function to check image clarity using OpenCV
 function checkImageClarity(base64Image, file) {
