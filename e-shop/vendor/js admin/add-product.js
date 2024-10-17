@@ -228,7 +228,7 @@ async function postProduct() {
             // Display clarity rating in the preview
             const clarityElement = document.createElement('div');
             clarityElement.innerHTML = `${clarityRating}`;
-            clarityElement.style.color = mean > 30 ? 'green' : 'red';
+            clarityElement.style.color = mean > 20 ? 'green' : 'red';
             file.previewElement.appendChild(clarityElement);
 
             // Clean up
