@@ -206,6 +206,7 @@ function initializeDropzone() {
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
+                updateDropzoneUI();
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
@@ -224,6 +225,7 @@ function initializeDropzone() {
 
                         // Remove the file preview
                         file.previewElement.remove();
+                        updateDropzoneUI();
                     });
                 }
             });
@@ -485,6 +487,50 @@ loadModel();
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
+
+// Function to update the Dropzone UI based on the state of imageArray
+function updateDropzoneUI() {
+    const imageContainer = document.getElementById("imageContainer");
+
+    // Clear the container for uploaded images
+    imageContainer.innerHTML = '';
+
+    // Create a div to hold the images
+    const uploadedImagesDiv = document.createElement("div");
+    uploadedImagesDiv.classList.add("uploaded-images");
+
+    // Check if there are any uploaded images
+    if (imageArray.length > 0) {
+        imageArray.forEach(image => {
+            const imgElement = document.createElement("img");
+            imgElement.src = URL.createObjectURL(image);
+            imgElement.style.width = '100px'; // Adjust size as needed
+            imgElement.style.height = 'auto';
+            imgElement.alt = image.name;
+            uploadedImagesDiv.appendChild(imgElement);
+        });
+    }
+
+    // Append the upload icon and uploaded images to the container
+    imageContainer.appendChild(uploadedImagesDiv);
+
+    // Optionally, you can add a message if you want
+    const uploadMessage = document.createElement("div");
+    uploadMessage.classList.add("upload-message");
+    uploadMessage.innerHTML = `
+        <div class="dz-message needsclick">
+            <svg>
+                <use href="#file-upload"></use>
+            </svg>
+            <h6>Drag your image here, or <a class="txt-primary" href="#!">browse</a></h6>
+            <span class="note needsclick">SVG, PNG, JPG, or GIF</span>
+        </div>
+    `;
+    imageContainer.prepend(uploadMessage); // Show upload icon and message
+
+    // Append the uploaded images below the icon
+    imageContainer.appendChild(uploadedImagesDiv);
+}
 
 // Function to get product categories
 function getFormData() {
