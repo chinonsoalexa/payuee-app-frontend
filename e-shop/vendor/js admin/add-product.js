@@ -427,11 +427,12 @@ function optimizeImage(file, callback) {
 async function detectObjects(image) {
     // Check if the model is loaded
     if (!model) {
-        image.previewElement.remove(); 
+        // Remove the file from the array
         const index = imageArray.indexOf(file);
         if (index > -1) {
-            imageArray.splice(index, 1); // Remove the file at the found index
+            imageArray.splice(index, 1);
         }
+        image.previewElement.remove(); 
         // console.error("Model is not loaded yet.");
         return;
     }
@@ -445,9 +446,10 @@ async function detectObjects(image) {
             const predictions = await model.detect(img);
             // Process predictions to filter authorized content
             if(processPredictions(predictions)) {
+                // Remove the file from the array
                 const index = imageArray.indexOf(file);
                 if (index > -1) {
-                    imageArray.splice(index, 1); // Remove the file at the found index
+                    imageArray.splice(index, 1);
                 }
                 image.previewElement.remove(); 
             };
