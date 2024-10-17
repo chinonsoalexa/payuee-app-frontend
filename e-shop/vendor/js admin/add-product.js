@@ -131,89 +131,14 @@ async function postProduct() {
 }
 
 // Initialize space to upload images
-// function initializeDropzone() {
-//     // Initialize Dropzone
-//     Dropzone.options.multiFileUploadA = {
-//         acceptedFiles: 'image/*',
-//         maxFilesize: 5, // Max file size in MB
-//         // autoProcessQueue: false,
-//         init: function () {
-//             this.on("addedfile", function (file) {
-//                 // Check if the number of uploaded images is already 4
-//                 if (imageArray.length >= 4) {
-//                     swal({
-//                         title: "Only four (4) images are allowed for a product",
-//                         icon: "warning",
-//                         buttons: {
-//                             confirm: true,
-//                         },
-//                     });
-//                     // Remove the new file preview and don't add it to the array
-//                     file.previewElement.remove();
-//                     return; // Exit the function
-//                 }
-
-//                 // Check if the file already exists in the array
-//                 const fileExists = imageArray.some(existingFile => 
-//                     existingFile.name === file.name && existingFile.size === file.size
-//                 );
-
-//                 if (fileExists) {
-//                     // File already exists, remove the new file preview and don't add it to the array
-//                     file.previewElement.remove();
-//                     return; // Exit the function
-//                 }
-
-//                 // detectObjects(file);
-
-//                 // Add the file to the array if it doesn't already exist
-//                 imageArray.push(file);
-
-//                 // Load the image and check clarity
-//                 const reader = new FileReader();
-//                 reader.onload = function(event) {
-//                     const base64Image = event.target.result;
-//                     checkImageClarity(base64Image, file);
-//                 };
-//                 reader.readAsDataURL(file);
-
-//                 // Get the existing remove icon (dz-error-mark)
-//                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
-
-//                 if (removeIcon) {
-//                     // Add event listener to remove the image on click
-//                     removeIcon.addEventListener("click", function (e) {
-//                         e.preventDefault();
-//                         e.stopPropagation();
-
-//                         // Remove the file from the array
-//                         const index = imageArray.indexOf(file);
-//                         if (index > -1) {
-//                             imageArray.splice(index, 1);
-//                         }
-
-//                         // Remove the file preview
-//                         file.previewElement.remove();
-//                     });
-//                 }
-//             });
-//         }
-//     };
-// }
-
-// Initialize space to upload images
 function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        // autoProcessQueue: false, // Disable automatic uploads
+        // autoProcessQueue: false,
         init: function () {
             this.on("addedfile", function (file) {
-                const dropzoneInstance = this;
-
-                console.log("File added:", file.name); // Debugging log
-
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
@@ -239,30 +164,104 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // Step 1: Optimize the image
-                optimizeImage(file, (optimizedBlob, fileType) => {
-                    console.log("Image optimized:", file.name); // Debugging log
+                // detectObjects(file);
 
-                    // Step 2: Create a new optimized file
-                    const optimizedFile = new File([optimizedBlob], file.name.replace(/\.[^/.]+$/, "") + '.' + fileType, {
-                        type: optimizedBlob.type,
+                // Add the file to the array if it doesn't already exist
+                imageArray.push(file);
+
+                // Load the image and check clarity
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Image = event.target.result;
+                    checkImageClarity(base64Image, file);
+                };
+                reader.readAsDataURL(file);
+
+                // Get the existing remove icon (dz-error-mark)
+                const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+                if (removeIcon) {
+                    // Add event listener to remove the image on click
+                    removeIcon.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Remove the file from the array
+                        const index = imageArray.indexOf(file);
+                        if (index > -1) {
+                            imageArray.splice(index, 1);
+                        }
+
+                        // Remove the file preview
+                        file.previewElement.remove();
                     });
-
-                    // Step 3: Clarity Check
-                   // Load the image and check clarity
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const base64Image = event.target.result;
-                        checkImageClarity(base64Image, file);
-                    };
-                    reader.readAsDataURL(file);
-
-                    reader.readAsDataURL(optimizedFile); // Read the optimized file for clarity check
-                });
+                }
             });
         }
     };
 }
+
+// Initialize space to upload images
+// function initializeDropzone() {
+//     // Initialize Dropzone
+//     Dropzone.options.multiFileUploadA = {
+//         acceptedFiles: 'image/*',
+//         maxFilesize: 5, // Max file size in MB
+//         // autoProcessQueue: false, // Disable automatic uploads
+//         init: function () {
+//             this.on("addedfile", function (file) {
+//                 const dropzoneInstance = this;
+
+//                 console.log("File added:", file.name); // Debugging log
+
+//                 // Check if the number of uploaded images is already 4
+//                 if (imageArray.length >= 4) {
+//                     swal({
+//                         title: "Only four (4) images are allowed for a product",
+//                         icon: "warning",
+//                         buttons: {
+//                             confirm: true,
+//                         },
+//                     });
+//                     // Remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // Check if the file already exists in the array
+//                 const fileExists = imageArray.some(existingFile => 
+//                     existingFile.name === file.name && existingFile.size === file.size
+//                 );
+
+//                 if (fileExists) {
+//                     // File already exists, remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // Step 3: Clarity Check
+//                 // Load the image and check clarity
+//                 const reader = new FileReader();
+//                 reader.onload = function(event) {
+//                     const base64Image = event.target.result;
+//                     checkImageClarity(base64Image, file);
+//                 };
+//                 reader.readAsDataURL(file);
+
+//                 // Step 1: Optimize the image
+//                 optimizeImage(file, (optimizedBlob, fileType) => {
+//                     console.log("Image optimized:", file.name); // Debugging log
+
+//                     // Step 2: Create a new optimized file
+//                     const optimizedFile = new File([optimizedBlob], file.name.replace(/\.[^/.]+$/, "") + '.' + fileType, {
+//                         type: optimizedBlob.type,
+//                     });
+//                     reader.readAsDataURL(optimizedFile); // Read the optimized file for clarity check
+//                 });
+//             });
+//         }
+//     };
+// }
 
 // Function to check image clarity using OpenCV
 function checkImageClarity(base64Image, file) {
