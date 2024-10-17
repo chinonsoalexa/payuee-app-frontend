@@ -172,7 +172,7 @@ async function initializeDropzone() {
                 imageArray.push(file);
 
                 // Process the file asynchronously (check image clarity)
-                await checkImageClarityAsync(file);
+                checkImageClarity(file);
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
