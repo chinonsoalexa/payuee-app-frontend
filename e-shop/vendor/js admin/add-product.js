@@ -17,7 +17,7 @@ let model;
 let unauthorizedName = "";
 // const compress = new Compress();
 
-const cocoSsdClasses = [
+const authorizedCategories = [
     "person",
     "bicycle",
     "car",
@@ -256,27 +256,15 @@ function initializeDropzone() {
                 };
                 reader.readAsDataURL(file);
 
-                // Await the completion of any asynchronous operation (e.g., image detection)
+                // Await the completion of any asynchronous operation)
                 console.log("started image detection");
-                let unautorized = false;
-                try {
-                    const isUnauthorized = await detectObjects(file);
-                    if (isUnauthorized) {
-                        unautorized = true;
-                        // Handle unauthorized content (e.g., prevent upload)
-                    } else {
-                        // Proceed with the upload
-                        // console.log("Image is allowed, proceed with the upload.");
-                    }
-                } catch (error) {
-                    // console.error("Error during object detection:", error);
-                }
+                // Call detectObjects and await its return
+                const isUnauthorized = await detectObjects(file);
                 console.log("finished image detection");
 
-                if (unautorized) {
-                    unautorized = false;
-                    file.previewElement.remove();
-                    return;
+                if (isUnauthorized) {
+                    file.previewElement.remove(); // Remove the file preview if unauthorized
+                    return; // Exit the function
                 }
 
                 // Add the file to the array if it doesn't already exist
@@ -519,15 +507,15 @@ async function detectObjects(image) {
     img.onload = async () => {
         try {
             const predictions = await model.detect(img);
-            console.log(predictions); // Log predictions for debugging
-            predictions.forEach(prediction => {
-                unauthorizedName = prediction.class;
-            });
+            // console.log(predictions); // Log predictions for debugging
+            // predictions.forEach(prediction => {
+            //     unauthorizedName = prediction.class;
+            // });
 
             // Process predictions to filter unauthorized content
             return processPredictions(predictions);
         } catch (error) {
-            console.error("Error during object detection:", error);
+            // console.error("Error during object detection:", error);
         }
     };
 
@@ -537,29 +525,21 @@ async function detectObjects(image) {
 }
 
 function processPredictions(predictions) {
-    const unauthorizedCategories = ["person", "dog", "cat"]; // Define unauthorized categories
-    let unauthorizedDetected = false;
+    let isUnauthorized = true;
 
     predictions.forEach(prediction => {
-        if (unauthorizedCategories.includes(prediction.class)) {
-            // console.warn(`Unauthorized content detected: ${prediction.class}`);
-            // showToastMessageE("unauthorized content detected");
-            unauthorizedName = prediction.class;
-            let errorMessage = '"' + prediction.class + '"' + " is not allow";
-            showToastMessageE(String(errorMessage));
-            unauthorizedDetected = true; // Set flag if unauthorized content is detected
-            // Optionally, handle unauthorized content (e.g., reject upload)
+        if (authorizedCategories.includes(prediction.class)) {
+            // console.warn(`Authorized content detected: ${prediction.class}`);
+            isUnauthorized = false; 
         }
     });
 
-    if (unauthorizedDetected) {
+    if (isUnauthorized) {
         // Notify the user or take action
             showToastMessageE("unauthorized content detected");
-            // alert("The image contains unauthorized content.");
-            return unauthorizedDetected;
+            return isUnauthorized;
     } else {
-        // alert("The image is allowed.");
-        return unauthorizedDetected;
+        return isUnauthorized;
     }
 }
 
