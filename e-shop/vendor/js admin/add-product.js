@@ -13,8 +13,6 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
-// Initialize Compress.js
-const compress = new compress();
 
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
@@ -268,37 +266,6 @@ function calculateOverallQuality() {
     } else {
         imageQuality = 1;
     }
-}
-
-// Function to optimize images
-function optimizeImage(file, callback) {
-    compress.compress([file], {
-        size: 2, // Max size in MB
-        quality: 0.75, // Quality from 0 to 1
-        maxWidth: 1024, // Max width of the resized image
-        maxHeight: 1024, // Max height of the resized image
-        resize: true, // Resize the image if larger
-        convertTypes: ['webp'], // Convert to WebP format for better compression
-    }).then((results) => {
-        const optimizedImage = results[0]; // Get the compressed image
-        const base64Image = optimizedImage.data; // Base64 encoded image string
-        const fileType = optimizedImage.ext; // The file extension (webp)
-
-        // Create a new Blob from the base64 data
-        const byteString = atob(base64Image.split(',')[1]);
-        const mimeString = base64Image.split(',')[0].split(':')[1].split(';')[0];
-        const buffer = new ArrayBuffer(byteString.length);
-        const uintArray = new Uint8Array(buffer);
-
-        for (let i = 0; i < byteString.length; i++) {
-            uintArray[i] = byteString.charCodeAt(i);
-        }
-
-        const blob = new Blob([buffer], { type: mimeString });
-
-        // Call the callback with the optimized image Blob
-        callback(blob, fileType);
-    });
 }
 
 // Call the function to initialize Dropzone for images
