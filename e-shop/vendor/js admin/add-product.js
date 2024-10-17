@@ -139,6 +139,7 @@ function initializeDropzone() {
         // autoProcessQueue: false,
         init: function () {
             this.on("addedfile", function (file) {
+                showToastMessageE("uploading image");
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
