@@ -13,6 +13,7 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
+let model;
 // const compress = new Compress();
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -32,6 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
             productTitleInput.classList.add('is-valid');
         }
     });
+
+    async function loadModel() {
+        model = await cocoSsd.load();
+        console.log("Model loaded");
+    }
+
+    loadModel();
 
 // Assuming 'form' is the form element and 'submitButton' is the submit button
 submitButton.addEventListener('click', async function (event) {
@@ -160,6 +168,8 @@ function initializeDropzone() {
                     file.previewElement.remove();
                     return; // Exit the function
                 }
+
+                detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
@@ -390,6 +400,31 @@ function optimizeImage(file, callback) {
         
         // Call the callback with the optimized image Blob and file type
         callback(blob, fileType);
+    });
+}
+
+// Detect object
+async function detectObjects(image) {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(image); // Convert file to image source
+    
+    img.onload = async () => {
+        const predictions = await model.detect(img);
+        console.log(predictions);
+
+        // Process predictions to filter unauthorized content
+        processPredictions(predictions);
+    };
+}
+
+function processPredictions(predictions) {
+    const unauthorizedCategories = ["person", "dog", "cat"]; // Add any categories you consider unauthorized
+
+    predictions.forEach(prediction => {
+        if (unauthorizedCategories.includes(prediction.class)) {
+            console.warn(`Unauthorized content detected: ${prediction.class}`);
+            // Take action, e.g., reject upload, notify user, etc.
+        }
     });
 }
 
