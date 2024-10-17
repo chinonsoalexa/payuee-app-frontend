@@ -13,6 +13,7 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
+const compress = new compress();
 
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
@@ -345,7 +346,6 @@ function calculateOverallQuality() {
 }
 
 function optimizeImage(file, callback) {
-    const compress = new compress();
     compress.compress([file], {
         size: 2, // Max size in MB
         quality: 0.75, // Quality from 0 to 1
