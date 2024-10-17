@@ -14,6 +14,7 @@ var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
 let model;
+let unauthorizedName = "";
 // const compress = new Compress();
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -164,11 +165,6 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // detectObjects(file);
-
-                // Add the file to the array if it doesn't already exist
-                imageArray.push(file);
-
                 // Load the image and check clarity
                 const reader = new FileReader();
                 reader.onload = function(event) {
@@ -179,12 +175,13 @@ function initializeDropzone() {
 
                 // Await the completion of any asynchronous operation (e.g., image detection)
                 console.log("started image detection");
+                let unautorized = false;
                 try {
                     const isUnauthorized = await detectObjects(file);
                     if (isUnauthorized) {
+                        unautorized = true;
                         // Handle unauthorized content (e.g., prevent upload)
-                        showToastMessageE("unauthorized content detected");
-                        file.previewElement.remove();
+                        showToastMessageE('"' + unauthorizedName + '"' + " is not allowed");
                     } else {
                         // Proceed with the upload
                         // console.log("Image is allowed, proceed with the upload.");
@@ -193,6 +190,15 @@ function initializeDropzone() {
                     // console.error("Error during object detection:", error);
                 }
                 console.log("finished image detection");
+
+                if (unautorized) {
+                    unautorized = false;
+                    file.previewElement.remove();
+                    return;
+                }
+
+                // Add the file to the array if it doesn't already exist
+                imageArray.push(file);
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
@@ -452,7 +458,8 @@ function processPredictions(predictions) {
     predictions.forEach(prediction => {
         if (unauthorizedCategories.includes(prediction.class)) {
             // console.warn(`Unauthorized content detected: ${prediction.class}`);
-            showToastMessageE("unauthorized content detected");
+            unauthorizedName = prediction.class;
+            // showToastMessageE("unauthorized content detected");
             unauthorizedDetected = true; // Set flag if unauthorized content is detected
             // Optionally, handle unauthorized content (e.g., reject upload)
         }
