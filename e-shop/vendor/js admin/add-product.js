@@ -440,7 +440,6 @@ async function detectObjects(image) {
             console.log(predictions); // Log predictions for debugging
             predictions.forEach(prediction => {
                 unauthorizedName = prediction.class;
-                console.log(unauthorizedName); 
             });
 
             // Process predictions to filter unauthorized content
