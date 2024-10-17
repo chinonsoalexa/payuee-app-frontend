@@ -131,14 +131,13 @@ async function postProduct() {
 }
 
 // Initialize space to upload images
-function initializeDropzone() {
+async function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        // autoProcessQueue: false,
         init: function () {
-            this.on("addedfile", function (file) {
+            this.on("addedfile", async function (file) {
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
@@ -164,18 +163,16 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // detectObjects(file);
+                // Await the completion of any asynchronous operation (e.g., image detection)
+                console.log("started image detection");
+                await detectObjects(file);
+                console.log("finished image detection");
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
 
-                // Load the image and check clarity
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64Image = event.target.result;
-                    checkImageClarity(base64Image, file);
-                };
-                reader.readAsDataURL(file);
+                // Process the file asynchronously (check image clarity)
+                await checkImageClarityAsync(file);
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
@@ -296,6 +293,7 @@ function initializeDropzone() {
 // }
 
 // Function to check image clarity using OpenCV
+
 function checkImageClarity(base64Image, file) {
     const img = new Image();
     img.src = base64Image;
