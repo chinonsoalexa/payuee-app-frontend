@@ -14,7 +14,7 @@ var publishStatus = "";
 var featuredStatus = "";
 var imageQuality = 0;
 let model;
-let unauthorizedName = "";
+let isUnauthorized = true;
 // const compress = new Compress();
 
 const authorizedCategories = [
@@ -196,7 +196,7 @@ function initializeDropzone() {
                 // Await the completion of any asynchronous operation)
                 console.log("started image detection");
                 // Call detectObjects and await its return
-                const isUnauthorized = await detectObjects(file);
+                await detectObjects(file);
                 console.log("finished image detection");
                 console.log(isUnauthorized);
                 if (isUnauthorized) {
@@ -457,7 +457,6 @@ async function detectObjects(image) {
 }
 
 function processPredictions(predictions) {
-    let isUnauthorized = true; // Assume unauthorized content by default
 
     predictions.forEach(prediction => {
         if (authorizedCategories.includes(prediction.class)) {
