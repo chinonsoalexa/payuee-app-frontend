@@ -207,6 +207,8 @@ function initializeDropzone() {
             this.on("addedfile", function (file) {
                 const dropzoneInstance = this;
 
+                console.log("File added:", file.name); // Debugging log
+
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
@@ -232,21 +234,25 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // Optimize image before adding it to the upload queue
+                // Step 1: Optimize the image
                 optimizeImage(file, (optimizedBlob, fileType) => {
-                    // Create a new File object from the optimized Blob
+                    console.log("Image optimized:", file.name); // Debugging log
+
+                    // Step 2: Create a new optimized file
                     const optimizedFile = new File([optimizedBlob], file.name.replace(/\.[^/.]+$/, "") + '.' + fileType, {
                         type: optimizedBlob.type,
                     });
 
-                    // Use FileReader to load the optimized file for clarity check
+                    // Step 3: Clarity Check
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         const base64Image = event.target.result;
 
                         // Perform image clarity check on the optimized image
-                        checkImageClarity(base64Image, file, (clarityRating) => {
-                            // Now that clarity check is done, emit the optimized file to Dropzone
+                        checkImageClarity(base64Image, optimizedFile, (clarityRating) => {
+                            console.log("Clarity Check Passed:", clarityRating); // Debugging log
+
+                            // Step 4: Emit optimized image after clarity check
                             dropzoneInstance.emit("addedfile", optimizedFile);
                             imageArray.push(optimizedFile); // Only add the optimized file to the array
 
@@ -254,10 +260,11 @@ function initializeDropzone() {
                             const clarityElement = document.createElement('div');
                             clarityElement.innerHTML = `${clarityRating}`;
                             clarityElement.style.color = clarityRating === 'High Quality' ? 'green' : (clarityRating === 'Medium Quality' ? 'orange' : 'red');
-                            file.previewElement.appendChild(clarityElement); // Attach clarity rating to the preview element
+                            optimizedFile.previewElement = file.previewElement; // Use the original file's preview element
+                            optimizedFile.previewElement.appendChild(clarityElement); // Attach clarity rating to the preview element
 
                             // Handle remove icon for the optimized image
-                            const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+                            const removeIcon = optimizedFile.previewElement.querySelector('.dz-error-mark');
                             if (removeIcon) {
                                 removeIcon.addEventListener("click", function (e) {
                                     e.preventDefault();
@@ -270,7 +277,7 @@ function initializeDropzone() {
                                     }
 
                                     // Remove the file preview
-                                    file.previewElement.remove();
+                                    optimizedFile.previewElement.remove();
                                 });
                             }
                         });
