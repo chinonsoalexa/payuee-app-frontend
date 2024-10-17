@@ -438,8 +438,10 @@ async function detectObjects(image) {
         try {
             const predictions = await model.detect(img);
             console.log(predictions); // Log predictions for debugging
-            console.log(predictions.class);
-            unauthorizedName = predictions.class;
+            predictions.forEach(prediction => {
+                unauthorizedName = prediction.class;
+                console.log(unauthorizedName); 
+            });
 
             // Process predictions to filter unauthorized content
             return processPredictions(predictions);
