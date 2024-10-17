@@ -249,44 +249,13 @@ function initializeDropzone() {
                     });
 
                     // Step 3: Clarity Check
+                   // Load the image and check clarity
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         const base64Image = event.target.result;
-
-                        // Perform image clarity check on the optimized image
-                        checkImageClarity(base64Image, optimizedFile, (clarityRating) => {
-                            console.log("Clarity Check Passed:", clarityRating); // Debugging log
-
-                            // Step 4: Emit optimized image after clarity check
-                            dropzoneInstance.emit("addedfile", optimizedFile);
-                            imageArray.push(optimizedFile); // Only add the optimized file to the array
-
-                            // Display clarity rating in the preview
-                            const clarityElement = document.createElement('div');
-                            clarityElement.innerHTML = `${clarityRating}`;
-                            clarityElement.style.color = clarityRating === 'High Quality' ? 'green' : (clarityRating === 'Medium Quality' ? 'orange' : 'red');
-                            optimizedFile.previewElement = file.previewElement; // Use the original file's preview element
-                            optimizedFile.previewElement.appendChild(clarityElement); // Attach clarity rating to the preview element
-
-                            // Handle remove icon for the optimized image
-                            const removeIcon = optimizedFile.previewElement.querySelector('.dz-error-mark');
-                            if (removeIcon) {
-                                removeIcon.addEventListener("click", function (e) {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-
-                                    // Remove the file from the array
-                                    const index = imageArray.indexOf(optimizedFile);
-                                    if (index > -1) {
-                                        imageArray.splice(index, 1);
-                                    }
-
-                                    // Remove the file preview
-                                    optimizedFile.previewElement.remove();
-                                });
-                            }
-                        });
+                        checkImageClarity(base64Image, file);
                     };
+                    reader.readAsDataURL(file);
 
                     reader.readAsDataURL(optimizedFile); // Read the optimized file for clarity check
                 });
