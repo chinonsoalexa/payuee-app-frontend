@@ -1,6 +1,7 @@
 var productTitle = "";
 var productDescription = "";
 var imageArray = [];
+let sharpnessArray = []; 
 var initialCost = 0.0;
 var netWeight = "";
 var sellingPrice = 0.0;
@@ -11,6 +12,7 @@ var selectedCategory = "";
 var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
+var imageQuality = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
@@ -80,6 +82,7 @@ async function postProduct() {
     formData.append("productDescription", productDescription);
     formData.append("initialCost", initialCost);
     formData.append("netWeight", netWeight);
+    formData.append("imageQuality", calculateOverallQuality);
     formData.append("sellingPrice", sellingPrice);
     formData.append("currency", currency);
     formData.append("productStock", productStock);
@@ -192,6 +195,7 @@ function initializeDropzone() {
 }
 
 // Function to check image clarity using OpenCV
+// Function to check image clarity using OpenCV
 function checkImageClarity(base64Image, file) {
     const img = new Image();
     img.src = base64Image;
@@ -200,43 +204,40 @@ function checkImageClarity(base64Image, file) {
         const ctx = canvas.getContext('2d');
         canvas.width = img.width;
         canvas.height = img.height;
-        ctx.drawImage(img, 0, 0); // Draw the base64 image onto the canvas
-        
-        // Convert canvas image to OpenCV format
+        ctx.drawImage(img, 0, 0);
+
         const src = cv.imread(canvas);
         const gray = new cv.Mat();
         cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY); // Convert to grayscale
 
-        // Apply Laplacian filter to detect edges
         const laplacian = new cv.Mat();
         cv.Laplacian(gray, laplacian, cv.CV_64F);
 
-        // Calculate the variance of the Laplacian
         const mean = new cv.Mat();
         const stddev = new cv.Mat();
         cv.meanStdDev(laplacian, mean, stddev); // Get mean and standard deviation
 
-        const sharpness = stddev.data64F[0]; // Standard deviation is a measure of sharpness
+        const sharpness = stddev.data64F[0];
         console.log("image sharpness (stddev):", sharpness);
 
-        // Rating the clarity of the image based on sharpness value
+        sharpnessArray.push(sharpness); // Store sharpness value
+
         let clarityRating = '';
-        let color = ''; // Color based on quality rating
+        let color = '';
         if (sharpness > 80) {
             clarityRating = 'High Quality';
-            color = 'green'; // Green for high quality
+            color = 'green';
         } else if (sharpness > 30) {
             clarityRating = 'Medium Quality';
-            color = 'orange'; // Orange for medium quality
+            color = 'orange';
         } else {
             clarityRating = 'Low Quality';
-            color = 'red'; // Red for low quality
+            color = 'red';
         }
 
-        // Display clarity rating in the preview
         const clarityElement = document.createElement('div');
         clarityElement.innerHTML = `${clarityRating}`;
-        clarityElement.style.color = color; // Use the determined color
+        clarityElement.style.color = color;
         file.previewElement.appendChild(clarityElement);
 
         // Clean up
@@ -245,7 +246,29 @@ function checkImageClarity(base64Image, file) {
         laplacian.delete();
         mean.delete();
         stddev.delete();
+
+        // Once all images are uploaded, calculate overall rating
+        if (sharpnessArray.length === imageArray.length) {
+            calculateOverallQuality();
+        }
     };
+}
+
+// Function to calculate overall quality of all uploaded images
+function calculateOverallQuality() {
+    const totalSharpness = sharpnessArray.reduce((sum, sharpness) => sum + sharpness, 0);
+    const averageSharpness = totalSharpness / sharpnessArray.length;
+    
+    let overallRating = 0;
+    if (averageSharpness > 80) {
+        overallRating = 3;
+    } else if (averageSharpness > 30) {
+        overallRating = 2;
+    } else {
+        overallRating = 1;
+    }
+    console.log("overall quality: ", overallRating)
+    return overallRating;
 }
 
 // Call the function to initialize Dropzone for images
