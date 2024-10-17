@@ -17,6 +17,89 @@ let model;
 let unauthorizedName = "";
 // const compress = new Compress();
 
+const cocoSsdClasses = [
+    "person",
+    "bicycle",
+    "car",
+    "motorcycle",
+    "airplane",
+    "bus",
+    "train",
+    "truck",
+    "boat",
+    "traffic light",
+    "fire hydrant",
+    "stop sign",
+    "parking meter",
+    "bench",
+    "bird",
+    "cat",
+    "dog",
+    "horse",
+    "sheep",
+    "cow",
+    "elephant",
+    "bear",
+    "zebra",
+    "giraffe",
+    "backpack",
+    "umbrella",
+    "handbag",
+    "tie",
+    "suitcase",
+    "frisbee",
+    "skis",
+    "snowboard",
+    "sports ball",
+    "kite",
+    "baseball bat",
+    "baseball glove",
+    "skateboard",
+    "surfboard",
+    "tennis racket",
+    "bottle",
+    "wine glass",
+    "cup",
+    "fork",
+    "knife",
+    "spoon",
+    "bowl",
+    "banana",
+    "apple",
+    "sandwich",
+    "orange",
+    "broccoli",
+    "carrot",
+    "hot dog",
+    "pizza",
+    "donut",
+    "cake",
+    "chair",
+    "couch",
+    "potted plant",
+    "bed",
+    "dining table",
+    "toilet",
+    "TV",
+    "laptop",
+    "mouse",
+    "remote",
+    "keyboard",
+    "cell phone",
+    "microwave",
+    "oven",
+    "toaster",
+    "sink",
+    "refrigerator",
+    "book",
+    "clock",
+    "vase",
+    "scissors",
+    "teddy bear",
+    "hair drier",
+    "toothbrush"
+];
+
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
     const productTitleInput = document.getElementById('productTitle1');
@@ -462,7 +545,7 @@ function processPredictions(predictions) {
             // console.warn(`Unauthorized content detected: ${prediction.class}`);
             // showToastMessageE("unauthorized content detected");
             let errorMessage = '"' + prediction.class + '"' + " is not allow";
-            showToastMessageE(errorMessage);
+            showToastMessageE(String(errorMessage));
             unauthorizedDetected = true; // Set flag if unauthorized content is detected
             // Optionally, handle unauthorized content (e.g., reject upload)
         }
