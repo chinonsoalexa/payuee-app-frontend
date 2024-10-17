@@ -193,16 +193,8 @@ function initializeDropzone() {
                 };
                 reader.readAsDataURL(file);
 
-                // Await the completion of any asynchronous operation)
-                console.log("started image detection");
                 // Call detectObjects and await its return
-                // await detectObjects(file);
-                // console.log("finished image detection");
-                console.log(isUnauthorized);
-                // if (isUnauthorized) {
-                    // file.previewElement.remove(); // Remove the file preview if unauthorized
-                    // return; // Exit the function
-                // }
+                await detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
@@ -435,7 +427,8 @@ function optimizeImage(file, callback) {
 async function detectObjects(image) {
     // Check if the model is loaded
     if (!model) {
-        console.error("Model is not loaded yet.");
+        image.previewElement.remove(); 
+        // console.error("Model is not loaded yet.");
         return;
     }
 
@@ -447,25 +440,25 @@ async function detectObjects(image) {
         try {
             const predictions = await model.detect(img);
             // Process predictions to filter authorized content
-            const isUnauthorized = processPredictions(predictions);
-            resolve(isUnauthorized); // Resolve the promise with the result
+            if(processPredictions(predictions)) {
+                image.previewElement.remove(); 
+            };
         } catch (error) {
-            console.error("Error during object detection:", error);
-            resolve(true); // Assume unauthorized on error
+            // console.error("Error during object detection:", error);
         }
     };
 
     img.onerror = () => {
         console.error("Failed to load image.");
-        resolve(true); // Assume unauthorized on error
     };
 }
 
 function processPredictions(predictions) {
-
+    let isUnauthorized = true;
     predictions.forEach(prediction => {
         if (authorizedCategories.includes(prediction.class)) {
             // If any authorized class is detected, mark as authorized
+            console.log("authorized prediction: ", prediction.class);
             isUnauthorized = false; 
         }
     });
