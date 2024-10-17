@@ -221,9 +221,9 @@ function checkImageClarity(base64Image, file) {
 
         // Rating the clarity of the image based on sharpness value
         let clarityRating = '';
-        if (sharpness > 100) {
+        if (sharpness > 80) {
             clarityRating = 'High Quality';
-        } else if (sharpness > 50) {
+        } else if (sharpness > 30) {
             clarityRating = 'Medium Quality';
         } else {
             clarityRating = 'Low Quality';
