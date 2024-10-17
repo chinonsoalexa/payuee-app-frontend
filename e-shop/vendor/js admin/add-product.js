@@ -136,10 +136,9 @@ function initializeDropzone() {
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        autoProcessQueue: false,
         init: function () {
             this.on("addedfile", function (file) {
-                // Check if the number of uploaded images is already 4
+                // Check if the number of uploaded images is already 2
                 if (imageArray.length >= 4) {
                     swal({
                         title: "Only four (4) images are allowed for a product",
@@ -147,7 +146,7 @@ function initializeDropzone() {
                         buttons: {
                             confirm: true,
                         },
-                    });
+                    })
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
@@ -163,8 +162,6 @@ function initializeDropzone() {
                     file.previewElement.remove();
                     return; // Exit the function
                 }
-
-                // detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
@@ -200,6 +197,77 @@ function initializeDropzone() {
         }
     };
 }
+
+// Initialize space to upload images
+// function initializeDropzone() {
+//     // Initialize Dropzone
+//     Dropzone.options.multiFileUploadA = {
+//         acceptedFiles: 'image/*',
+//         maxFilesize: 5, // Max file size in MB
+//         autoProcessQueue: false,
+//         init: function () {
+//             this.on("addedfile", function (file) {
+//                 // Check if the number of uploaded images is already 4
+//                 if (imageArray.length >= 4) {
+//                     swal({
+//                         title: "Only four (4) images are allowed for a product",
+//                         icon: "warning",
+//                         buttons: {
+//                             confirm: true,
+//                         },
+//                     });
+//                     // Remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // Check if the file already exists in the array
+//                 const fileExists = imageArray.some(existingFile => 
+//                     existingFile.name === file.name && existingFile.size === file.size
+//                 );
+
+//                 if (fileExists) {
+//                     // File already exists, remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // detectObjects(file);
+
+//                 // Add the file to the array if it doesn't already exist
+//                 imageArray.push(file);
+
+//                 // Load the image and check clarity
+//                 const reader = new FileReader();
+//                 reader.onload = function(event) {
+//                     const base64Image = event.target.result;
+//                     checkImageClarity(base64Image, file);
+//                 };
+//                 reader.readAsDataURL(file);
+
+//                 // Get the existing remove icon (dz-error-mark)
+//                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+//                 if (removeIcon) {
+//                     // Add event listener to remove the image on click
+//                     removeIcon.addEventListener("click", function (e) {
+//                         e.preventDefault();
+//                         e.stopPropagation();
+
+//                         // Remove the file from the array
+//                         const index = imageArray.indexOf(file);
+//                         if (index > -1) {
+//                             imageArray.splice(index, 1);
+//                         }
+
+//                         // Remove the file preview
+//                         file.previewElement.remove();
+//                     });
+//                 }
+//             });
+//         }
+//     };
+// }
 
 // Initialize space to upload images
 // function initializeDropzone() {
