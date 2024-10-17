@@ -281,7 +281,7 @@ function calculateOverallQuality() {
 // Function to optimize images
 function optimizeImage(file, callback) {
     compress.compress([file], {
-        size: 2, // Max size in MB
+        size: 5, // Max size in MB
         quality: 0.75, // Quality from 0 to 1
         maxWidth: 1024, // Max width of the resized image
         maxHeight: 1024, // Max height of the resized image
