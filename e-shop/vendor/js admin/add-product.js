@@ -447,14 +447,17 @@ async function detectObjects(image) {
         try {
             const predictions = await model.detect(img);
             // Process predictions to filter authorized content
-            return processPredictions(predictions);
+            const isUnauthorized = processPredictions(predictions);
+            resolve(isUnauthorized); // Resolve the promise with the result
         } catch (error) {
             console.error("Error during object detection:", error);
+            resolve(true); // Assume unauthorized on error
         }
     };
 
     img.onerror = () => {
         console.error("Failed to load image.");
+        resolve(true); // Assume unauthorized on error
     };
 }
 
