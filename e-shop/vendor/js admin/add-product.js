@@ -438,9 +438,11 @@ async function detectObjects(image) {
         try {
             const predictions = await model.detect(img);
             console.log(predictions); // Log predictions for debugging
+            console.log(predictions.class);
+            unauthorizedName = predictions.class;
 
             // Process predictions to filter unauthorized content
-            processPredictions(predictions);
+            return processPredictions(predictions);
         } catch (error) {
             console.error("Error during object detection:", error);
         }
@@ -458,7 +460,6 @@ function processPredictions(predictions) {
     predictions.forEach(prediction => {
         if (unauthorizedCategories.includes(prediction.class)) {
             // console.warn(`Unauthorized content detected: ${prediction.class}`);
-            unauthorizedName = prediction.class;
             // showToastMessageE("unauthorized content detected");
             unauthorizedDetected = true; // Set flag if unauthorized content is detected
             // Optionally, handle unauthorized content (e.g., reject upload)
@@ -469,8 +470,10 @@ function processPredictions(predictions) {
         // Notify the user or take action
             showToastMessageE("unauthorized content detected");
             // alert("The image contains unauthorized content.");
+            return unauthorizedDetected;
     } else {
         // alert("The image is allowed.");
+        return unauthorizedDetected;
     }
 }
 
