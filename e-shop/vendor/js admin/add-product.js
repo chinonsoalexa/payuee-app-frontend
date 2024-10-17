@@ -210,31 +210,37 @@ function checkImageClarity(base64Image, file) {
         // Apply Laplacian filter to detect edges
         const laplacian = new cv.Mat();
         cv.Laplacian(gray, laplacian, cv.CV_64F);
-        
-        // Calculate sharpness (variance of Laplacian)
-        const mean = cv.mean(laplacian).w;
-        console.log("image clarity", mean);
+
+        // Calculate the variance of the Laplacian
+        const mean = new cv.Mat();
+        const stddev = new cv.Mat();
+        cv.meanStdDev(laplacian, mean, stddev); // Get mean and standard deviation
+
+        const sharpness = stddev.data64F[0]; // Standard deviation is a measure of sharpness
+        console.log("image sharpness (stddev):", sharpness);
 
         // Rating the clarity of the image based on sharpness value
         let clarityRating = '';
-        if (mean > 50) {
-            clarityRating = 'High Clarity';
-        } else if (mean > 30) {
-            clarityRating = 'Medium Clarity';
+        if (sharpness > 100) {
+            clarityRating = 'High Quality';
+        } else if (sharpness > 50) {
+            clarityRating = 'Medium Quality';
         } else {
-            clarityRating = 'Low Clarity';
+            clarityRating = 'Low Quality';
         }
 
         // Display clarity rating in the preview
         const clarityElement = document.createElement('div');
-        clarityElement.innerHTML = `Clarity: ${clarityRating}`;
-        clarityElement.style.color = mean > 30 ? 'green' : 'red';
+        clarityElement.innerHTML = `${clarityRating}`;
+        clarityElement.style.color = sharpness > 50 ? 'green' : 'red';
         file.previewElement.appendChild(clarityElement);
 
         // Clean up
         src.delete();
         gray.delete();
         laplacian.delete();
+        mean.delete();
+        stddev.delete();
     };
 }
 
