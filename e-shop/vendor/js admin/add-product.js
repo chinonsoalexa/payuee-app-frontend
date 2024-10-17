@@ -205,6 +205,8 @@ function initializeDropzone() {
         autoProcessQueue: false, // Disable automatic uploads
         init: function () {
             this.on("addedfile", function (file) {
+                const dropzoneInstance = this;
+
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
@@ -237,35 +239,44 @@ function initializeDropzone() {
                         type: optimizedBlob.type,
                     });
 
-                    // Add optimized file to Dropzone's queue and image array
-                    this.emit("addedfile", optimizedFile);
-                    imageArray.push(optimizedFile); // Only add the optimized file to the array
-
-                    // Load the image and check clarity (for clarity analysis)
+                    // Use FileReader to load the optimized file for clarity check
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         const base64Image = event.target.result;
-                        checkImageClarity(base64Image, optimizedFile); // Pass the optimized file
-                    };
-                    reader.readAsDataURL(optimizedFile);
 
-                    // Handle remove icon for the optimized image
-                    const removeIcon = optimizedFile.previewElement.querySelector('.dz-error-mark');
-                    if (removeIcon) {
-                        removeIcon.addEventListener("click", function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
+                        // Perform image clarity check on the optimized image
+                        checkImageClarity(base64Image, file, (clarityRating) => {
+                            // Now that clarity check is done, emit the optimized file to Dropzone
+                            dropzoneInstance.emit("addedfile", optimizedFile);
+                            imageArray.push(optimizedFile); // Only add the optimized file to the array
 
-                            // Remove the file from the array
-                            const index = imageArray.indexOf(optimizedFile);
-                            if (index > -1) {
-                                imageArray.splice(index, 1);
+                            // Display clarity rating in the preview
+                            const clarityElement = document.createElement('div');
+                            clarityElement.innerHTML = `${clarityRating}`;
+                            clarityElement.style.color = clarityRating === 'High Quality' ? 'green' : (clarityRating === 'Medium Quality' ? 'orange' : 'red');
+                            file.previewElement.appendChild(clarityElement); // Attach clarity rating to the preview element
+
+                            // Handle remove icon for the optimized image
+                            const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+                            if (removeIcon) {
+                                removeIcon.addEventListener("click", function (e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+
+                                    // Remove the file from the array
+                                    const index = imageArray.indexOf(optimizedFile);
+                                    if (index > -1) {
+                                        imageArray.splice(index, 1);
+                                    }
+
+                                    // Remove the file preview
+                                    file.previewElement.remove();
+                                });
                             }
-
-                            // Remove the file preview
-                            optimizedFile.previewElement.remove();
                         });
-                    }
+                    };
+
+                    reader.readAsDataURL(optimizedFile); // Read the optimized file for clarity check
                 });
             });
         }
