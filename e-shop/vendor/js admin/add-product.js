@@ -221,18 +221,22 @@ function checkImageClarity(base64Image, file) {
 
         // Rating the clarity of the image based on sharpness value
         let clarityRating = '';
+        let color = ''; // Color based on quality rating
         if (sharpness > 80) {
             clarityRating = 'High Quality';
+            color = 'green'; // Green for high quality
         } else if (sharpness > 30) {
             clarityRating = 'Medium Quality';
+            color = 'orange'; // Orange for medium quality
         } else {
             clarityRating = 'Low Quality';
+            color = 'red'; // Red for low quality
         }
 
         // Display clarity rating in the preview
         const clarityElement = document.createElement('div');
         clarityElement.innerHTML = `${clarityRating}`;
-        clarityElement.style.color = sharpness > 50 ? 'green' : 'red';
+        clarityElement.style.color = color; // Use the determined color
         file.previewElement.appendChild(clarityElement);
 
         // Clean up
