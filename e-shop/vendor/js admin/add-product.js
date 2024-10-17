@@ -163,6 +163,9 @@ async function initializeDropzone() {
                     return; // Exit the function
                 }
 
+                // Process the file asynchronously (check image clarity)
+                checkImageClarity(file);
+
                 // Await the completion of any asynchronous operation (e.g., image detection)
                 console.log("started image detection");
                 await detectObjects(file);
@@ -170,9 +173,6 @@ async function initializeDropzone() {
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
-
-                // Process the file asynchronously (check image clarity)
-                checkImageClarity(file);
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
