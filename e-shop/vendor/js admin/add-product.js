@@ -198,7 +198,7 @@ function initializeDropzone() {
                 // Call detectObjects and await its return
                 const isUnauthorized = await detectObjects(file);
                 console.log("finished image detection");
-
+                console.log(isUnauthorized);
                 if (isUnauthorized) {
                     file.previewElement.remove(); // Remove the file preview if unauthorized
                     return; // Exit the function
