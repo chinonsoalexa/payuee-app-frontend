@@ -132,6 +132,7 @@ function initializeDropzone() {
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
+        autoProcessQueue: false,
         init: function () {
             this.on("addedfile", function (file) {
                 // Check if the number of uploaded images is already 4
