@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    loadModel();
+    // loadModel();
 
 // Assuming 'form' is the form element and 'submitButton' is the submit button
 submitButton.addEventListener('click', async function (event) {
