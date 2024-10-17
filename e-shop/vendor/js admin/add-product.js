@@ -164,7 +164,7 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                detectObjects(file);
+                // detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
@@ -453,7 +453,7 @@ async function loadModel() {
 }
 
 // Call loadModel to ensure the model is loaded at the start
-loadModel();
+// loadModel();
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
