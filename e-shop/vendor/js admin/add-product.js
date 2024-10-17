@@ -127,12 +127,81 @@ async function postProduct() {
 }
 
 // Initialize space to upload images
+// function initializeDropzone() {
+//     // Initialize Dropzone
+//     Dropzone.options.multiFileUploadA = {
+//         acceptedFiles: 'image/*',
+//         maxFilesize: 5, // Max file size in MB
+//         autoProcessQueue: false,
+//         init: function () {
+//             this.on("addedfile", function (file) {
+//                 // Check if the number of uploaded images is already 4
+//                 if (imageArray.length >= 4) {
+//                     swal({
+//                         title: "Only four (4) images are allowed for a product",
+//                         icon: "warning",
+//                         buttons: {
+//                             confirm: true,
+//                         },
+//                     });
+//                     // Remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // Check if the file already exists in the array
+//                 const fileExists = imageArray.some(existingFile => 
+//                     existingFile.name === file.name && existingFile.size === file.size
+//                 );
+
+//                 if (fileExists) {
+//                     // File already exists, remove the new file preview and don't add it to the array
+//                     file.previewElement.remove();
+//                     return; // Exit the function
+//                 }
+
+//                 // Add the file to the array if it doesn't already exist
+//                 imageArray.push(file);
+
+//                 // Load the image and check clarity
+//                 const reader = new FileReader();
+//                 reader.onload = function(event) {
+//                     const base64Image = event.target.result;
+//                     checkImageClarity(base64Image, file);
+//                 };
+//                 reader.readAsDataURL(file);
+
+//                 // Get the existing remove icon (dz-error-mark)
+//                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+//                 if (removeIcon) {
+//                     // Add event listener to remove the image on click
+//                     removeIcon.addEventListener("click", function (e) {
+//                         e.preventDefault();
+//                         e.stopPropagation();
+
+//                         // Remove the file from the array
+//                         const index = imageArray.indexOf(file);
+//                         if (index > -1) {
+//                             imageArray.splice(index, 1);
+//                         }
+
+//                         // Remove the file preview
+//                         file.previewElement.remove();
+//                     });
+//                 }
+//             });
+//         }
+//     };
+// }
+
+// Initialize space to upload images
 function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
         maxFilesize: 5, // Max file size in MB
-        autoProcessQueue: false,
+        autoProcessQueue: false, // Disable automatic uploads
         init: function () {
             this.on("addedfile", function (file) {
                 // Check if the number of uploaded images is already 4
@@ -160,36 +229,43 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // Add the file to the array if it doesn't already exist
-                imageArray.push(file);
-
-                // Load the image and check clarity
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64Image = event.target.result;
-                    checkImageClarity(base64Image, file);
-                };
-                reader.readAsDataURL(file);
-
-                // Get the existing remove icon (dz-error-mark)
-                const removeIcon = file.previewElement.querySelector('.dz-error-mark');
-
-                if (removeIcon) {
-                    // Add event listener to remove the image on click
-                    removeIcon.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        // Remove the file from the array
-                        const index = imageArray.indexOf(file);
-                        if (index > -1) {
-                            imageArray.splice(index, 1);
-                        }
-
-                        // Remove the file preview
-                        file.previewElement.remove();
+                // Optimize image before adding it to the upload queue
+                optimizeImage(file, (optimizedBlob, fileType) => {
+                    // Create a new File object from the optimized Blob
+                    const optimizedFile = new File([optimizedBlob], file.name.replace(/\.[^/.]+$/, "") + '.' + fileType, {
+                        type: optimizedBlob.type,
                     });
-                }
+
+                    // Add optimized file to Dropzone's queue and image array
+                    this.emit("addedfile", optimizedFile);
+                    imageArray.push(optimizedFile); // Only add the optimized file to the array
+
+                    // Load the image and check clarity (for clarity analysis)
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const base64Image = event.target.result;
+                        checkImageClarity(base64Image, optimizedFile); // Pass the optimized file
+                    };
+                    reader.readAsDataURL(optimizedFile);
+
+                    // Handle remove icon for the optimized image
+                    const removeIcon = optimizedFile.previewElement.querySelector('.dz-error-mark');
+                    if (removeIcon) {
+                        removeIcon.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Remove the file from the array
+                            const index = imageArray.indexOf(optimizedFile);
+                            if (index > -1) {
+                                imageArray.splice(index, 1);
+                            }
+
+                            // Remove the file preview
+                            optimizedFile.previewElement.remove();
+                        });
+                    }
+                });
             });
         }
     };
@@ -266,6 +342,37 @@ function calculateOverallQuality() {
     } else {
         imageQuality = 1;
     }
+}
+
+function optimizeImage(file, callback) {
+    const compress = new compress();
+    compress.compress([file], {
+        size: 2, // Max size in MB
+        quality: 0.75, // Quality from 0 to 1
+        maxWidth: 1024, // Max width
+        maxHeight: 1024, // Max height
+        resize: true, // Resize if necessary
+        convertTypes: ['webp'], // Convert to WebP for better compression
+    }).then((results) => {
+        const optimizedImage = results[0]; // Get the optimized image
+        const base64Image = optimizedImage.data; // Base64-encoded image
+        const fileType = optimizedImage.ext; // Get the file extension (webp)
+        
+        // Convert the base64 data to a Blob
+        const byteString = atob(base64Image.split(',')[1]);
+        const mimeString = base64Image.split(',')[0].split(':')[1].split(';')[0];
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        
+        for (let i = 0; i < byteString.length; i++) {
+            uint8Array[i] = byteString.charCodeAt(i);
+        }
+        
+        const blob = new Blob([arrayBuffer], { type: mimeString });
+        
+        // Call the callback with the optimized image Blob and file type
+        callback(blob, fileType);
+    });
 }
 
 // Call the function to initialize Dropzone for images
