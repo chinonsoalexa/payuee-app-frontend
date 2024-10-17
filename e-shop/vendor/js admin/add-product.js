@@ -181,7 +181,7 @@ function initializeDropzone() {
                     if (isUnauthorized) {
                         unautorized = true;
                         // Handle unauthorized content (e.g., prevent upload)
-                        showToastMessageE('"' + unauthorizedName + '"' + " is not allowed");
+                        showToastMessageE('"' + unauthorizedName + '"' + " is not allow");
                     } else {
                         // Proceed with the upload
                         // console.log("Image is allowed, proceed with the upload.");
