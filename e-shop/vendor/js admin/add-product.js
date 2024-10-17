@@ -181,7 +181,6 @@ function initializeDropzone() {
                     if (isUnauthorized) {
                         unautorized = true;
                         // Handle unauthorized content (e.g., prevent upload)
-                        showToastMessageE('"' + unauthorizedName + '"' + " is not allow");
                     } else {
                         // Proceed with the upload
                         // console.log("Image is allowed, proceed with the upload.");
@@ -462,6 +461,8 @@ function processPredictions(predictions) {
         if (unauthorizedCategories.includes(prediction.class)) {
             // console.warn(`Unauthorized content detected: ${prediction.class}`);
             // showToastMessageE("unauthorized content detected");
+            let errorMessage = '"' + prediction.class + '"' + " is not allow";
+            showToastMessageE(errorMessage);
             unauthorizedDetected = true; // Set flag if unauthorized content is detected
             // Optionally, handle unauthorized content (e.g., reject upload)
         }
