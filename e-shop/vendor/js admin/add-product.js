@@ -123,73 +123,73 @@ async function postProduct() {
     }
 }
 
-    // Initialize space to upload images
-    function initializeDropzone() {
-        // Initialize Dropzone
-        Dropzone.options.multiFileUploadA = {
-            acceptedFiles: 'image/*',
-            maxFilesize: 5, // Max file size in MB
-            init: function () {
-                this.on("addedfile", function (file) {
-                    // Check if the number of uploaded images is already 4
-                    if (imageArray.length >= 4) {
-                        swal({
-                            title: "Only four (4) images are allowed for a product",
-                            icon: "warning",
-                            buttons: {
-                                confirm: true,
-                            },
-                        });
-                        // Remove the new file preview and don't add it to the array
+// Initialize space to upload images
+function initializeDropzone() {
+    // Initialize Dropzone
+    Dropzone.options.multiFileUploadA = {
+        acceptedFiles: 'image/*',
+        maxFilesize: 5, // Max file size in MB
+        init: function () {
+            this.on("addedfile", function (file) {
+                // Check if the number of uploaded images is already 2
+                if (imageArray.length >= 4) {
+                    swal({
+                        title: "Only four (4) images are allowed for a product",
+                        icon: "warning",
+                        buttons: {
+                            confirm: true,
+                        },
+                    })
+                    // Remove the new file preview and don't add it to the array
+                    file.previewElement.remove();
+                    return; // Exit the function
+                }
+
+                // Check if the file already exists in the array
+                const fileExists = imageArray.some(existingFile => 
+                    existingFile.name === file.name && existingFile.size === file.size
+                );
+
+                if (fileExists) {
+                    // File already exists, remove the new file preview and don't add it to the array
+                    file.previewElement.remove();
+                    return; // Exit the function
+                }
+
+                // Add the file to the array if it doesn't already exist
+                imageArray.push(file);
+
+                // Load the image and check clarity
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Image = event.target.result;
+                    checkImageClarity(base64Image, file);
+                };
+                reader.readAsDataURL(file);
+
+                // Get the existing remove icon (dz-error-mark)
+                const removeIcon = file.previewElement.querySelector('.dz-error-mark');
+
+                if (removeIcon) {
+                    // Add event listener to remove the image on click
+                    removeIcon.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Remove the file from the array
+                        const index = imageArray.indexOf(file);
+                        if (index > -1) {
+                            imageArray.splice(index, 1);
+                        }
+
+                        // Remove the file preview
                         file.previewElement.remove();
-                        return; // Exit the function
-                    }
-
-                    // Check if the file already exists in the array
-                    const fileExists = imageArray.some(existingFile => 
-                        existingFile.name === file.name && existingFile.size === file.size
-                    );
-
-                    if (fileExists) {
-                        // File already exists, remove the new file preview and don't add it to the array
-                        file.previewElement.remove();
-                        return; // Exit the function
-                    }
-
-                    // Add the file to the array if it doesn't already exist
-                    imageArray.push(file);
-
-                    // Load the image and check clarity
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const base64Image = event.target.result;
-                        checkImageClarity(base64Image, file);
-                    };
-                    reader.readAsDataURL(file);
-
-                    // Get the existing remove icon (dz-error-mark)
-                    const removeIcon = file.previewElement.querySelector('.dz-error-mark');
-
-                    if (removeIcon) {
-                        // Add event listener to remove the image on click
-                        removeIcon.addEventListener("click", function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-
-                            // Remove the file from the array
-                            const index = imageArray.indexOf(file);
-                            if (index > -1) {
-                                imageArray.splice(index, 1);
-                            }
-
-                            // Remove the file preview
-                            file.previewElement.remove();
-                        });
-                    }
-                });
-            }
-        };
-    }
+                    });
+                }
+            });
+        }
+    };
+}
 
     // Function to check image clarity using OpenCV
     function checkImageClarity(base64Image, file) {
@@ -228,7 +228,7 @@ async function postProduct() {
             // Display clarity rating in the preview
             const clarityElement = document.createElement('div');
             clarityElement.innerHTML = `${clarityRating}`;
-            clarityElement.style.color = mean > 20 ? 'green' : 'red';
+            clarityElement.style.color = mean > 30 ? 'green' : 'red';
             file.previewElement.appendChild(clarityElement);
 
             // Clean up
