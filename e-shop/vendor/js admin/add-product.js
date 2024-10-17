@@ -34,11 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    async function loadModel() {
-        model = await cocoSsd.load();
-        console.log("Model loaded");
-    }
-
     loadModel();
 
 // Assuming 'form' is the form element and 'submitButton' is the submit button
@@ -405,28 +400,60 @@ function optimizeImage(file, callback) {
 
 // Detect object
 async function detectObjects(image) {
-    const img = document.createElement('img');
-    img.src = URL.createObjectURL(image); // Convert file to image source
-    
-    img.onload = async () => {
-        const predictions = await model.detect(img);
-        console.log(predictions);
+    // Check if the model is loaded
+    if (!model) {
+        console.error("Model is not loaded yet.");
+        return;
+    }
 
-        // Process predictions to filter unauthorized content
-        processPredictions(predictions);
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(image);
+
+    // Set up the onload event for the image
+    img.onload = async () => {
+        try {
+            const predictions = await model.detect(img);
+            console.log(predictions); // Log predictions for debugging
+
+            // Process predictions to filter unauthorized content
+            processPredictions(predictions);
+        } catch (error) {
+            console.error("Error during object detection:", error);
+        }
+    };
+
+    img.onerror = () => {
+        console.error("Failed to load image.");
     };
 }
 
 function processPredictions(predictions) {
-    const unauthorizedCategories = ["person", "dog", "cat"]; // Add any categories you consider unauthorized
+    const unauthorizedCategories = ["person", "dog", "cat"]; // Define unauthorized categories
+    let unauthorizedDetected = false;
 
     predictions.forEach(prediction => {
         if (unauthorizedCategories.includes(prediction.class)) {
             console.warn(`Unauthorized content detected: ${prediction.class}`);
-            // Take action, e.g., reject upload, notify user, etc.
+            unauthorizedDetected = true; // Set flag if unauthorized content is detected
+            // Optionally, handle unauthorized content (e.g., reject upload)
         }
     });
+
+    if (unauthorizedDetected) {
+        // Notify the user or take action
+        alert("The image contains unauthorized content.");
+    } else {
+        alert("The image is allowed.");
+    }
 }
+
+async function loadModel() {
+    model = await cocoSsd.load();
+    console.log("Model loaded");
+}
+
+// Call loadModel to ensure the model is loaded at the start
+loadModel();
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
