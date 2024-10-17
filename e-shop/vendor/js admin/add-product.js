@@ -196,13 +196,13 @@ function initializeDropzone() {
                 // Await the completion of any asynchronous operation)
                 console.log("started image detection");
                 // Call detectObjects and await its return
-                await detectObjects(file);
-                console.log("finished image detection");
+                // await detectObjects(file);
+                // console.log("finished image detection");
                 console.log(isUnauthorized);
-                if (isUnauthorized) {
-                    file.previewElement.remove(); // Remove the file preview if unauthorized
-                    return; // Exit the function
-                }
+                // if (isUnauthorized) {
+                    // file.previewElement.remove(); // Remove the file preview if unauthorized
+                    // return; // Exit the function
+                // }
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
