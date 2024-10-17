@@ -218,16 +218,16 @@ async function postProduct() {
             // Rating the clarity of the image based on sharpness value
             let clarityRating = '';
             if (mean > 50) {
-                clarityRating = 'High Clarity';
+                clarityRating = 'High Quality';
             } else if (mean > 30) {
-                clarityRating = 'Medium Clarity';
+                clarityRating = 'Medium Quality';
             } else {
-                clarityRating = 'Low Clarity';
+                clarityRating = 'Low Quality';
             }
 
             // Display clarity rating in the preview
             const clarityElement = document.createElement('div');
-            clarityElement.innerHTML = `Clarity: ${clarityRating}`;
+            clarityElement.innerHTML = `${clarityRating}`;
             clarityElement.style.color = mean > 30 ? 'green' : 'red';
             file.previewElement.appendChild(clarityElement);
 
