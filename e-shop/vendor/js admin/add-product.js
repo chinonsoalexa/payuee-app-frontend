@@ -16,9 +16,9 @@ var imageQuality = 0;
 let model;
 let unauthorizedName = "";
 // const compress = new Compress();
-// List of COCO-SSD authorized categories
+
 const authorizedCategories = [
-    "bicycle", "car", "motorcycle", "airplane", "bus",
+    "person", "bicycle", "car", "motorcycle", "airplane", "bus",
     "train", "truck", "boat", "traffic light", "fire hydrant", 
     "stop sign", "parking meter", "bench", "bird", "cat", 
     "dog", "horse", "sheep", "cow", "elephant", "bear", 
