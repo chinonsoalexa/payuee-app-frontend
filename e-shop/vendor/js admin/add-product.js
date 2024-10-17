@@ -12,6 +12,12 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 
+    // Wait for OpenCV to fully load
+    let cvLoaded = false;
+    cv['onRuntimeInitialized'] = () => {
+        cvLoaded = true;
+    };
+    
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
     const productTitleInput = document.getElementById('productTitle1');
@@ -191,55 +197,60 @@ function initializeDropzone() {
     };
 }
 
-    // Function to check image clarity using OpenCV
-    function checkImageClarity(base64Image, file) {
-        const img = new Image();
-        img.src = base64Image;
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0); // Draw the base64 image onto the canvas
-            
-            // Convert canvas image to OpenCV format
-            const src = cv.imread(canvas);
-            const gray = new cv.Mat();
-            cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY); // Convert to grayscale
-
-            // Apply Laplacian filter to detect edges
-            const laplacian = new cv.Mat();
-            cv.Laplacian(gray, laplacian, cv.CV_64F);
-            
-            // Calculate sharpness (variance of Laplacian)
-            const mean = cv.mean(laplacian).w;
-            console.log("image clarity", mean);
-
-            // Rating the clarity of the image based on sharpness value
-            let clarityRating = '';
-            if (mean > 50) {
-                clarityRating = 'High Quality';
-            } else if (mean > 30) {
-                clarityRating = 'Medium Quality';
-            } else {
-                clarityRating = 'Low Quality';
-            }
-
-            // Display clarity rating in the preview
-            const clarityElement = document.createElement('div');
-            clarityElement.innerHTML = `${clarityRating}`;
-            clarityElement.style.color = mean > 30 ? 'green' : 'red';
-            file.previewElement.appendChild(clarityElement);
-
-            // Clean up
-            src.delete();
-            gray.delete();
-            laplacian.delete();
-        };
+// Function to check image clarity using OpenCV
+function checkImageClarity(base64Image, file) {
+    // Ensure OpenCV is loaded before processing the image
+    if (!cvLoaded) {
+        console.error("OpenCV not yet initialized");
+        return;
     }
+    const img = new Image();
+    img.src = base64Image;
+    img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0); // Draw the base64 image onto the canvas
+        
+        // Convert canvas image to OpenCV format
+        const src = cv.imread(canvas);
+        const gray = new cv.Mat();
+        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY); // Convert to grayscale
 
-    // Call the function to initialize Dropzone for images
-    initializeDropzone();
+        // Apply Laplacian filter to detect edges
+        const laplacian = new cv.Mat();
+        cv.Laplacian(gray, laplacian, cv.CV_64F);
+        
+        // Calculate sharpness (variance of Laplacian)
+        const mean = cv.mean(laplacian).w;
+        console.log("image clarity", mean);
+
+        // Rating the clarity of the image based on sharpness value
+        let clarityRating = '';
+        if (mean > 50) {
+            clarityRating = 'High Quality';
+        } else if (mean > 30) {
+            clarityRating = 'Medium Quality';
+        } else {
+            clarityRating = 'Low Quality';
+        }
+
+        // Display clarity rating in the preview
+        const clarityElement = document.createElement('div');
+        clarityElement.innerHTML = `${clarityRating}`;
+        clarityElement.style.color = mean > 30 ? 'green' : 'red';
+        file.previewElement.appendChild(clarityElement);
+
+        // Clean up
+        src.delete();
+        gray.delete();
+        laplacian.delete();
+    };
+}
+
+// Call the function to initialize Dropzone for images
+initializeDropzone();
 
 // Function to get product categories
 function getFormData() {
