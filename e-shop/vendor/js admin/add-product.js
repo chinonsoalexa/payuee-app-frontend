@@ -171,9 +171,6 @@ function initializeDropzone() {
                     });
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
-                    if (imageArray.length < 1) {
-                        updateDropzoneUI()
-                    }
                     return; // Exit the function
                 }
 
@@ -209,7 +206,7 @@ function initializeDropzone() {
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
-                updateDropzoneUI();
+                // updateDropzoneUI();
 
                 // Get the existing remove icon (dz-error-mark)
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
@@ -228,7 +225,7 @@ function initializeDropzone() {
 
                         // Remove the file preview
                         file.previewElement.remove();
-                        updateDropzoneUI();
+                        // updateDropzoneUI();
                     });
                 }
             });
