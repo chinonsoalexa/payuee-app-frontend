@@ -16,87 +16,24 @@ var imageQuality = 0;
 let model;
 let unauthorizedName = "";
 // const compress = new Compress();
-
+// List of COCO-SSD authorized categories
 const authorizedCategories = [
-    "person",
-    "bicycle",
-    "car",
-    "motorcycle",
-    "airplane",
-    "bus",
-    "train",
-    "truck",
-    "boat",
-    "traffic light",
-    "fire hydrant",
-    "stop sign",
-    "parking meter",
-    "bench",
-    "bird",
-    "cat",
-    "dog",
-    "horse",
-    "sheep",
-    "cow",
-    "elephant",
-    "bear",
-    "zebra",
-    "giraffe",
-    "backpack",
-    "umbrella",
-    "handbag",
-    "tie",
-    "suitcase",
-    "frisbee",
-    "skis",
-    "snowboard",
-    "sports ball",
-    "kite",
-    "baseball bat",
-    "baseball glove",
-    "skateboard",
-    "surfboard",
-    "tennis racket",
-    "bottle",
-    "wine glass",
-    "cup",
-    "fork",
-    "knife",
-    "spoon",
-    "bowl",
-    "banana",
-    "apple",
-    "sandwich",
-    "orange",
-    "broccoli",
-    "carrot",
-    "hot dog",
-    "pizza",
-    "donut",
-    "cake",
-    "chair",
-    "couch",
-    "potted plant",
-    "bed",
-    "dining table",
-    "toilet",
-    "TV",
-    "laptop",
-    "mouse",
-    "remote",
-    "keyboard",
-    "cell phone",
-    "microwave",
-    "oven",
-    "toaster",
-    "sink",
-    "refrigerator",
-    "book",
-    "clock",
-    "vase",
-    "scissors",
-    "teddy bear",
-    "hair drier",
+    "person", "bicycle", "car", "motorcycle", "airplane", "bus",
+    "train", "truck", "boat", "traffic light", "fire hydrant", 
+    "stop sign", "parking meter", "bench", "bird", "cat", 
+    "dog", "horse", "sheep", "cow", "elephant", "bear", 
+    "zebra", "giraffe", "backpack", "umbrella", "handbag", 
+    "tie", "suitcase", "frisbee", "skis", "snowboard", 
+    "sports ball", "kite", "baseball bat", "baseball glove", 
+    "skateboard", "surfboard", "tennis racket", "bottle", 
+    "wine glass", "cup", "fork", "knife", "spoon", 
+    "bowl", "banana", "apple", "sandwich", "orange", 
+    "broccoli", "carrot", "hot dog", "pizza", "donut", 
+    "cake", "chair", "couch", "potted plant", "bed", 
+    "dining table", "toilet", "TV", "laptop", "mouse", 
+    "remote", "keyboard", "cell phone", "microwave", 
+    "oven", "toaster", "sink", "refrigerator", "book", 
+    "clock", "vase", "scissors", "teddy bear", "hair drier", 
     "toothbrush"
 ];
 
@@ -507,15 +444,10 @@ async function detectObjects(image) {
     img.onload = async () => {
         try {
             const predictions = await model.detect(img);
-            // console.log(predictions); // Log predictions for debugging
-            // predictions.forEach(prediction => {
-            //     unauthorizedName = prediction.class;
-            // });
-
-            // Process predictions to filter unauthorized content
+            // Process predictions to filter authorized content
             return processPredictions(predictions);
         } catch (error) {
-            // console.error("Error during object detection:", error);
+            console.error("Error during object detection:", error);
         }
     };
 
@@ -525,22 +457,23 @@ async function detectObjects(image) {
 }
 
 function processPredictions(predictions) {
-    let isUnauthorized = true;
+    let isUnauthorized = true; // Assume unauthorized content by default
 
     predictions.forEach(prediction => {
         if (authorizedCategories.includes(prediction.class)) {
-            // console.warn(`Authorized content detected: ${prediction.class}`);
+            // If any authorized class is detected, mark as authorized
             isUnauthorized = false; 
         }
     });
 
     if (isUnauthorized) {
         // Notify the user or take action
-            showToastMessageE("unauthorized content detected");
-            return isUnauthorized;
+        showToastMessageE("Unauthorized content detected");
     } else {
-        return isUnauthorized;
+        // Optionally notify the user that authorized content was detected
+        // showToastMessageE("Authorized content detected");
     }
+    return isUnauthorized; // Return whether the content is unauthorized
 }
 
 async function loadModel() {
