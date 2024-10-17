@@ -428,6 +428,10 @@ async function detectObjects(image) {
     // Check if the model is loaded
     if (!model) {
         image.previewElement.remove(); 
+        const index = imageArray.indexOf(file);
+        if (index > -1) {
+            imageArray.splice(index, 1); // Remove the file at the found index
+        }
         // console.error("Model is not loaded yet.");
         return;
     }
@@ -441,6 +445,10 @@ async function detectObjects(image) {
             const predictions = await model.detect(img);
             // Process predictions to filter authorized content
             if(processPredictions(predictions)) {
+                const index = imageArray.indexOf(file);
+                if (index > -1) {
+                    imageArray.splice(index, 1); // Remove the file at the found index
+                }
                 image.previewElement.remove(); 
             };
         } catch (error) {
