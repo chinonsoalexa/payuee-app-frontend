@@ -168,7 +168,9 @@ async function initializeDropzone() {
 
                 // Await the completion of any asynchronous operation (e.g., image detection)
                 console.log("started image detection");
-                await detectObjects(file);
+                setTimeout(async () => {
+                    await detectObjects(file);
+                }, 500); // Simulate a 0.5-second delay
                 console.log("finished image detection");
 
                 // Add the file to the array if it doesn't already exist
