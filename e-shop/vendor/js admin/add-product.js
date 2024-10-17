@@ -12,12 +12,6 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 
-    // Wait for OpenCV to fully load
-    let cvLoaded = false;
-    cv['onRuntimeInitialized'] = () => {
-        cvLoaded = true;
-    };
-    
 document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('nextButton');
     const productTitleInput = document.getElementById('productTitle1');
@@ -137,7 +131,7 @@ function initializeDropzone() {
         maxFilesize: 5, // Max file size in MB
         init: function () {
             this.on("addedfile", function (file) {
-                // Check if the number of uploaded images is already 2
+                // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
                     swal({
                         title: "Only four (4) images are allowed for a product",
@@ -145,7 +139,7 @@ function initializeDropzone() {
                         buttons: {
                             confirm: true,
                         },
-                    })
+                    });
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
@@ -199,11 +193,6 @@ function initializeDropzone() {
 
 // Function to check image clarity using OpenCV
 function checkImageClarity(base64Image, file) {
-    // Ensure OpenCV is loaded before processing the image
-    if (!cvLoaded) {
-        console.error("OpenCV not yet initialized");
-        return;
-    }
     const img = new Image();
     img.src = base64Image;
     img.onload = function() {
@@ -229,16 +218,16 @@ function checkImageClarity(base64Image, file) {
         // Rating the clarity of the image based on sharpness value
         let clarityRating = '';
         if (mean > 50) {
-            clarityRating = 'High Quality';
+            clarityRating = 'High Clarity';
         } else if (mean > 30) {
-            clarityRating = 'Medium Quality';
+            clarityRating = 'Medium Clarity';
         } else {
-            clarityRating = 'Low Quality';
+            clarityRating = 'Low Clarity';
         }
 
         // Display clarity rating in the preview
         const clarityElement = document.createElement('div');
-        clarityElement.innerHTML = `${clarityRating}`;
+        clarityElement.innerHTML = `Clarity: ${clarityRating}`;
         clarityElement.style.color = mean > 30 ? 'green' : 'red';
         file.previewElement.appendChild(clarityElement);
 
