@@ -468,7 +468,7 @@ function processPredictions(predictions) {
     predictions.forEach(prediction => {
         if (authorizedCategories.includes(prediction.class)) {
             // If any authorized class is detected, mark as authorized
-            console.log("authorized prediction: ", prediction.class);
+            // console.log("authorized prediction: ", prediction.class);
             isUnauthorized = false; 
         }
     });
