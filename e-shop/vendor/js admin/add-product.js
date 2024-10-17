@@ -451,7 +451,7 @@ async function loadModel() {
 }
 
 // Call loadModel to ensure the model is loaded at the start
-// loadModel();
+loadModel();
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
