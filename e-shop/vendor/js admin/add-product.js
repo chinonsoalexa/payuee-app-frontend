@@ -479,8 +479,9 @@ function processPredictions(predictions) {
             title: "Unauthorized content detected",
             icon: "warning",
             buttons: {
-                confirm: true,
+                confirm: false, // Remove the confirmation button
             },
+            timer: 3000 // Auto-close after 3 seconds (3000 ms)
         });
     } else {
         // Optionally notify the user that authorized content was detected
