@@ -167,7 +167,7 @@ function renderProducts(product) {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="img-fluid img-40" src="${"https://payuee.com/image/"+product.Image1}" alt="${product.title}"></td>
+        <td><img class="img-fluid img-40" src="${"https://payuee.com/image/"+product.first_image_url}" alt="${product.title}"></td>
         <td>
         <div class="product-name"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
         </td>
