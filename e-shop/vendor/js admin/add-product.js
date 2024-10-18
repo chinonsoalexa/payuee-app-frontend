@@ -481,7 +481,7 @@ function processPredictions(predictions) {
             buttons: {
                 confirm: false, // Remove the confirmation button
             },
-            timer: 3000 // Auto-close after 3 seconds (3000 ms)
+            timer: 5000 // Auto-close after 3 seconds (3000 ms)
         });
     } else {
         // Optionally notify the user that authorized content was detected
