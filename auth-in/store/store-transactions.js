@@ -297,11 +297,12 @@ function renderOrderedProducts(products) {
   
     // Assuming you have a fixed shipping cost or can calculate it elsewhere
     document.getElementById('shippingSubTotalPopUp').textContent = `₦${products.shipping_cost.toLocaleString()}`;
-  
+    
     document.getElementById('cartShippingTotalPopUp').textContent = `₦${products.order_cost.toLocaleString()}`;
+
+    document.getElementById('paymentButton').textContent = `Pay ₦${products.order_cost.toLocaleString()}`;
   }
   
-
 function updateLink(urlIdToUpdate, pageNumber) {
     urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
 }
