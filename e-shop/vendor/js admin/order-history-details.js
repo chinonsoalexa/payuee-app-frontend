@@ -259,9 +259,9 @@ function renderLoading() {
         </td>
         <td class="skeleton loading-cursor">Loading...</td>
         <td class="skeleton loading-cursor">
-        5
+        Loading...
         </td>
-        <td>200g</td>
+        <td>Loading...</td>
         <td class="skeleton loading-cursor">Loading...</td>
     `;
 
