@@ -8,6 +8,13 @@ var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
 document.addEventListener('DOMContentLoaded', async function () {
+    const paymentModalElement = document.getElementById('checkoutModal');
+
+    // Create a new instance of the Bootstrap modal
+    const paymentModal = new bootstrap.Modal(paymentModalElement);
+
+    paymentModal.show();    // Show the modal programmatically
+
     // Call the loading function to render the skeleton loaders
     loading();
 
