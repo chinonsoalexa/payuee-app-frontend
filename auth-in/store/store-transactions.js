@@ -237,7 +237,7 @@ function renderProducts(product) {
             <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
-                <h6><a id="${product.ID}">${product.product_orders[0].title}</a></h6>
+                <h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6>
                 </div>
                 <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
                 <div class="price d-flex"> 
@@ -262,15 +262,54 @@ function renderProducts(product) {
     });
 
     document.getElementById(`${product.ID}`).addEventListener('click', function(event) {
+        event.preventDefault();
+        renderOrderedProducts(product);
         const paymentModalElement = document.getElementById('checkoutModal');
-
         // Create a new instance of the Bootstrap modal
         const paymentModal = new bootstrap.Modal(paymentModalElement);
-    
         paymentModal.show();    // Show the modal programmatically
     });
 
 }
+
+// Function to render products into the table
+function renderOrderedProducts(products) {
+    const orderedProductsTable = document.getElementById('orderedProductsTable');
+    orderedProductsTable.innerHTML = ''; // Clear any existing rows
+  
+    let subTotal = 0; // Initialize subtotal
+  
+    products.forEach(product => {
+      const productTotal = product.price * product.quantity;
+      subTotal += productTotal; // Update subtotal
+  
+      // Create a new row for each product
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><img src="${product.imageUrl}" alt="${product.name}" class="custom-product-image"></td>
+        <td>${product.name}</td>
+        <td>${product.quantity}</td>
+        <td>₦${product.price.toLocaleString()}</td>
+        <td>₦${productTotal.toLocaleString()}</td>
+      `;
+      orderedProductsTable.appendChild(row);
+    });
+  
+    // Update the order summary totals
+    document.getElementById('cartSubTotalPopUp').textContent = `₦${subTotal.toLocaleString()}`;
+  
+    // Assuming you have a fixed shipping cost or can calculate it elsewhere
+    const shippingCost = 1010; // Example shipping cost
+    document.getElementById('shippingSubTotalPopUp').textContent = `₦${shippingCost.toLocaleString()}`;
+  
+    const total = subTotal + shippingCost;
+    document.getElementById('cartShippingTotalPopUp').textContent = `₦${total.toLocaleString()}`;
+  }
+  
+  // Call the function when modal is shown
+  document.getElementById('checkoutModal').addEventListener('shown.bs.modal', function () {
+    renderOrderedProducts(products);
+  });
 
 function updateLink(urlIdToUpdate, pageNumber) {
     urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
