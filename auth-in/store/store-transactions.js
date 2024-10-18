@@ -277,39 +277,30 @@ function renderOrderedProducts(products) {
     const orderedProductsTable = document.getElementById('orderedProductsTable');
     orderedProductsTable.innerHTML = ''; // Clear any existing rows
   
-    let subTotal = 0; // Initialize subtotal
-  
-    products.forEach(product => {
-      const productTotal = product.price * product.quantity;
-      subTotal += productTotal; // Update subtotal
-  
+    // let subTotal = 0; // Initialize subtotal
+    
+    products.product_orders.forEach(product => {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="${product.imageUrl}" alt="${product.name}" class="custom-product-image"></td>
-        <td>${product.name}</td>
+        <td><img src="${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td>${product.title}</td>
         <td>${product.quantity}</td>
-        <td>₦${product.price.toLocaleString()}</td>
-        <td>₦${productTotal.toLocaleString()}</td>
+        <td>₦${product.net_weight.toLocaleString()}</td>
+        <td>₦${product.order_cost.toLocaleString()}</td>
       `;
       orderedProductsTable.appendChild(row);
     });
   
     // Update the order summary totals
-    document.getElementById('cartSubTotalPopUp').textContent = `₦${subTotal.toLocaleString()}`;
+    document.getElementById('cartSubTotalPopUp').textContent = `₦${products.order_sub_total_cost.toLocaleString()}`;
   
     // Assuming you have a fixed shipping cost or can calculate it elsewhere
-    const shippingCost = 1010; // Example shipping cost
-    document.getElementById('shippingSubTotalPopUp').textContent = `₦${shippingCost.toLocaleString()}`;
+    document.getElementById('shippingSubTotalPopUp').textContent = `₦${products.shipping_cost.toLocaleString()}`;
   
-    const total = subTotal + shippingCost;
-    document.getElementById('cartShippingTotalPopUp').textContent = `₦${total.toLocaleString()}`;
+    document.getElementById('cartShippingTotalPopUp').textContent = `₦${products.order_cost.toLocaleString()}`;
   }
   
-  // Call the function when modal is shown
-  document.getElementById('checkoutModal').addEventListener('shown.bs.modal', function () {
-    renderOrderedProducts(products);
-  });
 
 function updateLink(urlIdToUpdate, pageNumber) {
     urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
