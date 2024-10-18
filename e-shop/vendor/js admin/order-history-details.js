@@ -31,7 +31,7 @@ function clearElementsByClass(className) {
 }
 
 async function getProducts(OrderId) {
-    const apiUrl = `https://api.payuee.com/get-vendors-order/${OrderId}`;
+    const apiUrl = `https://api.payuee.com/vendor/get-vendors-order/${OrderId}`;
 
     const requestOptions = {
         method: "GET",
