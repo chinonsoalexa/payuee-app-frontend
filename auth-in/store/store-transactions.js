@@ -7,22 +7,6 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
-// Example product data (You can replace this with actual product data from your cart)
-const products = [
-    {
-      name: 'Product A',
-      quantity: 2,
-      price: 500,
-      imageUrl: 'e-shop/images/payuee_signin.png',
-    },
-    {
-      name: 'Product B',
-      quantity: 1,
-      price: 1090,
-      imageUrl: 'e-shop/images/payuee_signin.png',
-    }
-  ];
-
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
@@ -119,9 +103,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -301,7 +285,7 @@ function renderOrderedProducts(products) {
     document.getElementById('cartShippingTotalPopUp').textContent = `₦${products.order_cost.toLocaleString()}`;
 
     document.getElementById('paymentButton').textContent = `Pay ₦${products.order_cost.toLocaleString()}`;
-  }
+}
   
 function updateLink(urlIdToUpdate, pageNumber) {
     urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
