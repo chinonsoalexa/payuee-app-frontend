@@ -7,14 +7,23 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+// Example product data (You can replace this with actual product data from your cart)
+const products = [
+    {
+      name: 'Product A',
+      quantity: 2,
+      price: 500,
+      imageUrl: 'e-shop/images/payuee_signin.png',
+    },
+    {
+      name: 'Product B',
+      quantity: 1,
+      price: 1090,
+      imageUrl: 'e-shop/images/payuee_signin.png',
+    }
+  ];
+
 document.addEventListener('DOMContentLoaded', async function () {
-    const paymentModalElement = document.getElementById('checkoutModal');
-
-    // Create a new instance of the Bootstrap modal
-    const paymentModal = new bootstrap.Modal(paymentModalElement);
-
-    paymentModal.show();    // Show the modal programmatically
-
     // Call the loading function to render the skeleton loaders
     loading();
 
@@ -228,7 +237,7 @@ function renderProducts(product) {
             <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
-                <h6><a href="order-history-details.html?OrderId=${product.ID}">${product.product_orders[0].title}</a></h6>
+                <h6><a id="${product.ID}">${product.product_orders[0].title}</a></h6>
                 </div>
                 <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
                 <div class="price d-flex"> 
@@ -250,6 +259,15 @@ function renderProducts(product) {
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
         window.location.href = `https://payuee.com/e-shop/vendor/order-history/${product.product_url_id}`;
+    });
+
+    document.getElementById(`${product.ID}`).addEventListener('click', function(event) {
+        const paymentModalElement = document.getElementById('checkoutModal');
+
+        // Create a new instance of the Bootstrap modal
+        const paymentModal = new bootstrap.Modal(paymentModalElement);
+    
+        paymentModal.show();    // Show the modal programmatically
     });
 
 }
