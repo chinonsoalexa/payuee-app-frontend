@@ -283,7 +283,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>₦${product.net_weight.toLocaleString()}</td>
