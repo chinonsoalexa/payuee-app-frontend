@@ -475,10 +475,22 @@ function processPredictions(predictions) {
 
     if (isUnauthorized) {
         // Notify the user or take action
-        showToastMessageE("Unauthorized content detected");
+        swal({
+            title: "Unauthorized content detected",
+            icon: "warning",
+            buttons: {
+                confirm: true,
+            },
+        });
     } else {
         // Optionally notify the user that authorized content was detected
-        // showToastMessageE("Authorized content detected");
+        // swal({
+        //     title: "Authorized content detected",
+        //     icon: "warning",
+        //     buttons: {
+        //         confirm: true,
+        //     },
+        // });
     }
     return isUnauthorized; // Return whether the content is unauthorized
 }
@@ -765,13 +777,6 @@ function validateFields() {
     return isValid;
 }
 
-function showToastMessageE(message) {
-    document.getElementById('toastError').textContent = message;
-    const toastElement = document.getElementById('liveToast1'); // Get the toast element
-    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
-    toast.show(); // Show the toast
-}
-
 function clearFields() {
 
     // Clear Product Title
@@ -838,7 +843,13 @@ try {
     if (!response.ok) {
             // alert('an error occurred. Please try again');
         if (!response.ok) {
-            showToastMessageE('an error occurred. Please try again');
+            swal({
+                title: "an error occurred. Please try again",
+                icon: "warning",
+                buttons: {
+                    confirm: true,
+                },
+            });
             return;
         }
         return;
