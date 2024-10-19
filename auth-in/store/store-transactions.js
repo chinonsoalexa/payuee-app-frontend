@@ -247,7 +247,7 @@ function renderProducts(product) {
         paymentModal.show();    // Show the modal programmatically
     });
 
-    document.getElementById(`text-success${product.ID}`).addEventListener('click', function(event) {
+    document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         // renderOrderedProducts(product);
         const transactionModal = document.getElementById('transactionModal');
