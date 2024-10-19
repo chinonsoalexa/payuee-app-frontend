@@ -203,15 +203,15 @@ function renderProducts(product) {
 
     if (product.order_status === "cancelled") {
         productStatus = `
-        <a class="btn btn-danger btn-xs" href="order-history-details.html?OrderId=${product.ID}">Cancelled</a><i class="close" data-feather="x"></i>
+        <a class="btn btn-danger btn-xs">Cancelled</a><i class="close" data-feather="x"></i>
         `
     } else if (product.order_status === "shipped") {
         productStatus = `
-        <a class="btn btn-success btn-xs" href="order-history-details.html?OrderId=${product.ID}">Shipped</a><i class="close" data-feather="x"></i>
+        <a class="btn btn-success btn-xs">Shipped</a><i class="close" data-feather="x"></i>
         `
     } else {
         productStatus = `
-        <a class="btn btn-primary btn-xs" href="order-history-details.html?OrderId=${product.ID}">Processing</a><i class="close" data-feather="x"></i>
+        <a class="btn btn-primary btn-xs">Processing</a><i class="close" data-feather="x"></i>
         `
     }
 
