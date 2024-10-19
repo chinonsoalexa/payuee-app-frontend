@@ -912,6 +912,32 @@ function clearFields() {
     let featuredStatusInput = document.getElementById('featuredStatus');
     featuredStatusInput.value = "";
 
+
+    // Estimated Delivery
+    let estimatedDelivery = document.getElementById('estimatedDelivery');
+    estimatedDelivery.value = "";
+
+        // Validate Net Weight
+    let productLength = document.getElementById('productLength');
+    productLength.value = "";
+
+    // Validate Net Weight
+    let productWidth = document.getElementById('productWidth');
+    productWidth.value = "";
+
+    // Validate Net Weight
+    const productHeight = document.getElementById('productHeight');
+    productHeight.value = "";
+
+    // Validate Shipping class
+    const shippingClassSelection = document.getElementById('shippingClassSelection');
+    shippingClassSelection.value = "";
+
+
+    // Validate Stock Availability
+    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    stockAvailabilityStatus.value = "";
+
 }
 
 async function logout() {
