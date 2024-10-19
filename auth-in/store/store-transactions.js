@@ -250,10 +250,10 @@ function renderProducts(product) {
     document.getElementById(`text-success${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         // renderOrderedProducts(product);
-        // const paymentModalElement = document.getElementById('checkoutModal');
-        // // Create a new instance of the Bootstrap modal
-        // const paymentModal = new bootstrap.Modal(paymentModalElement);
-        // paymentModal.show();    // Show the modal programmatically
+        const transactionModal = document.getElementById('transactionModal');
+        // Create a new instance of the Bootstrap modal
+        const transactionModal1 = new bootstrap.Modal(transactionModal);
+        transactionModal1.show();    // Show the modal programmatically
     });
 
 }
