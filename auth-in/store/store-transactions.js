@@ -268,8 +268,8 @@ function renderProducts(product) {
 }
 
 // Example times (replace with actual values)
-const orderCreatedAt = new Date('2024-10-18T09:00:00'); // When the order was placed
-const expectedDeliveryAt = new Date('2024-10-20T09:00:00'); // Expected delivery date
+const expectedDeliveryAt = new Date('2024-10-18T09:00:00'); // When the order was placed 
+const orderCreatedAt = new Date('2024-10-20T09:00:00'); // Expected delivery date
 
 // Get elements
 const checkCancellationButton = document.getElementById('checkCancellationButton');
