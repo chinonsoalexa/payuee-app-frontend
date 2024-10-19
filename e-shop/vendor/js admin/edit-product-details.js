@@ -8,6 +8,13 @@ var selectedCategory = "";
 var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
+var repost= '';
+var estimateDeliveryStat = 0;
+var productLengthValue = 0.0;
+var productWidthValue = 0.0;
+var productHeightValue = 0.0;
+var shippingClassSelectionValue = "";
+var stockAvailabilityStatusValue = "";
 
 var productToUpdate;
 
@@ -34,7 +41,13 @@ async function updateProduct() {
     if (validateFields()) {
         // All fields are valid, proceed with posting the product
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
-
+    formData.append("repost", repost);
+    formData.append("estimateDeliveryStat", estimateDeliveryStat);
+    formData.append("productLengthValue", productLengthValue);
+    formData.append("productWidthValue", productWidthValue);
+    formData.append("productHeightValue", productHeightValue);
+    formData.append("shippingClassSelectionValue", shippingClassSelectionValue);
+    formData.append("stockAvailabilityStatusValue", stockAvailabilityStatusValue);
     // Construct the request body
     const requestBody = {
         product_id: +productToUpdate,  // Convert to number (if it's an integer)
@@ -46,8 +59,13 @@ async function updateProduct() {
         net_weight: parseFloat(netWeight),  // Convert to number (integer)
         category: selectedCategory,
         tags: tags,
-        publish_status: publishStatus,
-        featured_status: featuredStatus,
+        repost: repost,
+        estimateDeliveryStat: estimateDeliveryStat,
+        productLengthValue: productLengthValue,
+        productWidthValue: productWidthValue,
+        productHeightValue: productHeightValue,
+        shippingClassSelectionValue: shippingClassSelectionValue,
+        stockAvailabilityStatusValue: stockAvailabilityStatusValue,
     };
 
     const requestOptions = {
@@ -314,6 +332,85 @@ function validateFields() {
         featuredStatusInput.classList.add('is-valid');
     }
 
+
+    // Estimated Delivery
+    const estimatedDelivery = document.getElementById('estimatedDelivery');
+    const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
+    // console.log("Estimated Delivery:", estimatedDeliveryVal);
+    if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0 || estimatedDeliveryVal > 30) {
+        estimatedDelivery.classList.add('is-invalid');
+        estimatedDelivery.classList.remove('is-valid');
+        isValid = false;
+    } else {
+        estimatedDelivery.classList.remove('is-invalid');
+        estimatedDelivery.classList.add('is-valid');
+    }
+
+        // Validate Product Length
+    const productLength = document.getElementById('productLength');
+    // const productLengthVal = parseInt(productLength.value, 10);
+    if (productLength) {
+        // productLength.classList.add('is-invalid');
+        // productLength.classList.remove('is-valid');
+        productLength.classList.remove('is-invalid');
+        productLength.classList.add('is-valid');
+        // isValid = false;
+        // console.log("Net Weight is invalid.");
+    }
+
+    // Validate Net Weight
+    const productWidth = document.getElementById('productWidth');
+    // console.log("Net Weight:", netWeightVal);
+    if (productWidth) {
+        // productWidth.classList.add('is-invalid');
+        // productWidth.classList.remove('is-valid');
+        productWidth.classList.remove('is-invalid');
+        productWidth.classList.add('is-valid');
+        // isValid = false;
+        // console.log("Net Weight is invalid.");
+    }
+
+    // Validate Net Weight
+    const productHeight = document.getElementById('productHeight');
+    // const productHeightVal = parseInt(productHeight.value, 10);
+    // console.log("Net Weight:", netWeightVal);
+    if (productHeight){
+        // productHeight.classList.add('is-invalid');
+        // productHeight.classList.remove('is-valid');
+        productHeight.classList.remove('is-invalid');
+        productHeight.classList.add('is-valid');
+        isValid = false;
+        // console.log("Net Weight is invalid.");
+    }
+
+    // Validate Shipping Class
+    const shippingClassSelection = document.getElementById('shippingClassSelection');
+    const shippingClassSelectionStatus = shippingClassSelection.value.trim();
+    // console.log("Featured Status:", shippingClassSelectionStatus);
+    if (!shippingClassSelectionStatus) {
+        // shippingClassSelection.classList.add('is-invalid');
+        // shippingClassSelection.classList.remove('is-valid');
+        shippingClassSelection.classList.remove('is-invalid');
+        shippingClassSelection.classList.add('is-valid');
+        isValid = false;
+        // console.log("Featured Status is invalid.");
+    }
+
+    // Validate Featured Status
+    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    const stockAvailabilityStatus1 = stockAvailabilityStatus.value.trim();
+    // console.log("Featured Status:", stockAvailabilityStatus1);
+    if (!stockAvailabilityStatus1) {
+        stockAvailabilityStatus.classList.add('is-invalid');
+        stockAvailabilityStatus.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Featured Status is invalid.");
+    } else {
+        stockAvailabilityStatus.classList.remove('is-invalid');
+        stockAvailabilityStatus.classList.add('is-valid');
+        // console.log("Featured Status is valid.");
+    }
+
     return isValid;
 }
 
@@ -414,6 +511,34 @@ function setUpdatedJsonFields() {
     let featuredStatusInput = document.getElementById('featuredStatus');
     featuredStatus = featuredStatusInput.value;
     
+    // Get the checkbox element
+    const repostCheckbox = document.getElementById('repostCheck');
+    repost = repostCheckbox.checked;
+
+    // Estimated Delivery
+    const estimatedDelivery = document.getElementById('estimatedDelivery');
+    estimateDeliveryStat = estimatedDelivery.value;
+
+    // Validate Product Length
+    const productLength = document.getElementById('productLength');
+    productLengthValue = productLength.value;
+
+    // Validate Product Width
+    const productWidth = document.getElementById('productWidth');
+    productWidthValue = productWidth.value;
+
+    // Validate Product Height
+    const productHeight = document.getElementById('productHeight');
+    productHeightValue = productHeight.value;
+
+    // Validate Shipping class
+    const shippingClassSelection = document.getElementById('shippingClassSelection');
+    shippingClassSelectionValue = shippingClassSelection.value;
+
+    // Validate Stock Availability
+    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    stockAvailabilityStatusValue = stockAvailabilityStatus.value;
+
     validateFields();
 }
 

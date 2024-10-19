@@ -951,7 +951,6 @@ function clearFields() {
     let featuredStatusInput = document.getElementById('featuredStatus');
     featuredStatusInput.value = "";
 
-
     // Estimated Delivery
     let estimatedDelivery = document.getElementById('estimatedDelivery');
     estimatedDelivery.value = "";

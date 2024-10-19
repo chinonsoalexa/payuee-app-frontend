@@ -51,6 +51,7 @@
   <link id="color" rel="stylesheet" href="css/color-1.css" media="screen">
 
   <link rel="stylesheet" type="text/css" href="css/vendors/sweetalert2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="css/responsive.css">
@@ -326,6 +327,21 @@
                               </div>
                             </a>
                           </li>
+                          <li class="nav-item"><a class="nav-link" id="advance-product-tab" data-bs-toggle="pill"
+                            href="#advance-product" role="tab" aria-controls="advance-product-tab" aria-selected="false">
+                            <div class="nav-rounded">
+                              <div class="product-icons">
+                                <svg class="stroke-icon">
+                                  <use href="#advance"> </use>
+                                </svg>
+                              </div>
+                            </div>
+                            <div class="product-tab-content">
+                              <h6>Advance</h6>
+                              <p>Add Meta details & Shipping details</p>
+                            </div>
+                          </a>
+                          </li>
                         </ul>
                       </div>
                       <div class="col-xxl-9 col-xl-8 box-col-8 position-relative">
@@ -492,16 +508,90 @@
                                     </ul>
                                   </div>
                                 </div>
-                                <div id="publishButton" class="product-buttons">
-                                  <div class="btn">
-                                    <div id="updateButton" class="d-flex align-items-center gap-sm-2 gap-1">Update
-                                      <svg>
-                                        <use href="#front-arrow"> </use>
-                                      </svg>
-                                    </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="advance-product" role="tabpanel" aria-labelledby="advance-product-tab">
+                            <div class="sidebar-body advance-options">
+                                <!-- shipping details -->
+                                <div class="tab-pane fade show active" id="manifest-option" role="tabpanel" aria-labelledby="manifest-option-tab">
+                                  <div class="sidebar-body">
+                                    <form>
+                                      <div class="row g-3 custom-input">
+                                        <div class="col-12">
+                                          <!-- Shipping Details Section -->
+                                          <div class="mt-4">
+                                            <h6 class="form-label">Shipping Details</h6>
+                                            <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
+                                              <div class="col-md-6">
+                                                <input class="form-control" id="estimatedDelivery" type="number" placeholder="Estimated Days to Delivery (e.g., 5 days)">
+                                              </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                              <div class="col-12">
+                                                <p class="f-light">Note: Actual delivery time may vary due to external factors such as weather or holidays.</p>
+                                              </div>
+                                            </div>
+                                          </div>                                          
+                                        </div>
+                                        <div class="col-12">
+                                          <div class="row">
+                                            <div class="col-12">
+                                              <label class="form-label" for="netWeight">Weight (kg)</label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper weight for product items."></i>
+                                            </div>
+                                            <div class="col-12">
+                                              <input class="form-control" id="netWeight" type="number">
+                                              <p class="f-light">Decide if the product is a digital or physical item. Shipping may be necessary for real-world items.</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-12">
+                                          <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
+                                            <div class="col-12">
+                                              <label class="form-label" for="exampleFormControlInput1">Dimensions </label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper length/width and height for product items."></i>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6"> 
+                                              <input class="form-control" id="productLength" type="number" placeholder="Length[l]">
+                                            </div>
+                                            <div class="col-md-4 col-sm-6"> 
+                                              <input class="form-control" id="productWidth" type="number" placeholder="Width[w]">
+                                            </div>
+                                            <div class="col-md-4"> 
+                                              <input class="form-control" id="productHeight" type="number" placeholder="Height[h]">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-12">
+                                          <div class="row"> 
+                                            <div class="col-12">
+                                              <label class="form-label" for="shippingClassSelection">Shipping Class</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <select class="form-select" id="shippingClassSelection">
+                                                <option selected="">Basic Shipping</option>
+                                                <option>Expedited Shipping</option>
+                                                <option>International Shipping</option>
+                                                <option>Free Shipping</option>
+                                                <option>Same-Day or Next-Day Shipping</option>
+                                                <option>Flat Rate Shipping</option>
+                                                <option>Local Pickup </option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div id="publishButton" class="product-buttons">
+                                        <div class="btn">
+                                          <div id="updateButton" class="d-flex align-items-center gap-sm-2 gap-1">Update
+                                            <svg>
+                                              <use href="#front-arrow"> </use>
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </form>
                                   </div>
                                 </div>
-                              </form>
                             </div>
                           </div>
                         </div>
