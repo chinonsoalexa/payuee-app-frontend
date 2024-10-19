@@ -258,6 +258,46 @@ function renderProducts(product) {
 
 }
 
+// Example times (replace with actual values)
+const orderCreatedAt = new Date('2024-10-18T09:00:00'); // When the order was placed
+const expectedDeliveryAt = new Date('2024-10-20T09:00:00'); // Expected delivery date
+
+// Get elements
+const checkCancellationButton = document.getElementById('checkCancellationButton');
+const cancellationStatus = document.getElementById('cancellationStatus');
+const reportIssueButton = document.getElementById('reportIssueButton');
+const reportIssueInput = document.getElementById('reportIssueInput');
+
+// Calculate 30% cancellation threshold
+const totalTime = expectedDeliveryAt - orderCreatedAt;
+const thresholdTime = totalTime * 0.30;
+
+// Handle Check Cancellation Eligibility
+checkCancellationButton.addEventListener('click', () => {
+  const currentTime = new Date();
+  
+  if (currentTime - orderCreatedAt <= thresholdTime) {
+    cancellationStatus.innerText = 'You are eligible to cancel this transaction.';
+    cancellationStatus.style.color = 'green';
+  } else {
+    cancellationStatus.innerText = 'You are no longer eligible to cancel this transaction.';
+    cancellationStatus.style.color = 'red';
+  }
+});
+
+// Handle Report Issue
+reportIssueButton.addEventListener('click', () => {
+  const issueDescription = reportIssueInput.value.trim();
+  
+  if (issueDescription) {
+    alert('Your issue has been reported: ' + issueDescription);
+    // Here you would send this data to your backend system
+    reportIssueInput.value = ''; // Clear input after submission
+  } else {
+    alert('Please describe the issue before reporting.');
+  }
+});
+
 // Function to render products into the table
 function renderOrderedProducts(products) {
     const orderedProductsTable = document.getElementById('orderedProductsTable');
