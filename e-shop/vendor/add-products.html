@@ -545,15 +545,6 @@
                                   </div>
                                   
                                 </div>
-                                <div id="publishButton" class="product-buttons">
-                                  <div class="btn">
-                                    <div id="nextButton" class="d-flex align-items-center gap-sm-2 gap-1">Publish
-                                      <svg>
-                                        <use href="#front-arrow"> </use>
-                                      </svg>
-                                    </div>
-                                  </div>
-                                </div>
                               </form>
                             </div>
                           </div>
@@ -570,7 +561,7 @@
                                             <h6 class="form-label">Shipping Details</h6>
                                             <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
                                               <div class="col-md-6">
-                                                <input class="form-control" id="estimatedDelivery" type="text" placeholder="Estimated Days to Delivery (e.g., 5 days)">
+                                                <input class="form-control" id="estimatedDelivery" type="number" placeholder="Estimated Days to Delivery (e.g., 5 days)">
                                               </div>
                                             </div>
                                             <div class="row mt-3">
@@ -597,23 +588,23 @@
                                               <label class="form-label" for="exampleFormControlInput1">Dimensions </label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper length/width and height for product items."></i>
                                             </div>
                                             <div class="col-md-4 col-sm-6"> 
-                                              <input class="form-control" id="inputCityb" type="number" placeholder="Length[l]">
+                                              <input class="form-control" id="productLength" type="number" placeholder="Length[l]">
                                             </div>
                                             <div class="col-md-4 col-sm-6"> 
-                                              <input class="form-control" id="inputCityc" type="number" placeholder="Width[w]">
+                                              <input class="form-control" id="productWidth" type="number" placeholder="Width[w]">
                                             </div>
                                             <div class="col-md-4"> 
-                                              <input class="form-control" id="inputCityd" type="number" placeholder="Height[h]">
+                                              <input class="form-control" id="productHeight" type="number" placeholder="Height[h]">
                                             </div>
                                           </div>
                                         </div>
                                         <div class="col-12">
                                           <div class="row"> 
                                             <div class="col-12">
-                                              <label class="form-label" for="exampleFormControlInput1">Shipping Class</label>
+                                              <label class="form-label" for="shippingClassSelection">Shipping Class</label>
                                             </div>
                                             <div class="col-md-12">
-                                              <select class="form-select" id="inputState1">
+                                              <select class="form-select" id="shippingClassSelection">
                                                 <option selected="">Basic Shipping</option>
                                                 <option>Expedited Shipping</option>
                                                 <option>International Shipping</option>

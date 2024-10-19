@@ -775,35 +775,78 @@ function validateFields() {
         // console.log("Featured Status is valid.");
     }
 
-    // // Validate Featured Status
-    // const featuredStatusInput = document.getElementById('featuredStatus');
-    // const featuredStatus = featuredStatusInput.value.trim();
-    // // console.log("Featured Status:", featuredStatus);
-    // if (!featuredStatus) {
-    //     featuredStatusInput.classList.add('is-invalid');
-    //     featuredStatusInput.classList.remove('is-valid');
-    //     isValid = false;
-    //     // console.log("Featured Status is invalid.");
-    // } else {
-    //     featuredStatusInput.classList.remove('is-invalid');
-    //     featuredStatusInput.classList.add('is-valid');
-    //     // console.log("Featured Status is valid.");
-    // }
+    // Estimated Delivery
+    const estimatedDelivery = document.getElementById('estimatedDelivery');
+    const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
+    // console.log("Estimated Delivery:", estimatedDeliveryVal);
+    if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0) {
+        estimatedDelivery.classList.add('is-invalid');
+        estimatedDelivery.classList.remove('is-valid');
+        isValid = false;
+    } else {
+        estimatedDelivery.classList.remove('is-invalid');
+        estimatedDelivery.classList.add('is-valid');
+    }
 
-    // // Validate Featured Status
-    // const featuredStatusInput = document.getElementById('featuredStatus');
-    // const featuredStatus = featuredStatusInput.value.trim();
-    // // console.log("Featured Status:", featuredStatus);
-    // if (!featuredStatus) {
-    //     featuredStatusInput.classList.add('is-invalid');
-    //     featuredStatusInput.classList.remove('is-valid');
-    //     isValid = false;
-    //     // console.log("Featured Status is invalid.");
-    // } else {
-    //     featuredStatusInput.classList.remove('is-invalid');
-    //     featuredStatusInput.classList.add('is-valid');
-    //     // console.log("Featured Status is valid.");
-    // }
+        // Validate Net Weight
+    const productLength = document.getElementById('productLength');
+    const productLengthVal = parseInt(productLength.value, 10);
+    // console.log("Net Weight:", netWeightVal);
+    if (isNaN(productLengthVal) || productLengthVal < 0) {
+        productLength.classList.add('is-invalid');
+        productLength.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Net Weight is invalid.");
+    } else {
+        productLength.classList.remove('is-invalid');
+        productLength.classList.add('is-valid');
+        // console.log("Net Weight is valid.");
+    }
+
+    // Validate Net Weight
+    const productWidth = document.getElementById('productWidth');
+    const productWidthVal = parseInt(productWidth.value, 10);
+    // console.log("Net Weight:", netWeightVal);
+    if (isNaN(productWidthVal) || productWidthVal < 0) {
+        productWidth.classList.add('is-invalid');
+        productWidth.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Net Weight is invalid.");
+    } else {
+        productWidth.classList.remove('is-invalid');
+        productWidth.classList.add('is-valid');
+        // console.log("Net Weight is valid.");
+    }
+
+    // Validate Net Weight
+    const productHeight = document.getElementById('productHeight');
+    const productHeightVal = parseInt(productHeight.value, 10);
+    // console.log("Net Weight:", netWeightVal);
+    if (isNaN(productHeightVal) || productHeightVal < 0) {
+        productHeight.classList.add('is-invalid');
+        productHeight.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Net Weight is invalid.");
+    } else {
+        productHeight.classList.remove('is-invalid');
+        productHeight.classList.add('is-valid');
+        // console.log("Net Weight is valid.");
+    }
+
+    // Validate Featured Status
+    const shippingClassSelection = document.getElementById('shippingClassSelection');
+    const shippingClassSelectionStatus = shippingClassSelection.value.trim();
+    // console.log("Featured Status:", shippingClassSelectionStatus);
+    if (!shippingClassSelectionStatus) {
+        shippingClassSelection.classList.add('is-invalid');
+        shippingClassSelection.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Featured Status is invalid.");
+    } else {
+        shippingClassSelection.classList.remove('is-invalid');
+        shippingClassSelection.classList.add('is-valid');
+        // console.log("Featured Status is valid.");
+    }
 
     return isValid;
 }
