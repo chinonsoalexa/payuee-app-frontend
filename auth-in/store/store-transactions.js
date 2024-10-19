@@ -228,7 +228,7 @@ function renderProducts(product) {
                 <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
                 </div>
                 <div class="avaiabilty">
-                <div class="text-success${product.ID}"><a href="#">Cancel</a></div>
+                <div class="text-danger${product.ID}"><a href="#">Cancel</a></div>
                 </div>${productStatus}
             </div>
             </div>
