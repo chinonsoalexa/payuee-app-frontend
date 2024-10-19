@@ -779,7 +779,7 @@ function validateFields() {
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
     // console.log("Estimated Delivery:", estimatedDeliveryVal);
-    if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0) {
+    if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0 || estimatedDeliveryVal > 30) {
         estimatedDelivery.classList.add('is-invalid');
         estimatedDelivery.classList.remove('is-valid');
         isValid = false;
@@ -788,19 +788,16 @@ function validateFields() {
         estimatedDelivery.classList.add('is-valid');
     }
 
-        // Validate Net Weight
+        // Validate Product Length
     const productLength = document.getElementById('productLength');
-    const productLengthVal = parseInt(productLength.value, 10);
-    // console.log("Net Weight:", netWeightVal);
-    if (isNaN(productLengthVal) || productLengthVal < 0) {
-        productLength.classList.add('is-invalid');
-        productLength.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Net Weight is invalid.");
-    } else {
+    // const productLengthVal = parseInt(productLength.value, 10);
+    if (productLength) {
+        // productLength.classList.add('is-invalid');
+        // productLength.classList.remove('is-valid');
         productLength.classList.remove('is-invalid');
         productLength.classList.add('is-valid');
-        // console.log("Net Weight is valid.");
+        // isValid = false;
+        // console.log("Net Weight is invalid.");
     }
 
     // Validate Net Weight
