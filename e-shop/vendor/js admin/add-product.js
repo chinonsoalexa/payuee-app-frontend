@@ -802,47 +802,40 @@ function validateFields() {
 
     // Validate Net Weight
     const productWidth = document.getElementById('productWidth');
-    const productWidthVal = parseInt(productWidth.value, 10);
     // console.log("Net Weight:", netWeightVal);
-    if (isNaN(productWidthVal) || productWidthVal < 0) {
-        productWidth.classList.add('is-invalid');
-        productWidth.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Net Weight is invalid.");
-    } else {
+    if (productWidth) {
+        // productWidth.classList.add('is-invalid');
+        // productWidth.classList.remove('is-valid');
         productWidth.classList.remove('is-invalid');
         productWidth.classList.add('is-valid');
-        // console.log("Net Weight is valid.");
+        // isValid = false;
+        // console.log("Net Weight is invalid.");
     }
 
     // Validate Net Weight
     const productHeight = document.getElementById('productHeight');
-    const productHeightVal = parseInt(productHeight.value, 10);
+    // const productHeightVal = parseInt(productHeight.value, 10);
     // console.log("Net Weight:", netWeightVal);
-    if (isNaN(productHeightVal) || productHeightVal < 0) {
-        productHeight.classList.add('is-invalid');
-        productHeight.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Net Weight is invalid.");
-    } else {
+    if (productHeight){
+        // productHeight.classList.add('is-invalid');
+        // productHeight.classList.remove('is-valid');
         productHeight.classList.remove('is-invalid');
         productHeight.classList.add('is-valid');
-        // console.log("Net Weight is valid.");
+        isValid = false;
+        // console.log("Net Weight is invalid.");
     }
 
-    // Validate Featured Status
+    // Validate Shipping Class
     const shippingClassSelection = document.getElementById('shippingClassSelection');
     const shippingClassSelectionStatus = shippingClassSelection.value.trim();
     // console.log("Featured Status:", shippingClassSelectionStatus);
     if (!shippingClassSelectionStatus) {
-        shippingClassSelection.classList.add('is-invalid');
-        shippingClassSelection.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Featured Status is invalid.");
-    } else {
+        // shippingClassSelection.classList.add('is-invalid');
+        // shippingClassSelection.classList.remove('is-valid');
         shippingClassSelection.classList.remove('is-invalid');
         shippingClassSelection.classList.add('is-valid');
-        // console.log("Featured Status is valid.");
+        isValid = false;
+        // console.log("Featured Status is invalid.");
     }
 
     // Validate Featured Status
