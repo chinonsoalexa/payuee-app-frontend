@@ -13,10 +13,10 @@ var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
 var repost= '';
-var estimateDeliveryStat = "";
-var productLengthValue = "";
-var productWidthValue = "";
-var productHeightValue = "";
+var estimateDeliveryStat = 0;
+var productLengthValue = 0.0;
+var productWidthValue = 0.0;
+var productHeightValue = 0.0;
 var shippingClassSelectionValue = "";
 var stockAvailabilityStatusValue = "";
 var imageQuality = 0;
@@ -122,7 +122,13 @@ async function postProduct() {
     formData.append("category", selectedCategory);
     formData.append("tags", tags);
     formData.append("publishStatus", publishStatus);
-    formData.append("featuredStatus", featuredStatus);
+    formData.append("repost", repost);
+    formData.append("estimateDeliveryStat", estimateDeliveryStat);
+    formData.append("productLengthValue", productLengthValue);
+    formData.append("productWidthValue", productWidthValue);
+    formData.append("productHeightValue", productHeightValue);
+    formData.append("shippingClassSelectionValue", shippingClassSelectionValue);
+    formData.append("stockAvailabilityStatusValue", stockAvailabilityStatusValue);
 
     // Append images to the FormData object
     imageArray.forEach((image, index) => {
@@ -619,6 +625,12 @@ function getFormData() {
         featuredStatus: featuredStatus,
         netWeight: netWeight,
         repost: repost,
+        estimateDeliveryStat: estimateDeliveryStat,
+        productLengthValue: productLengthValue,
+        productWidthValue: productWidthValue,
+        productHeightValue: productHeightValue,
+        shippingClassSelectionValue: shippingClassSelectionValue,
+        stockAvailabilityStatusValue: stockAvailabilityStatusValue,
     };
 
     // console.log('Form Data:', formData);
