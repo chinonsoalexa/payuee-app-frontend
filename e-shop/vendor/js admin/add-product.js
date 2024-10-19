@@ -12,6 +12,13 @@ var selectedCategory = "";
 var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
+var repost= '';
+var estimateDeliveryStat = "";
+var productLengthValue = "";
+var productWidthValue = "";
+var productHeightValue = "";
+var shippingClassSelectionValue = "";
+var stockAvailabilityStatusValue = "";
 var imageQuality = 0;
 let model;
 let isUnauthorized = true;
@@ -573,6 +580,35 @@ function getFormData() {
     const netWeightSelect = document.getElementById('netWeight');
     netWeight = netWeightSelect.value;
 
+     // Get the checkbox element
+    const repostCheckbox = document.getElementById('repostCheck');
+    repost = repostCheckbox.checked;
+
+    // Estimated Delivery
+    const estimatedDelivery = document.getElementById('estimatedDelivery');
+    estimateDeliveryStat = estimatedDelivery.value;
+
+    // Validate Product Length
+    const productLength = document.getElementById('productLength');
+    productLengthValue = productLength.value;
+
+    // Validate Product Width
+    const productWidth = document.getElementById('productWidth');
+    productWidthValue = productWidth.value;
+
+    // Validate Product Height
+    const productHeight = document.getElementById('productHeight');
+    productHeightValue = productHeight.value;
+
+    // Validate Shipping class
+    const shippingClassSelection = document.getElementById('shippingClassSelection');
+    shippingClassSelectionValue = shippingClassSelection.value;
+
+
+    // Validate Stock Availability
+    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    stockAvailabilityStatusValue = stockAvailabilityStatus.value;
+
     // Get the publish date and time
 
     // Create an object to store the form data
@@ -582,6 +618,7 @@ function getFormData() {
         publishStatus: publishStatus,
         featuredStatus: featuredStatus,
         netWeight: netWeight,
+        repost: repost,
     };
 
     // console.log('Form Data:', formData);
