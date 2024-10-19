@@ -485,7 +485,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-6">
-                                    <label class="form-label" for="productStock1">Product stocks<span
+                                    <label class="form-label" for="productStock1">Stock Quantity<span
                                         class="txt-danger">*</span></label>
                                     <input class="form-control" id="productStock1" type="number">
                                   </div>
@@ -556,29 +556,10 @@
                                       <div class="row g-3 custom-input">
                                         <div class="col-sm-6">
                                           <label class="form-label">Stock Availability</label>
-                                          <select class="form-select" aria-label="Default select example">
+                                          <select class="form-select" aria-label="Default select stock">
                                             <option selected="">In stock</option>
-                                            <option value="1">Out of stock</option>
                                             <option value="2">Pre-order</option>
                                           </select>
-                                        </div>
-                                        <div class="col-sm-6">
-                                          <label class="form-label">Low Stock</label>
-                                          <select class="form-select" aria-label="Default select example">
-                                            <option selected="">Low Stock (5 or less)</option>
-                                            <option value="1">Low Stock (10 or less)</option>
-                                            <option value="2">Low Stock (20 or less)</option>
-                                            <option value="2">Low Stock (25 or less)</option>
-                                            <option value="2">Low Stock (30 or less)</option>
-                                          </select>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                          <label class="form-label" for="exampleFormControlInput1">SKU <span class="txt-danger">*</span></label>
-                                          <input class="form-control" id="exampleFormControlInput1" type="text">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                          <label class="form-label" for="exampleFormControlInputa">Stock Quantity <span class="txt-danger">*</span></label>
-                                          <input class="form-control" id="exampleFormControlInputa" type="number" value="7" min="0">
                                         </div>
                                         <div class="col-lg-3 col-sm-6"> 
                                           <label class="form-label" for="exampleFormControlInputb">Restock Date <span class="txt-danger">*</span></label>
@@ -589,7 +570,7 @@
                                           <input class="form-control" id="exampleFormControlInputc" type="number">
                                         </div>
                                         <div class="col-12">
-                                          <label class="form-label">Allow Vendor Repost</label>
+                                          <label class="form-label">Allow Vendor Re-post</label>
                                           <div class="form-check">
                                             <input class="form-check-input" id="repostCheck" type="checkbox">
                                             <label class="form-check-label m-0" for="repostCheck">Allow this product to be reposted by vendors</label>
@@ -606,29 +587,6 @@
                                     <form>
                                       <div class="row g-3 custom-input">
                                         <div class="col-12">
-                                          <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
-                                            <div class="col-12">
-                                              <label class="form-label" for="exampleFormControlInput1">Where can I pick up my order?</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                              <input class="form-control" id="inputZip" type="number" placeholder="Zip code (10001)">
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                              <input class="form-control" id="inputCity" type="text" placeholder="City">
-                                            </div>
-                                            <div class="col-md-4">
-                                              <select class="form-select" id="inputState">
-                                                <option selected="">State</option>
-                                                <option>Gujarat</option>
-                                                <option>Punjab</option>
-                                                <option>Himachal Pradesh</option>
-                                                <option>Goa</option>
-                                                <option>Sikkim</option>
-                                                <option>Telangana</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                          
                                           <!-- Shipping Details Section -->
                                           <div class="mt-4">
                                             <h6 class="form-label">Shipping Details</h6>
