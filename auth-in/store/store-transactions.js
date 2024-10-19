@@ -228,7 +228,7 @@ function renderProducts(product) {
                 <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
                 </div>
                 <div class="avaiabilty">
-                <div class="text-success">In stock</div>
+                <div class="text-success${product.ID}"><a href="#">Cancel</a></div>
                 </div>${productStatus}
             </div>
             </div>
@@ -245,6 +245,15 @@ function renderProducts(product) {
         // Create a new instance of the Bootstrap modal
         const paymentModal = new bootstrap.Modal(paymentModalElement);
         paymentModal.show();    // Show the modal programmatically
+    });
+
+    document.getElementById(`text-success${product.ID}`).addEventListener('click', function(event) {
+        event.preventDefault();
+        // renderOrderedProducts(product);
+        // const paymentModalElement = document.getElementById('checkoutModal');
+        // // Create a new instance of the Bootstrap modal
+        // const paymentModal = new bootstrap.Modal(paymentModalElement);
+        // paymentModal.show();    // Show the modal programmatically
     });
 
 }
