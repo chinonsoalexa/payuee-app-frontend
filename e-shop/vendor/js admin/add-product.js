@@ -775,35 +775,35 @@ function validateFields() {
         // console.log("Featured Status is valid.");
     }
 
-    // Validate Featured Status
-    const featuredStatusInput = document.getElementById('featuredStatus');
-    const featuredStatus = featuredStatusInput.value.trim();
-    // console.log("Featured Status:", featuredStatus);
-    if (!featuredStatus) {
-        featuredStatusInput.classList.add('is-invalid');
-        featuredStatusInput.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Featured Status is invalid.");
-    } else {
-        featuredStatusInput.classList.remove('is-invalid');
-        featuredStatusInput.classList.add('is-valid');
-        // console.log("Featured Status is valid.");
-    }
+    // // Validate Featured Status
+    // const featuredStatusInput = document.getElementById('featuredStatus');
+    // const featuredStatus = featuredStatusInput.value.trim();
+    // // console.log("Featured Status:", featuredStatus);
+    // if (!featuredStatus) {
+    //     featuredStatusInput.classList.add('is-invalid');
+    //     featuredStatusInput.classList.remove('is-valid');
+    //     isValid = false;
+    //     // console.log("Featured Status is invalid.");
+    // } else {
+    //     featuredStatusInput.classList.remove('is-invalid');
+    //     featuredStatusInput.classList.add('is-valid');
+    //     // console.log("Featured Status is valid.");
+    // }
 
-    // Validate Featured Status
-    const featuredStatusInput = document.getElementById('featuredStatus');
-    const featuredStatus = featuredStatusInput.value.trim();
-    // console.log("Featured Status:", featuredStatus);
-    if (!featuredStatus) {
-        featuredStatusInput.classList.add('is-invalid');
-        featuredStatusInput.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Featured Status is invalid.");
-    } else {
-        featuredStatusInput.classList.remove('is-invalid');
-        featuredStatusInput.classList.add('is-valid');
-        // console.log("Featured Status is valid.");
-    }
+    // // Validate Featured Status
+    // const featuredStatusInput = document.getElementById('featuredStatus');
+    // const featuredStatus = featuredStatusInput.value.trim();
+    // // console.log("Featured Status:", featuredStatus);
+    // if (!featuredStatus) {
+    //     featuredStatusInput.classList.add('is-invalid');
+    //     featuredStatusInput.classList.remove('is-valid');
+    //     isValid = false;
+    //     // console.log("Featured Status is invalid.");
+    // } else {
+    //     featuredStatusInput.classList.remove('is-invalid');
+    //     featuredStatusInput.classList.add('is-valid');
+    //     // console.log("Featured Status is valid.");
+    // }
 
     return isValid;
 }
