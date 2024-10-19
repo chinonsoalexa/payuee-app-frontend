@@ -848,6 +848,21 @@ function validateFields() {
         // console.log("Featured Status is valid.");
     }
 
+    // Validate Featured Status
+    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    const stockAvailabilityStatus1 = stockAvailabilityStatus.value.trim();
+    // console.log("Featured Status:", stockAvailabilityStatus1);
+    if (!stockAvailabilityStatus1) {
+        stockAvailabilityStatus.classList.add('is-invalid');
+        stockAvailabilityStatus.classList.remove('is-valid');
+        isValid = false;
+        // console.log("Featured Status is invalid.");
+    } else {
+        stockAvailabilityStatus.classList.remove('is-invalid');
+        stockAvailabilityStatus.classList.add('is-valid');
+        // console.log("Featured Status is valid.");
+    }
+
     return isValid;
 }
 
