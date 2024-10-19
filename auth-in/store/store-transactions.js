@@ -414,6 +414,6 @@ function formatNumberToNaira(number) {
     return new Intl.NumberFormat('en-NG', {
         style: 'currency',
         currency: 'NGN',
-        minimumFractionDigits: 2
+        minimumFractionDigits: 0
     }).format(number);
 }
