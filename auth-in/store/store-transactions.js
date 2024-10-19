@@ -218,9 +218,9 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
+            <div id="image${product.ID}" class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
-                <div class="product-name">
+                <div id="title${product.ID}" class="product-name">
                 <h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6>
                 </div>
                 <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
@@ -238,7 +238,16 @@ function renderProducts(product) {
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
-    document.getElementById(`${product.ID}`).addEventListener('click', function(event) {
+    document.getElementById(`image${product.ID}`).addEventListener('click', function(event) {
+        event.preventDefault();
+        renderOrderedProducts(product);
+        const paymentModalElement = document.getElementById('checkoutModal');
+        // Create a new instance of the Bootstrap modal
+        const paymentModal = new bootstrap.Modal(paymentModalElement);
+        paymentModal.show();    // Show the modal programmatically
+    });
+
+    document.getElementById(`title${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         renderOrderedProducts(product);
         const paymentModalElement = document.getElementById('checkoutModal');
