@@ -238,13 +238,6 @@ function renderProducts(product) {
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
-    // Add event listener to the image wrapper
-    const imgWrapper = rowElement.querySelector('.align-self-center');
-    imgWrapper.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = `https://payuee.com/e-shop/vendor/order-history/${product.product_url_id}`;
-    });
-
     document.getElementById(`${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         renderOrderedProducts(product);
