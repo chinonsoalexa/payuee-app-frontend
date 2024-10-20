@@ -183,6 +183,11 @@ function initializeDropzone() {
                         },
                     });
                     // Remove the new file preview and don't add it to the array
+                    // Remove the file from the array
+                    const index = imageArray.indexOf(file);
+                    if (index > -1) {
+                        imageArray.splice(index, 1);
+                    }
                     file.previewElement.remove();
                     return; // Exit the function
                 }
@@ -194,6 +199,11 @@ function initializeDropzone() {
 
                 if (fileExists) {
                     // File already exists, remove the new file preview and don't add it to the array
+                    // Remove the file from the array
+                    const index = imageArray.indexOf(file);
+                    if (index > -1) {
+                        imageArray.splice(index, 1);
+                    }
                     file.previewElement.remove();
                     return; // Exit the function
                 }
@@ -796,7 +806,7 @@ function validateFields() {
 
     // Validate Publish Status
     const publishStatusInput = document.getElementById('publishStatus');
-    const publishStatus = publishStatusInput.value.trim();
+    // const publishStatus = publishStatusInput.value.trim();
     console.log("Publish Status:", publishStatus);
     if (!publishStatus) {
         publishStatusInput.classList.add('is-invalid');
@@ -827,7 +837,7 @@ function validateFields() {
     // Estimated Delivery
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
-    console.log("Estimated Delivery:", estimatedDeliveryVal);
+    // console.log("Estimated Delivery:", estimatedDeliveryVal);
     if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0 || estimatedDeliveryVal > 30) {
         estimatedDelivery.classList.add('is-invalid');
         estimatedDelivery.classList.remove('is-valid');
@@ -839,8 +849,8 @@ function validateFields() {
 
         // Validate Product Length
     const productLength = document.getElementById('productLength');
-    const productLengthVal = parseInt(productLength.value, 10);
-    console.log("productLength:", productLengthVal);
+    // const productLengthVal = parseInt(productLength.value, 10);
+    // console.log("productLength:", productLengthVal);
     if (productLength) {
         // productLength.classList.add('is-invalid');
         // productLength.classList.remove('is-valid');
@@ -852,7 +862,7 @@ function validateFields() {
 
     // Validate Net Weight
     const productWidth = document.getElementById('productWidth');
-    console.log("productWidth:", productWidth.value);
+    // console.log("productWidth:", productWidth.value);
     if (productWidth) {
         // productWidth.classList.add('is-invalid');
         // productWidth.classList.remove('is-valid');
@@ -864,7 +874,7 @@ function validateFields() {
 
     // Validate Net Weight
     const productHeight = document.getElementById('productHeight');
-    const productHeightVal = parseInt(productHeight.value, 10);
+    // const productHeightVal = parseInt(productHeight.value, 10);
     console.log("productHeightVal:", productHeightVal);
     if (productHeight){
         // productHeight.classList.add('is-invalid');
@@ -878,7 +888,7 @@ function validateFields() {
     // Validate Shipping Class
     const shippingClassSelection = document.getElementById('shippingClassSelection');
     const shippingClassSelectionStatus = shippingClassSelection.value.trim();
-    console.log("shippingClassSelection:", shippingClassSelectionStatus);
+    // console.log("shippingClassSelection:", shippingClassSelectionStatus);
     if (!shippingClassSelectionStatus) {
         // shippingClassSelection.classList.add('is-invalid');
         // shippingClassSelection.classList.remove('is-valid');
@@ -891,7 +901,7 @@ function validateFields() {
     // Validate Featured Status
     const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
     const stockAvailabilityStatus1 = stockAvailabilityStatus.value.trim();
-    console.log("stockAvailabilityStatus:", stockAvailabilityStatus1);
+    // console.log("stockAvailabilityStatus:", stockAvailabilityStatus1);
     if (!stockAvailabilityStatus1) {
         stockAvailabilityStatus.classList.add('is-invalid');
         stockAvailabilityStatus.classList.remove('is-valid');
