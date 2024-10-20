@@ -268,7 +268,37 @@ function renderProducts(product) {
     document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         // check if eligible to cancel transaction
-        checkReturnEligibilityStatus(product);
+        // checkReturnEligibilityStatus(product);
+        const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
+        const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
+    
+        // Get elements
+        const cancellationStatus = document.getElementById('cancellationStatus');
+        const cancelButton = document.getElementById('cancelButton');
+        const reportIssueButton = document.getElementById('reportIssueButton');
+        const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
+    
+       // Calculate 30% cancellation threshold
+        const totalTime = expectedDeliveryAt - orderCreatedAt;
+        const thresholdTime = totalTime * 0.30; // 30% of the total time
+    
+        const currentTime = new Date(); // Current time
+      
+        if (currentTime - orderCreatedAt <= thresholdTime) {
+          cancellationStatus.innerText = 'You are eligible to cancel this order.';
+          cancellationStatus.style.color = 'green';
+    
+          cancelButton.classList.add('disabled');
+          reportIssueButton.classList.remove('disabled');
+          transactionPinToCancelTrn.classList.add('disabled');
+        } else {
+          cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
+          cancellationStatus.style.color = 'red';
+    
+          cancelButton.classList.remove('disabled');
+          reportIssueButton.classList.add('disabled');
+          transactionPinToCancelTrn.classList.remove('disabled');
+        }
         // renderOrderedProducts(product);
         const transactionModal = document.getElementById('transactionModal');
         // Create a new instance of the Bootstrap modal
@@ -278,38 +308,38 @@ function renderProducts(product) {
 
 }
 
-function checkReturnEligibilityStatus(product) {
-    const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
-    const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
+// function checkReturnEligibilityStatus(product) {
+//     const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
+//     const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
 
-    // Get elements
-    const cancellationStatus = document.getElementById('cancellationStatus');
-    const cancelButton = document.getElementById('cancelButton');
-    const reportIssueButton = document.getElementById('reportIssueButton');
-    const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
+//     // Get elements
+//     const cancellationStatus = document.getElementById('cancellationStatus');
+//     const cancelButton = document.getElementById('cancelButton');
+//     const reportIssueButton = document.getElementById('reportIssueButton');
+//     const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
 
-   // Calculate 30% cancellation threshold
-    const totalTime = expectedDeliveryAt - orderCreatedAt;
-    const thresholdTime = totalTime * 0.30; // 30% of the total time
+//    // Calculate 30% cancellation threshold
+//     const totalTime = expectedDeliveryAt - orderCreatedAt;
+//     const thresholdTime = totalTime * 0.30; // 30% of the total time
 
-    const currentTime = new Date(); // Current time
+//     const currentTime = new Date(); // Current time
   
-    if (currentTime - orderCreatedAt <= thresholdTime) {
-        cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
-        cancellationStatus.style.color = 'red';
-  
-        cancelButton.classList.remove('disabled');
-        reportIssueButton.classList.add('disabled');
-        transactionPinToCancelTrn.classList.remove('disabled');
-    } else {
-      cancellationStatus.innerText = 'You are eligible to cancel this order.';
-      cancellationStatus.style.color = 'green';
+//     if (currentTime - orderCreatedAt <= thresholdTime) {
+//       cancellationStatus.innerText = 'You are eligible to cancel this order.';
+//       cancellationStatus.style.color = 'green';
 
-      cancelButton.classList.add('disabled');
-      reportIssueButton.classList.remove('disabled');
-      transactionPinToCancelTrn.classList.add('disabled');
-    }
-}
+//       cancelButton.classList.add('disabled');
+//       reportIssueButton.classList.remove('disabled');
+//       transactionPinToCancelTrn.classList.add('disabled');
+//     } else {
+//       cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
+//       cancellationStatus.style.color = 'red';
+
+//       cancelButton.classList.remove('disabled');
+//       reportIssueButton.classList.add('disabled');
+//       transactionPinToCancelTrn.classList.remove('disabled');
+//     }
+// }
 
 // Function to render products into the table
 function renderOrderedProducts(products) {
