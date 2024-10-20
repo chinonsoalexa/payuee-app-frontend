@@ -268,7 +268,7 @@ function renderProducts(product) {
     document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
         // check if eligible to cancel transaction
-        
+        checkReturnEligibilityStatus(product);
         // renderOrderedProducts(product);
         const transactionModal = document.getElementById('transactionModal');
         // Create a new instance of the Bootstrap modal
@@ -278,45 +278,34 @@ function renderProducts(product) {
 
 }
 
-// Example times (replace with actual values)
-// const expectedDeliveryAt = new Date('2024-10-18T09:00:00'); // When the order was placed 
-// const orderCreatedAt = new Date('2024-10-20T09:00:00'); // Expected delivery date
+function checkReturnEligibilityStatus(product) {
+    const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
+    const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
 
-// Get elements
-// const checkCancellationButton = document.getElementById('checkCancellationButton');
-// const cancellationStatus = document.getElementById('cancellationStatus');
-// const reportIssueButton = document.getElementById('reportIssueButton');
-// const reportIssueInput = document.getElementById('reportIssueInput');
+    // Get elements
+    const cancellationStatus = document.getElementById('cancellationStatus');
+    const cancelButton = document.getElementById('cancelButton');
+    const reportIssueButton = document.getElementById('reportIssueButton');
+    const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
 
-// Calculate 30% cancellation threshold
-// const totalTime = expectedDeliveryAt - orderCreatedAt;
-// const thresholdTime = totalTime * 0.30;
+   // Calculate 30% cancellation threshold
+    const totalTime = expectedDeliveryAt - orderCreatedAt;
+    const thresholdTime = totalTime * 0.30; // 30% of the total time
 
-// Handle Check Cancellation Eligibility
-// checkCancellationButton.addEventListener('click', () => {
-//   const currentTime = new Date();
+    const currentTime = new Date(); // Current time
   
-//   if (currentTime - orderCreatedAt <= thresholdTime) {
-//     cancellationStatus.innerText = 'You are eligible to cancel this transaction.';
-//     cancellationStatus.style.color = 'green';
-//   } else {
-//     cancellationStatus.innerText = 'You are no longer eligible to cancel this transaction.';
-//     cancellationStatus.style.color = 'red';
-//   }
-// });
+    if (currentTime - orderCreatedAt <= thresholdTime) {
+      cancellationStatus.innerText = 'You are eligible to cancel this transaction.';
+      cancellationStatus.style.color = 'green';
 
-// Handle Report Issue
-// reportIssueButton.addEventListener('click', () => {
-//   const issueDescription = reportIssueInput.value.trim();
-  
-//   if (issueDescription) {
-//     alert('Your issue has been reported: ' + issueDescription);
-//     // Here you would send this data to your backend system
-//     reportIssueInput.value = ''; // Clear input after submission
-//   } else {
-//     alert('Please describe the issue before reporting.');
-//   }
-// });
+      cancelButton.classList.toggle('disabled');
+      reportIssueButton.classList.toggle('disabled');
+      transactionPinToCancelTrn.classList.toggle('disabled');
+    } else {
+      cancellationStatus.innerText = 'You are no longer eligible to cancel this transaction.';
+      cancellationStatus.style.color = 'red';
+    }
+}
 
 // Function to render products into the table
 function renderOrderedProducts(products) {
