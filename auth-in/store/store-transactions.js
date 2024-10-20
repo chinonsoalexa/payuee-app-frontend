@@ -295,14 +295,14 @@ function checkReturnEligibilityStatus(product) {
     const currentTime = new Date(); // Current time
   
     if (currentTime - orderCreatedAt <= thresholdTime) {
-      cancellationStatus.innerText = 'You are eligible to cancel this transaction.';
+      cancellationStatus.innerText = 'You are eligible to cancel this order.';
       cancellationStatus.style.color = 'green';
 
       cancelButton.classList.toggle('disabled');
       reportIssueButton.classList.toggle('disabled');
       transactionPinToCancelTrn.classList.toggle('disabled');
     } else {
-      cancellationStatus.innerText = 'You are no longer eligible to cancel this transaction.';
+      cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
       cancellationStatus.style.color = 'red';
     }
 }
