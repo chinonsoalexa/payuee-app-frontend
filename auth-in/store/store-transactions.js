@@ -321,7 +321,7 @@ function renderOrderedProducts(products) {
         <td><img src="https://payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
-        <td>₦${product.net_weight.toLocaleString()}</td>
+        <td>${product.net_weight}kg</td>
         <td>₦${product.order_cost.toLocaleString()}</td>
       `;
       orderedProductsTable.appendChild(row);
