@@ -858,7 +858,7 @@ function validateFields() {
         // productWidth.classList.remove('is-valid');
         productWidth.classList.remove('is-invalid');
         productWidth.classList.add('is-valid');
-        // isValid = false;
+        // isValid = true;
         // console.log("Net Weight is invalid.");
     }
 
@@ -871,7 +871,7 @@ function validateFields() {
         // productHeight.classList.remove('is-valid');
         productHeight.classList.remove('is-invalid');
         productHeight.classList.add('is-valid');
-        isValid = false;
+        // isValid = true;
         // console.log("Net Weight is invalid.");
     }
 
@@ -884,7 +884,7 @@ function validateFields() {
         // shippingClassSelection.classList.remove('is-valid');
         shippingClassSelection.classList.remove('is-invalid');
         shippingClassSelection.classList.add('is-valid');
-        isValid = false;
+        // isValid = true;
         // console.log("Featured Status is invalid.");
     }
 
