@@ -370,6 +370,60 @@ function renderOrderedProducts(products) {
     document.getElementById('cartShippingTotalPopUp').textContent = `₦${products.order_cost.toLocaleString()}`;
 
     document.getElementById('paymentButton').textContent = `Pay ₦${products.order_cost.toLocaleString()}`;
+
+    document.getElementById(`paymentButton`).addEventListener('click', async function(event) {
+        event.preventDefault();
+        const transactionPinInput = document.getElementById('transactionPinInput').value;
+        // const paymentButton = document.getElementById('paymentButton').value;
+
+                // All fields are valid, proceed with posting the product
+    const apiUrl = "https://api.payuee.com/verify-user-order";
+    // Construct the request body
+    const requestBody = {
+        order_id: +products.ID,  // Convert to number (if it's an integer)
+        trans_code: String(transactionPinInput),
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        console.log("responseData: ", responseData);
+        
+        } finally {
+
+            }
+
+        
+    })
 }
   
 function updateLink(urlIdToUpdate, pageNumber) {
