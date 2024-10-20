@@ -295,9 +295,9 @@ function renderProducts(product) {
           cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
           cancellationStatus.style.color = 'red';
     
-          cancelButton.classList.remove('disabled');
+          cancelButton.classList.add('disabled');
           reportIssueButton.classList.remove('disabled');
-          transactionPinToCancelTrn.classList.remove('disabled');
+          transactionPinToCancelTrn.classList.add('disabled');
         }
         // renderOrderedProducts(product);
         const transactionModal = document.getElementById('transactionModal');
