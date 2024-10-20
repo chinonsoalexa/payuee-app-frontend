@@ -1388,7 +1388,7 @@
         </div>
 
         <!-- Transaction Pin Input -->
-        <div class="mb-3">
+        <div class="mb-3 disabled">
           <h6>Enter Transaction Pin to Cancel <span class="text-danger">*</span></h6>
           <input type="password" id="transactionPinInput" class="form-control" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
           <div class="text-end mt-2">
@@ -1401,7 +1401,8 @@
           <h6>Report Order Issue</h6>
           <textarea id="reportIssueInput" class="form-control" placeholder="Describe the issue (e.g., wrong product delivered, product damage, etc.)" rows="4"></textarea>
           <div class="text-end mt-2">
-            <button id="reportIssueButton" type="button" class="btn btn-danger w-100" style="padding: 10px 15px; border-radius: 0.25rem;">Cancel Order</button>
+            <button id="cancelButton" type="button" class="btn btn-danger w-100 disabled" style="padding: 10px 15px; border-radius: 0.25rem;">Cancel Order</button>
+            <button id="reportIssueButton" type="button" class="btn btn-danger w-100 disabled" style="padding: 10px 15px; border-radius: 0.25rem;">Report Issue</button>
           </div>
         </div>
 
