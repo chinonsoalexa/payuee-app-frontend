@@ -298,12 +298,16 @@ function checkReturnEligibilityStatus(product) {
       cancellationStatus.innerText = 'You are eligible to cancel this order.';
       cancellationStatus.style.color = 'green';
 
-      cancelButton.classList.toggle('disabled');
-      reportIssueButton.classList.toggle('disabled');
-      transactionPinToCancelTrn.classList.toggle('disabled');
+      cancelButton.classList.add('disabled');
+      reportIssueButton.classList.remove('disabled');
+      transactionPinToCancelTrn.classList.add('disabled');
     } else {
       cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
       cancellationStatus.style.color = 'red';
+
+      cancelButton.classList.remove('disabled');
+      reportIssueButton.classList.add('disabled');
+      transactionPinToCancelTrn.classList.remove('disabled');
     }
 }
 
