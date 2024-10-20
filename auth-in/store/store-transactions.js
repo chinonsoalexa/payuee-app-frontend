@@ -421,21 +421,24 @@ function renderLoading() {
 
 function formatNumberToNaira(number) {
     let formattedNumber;
-    
-    if (number >= 1e6) {
-        // Format millions (e.g., 23m for 23,000,000)
+
+    if (number > 999999999) {
+        // Format for billions (e.g., 1,500,000,000 -> 1.5b)
+        formattedNumber = (number % 1e9 === 0) ? (number / 1e9) + 'b' : (number / 1e9).toFixed(1) + 'b';
+    } else if (number > 999999) {
+        // Format for millions (e.g., 2,300,000 -> 2.3m)
         formattedNumber = (number % 1e6 === 0) ? (number / 1e6) + 'm' : (number / 1e6).toFixed(1) + 'm';
-    } else if (number >= 1e3) {
-        // Format thousands (e.g., 1.5k for 1500)
+    } else if (number > 99999) {
+        // Format for thousands (e.g., 150,000 -> 150k)
         formattedNumber = (number % 1e3 === 0) ? (number / 1e3) + 'k' : (number / 1e3).toFixed(1) + 'k';
     } else {
-        // Format smaller numbers as currency (e.g., ₦500)
+        // If it's 99,999 or less, display as is
         formattedNumber = new Intl.NumberFormat('en-NG', {
             style: 'currency',
             currency: 'NGN',
             minimumFractionDigits: 0
         }).format(number);
     }
-    
+
     return formattedNumber;
 }
