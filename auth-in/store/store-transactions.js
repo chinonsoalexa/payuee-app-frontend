@@ -225,7 +225,7 @@ function renderProducts(product) {
                     </div>
                     <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
                     <div class="price d-flex"> 
-                    <div class="text-muted me-2">Price</div>: ${formatNumberToNairaK(product.order_cost)}
+                    <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
                     </div>
                     <div class="avaiabilty">
                     <div id="text-danger${product.ID}" class="text-danger"><a href="#">Cancel</a></div>
@@ -420,14 +420,6 @@ function renderLoading() {
 }
 
 function formatNumberToNaira(number) {
-    return new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 0
-    }).format(number);
-}
-
-function formatNumberToNairaK(number) {
     let formattedNumber;
     
     if (number >= 1e6) {
