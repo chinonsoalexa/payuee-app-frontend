@@ -662,7 +662,7 @@ function validateFields() {
     // Validate Product Title
     const productTitleInput = document.getElementById('productTitle1');
     const productTitle = productTitleInput.value.trim();
-    // console.log("Product Title:", productTitle);
+    console.log("Product Title:", productTitle);
     if (!productTitle) {
         productTitleInput.classList.add('is-invalid');
         productTitleInput.classList.remove('is-valid');
@@ -677,7 +677,7 @@ function validateFields() {
     // Validate Description
     const editor = document.getElementById('editor2');
     const productDescription = editor.textContent.trim();
-    // console.log("Product Description:", productDescription);
+    console.log("Product Description:", productDescription);
     if (!productDescription) {
         editor.classList.add('is-invalid');
         editor.classList.remove('is-valid');
@@ -692,7 +692,7 @@ function validateFields() {
     // Validate Initial Cost
     const initialCostInput = document.getElementById('initialCost');
     const initialCost = parseFloat(initialCostInput.value);
-    // console.log("Initial Cost:", initialCost);
+    console.log("Initial Cost:", initialCost);
     if (isNaN(initialCost) || initialCost <= 0) {
         initialCostInput.classList.add('is-invalid');
         initialCostInput.classList.remove('is-valid');
@@ -707,7 +707,7 @@ function validateFields() {
     // Validate Selling Price
     const sellingPriceInput = document.getElementById('sellingPrice');
     const sellingPrice = parseFloat(sellingPriceInput.value);
-    // console.log("Selling Price:", sellingPrice);
+    console.log("Selling Price:", sellingPrice);
     if (isNaN(sellingPrice) || sellingPrice <= 0) {
         sellingPriceInput.classList.add('is-invalid');
         sellingPriceInput.classList.remove('is-valid');
@@ -722,7 +722,7 @@ function validateFields() {
     // Validate Product Stock
     const productStockInput = document.getElementById('productStock1');
     const productStock = parseInt(productStockInput.value, 10);
-    // console.log("Product Stock:", productStock);
+    console.log("Product Stock:", productStock);
     if (isNaN(productStock) || productStock < 0) {
         productStockInput.classList.add('is-invalid');
         productStockInput.classList.remove('is-valid');
@@ -737,7 +737,7 @@ function validateFields() {
     // Validate Net Weight
     const netWeightInput = document.getElementById('netWeight');
     const netWeightVal = parseInt(netWeightInput.value, 10);
-    // console.log("Net Weight:", netWeightVal);
+    console.log("Net Weight:", netWeightVal);
     if (isNaN(netWeightVal) || netWeightVal < 0) {
         netWeightInput.classList.add('is-invalid');
         netWeightInput.classList.remove('is-valid');
@@ -752,7 +752,7 @@ function validateFields() {
     // Validate Currency
     const currencySelect = document.getElementById('currencySelect');
     const currency = currencySelect.value.trim();
-    // console.log("Currency:", currency);
+    console.log("Currency:", currency);
     if (!currency) {
         currencySelect.classList.add('is-invalid');
         currencySelect.classList.remove('is-valid');
@@ -767,7 +767,7 @@ function validateFields() {
     // Validate Category
     const categorySelect = document.getElementById('validationDefault04');
     const category = categorySelect.value.trim();
-    // console.log("Category:", category);
+    console.log("Category:", category);
     if (!category) {
         categorySelect.classList.add('is-invalid');
         categorySelect.classList.remove('is-valid');
@@ -782,7 +782,7 @@ function validateFields() {
     // Validate Tags
     const tagsInput = document.getElementById('tags');
     const tags = tagsInput.value.trim();
-    // console.log("Tags:", tags);
+    console.log("Tags:", tags);
     if (!tags) {
         tagsInput.classList.add('is-invalid');
         tagsInput.classList.remove('is-valid');
@@ -797,7 +797,7 @@ function validateFields() {
     // Validate Publish Status
     const publishStatusInput = document.getElementById('publishStatus');
     const publishStatus = publishStatusInput.value.trim();
-    // console.log("Publish Status:", publishStatus);
+    console.log("Publish Status:", publishStatus);
     if (!publishStatus) {
         publishStatusInput.classList.add('is-invalid');
         publishStatusInput.classList.remove('is-valid');
@@ -812,7 +812,7 @@ function validateFields() {
     // Validate Featured Status
     const featuredStatusInput = document.getElementById('featuredStatus');
     const featuredStatus = featuredStatusInput.value.trim();
-    // console.log("Featured Status:", featuredStatus);
+    console.log("Featured Status:", featuredStatus);
     if (!featuredStatus) {
         featuredStatusInput.classList.add('is-invalid');
         featuredStatusInput.classList.remove('is-valid');
@@ -827,7 +827,7 @@ function validateFields() {
     // Estimated Delivery
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
-    // console.log("Estimated Delivery:", estimatedDeliveryVal);
+    console.log("Estimated Delivery:", estimatedDeliveryVal);
     if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0 || estimatedDeliveryVal > 30) {
         estimatedDelivery.classList.add('is-invalid');
         estimatedDelivery.classList.remove('is-valid');
@@ -839,7 +839,8 @@ function validateFields() {
 
         // Validate Product Length
     const productLength = document.getElementById('productLength');
-    // const productLengthVal = parseInt(productLength.value, 10);
+    const productLengthVal = parseInt(productLength.value, 10);
+    console.log("productLength:", productLengthVal);
     if (productLength) {
         // productLength.classList.add('is-invalid');
         // productLength.classList.remove('is-valid');
@@ -851,7 +852,7 @@ function validateFields() {
 
     // Validate Net Weight
     const productWidth = document.getElementById('productWidth');
-    // console.log("Net Weight:", netWeightVal);
+    console.log("productWidth:", productWidth.value);
     if (productWidth) {
         // productWidth.classList.add('is-invalid');
         // productWidth.classList.remove('is-valid');
@@ -863,8 +864,8 @@ function validateFields() {
 
     // Validate Net Weight
     const productHeight = document.getElementById('productHeight');
-    // const productHeightVal = parseInt(productHeight.value, 10);
-    // console.log("Net Weight:", netWeightVal);
+    const productHeightVal = parseInt(productHeight.value, 10);
+    console.log("productHeightVal:", productHeightVal);
     if (productHeight){
         // productHeight.classList.add('is-invalid');
         // productHeight.classList.remove('is-valid');
@@ -877,7 +878,7 @@ function validateFields() {
     // Validate Shipping Class
     const shippingClassSelection = document.getElementById('shippingClassSelection');
     const shippingClassSelectionStatus = shippingClassSelection.value.trim();
-    // console.log("Featured Status:", shippingClassSelectionStatus);
+    console.log("shippingClassSelection:", shippingClassSelectionStatus);
     if (!shippingClassSelectionStatus) {
         // shippingClassSelection.classList.add('is-invalid');
         // shippingClassSelection.classList.remove('is-valid');
@@ -890,7 +891,7 @@ function validateFields() {
     // Validate Featured Status
     const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
     const stockAvailabilityStatus1 = stockAvailabilityStatus.value.trim();
-    // console.log("Featured Status:", stockAvailabilityStatus1);
+    console.log("stockAvailabilityStatus:", stockAvailabilityStatus1);
     if (!stockAvailabilityStatus1) {
         stockAvailabilityStatus.classList.add('is-invalid');
         stockAvailabilityStatus.classList.remove('is-valid');

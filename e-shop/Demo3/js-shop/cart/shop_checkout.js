@@ -1113,7 +1113,8 @@ async function placeOrder() {
         'quantity',
         'product_image',
         'initial_cost',
-        'selling_price'
+        'selling_price',
+        'estimated_delivery'
     ];
 
     // Function to clean cart items

@@ -41,13 +41,6 @@ async function updateProduct() {
     if (validateFields()) {
         // All fields are valid, proceed with posting the product
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
-    formData.append("repost", repost);
-    formData.append("estimateDeliveryStat", estimateDeliveryStat);
-    formData.append("productLengthValue", productLengthValue);
-    formData.append("productWidthValue", productWidthValue);
-    formData.append("productHeightValue", productHeightValue);
-    formData.append("shippingClassSelectionValue", shippingClassSelectionValue);
-    formData.append("stockAvailabilityStatusValue", stockAvailabilityStatusValue);
     // Construct the request body
     const requestBody = {
         product_id: +productToUpdate,  // Convert to number (if it's an integer)
