@@ -190,7 +190,6 @@
    display: none;
 }
 
-
 /*  css for modal start */
 .custom-modal .modal-dialog {
   max-width: 600px;
@@ -300,6 +299,26 @@
 
 .custom-button:hover {
   background-color: #0056b3;
+}
+
+.custom-logo {
+    width: 32px;
+    height: auto;
+  }
+.modal-header {
+  background-color: #f8f9fa;
+}
+.modal-body h6 {
+  font-weight: bold;
+}
+.btn {
+  padding: 10px 15px;
+}
+.form-control, .btn {
+  border-radius: 0.25rem;
+}
+.alert {
+  font-size: 0.875rem;
 }
 
  </style>
@@ -1341,62 +1360,61 @@
 </div>
 
 <!-- Transaction Cancellation & Dispute Modal -->
-<div class="modal fade custom-modal" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
-    <div class="modal-content custom-modal-content">
+<div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
       <!-- Modal Header -->
-      <div class="modal-header custom-modal-header">
-        <h5 class="modal-title custom-modal-title d-flex align-items-center">
-          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+      <div class="modal-header">
+        <h5 class="modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo me-2">
           Payuee e-Pay - Transaction Cancellation & Dispute
         </h5>
-        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <!-- Modal Body -->
-      <div class="modal-body custom-modal-body">
+      <div class="modal-body">
         <!-- Transaction Cancellation Section -->
-        <h6 class="custom-section-title">Check Eligibility for Cancellation</h6>
-        <div class="mb-4">
+        <h6>Check Eligibility for Cancellation</h6>
+        <div class="mb-3">
           <p id="cancellationEligibilityMessage">You can check if you're eligible to cancel the transaction based on the time window.</p>
-          <button type="button" id="checkCancellationButton" class="custom-button">Check Eligibility</button>
+          <button type="button" id="checkCancellationButton" class="btn btn-primary w-100">Check Eligibility</button>
         </div>
 
         <!-- Display result if eligible or not -->
-        <div class="mb-4">
-          <h6 class="custom-section-title">Cancellation Status</h6>
-          <p id="cancellationStatus">Waiting for eligibility check...</p>
+        <div class="mb-3">
+          <h6>Cancellation Status</h6>
+          <p id="cancellationStatus" class="text-muted">Waiting for eligibility check...</p>
         </div>
 
         <!-- Transaction Pin Input -->
-        <div class="mb-4">
-          <h6 class="custom-section-title">Enter Transaction Pin to Cancel <span style="color: red;">*</span></h6>
-          <input type="password" id="transactionPinInput" class="custom-input" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
+        <div class="mb-3">
+          <h6>Enter Transaction Pin to Cancel <span class="text-danger">*</span></h6>
+          <input type="password" id="transactionPinInput" class="form-control" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
           <div class="text-end mt-2">
-            <a href="#" id="forgotTransactionPinLink" class="custom-link">Forgot Transaction Pin?</a>
+            <a href="#" id="forgotTransactionPinLink" class="text-primary">Forgot Transaction Pin?</a>
           </div>
         </div>
 
         <!-- Report Issue Section -->
-        <div class="mb-4">
-          <h6 class="custom-section-title">Report Order Issue</h6>
-          <textarea id="reportIssueInput" class="custom-input" placeholder="Describe the issue (e.g., wrong product delivered, product damage, etc.)" rows="4"></textarea>
+        <div class="mb-3">
+          <h6>Report Order Issue</h6>
+          <textarea id="reportIssueInput" class="form-control" placeholder="Describe the issue (e.g., wrong product delivered, product damage, etc.)" rows="4"></textarea>
           <div class="text-end mt-2">
-            <button id="reportIssueButton" type="button" class="custom-button">Report Issue</button>
+            <button id="reportIssueButton" type="button" class="btn btn-danger w-100">Report Issue</button>
           </div>
         </div>
 
         <!-- Secure Message -->
-        <div class="custom-alert">
-          <i class="bi bi-shield-lock-fill"></i> Your transaction detail is 100% secure.
+        <div class="alert alert-info d-flex align-items-center mt-3">
+          <i class="bi bi-shield-lock-fill me-2"></i> Your transaction detail is 100% secure.
         </div>
-
       </div>
 
       <!-- Modal Footer -->
       <div class="modal-footer justify-content-center">
-        <p class="text-muted small text-center">
-          By submitting, you agree to our <a href="#" class="custom-link">Terms & Conditions</a>.
+        <p class="small text-muted text-center">
+          By submitting, you agree to our <a href="#" class="text-decoration-underline">Terms & Conditions</a>.
         </p>
       </div>
     </div>
