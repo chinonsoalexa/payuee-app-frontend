@@ -296,7 +296,7 @@ function renderProducts(product) {
           cancellationStatus.style.color = 'red';
     
           cancelButton.classList.remove('disabled');
-        //   reportIssueButton.classList.add('disabled');
+          reportIssueButton.classList.remove('disabled');
           transactionPinToCancelTrn.classList.remove('disabled');
         }
         // renderOrderedProducts(product);
