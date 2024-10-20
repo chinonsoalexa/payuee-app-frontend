@@ -423,11 +423,11 @@ function formatNumberToNaira(number) {
     let formattedNumber;
     
     if (number >= 1e6) {
-        // Format millions (e.g., 4.3m)
-        formattedNumber = (number / 1e6).toFixed(1) + 'm';
+        // Format millions (e.g., 23m for 23,000,000)
+        formattedNumber = (number % 1e6 === 0) ? (number / 1e6) + 'm' : (number / 1e6).toFixed(1) + 'm';
     } else if (number >= 1e3) {
-        // Format thousands (e.g., 1.5k)
-        formattedNumber = (number / 1e3).toFixed(1) + 'k';
+        // Format thousands (e.g., 1.5k for 1500)
+        formattedNumber = (number % 1e3 === 0) ? (number / 1e3) + 'k' : (number / 1e3).toFixed(1) + 'k';
     } else {
         // Format smaller numbers as currency (e.g., ₦500)
         formattedNumber = new Intl.NumberFormat('en-NG', {
