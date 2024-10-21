@@ -471,7 +471,7 @@ function removeFromCart(productId) {
     CalculateCartSubtotal();
 }
 
-function CalculateCartSubtotal() {
+async function CalculateCartSubtotal() {
     // Get cart from local storage
     // console.log("Started calculating cart subtotal.krk");
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -509,7 +509,7 @@ function CalculateCartSubtotal() {
     
     totalCharge = subtotal + shippingCost;
         console.log("here 3");
-    getShippingFees();
+    await getShippingFees();
         console.log("here 4");
     // console.log("Total charge after including shipping:", totalCharge);
 }
