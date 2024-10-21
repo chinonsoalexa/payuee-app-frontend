@@ -222,7 +222,7 @@ function renderProducts(product) {
         `
     } else if (product.order_status === "shipped") {
         productIssue = `
-        <div id="text-danger${product.ID}"><a href="#" style="color: red;">Report</a></div>
+        <div id="report-danger${product.ID}"><a href="#" style="color: red;">Report</a></div>
         `
     }
 
@@ -291,6 +291,14 @@ function renderProducts(product) {
 
         // Show the transaction modal
         handleModalShow(product, 'transactionModal');
+    });
+
+    // Special handling for cancel transaction button
+    document.getElementById(`report-danger${product.ID}`).addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Show the transaction modal
+        handleModalShow(product, 'transactionDisputModal');
     });
 
 }
