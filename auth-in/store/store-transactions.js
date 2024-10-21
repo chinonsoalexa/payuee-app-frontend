@@ -416,18 +416,18 @@ function renderOrderedProducts(products) {
             }
 
             const responseData = await response.json();
-            console.log("responseData: ", responseData);
-            if (responseData.ok) {
+            // console.log("responseData: ", responseData);
+            if (!responseData.ok) {
+                const transactionFailedModal = document.getElementById('transactionFailedModal');
+                // Create a new instance of the Bootstrap modal
+                const transactionFailedModal1 = new bootstrap.Modal(transactionFailedModal);
+                transactionFailedModal1.show();    // Show the modal programmatically
+            } else {
                 const transactionSuccessModal = document.getElementById('transactionSuccessModal');
                 // Create a new instance of the Bootstrap modal
                 const transactionSuccessModal1 = new bootstrap.Modal(transactionSuccessModal);
                 transactionSuccessModal1.show();    // Show the modal programmatically
                 return;
-            }else {
-                const transactionFailedModal = document.getElementById('transactionFailedModal');
-                // Create a new instance of the Bootstrap modal
-                const transactionFailedModal1 = new bootstrap.Modal(transactionFailedModal);
-                transactionFailedModal1.show();    // Show the modal programmatically
             }
 
             } finally {
