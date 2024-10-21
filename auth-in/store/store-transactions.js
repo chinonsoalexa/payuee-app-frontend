@@ -319,6 +319,24 @@ function handleModalShow(product, modalID) {
     modalInstance.show();
 }
 
+// Function to handle rendering products and showing modals
+function showModal(modalID) {
+
+    // Show the specified modal programmatically
+    const modalElement = document.getElementById(modalID);
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
+}
+
+// Function to hide the modal programmatically
+function hideModal(modalID) {
+    const modalElement = document.getElementById(modalID);
+    const modalInstance = bootstrap.Modal.getInstance(modalElement); // Retrieve the existing modal instance
+    if (modalInstance) {
+        modalInstance.hide(); // Hide the modal
+    }
+}
+
 // function checkReturnEligibilityStatus(product) {
 //     const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
 //     const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
@@ -410,6 +428,8 @@ function renderOrderedProducts(products) {
 
             if (!response.ok) {
                 const errorData = await response.json();
+                hideModal('transactionModal')
+                showModal('transactionFailedModal');
 
                 if (errorData.error === 'failed to get user from request') {
                     // need to do a data of just null event 
@@ -428,19 +448,9 @@ function renderOrderedProducts(products) {
             }
 
             const responseData = await response.json();
-            // console.log("responseData: ", responseData);
-            if (!responseData.ok) {
-                const transactionFailedModal = document.getElementById('transactionFailedModal');
-                // Create a new instance of the Bootstrap modal
-                const transactionFailedModal1 = new bootstrap.Modal(transactionFailedModal);
-                transactionFailedModal1.show();    // Show the modal programmatically
-            } else {
-                const transactionSuccessModal = document.getElementById('transactionSuccessModal');
-                // Create a new instance of the Bootstrap modal
-                const transactionSuccessModal1 = new bootstrap.Modal(transactionSuccessModal);
-                transactionSuccessModal1.show();    // Show the modal programmatically
-                return;
-            }
+            hideModal('transactionModal');
+            showModal('transactionSuccessModal');
+            return;
 
             } finally {
 
