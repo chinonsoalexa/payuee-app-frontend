@@ -249,7 +249,7 @@ function renderProducts(product) {
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
-    if (!product.order_status === "cancelled" && !product.order_status === "shipped") {
+    if (product.order_status === "processing") {
         // Adding event listeners for product actions
         ['image', 'title', 'status'].forEach(function (prefix) {
             document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
