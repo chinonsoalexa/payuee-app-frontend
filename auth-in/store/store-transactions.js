@@ -259,7 +259,7 @@ function renderProducts(product) {
         });
     }
 
-    if (product.order_status === "cancelled") {
+    if (product.order_status === "cancelled" || product.order_status === "processing") {
         // Special handling for cancel transaction button
         document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
