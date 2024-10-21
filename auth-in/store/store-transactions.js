@@ -298,7 +298,7 @@ function renderProducts(product) {
         event.preventDefault();
 
         // Show the transaction modal
-        handleModalShow(product, 'transactionDisputModal');
+        handleModalShow(product, 'transactionDisputeModal');
     });
 
 }
