@@ -277,6 +277,7 @@ function renderProducts(product) {
             const totalTime = expectedDeliveryAt - orderCreatedAt;
             const thresholdTime = totalTime * 0.30;
             const currentTime = new Date();
+            document.getElementById('cancelationOrderId').textContent = `(${product.ID})`;
 
             if (currentTime - orderCreatedAt <= thresholdTime) {
                 cancellationStatus.innerText = 'You are eligible to cancel this order.';
