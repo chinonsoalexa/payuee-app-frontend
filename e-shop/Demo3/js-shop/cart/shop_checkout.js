@@ -410,7 +410,6 @@ function updateCartDrawer() {
             });
         });
     }
-    getShippingFees();
     CalculateCartSubtotal();
     renderCheckoutProducts();
 }
@@ -446,8 +445,6 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
 
         // Save the updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        getShippingFees();
 
         // Re-render the cart drawer
         CalculateCartSubtotal();
