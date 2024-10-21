@@ -200,6 +200,7 @@ function renderProducts(product) {
     rowElement.id = product.ID; // Set the ID of the row
 
     let productStatus;
+    let productIssue;
 
     if (product.order_status === "cancelled") {
         productStatus = `
@@ -212,6 +213,16 @@ function renderProducts(product) {
     } else {
         productStatus = `
         <a class="btn btn-primary btn-xs" id="status${product.ID}">Processing</a><i class="close" data-feather="x"></i>
+        `
+    }
+
+    if (product.order_status === "cancelled") {
+        productIssue = `
+        <div id="text-danger${product.ID}"><a href="#" style="color: red;">Cancel</a></div>
+        `
+    } else if (product.order_status === "shipped") {
+        productIssue = `
+        <div id="text-danger${product.ID}"><a href="#" style="color: red;">Report</a></div>
         `
     }
 
@@ -228,7 +239,7 @@ function renderProducts(product) {
                     <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
                     </div>
                     <div class="avaiabilty">
-                    <div id="text-danger${product.ID}"><a href="#" style="color: red;">Cancel</a></div>
+                    ${productIssue}
                     </div>${productStatus}
                 </div>
             </div>
@@ -238,74 +249,62 @@ function renderProducts(product) {
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
-    document.getElementById(`image${product.ID}`).addEventListener('click', function(event) {
-        event.preventDefault();
-        renderOrderedProducts(product);
-        const paymentModalElement = document.getElementById('checkoutModal');
-        // Create a new instance of the Bootstrap modal
-        const paymentModal = new bootstrap.Modal(paymentModalElement);
-        paymentModal.show();    // Show the modal programmatically
-    });
+    if (!product.order_status === "cancelled" && !product.order_status === "shipped") {
+        // Adding event listeners for product actions
+        ['image', 'title', 'status'].forEach(function (prefix) {
+            document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
+                event.preventDefault();
+                handleModalShow(product, 'checkoutModal');
+            });
+        });
+    }
 
-    document.getElementById(`title${product.ID}`).addEventListener('click', function(event) {
-        event.preventDefault();
-        renderOrderedProducts(product);
-        const paymentModalElement = document.getElementById('checkoutModal');
-        // Create a new instance of the Bootstrap modal
-        const paymentModal = new bootstrap.Modal(paymentModalElement);
-        paymentModal.show();    // Show the modal programmatically
-    });
-
-    document.getElementById(`status${product.ID}`).addEventListener('click', function(event) {
-        event.preventDefault();
-        renderOrderedProducts(product);
-        const paymentModalElement = document.getElementById('checkoutModal');
-        // Create a new instance of the Bootstrap modal
-        const paymentModal = new bootstrap.Modal(paymentModalElement);
-        paymentModal.show();    // Show the modal programmatically
-    });
-
+    // Special handling for cancel transaction button
     document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
         event.preventDefault();
-        // check if eligible to cancel transaction
-        // checkReturnEligibilityStatus(product);
-        const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
-        const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
-    
-        // Get elements
+
+        // Logic for checking cancellation eligibility
+        const orderCreatedAt = new Date(`${product.CreatedAt}`);
+        const expectedDeliveryAt = new Date(`${product.delivery_time}`);
         const cancellationStatus = document.getElementById('cancellationStatus');
         const cancelButton = document.getElementById('cancelButton');
         const reportIssueButton = document.getElementById('reportIssueButton');
         const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
-    
-       // Calculate 30% cancellation threshold
+
         const totalTime = expectedDeliveryAt - orderCreatedAt;
-        const thresholdTime = totalTime * 0.30; // 30% of the total time
-    
-        const currentTime = new Date(); // Current time
-      
+        const thresholdTime = totalTime * 0.30;
+        const currentTime = new Date();
+
         if (currentTime - orderCreatedAt <= thresholdTime) {
-          cancellationStatus.innerText = 'You are eligible to cancel this order.';
-          cancellationStatus.style.color = 'green';
-    
-          cancelButton.classList.remove('disabled');
-          reportIssueButton.classList.add('disabled');
-          transactionPinToCancelTrn.classList.remove('disabled');
+            cancellationStatus.innerText = 'You are eligible to cancel this order.';
+            cancellationStatus.style.color = 'green';
+            cancelButton.classList.remove('disabled');
+            reportIssueButton.classList.add('disabled');
+            transactionPinToCancelTrn.classList.remove('disabled');
         } else {
-          cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
-          cancellationStatus.style.color = 'red';
-    
-          cancelButton.classList.add('disabled');
-          reportIssueButton.classList.remove('disabled');
-          transactionPinToCancelTrn.classList.add('disabled');
+            cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
+            cancellationStatus.style.color = 'red';
+            cancelButton.classList.add('disabled');
+            reportIssueButton.classList.remove('disabled');
+            transactionPinToCancelTrn.classList.add('disabled');
         }
-        // renderOrderedProducts(product);
-        const transactionModal = document.getElementById('transactionModal');
-        // Create a new instance of the Bootstrap modal
-        const transactionModal1 = new bootstrap.Modal(transactionModal);
-        transactionModal1.show();    // Show the modal programmatically
+
+        // Show the transaction modal
+        handleModalShow(product, 'transactionModal');
     });
 
+}
+
+// Function to handle rendering products and showing modals
+function handleModalShow(product, modalID) {
+
+    // Render the ordered products
+    renderOrderedProducts(product);
+
+    // Show the specified modal programmatically
+    const modalElement = document.getElementById(modalID);
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
 }
 
 // function checkReturnEligibilityStatus(product) {
@@ -342,6 +341,7 @@ function renderProducts(product) {
 // }
 
 // Function to render products into the table
+
 function renderOrderedProducts(products) {
     const orderedProductsTable = document.getElementById('orderedProductsTable');
     orderedProductsTable.innerHTML = ''; // Clear any existing rows
