@@ -304,7 +304,66 @@ function renderProducts(product) {
             event.preventDefault();
 
             // Show the transaction modal
-            handleModalShow(product, 'transactionDisputeModal');
+            showModal(product, 'transactionDisputeModal');
+
+            document.getElementById(`reportIssueButton2`).addEventListener('click', async function(event) {
+                event.preventDefault();
+                const issue = document.getElementById(`reportIssueInput`);
+                issue.value;
+                if (issue.value == undefined || issue.value == "") {
+                    hideToast("please enter an issue to report");
+                }
+                const apiUrl = "https://api.payuee.com/report-vendor-order";
+                // Construct the request body
+                const requestBody = {
+                    order_id: +product.ID,  // Convert to number (if it's an integer)
+                    report_note: String(issue.value),
+                };
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                    body: JSON.stringify(requestBody)
+                };
+
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        hideModal('transactionModal')
+                        showModal('transactionFailedModal');
+
+                        if (errorData.error === 'failed to get user from request') {
+                            // need to do a data of just null event 
+                            // displayErrorMessage();
+                        } else if (errorData.error === 'failed to get transaction history') {
+                            // need to do a data of just null event 
+                            
+                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                            // let's log user out the users session has expired
+                            logout();
+                        }else {
+                            // displayErrorMessage();
+                        }
+
+                        return;
+                    }
+
+                    const responseData = await response.json();
+                    loading();
+                    hideModal('checkoutModal');
+                    showModal('transactionSuccessModal');
+                    await getProducts(pageNumber);
+                    return;
+
+                    } finally {
+
+                    }
+            });
         });
     }
 
@@ -565,7 +624,7 @@ function formatNumberToNaira(number) {
     return formattedNumber;
 }
 
-function showToast(message, duration = 7000) {
+function showToast(message, duration = 5000) {
     // Get the toast elements
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
