@@ -7,6 +7,8 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+let pageNumber;
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const params = new URLSearchParams(currentUrl.search);
 
     // Get individual parameter values
-    let pageNumber = params.get("page");
+    pageNumber = params.get("page");
     if (pageNumber == null) {
         pageNumber = "1";
     }
@@ -448,9 +450,10 @@ function renderOrderedProducts(products) {
             }
 
             const responseData = await response.json();
-            loading()
+            loading();
             hideModal('checkoutModal');
             showModal('transactionSuccessModal');
+            await getProducts(pageNumber);
             return;
 
             } finally {
