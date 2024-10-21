@@ -335,7 +335,7 @@ function renderProducts(product) {
                     if (!response.ok) {
                         const errorData = await response.json();
                         hideModal('transactionDisputeModal')
-                        showModal('disputeSuccessfulSubmission');
+                        showModal('disputeFailedModal');
 
                         if (errorData.error === 'failed to get user from request') {
                             // need to do a data of just null event 
@@ -355,8 +355,8 @@ function renderProducts(product) {
 
                     const responseData = await response.json();
                     loading();
-                    hideModal('checkoutModal');
-                    showModal('transactionSuccessModal');
+                    hideModal('transactionDisputeModal')
+                    showModal('disputeSuccessfulSubmission');
                     await getProducts(pageNumber);
                     return;
 
