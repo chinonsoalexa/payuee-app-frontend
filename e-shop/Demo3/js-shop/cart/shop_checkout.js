@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     renderCheckoutProducts();
-    await loadStates();
     
     // Retrieve the cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -55,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Check if the cart has items (greater than or equal to 1)
     if (cart.length > 0) {
         // Make request to get current shipping fees by Kilometer
+        await loadStates();
         await getShippingFees();
     }
 });
