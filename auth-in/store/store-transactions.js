@@ -377,60 +377,60 @@ function renderOrderedProducts(products) {
         // const paymentButton = document.getElementById('paymentButton').value;
 
                 // All fields are valid, proceed with posting the product
-    const apiUrl = "https://api.payuee.com/verify-user-order";
-    // Construct the request body
-    const requestBody = {
-        order_id: +products.ID,  // Convert to number (if it's an integer)
-        trans_code: String(transactionPinInput),
-    };
+        const apiUrl = "https://api.payuee.com/verify-user-order";
+        // Construct the request body
+        const requestBody = {
+            order_id: +products.ID,  // Convert to number (if it's an integer)
+            trans_code: String(transactionPinInput),
+        };
 
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify(requestBody)
-    };
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include', // set credentials to include cookies
+            body: JSON.stringify(requestBody)
+        };
 
-    try {
-        const response = await fetch(apiUrl, requestOptions);
+        try {
+            const response = await fetch(apiUrl, requestOptions);
 
-        if (!response.ok) {
-            const errorData = await response.json();
+            if (!response.ok) {
+                const errorData = await response.json();
 
-            if (errorData.error === 'failed to get user from request') {
-                // need to do a data of just null event 
-                // displayErrorMessage();
-            } else if (errorData.error === 'failed to get transaction history') {
-                // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                // let's log user out the users session has expired
-                logout();
-            }else {
-                // displayErrorMessage();
+                if (errorData.error === 'failed to get user from request') {
+                    // need to do a data of just null event 
+                    // displayErrorMessage();
+                } else if (errorData.error === 'failed to get transaction history') {
+                    // need to do a data of just null event 
+                    
+                } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                    // let's log user out the users session has expired
+                    logout();
+                }else {
+                    // displayErrorMessage();
+                }
+
+                return;
             }
 
-            return;
-        }
+            const responseData = await response.json();
+            console.log("responseData: ", responseData);
+            if (responseData.ok) {
+                const transactionSuccessModal = document.getElementById('transactionSuccessModal');
+                // Create a new instance of the Bootstrap modal
+                const transactionSuccessModal1 = new bootstrap.Modal(transactionSuccessModal);
+                transactionSuccessModal1.show();    // Show the modal programmatically
+                return;
+            }else {
+                const transactionFailedModal = document.getElementById('transactionFailedModal');
+                // Create a new instance of the Bootstrap modal
+                const transactionFailedModal1 = new bootstrap.Modal(transactionFailedModal);
+                transactionFailedModal1.show();    // Show the modal programmatically
+            }
 
-        const responseData = await response.json();
-        console.log("responseData: ", responseData);
-        if (responseData.ok) {
-            const transactionSuccessModal = document.getElementById('transactionSuccessModal');
-            // Create a new instance of the Bootstrap modal
-            const transactionSuccessModal1 = new bootstrap.Modal(transactionSuccessModal);
-            transactionSuccessModal1.show();    // Show the modal programmatically
-            return;
-        }else {
-            const transactionFailedModal = document.getElementById('transactionFailedModal');
-            // Create a new instance of the Bootstrap modal
-            const transactionFailedModal1 = new bootstrap.Modal(transactionFailedModal);
-            transactionFailedModal1.show();    // Show the modal programmatically
-        }
-
-        } finally {
+            } finally {
 
             }
 
