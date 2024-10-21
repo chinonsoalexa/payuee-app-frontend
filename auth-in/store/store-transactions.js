@@ -216,11 +216,11 @@ function renderProducts(product) {
         `
     }
 
-    if (product.order_status === "cancelled") {
+    if (product.order_status === "processing") {
         productIssue = `
         <div id="text-danger${product.ID}"><a href="#" style="color: red;">Cancel</a></div>
         `
-    } else if (product.order_status === "shipped") {
+    } else if (product.order_status === "shipped" || product.order_status === "cancelled") {
         productIssue = `
         <div id="report-danger${product.ID}"><a href="#" style="color: red;">Report</a></div>
         `
@@ -259,7 +259,7 @@ function renderProducts(product) {
         });
     }
 
-    if (product.order_status === "cancelled" || product.order_status === "processing") {
+    if (product.order_status === "processing") {
         // Special handling for cancel transaction button
         document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
@@ -295,7 +295,7 @@ function renderProducts(product) {
         });
     }
 
-    if (product.order_status === "shipped") {
+    if (product.order_status === "shipped" || product.order_status === "cancelled") {
         // Special handling for cancel transaction button
         document.getElementById(`report-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
