@@ -259,47 +259,51 @@ function renderProducts(product) {
         });
     }
 
-    // Special handling for cancel transaction button
-    document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
-        event.preventDefault();
+    if (product.order_status === "cancelled") {
+        // Special handling for cancel transaction button
+        document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
+            event.preventDefault();
 
-        // Logic for checking cancellation eligibility
-        const orderCreatedAt = new Date(`${product.CreatedAt}`);
-        const expectedDeliveryAt = new Date(`${product.delivery_time}`);
-        const cancellationStatus = document.getElementById('cancellationStatus');
-        const cancelButton = document.getElementById('cancelButton');
-        const reportIssueButton = document.getElementById('reportIssueButton');
-        const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
+            // Logic for checking cancellation eligibility
+            const orderCreatedAt = new Date(`${product.CreatedAt}`);
+            const expectedDeliveryAt = new Date(`${product.delivery_time}`);
+            const cancellationStatus = document.getElementById('cancellationStatus');
+            const cancelButton = document.getElementById('cancelButton');
+            const reportIssueButton = document.getElementById('reportIssueButton');
+            const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
 
-        const totalTime = expectedDeliveryAt - orderCreatedAt;
-        const thresholdTime = totalTime * 0.30;
-        const currentTime = new Date();
+            const totalTime = expectedDeliveryAt - orderCreatedAt;
+            const thresholdTime = totalTime * 0.30;
+            const currentTime = new Date();
 
-        if (currentTime - orderCreatedAt <= thresholdTime) {
-            cancellationStatus.innerText = 'You are eligible to cancel this order.';
-            cancellationStatus.style.color = 'green';
-            cancelButton.classList.remove('disabled');
-            reportIssueButton.classList.add('disabled');
-            transactionPinToCancelTrn.classList.remove('disabled');
-        } else {
-            cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
-            cancellationStatus.style.color = 'red';
-            cancelButton.classList.add('disabled');
-            reportIssueButton.classList.remove('disabled');
-            transactionPinToCancelTrn.classList.add('disabled');
-        }
+            if (currentTime - orderCreatedAt <= thresholdTime) {
+                cancellationStatus.innerText = 'You are eligible to cancel this order.';
+                cancellationStatus.style.color = 'green';
+                cancelButton.classList.remove('disabled');
+                reportIssueButton.classList.add('disabled');
+                transactionPinToCancelTrn.classList.remove('disabled');
+            } else {
+                cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
+                cancellationStatus.style.color = 'red';
+                cancelButton.classList.add('disabled');
+                reportIssueButton.classList.remove('disabled');
+                transactionPinToCancelTrn.classList.add('disabled');
+            }
 
-        // Show the transaction modal
-        handleModalShow(product, 'transactionModal');
-    });
+            // Show the transaction modal
+            handleModalShow(product, 'transactionModal');
+        });
+    }
 
-    // Special handling for cancel transaction button
-    document.getElementById(`report-danger${product.ID}`).addEventListener('click', function(event) {
-        event.preventDefault();
+    if (product.order_status === "shipped") {
+        // Special handling for cancel transaction button
+        document.getElementById(`report-danger${product.ID}`).addEventListener('click', function(event) {
+            event.preventDefault();
 
-        // Show the transaction modal
-        handleModalShow(product, 'transactionDisputeModal');
-    });
+            // Show the transaction modal
+            handleModalShow(product, 'transactionDisputeModal');
+        });
+    }
 
 }
 
