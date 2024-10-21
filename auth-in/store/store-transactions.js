@@ -392,6 +392,8 @@ function renderOrderedProducts(products) {
       `;
       orderedProductsTable.appendChild(row);
     });
+
+    document.getElementById('paymentOrderId').textContent = `(${products.ID})`;
   
     // Update the order summary totals
     document.getElementById('cartSubTotalPopUp').textContent = `₦${products.order_sub_total_cost.toLocaleString()}`;
