@@ -55,7 +55,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (cart.length > 0) {
         // Make request to get current shipping fees by Kilometer
         await loadStates();
+        console.log("here 1");
         await getShippingFees();
+        console.log("here 2");
     }
 });
 
@@ -506,7 +508,9 @@ function CalculateCartSubtotal() {
     document.getElementById('totalMain').innerText = formatNumberToNaira(subtotal + shippingCost);
     
     totalCharge = subtotal + shippingCost;
+        console.log("here 3");
     getShippingFees();
+        console.log("here 4");
     // console.log("Total charge after including shipping:", totalCharge);
 }
 
