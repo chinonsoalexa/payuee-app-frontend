@@ -10,7 +10,7 @@ var AllRecordsOnPageLoad;
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
-
+    showToast("hi i'm a skeleton loader");
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
@@ -448,7 +448,8 @@ function renderOrderedProducts(products) {
             }
 
             const responseData = await response.json();
-            hideModal('transactionModal');
+            loading()
+            hideModal('checkoutModal');
             showModal('transactionSuccessModal');
             return;
 
@@ -495,6 +496,8 @@ const loader = Array.from({ length: 12 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
+    const productBody = document.getElementById('order-grid');
+    productBody.innerHTML = '';
     loader.forEach(() => {
         renderLoading();
     });
@@ -554,4 +557,31 @@ function formatNumberToNaira(number) {
     }
 
     return formattedNumber;
+}
+
+function showToast(message, duration = 3000) {
+    // Get the toast elements
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    const closeToastBtn = document.getElementById('close-toast');
+
+    // Set the message
+    toastMessage.textContent = message;
+
+    // Show the toast
+    toast.classList.add('show');
+
+    // Hide the toast after the duration
+    setTimeout(() => {
+        hideToast();
+    }, duration);
+
+    // Add click event to close button
+    closeToastBtn.addEventListener('click', hideToast);
+}
+
+// Hide toast function
+function hideToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.remove('show');
 }

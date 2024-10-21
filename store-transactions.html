@@ -322,6 +322,55 @@
   font-size: 0.875rem;
 }
 
+/* Toast container */
+.toast {
+    visibility: hidden;
+    min-width: 200px; /* Reduce the minimum width */
+    max-width: 300px; /* Set a max width to prevent it from being too large */
+    background-color: #262fcc; /* Softer background color than black */
+    color: #f1f1f1; /* Light text for contrast */
+    text-align: left;
+    border-radius: 12px; /* Curved edges */
+    position: fixed;
+    z-index: 1000;
+    top: 100px;
+    left: 80%;
+    transform: translateX(-50%);
+    padding: 10px 20px; /* Reduced padding for a more compact look */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+/* Visible state of the toast */
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Toast content */
+.toast-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Close button */
+.close-toast-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px; /* Slightly smaller font size */
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.close-toast-btn:hover {
+    color: #ff6b6b; /* Red color on hover */
+}
+
+
  </style>
  
 </head>
@@ -1451,6 +1500,13 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id="toast" class="toast">
+    <div class="toast-content">
+        <span id="toast-message"></span>
+        <button id="close-toast" class="close-toast-btn">&times;</button>
+    </div>
 </div>
 
 <!-- Go To Top -->
