@@ -12,7 +12,7 @@ let pageNumber;
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
-    showToast("hi i'm a skeleton loader");
+    // showToast("hi i'm a skeleton loader");
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
