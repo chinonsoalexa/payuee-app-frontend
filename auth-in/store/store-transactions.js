@@ -366,9 +366,11 @@ function renderProducts(product) {
 
                 if (pin.value == undefined || pin.value == "") {
                     showToast("please enter your pin to continue");
+                    return;
                 }
                 if (issue.value == undefined || issue.value == "") {
                     showToast("please enter order issue to continue");
+                    return;
                 }
                 const apiUrl = "https://api.payuee.com/cancel-vendor-order";
                 // Construct the request body
