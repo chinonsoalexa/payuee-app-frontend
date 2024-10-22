@@ -256,6 +256,17 @@ function renderProducts(product) {
         ['image', 'title', 'status'].forEach(function (prefix) {
             document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
                 event.preventDefault();
+                const transactionCodeInput = document.getElementById('transactionPinInput');
+                // Restrict input to numeric values only and show error if non-numeric characters are entered
+                transactionCodeInput.addEventListener('input', function () {
+                    const nonNumericChars = /\D/g;
+                    if (nonNumericChars.test(this.value)) {
+                        // Show error message if non-numeric characters are found
+                        showToast("Only numbers are allowed");
+                    }
+                    // Remove any non-digit characters from the input value
+                    this.value = this.value.replace(nonNumericChars, '');
+                });
                 handleModalShow(product, 'checkoutModal');
             });
         });
@@ -676,16 +687,3 @@ function hideToast() {
     const toast = document.getElementById('toast');
     toast.classList.remove('show');
 }
-
-const transactionCodeInput = document.getElementById('transactionPinInput');
-
-// Restrict input to numeric values only and show error if non-numeric characters are entered
-transactionCodeInput.addEventListener('input', function () {
-    const nonNumericChars = /\D/g;
-    if (nonNumericChars.test(this.value)) {
-        // Show error message if non-numeric characters are found
-        showToast("Only numbers are allowed");
-    }
-    // Remove any non-digit characters from the input value
-    this.value = this.value.replace(nonNumericChars, '');
-});
