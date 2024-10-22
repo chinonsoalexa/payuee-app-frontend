@@ -412,10 +412,11 @@ function renderProducts(product) {
                     }
 
                     const responseData = await response.json();
+                    loading();
                     hideModal('transactionModal');
                     showModal('orderdisputeSuccessfulCancellation');
+                    getProducts(pageNumber);  // Fetch the products after successful submission
                     return;
-
                     } finally {
 
                     }
