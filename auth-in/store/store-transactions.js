@@ -304,125 +304,107 @@ function renderProducts(product) {
                 transactionPinToCancelTrn.classList.add('disabled');
             }
 
-            document.getElementById(`reportIssueButton`).addEventListener('click', async function(event) {
+            function handleReportIssue(event) {
                 event.preventDefault();
                 const issue = document.getElementById(`reportIssueInput3`);
-                issue.value;
-                if (issue.value == undefined || issue.value == "") {
+                if (issue.value === undefined || issue.value === "") {
                     showToast("please enter an issue to report");
+                    return;
                 }
+            
                 const apiUrl = "https://api.payuee.com/report-vendor-order";
-                // Construct the request body
                 const requestBody = {
-                    order_id: +product.ID,  // Convert to number (if it's an integer)
+                    order_id: +product.ID,
                     report_note: String(issue.value),
                 };
-
+            
                 const requestOptions = {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    credentials: 'include', // set credentials to include cookies
-                    body: JSON.stringify(requestBody)
+                    credentials: 'include',
+                    body: JSON.stringify(requestBody),
                 };
-
-                try {
-                    const response = await fetch(apiUrl, requestOptions);
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        showModal('disputeFailedModal');
-
-                        if (errorData.error === 'failed to get user from request') {
-                            // need to do a data of just null event 
-                            // displayErrorMessage();
-                        } else if (errorData.error === 'failed to get transaction history') {
-                            // need to do a data of just null event 
-                            
-                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                            // let's log user out the users session has expired
-                            logout();
-                        }else {
-                            // displayErrorMessage();
+            
+                fetch(apiUrl, requestOptions)
+                    .then(async response => {
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            showModal('disputeFailedModal');
+            
+                            if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                                logout();
+                            }
+                            return;
                         }
-
-                        return;
-                    }
-
-                    const responseData = await response.json();
-                    showModal('disputeSuccessfulSubmission');
-                    return;
-
-                    } finally {
-
-                    }
-            });
-
-            document.getElementById(`cancelButton`).addEventListener('click', async function(event) {
+                        const responseData = await response.json();
+                        showModal('disputeSuccessfulSubmission');
+                    })
+                    .finally(() => {
+                        // Remove the event listener after it's done
+                        document.getElementById(`reportIssueButton`).removeEventListener('click', handleReportIssue);
+                    });
+            }
+            
+            function handleCancelOrder(event) {
                 event.preventDefault();
                 const pin = document.getElementById(`transactionPinInput2`);
                 const issue = document.getElementById(`reportIssueInput3`);
-
-                if (pin.value == undefined || pin.value == "") {
+            
+                if (pin.value === undefined || pin.value === "") {
                     showToast("please enter your pin to continue");
                     return;
                 }
-                if (issue.value == undefined || issue.value == "") {
+                if (issue.value === undefined || issue.value === "") {
                     showToast("please enter order issue to continue");
                     return;
                 }
+            
                 const apiUrl = "https://api.payuee.com/cancel-vendor-order";
-                // Construct the request body
                 const requestBody = {
-                    order_id: +product.ID,  // Convert to number (if it's an integer)
+                    order_id: +product.ID,
                     trans_code: String(pin.value),
                     report_note: String(issue.value),
                 };
-
+            
                 const requestOptions = {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    credentials: 'include', // set credentials to include cookies
-                    body: JSON.stringify(requestBody)
+                    credentials: 'include',
+                    body: JSON.stringify(requestBody),
                 };
-
-                try {
-                    const response = await fetch(apiUrl, requestOptions);
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        hideModal('transactionModal')
-                        showModal('disputeFailedModal');
-
-                        if (errorData.error === 'failed to get user from request') {
-                            // need to do a data of just null event 
-                            // displayErrorMessage();
-                        } else if (errorData.error === 'failed to get transaction history') {
-                            // need to do a data of just null event 
-                            
-                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                            // let's log user out the users session has expired
-                            logout();
-                        }else {
-                            // displayErrorMessage();
+            
+                fetch(apiUrl, requestOptions)
+                    .then(async response => {
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            hideModal('transactionModal');
+                            showModal('disputeFailedModal');
+            
+                            if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                                logout();
+                            }
+                            return;
                         }
+            
+                        const responseData = await response.json();
+                        loading();
+                        hideModal('transactionModal');
+                        showModal('orderdisputeSuccessfulCancellation');
+                        getProducts(pageNumber);  // Fetch the products after successful submission
+                    })
+                    .finally(() => {
+                        // Remove the event listener after it's done
+                        document.getElementById(`cancelButton`).removeEventListener('click', handleCancelOrder);
+                    });
+            }
 
-                        return;
-                    }
-
-                    const responseData = await response.json();
-                    loading();
-                    hideModal('transactionModal');
-                    showModal('orderdisputeSuccessfulCancellation');
-                    getProducts(pageNumber);  // Fetch the products after successful submission
-                    return;
-                    } finally {
-
-                    }
-            });
+            // Attach event listeners
+            document.getElementById(`reportIssueButton`).addEventListener('click', handleReportIssue);
+            document.getElementById(`cancelButton`).addEventListener('click', handleCancelOrder);
 
             // Show the transaction modal
             showModal('transactionModal');
