@@ -6,6 +6,7 @@ var TwoBeforePageOnLoad;
 var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
+var ratingAmount = 0;
 
 let pageNumber;
 
@@ -13,17 +14,25 @@ let pageNumber;
 (function () {
     document.querySelectorAll(".feedback li").forEach((entry) =>
       entry.addEventListener("click", (e) => {
-        if (!entry.classList.contains("active")) {
-          document
-            .querySelector(".feedback li.active")
-            .classList.remove("active");
-          entry.classList.add("active");
-        }
         e.preventDefault();
+        
+        // Remove the active class from the currently active element
+        const activeElement = document.querySelector(".feedback li.active");
+        if (activeElement) {
+          activeElement.classList.remove("active");
+        }
+  
+        // Add the active class to the clicked element
+        entry.classList.add("active");
+  
+        // Get the rating value from the clicked element
+        const rating = entry.getAttribute("data-rating");
+        ratingAmount = rating;
+        // console.log("Selected rating:", rating); // Output the rating (1-5)
       })
     );
-  })();
-  
+  })();  
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
