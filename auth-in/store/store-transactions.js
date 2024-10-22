@@ -27,8 +27,8 @@ let pageNumber;
   
         // Get the rating value from the clicked element
         const rating = entry.getAttribute("data-rating");
-        ratingAmount = rating;
-        // console.log("Selected rating:", rating); // Output the rating (1-5)
+        ratingAmount = +rating;
+        // console.log("Selected rating:", ratingAmount); // Output the rating (1-5)
       })
     );
   })();  
