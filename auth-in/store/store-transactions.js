@@ -304,7 +304,7 @@ function renderProducts(product) {
             event.preventDefault();
 
             // Show the transaction modal
-            showModal(product, 'transactionDisputeModal');
+            showModal('transactionDisputeModal');
 
             document.getElementById(`reportIssueButton2`).addEventListener('click', async function(event) {
                 event.preventDefault();
