@@ -297,7 +297,7 @@ function renderProducts(product) {
                 const issue = document.getElementById(`reportIssueInput3`);
                 issue.value;
                 if (issue.value == undefined || issue.value == "") {
-                    hideToast("please enter an issue to report");
+                    showToast("please enter an issue to report");
                 }
                 const apiUrl = "https://api.payuee.com/report-vendor-order";
                 // Construct the request body
@@ -369,7 +369,7 @@ function renderProducts(product) {
                 event.preventDefault();
                 const issue = document.getElementById(`reportIssueInput`);
                 if (issue.value == undefined || issue.value == "") {
-                    hideToast("Please enter an issue to report");
+                    showToast("Please enter an issue to report");
                     return;
                 }
 
