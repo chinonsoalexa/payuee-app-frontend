@@ -9,10 +9,26 @@ var AllRecordsOnPageLoad;
 
 let pageNumber;
 
+// Emoji
+(function () {
+    document.querySelectorAll(".feedback li").forEach((entry) =>
+      entry.addEventListener("click", (e) => {
+        if (!entry.classList.contains("active")) {
+          document
+            .querySelector(".feedback li.active")
+            .classList.remove("active");
+          entry.classList.add("active");
+        }
+        e.preventDefault();
+      })
+    );
+  })();
+  
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
     // showToast("hi i'm a skeleton loader");
+    showModal("transactionSuccessModal");
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
