@@ -413,7 +413,7 @@ function renderProducts(product) {
 
                     const responseData = await response.json();
                     hideModal('transactionModal');
-                    showModal('disputeSuccessfulSubmission');
+                    showModal('orderdisputeSuccessfulCancellation');
                     return;
 
                     } finally {
