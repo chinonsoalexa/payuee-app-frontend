@@ -292,13 +292,71 @@ function renderProducts(product) {
                 reportIssueButton.classList.remove('disabled');
                 transactionPinToCancelTrn.classList.add('disabled');
             }
+            document.getElementById(`reportIssueButton`).addEventListener('click', async function(event) {
+                event.preventDefault();
+                const issue = document.getElementById(`reportIssueInput3`);
+                issue.value;
+                if (issue.value == undefined || issue.value == "") {
+                    hideToast("please enter an issue to report");
+                }
+                const apiUrl = "https://api.payuee.com/report-vendor-order";
+                // Construct the request body
+                const requestBody = {
+                    order_id: +product.ID,  // Convert to number (if it's an integer)
+                    report_note: String(issue.value),
+                };
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                    body: JSON.stringify(requestBody)
+                };
+
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        // hideModal('transactionDisputeModal')
+                        showModal('disputeFailedModal');
+
+                        if (errorData.error === 'failed to get user from request') {
+                            // need to do a data of just null event 
+                            // displayErrorMessage();
+                        } else if (errorData.error === 'failed to get transaction history') {
+                            // need to do a data of just null event 
+                            
+                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                            // let's log user out the users session has expired
+                            logout();
+                        }else {
+                            // displayErrorMessage();
+                        }
+
+                        return;
+                    }
+
+                    const responseData = await response.json();
+                    loading();
+                    // hideModal('transactionDisputeModal')
+                    showModal('disputeSuccessfulSubmission');
+                    await getProducts(pageNumber);
+                    return;
+
+                    } finally {
+
+                    }
+            });
 
             // Show the transaction modal
-            handleModalShow(product, 'transactionModal');
+            showModal('transactionModal');
         });
     }
 
-    if (product.order_status === "shipped" || product.order_status === "cancelled") {
+    if (product.order_status === "shipped" || product.order_status === "cancelled") {   
         // Special handling for cancel transaction button
         document.getElementById(`report-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
@@ -399,41 +457,7 @@ function hideModal(modalID) {
     }
 }
 
-// function checkReturnEligibilityStatus(product) {
-//     const orderCreatedAt = new Date(`${product.CreatedAt}`); // When the order was placed
-//     const expectedDeliveryAt = new Date(`${product.delivery_time}`); // Expected delivery date
-
-//     // Get elements
-//     const cancellationStatus = document.getElementById('cancellationStatus');
-//     const cancelButton = document.getElementById('cancelButton');
-//     const reportIssueButton = document.getElementById('reportIssueButton');
-//     const transactionPinToCancelTrn = document.getElementById('transactionPinToCancelTrn');
-
-//    // Calculate 30% cancellation threshold
-//     const totalTime = expectedDeliveryAt - orderCreatedAt;
-//     const thresholdTime = totalTime * 0.30; // 30% of the total time
-
-//     const currentTime = new Date(); // Current time
-  
-//     if (currentTime - orderCreatedAt <= thresholdTime) {
-//       cancellationStatus.innerText = 'You are eligible to cancel this order.';
-//       cancellationStatus.style.color = 'green';
-
-//       cancelButton.classList.add('disabled');
-//       reportIssueButton.classList.remove('disabled');
-//       transactionPinToCancelTrn.classList.add('disabled');
-//     } else {
-//       cancellationStatus.innerText = 'You are no longer eligible to cancel this order.';
-//       cancellationStatus.style.color = 'red';
-
-//       cancelButton.classList.remove('disabled');
-//       reportIssueButton.classList.add('disabled');
-//       transactionPinToCancelTrn.classList.remove('disabled');
-//     }
-// }
-
 // Function to render products into the table
-
 function renderOrderedProducts(products) {
     const orderedProductsTable = document.getElementById('orderedProductsTable');
     orderedProductsTable.innerHTML = ''; // Clear any existing rows
