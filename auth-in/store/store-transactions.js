@@ -303,6 +303,7 @@ function renderProducts(product) {
                 reportIssueButton.classList.remove('disabled');
                 transactionPinToCancelTrn.classList.add('disabled');
             }
+            
             document.getElementById(`reportIssueButton`).addEventListener('click', async function(event) {
                 event.preventDefault();
                 const issue = document.getElementById(`reportIssueInput3`);
@@ -331,7 +332,6 @@ function renderProducts(product) {
 
                     if (!response.ok) {
                         const errorData = await response.json();
-                        // hideModal('transactionDisputeModal')
                         showModal('disputeFailedModal');
 
                         if (errorData.error === 'failed to get user from request') {
@@ -351,10 +351,66 @@ function renderProducts(product) {
                     }
 
                     const responseData = await response.json();
-                    loading();
-                    // hideModal('transactionDisputeModal')
                     showModal('disputeSuccessfulSubmission');
-                    await getProducts(pageNumber);
+                    return;
+
+                    } finally {
+
+                    }
+            });
+
+            document.getElementById(`cancelButton`).addEventListener('click', async function(event) {
+                event.preventDefault();
+                const pin = document.getElementById(`transactionPinInput2`);
+                const issue = document.getElementById(`reportIssueInput3`);
+
+                if (pin.value == undefined || pin.value == "") {
+                    showToast("please enter your pin to continue");
+                }
+                const apiUrl = "https://api.payuee.com/cancel-vendor-order";
+                // Construct the request body
+                const requestBody = {
+                    order_id: +product.ID,  // Convert to number (if it's an integer)
+                    trans_code: String(pin.value),
+                    report_note: String(issue.value),
+                };
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include', // set credentials to include cookies
+                    body: JSON.stringify(requestBody)
+                };
+
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        hideModal('transactionModal')
+                        showModal('disputeFailedModal');
+
+                        if (errorData.error === 'failed to get user from request') {
+                            // need to do a data of just null event 
+                            // displayErrorMessage();
+                        } else if (errorData.error === 'failed to get transaction history') {
+                            // need to do a data of just null event 
+                            
+                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                            // let's log user out the users session has expired
+                            logout();
+                        }else {
+                            // displayErrorMessage();
+                        }
+
+                        return;
+                    }
+
+                    const responseData = await response.json();
+                    hideModal('transactionModal');
+                    showModal('disputeSuccessfulSubmission');
                     return;
 
                     } finally {
