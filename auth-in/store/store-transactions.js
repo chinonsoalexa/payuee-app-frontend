@@ -303,7 +303,7 @@ function renderProducts(product) {
                 reportIssueButton.classList.remove('disabled');
                 transactionPinToCancelTrn.classList.add('disabled');
             }
-            
+
             document.getElementById(`reportIssueButton`).addEventListener('click', async function(event) {
                 event.preventDefault();
                 const issue = document.getElementById(`reportIssueInput3`);
@@ -366,6 +366,9 @@ function renderProducts(product) {
 
                 if (pin.value == undefined || pin.value == "") {
                     showToast("please enter your pin to continue");
+                }
+                if (issue.value == undefined || issue.value == "") {
+                    showToast("please enter order issue to continue");
                 }
                 const apiUrl = "https://api.payuee.com/cancel-vendor-order";
                 // Construct the request body
