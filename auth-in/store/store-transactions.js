@@ -364,13 +364,15 @@ function renderProducts(product) {
             // Show the transaction modal
             showModal('transactionDisputeModal');
 
-            document.getElementById(`reportIssueButton2`).addEventListener('click', async function(event) {
+            // Define a function for the report issue button
+            function handleReportIssue(event) {
                 event.preventDefault();
                 const issue = document.getElementById(`reportIssueInput`);
-                issue.value;
                 if (issue.value == undefined || issue.value == "") {
-                    hideToast("please enter an issue to report");
+                    hideToast("Please enter an issue to report");
+                    return;
                 }
+
                 const apiUrl = "https://api.payuee.com/report-vendor-order";
                 // Construct the request body
                 const requestBody = {
@@ -387,41 +389,41 @@ function renderProducts(product) {
                     body: JSON.stringify(requestBody)
                 };
 
-                try {
-                    const response = await fetch(apiUrl, requestOptions);
+                // Fetch API for reporting the issue
+                fetch(apiUrl, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                hideModal('transactionDisputeModal');
+                                showModal('disputeFailedModal');
 
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        hideModal('transactionDisputeModal')
-                        showModal('disputeFailedModal');
+                                if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history' || errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                                    logout();  // Log the user out if their session has expired
+                                }
 
-                        if (errorData.error === 'failed to get user from request') {
-                            // need to do a data of just null event 
-                            // displayErrorMessage();
-                        } else if (errorData.error === 'failed to get transaction history') {
-                            // need to do a data of just null event 
-                            
-                        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                            // let's log user out the users session has expired
-                            logout();
-                        }else {
-                            // displayErrorMessage();
+                                throw new Error('Error processing the report');
+                            });
                         }
+                        return response.json();
+                    })
+                    .then(responseData => {
+                        loading();
+                        hideModal('transactionDisputeModal');
+                        showModal('disputeSuccessfulSubmission');
+                        return getProducts(pageNumber);  // Fetch the products after successful submission
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    })
+                    .finally(() => {
+                        // Remove the event listener after the operation is complete
+                        document.getElementById(`reportIssueButton2`).removeEventListener('click', handleReportIssue);
+                    });
+            }
 
-                        return;
-                    }
-
-                    const responseData = await response.json();
-                    loading();
-                    hideModal('transactionDisputeModal')
-                    showModal('disputeSuccessfulSubmission');
-                    await getProducts(pageNumber);
-                    return;
-
-                    } finally {
-
-                    }
-            });
+            // Add event listener for the report issue button
+            const reportIssueButton = document.getElementById(`reportIssueButton2`);
+            reportIssueButton.addEventListener('click', handleReportIssue);
         });
     }
 
