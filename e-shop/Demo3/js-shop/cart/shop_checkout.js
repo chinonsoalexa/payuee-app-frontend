@@ -786,6 +786,8 @@ placeOrderButton.addEventListener("click", function(event) {
                     transactionSuccessModal.show();
                     let transactionCodeInput = document.getElementById('transactionCodeInput');
                     transactionCodeInput.value = "";
+                    // clear the products in the local storage
+                    localStorage.removeItem("cart");
                     return;
                 } else {
                     showToastMessageE(result.error)
