@@ -7,6 +7,10 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+var sort_option = 0;
+var min_price = 2500;
+var max_price = 35000;
+
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
 
@@ -46,14 +50,26 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/vendor/get-store-products/" + pageNumber + "/outfits";
+    const apiUrl = "https://api.payuee.com/vendor/get-store-products";
 
     const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            page_number: +pageNumber,
+            category: "outfits",
+            user_lat: 12.9716,
+            user_lon: 77.5946,
+            max_distance: 10,
+            min_price: min_price,
+            max_price: max_price,
+            // tags: ["mobile", "accessories"],
+            // additional_conditions: { /* any additional filters */ },
+            sort_option: sort_option
+        })
     };
 
     try {
