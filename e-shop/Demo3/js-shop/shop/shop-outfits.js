@@ -785,6 +785,7 @@ searchInput.addEventListener('input', function(event) {
   performSearch(searchQuery);
 });
 
+// FILTER BY SHOP SEARCH
 // Example search function (you can replace it with your logic)
 function performSearch(query) {
   if (query.length > 0) {
@@ -812,66 +813,87 @@ function performSearch(query) {
   }
 }
 
-  const selectors = {
+// FILTER BY WEIGHT (KG) AND BY PRICE
+const selectors = {
     elementClass: '.price-range-slider',
     minElement: '.price-range__min',
     maxElement: '.price-range__max'
   };
-
+  
   // Iterate over each slider element
   document.querySelectorAll(selectors.elementClass).forEach($se => {
-    const currency = $se.dataset.currency || '₦'; // Default currency if not provided
-
+    const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+  
     if ($se) {
       // Initialize the slider using the Slider library
       const priceRange = new Slider($se, {
         tooltip_split: true,
         formatter: function(value) {
+            if (currency == "kg") {
+                return value + currency;
+            } else if (currency == 'km') {
+                return value + currency;
+            }
           return currency + value;
         },
       });
-
+  
       // Event listener to get current min and max when slider stops moving
       priceRange.on('slideStop', (value) => {
-        const currentMin = value[0];  // This is the current minimum value
-        const currentMax = value[1];  // This is the current maximum value
-
-        // Log or use the min and max values however you need
+        const currentMin = value[0];  // Current minimum value
+        const currentMax = value[1];  // Current maximum value
+  
+        // Log or use the min and max values however needed
         console.log('Current Min:', currentMin);
         console.log('Current Max:', currentMax);
-
-        // Update the UI with the min and max values
-        const $minEl = $se.parentElement.querySelector(selectors.minElement);
-        const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-        $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
-        $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
-
+        if (currency == "kg") {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}kg`;
+            $maxEl.innerText = `${currentMax}kg`;
+        } else if (currency == 'km') {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}km`;
+            $maxEl.innerText = `${currentMax}km`;
+        } else {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+            $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+        }
+  
         // Optionally trigger some action with these values (e.g., filter products)
         updateFilterBasedOnPrice(currentMin, currentMax);
       });
-        // You can have a separate function that handles additional logic like filtering products
-        function updateFilterBasedOnPrice(minPrice, maxPrice) {
-            // Your logic to filter products or update UI based on the price range
-            console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
-                  // Handle the color selection
-      loading();
-    
-      setTimeout(() => {
-      // Clear current product grid
-      document.getElementById('products-grid').innerHTML = '';
   
-      // Shuffle products array before rendering
-      const shuffledProducts = shuffleArray(products);
+      // Function to update filters or product display based on the selected range
+      function updateFilterBasedOnPrice(minPrice, maxPrice) {
+        console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
+        
+        // Handle loading state
+        loading();
   
-      // Render the shuffled products
-      shuffledProducts.forEach((product) => {
-          renderProducts(product);
-      });
+        // Simulate loading and then render shuffled products
+        setTimeout(() => {
+          // Clear current product grid
+          document.getElementById('products-grid').innerHTML = '';
   
-      }, 3000);
-        }
+          // Shuffle products array before rendering
+          const shuffledProducts = shuffleArray(products);
+  
+          // Render the shuffled products
+          shuffledProducts.forEach((product) => {
+            renderProducts(product);
+          });
+        }, 3000);
+      }
     }
   });
+  
 }
 
 // Shuffle function using Fisher-Yates algorithm
