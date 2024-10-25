@@ -7,16 +7,19 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+var pageNumber;
+
 var sort_option = 0;
 var min_price = 2500;
 var max_price = 35000;
+var max_distance = 700;
+var weight = 20;
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
-    loading();
     updateCartNumber();
     updateCartDrawer();
     sortingAlgo();
@@ -40,17 +43,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     const params = new URLSearchParams(currentUrl.search);
 
     // Get individual parameter values
-    let pageNumber = params.get("page");
+    pageNumber = params.get("page");
     if (pageNumber == null) {
         pageNumber = "1";
     }
 
-    await getProducts(pageNumber);
+    await getProducts();
 
 });
 
-async function getProducts(pageNumber) {
+async function getProducts() {
     const apiUrl = "https://api.payuee.com/vendor/get-store-products";
+    loading();
 
     const requestOptions = {
         method: "POST",
@@ -59,15 +63,12 @@ async function getProducts(pageNumber) {
         },
         credentials: 'include', // set credentials to include cookies
         body: JSON.stringify({
-            page_number: +pageNumber,
+            page_number: pageNumber,
             category: "outfits",
-            user_lat: 12.9716,
-            user_lon: 77.5946,
-            max_distance: 10,
-            min_price: min_price,
-            max_price: max_price,
-            // tags: ["mobile", "accessories"],
-            // additional_conditions: { /* any additional filters */ },
+            max_distance: parseFloat(max_distance),
+            min_price: parseFloat(min_price),
+            max_price: parseFloat(max_price),
+            weight: parseFloat(weight),
             sort_option: sort_option
         })
     };
@@ -695,21 +696,8 @@ function sortingAlgo() {
 document.getElementById('sortingSelect').addEventListener('change', function() {
     const selectedValue = this.value;  // Get the selected option value
     console.log('Selected sorting option value:', selectedValue);
-    loading();
-    
-    setTimeout(() => {
-    // Clear current product grid
-    document.getElementById('products-grid').innerHTML = '';
-
-    // Shuffle products array before rendering
-    const shuffledProducts = shuffleArray(products);
-
-    // Render the shuffled products
-    shuffledProducts.forEach((product) => {
-        renderProducts(product);
-    });
-
-    }, 3000);
+    sort_option = selectedValue;
+    getProducts();
 });
 
 // Add event listeners to category links
@@ -738,54 +726,54 @@ document.querySelectorAll('.menu-link').forEach(link => {
   });
   
   // Add event listeners to color swatches
-  document.querySelectorAll('.swatch-color').forEach(swatch => {
-    swatch.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default behavior
-      const selectedColor = this.style.color;
-      console.log('Selected Color:', selectedColor);
-      // Handle the color selection
-      loading();
+//   document.querySelectorAll('.swatch-color').forEach(swatch => {
+//     swatch.addEventListener('click', function(event) {
+//       event.preventDefault(); // Prevent default behavior
+//       const selectedColor = this.style.color;
+//       console.log('Selected Color:', selectedColor);
+//       // Handle the color selection
+//       loading();
     
-      setTimeout(() => {
-      // Clear current product grid
-      document.getElementById('products-grid').innerHTML = '';
+//       setTimeout(() => {
+//       // Clear current product grid
+//       document.getElementById('products-grid').innerHTML = '';
   
-      // Shuffle products array before rendering
-      const shuffledProducts = shuffleArray(products);
+//       // Shuffle products array before rendering
+//       const shuffledProducts = shuffleArray(products);
   
-      // Render the shuffled products
-      shuffledProducts.forEach((product) => {
-          renderProducts(product);
-      });
+//       // Render the shuffled products
+//       shuffledProducts.forEach((product) => {
+//           renderProducts(product);
+//       });
   
-      }, 3000);
-    });
-  });
+//       }, 3000);
+//     });
+//   });
   
-  // Add event listeners to size buttons
-  document.querySelectorAll('.swatch-size').forEach(sizeButton => {
-    sizeButton.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default behavior
-      const selectedSize = this.textContent.trim();
-      console.log('Selected Size:', selectedSize);
-      // Handle the size selection
-      loading();
+//   // Add event listeners to size buttons
+//   document.querySelectorAll('.swatch-size').forEach(sizeButton => {
+//     sizeButton.addEventListener('click', function(event) {
+//       event.preventDefault(); // Prevent default behavior
+//       const selectedSize = this.textContent.trim();
+//       console.log('Selected Size:', selectedSize);
+//       // Handle the size selection
+//       loading();
     
-      setTimeout(() => {
-      // Clear current product grid
-      document.getElementById('products-grid').innerHTML = '';
+//       setTimeout(() => {
+//       // Clear current product grid
+//       document.getElementById('products-grid').innerHTML = '';
   
-      // Shuffle products array before rendering
-      const shuffledProducts = shuffleArray(products);
+//       // Shuffle products array before rendering
+//       const shuffledProducts = shuffleArray(products);
   
-      // Render the shuffled products
-      shuffledProducts.forEach((product) => {
-          renderProducts(product);
-      });
+//       // Render the shuffled products
+//       shuffledProducts.forEach((product) => {
+//           renderProducts(product);
+//       });
   
-      }, 3000);
-    });
-  });
+//       }, 3000);
+//     });
+//   });
   
 // Get the search input field by its ID
 const searchInput = document.getElementById('searchField');
@@ -808,19 +796,19 @@ function performSearch(query) {
     console.log('Performing search for:', query);
     // Add your search logic here, such as making an API call or filtering displayed results
           // Handle the color selection
-          loading();
+        //   loading();
     
           setTimeout(() => {
           // Clear current product grid
           document.getElementById('products-grid').innerHTML = '';
       
           // Shuffle products array before rendering
-          const shuffledProducts = shuffleArray(products);
+        //   const shuffledProducts = shuffleArray(products);
       
           // Render the shuffled products
-          shuffledProducts.forEach((product) => {
-              renderProducts(product);
-          });
+        //   shuffledProducts.forEach((product) => {
+        //       renderProducts(product);
+        //   });
       
           }, 3000);
   } else {
@@ -858,7 +846,7 @@ const selectors = {
       priceRange.on('slideStop', (value) => {
         const currentMin = value[0];  // Current minimum value
         const currentMax = value[1];  // Current maximum value
-  
+        
         // Log or use the min and max values however needed
         console.log('Current Min:', currentMin);
         console.log('Current Max:', currentMax);
@@ -868,45 +856,27 @@ const selectors = {
             const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
             $minEl.innerText = `${currentMin}kg`;
             $maxEl.innerText = `${currentMax}kg`;
+            weight = currentMax;
         } else if (currency == 'km') {
             // Update the UI with the min and max values
             const $minEl = $se.parentElement.querySelector(selectors.minElement);
             const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
             $minEl.innerText = `${currentMin}km`;
             $maxEl.innerText = `${currentMax}km`;
+            max_distance = currentMax;
         } else {
             // Update the UI with the min and max values
             const $minEl = $se.parentElement.querySelector(selectors.minElement);
             const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
             $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
             $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+            min_price = currentMin;
+            max_price = currentMax;
         }
   
         // Optionally trigger some action with these values (e.g., filter products)
-        updateFilterBasedOnPrice(currentMin, currentMax);
+        getProducts();
       });
-  
-      // Function to update filters or product display based on the selected range
-      function updateFilterBasedOnPrice(minPrice, maxPrice) {
-        console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
-        
-        // Handle loading state
-        loading();
-  
-        // Simulate loading and then render shuffled products
-        setTimeout(() => {
-          // Clear current product grid
-          document.getElementById('products-grid').innerHTML = '';
-  
-          // Shuffle products array before rendering
-          const shuffledProducts = shuffleArray(products);
-  
-          // Render the shuffled products
-          shuffledProducts.forEach((product) => {
-            renderProducts(product);
-          });
-        }, 3000);
-      }
     }
   });
   
