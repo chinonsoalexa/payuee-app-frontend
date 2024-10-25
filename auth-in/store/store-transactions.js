@@ -598,7 +598,7 @@ function renderOrderedProducts(products) {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                hideModal('transactionModal')
+                hideModal('checkoutModal')
                 showModal('transactionFailedModal');
 
                 if (errorData.error === 'failed to get user from request') {
