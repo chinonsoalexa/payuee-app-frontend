@@ -482,8 +482,8 @@ quantityInput.addEventListener('change', () => {
     imageUrls.forEach((url) => {
       const imageHtml = `
         <div class="swiper-slide product-single__image-item">
-          <img loading="lazy" class="h-auto" src="${url.url}" width="674" height="674" alt="${title}">
-          <a data-fancybox="gallery" href="${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
+          <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <use href="#icon_zoom" />
             </svg>
