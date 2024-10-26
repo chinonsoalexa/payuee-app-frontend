@@ -290,8 +290,7 @@ function renderProductDetails(product) {
             <div class="product-single__thumbnail">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
+                  
                   <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
                   <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
                 </div>
