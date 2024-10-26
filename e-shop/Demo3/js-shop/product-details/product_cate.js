@@ -380,7 +380,7 @@ function renderProductDetails(product) {
             </div>
             <div class="meta-item">
               <label>Tags:</label>
-              <span>${product.tags}</span>
+              <span>${extractValues(product.tags)}</span>
             </div>
           </div>
         </div>
@@ -495,6 +495,16 @@ quantityInput.addEventListener('change', () => {
       <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="104" height="104" alt="${title}"></div>`;
     });
     return imagesHtml; // Return the full HTML string
+  }
+
+  function extractValues(jsonString) {
+    // Parse the JSON string into an array of objects
+    const array = JSON.parse(jsonString);
+  
+    // Map each object to its 'value' and join them with a comma
+    const valuesString = array.map(obj => obj.value).join(", ");
+  
+    return valuesString; // Return the final string
   }
 
   // Select the 'Show More' link element by its ID
