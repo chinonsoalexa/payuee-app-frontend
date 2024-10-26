@@ -18,33 +18,33 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     loading();
-    renderLoadingDetails();
-    // getProduct(productId);
-    setTimeout(() => {
-    // Check if productId exists
-    if (productId) {
-        // Find the product by ID
-        const product = products.find(product => product.ID === 2);
+    getProduct(productId);
+    
+  //   setTimeout(() => {
+  //   // Check if productId exists
+  //   if (productId) {
+  //       // Find the product by ID
+  //       const product = products.find(product => product.ID === 2);
 
-        if (product) {
-            renderLoadingDetails();
-            renderProductDetails(product);
-        } else {
-            // If product not found, default to product with ID 1
-            const product2 = products.find(product => product.ID === 1);
-            productId = 1; // Update productId to default
-            renderLoadingDetails();
-            renderProductDetails(product2);
-        }
-    } else {
-        // If no productId in URL, render the first product by default
-        // If product not found, default to product with ID 1
-        const product2 = products.find(product => product.ID === 1);
-        productId = 1; // Update productId to default
-          renderLoadingDetails();
-          renderProductDetails(product2);
-    }
-  }, 3000);
+  //       if (product) {
+  //           renderLoadingDetails();
+  //           renderProductDetails(product);
+  //       } else {
+  //           // If product not found, default to product with ID 1
+  //           const product2 = products.find(product => product.ID === 1);
+  //           productId = 1; // Update productId to default
+  //           renderLoadingDetails();
+  //           renderProductDetails(product2);
+  //       }
+  //   } else {
+  //       // If no productId in URL, render the first product by default
+  //       // If product not found, default to product with ID 1
+  //       const product2 = products.find(product => product.ID === 1);
+  //       productId = 1; // Update productId to default
+  //         renderLoadingDetails();
+  //         renderProductDetails(product2);
+  //   }
+  // }, 3000);
   // Other initializations...
 });
 
@@ -58,7 +58,8 @@ function getCurrentUrl(title, description) {
 }
 
 async function getProduct(productID) {
-  const apiUrl = "https://api.payuee.com/product/" + productID;
+    renderLoadingDetails();
+  const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
 
   const requestOptions = {
       method: "GET",
