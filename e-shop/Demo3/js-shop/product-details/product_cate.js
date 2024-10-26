@@ -259,30 +259,7 @@ function renderProductDetails(product) {
             <div class="product-single__image">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-1.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-2.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-3.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
+                  ${renderProductImages(product.product_image, product.title)}
                 </div>
                 <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></div>
                 <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></div>
@@ -496,6 +473,26 @@ quantityInput.addEventListener('change', () => {
         updateCartDrawer();
       });
     }
+  }
+
+  function renderProductImages(imageUrls, title) {
+    const container = document.getElementById("product-images-container");
+    container.innerHTML = ''; // Clear existing images if any
+  
+    imageUrls.forEach((url) => {
+      const imageHtml = `
+        <div class="swiper-slide product-single__image-item">
+          <img loading="lazy" class="h-auto" src="${url.url}" width="674" height="674" alt="${title}">
+          <a data-fancybox="gallery" href="${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <use href="#icon_zoom" />
+            </svg>
+          </a>
+        </div>`;
+      
+      // Append the HTML string for each image
+      container.insertAdjacentHTML("beforeend", imageHtml);
+    });
   }
 
   // Select the 'Show More' link element by its ID
