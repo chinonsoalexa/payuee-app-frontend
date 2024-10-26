@@ -59,7 +59,7 @@ function getCurrentUrl(title, description) {
 
 async function getProduct(productID) {
     renderLoadingDetails();
-  const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
+  const apiUrl = "https://api.payuee.com/product/" + productID;
 
   const requestOptions = {
       method: "GET",
@@ -313,7 +313,7 @@ function renderProductDetails(product) {
               <a id="nextDetail" href="#" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
             </div><!-- /.shop-acs -->
           </div>
-          <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
+          <h1 class="product-single__name">${product.title}</h1>
           <div class="product-single__rating">
             <div class="reviews-group d-flex">
               <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
