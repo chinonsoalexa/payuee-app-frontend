@@ -268,10 +268,7 @@ function renderProductDetails(product) {
             <div class="product-single__thumbnail">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
-                  <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="/e-shop/../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
+                  ${renderSlideImages(product.product_image, product.title)}
                 </div>
               </div>
             </div>
@@ -487,6 +484,15 @@ quantityInput.addEventListener('change', () => {
             </svg>
           </a>
         </div>`;
+    });
+    return imagesHtml; // Return the full HTML string
+  }
+
+  function renderSlideImages(imageUrls, title) {
+    let imagesHtml = '';
+    imageUrls.forEach((url) => {
+      imagesHtml += `
+      <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="104" height="104" alt="${title}"></div>`;
     });
     return imagesHtml; // Return the full HTML string
   }
