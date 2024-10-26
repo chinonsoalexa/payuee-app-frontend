@@ -371,8 +371,8 @@ function renderProductDetails(product) {
           </div>
           <div class="product-single__meta-info">
             <div class="meta-item">
-              <label>SKU:</label>
-              <span>N/A</span>
+              <label>Available Stock:</label>
+              <span>${product.stock_remaining}</span>
             </div>
             <div class="meta-item">
               <label>Category:</label>
