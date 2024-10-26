@@ -375,8 +375,8 @@ function renderProductDetails(product) {
               <span>N/A</span>
             </div>
             <div class="meta-item">
-              <label>Categories:</label>
-              <span>Casual & Urban Wear, Jackets, Men</span>
+              <label>Category:</label>
+              <span>${product.category}</span>
             </div>
             <div class="meta-item">
               <label>Tags:</label>
