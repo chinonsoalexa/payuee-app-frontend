@@ -382,6 +382,10 @@ function renderProductDetails(product) {
               <label>Tags:</label>
               <span>${extractValues(product.tags)}</span>
             </div>
+            <div class="meta-item">
+              <label>Delivery Day(s):</label>
+              <span>${product.estimated_delivery}</span>
+            </div>
           </div>
         </div>
         `;
