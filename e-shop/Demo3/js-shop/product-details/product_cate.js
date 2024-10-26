@@ -710,6 +710,7 @@ quantityInput.addEventListener('change', () => {
   }  
 
   // renderProductDescription(product);
+  renderRecommendedProduct(product);
 
 }
 
