@@ -380,7 +380,7 @@ function renderProductDetails(product) {
             </div>
             <div class="meta-item">
               <label>Tags:</label>
-              <span>biker, black, bomber, leather</span>
+              <span>${product.tags}</span>
             </div>
           </div>
         </div>
