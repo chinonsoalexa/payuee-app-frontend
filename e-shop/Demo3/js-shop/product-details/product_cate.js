@@ -476,11 +476,9 @@ quantityInput.addEventListener('change', () => {
   }
 
   function renderProductImages(imageUrls, title) {
-    const container = document.getElementById("product-images-container");
-    container.innerHTML = ''; // Clear existing images if any
-  
+    let imagesHtml = '';
     imageUrls.forEach((url) => {
-      const imageHtml = `
+      imagesHtml += `
         <div class="swiper-slide product-single__image-item">
           <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
           <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
@@ -489,10 +487,8 @@ quantityInput.addEventListener('change', () => {
             </svg>
           </a>
         </div>`;
-      
-      // Append the HTML string for each image
-      container.insertAdjacentHTML("beforeend", imageHtml);
     });
+    return imagesHtml; // Return the full HTML string
   }
 
   // Select the 'Show More' link element by its ID
