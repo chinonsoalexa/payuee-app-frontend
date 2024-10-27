@@ -875,7 +875,7 @@ function validateFields() {
     // Validate Net Weight
     const productHeight = document.getElementById('productHeight');
     // const productHeightVal = parseInt(productHeight.value, 10);
-    console.log("productHeightVal:", productHeightVal);
+    console.log("productHeightVal:", productHeight.value);
     if (productHeight){
         // productHeight.classList.add('is-invalid');
         // productHeight.classList.remove('is-valid');
