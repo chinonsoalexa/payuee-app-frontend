@@ -468,7 +468,7 @@ quantityInput.addEventListener('change', () => {
   const repostID = document.getElementById('repostID');
   if (product.repost) {
     if (repostID) {
-      repostID.addEventListener('click', function() {
+      repostID.addEventListener('click', function(event) {
         event.preventDefault();
         // addToCart(product, newQuantity1);
         // updateCartNumber();
