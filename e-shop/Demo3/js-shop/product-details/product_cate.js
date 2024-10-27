@@ -1286,7 +1286,7 @@ function updateCartDrawer() {
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
                 <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
-                <p class="cart-drawer-item__option text-secondary">KG: ${cartProduct.net_weight}</p>
+                <p class="cart-drawer-item__option text-secondary">Net Weight: ${cartProduct.net_weight}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <div class="qty-control position-relative">
                     <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
