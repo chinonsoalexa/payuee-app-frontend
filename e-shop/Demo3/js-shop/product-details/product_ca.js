@@ -479,6 +479,16 @@ quantityInput.addEventListener('change', () => {
     return imagesHtml; // Return the full HTML string
   }
 
+  function extractValues(jsonString) {
+    // Parse the JSON string into an array of objects
+    const array = JSON.parse(jsonString);
+  
+    // Map each object to its 'value' and join them with a comma
+    const valuesString = array.map(obj => obj.value).join(", ");
+  
+    return valuesString; // Return the final string
+  }
+  
   // Select the 'Show More' link element by its ID
   const showMoreLink = document.getElementById('show-more-link');
   if (showMoreLink) {
