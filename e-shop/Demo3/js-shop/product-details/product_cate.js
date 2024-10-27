@@ -229,7 +229,7 @@ function renderProductDetails(product, related) {
   //   commentRender = '';
   // }
 
-  if (product.product_stock < 1) {
+  if (product.stock_remaining < 1) {
     cartButton = `
     <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
     `
@@ -970,8 +970,8 @@ function renderRecommendedProduct(products) {
     // rowElement.id = product.ID;
 
     // Determine if the button should be disabled and what text to display
-    // const isOutOfStock = product.stock_remaining === 0;
-    const isOutOfStock = 7 === 0;
+    const isOutOfStock = product.stock_remaining === 0;
+    // const isOutOfStock = 7 === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
