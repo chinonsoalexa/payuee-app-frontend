@@ -258,18 +258,7 @@ function renderProductDetails(product) {
           <div class="mb-md-1 pb-md-3"></div>
           <div class="product-single__media" data-media-type="center-image">
             <div class="product-single__image d-flex flex-column gap-2">
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-5.jpg" width="553" height="775" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-6.jpg" width="553" height="775" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-7.jpg" width="553" height="775" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-8.jpg" width="553" height="775" alt="">
-              </div>
+              ${renderProductImages(product.product_image, product.title)}
             </div>
           </div>
         </div>
@@ -283,7 +272,7 @@ function renderProductDetails(product) {
                 <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
               </div><!-- /.breadcrumb -->
             </div>
-            <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
+            <h1 class="product-single__name">${product.title}</h1>
             <div class="product-single__rating">
               <div class="reviews-group d-flex">
                 <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
@@ -295,10 +284,10 @@ function renderProductDetails(product) {
               <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-              <span class="current-price">₦449</span>
+            ${price}
             </div>
             <div class="product-single__short-desc">
-              <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
+              <p>${product.description}</p>
             </div>
           </div>
         </div>
@@ -328,17 +317,6 @@ function renderProductDetails(product) {
                     <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                   </div>
                   <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
-                </div>
-                <div class="product-swatch color-swatches">
-                  <label>Color</label>
-                  <div class="swatch-list">
-                    <input type="radio" name="color" id="swatch-11">
-                    <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
-                    <input type="radio" name="color" id="swatch-12" checked>
-                    <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
-                    <input type="radio" name="color" id="swatch-13">
-                    <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
-                  </div>
                 </div>
               </div>
               <div class="product-single__addtocart">
@@ -378,23 +356,27 @@ function renderProductDetails(product) {
             </div>
             <div class="product-single__meta-info">
               <div class="meta-item">
-                <label>SKU:</label>
-                <span>N/A</span>
-              </div>
-              <div class="meta-item">
-                <label>Categories:</label>
-                <span>Casual & Urban Wear, Jackets, Men</span>
-              </div>
-              <div class="meta-item">
-                <label>Tags:</label>
-                <span>biker, black, bomber, leather</span>
-              </div>
+              <label>Available Stock:</label>
+              <span>${product.stock_remaining}</span>
             </div>
-            <div class="product-single__additional-info">
+            <div class="meta-item">
+              <label>Category:</label>
+              <span>${product.category}</span>
+            </div>
+            <div class="meta-item">
+              <label>Tags:</label>
+              <span>${extractValues(product.tags)}</span>
+            </div>
+            <div class="meta-item">
+              <label>Delivery Day(s):</label>
+              <span>${product.estimated_delivery}</span>
+            </div>
+            </div>
+            <!--  <div class="product-single__additional-info">
               <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">Composition and Care</a>
               <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">In-Store Availability</a>
               <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">Delivery and Return</a>
-            </div>
+            </div> -->
           </div>
         </div>
         `;
@@ -483,6 +465,17 @@ quantityInput.addEventListener('change', () => {
         updateCartDrawer();
       });
     }
+  }
+
+  function renderProductImages(imageUrls, title) {
+    let imagesHtml = '';
+    imageUrls.forEach((url) => {
+      imagesHtml += `
+        <div class="product-single__image-item">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="553" height="775" alt="${title}">
+        </div>`;
+    });
+    return imagesHtml; // Return the full HTML string
   }
 
   // Select the 'Show More' link element by its ID
