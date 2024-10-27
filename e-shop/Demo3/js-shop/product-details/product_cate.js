@@ -999,7 +999,7 @@ function renderRecommendedProduct(products) {
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
         </div>
-        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
+        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
       </div>
     `;
 
