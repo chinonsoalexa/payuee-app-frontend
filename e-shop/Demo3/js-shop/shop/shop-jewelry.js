@@ -64,7 +64,7 @@ async function getProducts() {
         credentials: 'include', // set credentials to include cookies
         body: JSON.stringify({
             page_number: +pageNumber,
-            category: "outfits",
+            category: "jewelry",
             max_distance: parseFloat(max_distance),
             min_price: parseFloat(min_price),
             max_price: parseFloat(max_price),
@@ -130,9 +130,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-jewelry?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-jewelry?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -219,7 +219,7 @@ async function getProducts() {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-jewelry?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -254,7 +254,7 @@ function deactivateCurrentButton() {
 //     imageURLarray.forEach((image, index) => {
         
 //         slideDiv += `
-//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
+//             <a href="https://payuee.com/jewelry/${productURL}" class="product-link${index + 1}">
 //                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
 //             </a>
 //         `;
@@ -309,25 +309,25 @@ function renderProducts(product) {
                 <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" id="product-swiper-${product.product_url_id}">
-                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link1">
+                            <a href="https://payuee.com/jewelry/${product.product_url_id}" class="product-link1">
                                 <img loading="lazy" src="https://payuee.com/image/${product.product_image[0]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
 
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link2">
+                            <a href="https://payuee.com/jewelry/${product.product_url_id}" class="product-link2">
                                 <img loading="lazy" src="https://payuee.com/image/${product.product_image[1]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
                             </a>
                         </div>
 
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link3">
+                            <a href="https://payuee.com/jewelry/${product.product_url_id}" class="product-link3">
                                 <img loading="lazy" src="https://payuee.com/image/${product.product_image[2]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img3">
                             </a>
                         </div>
 
                         <div class="swiper-slide">
-                            <a href="https://payuee.com/outfits/${product.product_url_id}" class="product-link4">
+                            <a href="https://payuee.com/jewelry/${product.product_url_id}" class="product-link4">
                                 <img loading="lazy" src="https://payuee.com/image/${product.product_image[3]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img4">
                             </a>
                         </div>
@@ -339,7 +339,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/jewelry/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -351,7 +351,7 @@ function renderProducts(product) {
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                <a href="https://payuee.com/outfits/${product.product_url_id}" class="pc__btn-wl-wrapper">
+                <a href="https://payuee.com/jewelry/${product.product_url_id}" class="pc__btn-wl-wrapper">
                     <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_retweet" />
@@ -390,7 +390,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/jewelry/${product.product_url_id}`;
     });
 
     // Add event listener to the 'Add To Cart' button
@@ -895,7 +895,7 @@ var products = [
     {
         "ID": 1,
         "title": "Cropped Faux Leather Jacket",
-        "category": "Outfit",
+        "category": "jewelry",
         "initial_cost": 5000,
         "selling_price": 0,
         "net_weight": 100,
