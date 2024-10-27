@@ -469,10 +469,10 @@ quantityInput.addEventListener('change', () => {
   if (product.repost) {
     if (repostID) {
       repostID.addEventListener('click', function() {
-        // event.preventDefault();
-        addToCart(product, newQuantity1);
-        updateCartNumber();
-        updateCartDrawer();
+        event.preventDefault();
+        // addToCart(product, newQuantity1);
+        // updateCartNumber();
+        // updateCartDrawer();
       });
     }
   }
