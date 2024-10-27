@@ -58,44 +58,45 @@ function getCurrentUrl(title, description) {
 }
 
 async function getProduct(productID) {
-  const apiUrl = "https://api.payuee.com/product/" + productID;
+  renderLoadingDetails();
+const apiUrl = "https://api.payuee.com/product/" + productID + "/outfits";
 
-  const requestOptions = {
-      method: "GET",
-      headers: {
-          "Content-Type": "application/json",
-      },
-      credentials: 'include', // set credentials to include cookies
-  };
+const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+};
 
-  try {
-      const response = await fetch(apiUrl, requestOptions);
+try {
+    const response = await fetch(apiUrl, requestOptions);
 
-      if (!response.ok) {
-          const errorData = await response.json();
+    if (!response.ok) {
+        const errorData = await response.json();
 
-          if (errorData.error === 'failed to get user from request') {
-              // need to do a data of just null event 
-              // displayErrorMessage();
-          } else if (errorData.error === 'failed to get transaction history') {
-              // need to do a data of just null event 
-              
-          } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-              // let's log user out the users session has expired
-              logUserOutIfTokenIsExpired();
-          }else {
-              // displayErrorMessage();
-          }
+        if (errorData.error === 'failed to get user from request') {
+            // need to do a data of just null event 
+            // displayErrorMessage();
+        } else if (errorData.error === 'failed to get transaction history') {
+            // need to do a data of just null event 
+            
+        } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+            // let's log user out the users session has expired
+            logUserOutIfTokenIsExpired();
+        }else {
+            // displayErrorMessage();
+        }
 
-          return;
-      }
+        return;
+    }
 
-      const responseData = await response.json();
-      renderProductDetails(responseData.success);
-     
+    const responseData = await response.json();
+    renderProductDetails(responseData.success, responseData.related);
+   
 } finally {
 
-  }
+}
 }
 
 async function getNextProduct(productID) {
