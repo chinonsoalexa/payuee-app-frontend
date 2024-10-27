@@ -932,7 +932,7 @@ function shuffleArray(array) {
 }
 
 function renderRecommendedProduct(products) {
-  if (products.len < 1) {
+  if (products.len() < 1) {
     document.getElementById("related_products1").innerHTML = "";
   }
 
