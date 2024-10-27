@@ -979,7 +979,7 @@ function renderRecommendedProduct(products) {
     <div class="pc__img-wrapper">
         <a href="https://payuee.com/outfits/${product.product_url_id}">
           <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="/e-shop/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
