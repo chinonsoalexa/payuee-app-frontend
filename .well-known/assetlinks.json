@@ -1,15 +1,11 @@
 [
-    {
-      "relation": [
-        "delegate_permission/common.handle_all_urls"
-      ],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.payuee.twa",
-        "sha256_cert_fingerprints": [
-          "E6:AE:5C:51:06:C2:A8:DE:71:69:F5:E3:2A:02:31:E6:2D:7D:E8:D6:9C:A6:EE:81:96:A5:27:4E:14:37:E9:C7"
-        ]
-      }
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.payuee.twa",
+      "sha256_cert_fingerprints":
+        ["76:57:FA:F1:ED:40:19:1C:E4:98:94:39:97:A7:17:19:EF:ED:4D:C5:75:09:52:27:85:91:42:7A:36:D8:C7:28"]
     }
-  ]
-  
+  }
+]
