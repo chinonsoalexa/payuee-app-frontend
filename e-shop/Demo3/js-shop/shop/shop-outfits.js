@@ -298,7 +298,7 @@ function renderProducts(product) {
     }
 
     // Determine if the button should be disabled and what text to display
-    const isOutOfStock = product.product_stock === 0;
+    const isOutOfStock = product.stock_remaining === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
