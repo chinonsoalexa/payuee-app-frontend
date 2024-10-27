@@ -92,7 +92,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.related);
      
 } finally {
 
@@ -189,7 +189,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product) {
+function renderProductDetails(product, related) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -710,7 +710,7 @@ quantityInput.addEventListener('change', () => {
   }  
 
   // renderProductDescription(product);
-  renderRecommendedProduct(product.related);
+  renderRecommendedProduct(related);
 
 }
 
