@@ -9,7 +9,7 @@ var AllRecordsOnPageLoad;
 
 var pageNumber;
 
-var sort_option = 0;
+var sort_option = 7;
 var min_price = 2500;
 var max_price = 35000;
 var max_distance = 700;
