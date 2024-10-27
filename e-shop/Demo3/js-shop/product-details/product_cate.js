@@ -978,7 +978,7 @@ function renderRecommendedProduct(products) {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="#">
-          <img loading="lazy" src="/e-shop/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
           <img loading="lazy" src="/e-shop/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
@@ -988,7 +988,7 @@ function renderRecommendedProduct(products) {
         <p class="pc__category">${product.category}</p>
         <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
         </div>
       </div>
       <div class="product-card__review d-flex align-items-center">
