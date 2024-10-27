@@ -229,7 +229,7 @@ function renderProductDetails(product) {
   //   commentRender = '';
   // }
 
-  if (product.product_stock < 1) {
+  if (product.stock_remaining < 1) {
     cartButton = `
     <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
     `
