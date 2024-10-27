@@ -12,7 +12,7 @@ var pageNumber;
 var sort_option = 7;
 var min_price = 2500;
 var max_price = 35000;
-var max_distance = 20;
+var max_distance = 10;
 var weight = 20;
 
 // Initialize loader array with 8 elements (e.g., with null values)
