@@ -710,7 +710,7 @@ quantityInput.addEventListener('change', () => {
   }  
 
   // renderProductDescription(product);
-  renderRecommendedProduct(product);
+  renderRecommendedProduct(product.related);
 
 }
 
@@ -941,7 +941,7 @@ function renderProductDescription(product) {
 
       // Render the shuffled products
       // shuffledProducts.forEach((product) => {
-        renderRecommendedProduct(product);
+        // renderRecommendedProduct(product);
       // });
 }
 
