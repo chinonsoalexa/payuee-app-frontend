@@ -190,7 +190,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product) {
+function renderProductDetails(product, related) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -488,7 +488,7 @@ quantityInput.addEventListener('change', () => {
   
     return valuesString; // Return the final string
   }
-  
+
   // Select the 'Show More' link element by its ID
   const showMoreLink = document.getElementById('show-more-link');
   if (showMoreLink) {
@@ -688,7 +688,7 @@ quantityInput.addEventListener('change', () => {
   }  
 
   // renderProductDescription(product);
-  renderRecommendedProduct();
+  renderRecommendedProduct(related);
 }
 
 function renderUseGuide(product) {
@@ -931,14 +931,14 @@ function shuffleArray(array) {
   return array;
 }
 
-function renderRecommendedProduct() {
+function renderRecommendedProduct(products) {
 
   // Shuffle products array before rendering
-  const shuffledProducts = shuffleArray(products);
+  // const shuffledProducts = shuffleArray(products);
   document.getElementById('related_products_container').innerHTML = '';
 
   // Render the shuffled products
-  shuffledProducts.forEach((product) => {
+  products.forEach((product) => {
     const recommendElement = document.getElementById('related_products_container');
     
     // Create a new product card element
@@ -947,25 +947,25 @@ function renderRecommendedProduct() {
     // rowElement.id = product.ID;
 
     // Determine if the button should be disabled and what text to display
-    // const isOutOfStock = product.stock_remaining === 0;
-    const isOutOfStock = 7 === 0;
+    const isOutOfStock = product.stock_remaining === 0;
+    // const isOutOfStock = 7 === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
-        <a href="#">
-          <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+        <a href="https://payuee.com/outfits/${product.product_url_id}">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
         </div>
       </div>
       <div class="product-card__review d-flex align-items-center">
@@ -976,7 +976,7 @@ function renderRecommendedProduct() {
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
         </div>
-        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
+        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
       </div>
     `;
 
