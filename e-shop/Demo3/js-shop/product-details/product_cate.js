@@ -954,14 +954,14 @@ function shuffleArray(array) {
   return array;
 }
 
-function renderRecommendedProduct() {
+function renderRecommendedProduct(products) {
 
   // Shuffle products array before rendering
-  const shuffledProducts = shuffleArray(products);
+  // const shuffledProducts = shuffleArray(products);
   document.getElementById('related_products_container').innerHTML = '';
 
   // Render the shuffled products
-  shuffledProducts.forEach((product) => {
+  products.forEach((product) => {
     const recommendElement = document.getElementById('related_products_container');
     
     // Create a new product card element
