@@ -333,7 +333,7 @@ function renderProductDetails(product, related) {
             </div>
           </form>
           <div class="product-single__addtolinks">
-            <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
+            <a id="repostID" href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
             <share-button class="share-button">
               <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
                 <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
@@ -457,6 +457,18 @@ quantityInput.addEventListener('change', () => {
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
       addToCartButton.addEventListener('click', function() {
+        // event.preventDefault();
+        addToCart(product, newQuantity1);
+        updateCartNumber();
+        updateCartDrawer();
+      });
+    }
+  }
+
+  const repostID = document.getElementById('repostID');
+  if (product.repost) {
+    if (repostID) {
+      repostID.addEventListener('click', function() {
         // event.preventDefault();
         addToCart(product, newQuantity1);
         updateCartNumber();
