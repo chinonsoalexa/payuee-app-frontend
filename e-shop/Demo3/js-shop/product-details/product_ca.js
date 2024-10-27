@@ -934,6 +934,7 @@ function shuffleArray(array) {
 function renderRecommendedProduct(products) {
   if (products.length < 1) {
     document.getElementById("related_products1").innerHTML = "";
+    return;
   }
 
   // Shuffle products array before rendering
