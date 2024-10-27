@@ -133,7 +133,7 @@ async function getNextProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.related);
       replaceURL('/shop/' + responseData.success.product_url_id);
       productId = responseData.success.ID;
      
@@ -176,7 +176,7 @@ async function getPreviousProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.related);
       replaceURL('/shop/' + responseData.success.product_url_id);
       productId = responseData.success.ID;
      
