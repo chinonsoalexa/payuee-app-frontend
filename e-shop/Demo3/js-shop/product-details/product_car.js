@@ -423,7 +423,7 @@ reduceButton.addEventListener('click', () => {
 
 increaseButton.addEventListener('click', () => {
     let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity >= product.stock_remaining) {
+    if (currentQuantity <= product.stock_remaining) {
       quantityInput.value = currentQuantity + 1;
       newQuantity1+=1
     }
