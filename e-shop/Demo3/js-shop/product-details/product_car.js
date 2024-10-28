@@ -91,7 +91,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.related);
      
 } finally {
 
@@ -188,7 +188,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product) {
+function renderProductDetails(product, related) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -228,7 +228,7 @@ function renderProductDetails(product) {
   //   commentRender = '';
   // }
 
-  if (product.product_stock < 1) {
+  if (product.stock_remaining < 1) {
     cartButton = `
     <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
     `
@@ -257,28 +257,14 @@ function renderProductDetails(product) {
           <div class="mb-md-1 pb-md-3"></div>
           <div class="product-single__media" data-media-type="grid-image">
             <div class="product-single__image">
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-9.jpg" width="798" height="740" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-10.jpg" width="394" height="365" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-11.jpg" width="394" height="365" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-12.jpg" width="394" height="365" alt="">
-              </div>
-              <div class="product-single__image-item">
-                <img loading="lazy" class="h-auto" src="/e-shop/Demo3/../images/products/product_0-13.jpg" width="394" height="365" alt="">
-              </div>
+              ${renderProductImages(product.product_image, product.title)}
             </div>
           </div>
-          <div class="product-single__additional-info">
+          <!-- <div class="product-single__additional-info">
             <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">Composition and Care</a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">In-Store Availability</a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">Delivery and Return</a>
-          </div>
+          </div> -->
         </div>
         <div class="col-lg-5">
           <div class="sticky-content">
@@ -294,7 +280,7 @@ function renderProductDetails(product) {
                 <a id="nextDetail" href="/e-shop/Demo3/product13_v8.html" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
               </div><!-- /.shop-acs -->
             </div>
-            <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
+            <h1 class="product-single__name">${product.title}</h1>
             <div class="product-single__rating">
               <div class="reviews-group d-flex">
                 <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
@@ -306,10 +292,10 @@ function renderProductDetails(product) {
               <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-              <span class="current-price">₦449</span>
+            ${price}
             </div>
             <div class="product-single__short-desc">
-              <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
+              <p>${product.description}</p>
             </div>
             <form name="addtocart-form" method="post">
               <div class="product-single__swatches">
@@ -328,17 +314,6 @@ function renderProductDetails(product) {
                     <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                   </div>
                   <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
-                </div>
-                <div class="product-swatch color-swatches">
-                  <label>Color</label>
-                  <div class="swatch-list">
-                    <input type="radio" name="color" id="swatch-11">
-                    <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
-                    <input type="radio" name="color" id="swatch-12" checked>
-                    <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
-                    <input type="radio" name="color" id="swatch-13">
-                    <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
-                  </div>
                 </div>
               </div>
               <div class="product-single__addtocart">
@@ -378,23 +353,27 @@ function renderProductDetails(product) {
             </div>
             <div class="product-single__meta-info">
               <div class="meta-item">
-                <label>SKU:</label>
-                <span>N/A</span>
+              <label>Available Stock:</label>
+              <span>${product.stock_remaining}</span>
               </div>
               <div class="meta-item">
-                <label>Categories:</label>
-                <span>Casual & Urban Wear, Jackets, Men</span>
+                <label>Category:</label>
+                <span>${product.category}</span>
               </div>
               <div class="meta-item">
                 <label>Tags:</label>
-                <span>biker, black, bomber, leather</span>
+                <span>${extractValues(product.tags)}</span>
+              </div>
+              <div class="meta-item">
+                <label>Delivery Day(s):</label>
+                <span>${product.estimated_delivery}</span>
               </div>
             </div>
-            <div class="product-single__details">
+            <!-- <div class="product-single__details">
               <a href="#" class="js-open-aside" data-aside="productDescription">Description</a>
               <a href="#" class="js-open-aside" data-aside="productAdditionalInformation">Additional Information</a>
               <a href="#" class="js-open-aside" data-aside="productReviews">Reviews (3)</a>
-            </div>
+            </div> -->
           </div>
         </div>
         `;
@@ -482,6 +461,27 @@ quantityInput.addEventListener('change', () => {
         updateCartDrawer();
       });
     }
+  }
+
+  function extractValues(jsonString) {
+    // Parse the JSON string into an array of objects
+    const array = JSON.parse(jsonString);
+  
+    // Map each object to its 'value' and join them with a comma
+    const valuesString = array.map(obj => obj.value).join(", ");
+  
+    return valuesString; // Return the final string
+  }
+
+  function renderProductImages(imageUrls, title) {
+    let imagesHtml = '';
+    imageUrls.forEach((url) => {
+      imagesHtml += `
+        <div class="product-single__image-item">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="798" height="740" alt="${title}">
+        </div>`;
+    });
+    return imagesHtml; // Return the full HTML string
   }
 
   // Select the 'Show More' link element by its ID
@@ -682,7 +682,7 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
-  renderProductDescription(product);
+  renderRecommendedProduct(related);
 
 }
 
@@ -874,14 +874,18 @@ function shuffleArray(array) {
   return array;
 }
 
-function renderRecommendedProduct() {
+function renderRecommendedProduct(products) {
+  if (products.length < 1) {
+    document.getElementById("related_products1").innerHTML = "";
+    return;
+  }
 
   // Shuffle products array before rendering
-  const shuffledProducts = shuffleArray(products);
+  // const shuffledProducts = shuffleArray(products);
   document.getElementById('related_products_container').innerHTML = '';
 
   // Render the shuffled products
-  shuffledProducts.forEach((product) => {
+  products.forEach((product) => {
     const recommendElement = document.getElementById('related_products_container');
     
     // Create a new product card element
@@ -890,25 +894,25 @@ function renderRecommendedProduct() {
     // rowElement.id = product.ID;
 
     // Determine if the button should be disabled and what text to display
-    // const isOutOfStock = product.stock_remaining === 0;
-    const isOutOfStock = 7 === 0;
+    const isOutOfStock = product.stock_remaining === 0;
+    // const isOutOfStock = 7 === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
-        <a href="#">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+        <a href="https://payuee.com/outfits/${product.product_url_id}">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="/e-shop/Demo3/https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
         </div>
       </div>
       <div class="product-card__review d-flex align-items-center">
@@ -919,7 +923,7 @@ function renderRecommendedProduct() {
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
         </div>
-        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
+        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
       </div>
     `;
 

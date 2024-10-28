@@ -710,7 +710,6 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
-  // renderProductDescription(product);
   renderRecommendedProduct(related);
 
 }
