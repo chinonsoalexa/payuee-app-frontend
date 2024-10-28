@@ -13,7 +13,8 @@ var sort_option = 7;
 var min_price = 2500;
 var max_price = 35000;
 var max_distance = 10;
-var weight = 10;
+var min_weight = 1;
+var max_weight = 10;
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
@@ -68,8 +69,8 @@ async function getProducts() {
             max_distance: parseFloat(max_distance),
             min_price: parseFloat(min_price),
             max_price: parseFloat(max_price),
-            min_weight: parseFloat(weight),
-            max_weight: parseFloat(weight),
+            min_weight: parseFloat(max_weight),
+            max_weight: parseFloat(min_weight),
             sort_option: +sort_option
         })
     };
@@ -849,7 +850,8 @@ const selectors = {
             const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
             $minEl.innerText = `${currentMin}kg`;
             $maxEl.innerText = `${currentMax}kg`;
-            weight = currentMax;
+            min_weight = currentMin;
+            max_weight = currentMax;
         } else if (currency == 'km') {
             // Update the UI with the min and max values
             const $minEl = $se.parentElement.querySelector(selectors.minElement);
