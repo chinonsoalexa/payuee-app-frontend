@@ -68,7 +68,8 @@ async function getProducts() {
             max_distance: parseFloat(max_distance),
             min_price: parseFloat(min_price),
             max_price: parseFloat(max_price),
-            weight: parseFloat(weight),
+            min_weight: parseFloat(weight),
+            max_weight: parseFloat(weight),
             sort_option: +sort_option
         })
     };
