@@ -456,10 +456,12 @@ function renderProductDetails(product) {
   });
 
   increaseButton.addEventListener('click', () => {
-      let currentQuantity = parseInt(quantityInput.value);
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity <= product.stock_remaining) {
       quantityInput.value = currentQuantity + 1;
       newQuantity1+=1
-  });
+    }
+});
 
   quantityInput.addEventListener('change', () => {
     let newQuantity = parseInt(quantityInput.value);
