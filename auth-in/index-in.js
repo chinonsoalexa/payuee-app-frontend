@@ -2,7 +2,7 @@ let deferredPrompt;
 
 // Check if the PWA has been installed
 const isAppInstalled = () => {
-    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    return window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.fullscreen;
 };
 
 // Check if the user is on an iPhone
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the popup only if the PWA is not installed and the user is not on an iPhone
     if (!isAppInstalled() && !isiPhone()) {
         setTimeout(() => {
-            // installPopup.style.display = 'block';
+            installPopup.style.display = 'block';
         }, 2000);
     }
 
