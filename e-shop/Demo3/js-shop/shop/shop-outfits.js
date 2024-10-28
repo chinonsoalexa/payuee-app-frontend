@@ -65,10 +65,10 @@ async function getProducts() {
         body: JSON.stringify({
             page_number: +pageNumber,
             category: "outfits",
-            max_distance: parseFloat(max_distance),
-            min_price: parseFloat(min_price),
-            max_price: parseFloat(max_price),
-            weight: parseFloat(weight),
+            max_distance: parseFloat(0),
+            min_price: parseFloat(0),
+            max_price: parseFloat(0),
+            weight: parseFloat(0),
             sort_option: +sort_option
         })
     };
