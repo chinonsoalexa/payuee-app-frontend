@@ -1142,7 +1142,7 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
   if (productIndex !== -1) {
       // Update the quantity based on action
       if (action === 'increase') {stock_remaining
-          if (cart[productIndex].quantity == stock_remaining) {
+        if (cart[productIndex].quantity >= stock_remaining) {
               // do nothing
           } else {
               cart[productIndex].quantity++;
