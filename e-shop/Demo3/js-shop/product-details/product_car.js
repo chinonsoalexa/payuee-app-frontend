@@ -1119,7 +1119,7 @@ function renderLoadingDetails() {
 }
 
 // Function to add a product to the cart
-function addToCart(product) {
+function addToCart(product, quantity = 1) {
   // Get cart from local storage or initialize if not found
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -1127,10 +1127,10 @@ function addToCart(product) {
   const productIndex = cart.findIndex(item => item.ID === product.ID);
   if (productIndex !== -1) {
       // If product exists, increase quantity
-      cart[productIndex].quantity += 1;
+      cart[productIndex].quantity += quantity;
   } else {
       // If product does not exist, add new product to cart
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ ...product, quantity: quantity });
   }
 
   // Save updated cart to local storage
@@ -1205,12 +1205,12 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/${cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.product_image[0].url}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
                 <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
-                <p class="cart-drawer-item__option text-secondary">Grams: ${cartProduct.net_weight}</p>
+                <p class="cart-drawer-item__option text-secondary">Netweight: ${cartProduct.net_weight}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <div class="qty-control position-relative">
                     <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
