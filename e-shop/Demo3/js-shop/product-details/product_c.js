@@ -361,7 +361,7 @@ function renderProductDetails(product) {
             </div>
             <div class="product-single__addtocart">
               <div class="qty-control position-relative">
-                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
+                <input type="number" name="quantity" value="1" min="1" max="${product.stock_remaining}" class="qty-control__number text-center">
                 <div class="qty-control__reduce">-</div>
                 <div class="qty-control__increase">+</div>
               </div><!-- .qty-control -->
@@ -1277,7 +1277,7 @@ function updateCartDrawer() {
                 <p class="cart-drawer-item__option text-secondary">Grams: ${cartProduct.net_weight}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <div class="qty-control position-relative">
-                    <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
+                    <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" max="${cartProduct.stock_remaining}" class="qty-control__number border-0 text-center">
                     <div class="qty-control__reduce text-start" data-id="${cartProduct.ID}">-</div>
                     <div class="qty-control__increase text-end" data-id="${cartProduct.ID}">+</div>
                   </div>
