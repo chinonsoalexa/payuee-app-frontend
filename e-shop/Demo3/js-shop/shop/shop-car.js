@@ -7,12 +7,19 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+var pageNumber;
+
+var sort_option = 7;
+var min_price = 2500;
+var max_price = 35000;
+var max_distance = 10;
+var weight = 20;
+
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
-    loading();
     updateCartNumber();
     updateCartDrawer();
     sortingAlgo();
@@ -21,39 +28,49 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
-    setTimeout(() => {
-        // console.log('m here')
-        // updateProductsFromData(productts);
-            // render the store products
-            document.getElementById('products-grid').innerHTML = '';
-    products.forEach((product) => {
-        renderProducts(product);
-    });
-        // console.log('just finished here')
-    }, 3000);
+    // setTimeout(() => {
+    //     // console.log('m here')
+    //     // updateProductsFromData(productts);
+    //         // render the store products
+    //         document.getElementById('products-grid').innerHTML = '';
+    // products.forEach((product) => {
+    //     renderProducts(product);
+    // });
+    //     // console.log('just finished here')
+    // }, 3000);
 
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
 
     // Get individual parameter values
-    let pageNumber = params.get("page");
+    pageNumber = params.get("page");
     if (pageNumber == null) {
         pageNumber = "1";
     }
 
-    // await getProducts(pageNumber);
+    await getProducts();
 
 });
 
-async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
+async function getProducts() {
+    const apiUrl = "https://api.payuee.com/get-store-products";
+    loading();
 
     const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            page_number: +pageNumber,
+            category: "cars-car-parts",
+            max_distance: parseFloat(max_distance),
+            min_price: parseFloat(min_price),
+            max_price: parseFloat(max_price),
+            weight: parseFloat(weight),
+            sort_option: +sort_option
+        })
     };
 
     try {
@@ -82,7 +99,7 @@ async function getProducts(pageNumber) {
 
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
-        clearElementsByClass('product-card-wrapper');
+        document.getElementById('products-grid').innerHTML = '';
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
@@ -113,9 +130,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-car?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-car?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -202,7 +219,7 @@ async function getProducts(pageNumber) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/product_car?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-car?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -230,6 +247,20 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
+
+// function displayImage(productURL, productTitle, imageURLarray) {
+//     slideDiv = '';
+//     // Loop through the product_image array and generate HTML
+//     imageURLarray.forEach((image, index) => {
+        
+//         slideDiv += `
+//             <a href="https://payuee.com/car/${productURL}" class="product-link${index + 1}">
+//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
+//             </a>
+//         `;
+//     });
+//     return slideDiv;
+// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
@@ -267,7 +298,7 @@ function renderProducts(product) {
     }
 
     // Determine if the button should be disabled and what text to display
-    const isOutOfStock = product.product_stock === 0;
+    const isOutOfStock = product.stock_remaining === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
@@ -277,14 +308,27 @@ function renderProducts(product) {
             <div class="pc__img-wrapper">
                 <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide" id="product-swiper-${product.product_url_id}">
                             <a href="https://payuee.com/cars/${product.product_url_id}" class="product-link1">
-                                <img loading="lazy" src="${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[0]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img1">
                             </a>
                         </div>
+
                         <div class="swiper-slide">
                             <a href="https://payuee.com/cars/${product.product_url_id}" class="product-link2">
-                                <img loading="lazy" src="${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[1]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img2">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/cars/${product.product_url_id}" class="product-link3">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[2]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img3">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="https://payuee.com/cars/${product.product_url_id}" class="product-link4">
+                                <img loading="lazy" src="https://payuee.com/image/${product.product_image[3]?.url || 'no_image.jpg'}" width="330" height="400" alt="${product.title}" class="pc__img product-img4">
                             </a>
                         </div>
                     </div>
@@ -318,7 +362,7 @@ function renderProducts(product) {
             ${percentage}
             <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
                 <div class="pc-labels__left">
-                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}g</span>
+                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
                 </div>
             </div>
         </div>
@@ -480,7 +524,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="../images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/../images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -515,7 +559,7 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" src="${"/image/" + cartProduct.product_image[0].url}" alt="">
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -652,199 +696,190 @@ function sortingAlgo() {
 document.getElementById('sortingSelect').addEventListener('change', function() {
     const selectedValue = this.value;  // Get the selected option value
     console.log('Selected sorting option value:', selectedValue);
-    loading();
-    
-    setTimeout(() => {
-    // Clear current product grid
-    document.getElementById('products-grid').innerHTML = '';
-
-    // Shuffle products array before rendering
-    const shuffledProducts = shuffleArray(products);
-
-    // Render the shuffled products
-    shuffledProducts.forEach((product) => {
-        renderProducts(product);
-    });
-
-    }, 3000);
+    sort_option = selectedValue;
+    getProducts();
 });
 
 // Add event listeners to category links
 document.querySelectorAll('.menu-link').forEach(link => {
     link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default navigation
-        const selectedCategory = this.textContent.trim();
-        console.log('Selected Category:', selectedCategory);
-        // Handle the category selection
-        loading();
+      event.preventDefault(); // Prevent default navigation
+      const selectedCategory = this.textContent.trim();
+      console.log('Selected Category:', selectedCategory);
+      // Handle the category selection
+      loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
     });
-    });
+  });
+  
+  // Add event listeners to color swatches
+//   document.querySelectorAll('.swatch-color').forEach(swatch => {
+//     swatch.addEventListener('click', function(event) {
+//       event.preventDefault(); // Prevent default behavior
+//       const selectedColor = this.style.color;
+//       console.log('Selected Color:', selectedColor);
+//       // Handle the color selection
+//       loading();
     
-    // Add event listeners to color swatches
-    document.querySelectorAll('.swatch-color').forEach(swatch => {
-    swatch.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedColor = this.style.color;
-        console.log('Selected Color:', selectedColor);
-        // Handle the color selection
-        loading();
+//       setTimeout(() => {
+//       // Clear current product grid
+//       document.getElementById('products-grid').innerHTML = '';
+  
+//       // Shuffle products array before rendering
+//       const shuffledProducts = shuffleArray(products);
+  
+//       // Render the shuffled products
+//       shuffledProducts.forEach((product) => {
+//           renderProducts(product);
+//       });
+  
+//       }, 3000);
+//     });
+//   });
+  
+//   // Add event listeners to size buttons
+//   document.querySelectorAll('.swatch-size').forEach(sizeButton => {
+//     sizeButton.addEventListener('click', function(event) {
+//       event.preventDefault(); // Prevent default behavior
+//       const selectedSize = this.textContent.trim();
+//       console.log('Selected Size:', selectedSize);
+//       // Handle the size selection
+//       loading();
     
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-    });
-    });
-    
-    // Add event listeners to size buttons
-    document.querySelectorAll('.swatch-size').forEach(sizeButton => {
-    sizeButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedSize = this.textContent.trim();
-        console.log('Selected Size:', selectedSize);
-        // Handle the size selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-    });
-    });
-    
+//       setTimeout(() => {
+//       // Clear current product grid
+//       document.getElementById('products-grid').innerHTML = '';
+  
+//       // Shuffle products array before rendering
+//       const shuffledProducts = shuffleArray(products);
+  
+//       // Render the shuffled products
+//       shuffledProducts.forEach((product) => {
+//           renderProducts(product);
+//       });
+  
+//       }, 3000);
+//     });
+//   });
+  
 // Get the search input field by its ID
 const searchInput = document.getElementById('searchField');
-    
+  
 // Add an event listener to capture input changes
 searchInput.addEventListener('input', function(event) {
-    const searchQuery = event.target.value;  // Get the current input value
-    
-    // Perform actions with the search query
-    console.log('Search query:', searchQuery);
-    
-    // You can call a function to handle the search here, e.g., make an API request or filter results
-    performSearch(searchQuery);
+  const searchQuery = event.target.value;  // Get the current input value
+  
+  // Perform actions with the search query
+  console.log('Search query:', searchQuery);
+  
+  // You can call a function to handle the search here, e.g., make an API request or filter results
+  performSearch(searchQuery);
 });
 
+// FILTER BY SHOP SEARCH
 // Example search function (you can replace it with your logic)
 function performSearch(query) {
-    if (query.length > 0) {
+  if (query.length > 0) {
     console.log('Performing search for:', query);
     // Add your search logic here, such as making an API call or filtering displayed results
-            // Handle the color selection
-            loading();
+          // Handle the color selection
+        //   loading();
     
-            setTimeout(() => {
-            // Clear current product grid
-            document.getElementById('products-grid').innerHTML = '';
-        
-            // Shuffle products array before rendering
-            const shuffledProducts = shuffleArray(products);
-        
-            // Render the shuffled products
-            shuffledProducts.forEach((product) => {
-                renderProducts(product);
-            });
-        
-            }, 3000);
-    } else {
+          setTimeout(() => {
+          // Clear current product grid
+          document.getElementById('products-grid').innerHTML = '';
+      
+          // Shuffle products array before rendering
+        //   const shuffledProducts = shuffleArray(products);
+      
+          // Render the shuffled products
+        //   shuffledProducts.forEach((product) => {
+        //       renderProducts(product);
+        //   });
+      
+          }, 3000);
+  } else {
     console.log('Search query is empty');
     // Clear or reset search results if the input is empty
-    }
+  }
 }
 
-    const selectors = {
+// FILTER BY WEIGHT (KG) AND BY PRICE
+const selectors = {
     elementClass: '.price-range-slider',
     minElement: '.price-range__min',
     maxElement: '.price-range__max'
-    };
-
-    // Iterate over each slider element
-    document.querySelectorAll(selectors.elementClass).forEach($se => {
-    const currency = $se.dataset.currency || '₦'; // Default currency if not provided
-
+  };
+  
+  // Iterate over each slider element
+  document.querySelectorAll(selectors.elementClass).forEach($se => {
+    const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+  
     if ($se) {
-        // Initialize the slider using the Slider library
-        const priceRange = new Slider($se, {
+      // Initialize the slider using the Slider library
+      const priceRange = new Slider($se, {
         tooltip_split: true,
         formatter: function(value) {
-            return currency + value;
+            if (currency == "kg") {
+                return value + currency;
+            } else if (currency == 'km') {
+                return value + currency;
+            }
+          return currency + value;
         },
-        });
-
-        // Event listener to get current min and max when slider stops moving
-        priceRange.on('slideStop', (value) => {
-        const currentMin = value[0];  // This is the current minimum value
-        const currentMax = value[1];  // This is the current maximum value
-
-        // Log or use the min and max values however you need
+      });
+  
+      // Event listener to get current min and max when slider stops moving
+      priceRange.on('slideStop', (value) => {
+        const currentMin = value[0];  // Current minimum value
+        const currentMax = value[1];  // Current maximum value
+        
+        // Log or use the min and max values however needed
         console.log('Current Min:', currentMin);
         console.log('Current Max:', currentMax);
-
-        // Update the UI with the min and max values
-        const $minEl = $se.parentElement.querySelector(selectors.minElement);
-        const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-        $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
-        $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
-
-        // Optionally trigger some action with these values (e.g., filter products)
-        updateFilterBasedOnPrice(currentMin, currentMax);
-        });
-        // You can have a separate function that handles additional logic like filtering products
-        function updateFilterBasedOnPrice(minPrice, maxPrice) {
-            // Your logic to filter products or update UI based on the price range
-            console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
-                    // Handle the color selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
+        if (currency == "kg") {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}kg`;
+            $maxEl.innerText = `${currentMax}kg`;
+            weight = currentMax;
+        } else if (currency == 'km') {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}km`;
+            $maxEl.innerText = `${currentMax}km`;
+            max_distance = currentMax;
+        } else {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+            $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+            min_price = currentMin;
+            max_price = currentMax;
         }
+  
+        // Optionally trigger some action with these values (e.g., filter products)
+        getProducts();
+      });
     }
-    });
+  });
+  
 }
 
 // Shuffle function using Fisher-Yates algorithm
@@ -855,12 +890,12 @@ for (let i = array.length - 1; i > 0; i--) {
 }
 return array;
 }
-  
+
 var products = [
     {
         "ID": 1,
         "title": "Cropped Faux Leather Jacket",
-        "category": "Outfit",
+        "category": "cars",
         "initial_cost": 5000,
         "selling_price": 0,
         "net_weight": 100,
