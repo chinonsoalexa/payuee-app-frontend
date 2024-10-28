@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the popup only if the PWA is not installed and the user is not on an iPhone
     if (!isAppInstalled() && !isiPhone()) {
         setTimeout(() => {
-            installPopup.style.display = 'block';
+            // installPopup.style.display = 'block';
         }, 2000);
     }
 
