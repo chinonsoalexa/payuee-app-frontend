@@ -60,7 +60,7 @@ function getCurrentUrl(title, description) {
 
 async function getProduct(productID) {
   renderLoadingDetails();
-const apiUrl = "https://api.payuee.com/product/" + productID + "/jewelry";
+const apiUrl = "https://api.payuee.com/product/" + productID;
 
 const requestOptions = {
     method: "GET",
@@ -285,7 +285,7 @@ function renderProductDetails(product, related) {
               <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-            ${price}
+              ${price}
             </div>
             <div class="product-single__short-desc">
               <p>${product.description}</p>
@@ -359,19 +359,19 @@ function renderProductDetails(product, related) {
               <div class="meta-item">
               <label>Available Stock:</label>
               <span>${product.stock_remaining}</span>
-            </div>
-            <div class="meta-item">
-              <label>Category:</label>
-              <span>${product.category}</span>
-            </div>
-            <div class="meta-item">
-              <label>Tags:</label>
-              <span>${extractValues(product.tags)}</span>
-            </div>
-            <div class="meta-item">
-              <label>Delivery Day(s):</label>
-              <span>${product.estimated_delivery}</span>
-            </div>
+              </div>
+              <div class="meta-item">
+                <label>Category:</label>
+                <span>${product.category}</span>
+              </div>
+              <div class="meta-item">
+                <label>Tags:</label>
+                <span>${extractValues(product.tags)}</span>
+              </div>
+              <div class="meta-item">
+                <label>Delivery Day(s):</label>
+                <span>${product.estimated_delivery}</span>
+              </div>
             </div>
             <!--  <div class="product-single__additional-info">
               <a href="#" data-bs-toggle="modal" data-bs-target="#deliveryModal">Composition and Care</a>

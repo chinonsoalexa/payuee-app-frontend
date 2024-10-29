@@ -91,7 +91,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.related);
      
 } finally {
 
@@ -188,7 +188,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product) {
+function renderProductDetails(product, related) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -228,7 +228,7 @@ function renderProductDetails(product) {
   //   commentRender = '';
   // }
 
-  if (product.product_stock < 1) {
+  if (product.stock_remaining < 1) {
     cartButton = `
     <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
     `
@@ -258,30 +258,7 @@ function renderProductDetails(product) {
             <div class="product-single__image">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-1.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-2.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
-                  <div class="swiper-slide product-single__image-item">
-                    <img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="674" height="674" alt="">
-                    <a data-fancybox="gallery" href="/e-shop/Demo3/../images/products/product_0-3.jpg" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-                    </a>
-                  </div>
+                  ${renderProductImages(product.product_image, product.title)}
                 </div>
                 <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></div>
                 <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></div>
@@ -312,7 +289,7 @@ function renderProductDetails(product) {
               <a id="nextDetail" href="#" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
             </div><!-- /.shop-acs -->
           </div>
-          <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
+          <h1 class="product-single__name">${product.title}</h1>
           <div class="product-single__rating">
             <div class="reviews-group d-flex">
               <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
@@ -324,10 +301,10 @@ function renderProductDetails(product) {
             <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
           <div class="product-single__price">
-            <span class="current-price">₦449</span>
+            ${price}
           </div>
           <div class="product-single__short-desc">
-            <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
+            <p>${product.description}</p>
           </div>
           <form name="addtocart-form" method="post">
             <div class="product-single__swatches">
@@ -396,17 +373,21 @@ function renderProductDetails(product) {
           </div>
           <div class="product-single__meta-info">
             <div class="meta-item">
-              <label>SKU:</label>
-              <span>N/A</span>
-            </div>
-            <div class="meta-item">
-              <label>Categories:</label>
-              <span>Casual & Urban Wear, Jackets, Men</span>
-            </div>
-            <div class="meta-item">
-              <label>Tags:</label>
-              <span>biker, black, bomber, leather</span>
-            </div>
+              <label>Available Stock:</label>
+              <span>${product.stock_remaining}</span>
+              </div>
+              <div class="meta-item">
+                <label>Category:</label>
+                <span>${product.category}</span>
+              </div>
+              <div class="meta-item">
+                <label>Tags:</label>
+                <span>${extractValues(product.tags)}</span>
+              </div>
+              <div class="meta-item">
+                <label>Delivery Day(s):</label>
+                <span>${product.estimated_delivery}</span>
+              </div>
           </div>
         </div>
         `;
@@ -499,6 +480,30 @@ quantityInput.addEventListener('change', () => {
         updateCartDrawer();
       });
     }
+  }
+
+  function renderProductImages(imageUrls, title) {
+    let imagesHtml = '';
+    imageUrls.forEach((url) => {
+      imagesHtml += `
+      <div class="swiper-slide product-single__image-item">
+        <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
+        <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
+        </a>
+      </div>`;
+    });
+    return imagesHtml; // Return the full HTML string
+  }
+
+  function extractValues(jsonString) {
+    // Parse the JSON string into an array of objects
+    const array = JSON.parse(jsonString);
+  
+    // Map each object to its 'value' and join them with a comma
+    const valuesString = array.map(obj => obj.value).join(", ");
+  
+    return valuesString; // Return the final string
   }
 
   // Select the 'Show More' link element by its ID
