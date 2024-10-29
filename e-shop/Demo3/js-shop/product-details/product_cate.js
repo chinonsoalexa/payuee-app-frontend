@@ -2,6 +2,7 @@
 var productId;
 var ReviewCount;
 var pageNumber = 1;
+var categoryId = "";
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
@@ -93,6 +94,7 @@ async function getProduct(productID) {
 
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.related);
+      categoryId = responseData.success.category;
      
 } finally {
 
@@ -100,7 +102,8 @@ async function getProduct(productID) {
 }
 
 async function getNextProduct(productID) {
-  const apiUrl = "https://api.payuee.com/next-product/" + productID;
+  const apiUrl = "https://api.payuee.com/next-product/" + productID + "/" + categoryId;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -134,8 +137,9 @@ async function getNextProduct(productID) {
 
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.related);
-      replaceURL('/shop/' + responseData.success.product_url_id);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
@@ -143,7 +147,8 @@ async function getNextProduct(productID) {
 }
 
 async function getPreviousProduct(productID) {
-  const apiUrl = "https://api.payuee.com/previous-product/" + productID;
+  const apiUrl = "https://api.payuee.com/previous-product/" + productID + "/" + categoryId;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -177,8 +182,9 @@ async function getPreviousProduct(productID) {
 
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.related);
-      replaceURL('/shop/' + responseData.success.product_url_id);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
@@ -485,7 +491,7 @@ quantityInput.addEventListener('change', () => {
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
           <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
-          <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+          <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom ${title}">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <use href="#icon_zoom" />
             </svg>

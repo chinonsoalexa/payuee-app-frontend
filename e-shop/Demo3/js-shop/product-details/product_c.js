@@ -147,7 +147,7 @@ async function getNextProduct(productID) {
 }
 
 async function getPreviousProduct(productID) {
-  const apiUrl = "https://api.payuee.com/previous-product/" + productID;
+  const apiUrl = "https://api.payuee.com/previous-product/" + productID + "/" + categoryId;
   renderLoadingDetails();
 
   const requestOptions = {

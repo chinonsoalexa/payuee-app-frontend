@@ -2,6 +2,7 @@
 var productId;
 var ReviewCount;
 var pageNumber = 1;
+var categoryId = "";
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
@@ -94,6 +95,7 @@ try {
 
     const responseData = await response.json();
     renderProductDetails(responseData.success, responseData.related);
+    categoryId = responseData.success.category;
    
 } finally {
 
@@ -101,7 +103,8 @@ try {
 }
 
 async function getNextProduct(productID) {
-  const apiUrl = "https://api.payuee.com/next-product/" + productID;
+  const apiUrl = "https://api.payuee.com/next-product/" + productID + "/" + categoryId;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -134,9 +137,10 @@ async function getNextProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
-      replaceURL('/shop/' + responseData.success.product_url_id);
+      renderProductDetails(responseData.success, responseData.related);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
@@ -144,7 +148,8 @@ async function getNextProduct(productID) {
 }
 
 async function getPreviousProduct(productID) {
-  const apiUrl = "https://api.payuee.com/previous-product/" + productID;
+  const apiUrl = "https://api.payuee.com/previous-product/" + productID + "/" + categoryId;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -177,9 +182,10 @@ async function getPreviousProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
-      replaceURL('/shop/' + responseData.success.product_url_id);
+      renderProductDetails(responseData.success, responseData.related);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
