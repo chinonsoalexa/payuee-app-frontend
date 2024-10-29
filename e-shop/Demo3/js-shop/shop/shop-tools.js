@@ -7,53 +7,71 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+var pageNumber;
+
+var sort_option = 7;
+var min_price = 2500;
+var max_price = 35000;
+var max_distance = 10;
+var min_weight = 1;
+var max_weight = 10;
+
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
-    loading();
     updateCartNumber();
     updateCartDrawer();
-    sortingAlgo();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
-    setTimeout(() => {
-        // console.log('m here')
-        // updateProductsFromData(productts);
-            // render the store products
-            document.getElementById('products-grid').innerHTML = '';
-    products.forEach((product) => {
-        renderProducts(product);
-    });
-        // console.log('just finished here')
-    }, 3000);
+    // setTimeout(() => {
+    //     // console.log('m here')
+    //     // updateProductsFromData(productts);
+    //         // render the store products
+    //         document.getElementById('products-grid').innerHTML = '';
+    // products.forEach((product) => {
+    //     renderProducts(product);
+    // });
+    //     // console.log('just finished here')
+    // }, 3000);
 
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
 
     // Get individual parameter values
-    let pageNumber = params.get("page");
+    pageNumber = params.get("page");
     if (pageNumber == null) {
         pageNumber = "1";
     }
 
-    // await getProducts(pageNumber);
+    await getProducts();
 
 });
 
-async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/products/" + pageNumber;
+async function getProducts() {
+    const apiUrl = "https://api.payuee.com/get-store-products";
+    loading();
 
     const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            page_number: +pageNumber,
+            category: "tools",
+            max_distance: parseFloat(max_distance),
+            min_price: parseFloat(min_price),
+            max_price: parseFloat(max_price),
+            min_weight: parseFloat(min_weight),
+            max_weight: parseFloat(max_weight),
+            sort_option: +sort_option
+        })
     };
 
     try {
@@ -82,7 +100,7 @@ async function getProducts(pageNumber) {
 
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
-        clearElementsByClass('product-card-wrapper');
+        document.getElementById('products-grid').innerHTML = '';
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
@@ -202,7 +220,7 @@ async function getProducts(pageNumber) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/tools?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -230,6 +248,20 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
+
+// function displayImage(productURL, productTitle, imageURLarray) {
+//     slideDiv = '';
+//     // Loop through the product_image array and generate HTML
+//     imageURLarray.forEach((image, index) => {
+        
+//         slideDiv += `
+//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
+//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
+//             </a>
+//         `;
+//     });
+//     return slideDiv;
+// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
@@ -485,7 +517,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="../images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/../images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -520,7 +552,7 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" src="${"/image/" + cartProduct.product_image[0].url}" alt="">
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
@@ -652,370 +684,3 @@ function calculateCartSubtotal() {
     document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
 }
 
-function sortingAlgo() {
-// Add event listener to the select element
-document.getElementById('sortingSelect').addEventListener('change', function() {
-    const selectedValue = this.value;  // Get the selected option value
-    console.log('Selected sorting option value:', selectedValue);
-    loading();
-    
-    setTimeout(() => {
-    // Clear current product grid
-    document.getElementById('products-grid').innerHTML = '';
-
-    // Shuffle products array before rendering
-    const shuffledProducts = shuffleArray(products);
-
-    // Render the shuffled products
-    shuffledProducts.forEach((product) => {
-        renderProducts(product);
-    });
-
-    }, 3000);
-});
-
-// Add event listeners to category links
-document.querySelectorAll('.menu-link').forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default navigation
-        const selectedCategory = this.textContent.trim();
-        console.log('Selected Category:', selectedCategory);
-        // Handle the category selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-    });
-    });
-    
-    // Add event listeners to color swatches
-    document.querySelectorAll('.swatch-color').forEach(swatch => {
-    swatch.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedColor = this.style.color;
-        console.log('Selected Color:', selectedColor);
-        // Handle the color selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-    });
-    });
-    
-    // Add event listeners to size buttons
-    document.querySelectorAll('.swatch-size').forEach(sizeButton => {
-    sizeButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior
-        const selectedSize = this.textContent.trim();
-        console.log('Selected Size:', selectedSize);
-        // Handle the size selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-    });
-    });
-    
-// Get the search input field by its ID
-const searchInput = document.getElementById('searchField');
-    
-// Add an event listener to capture input changes
-searchInput.addEventListener('input', function(event) {
-    const searchQuery = event.target.value;  // Get the current input value
-    
-    // Perform actions with the search query
-    console.log('Search query:', searchQuery);
-    
-    // You can call a function to handle the search here, e.g., make an API request or filter results
-    performSearch(searchQuery);
-});
-
-// Example search function (you can replace it with your logic)
-function performSearch(query) {
-    if (query.length > 0) {
-    console.log('Performing search for:', query);
-    // Add your search logic here, such as making an API call or filtering displayed results
-            // Handle the color selection
-            loading();
-    
-            setTimeout(() => {
-            // Clear current product grid
-            document.getElementById('products-grid').innerHTML = '';
-        
-            // Shuffle products array before rendering
-            const shuffledProducts = shuffleArray(products);
-        
-            // Render the shuffled products
-            shuffledProducts.forEach((product) => {
-                renderProducts(product);
-            });
-        
-            }, 3000);
-    } else {
-    console.log('Search query is empty');
-    // Clear or reset search results if the input is empty
-    }
-}
-
-    const selectors = {
-    elementClass: '.price-range-slider',
-    minElement: '.price-range__min',
-    maxElement: '.price-range__max'
-    };
-
-    // Iterate over each slider element
-    document.querySelectorAll(selectors.elementClass).forEach($se => {
-    const currency = $se.dataset.currency || '₦'; // Default currency if not provided
-
-    if ($se) {
-        // Initialize the slider using the Slider library
-        const priceRange = new Slider($se, {
-        tooltip_split: true,
-        formatter: function(value) {
-            return currency + value;
-        },
-        });
-
-        // Event listener to get current min and max when slider stops moving
-        priceRange.on('slideStop', (value) => {
-        const currentMin = value[0];  // This is the current minimum value
-        const currentMax = value[1];  // This is the current maximum value
-
-        // Log or use the min and max values however you need
-        console.log('Current Min:', currentMin);
-        console.log('Current Max:', currentMax);
-
-        // Update the UI with the min and max values
-        const $minEl = $se.parentElement.querySelector(selectors.minElement);
-        const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-        $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
-        $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
-
-        // Optionally trigger some action with these values (e.g., filter products)
-        updateFilterBasedOnPrice(currentMin, currentMax);
-        });
-        // You can have a separate function that handles additional logic like filtering products
-        function updateFilterBasedOnPrice(minPrice, maxPrice) {
-            // Your logic to filter products or update UI based on the price range
-            console.log(`Filter products within the price range: ${minPrice} to ${maxPrice}`);
-                    // Handle the color selection
-        loading();
-    
-        setTimeout(() => {
-        // Clear current product grid
-        document.getElementById('products-grid').innerHTML = '';
-    
-        // Shuffle products array before rendering
-        const shuffledProducts = shuffleArray(products);
-    
-        // Render the shuffled products
-        shuffledProducts.forEach((product) => {
-            renderProducts(product);
-        });
-    
-        }, 3000);
-        }
-    }
-    });
-}
-
-// Shuffle function using Fisher-Yates algorithm
-function shuffleArray(array) {
-for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];  // Swap elements
-}
-return array;
-}
-  
-var products = [
-    {
-        "ID": 1,
-        "title": "Cropped Faux Leather Jacket",
-        "category": "Outfit",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 100,
-        "product_stock": 5,
-        "Image1": "../images/products/product_0-1.jpg",
-        "Image2": "../images/products/product_0-2.jpg",
-        "product_review_count": 200000,
-        // "product_url_id": "cropped-faux-leather-jacket-1"
-    },
-    {
-        "ID": 2,
-        "title": "Calvin Shorts",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 200,
-        "product_stock": 5,
-        "Image1": "../images/products/product_0-3.jpg",
-        "Image2": "../images/products/product_0-9.jpg",
-        "product_review_count": 3500,
-        // "product_url_id": "calvin-shorts-2"
-    },
-    {
-        "ID": 3,
-        "title": "Kirby T-Shirt",
-        "category": "Herbal Tea",
-        "initial_cost": 6000,
-        "selling_price": 6000,
-        "net_weight": 50,
-        "product_stock": 5,
-        "Image1": "../images/products/product_0-5.jpg",
-        "Image2": "../images/products/product_0-6.jpg",
-        "product_review_count": 400,
-        // "product_url_id": "hypertension-tea-3"
-    },
-    {
-        "ID": 4,
-        "title": "Cableknit Shawl",
-        "category": "Herbal Tea",
-        "initial_cost": 9000,
-        "selling_price": 5000,
-        "net_weight": 300,
-        "product_stock": 200,
-        "Image1": "../images/products/product_0-7.jpg",
-        "Image2": "../images/products/product_0-8.jpg",
-        "product_review_count": 500,
-        // "product_url_id": "double-strength-tea-4"
-    },
-    {
-        "ID": 5,
-        "title": "Colorful Jacket",
-        "category": "Herbal Tea",
-        "initial_cost": 4000,
-        "selling_price": 1500,
-        "net_weight": 250,
-        "product_stock": 200,
-        "Image1": "../images/products/product_0-9.jpg",
-        "Image2": "../images/products/product_0-10.jpg",
-        "product_review_count": 50,
-        // "product_url_id": "green-coffee-5"
-    },
-    {
-        "ID": 6,
-        "title": "Shirt In Botanical Cheetah Print",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 500,
-        "product_stock": 200,
-        "Image1": "../images/products/product_0-11.jpg",
-        "Image2": "../images/products/product_0-12.jpg",
-        "product_review_count": 200,
-        // "product_url_id": "english-breakfast-6"
-    },
-    {
-        "ID": 7,
-        "title": "Cotton Jersey T-Shirt",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 4000,
-        "net_weight": 100,
-        "product_stock": 5,
-        "Image1": "../images/products/product_0-13.jpg",
-        "Image2": "../images/products/product_0.jpg",
-        "product_review_count": 2500,
-        // "product_url_id": "cropped-faux-leather-jacket-7"
-    },
-    {
-        "ID": 8,
-        "title": "Zessi Dresses",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 100,
-        "product_stock": 200,
-        "Image1": "../images/products/product_1-1.jpg",
-        "Image2": "../images/products/product_1.jpg",
-        "product_review_count": 25000000,
-        // "product_url_id": "cropped-faux-leather-jacket-8"
-    },
-    {
-        "ID": 9,
-        "title": "Cropped Faux Leather Jacket",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 3000,
-        "net_weight": 100,
-        "product_stock": 200,
-        "Image1": "../images/products/product_2-1.jpg",
-        "Image2": "../images/products/product_2.jpg",
-        "product_review_count": 4500000,
-        // "product_url_id": "infection-cleanse-9"
-    },
-    {
-        "ID": 10,
-        "title": "Cotton Jersey T-Shirt",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 100,
-        "product_stock": 200,
-        "Image1": "../images/products/product_3-1.jpg",
-        "Image2": "../images/products/product_3.jpg",
-        "product_review_count": 6700,
-        // "product_url_id": "fibroid-fertility-tea-10"
-    },
-    {
-        "ID": 11,
-        "title": "Colorful Jacket",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 4500,
-        "net_weight": 100,
-        "product_stock": 200,
-        "Image1": "../images/products/product_4-1.jpg",
-        "Image2": "../images/products/product_4.jpg",
-        "product_review_count": 2800,
-        // "product_url_id": "hypertension-tea-11"
-    },
-    {
-        "ID": 12,
-        "title": "Kirby T-Shirt",
-        "category": "Herbal Tea",
-        "initial_cost": 5000,
-        "selling_price": 0,
-        "net_weight": 100,
-        "product_stock": 200,
-        "Image1": "../images/products/product_5-1.jpg",
-        "Image2": "../images/products/product_5.jpg",
-        "product_review_count": 2200,
-        // "product_url_id": "double-strength-tea-12"
-    },
-];
