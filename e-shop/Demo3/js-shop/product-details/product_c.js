@@ -2,6 +2,7 @@
 var productId;
 var ReviewCount;
 var pageNumber = 1;
+var categoryId = "";
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 15 }, (_, i) => i);
@@ -18,33 +19,33 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     loading();
-    renderLoadingDetails();
-    // getProduct(productId);
-    setTimeout(() => {
-    // Check if productId exists
-    if (productId) {
-        // Find the product by ID
-        const product = products.find(product => product.ID === 2);
+    // renderLoadingDetails();
+    getProduct(productId);
+  //   setTimeout(() => {
+  //   // Check if productId exists
+  //   if (productId) {
+  //       // Find the product by ID
+  //       const product = products.find(product => product.ID === 2);
 
-        if (product) {
-            renderLoadingDetails();
-            renderProductDetails(product);
-        } else {
-            // If product not found, default to product with ID 1
-            const product2 = products.find(product => product.ID === 1);
-            productId = 1; // Update productId to default
-            renderLoadingDetails();
-            renderProductDetails(product2);
-        }
-    } else {
-        // If no productId in URL, render the first product by default
-        // If product not found, default to product with ID 1
-        const product2 = products.find(product => product.ID === 1);
-        productId = 1; // Update productId to default
-          renderLoadingDetails();
-          renderProductDetails(product2);
-    }
-  }, 3000);
+  //       if (product) {
+  //           renderLoadingDetails();
+  //           renderProductDetails(product);
+  //       } else {
+  //           // If product not found, default to product with ID 1
+  //           const product2 = products.find(product => product.ID === 1);
+  //           productId = 1; // Update productId to default
+  //           renderLoadingDetails();
+  //           renderProductDetails(product2);
+  //       }
+  //   } else {
+  //       // If no productId in URL, render the first product by default
+  //       // If product not found, default to product with ID 1
+  //       const product2 = products.find(product => product.ID === 1);
+  //       productId = 1; // Update productId to default
+  //         renderLoadingDetails();
+  //         renderProductDetails(product2);
+  //   }
+  // }, 3000);
   // Other initializations...
 });
 
@@ -59,6 +60,7 @@ function getCurrentUrl(title, description) {
 
 async function getProduct(productID) {
   const apiUrl = "https://api.payuee.com/product/" + productID;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -92,6 +94,7 @@ async function getProduct(productID) {
 
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.related);
+      categoryId = responseData.success.category;
      
 } finally {
 
@@ -99,7 +102,8 @@ async function getProduct(productID) {
 }
 
 async function getNextProduct(productID) {
-  const apiUrl = "https://api.payuee.com/next-product/" + productID;
+  const apiUrl = "https://api.payuee.com/next-product/" + productID + "/" + categoryId;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -132,9 +136,10 @@ async function getNextProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
-      replaceURL('/shop/' + responseData.success.product_url_id);
+      renderProductDetails(responseData.success, responseData.related);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
@@ -143,6 +148,7 @@ async function getNextProduct(productID) {
 
 async function getPreviousProduct(productID) {
   const apiUrl = "https://api.payuee.com/previous-product/" + productID;
+  renderLoadingDetails();
 
   const requestOptions = {
       method: "GET",
@@ -176,8 +182,9 @@ async function getPreviousProduct(productID) {
 
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.related);
-      replaceURL('/shop/' + responseData.success.product_url_id);
       productId = responseData.success.ID;
+      categoryId = responseData.success.category;
+      replaceURL('/shop/' + responseData.success.product_url_id);
      
 } finally {
 
