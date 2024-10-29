@@ -23,21 +23,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
     updateCartDrawer();
+    sortingAlgo();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
-
-    // setTimeout(() => {
-    //     // console.log('m here')
-    //     // updateProductsFromData(productts);
-    //         // render the store products
-    //         document.getElementById('products-grid').innerHTML = '';
-    // products.forEach((product) => {
-    //     renderProducts(product);
-    // });
-    //     // console.log('just finished here')
-    // }, 3000);
 
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
@@ -131,9 +121,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-jewelry?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-jewelry?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -249,19 +239,6 @@ function deactivateCurrentButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-// function displayImage(productURL, productTitle, imageURLarray) {
-//     slideDiv = '';
-//     // Loop through the product_image array and generate HTML
-//     imageURLarray.forEach((image, index) => {
-        
-//         slideDiv += `
-//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
-//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
-//             </a>
-//         `;
-//     });
-//     return slideDiv;
-// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
@@ -318,7 +295,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/jewelry/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -330,7 +307,7 @@ function renderProducts(product) {
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                <a href="https://payuee.com/outfits/${product.product_url_id}" class="pc__btn-wl-wrapper">
+                <a href="https://payuee.com/jewelry/${product.product_url_id}" class="pc__btn-wl-wrapper">
                     <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_retweet" />
@@ -369,7 +346,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/jewelry/${product.product_url_id}`;
     });
 
 
@@ -378,7 +355,7 @@ function renderProducts(product) {
     imageUrls.forEach((url, num) => {
       imagesHtml += `
         <div class="swiper-slide">
-            <a href="https://payuee.com/outfits/${url.url}" class="product-link${num+1}">
+            <a href="https://payuee.com/image/${url.url}" class="product-link${num+1}">
                 <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num+1}">
             </a>
         </div>`;
@@ -684,3 +661,133 @@ function calculateCartSubtotal() {
     document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
 }
 
+function sortingAlgo() {
+// Add event listener to the select element
+document.getElementById('sortingSelect').addEventListener('change', function() {
+    const selectedValue = this.value;  // Get the selected option value
+    console.log('Selected sorting option value:', selectedValue);
+    sort_option = selectedValue;
+    getProducts();
+});
+
+// Add event listeners to category links
+document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default navigation
+      const selectedCategory = this.textContent.trim();
+      console.log('Selected Category:', selectedCategory);
+      // Handle the category selection
+      loading();
+    
+      setTimeout(() => {
+      // Clear current product grid
+      document.getElementById('products-grid').innerHTML = '';
+  
+      // Shuffle products array before rendering
+      const shuffledProducts = shuffleArray(products);
+  
+      // Render the shuffled products
+      shuffledProducts.forEach((product) => {
+          renderProducts(product);
+      });
+  
+      }, 3000);
+    });
+  });
+  
+// Get the search input field by its ID
+const searchInput = document.getElementById('searchField');
+  
+// Add an event listener to capture input changes
+searchInput.addEventListener('input', function(event) {
+  const searchQuery = event.target.value;  // Get the current input value
+  
+  // Perform actions with the search query
+  console.log('Search query:', searchQuery);
+  
+  // You can call a function to handle the search here, e.g., make an API request or filter results
+  performSearch(searchQuery);
+});
+
+// FILTER BY SHOP SEARCH
+// Example search function (you can replace it with your logic)
+function performSearch(query) {
+  if (query.length > 0) {
+    // console.log('Performing search for:', query);
+    
+          setTimeout(() => {
+          // Clear current product grid
+          document.getElementById('products-grid').innerHTML = '';
+      
+          }, 3000);
+  } else {
+    // console.log('Search query is empty');
+    // Clear or reset search results if the input is empty
+  }
+}
+
+// FILTER BY WEIGHT (KG) AND BY PRICE
+const selectors = {
+    elementClass: '.price-range-slider',
+    minElement: '.price-range__min',
+    maxElement: '.price-range__max'
+  };
+  
+  // Iterate over each slider element
+  document.querySelectorAll(selectors.elementClass).forEach($se => {
+    const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+  
+    if ($se) {
+      // Initialize the slider using the Slider library
+      const priceRange = new Slider($se, {
+        tooltip_split: true,
+        formatter: function(value) {
+            if (currency == "kg") {
+                return value + currency;
+            } else if (currency == 'km') {
+                return value + currency;
+            }
+          return currency + value;
+        },
+      });
+  
+      // Event listener to get current min and max when slider stops moving
+      priceRange.on('slideStop', (value) => {
+        const currentMin = value[0];  // Current minimum value
+        const currentMax = value[1];  // Current maximum value
+        
+        // Log or use the min and max values however needed
+        console.log('Current Min:', currentMin);
+        console.log('Current Max:', currentMax);
+        if (currency == "kg") {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}kg`;
+            $maxEl.innerText = `${currentMax}kg`;
+            min_weight = currentMin;
+            max_weight = currentMax;
+        } else if (currency == 'km') {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${currentMin}km`;
+            $maxEl.innerText = `${currentMax}km`;
+            max_distance = currentMax;
+        } else {
+            // Update the UI with the min and max values
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+            $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+            min_price = currentMin;
+            max_price = currentMax;
+        }
+  
+        // Optionally trigger some action with these values (e.g., filter products)
+        getProducts();
+      });
+    }
+  });
+  
+}
