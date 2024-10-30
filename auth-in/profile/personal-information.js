@@ -4,7 +4,7 @@ var ReferralCode;
 document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-first-name-main').textContent = "Loading...";
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
-    // document.getElementById('toggle-address-main').textContent = "Loading...";
+    document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
     const apiUrl = "https://api.payuee.com/profile";
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }else {
                 document.getElementById('toggle-first-name-main').textContent = "...";
                 document.getElementById('toggle-last-name-main').textContent = "...";
-                // document.getElementById('toggle-address-main').textContent = "...";
+                document.getElementById('toggle-address-main').textContent = "...";
                 document.getElementById('referral_link_number').textContent = "...";
             }
             return;
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // this is for the previous data
         var firstNamee = document.getElementById('toggle-first-name-main');
         var lastNamee = document.getElementById('toggle-last-name-main'); 
-        // var homeAddress = document.getElementById('toggle-address-main');
+        var homeAddress = document.getElementById('toggle-address-main');
         var referralNum = document.getElementById('referral_link_number');
         var phoneNumberActivated = document.getElementById('link_whatsapp_ai');
         firstNamee.textContent = responseData.success.FirstName;
@@ -438,108 +438,108 @@ lastName.addEventListener('input', function (event) {
 
 // Function to fetch and populate state data
 
-async function loadStates1() {
-    try {
-        const response = await fetch('nigeria_states.json');
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+// async function loadStates1() {
+//     try {
+//         const response = await fetch('nigeria_states.json');
+//         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         
-        const states = await response.json();
-        renderStates1(states);
-    } catch (error) {
-        console.error('Error fetching state data:', error);
-        alert('Could not load states. Please try again.');
-    }
-}
+//         const states = await response.json();
+//         renderStates1(states);
+//     } catch (error) {
+//         console.error('Error fetching state data:', error);
+//         alert('Could not load states. Please try again.');
+//     }
+// }
 
-// Function to fetch and populate city data based on state_iso2
-async function loadCities1(stateIso2) {
-    try {
-        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+// // Function to fetch and populate city data based on state_iso2
+// async function loadCities1(stateIso2) {
+//     try {
+//         const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+//         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         
-        const cities = await response.json();
-        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
-        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
-        renderCities1(filteredCities);
-    } catch (error) {
-        console.error('Error fetching city data:', error);
-    }
-}
+//         const cities = await response.json();
+//         const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+//         filteredCities.sort((a, b) => a.name.localeCompare(b.name));
+//         renderCities1(filteredCities);
+//     } catch (error) {
+//         console.error('Error fetching city data:', error);
+//     }
+// }
 
-// Function to render states into the Select State dropdown
-function renderStates1(states, selectedStateName = null) {
-    const stateSelect = document.getElementById('state-select1');
-    if (!stateSelect) {
-        console.error('State select element not found');
-        return;
-    }
+// // Function to render states into the Select State dropdown
+// function renderStates1(states, selectedStateName = null) {
+//     const stateSelect = document.getElementById('state-select1');
+//     if (!stateSelect) {
+//         console.error('State select element not found');
+//         return;
+//     }
 
-    stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
+//     stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
 
-    states.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state.iso2; // Use the ISO code as the value
-        option.textContent = state.name; // Display state name
-        stateSelect.appendChild(option);
+//     states.forEach(state => {
+//         const option = document.createElement('option');
+//         option.value = state.iso2; // Use the ISO code as the value
+//         option.textContent = state.name; // Display state name
+//         stateSelect.appendChild(option);
 
-        // Automatically select the option if it matches the selectedStateName
-        if (selectedStateName && state.name === selectedStateName) {
-            option.selected = true;
-        }
-    });
+//         // Automatically select the option if it matches the selectedStateName
+//         if (selectedStateName && state.name === selectedStateName) {
+//             option.selected = true;
+//         }
+//     });
 
-    // Initialize Select2 for better dropdown handling
-    $('#state-select1').select2();
+//     // Initialize Select2 for better dropdown handling
+//     $('#state-select1').select2();
 
-    // Attach Select2 event listener
-    $('#state-select1').on('change', function () {
-        const selectedStateIso = $(this).val();
-        if (selectedStateIso !== '0') {
-            loadCities1(selectedStateIso);  // Load cities when a state is selected
-        } else {
-            resetCitiesDropdown1();
-        }
-    });
-}
+//     // Attach Select2 event listener
+//     $('#state-select1').on('change', function () {
+//         const selectedStateIso = $(this).val();
+//         if (selectedStateIso !== '0') {
+//             loadCities1(selectedStateIso);  // Load cities when a state is selected
+//         } else {
+//             resetCitiesDropdown1();
+//         }
+//     });
+// }
 
-// Function to render cities into the Select City dropdown
-function renderCities1(cities, selectedCityName = null) {
-    const citySelect = document.getElementById('city-select1');
-    if (!citySelect) {
-        console.error('City select element not found');
-        return;
-    }
+// // Function to render cities into the Select City dropdown
+// function renderCities1(cities, selectedCityName = null) {
+//     const citySelect = document.getElementById('city-select1');
+//     if (!citySelect) {
+//         console.error('City select element not found');
+//         return;
+//     }
 
-    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
+//     citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
 
-    cities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city.name;
-        option.textContent = city.name;
-        option.dataset.latitude = city.latitude;
-        option.dataset.longitude = city.longitude;
-        citySelect.appendChild(option);
+//     cities.forEach(city => {
+//         const option = document.createElement('option');
+//         option.value = city.name;
+//         option.textContent = city.name;
+//         option.dataset.latitude = city.latitude;
+//         option.dataset.longitude = city.longitude;
+//         citySelect.appendChild(option);
 
-        // Automatically select the option if it matches the selectedCityName
-        if (selectedCityName && city.name === selectedCityName) {
-            option.selected = true;
-        }
-    });
+//         // Automatically select the option if it matches the selectedCityName
+//         if (selectedCityName && city.name === selectedCityName) {
+//             option.selected = true;
+//         }
+//     });
 
-    $(citySelect).select2();
-    $(citySelect).on('select2:select', function (e) {
-        const selectedCity = e.params.data.element;
-        if (selectedCity.value !== '0') {
-            console.log('Selected city coordinates:', {
-                latitude: selectedCity.dataset.latitude,
-                longitude: selectedCity.dataset.longitude
-            });
-        }
-    });
-}
+//     $(citySelect).select2();
+//     $(citySelect).on('select2:select', function (e) {
+//         const selectedCity = e.params.data.element;
+//         if (selectedCity.value !== '0') {
+//             console.log('Selected city coordinates:', {
+//                 latitude: selectedCity.dataset.latitude,
+//                 longitude: selectedCity.dataset.longitude
+//             });
+//         }
+//     });
+// }
 
-// Function to reset city dropdown
-function resetCitiesDropdown1() {
-    const citySelect = document.getElementById('city-select1');
-    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>';
-}
+// // Function to reset city dropdown
+// function resetCitiesDropdown1() {
+//     const citySelect = document.getElementById('city-select1');
+//     citySelect.innerHTML = '<option selected="" value="0">Choose City</option>';
+// }
