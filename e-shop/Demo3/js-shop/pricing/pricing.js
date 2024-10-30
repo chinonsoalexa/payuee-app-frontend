@@ -2,6 +2,7 @@ var transactionCodeStatus = false;
 const basicPlanId = 1500; // ID for Basic Plan
 var chargeAmount = 0;
 var vendorPlan = '';
+var TransactionCode = '';
 
 document.getElementById('basicPlan').addEventListener('click', function(event) {
     event.preventDefault();
@@ -52,7 +53,6 @@ function processPayment() {
     const newClickListener = async function(event) {
         event.preventDefault(); // Prevent default form submission
         
-        // let TransactionCode = "";
         if (transactionCodeStatus) {
             const transactionCode = document.getElementById('transactionCodeInput');
             TransactionCode = transactionCode.value.trim();
