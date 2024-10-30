@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (responseData.success.lastNamee == "") {
             lastNamee.textContent = "Add Last Name";
         }
-        homeAddress.textContent = responseData.success.Address;
-        if (responseData.success.Address == "") {
-            homeAddress.textContent = "Add Home Address";
-        }
+        // homeAddress.textContent = responseData.success.Address;
+        // if (responseData.success.Address == "") {
+        //     homeAddress.textContent = "Add Home Address";
+        // }
         referralNum.textContent = responseData.success.NumberOfReferrals;
         if (responseData.success.NumberOfReferrals == "") {
             referralNum.textContent = 0;
