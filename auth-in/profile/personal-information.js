@@ -437,6 +437,7 @@ address.addEventListener('input', function (event) {
 // });
 
 // Function to fetch and populate state data
+
 async function loadStates1() {
     try {
         const response = await fetch('nigeria_states.json');
