@@ -4,26 +4,18 @@ var chargeAmount = 0;
 var vendorPlan = '';
 var TransactionCode = '';
 
-document.getElementById('basicPlan').addEventListener('click', function(event) {
+// Plan selection event listener
+function handlePlanSelection(event, amount) {
     event.preventDefault();
-    chargeAmount = 1500;
+    chargeAmount = amount;
     updatePlanNotice(chargeAmount);
     processPayment();
-})
+}
 
-document.getElementById('businessPlan').addEventListener('click', function(event) {
-    event.preventDefault();
-    chargeAmount = 5500;
-    updatePlanNotice(chargeAmount);
-    processPayment();
-})
-
-document.getElementById('premiumPlan').addEventListener('click', function(event) {
-    event.preventDefault();
-    chargeAmount = 13500;
-    updatePlanNotice(chargeAmount);
-    processPayment();
-})
+// Add event listeners for each plan button only once
+document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 1500));
+document.getElementById('businessPlan').addEventListener('click', (event) => handlePlanSelection(event, 5500));
+document.getElementById('premiumPlan').addEventListener('click', (event) => handlePlanSelection(event, 13500));
 
 function processPayment() {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
@@ -49,7 +41,7 @@ function processPayment() {
 
     const paymentButton = document.getElementById('paymentButton');
 
-    // Remove any existing event listeners to prevent duplicate triggers
+    // Remove existing click listener before adding a new one
     paymentButton.removeEventListener("click", handlePaymentClick);
 
     // Define the event listener function for payment
@@ -74,8 +66,8 @@ function processPayment() {
         const customerBalance = await getUsersBalance();
 
         if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
-                hideModal('checkoutModal');
-                document.getElementById('transactionCodeInput').value = "";
+            hideModal('checkoutModal');
+            document.getElementById('transactionCodeInput').value = "";
             setTimeout(() => {
                 showModal('insufficientBalanceModal');
                 const fundWalletButton = document.getElementById('fundWalletButton');
@@ -101,9 +93,10 @@ function processPayment() {
         }
     }
 
-    // Add the event listener only once
+    // Add the click event listener only once
     paymentButton.addEventListener("click", handlePaymentClick);
 }
+
 
 const transactionCodeInput = document.getElementById('transactionCodeInput');
 
