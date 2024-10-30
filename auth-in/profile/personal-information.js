@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }else {
                 document.getElementById('toggle-first-name-main').textContent = "...";
                 document.getElementById('toggle-last-name-main').textContent = "...";
-                document.getElementById('toggle-address-main').textContent = "...";
+                // document.getElementById('toggle-address-main').textContent = "...";
                 document.getElementById('referral_link_number').textContent = "...";
             }
             return;
