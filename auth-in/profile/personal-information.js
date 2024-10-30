@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         //     phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
         // }
     } finally {
-
+        loadStates1();
     }
 });
 
@@ -435,3 +435,110 @@ address.addEventListener('input', function (event) {
 //         });
 //     });
 // });
+
+// Function to fetch and populate state data
+async function loadStates1() {
+    try {
+        const response = await fetch('nigeria_states.json');
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const states = await response.json();
+        renderStates1(states);
+    } catch (error) {
+        console.error('Error fetching state data:', error);
+        alert('Could not load states. Please try again.');
+    }
+}
+
+// Function to fetch and populate city data based on state_iso2
+async function loadCities1(stateIso2) {
+    try {
+        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const cities = await response.json();
+        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
+        renderCities1(filteredCities);
+    } catch (error) {
+        console.error('Error fetching city data:', error);
+    }
+}
+
+// Function to render states into the Select State dropdown
+function renderStates1(states, selectedStateName = null) {
+    const stateSelect = document.getElementById('state-select1');
+    if (!stateSelect) {
+        console.error('State select element not found');
+        return;
+    }
+
+    stateSelect.innerHTML = '<option selected="" value="0">Choose State</option>'; // Clear existing options
+
+    states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.iso2; // Use the ISO code as the value
+        option.textContent = state.name; // Display state name
+        stateSelect.appendChild(option);
+
+        // Automatically select the option if it matches the selectedStateName
+        if (selectedStateName && state.name === selectedStateName) {
+            option.selected = true;
+        }
+    });
+
+    // Initialize Select2 for better dropdown handling
+    $('#state-select1').select2();
+
+    // Attach Select2 event listener
+    $('#state-select1').on('change', function () {
+        const selectedStateIso = $(this).val();
+        if (selectedStateIso !== '0') {
+            loadCities1(selectedStateIso);  // Load cities when a state is selected
+        } else {
+            resetCitiesDropdown1();
+        }
+    });
+}
+
+// Function to render cities into the Select City dropdown
+function renderCities1(cities, selectedCityName = null) {
+    const citySelect = document.getElementById('city-select1');
+    if (!citySelect) {
+        console.error('City select element not found');
+        return;
+    }
+
+    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>'; // Clear existing options
+
+    cities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.name;
+        option.textContent = city.name;
+        option.dataset.latitude = city.latitude;
+        option.dataset.longitude = city.longitude;
+        citySelect.appendChild(option);
+
+        // Automatically select the option if it matches the selectedCityName
+        if (selectedCityName && city.name === selectedCityName) {
+            option.selected = true;
+        }
+    });
+
+    $(citySelect).select2();
+    $(citySelect).on('select2:select', function (e) {
+        const selectedCity = e.params.data.element;
+        if (selectedCity.value !== '0') {
+            console.log('Selected city coordinates:', {
+                latitude: selectedCity.dataset.latitude,
+                longitude: selectedCity.dataset.longitude
+            });
+        }
+    });
+}
+
+// Function to reset city dropdown
+function resetCitiesDropdown1() {
+    const citySelect = document.getElementById('city-select1');
+    citySelect.innerHTML = '<option selected="" value="0">Choose City</option>';
+}

@@ -17,12 +17,13 @@
    <!--datepicker css-->
    <link rel="stylesheet" href="assets/css/datepickerboot.css">
    <!--main css-->
-         <link rel="stylesheet" href="assets/css/main.css">
+   <link rel="stylesheet" href="assets/css/main.css">
    <link rel="manifest" href="manifest.json">
 
    <!-- popup css -->
    <link rel="stylesheet" href="assets/css/index.css">
    <link rel="stylesheet" href="assets/css/index2.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
 <!-- SEO Meta Tags -->
     <meta name="description" content="Payuee - Your one-stop destination for online recharge and bill payments. Recharge your mobile, data subscription, tv subscription, pay bills for electricity, and more with ease.">
@@ -633,14 +634,27 @@ border: none;
                      </li>
                      <li>
                         <span class="namebold fz-18 fw-600">
-                           Address 
+                           State 
                         </span>
-                        <span id="toggle-address-main">
-                           Add Home Address
+                        <div>
+                           <!-- State Dropdown -->
+                           <label for="state-select1">State:</label>
+                           <select id="state-select1">
+                               <option selected="" value="0">Loading States...</option>
+                           </select>
+                       </div>
+                     </li>
+                     <li>
+                        <span class="namebold fz-18 fw-600">
+                           City 
                         </span>
-                        <div id="toggle-address" class="form-group disabled">
-                           <input id="address-input" type="text" class="form-control" placeholder="Enter Address" value="">
-                        </div>
+                       <div>
+                           <!-- City Dropdown -->
+                           <label for="city-select1">City:</label>
+                           <select id="city-select1">
+                               <option selected="" value="0">Choose City</option>
+                           </select>
+                       </div>
                      </li>
                      <li>
                         <span class="namebold fz-18 fw-600">
