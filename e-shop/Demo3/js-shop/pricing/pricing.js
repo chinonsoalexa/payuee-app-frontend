@@ -100,9 +100,6 @@ function processPayment() {
 
         paymentButton.removeEventListener("click", paymentButton);
     });
-
-    paymentButton.removeEventListener("click", paymentButton);
-    paymentButton.addEventListener("click", paymentButton);
 }
 
 
