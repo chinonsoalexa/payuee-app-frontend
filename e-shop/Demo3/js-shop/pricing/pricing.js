@@ -49,7 +49,7 @@ function processPayment() {
 
     const paymentButton = document.getElementById('paymentButton');
 
-    const newClickListener = async function(event) {
+    paymentButton.addEventListener("click", async function(event) {
         event.preventDefault(); 
 
         // Fetch the transaction code based on the current transactionCodeStatus
@@ -98,11 +98,11 @@ function processPayment() {
             document.getElementById('transactionCodeInput').value = "";
         }
 
-        paymentButton.removeEventListener("click", newClickListener);
-    };
+        paymentButton.removeEventListener("click", paymentButton);
+    });
 
-    paymentButton.removeEventListener("click", newClickListener);
-    paymentButton.addEventListener("click", newClickListener);
+    paymentButton.removeEventListener("click", paymentButton);
+    paymentButton.addEventListener("click", paymentButton);
 }
 
 
