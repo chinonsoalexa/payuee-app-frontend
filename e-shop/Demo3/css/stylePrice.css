@@ -33,6 +33,12 @@
     background-color: #87ceeb; /* Dark Teal */
     color: #fff;
   }  
+
+  .pricing-card.basic .title,
+  .pricing-card.basic .price {
+    color: #87ceeb; /* Text color for premium visibility */
+    font-weight: bold;
+  }
   
   .pricing-card.business {
     background-color: #f8f9fa;
@@ -49,6 +55,12 @@
     background-color: #008080; /* Dark Teal */
     color: #fff;
   }  
+
+  .pricing-card.business .title,
+  .pricing-card.business .price {
+    color: #0056b3; /* Text color for premium visibility */
+    font-weight: bold;
+  }
 
   .pricing-card.gold {
     border: 2px solid #b8860b; /* Darker gold border */
