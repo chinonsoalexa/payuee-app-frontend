@@ -47,13 +47,12 @@ function processPayment() {
     showModal('checkoutModal');
 
     const paymentButton = document.getElementById('paymentButton');
-    paymentButton.addEventListener("click", newClickListener);
 
     // Remove any existing event listener
     const newClickListener = async function(event) {
         event.preventDefault(); // Prevent default form submission
         
-        let TransactionCode = "";
+        // let TransactionCode = "";
         if (transactionCodeStatus) {
             const transactionCode = document.getElementById('transactionCodeInput');
             TransactionCode = transactionCode.value.trim();
