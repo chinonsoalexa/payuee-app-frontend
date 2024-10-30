@@ -74,10 +74,10 @@ function processPayment() {
         const customerBalance = await getUsersBalance();
 
         if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
-            paymentModal.hide();
-            document.getElementById('transactionCodeInput').value = "";
+                hideModal('checkoutModal');
+                document.getElementById('transactionCodeInput').value = "";
             setTimeout(() => {
-                hideModal(insufficientBalanceModal);
+                showModal('insufficientBalanceModal');
                 const fundWalletButton = document.getElementById('fundWalletButton');
                 fundWalletButton.addEventListener('click', () => {
                     window.location.href = 'https://payuee.com/fund-wallet';
@@ -106,7 +106,6 @@ function processPayment() {
     // Add the event listener only once
     paymentButton.addEventListener("click", handlePaymentClick);
 }
-
 
 const transactionCodeInput = document.getElementById('transactionCodeInput');
 
