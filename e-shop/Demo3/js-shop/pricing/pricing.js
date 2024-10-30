@@ -49,18 +49,19 @@ function processPayment() {
 
     const paymentButton = document.getElementById('paymentButton');
 
-    // Remove any existing event listener
     const newClickListener = async function(event) {
-        event.preventDefault(); // Prevent default form submission
-        
+        event.preventDefault(); 
+
+        // Fetch the transaction code based on the current transactionCodeStatus
         if (transactionCodeStatus) {
             const transactionCode = document.getElementById('transactionCodeInput');
-            TransactionCode = transactionCode.value.trim();
+            TransactionCode = transactionCode ? transactionCode.value.trim() : "";
         } else {
             const newTransactionCode = document.getElementById('createTransactionCodeInput');
-            TransactionCode = newTransactionCode.value.trim();
+            TransactionCode = newTransactionCode ? newTransactionCode.value.trim() : "";
         }
 
+        // Ensure validation only occurs after the user enters input
         if (TransactionCode === "" || TransactionCode.length !== 6) {
             showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
             return;
@@ -70,8 +71,7 @@ function processPayment() {
 
         if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
             paymentModal.hide();
-            let transactionCodeInput = document.getElementById('transactionCodeInput');
-            transactionCodeInput.value = "";
+            document.getElementById('transactionCodeInput').value = "";
             setTimeout(() => {
                 hideModal(insufficientBalanceModal);
                 const fundWalletButton = document.getElementById('fundWalletButton');
@@ -97,15 +97,14 @@ function processPayment() {
             }
             document.getElementById('transactionCodeInput').value = "";
         }
-        
-        // Remove the event listener after executing
+
         paymentButton.removeEventListener("click", newClickListener);
     };
 
-    // Attach the event listener only once
-    paymentButton.removeEventListener("click", newClickListener); // Ensure no duplicate listeners
+    paymentButton.removeEventListener("click", newClickListener);
     paymentButton.addEventListener("click", newClickListener);
 }
+
 
 const transactionCodeInput = document.getElementById('transactionCodeInput');
 
