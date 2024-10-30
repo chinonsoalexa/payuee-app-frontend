@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         //     phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
         // }
     } finally {
-        loadStates1();
+        await loadStates1();
     }
 });
 
