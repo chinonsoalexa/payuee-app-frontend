@@ -4,11 +4,10 @@ var ReferralCode;
 document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-first-name-main').textContent = "Loading...";
     document.getElementById('toggle-last-name-main').textContent = "Loading...";
-    document.getElementById('toggle-address-main').textContent = "Loading...";
+    // document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
     const apiUrl = "https://api.payuee.com/profile";
-    loadStates1();
-    
+
     const requestOptions = {
         method: "GET",
         headers: {
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // this is for the previous data
         var firstNamee = document.getElementById('toggle-first-name-main');
         var lastNamee = document.getElementById('toggle-last-name-main'); 
-        var homeAddress = document.getElementById('toggle-address-main');
+        // var homeAddress = document.getElementById('toggle-address-main');
         var referralNum = document.getElementById('referral_link_number');
         var phoneNumberActivated = document.getElementById('link_whatsapp_ai');
         firstNamee.textContent = responseData.success.FirstName;
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         //     phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
         // }
     } finally {
-
+        loadStates1();
     }
 });
 
