@@ -17,6 +17,22 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+  .pricing-card.basic {
+    background-color: #f8f9fa;
+    border-color: #87ceeb;
+  }
+
+  .pricing-card.basic .btn-signup {
+    background-color: #d3d3d3; /* Soft Gray */
+    color: #333;   
+    border: none;
+  }
+
+  .pricing-card.basic .btn-signup:hover {
+    background-color: #87ceeb; /* Dark Teal */
+    color: #fff;
+  }  
   
   .pricing-card.business {
     background-color: #f8f9fa;
