@@ -47,6 +47,7 @@ function processPayment() {
     showModal('checkoutModal');
 
     const paymentButton = document.getElementById('paymentButton');
+    paymentButton.addEventListener("click", newClickListener);
 
     // Remove any existing event listener
     const newClickListener = async function(event) {
