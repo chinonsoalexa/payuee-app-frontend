@@ -170,27 +170,29 @@
     background-color: transparent;
     padding: 15px 0;
   }
-  @keyframes tiltShake {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(-5deg); }
-    40% { transform: rotate(5deg); }
-    60% { transform: rotate(-5deg); }
-    80% { transform: rotate(-5deg); }
-  }
   
-  .trial-badge {
-    display: inline-block;
-    cursor: pointer;
-    transform-origin: center; /* Center rotation */
-  }
-  
-  /* Trigger tilt shake on hover */
-  .trial-badge:hover {
-    animation: tiltShake 0.5s ease;
-  }
-  
-  /* Trigger tilt shake on click by adding this class */
-  .trial-badge.tilt-shake {
-    animation: tiltShake 0.5s ease;
-  }
-  
+/* Existing tiltShake animation */
+@keyframes tiltShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(5deg); }
+}
+
+/* Trial badge styling */
+.trial-badge {
+  display: inline-block;
+  cursor: pointer;
+  transform-origin: center; /* Center rotation */
+}
+
+/* Apply tiltShake animation when hovering over basicPlan */
+.basicPlan:hover .trial-badge {
+  animation: tiltShake 0.5s ease;
+}
+
+/* Optional: Trigger tilt shake on click by adding tilt-shake class */
+.trial-badge.tilt-shake {
+  animation: tiltShake 0.5s ease;
+}
