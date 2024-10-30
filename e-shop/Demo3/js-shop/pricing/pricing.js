@@ -55,7 +55,7 @@ function processPayment() {
                 // Simulate checking balance 
                 const customerBalance = await getUsersBalance();
 
-                if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
+                if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
                 // Hide checkout modal and show insufficient balance modal
                     paymentModal.hide();
                     let transactionCodeInput = document.getElementById('transactionCodeInput');
