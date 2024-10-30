@@ -7,5 +7,5 @@ trialBadge.addEventListener('click', () => {
   // Remove the class after the animation duration (0.5s)
   setTimeout(() => {
     trialBadge.classList.remove('tilt-shake');
-  }, 500);
+  }, 700);
 });
