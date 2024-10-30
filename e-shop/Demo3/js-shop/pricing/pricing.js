@@ -33,90 +33,78 @@ function processPayment() {
     let paymentButton1 = document.getElementById('paymentButton');
 
     if (transactionCodeStatus) {
-        // If the user have a transaction code
         transactionCodeSection.classList.remove('d-none');
         createTransactionCodeSection.classList.add('d-none');
     } else {
-        // If the user does not have a transaction code
         createTransactionCodeSection.classList.remove('d-none');
         transactionCodeSection.classList.add('d-none');
     }
 
-    cartSubTotalPopUp.textContent =  formatNumberToNaira(chargeAmount);
-    cartShippingTotalPopUp.textContent =  formatNumberToNaira(chargeAmount);
-    paymentButton1.textContent =  `Pay ${formatNumberToNaira(chargeAmount)}`;
+    cartSubTotalPopUp.textContent = formatNumberToNaira(chargeAmount);
+    cartShippingTotalPopUp.textContent = formatNumberToNaira(chargeAmount);
+    paymentButton1.textContent = `Pay ${formatNumberToNaira(chargeAmount)}`;
 
     showModal('checkoutModal');
 
     const paymentButton = document.getElementById('paymentButton');
 
-    paymentButton.addEventListener("click", async function(event) {
-        event.preventDefault(); // Prevent the form from submitting traditionally
-        // check if user trans code is empty
-                
+    // Remove any existing event listener
+    const newClickListener = async function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        let TransactionCode = "";
         if (transactionCodeStatus) {
-            // If the user have a transaction code
             const transactionCode = document.getElementById('transactionCodeInput');
             TransactionCode = transactionCode.value.trim();
         } else {
-            // If the user does not have a transaction code
             const newTransactionCode = document.getElementById('createTransactionCodeInput');
             TransactionCode = newTransactionCode.value.trim();
         }
 
-        if (TransactionCode == "") {
-            // display error to enter transaction code
-            showToastMessageE("please fill in the transaction code field");
-            return
+        if (TransactionCode === "" || TransactionCode.length !== 6) {
+            showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
+            return;
         }
-        if (TransactionCode.length != 6) {
-            // display error to enter transaction code
-            showToastMessageE("transaction code should be 6 digits");
-            return
-        }
-        
-        // Simulate checking balance 
+
         const customerBalance = await getUsersBalance();
 
         if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
-        // Hide checkout modal and show insufficient balance modal
             paymentModal.hide();
             let transactionCodeInput = document.getElementById('transactionCodeInput');
             transactionCodeInput.value = "";
-            setTimeout(function () {
+            setTimeout(() => {
                 hideModal(insufficientBalanceModal);
-                // Fund Wallet button logic (you can customize this for your wallet integration)
                 const fundWalletButton = document.getElementById('fundWalletButton');
-                fundWalletButton.addEventListener('click', function () {
-                    // Logic to fund the wallet goes here
+                fundWalletButton.addEventListener('click', () => {
                     window.location.href = 'https://payuee.com/fund-wallet';
                 });
-                return;
-            }, 300); // Delay for smooth transition
+            }, 300);
         } else {
             try {
                 const result = await placeOrder();
-                if (result.success){
-                    // Hide checkout modal and simulate a successful transaction
+                if (result.success) {
                     paymentModal.hide();
                     hideModal('checkoutModal');
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(chargeAmount);
-                    // Show the transaction success modal
                     transactionSuccessModal.show();
                     showModal('transactionSuccessModal');
-                    let transactionCodeInput = document.getElementById('transactionCodeInput');
-                    transactionCodeInput.value = "";
-                    return;
+                    document.getElementById('transactionCodeInput').value = "";
                 } else {
-                    showToastMessageE(result.error)
+                    showToastMessageE(result.error);
                 }
             } catch (error) {
-                // showToastMessageE(error.error)
+                showToastMessageE(error.error);
             }
-            let transactionCodeInput = document.getElementById('transactionCodeInput');
-            transactionCodeInput.value = "";
+            document.getElementById('transactionCodeInput').value = "";
         }
-    })
+        
+        // Remove the event listener after executing
+        paymentButton.removeEventListener("click", newClickListener);
+    };
+
+    // Attach the event listener only once
+    paymentButton.removeEventListener("click", newClickListener); // Ensure no duplicate listeners
+    paymentButton.addEventListener("click", newClickListener);
 }
 
 const transactionCodeInput = document.getElementById('transactionCodeInput');
