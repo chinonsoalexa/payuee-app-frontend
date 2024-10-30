@@ -669,31 +669,6 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
     getProducts();
 });
 
-// Add event listeners to category links
-document.querySelectorAll('.menu-link').forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default navigation
-      const selectedCategory = this.textContent.trim();
-      console.log('Selected Category:', selectedCategory);
-      // Handle the category selection
-      loading();
-    
-      setTimeout(() => {
-      // Clear current product grid
-      document.getElementById('products-grid').innerHTML = '';
-  
-      // Shuffle products array before rendering
-      const shuffledProducts = shuffleArray(products);
-  
-      // Render the shuffled products
-      shuffledProducts.forEach((product) => {
-          renderProducts(product);
-      });
-  
-      }, 3000);
-    });
-  });
-  
 // Get the search input field by its ID
 const searchInput = document.getElementById('searchField');
   
