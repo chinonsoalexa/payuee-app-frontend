@@ -453,6 +453,14 @@
   </header>
 
   <main>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3 toast-index toast-rtl">
+      <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-between alert-secondary">
+          <div class="toast-body" id="toastError" style="color: red;">...</div>
+          <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
     <!-- Pricing Section -->
      <div class="page-body">
       <div class="container-fluid">
@@ -1307,6 +1315,8 @@
   <script src="js-shop/auth/side-login/auth.js"></script>
   <script src="js-shop/pricing/pricing.js"></script>
 
+  <!-- Toast file -->
+  <script src="../vendor/js/notify/custom-notify.js"></script>
 </body>
 
 </html>
