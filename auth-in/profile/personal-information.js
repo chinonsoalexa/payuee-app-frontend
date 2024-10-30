@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('toggle-address-main').textContent = "Loading...";
     document.getElementById('referral_link_number').textContent = "Loading...";
     const apiUrl = "https://api.payuee.com/profile";
-
+    loadStates1();
+    
     const requestOptions = {
         method: "GET",
         headers: {
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         //     phoneNumberActivated.textContent = "Congratulations! Your account is now linked to our AI-powered WhatsApp chat for advanced assistance. Get ready for a seamless and personalized customer care experience like never before!";
         // }
     } finally {
-        loadStates1();
+
     }
 });
 
