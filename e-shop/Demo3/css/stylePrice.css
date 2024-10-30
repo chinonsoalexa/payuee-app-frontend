@@ -18,10 +18,47 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
-  .pricing-card.premium {
+  .pricing-card.business {
     background-color: #f8f9fa;
     border-color: #007bff;
   }
+
+  .pricing-card.business .btn-signup {
+    background-color: #4169e1; /* Royal Blue */
+    color: #fff;    
+    border: none;
+  }
+
+  .pricing-card.business .btn-signup:hover {
+    background-color: #008080; /* Dark Teal */
+    color: #fff;
+  }  
+
+  .pricing-card.gold {
+    border: 2px solid #b8860b; /* Darker gold border */
+    color: #4b3f00; /* Darker text for readability */
+  
+    /* Add shadow and slight gradient for a premium look */
+    border-radius: 8px; 
+  }
+  
+  /* Optional: Adjust title and price to stand out */
+  .pricing-card.gold .title,
+  .pricing-card.gold .price {
+    color: #4b3f00; /* Text color for premium visibility */
+    font-weight: bold;
+  }
+  
+  /* Optional: Modify button styling */
+  .pricing-card.gold .btn-signup {
+    background-color: #b8860b;
+    color: #fff;
+    border: none;
+  }
+  
+  .pricing-card.gold .btn-signup:hover {
+    background-color: #4b3f00; /* Darker shade on hover */
+  }  
   
   .title {
     font-size: 1.5rem;
