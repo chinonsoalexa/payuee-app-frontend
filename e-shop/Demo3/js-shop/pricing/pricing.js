@@ -1,22 +1,26 @@
 var transactionCodeStatus = false;
+const basicPlanId = 1500; // ID for Basic Plan
 var chargeAmount = 0;
 var vendorPlan = '';
 
 document.getElementById('basicPlan').addEventListener('click', function(event) {
     event.preventDefault();
     chargeAmount = 1500;
+    updatePlanNotice(chargeAmount);
     processPayment();
 })
 
 document.getElementById('businessPlan').addEventListener('click', function(event) {
     event.preventDefault();
     chargeAmount = 5500;
+    updatePlanNotice(chargeAmount);
     processPayment();
 })
 
 document.getElementById('premiumPlan').addEventListener('click', function(event) {
     event.preventDefault();
     chargeAmount = 13500;
+    updatePlanNotice(chargeAmount);
     processPayment();
 })
 
@@ -147,6 +151,17 @@ function hideModal(modalID) {
 function formatNumberToNaira(amount) {
     return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(amount);
 }
+
+// Function to handle plan selection
+function updatePlanNotice(selectedPlanId) {
+    const basicPlanNotice = document.getElementById('basicPlanNotice');
+    
+    if (selectedPlanId === basicPlanId) {
+      basicPlanNotice.classList.remove('d-none'); // Show free trial message
+    } else {
+      basicPlanNotice.classList.add('d-none'); // Hide free trial message for other plans
+    }
+  }
 
 async function getUsersBalance() {
     let userBalance = 0;
