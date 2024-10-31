@@ -207,7 +207,6 @@ async function getUsersBalance() {
 }
 
 async function getSubscriptionDetails() {
-    let userBalance = 0;
     // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-subscription-status";
 
@@ -222,31 +221,41 @@ async function getSubscriptionDetails() {
     try {
         const response = await fetch(apiUrl, requestOptions);
         
-        if (!response.ok) {
+        if (response.ok) {
             const data = await response.json();
-            // showToastMessageE(`response: ${data}`);
-            return;
-        }else {
-            // Process the response data
-            const data = await response.json();
-            transactionCodeStatus = data.status;
-            let plan = data.success.subscription_type;
-            if (plan == "basic") {
+            const plan = data.success.subscription_type;
 
-            } else  if (plan == "business") {
-                
-            } else  if (plan == "premium") {
-                
+            // Select buttons by their IDs
+            const basicButton = document.getElementById("basicPlan");
+            const businessButton = document.getElementById("businessPlan");
+            const premiumButton = document.getElementById("premiumPlan");
+
+            // Reset button text for all plans to "Purchase"
+            basicButton.innerText = "Purchase";
+            businessButton.innerText = "Purchase";
+            premiumButton.innerText = "Purchase";
+
+            // Update button text based on the active plan
+            if (plan === "basic") {
+                basicButton.innerText = "Active Plan";
+                basicButton.classList.add("active-plan");
+            } else if (plan === "business") {
+                businessButton.innerText = "Active Plan";
+                businessButton.classList.add("active-plan");
+            } else if (plan === "premium") {
+                premiumButton.innerText = "Active Plan";
+                premiumButton.classList.add("active-plan");
             }
 
-
+        } else {
+            console.log("Failed to fetch subscription status");
         }
 
     } catch (error) {
-        console.error('Error fetching user balance: ', error);
+        console.error("Error fetching subscription details: ", error);
     }
-    return userBalance;
 }
+
 
 async function placeOrder() {
     const checkbox = document.getElementById('autoRenewCheckbox');
