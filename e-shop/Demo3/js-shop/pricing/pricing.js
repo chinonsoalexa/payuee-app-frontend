@@ -226,6 +226,9 @@ async function getSubscriptionDetails() {
             transactionCodeStatus = data.status;
             const plan = data.success.subscription_type;
             const days = data.success.days_remaining;
+            if (days <= 7) {
+                showToastMessageE(data.success.notification);
+            }
 
             // Select buttons by their IDs
             const basicButton = document.getElementById("basicPlan");
