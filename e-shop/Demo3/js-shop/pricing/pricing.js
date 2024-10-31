@@ -224,6 +224,7 @@ async function getSubscriptionDetails() {
         if (response.ok) {
             const data = await response.json();
             const plan = data.success.subscription_type;
+            const days = data.success.days_remaining;
 
             // Select buttons by their IDs
             const basicButton = document.getElementById("basicPlan");
@@ -235,16 +236,21 @@ async function getSubscriptionDetails() {
             businessButton.innerText = "Purchase";
             premiumButton.innerText = "Purchase";
 
-            // Update button text based on the active plan
+            // Function to set button text and style based on remaining days
+            const updateButtonText = (button, isActivePlan) => {
+                if (isActivePlan) {
+                    button.innerText = days <= 7 ? "Renew" : "Active Plan";
+                    button.classList.add("active-plan");
+                }
+            };
+
+            // Update button text based on the active plan and remaining days
             if (plan === "basic") {
-                basicButton.innerText = "Active Plan";
-                basicButton.classList.add("active-plan");
+                updateButtonText(basicButton, true);
             } else if (plan === "business") {
-                businessButton.innerText = "Active Plan";
-                businessButton.classList.add("active-plan");
+                updateButtonText(businessButton, true);
             } else if (plan === "premium") {
-                premiumButton.innerText = "Active Plan";
-                premiumButton.classList.add("active-plan");
+                updateButtonText(premiumButton, true);
             }
 
         } else {
@@ -255,7 +261,6 @@ async function getSubscriptionDetails() {
         console.error("Error fetching subscription details: ", error);
     }
 }
-
 
 async function placeOrder() {
     const checkbox = document.getElementById('autoRenewCheckbox');
