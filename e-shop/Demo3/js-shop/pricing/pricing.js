@@ -4,6 +4,11 @@ var chargeAmount = 0;
 var vendorPlan = '';
 var TransactionCode = '';
 
+document.addEventListener('DOMContentLoaded', async function(event) {
+    event.preventDefault();
+   await getSubscriptionDetails();
+})
+
 // Plan selection event listener
 function handlePlanSelection(event, amount) {
     event.preventDefault();
@@ -193,6 +198,39 @@ async function getUsersBalance() {
             // Process the response data
             const data = await response.json();
             userBalance = data.success;
+        }
+
+    } catch (error) {
+        console.error('Error fetching user balance: ', error);
+    }
+    return userBalance;
+}
+
+async function getSubscriptionDetails() {
+    let userBalance = 0;
+    // Endpoint URL
+    const apiUrl = "https://api.payuee.com/get-subscription-status";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',  // Include cookies with the request
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+            const data = await response.json();
+            // showToastMessageE(`response: ${data}`);
+            return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            transactionCodeStatus = data.status;
+            
         }
 
     } catch (error) {
