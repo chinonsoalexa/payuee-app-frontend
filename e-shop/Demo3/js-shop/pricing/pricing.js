@@ -282,6 +282,7 @@ async function placeOrder() {
     const requestBody = {
         plan_type: vendorPlan,
         auto_renew: isChecked,
+        trans_code: String(TransactionCode),
     };
 
     try {
