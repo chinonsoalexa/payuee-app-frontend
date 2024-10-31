@@ -234,8 +234,8 @@ async function placeOrder() {
         const data = await response.json();
 
         if (!data.ok) {
-            if (data.error == "sorry you cannot order your own product") {
-                showToastMessageE("sorry you cannot order your own product");
+            if (data.error == "wrong subscription plan") {
+                showToastMessageE("wrong subscription plan");
             }
         }
 
