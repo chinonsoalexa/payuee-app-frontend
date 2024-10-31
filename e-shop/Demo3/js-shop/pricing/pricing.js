@@ -301,6 +301,10 @@ async function placeOrder() {
         if (!data.ok) {
             if (data.error == "wrong subscription plan") {
                 showToastMessageE("wrong subscription plan");
+            } else if (data.error == "wrong transaction code") {
+                showToastMessageE("wrong transaction code");
+            } else {
+                showToastMessageE(data.error);
             }
         }
 
