@@ -62,7 +62,7 @@ function processPayment() {
             showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
             return;
         }
-        
+
         const checkoutButton = document.getElementById('paymentButton');
     
         checkoutButton.disabled = true;
@@ -71,6 +71,8 @@ function processPayment() {
 
         if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
             hideModal('checkoutModal');
+            const checkoutButton = document.getElementById('paymentButton');
+            checkoutButton.disabled = false;
             document.getElementById('transactionCodeInput').value = "";
             setTimeout(() => {
                 showModal('insufficientBalanceModal');
