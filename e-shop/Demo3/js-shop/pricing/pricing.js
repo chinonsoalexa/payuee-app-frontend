@@ -93,7 +93,8 @@ function processPayment() {
                     document.getElementById('createTransactionCodeInput').value = "";
                 } else {
                     hideModal('checkoutModal');
-                    showModal('insufficientBalanceModal');
+                    // showModal('insufficientBalanceModal');
+                    showToastMessageE(result.error);
                 }
             } catch (error) {
                 // showToastMessageE(error.error);
