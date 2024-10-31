@@ -62,6 +62,10 @@ function processPayment() {
             showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
             return;
         }
+        
+        const checkoutButton = document.getElementById('paymentButton');
+    
+        checkoutButton.disabled = true;
 
         const customerBalance = await getUsersBalance();
 
@@ -84,6 +88,7 @@ function processPayment() {
                     document.getElementById('chargeInfo').textContent = result.description;
                     showModal('transactionSuccessModal');
                     document.getElementById('transactionCodeInput').value = "";
+                    document.getElementById('createTransactionCodeInput').value = "";
                 } else {
                     hideModal('checkoutModal');
                     showModal('insufficientBalanceModal');
@@ -92,6 +97,7 @@ function processPayment() {
                 // showToastMessageE(error.error);
             }
             document.getElementById('transactionCodeInput').value = "";
+            document.getElementById('createTransactionCodeInput').value = "";
         }
     }
 
@@ -202,10 +208,6 @@ async function getUsersBalance() {
 async function placeOrder() {
     const checkbox = document.getElementById('autoRenewCheckbox');
     const isChecked = checkbox.checked;
-
-    const checkoutButton = document.getElementById('paymentButton');
-    
-    checkoutButton.disabled = true;
 
     if (chargeAmount == 1500) {
         vendorPlan = "basic";
