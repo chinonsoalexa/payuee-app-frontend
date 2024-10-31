@@ -230,7 +230,16 @@ async function getSubscriptionDetails() {
             // Process the response data
             const data = await response.json();
             transactionCodeStatus = data.status;
-            
+            let plan = data.success.subscription_type;
+            if (plan == "basic") {
+
+            } else  if (plan == "business") {
+                
+            } else  if (plan == "premium") {
+                
+            }
+
+
         }
 
     } catch (error) {
