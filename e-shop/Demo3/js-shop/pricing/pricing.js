@@ -38,75 +38,68 @@ function processPayment() {
     paymentButton1.textContent = `Pay ${formatNumberToNaira(chargeAmount)}`;
 
     showModal('checkoutModal');
+}
 
-    const paymentButton = document.getElementById('paymentButton');
+// Define the event listener function for payment (only added once)
+async function handlePaymentClick(event) {
+    event.preventDefault();
 
-    // Remove existing click listener before adding a new one
-    paymentButton.removeEventListener("click", handlePaymentClick);
-
-    // Define the event listener function for payment
-    async function handlePaymentClick(event) {
-        event.preventDefault();
-
-        // Fetch the transaction code based on the current transactionCodeStatus
-        if (transactionCodeStatus) {
-            const transactionCode = document.getElementById('transactionCodeInput');
-            TransactionCode = transactionCode ? transactionCode.value.trim() : "";
-        } else {
-            const newTransactionCode = document.getElementById('createTransactionCodeInput');
-            TransactionCode = newTransactionCode ? newTransactionCode.value.trim() : "";
-        }
-
-        // Ensure validation only occurs after the user enters input
-        if (TransactionCode === "" || TransactionCode.length !== 6) {
-            showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
-            return;
-        }
-
-        const checkoutButton = document.getElementById('paymentButton');
-    
-        checkoutButton.disabled = true;
-
-        const customerBalance = await getUsersBalance();
-
-        if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
-            hideModal('checkoutModal');
-            const checkoutButton = document.getElementById('paymentButton');
-            checkoutButton.disabled = false;
-            document.getElementById('transactionCodeInput').value = "";
-            setTimeout(() => {
-                showModal('insufficientBalanceModal');
-                const fundWalletButton = document.getElementById('fundWalletButton');
-                fundWalletButton.addEventListener('click', () => {
-                    window.location.href = 'https://payuee.com/fund-wallet';
-                });
-            }, 300);
-        } else {
-            try {
-                const result = await placeOrder();
-                if (result.success) {
-                    hideModal('checkoutModal');
-                    document.getElementById('amountToCharge').textContent = formatNumberToNaira(chargeAmount);
-                    document.getElementById('chargeInfo').textContent = result.success.description;
-                    showModal('transactionSuccessModal');
-                    document.getElementById('transactionCodeInput').value = "";
-                    document.getElementById('createTransactionCodeInput').value = "";
-                } else {
-                    hideModal('checkoutModal');
-                    // showModal('insufficientBalanceModal');
-                    showToastMessageE(result.error);
-                }
-            } catch (error) {
-                // showToastMessageE(error.error);
-            }
-            document.getElementById('transactionCodeInput').value = "";
-            document.getElementById('createTransactionCodeInput').value = "";
-        }
+    // Fetch the transaction code based on the current transactionCodeStatus
+    if (transactionCodeStatus) {
+        const transactionCode = document.getElementById('transactionCodeInput');
+        TransactionCode = transactionCode ? transactionCode.value.trim() : "";
+    } else {
+        const newTransactionCode = document.getElementById('createTransactionCodeInput');
+        TransactionCode = newTransactionCode ? newTransactionCode.value.trim() : "";
     }
 
-    // Add the click event listener only once
-    paymentButton.addEventListener("click", handlePaymentClick);
+    // Ensure validation only occurs after the user enters input
+    if (TransactionCode === "" || TransactionCode.length !== 6) {
+        showToastMessageE(TransactionCode === "" ? "Please fill in the transaction code field" : "Transaction code should be 6 digits");
+        return;
+    }
+
+    const checkoutButton = document.getElementById('paymentButton');
+    checkoutButton.disabled = true;
+
+    const customerBalance = await getUsersBalance();
+
+    if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
+        hideModal('checkoutModal');
+        checkoutButton.disabled = false;
+        document.getElementById('transactionCodeInput').value = "";
+        setTimeout(() => {
+            showModal('insufficientBalanceModal');
+            const fundWalletButton = document.getElementById('fundWalletButton');
+            fundWalletButton.addEventListener('click', () => {
+                window.location.href = 'https://payuee.com/fund-wallet';
+            });
+        }, 300);
+    } else {
+        try {
+            const result = await placeOrder();
+            if (result.success) {
+                hideModal('checkoutModal');
+                document.getElementById('amountToCharge').textContent = formatNumberToNaira(chargeAmount);
+                document.getElementById('chargeInfo').textContent = result.success.description;
+                showModal('transactionSuccessModal');
+                document.getElementById('transactionCodeInput').value = "";
+                document.getElementById('createTransactionCodeInput').value = "";
+            } else {
+                hideModal('checkoutModal');
+                showToastMessageE(result.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        document.getElementById('transactionCodeInput').value = "";
+        document.getElementById('createTransactionCodeInput').value = "";
+    }
 }
+
+// Add the click event listener to paymentButton once
+const paymentButton = document.getElementById('paymentButton');
+paymentButton.addEventListener("click", handlePaymentClick);
 
 
 const transactionCodeInput = document.getElementById('transactionCodeInput');
