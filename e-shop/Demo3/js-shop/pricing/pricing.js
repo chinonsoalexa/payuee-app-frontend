@@ -87,7 +87,7 @@ function processPayment() {
                 if (result.success) {
                     hideModal('checkoutModal');
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(chargeAmount);
-                    document.getElementById('chargeInfo').textContent = result.description;
+                    document.getElementById('chargeInfo').textContent = result.success.description;
                     showModal('transactionSuccessModal');
                     document.getElementById('transactionCodeInput').value = "";
                     document.getElementById('createTransactionCodeInput').value = "";
