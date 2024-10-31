@@ -223,6 +223,7 @@ async function getSubscriptionDetails() {
         
         if (response.ok) {
             const data = await response.json();
+            transactionCodeStatus = data.status;
             const plan = data.success.subscription_type;
             const days = data.success.days_remaining;
 
