@@ -380,6 +380,13 @@ function updateFields(product) {
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     estimatedDelivery.value = product.estimated_delivery;
 
+    // Select the checked radio button from the group "radio5"
+    // Update discount type
+    const radioButton = document.querySelector(`input[name="radio5"][value="${product.discount_type}"]`);
+    if (radioButton) {
+        radioButton.checked = true;
+    }
+
     // Update Category
     let categorySelect = document.getElementById('validationDefault04');
     categorySelect.value = product.category;
