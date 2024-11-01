@@ -16,103 +16,98 @@ var productHeightValue = 0.0;
 var shippingClassSelectionValue = "";
 var stockAvailabilityStatusValue = "";
 
-var originalProductData = {
-    title: "",
-    description: "",
-    initialCost: 0.0,
-    netWeight: 0,
-    sellingPrice: 0.0,
-    productStock: 0,
-    category: "",
-    tags: "",
-    publishStatus: "",
-    featuredStatus: "",
-    repost: '',
-    estimateDeliveryStat: 0,
-    productLengthValue: 0.0,
-    productWidthValue: 0.0,
-    productHeightValue: 0.0,
-    shippingClassSelectionValue: "",
-    stockAvailabilityStatusValue: ""
-};
-
 var productToUpdate;
 
 document.addEventListener('DOMContentLoaded', async function () {
+    // Get the current URL
     const currentUrl = new URL(window.location.href);
+    // Assuming you have a reference to the table body element
+
+    // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
     productToUpdate = params.get("ProductID");
+    
     await getProduct(productToUpdate);
+
 });
 
 async function updateProduct() {
     setUpdatedJsonFields();
+    // Disable the submit button
     document.getElementById('publishButton').classList.add('disabled');
+    // Validate fields before proceeding
+    if (validateFields()) {
+        // All fields are valid, proceed with posting the product
+    const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
+    const requestBody = {
+        product_id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
+        product_title: productTitle,
+        product_description: productDescription,
+        initial_cost: parseFloat(initialCost),  // Ensure this is a float
+        selling_price: parseFloat(sellingPrice),  // Ensure this is a float
+        product_stock: parseInt(productStock, 10),  // Convert to integer
+        net_weight: parseFloat(netWeight),  // Ensure this is a float
+        category: selectedCategory,
+        tags: tags,
+        publish_status: publishStatus,
+        featured_status: featuredStatus,
+        repost: Boolean(repost),  // Ensure it's a boolean
+        estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
+        productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
+        productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
+        productHeightValue: parseFloat(productHeightValue),  // Ensure this is a float
+        shippingClassSelectionValue: shippingClassSelectionValue,
+        stockAvailabilityStatusValue: stockAvailabilityStatusValue,
+    };    
 
-    // Check if any fields have changed
-    if (!hasFieldsChanged()) {
-        swal("No changes detected!", {
-            icon: "info",
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        // Perform actions when confirmed
+        swal("Product Successfully Updated", {
+            icon: "success",
             buttons: {
                 confirm: true,
             },
-        });
-        document.getElementById('publishButton').classList.remove('disabled');
-        return; // Exit if no fields changed
-    }
-
-    // Validate fields before proceeding
-    if (validateFields()) {
-        const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
-        const requestBody = {
-            product_id: parseInt(productToUpdate),
-            product_title: productTitle,
-            product_description: productDescription,
-            initial_cost: parseFloat(initialCost),
-            selling_price: parseFloat(sellingPrice),
-            product_stock: parseInt(productStock, 10),
-            net_weight: parseFloat(netWeight),
-            category: selectedCategory,
-            tags: tags,
-            publish_status: publishStatus,
-            featured_status: featuredStatus,
-            repost: Boolean(repost),
-            estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),
-            productLengthValue: parseFloat(productLengthValue),
-            productWidthValue: parseFloat(productWidthValue),
-            productHeightValue: parseFloat(productHeightValue),
-            shippingClassSelectionValue: shippingClassSelectionValue,
-            stockAvailabilityStatusValue: stockAvailabilityStatusValue,
-        };
-
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: 'include',
-            body: JSON.stringify(requestBody)
-        };
-
-        try {
-            const response = await fetch(apiUrl, requestOptions);
-            if (!response.ok) {
-                const errorData = await response.json();
-                handleErrors(errorData);
-                return;
-            }
-
-            const responseData = await response.json();
-            swal("Product Successfully Updated", {
-                icon: "success",
-                buttons: {
-                    confirm: true,
-                },
+            }).then(() => {
+            
             });
-        } finally {
-            document.getElementById('publishButton').classList.remove('disabled');
+    } finally {
+
         }
     } else {
+        // If validation fails, you can display an error message or highlight invalid fields
         swal({
             title: "Please correct the highlighted errors",
             icon: "warning",
@@ -120,9 +115,10 @@ async function updateProduct() {
                 cancel: true,
                 confirm: true,
             },
-        });
-        document.getElementById('publishButton').classList.remove('disabled');
+        })
     }
+    // Re-enable the submit button after processing
+    document.getElementById('publishButton').classList.remove('disabled');
 }
 
 document.getElementById('updateButton').addEventListener('click', async function(event) {
@@ -384,14 +380,6 @@ function updateFields(product) {
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     estimatedDelivery.value = product.estimated_delivery;
 
-    // Select the checked radio button from the group "radio5"
-    // Update discount type
-    const radioButton = document.querySelector(`input[name="radio5"][value="${product.discount_type}"]`);
-    if (radioButton) {
-        radioButton.checked = true;
-        // console.log(`Pre-selected discount type: ${discountType}`);
-    }
-
     // Update Category
     let categorySelect = document.getElementById('validationDefault04');
     categorySelect.value = product.category;
@@ -487,76 +475,46 @@ function setUpdatedJsonFields() {
     validateFields();
 }
 
-function hasFieldsChanged() {
-    return (
-        productTitle !== originalProductData.title ||
-        productDescription !== originalProductData.description ||
-        initialCost !== originalProductData.initialCost ||
-        netWeight !== originalProductData.netWeight ||
-        sellingPrice !== originalProductData.sellingPrice ||
-        productStock !== originalProductData.productStock ||
-        selectedCategory !== originalProductData.category ||
-        tags !== originalProductData.tags ||
-        publishStatus !== originalProductData.publishStatus ||
-        featuredStatus !== originalProductData.featuredStatus ||
-        repost !== originalProductData.repost ||
-        estimateDeliveryStat !== originalProductData.estimateDeliveryStat ||
-        productLengthValue !== originalProductData.productLengthValue ||
-        productWidthValue !== originalProductData.productWidthValue ||
-        productHeightValue !== originalProductData.productHeightValue ||
-        shippingClassSelectionValue !== originalProductData.shippingClassSelectionValue ||
-        stockAvailabilityStatusValue !== originalProductData.stockAvailabilityStatusValue
-    );
-}
-
-document.getElementById('updateButton').addEventListener('click', async function(event) {
-    event.preventDefault();
-    await updateProduct();
-});
-
-async function getProduct(productId) {
+async function getProduct(productID) {
+    const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
+  
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+  
     try {
-        // Perform GET request to fetch product data
-        const response = await fetch(`https://api.payuee.com/vendor/product/${productId}`, {
-            method: 'GET', // Explicitly specify GET method
-            headers: {
-                'Content-Type': 'application/json', 
-            },
-            credentials: 'include', // set credentials to include cookies
-        });
-
-        // Check if response is OK (status 200)
+        const response = await fetch(apiUrl, requestOptions);
+  
         if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            const errorData = await response.json();
+  
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+  
+            return;
         }
-
-        const product = await response.json();
-
-        // Set original product data
-        originalProductData.title = product.title;
-        originalProductData.description = product.description;
-        originalProductData.initialCost = product.initial_cost;
-        originalProductData.netWeight = product.net_weight;
-        originalProductData.sellingPrice = product.selling_price;
-        originalProductData.productStock = product.product_stock;
-        originalProductData.category = product.category;
-        originalProductData.tags = product.tags;
-        originalProductData.publishStatus = product.publish_status;
-        originalProductData.featuredStatus = product.featured_status;
-        originalProductData.repost = product.repost;
-        originalProductData.estimateDeliveryStat = product.estimateDeliveryStat;
-        originalProductData.productLengthValue = product.productLengthValue;
-        originalProductData.productWidthValue = product.productWidthValue;
-        originalProductData.productHeightValue = product.productHeightValue;
-        originalProductData.shippingClassSelectionValue = product.shippingClassSelectionValue;
-        originalProductData.stockAvailabilityStatusValue = product.stockAvailabilityStatusValue;
-
-        // Populate form fields
-        updateFields(product);
-    } catch (error) {
-        console.error("Failed to fetch product data:", error);
+  
+        const responseData = await response.json();
+        updateFields(responseData.success);
+       
+  } finally {
+  
     }
-}
+  }
 
   async function logout() {
     // also send a request to the logout api endpoint
