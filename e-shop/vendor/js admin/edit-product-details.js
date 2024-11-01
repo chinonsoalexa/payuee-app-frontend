@@ -517,7 +517,7 @@ document.getElementById('updateButton').addEventListener('click', async function
 async function getProduct(productId) {
     try {
         // Perform GET request to fetch product data
-        const response = await fetch(`https://api.payuee.com/vendor/get-product/${productId}`, {
+        const response = await fetch(`https://api.payuee.com/vendor/product/${productId}`, {
             method: 'GET', // Explicitly specify GET method
             headers: {
                 'Content-Type': 'application/json', 
