@@ -440,6 +440,10 @@ function updateFields(product) {
     let netWeightInput = document.getElementById('netWeight');
     netWeightInput.value = product.net_weight;
 
+    // Estimated Delivery
+    const estimatedDelivery = document.getElementById('estimatedDelivery');
+    estimatedDelivery.value = product.estimated_delivery;
+
     // Update Category
     let categorySelect = document.getElementById('validationDefault04');
     categorySelect.value = product.category;
