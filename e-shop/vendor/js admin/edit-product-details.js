@@ -104,7 +104,7 @@ async function updateProduct() {
             
             });
     } finally {
-
+        document.getElementById('publishButton').classList.remove('disabled');
         }
     } else {
         // If validation fails, you can display an error message or highlight invalid fields
