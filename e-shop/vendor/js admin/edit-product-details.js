@@ -41,25 +41,26 @@ async function updateProduct() {
     if (validateFields()) {
         // All fields are valid, proceed with posting the product
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
-    // Construct the request body
     const requestBody = {
-        product_id: +productToUpdate,  // Convert to number (if it's an integer)
+        product_id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
         product_title: productTitle,
         product_description: productDescription,
-        initial_cost: parseFloat(initialCost),  // Convert to float
-        selling_price: parseFloat(sellingPrice),  // Convert to float
-        product_stock: +productStock,  // Convert to number (integer)
-        net_weight: parseFloat(netWeight),  // Convert to number (integer)
+        initial_cost: parseFloat(initialCost),  // Ensure this is a float
+        selling_price: parseFloat(sellingPrice),  // Ensure this is a float
+        product_stock: parseInt(productStock, 10),  // Convert to integer
+        net_weight: parseFloat(netWeight),  // Ensure this is a float
         category: selectedCategory,
         tags: tags,
-        repost: repost,
-        estimateDeliveryStat: estimateDeliveryStat,
-        productLengthValue: productLengthValue,
-        productWidthValue: productWidthValue,
-        productHeightValue: productHeightValue,
+        publish_status: publishStatus,
+        featured_status: featuredStatus,
+        repost: Boolean(repost),  // Ensure it's a boolean
+        estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
+        productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
+        productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
+        productHeightValue: parseFloat(productHeightValue),  // Ensure this is a float
         shippingClassSelectionValue: shippingClassSelectionValue,
         stockAvailabilityStatusValue: stockAvailabilityStatusValue,
-    };
+    };    
 
     const requestOptions = {
         method: "POST",
