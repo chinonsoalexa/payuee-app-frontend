@@ -515,55 +515,47 @@ document.getElementById('updateButton').addEventListener('click', async function
 });
 
 async function getProduct(productId) {
-    // Fetch product data and populate the form
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-    };
-    const apiUrl = `https://api.payuee.com/vendor/get-product/${productId}`;
-
     try {
-        const response = await fetch(apiUrl, requestOptions);
-        
+        // Perform GET request to fetch product data
+        const response = await fetch(`https://api.payuee.com/vendor/get-product/${productId}`, {
+            method: 'GET', // Explicitly specify GET method
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            credentials: 'include', // set credentials to include cookies
+        });
+
+        // Check if response is OK (status 200)
         if (!response.ok) {
-                // alert('an error occurred. Please try again');
-                    if (!response.ok) {
-            alert('an error occurred. Please try again');
-            return;
-        }
-            return;
-          }
-
-          const product = await response.json();
-
-          // Set original product data
-          originalProductData.title = product.title;
-          originalProductData.description = product.description;
-          originalProductData.initialCost = product.initial_cost;
-          originalProductData.netWeight = product.net_weight;
-          originalProductData.sellingPrice = product.selling_price;
-          originalProductData.productStock = product.product_stock;
-          originalProductData.category = product.category;
-          originalProductData.tags = product.tags;
-          originalProductData.publishStatus = product.publish_status;
-          originalProductData.featuredStatus = product.featured_status;
-          originalProductData.repost = product.repost;
-          originalProductData.estimateDeliveryStat = product.estimateDeliveryStat;
-          originalProductData.productLengthValue = product.productLengthValue;
-          originalProductData.productWidthValue = product.productWidthValue;
-          originalProductData.productHeightValue = product.productHeightValue;
-          originalProductData.shippingClassSelectionValue = product.shippingClassSelectionValue;
-          originalProductData.stockAvailabilityStatusValue = product.stockAvailabilityStatusValue;
-      
-        } finally{
-            // do nothing
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
 
-    // Populate form fields
-    updateFields(product);
+        const product = await response.json();
+
+        // Set original product data
+        originalProductData.title = product.title;
+        originalProductData.description = product.description;
+        originalProductData.initialCost = product.initial_cost;
+        originalProductData.netWeight = product.net_weight;
+        originalProductData.sellingPrice = product.selling_price;
+        originalProductData.productStock = product.product_stock;
+        originalProductData.category = product.category;
+        originalProductData.tags = product.tags;
+        originalProductData.publishStatus = product.publish_status;
+        originalProductData.featuredStatus = product.featured_status;
+        originalProductData.repost = product.repost;
+        originalProductData.estimateDeliveryStat = product.estimateDeliveryStat;
+        originalProductData.productLengthValue = product.productLengthValue;
+        originalProductData.productWidthValue = product.productWidthValue;
+        originalProductData.productHeightValue = product.productHeightValue;
+        originalProductData.shippingClassSelectionValue = product.shippingClassSelectionValue;
+        originalProductData.stockAvailabilityStatusValue = product.stockAvailabilityStatusValue;
+
+        // Populate form fields
+        updateFields(product);
+    } catch (error) {
+        console.error("Failed to fetch product data:", error);
+    }
 }
 
   async function logout() {
