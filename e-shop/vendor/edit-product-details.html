@@ -387,9 +387,8 @@
                                               <option value="cars-car-parts">Cars & Car Parts</option>
                                               <option value="tools">Tools</option>
                                               <option value="gadgets">Gadgets</option>
-                                              <option value="hospital-and-medical-equipment">Hospital and Medical Equipment</option>
                                               <option value="others">Others</option>
-                                            </select>                                            
+                                            </select>                                          
                                             <p class="f-light">A product can be added to a category</p>
                                           </div>
                                         </div>
@@ -415,8 +414,6 @@
                                             <label class="form-label" for="publishStatus">Publish Status</label>
                                             <select class="form-select" id="publishStatus" required="">
                                               <option selected="" value="publish">Publish</option>
-                                              <!-- <option value="draft">Drafts</option> -->
-                                              <!-- <option>Unpublish</option> -->
                                             </select>
                                             <p class="f-light">Choose the status</p>
                                           </div>
@@ -435,10 +432,20 @@
                                         </div>
                                       </div>
                                       <div class="col-sm-6">
-                                        <label class="form-label" for="netWeight">Edit Net Weight <span
-                                            class="txt-danger">*</span></label>
-                                        <input class="form-control" id="netWeight" type="number">
+                                        <label class="form-label">Stock Availability</label>
+                                        <select class="form-select"  id="stockAvailabilityStatus">
+                                          <option selected="" value="in-stock">In stock</option>
+                                          <option value="pre-order">Pre-order</option>
+                                        </select>
                                       </div>
+                                      <div class="col-12">
+                                        <label class="form-label">Allow Vendor Re-post</label>
+                                        <div class="form-check">
+                                          <input class="form-check-input" id="repostCheck" type="checkbox">
+                                          <label class="form-check-label m-0" for="repostCheck">Allow this product to be re-posted by vendors</label>
+                                          <p class="f-light">Enabling this option allows vendors to re-post this product on their own listings if it becomes unavailable. This is useful for maintaining product visibility and availability.</p>
+                                        </div>
+                                      </div>   
                                     </div>
                                   </div>
                                 </div>
@@ -466,7 +473,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-6">
-                                    <label class="form-label" for="productStock1">Edit Product stocks<span
+                                    <label class="form-label" for="productStock1">Edit Product Quantity<span
                                         class="txt-danger">*</span></label>
                                     <input class="form-control" id="productStock1" type="number">
                                   </div>
@@ -521,7 +528,7 @@
                                         <div class="col-12">
                                           <!-- Shipping Details Section -->
                                           <div class="mt-4">
-                                            <h6 class="form-label">Shipping Details</h6>
+                                            <h6 class="form-label">Edit Shipping Details</h6>
                                             <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
                                               <div class="col-md-6">
                                                 <input class="form-control" id="estimatedDelivery" type="number" placeholder="Estimated Days to Delivery (e.g., 5 days)">
@@ -537,7 +544,7 @@
                                         <div class="col-12">
                                           <div class="row">
                                             <div class="col-12">
-                                              <label class="form-label" for="netWeight">Weight (kg)</label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper weight for product items."></i>
+                                              <label class="form-label" for="netWeight">Edit Weight (kg)</label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper weight for product items."></i>
                                             </div>
                                             <div class="col-12">
                                               <input class="form-control" id="netWeight" type="number">
@@ -548,7 +555,7 @@
                                         <div class="col-12">
                                           <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
                                             <div class="col-12">
-                                              <label class="form-label" for="exampleFormControlInput1">Dimensions </label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper length/width and height for product items."></i>
+                                              <label class="form-label" for="exampleFormControlInput1">Edit Dimensions </label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper length/width and height for product items."></i>
                                             </div>
                                             <div class="col-md-4 col-sm-6"> 
                                               <input class="form-control" id="productLength" type="number" placeholder="Length[l]">
@@ -564,7 +571,7 @@
                                         <div class="col-12">
                                           <div class="row"> 
                                             <div class="col-12">
-                                              <label class="form-label" for="shippingClassSelection">Shipping Class</label>
+                                              <label class="form-label" for="shippingClassSelection">Edit Shipping Class</label>
                                             </div>
                                             <div class="col-md-12">
                                               <select class="form-select" id="shippingClassSelection">
