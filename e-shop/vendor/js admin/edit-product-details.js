@@ -188,6 +188,7 @@ function validateFields() {
     const productTitleInput = document.getElementById('productTitle1');
     const productTitle = productTitleInput.value.trim();
     if (!productTitle) {
+        console.log("Product Title is invalid.");
         productTitleInput.classList.add('is-invalid');
         productTitleInput.classList.remove('is-valid');
         isValid = false;
@@ -200,6 +201,7 @@ function validateFields() {
     const editor = document.getElementById('editor2');
     const productDescription = editor.textContent.trim();
     if (!productDescription) {
+        console.log("Product Description is invalid.");
         editor.classList.add('is-invalid');
         editor.classList.remove('is-valid');
         isValid = false;
@@ -212,6 +214,7 @@ function validateFields() {
     const initialCostInput = document.getElementById('initialCost');
     const initialCost = parseFloat(initialCostInput.value);
     if (isNaN(initialCost) || initialCost <= 0) {
+        console.log("Initial Cost is invalid:", initialCostInput.value);
         initialCostInput.classList.add('is-invalid');
         initialCostInput.classList.remove('is-valid');
         isValid = false;
@@ -224,6 +227,7 @@ function validateFields() {
     const sellingPriceInput = document.getElementById('sellingPrice');
     const sellingPrice = parseFloat(sellingPriceInput.value);
     if (isNaN(sellingPrice) || sellingPrice <= 0) {
+        console.log("Selling Price is invalid:", sellingPriceInput.value);
         sellingPriceInput.classList.add('is-invalid');
         sellingPriceInput.classList.remove('is-valid');
         isValid = false;
@@ -231,11 +235,12 @@ function validateFields() {
         sellingPriceInput.classList.remove('is-invalid');
         sellingPriceInput.classList.add('is-valid');
     }
-    
+
     // Validate Product Stock
     const productStockInput = document.getElementById('productStock1');
     const productStock = parseInt(productStockInput.value, 10);
     if (isNaN(productStock) || productStock < 0) {
+        console.log("Product Stock is invalid:", productStockInput.value);
         productStockInput.classList.add('is-invalid');
         productStockInput.classList.remove('is-valid');
         isValid = false;
@@ -248,6 +253,7 @@ function validateFields() {
     const netWeightInput = document.getElementById('netWeight');
     const netWeightVal = parseInt(netWeightInput.value, 10);
     if (isNaN(netWeightVal) || netWeightVal < 0) {
+        console.log("Net Weight is invalid:", netWeightInput.value);
         netWeightInput.classList.add('is-invalid');
         netWeightInput.classList.remove('is-valid');
         isValid = false;
@@ -260,6 +266,7 @@ function validateFields() {
     const currencySelect = document.getElementById('currencySelect');
     const currency = currencySelect.value.trim();
     if (!currency) {
+        console.log("Currency selection is invalid.");
         currencySelect.classList.add('is-invalid');
         currencySelect.classList.remove('is-valid');
         isValid = false;
@@ -271,6 +278,7 @@ function validateFields() {
     // Validate Discount Type
     const discountTypeRadio = document.querySelector('input[name="radio5"]:checked');
     if (!discountTypeRadio) {
+        console.log("Discount Type is not selected.");
         document.querySelector('.radio-wrapper').classList.add('is-invalid');
         isValid = false;
     } else {
@@ -281,6 +289,7 @@ function validateFields() {
     const categorySelect = document.getElementById('validationDefault04');
     const category = categorySelect.value.trim();
     if (!category) {
+        console.log("Category selection is invalid.");
         categorySelect.classList.add('is-invalid');
         categorySelect.classList.remove('is-valid');
         isValid = false;
@@ -293,6 +302,7 @@ function validateFields() {
     const tagsInput = document.getElementById('tags');
     const tags = tagsInput.value.trim();
     if (!tags) {
+        console.log("Tags input is invalid.");
         tagsInput.classList.add('is-invalid');
         tagsInput.classList.remove('is-valid');
         isValid = false;
@@ -305,6 +315,7 @@ function validateFields() {
     const publishStatusInput = document.getElementById('publishStatus');
     const publishStatus = publishStatusInput.value.trim();
     if (!publishStatus) {
+        console.log("Publish Status is invalid.");
         publishStatusInput.classList.add('is-invalid');
         publishStatusInput.classList.remove('is-valid');
         isValid = false;
@@ -313,24 +324,11 @@ function validateFields() {
         publishStatusInput.classList.add('is-valid');
     }
 
-    // Validate Publish Status
-    const featuredStatusInput = document.getElementById('featuredStatus');
-    const featuredStatus = featuredStatusInput.value.trim();
-    if (!featuredStatus) {
-        featuredStatusInput.classList.add('is-invalid');
-        featuredStatusInput.classList.remove('is-valid');
-        isValid = false;
-    } else {
-        featuredStatusInput.classList.remove('is-invalid');
-        featuredStatusInput.classList.add('is-valid');
-    }
-
-
-    // Estimated Delivery
+    // Validate Estimated Delivery
     const estimatedDelivery = document.getElementById('estimatedDelivery');
     const estimatedDeliveryVal = parseInt(estimatedDelivery.value, 10);
-    // console.log("Estimated Delivery:", estimatedDeliveryVal);
     if (isNaN(estimatedDeliveryVal) || estimatedDeliveryVal < 0 || estimatedDeliveryVal > 30) {
+        console.log("Estimated Delivery is invalid:", estimatedDelivery.value);
         estimatedDelivery.classList.add('is-invalid');
         estimatedDelivery.classList.remove('is-valid');
         isValid = false;
@@ -339,70 +337,7 @@ function validateFields() {
         estimatedDelivery.classList.add('is-valid');
     }
 
-        // Validate Product Length
-    const productLength = document.getElementById('productLength');
-    // const productLengthVal = parseInt(productLength.value, 10);
-    if (productLength) {
-        // productLength.classList.add('is-invalid');
-        // productLength.classList.remove('is-valid');
-        productLength.classList.remove('is-invalid');
-        productLength.classList.add('is-valid');
-        // isValid = false;
-        // console.log("Net Weight is invalid.");
-    }
-
-    // Validate Net Weight
-    const productWidth = document.getElementById('productWidth');
-    // console.log("Net Weight:", netWeightVal);
-    if (productWidth) {
-        // productWidth.classList.add('is-invalid');
-        // productWidth.classList.remove('is-valid');
-        productWidth.classList.remove('is-invalid');
-        productWidth.classList.add('is-valid');
-        // isValid = false;
-        // console.log("Net Weight is invalid.");
-    }
-
-    // Validate Net Weight
-    const productHeight = document.getElementById('productHeight');
-    // const productHeightVal = parseInt(productHeight.value, 10);
-    // console.log("Net Weight:", netWeightVal);
-    if (productHeight){
-        // productHeight.classList.add('is-invalid');
-        // productHeight.classList.remove('is-valid');
-        productHeight.classList.remove('is-invalid');
-        productHeight.classList.add('is-valid');
-        isValid = false;
-        // console.log("Net Weight is invalid.");
-    }
-
-    // Validate Shipping Class
-    const shippingClassSelection = document.getElementById('shippingClassSelection');
-    const shippingClassSelectionStatus = shippingClassSelection.value.trim();
-    // console.log("Featured Status:", shippingClassSelectionStatus);
-    if (!shippingClassSelectionStatus) {
-        // shippingClassSelection.classList.add('is-invalid');
-        // shippingClassSelection.classList.remove('is-valid');
-        shippingClassSelection.classList.remove('is-invalid');
-        shippingClassSelection.classList.add('is-valid');
-        isValid = false;
-        // console.log("Featured Status is invalid.");
-    }
-
-    // Validate Featured Status
-    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
-    const stockAvailabilityStatus1 = stockAvailabilityStatus.value.trim();
-    // console.log("Featured Status:", stockAvailabilityStatus1);
-    if (!stockAvailabilityStatus1) {
-        stockAvailabilityStatus.classList.add('is-invalid');
-        stockAvailabilityStatus.classList.remove('is-valid');
-        isValid = false;
-        // console.log("Featured Status is invalid.");
-    } else {
-        stockAvailabilityStatus.classList.remove('is-invalid');
-        stockAvailabilityStatus.classList.add('is-valid');
-        // console.log("Featured Status is valid.");
-    }
+    // Additional fields can be debugged similarly with console logs for each validation check
 
     return isValid;
 }
