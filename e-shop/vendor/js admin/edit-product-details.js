@@ -516,27 +516,51 @@ document.getElementById('updateButton').addEventListener('click', async function
 
 async function getProduct(productId) {
     // Fetch product data and populate the form
-    const response = await fetch(`https://api.payuee.com/vendor/get-product/${productId}`);
-    const product = await response.json();
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    const apiUrl = `https://api.payuee.com/vendor/get-product/${productId}`;
 
-    // Set original product data
-    originalProductData.title = product.title;
-    originalProductData.description = product.description;
-    originalProductData.initialCost = product.initial_cost;
-    originalProductData.netWeight = product.net_weight;
-    originalProductData.sellingPrice = product.selling_price;
-    originalProductData.productStock = product.product_stock;
-    originalProductData.category = product.category;
-    originalProductData.tags = product.tags;
-    originalProductData.publishStatus = product.publish_status;
-    originalProductData.featuredStatus = product.featured_status;
-    originalProductData.repost = product.repost;
-    originalProductData.estimateDeliveryStat = product.estimateDeliveryStat;
-    originalProductData.productLengthValue = product.productLengthValue;
-    originalProductData.productWidthValue = product.productWidthValue;
-    originalProductData.productHeightValue = product.productHeightValue;
-    originalProductData.shippingClassSelectionValue = product.shippingClassSelectionValue;
-    originalProductData.stockAvailabilityStatusValue = product.stockAvailabilityStatusValue;
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+                // alert('an error occurred. Please try again');
+                    if (!response.ok) {
+            alert('an error occurred. Please try again');
+            return;
+        }
+            return;
+          }
+
+          const product = await response.json();
+
+          // Set original product data
+          originalProductData.title = product.title;
+          originalProductData.description = product.description;
+          originalProductData.initialCost = product.initial_cost;
+          originalProductData.netWeight = product.net_weight;
+          originalProductData.sellingPrice = product.selling_price;
+          originalProductData.productStock = product.product_stock;
+          originalProductData.category = product.category;
+          originalProductData.tags = product.tags;
+          originalProductData.publishStatus = product.publish_status;
+          originalProductData.featuredStatus = product.featured_status;
+          originalProductData.repost = product.repost;
+          originalProductData.estimateDeliveryStat = product.estimateDeliveryStat;
+          originalProductData.productLengthValue = product.productLengthValue;
+          originalProductData.productWidthValue = product.productWidthValue;
+          originalProductData.productHeightValue = product.productHeightValue;
+          originalProductData.shippingClassSelectionValue = product.shippingClassSelectionValue;
+          originalProductData.stockAvailabilityStatusValue = product.stockAvailabilityStatusValue;
+      
+        } finally{
+            // do nothing
+        }
 
     // Populate form fields
     updateFields(product);
