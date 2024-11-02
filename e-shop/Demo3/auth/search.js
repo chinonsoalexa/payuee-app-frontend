@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to toggle buttons based on input
     async function toggleButtons() {
         if (searchInput2.value.trim() !== "") {
-            console.log("i'm here...");
             if (searchInput2.value.trim().length > 0) { // Start searching after 1 characters
                 const resultsContainer2 = document.getElementById("searchResults2");
                 resultsContainer2.innerHTML = ''; // Clear previous results
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             clearButton.classList.remove('hiddenn'); // Show clear button
             productSearch2.classList.remove('hiddenn'); // Show search list
         } else {
-            console.log("now here...");
             searchButton.classList.remove('hiddenn'); // Show search button
             clearButton.classList.add('hiddenn'); // Hide clear button
             productSearch2.classList.add('hiddenn'); // Show clear button
