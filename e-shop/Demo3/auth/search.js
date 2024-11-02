@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
             resultsContainer.innerHTML = ''; // Clear previous results
             resultsContainer.innerHTML = `<li>Loading...</li>`;
             await getSearchResults(query);
+        } else {
+            const resultsContainer = document.getElementById("searchResults");
+            resultsContainer.innerHTML = ''; // Clear previous results
+            resultsContainer.innerHTML = `<li>Enter a search key to search for a product</li>`;
         }
         
     });
