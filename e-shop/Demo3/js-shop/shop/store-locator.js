@@ -4,10 +4,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     const searchInput = document.getElementById("storeSearchInput");
 
     if (searchInput) {
-      searchInput.addEventListener("input", function(event) {
+      searchInput.addEventListener("input", async function(event) {
         const searchTerm = event.target.value;
   
-        searchStores(searchTerm);
+        if (searchTerm == "") {
+            await getStores();
+        } else {
+            searchStores(searchTerm);
+        }
       });
     }
 });
