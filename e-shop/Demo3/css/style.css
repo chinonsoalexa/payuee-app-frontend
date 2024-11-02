@@ -9288,10 +9288,6 @@ img {
   padding: 0;
 }
 
-.sub-menu__item {
-  padding: 8px 0;
-}
-
 /* Flex layout for title and image */
 .menu-link_us-s {
   display: flex;
