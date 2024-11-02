@@ -1,36 +1,35 @@
-document.getElementById("start-camera").addEventListener("click", function() {
-    const videoContainerId = "video-container"; // ID for the container element
+document.getElementById("start-camera").addEventListener("click", async function() {
+    const video = document.getElementById("video");
     const resultSpan = document.getElementById("result");
     const startButton = document.getElementById("start-camera");
   
     // Hide the button and show the video element
     startButton.style.display = "none";
+    video.style.display = "block";
   
-    // Initialize html5-qrcode scanner
-    const html5QrCode = new Html5Qrcode(videoContainerId);
+    // Use ZXing's BrowserQRCodeReader for real-time scanning
+    const codeReader = new ZXing.BrowserQRCodeReader(50);
   
-    // Start QR code scanning with settings for environment-facing camera
-    html5QrCode.start(
-      { facingMode: "environment" }, // Use environment camera
-      {
-        fps: 10,            // Set scan attempts per second
-        qrbox: { width: 250, height: 250 }  // Optional scanning box size
-      },
-      qrCodeMessage => {
-        // Display the scanned QR code result
-        resultSpan.textContent = qrCodeMessage;
-        console.log("QR Code Result:", qrCodeMessage);
+    try {
+      // Get video stream from the user's camera
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" }
+      });
+      video.srcObject = stream;
   
-        // Stop scanning after a successful scan
-        html5QrCode.stop().catch(err => console.error("Error stopping scanner:", err));
-      },
-      errorMessage => {
-        // Handle errors or no QR code found
-        console.log("No QR Code found or scanning error:", errorMessage);
-      }
-    ).catch(err => {
-      console.error("Error starting camera:", err);
+      // Start scanning the QR code from the video stream
+      codeReader.decodeFromVideoElement(video, (result, error) => {
+        if (result) {
+          resultSpan.textContent = result.text;
+          console.log("QR Code Result:", result.text);
+          codeReader.reset(); // Stops scanning once QR code is found
+        } else if (error && !(error instanceof ZXing.NotFoundException)) {
+          console.error("QR Code scan error:", error);
+        }
+      });
+    } catch (error) {
+      console.error("Error accessing camera:", error);
       alert("Could not access the camera.");
-    });
+    }
   });
   
