@@ -23,9 +23,15 @@
   <title>Home v3 | Payuee e-Shop</title>
 
   <style>
-    .hide{
-      display: none;
-    }
+
+    #searchResults2, .sub-menu__list {
+    background-color: white !important; /* Forces white background for the list */
+    padding: 10px; /* Optional padding to ensure the background shows */
+}
+
+.sub-menu__item {
+    background-color: white; /* Ensures each item has a white background */
+}
   </style>
 </head>
 
@@ -230,7 +236,7 @@
             <div class="search-popup__results">
               <div id="productSearch2" class="sub-menu search-suggestion hide">
                 <!-- <h6 class="sub-menu__title fs-base">Quicklinks</h6> -->
-                <div style="background-color: black;">
+                <div style="background-color: white; padding: 10px;">
                   <ul  id="searchResults2" class="sub-menu__list list-unstyled">
                     <!-- render search terms here -->
                   </ul>
