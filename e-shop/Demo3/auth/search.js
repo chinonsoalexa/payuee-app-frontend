@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchField");
-    searchInput.addEventListener("input", function () {
+    searchInput.addEventListener("input", async function () {
         const query = this.value.trim();
 
         if (query.length > 1) { // Start searching after 1 characters
             const resultsContainer = document.getElementById("searchResults");
             resultsContainer.innerHTML = ''; // Clear previous results
             resultsContainer.innerHTML = `<p>Loading...</p>`;
-            getSearchResults(query);
+            await getSearchResults(query);
         }
         
     });
