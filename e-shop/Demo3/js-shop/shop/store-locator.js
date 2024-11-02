@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', async function () {
+    const params = new URLSearchParams(window.location.search);
+
+    let storeId = params.get('store-id')
+
+    if (!isNullOrEmpty(storeId)) {
+        await getStore(storeId);
+        return;
+    }
     await getStores();
 
     const searchInput = document.getElementById("storeSearchInput");
@@ -15,6 +23,51 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
     }
 });
+
+function isNullOrEmpty(value) {
+    return value === null || value.trim() === '';
+}
+
+async function getStore(id) {
+    const apiUrl = "https://api.payuee.com/get-store/" + id;
+  
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+  
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+  
+        if (!response.ok) {
+            const errorData = await response.json();
+  
+            if (errorData.error === 'failed to get top available stores') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+             } // else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+             //} else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+            //     // let's log user out the users session has expired
+            //     logout();
+            // }else {
+            //     // displayErrorMessage();
+            // }
+  
+            return;
+        }
+  
+        const responseData = await response.json();
+        renderStore(responseData.success);
+       
+  } finally {
+  
+    }
+  }
 
 async function getStores() {
     const apiUrl = "https://api.payuee.com/get-stores";
@@ -138,7 +191,7 @@ async function getStores() {
     });
 }
 
-function renderStores(store) {
+function renderStore(store) {
     const storeBody = document.getElementById('availableStores');
     
     // Clear any existing content
