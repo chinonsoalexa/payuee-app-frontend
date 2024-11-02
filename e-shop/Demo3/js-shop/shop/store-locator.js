@@ -107,9 +107,12 @@ async function getStores() {
 
     // Check if stores array is empty or null
     if (!stores || stores.length === 0) {
-        const noStoresMessage = document.createElement('p');
-        noStoresMessage.classList.add('no-stores-message');
-        noStoresMessage.textContent = "No available stores found.";
+        const noStoresMessage = document.createElement('div');
+        noStoresMessage.classList.add('store-location__search-result__item');
+        noStoresMessage.innerHTML = `
+            <h5>No available stores found</h5>
+            <a href="https://payuee.com/e-shop/Demo3/shop-outfits?page=1">Back to Shop</a>
+        `;
         storeBody.appendChild(noStoresMessage);
         return;
     }
