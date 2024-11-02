@@ -32,8 +32,24 @@ function renderSearch(results) {
                 ? `https://payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
                 : '';
 
+                let url = ""
+                if (item.category == "outfits") {
+                    url = "https://payuee.com/outfits/" + item.product_url_id;
+                } else if (item.category == "jewelry") {
+                    url = "https://payuee.com/jewelry/" + item.product_url_id;
+                } else if (item.category == "kids-accessories") {
+                    url = "https://payuee.com/kids/" + item.product_url_id;
+                } else if (item.category == "cars-car-parts") {
+                    url = "https://payuee.com/cars/" + item.product_url_id;
+                } else if (item.category == "tools") {
+                    url = "https://payuee.com/tools/" + item.product_url_id;
+                } else if (item.category == "gadgets") {
+                    url = "https://payuee.com/gadgets/" + item.product_url_id;
+                } else if (item.category == "others") {
+                    url = "https://payuee.com/outfits/" + item.product_url_id;
+                }
             resultItem.innerHTML = `
-                <a href="${item.product_url_id}" class="menu-link d-flex align-items-center justify-content-between">
+                <a href="${url}" class="menu-link d-flex align-items-center justify-content-between">
                     <span>${item.title}</span>
                     ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="search-result__image-small">` : ''}
                 </a>
