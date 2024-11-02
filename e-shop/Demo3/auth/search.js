@@ -111,7 +111,7 @@ function renderSearch2(results) {
     if (results.length > 0) {
         results.forEach(item => {
             const resultItem = document.createElement("li");
-            resultItem.classList.add("sub-menu__item");
+            resultItem.classList.add("sub-menu__item", "searchResultu");
 
             // Check if there's an image to display
             const imageUrl = item.product_image?.[0]?.url
