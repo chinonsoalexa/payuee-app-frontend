@@ -1,6 +1,11 @@
-(async function() {
+document.getElementById("start-camera").addEventListener("click", async function() {
     const video = document.getElementById("video");
     const resultSpan = document.getElementById("result");
+    const startButton = document.getElementById("start-camera");
+  
+    // Hide the button and show the video element
+    startButton.style.display = "none";
+    video.style.display = "block";
   
     // Use ZXing's BrowserQRCodeReader for real-time scanning
     const codeReader = new ZXing.BrowserQRCodeReader();
@@ -24,6 +29,7 @@
       });
     } catch (error) {
       console.error("Error accessing camera:", error);
+      alert("Could not access the camera.");
     }
-  })();
+  });
   
