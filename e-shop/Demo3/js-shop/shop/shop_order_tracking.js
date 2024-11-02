@@ -7,11 +7,11 @@ document.getElementById("start-camera").addEventListener("click", async function
     startButton.style.display = "none";
     video.style.display = "block";
   
-    // Use ZXing's BrowserQRCodeReader for real-time scanning
-    const codeReader = new ZXing.BrowserQRCodeReader(50);
+    // Initialize the ZXing code reader
+    const codeReader = new ZXing.BrowserQRCodeReader(500); // Scanning delay set to 500ms
   
     try {
-      // Get video stream from the user's camera
+      // Get the video stream from the user's camera
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
       });
@@ -20,9 +20,13 @@ document.getElementById("start-camera").addEventListener("click", async function
       // Start scanning the QR code from the video stream
       codeReader.decodeFromVideoElement(video, (result, error) => {
         if (result) {
+          // Display the QR code result
           resultSpan.textContent = result.text;
           console.log("QR Code Result:", result.text);
-          codeReader.reset(); // Stops scanning once QR code is found
+  
+          // Stop scanning once a QR code is detected
+          codeReader.reset();
+          stream.getTracks().forEach(track => track.stop()); // Stop the camera
         } else if (error && !(error instanceof ZXing.NotFoundException)) {
           console.error("QR Code scan error:", error);
         }
