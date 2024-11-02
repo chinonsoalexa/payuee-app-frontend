@@ -22,8 +22,8 @@ function renderSearch(results) {
 
         resultItem.innerHTML = `
           <a href="${item.link}" class="search-result__item">
-            <img src="${item.image}" alt="${item.name}" class="search-result__image w-100">
-            <p class="search-result__name">${item.name}</p>
+            <img src="${item.image}" alt="${item.title}" class="search-result__image w-100">
+            <p class="search-result__name">${item.title}</p>
           </a>
         `;
 
