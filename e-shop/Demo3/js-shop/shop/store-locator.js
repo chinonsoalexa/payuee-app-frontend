@@ -119,8 +119,8 @@ async function getStores() {
         const rowElement = document.createElement('div');
         rowElement.classList.add('store-location__search-result__item');
         rowElement.innerHTML = `
-            <h5>Store in ${store.shop_state}, ${store.shop_city}</h5>
-            <p>${store.shop_address}<br>Nigeria<br>${store.shop_phone}<br>Open, ${store.open_days} days a week</p>
+            <h5>${store.shop_name}</h5>
+            <p>${store.shop_address}<br>Nigeria<br>${store.shop_phone}<br><br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
             <a id="store_selector_${store.userID}" href="shop-vendor.html?store_id=${store.userID}">Visit Store</a>
         `;
         storeBody.appendChild(rowElement);
