@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 resultsContainer2.innerHTML = ''; // Clear previous results
                 resultsContainer2.innerHTML = `<li style="background-color: white;">Enter a search key to search for a product</li>`;
             }
-            searchButton.classList.add('hide'); // Hide search button
-            clearButton.classList.remove('hide'); // Show clear button
-            productSearch2.classList.remove('hide'); // Show search list
+            searchButton.classList.add('hide1'); // Hide search button
+            clearButton.classList.remove('hide1'); // Show clear button
+            productSearch2.classList.remove('hide1'); // Show search list
         } else {
             console.log("now here...");
-            searchButton.classList.remove('hide'); // Show search button
-            clearButton.classList.add('hide'); // Hide clear button
-            productSearch2.classList.add('hide'); // Show clear button
+            searchButton.classList.remove('hide1'); // Show search button
+            clearButton.classList.add('hide1'); // Hide clear button
+            productSearch2.classList.add('hide1'); // Show clear button
         }
     }
 
@@ -135,7 +135,7 @@ function renderSearch2(results) {
                     url = "https://payuee.com/outfits/" + item.product_url_id;
                 }
             resultItem.innerHTML = `
-                <a href="${url}" class="menu-link d-flex align-items-center justify-content-between" style="background-color: white;">
+                <a  style="background-color: white;" href="${url}" class="menu-link d-flex align-items-center justify-content-between">
                     <span>${item.title}</span>
                     ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="search-result__image-small">` : ''}
                 </a>
