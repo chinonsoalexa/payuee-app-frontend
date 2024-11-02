@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const searchInput2 = document.getElementById('searchFIeldM');
     const searchButton = document.getElementById('searchButtonM');
     const clearButton = document.getElementById('clearButtonM');
-    const productSearch = document.getElementById('productSearch');
+    const productSearch2 = document.getElementById('productSearch2');
 
     // Function to toggle buttons based on input
     async function toggleButtons() {
