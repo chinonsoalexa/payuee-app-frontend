@@ -12,6 +12,7 @@ document.getElementById("start-camera").addEventListener("click", async function
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
       });
+      
       video.srcObject = stream;
   
       codeReader.decodeFromVideoElement(video, (result, error) => {
