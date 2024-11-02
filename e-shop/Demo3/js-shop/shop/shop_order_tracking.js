@@ -6,7 +6,7 @@ document.getElementById("start-camera").addEventListener("click", async function
     startButton.style.display = "none";
     video.style.display = "block";
   
-    const codeReader = new ZXing.BrowserQRCodeReader(50); // Set time between scans
+    const codeReader = new ZXing.BrowserQRCodeReader(500); // Set time between scans
   
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
