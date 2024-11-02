@@ -29,11 +29,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const resultsContainer2 = document.getElementById("searchResults2");
                 resultsContainer2.innerHTML = ''; // Clear previous results
                 resultsContainer2.innerHTML = `<li style="background-color: white;">Loading...</li>`;
+                resultsContainer2.appendChild(resultsContainer2);
                 await getSearchResults2(searchInput2.value.trim());
             } else if (searchInput2.value.trim().length == "") {
                 const resultsContainer2 = document.getElementById("searchResults2");
                 resultsContainer2.innerHTML = ''; // Clear previous results
                 resultsContainer2.innerHTML = `<li style="background-color: white;">Enter a search key to search for a product</li>`;
+                resultsContainer2.appendChild(resultsContainer2);
             }
             searchButton.classList.add('hiddenn'); // Hide search button
             clearButton.classList.remove('hiddenn'); // Show clear button
