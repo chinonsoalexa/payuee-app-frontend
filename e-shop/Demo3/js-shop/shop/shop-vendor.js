@@ -277,6 +277,23 @@ function renderProducts(product) {
         `
     }
 
+    let url = ""
+    if (product.category == "outfits") {
+        url = "https://payuee.com/outfits/" + product.product_url_id;
+    } else if (product.category == "jewelry") {
+        url = "https://payuee.com/jewelry/" + product.product_url_id;
+    } else if (product.category == "kids-accessories") {
+        url = "https://payuee.com/kids/" + product.product_url_id;
+    } else if (product.category == "cars-car-parts") {
+        url = "https://payuee.com/cars/" + product.product_url_id;
+    } else if (product.category == "tools") {
+        url = "https://payuee.com/tools/" + product.product_url_id;
+    } else if (product.category == "gadgets") {
+        url = "https://payuee.com/gadgets/" + product.product_url_id;
+    } else if (product.category == "others") {
+        url = "https://payuee.com/outfits/" + product.product_url_id;
+    }
+
     // Determine if the button should be disabled and what text to display
     const isOutOfStock = product.stock_remaining === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
