@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 resultsContainer2.innerHTML = ''; // Clear previous results
                 resultsContainer2.innerHTML = `<li style="background-color: white;">Enter a search key to search for a product</li>`;
             }
-            searchButton.classList.add('hide1'); // Hide search button
-            clearButton.classList.remove('hide1'); // Show clear button
-            productSearch2.classList.remove('hide1'); // Show search list
+            searchButton.classList.add('hiddenn'); // Hide search button
+            clearButton.classList.remove('hiddenn'); // Show clear button
+            productSearch2.classList.remove('hiddenn'); // Show search list
         } else {
             console.log("now here...");
-            searchButton.classList.remove('hide1'); // Show search button
-            clearButton.classList.add('hide1'); // Hide clear button
-            productSearch2.classList.add('hide1'); // Show clear button
+            searchButton.classList.remove('hiddenn'); // Show search button
+            clearButton.classList.add('hiddenn'); // Hide clear button
+            productSearch2.classList.add('hiddenn'); // Show clear button
         }
     }
 
