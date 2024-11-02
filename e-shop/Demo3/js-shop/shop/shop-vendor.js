@@ -20,24 +20,16 @@ var max_weight = 10;
 const loader = Array.from({ length: 15 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
-    // Call the loading function to render the skeleton loaders
+    // Get URL parameters
+    const url = window.location.pathname;
+    const parts = url.split('-');
+    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
-
-    // setTimeout(() => {
-    //     // console.log('m here')
-    //     // updateProductsFromData(productts);
-    //         // render the store products
-    //         document.getElementById('products-grid').innerHTML = '';
-    // products.forEach((product) => {
-    //     renderProducts(product);
-    // });
-    //     // console.log('just finished here')
-    // }, 3000);
 
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
