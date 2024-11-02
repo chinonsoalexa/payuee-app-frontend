@@ -99,23 +99,30 @@ async function getStores() {
     }
   }
   
-function renderStores(stores) {
-    stores.forEach(store => {
-
+  function renderStores(stores) {
     const storeBody = document.getElementById('availableStores');
+    
+    // Clear any existing content
+    storeBody.innerHTML = "";
 
-    // Create a new store card element
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('store-location__search-result__item');
+    // Check if stores array is empty or null
+    if (!stores || stores.length === 0) {
+        const noStoresMessage = document.createElement('p');
+        noStoresMessage.classList.add('no-stores-message');
+        noStoresMessage.textContent = "No available stores found.";
+        storeBody.appendChild(noStoresMessage);
+        return;
+    }
 
-    rowElement.innerHTML = `
-        <h5>Store in ${store.shop_state}, ${store.shop_city}</h5>
-        <p>${store.shop_address}<br>Nigeria<br>${store.shop_phone}<br>Open, ${store.open_days} days a week</p>
-        <a id="store_selector_1" href="#map">See on the map</a>
-    `
-
-    // Append the new element to the container
-    storeBody.appendChild(rowElement);
+    // Render store cards if stores exist
+    stores.forEach(store => {
+        const rowElement = document.createElement('div');
+        rowElement.classList.add('store-location__search-result__item');
+        rowElement.innerHTML = `
+            <h5>Store in ${store.shop_state}, ${store.shop_city}</h5>
+            <p>${store.shop_address}<br>Nigeria<br>${store.shop_phone}<br>Open, ${store.open_days} days a week</p>
+            <a id="store_selector_1" href="#map">See on the map</a>
+        `;
+        storeBody.appendChild(rowElement);
     });
-
 }
