@@ -26,7 +26,7 @@ function renderSearch(results) {
         resultItem.innerHTML = `
         <a href="${item.product_url_id}" class="menu-link menu-link_us-s d-flex align-items-center justify-content-between">
             <span>${item.title}</span>
-            <img src="${item.image}" alt="${item.title}" class="search-result__image-small">
+            <img src="https://payuee.com/image/${item.product_image[0].url}" alt="${item.title}" class="search-result__image-small">
         </a>
         `;
 
