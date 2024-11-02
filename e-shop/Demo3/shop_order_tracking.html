@@ -471,9 +471,9 @@
         <form name="tracking-form" class="needs-validation" novalidate>
           <h2 class="page-title">Order Tracking</h2>
           <p>To track your order please enter your Order ID in the box below and press the "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
-          <video id="video" autoplay></video>
-          <button id="start-camera">Start Camera</button>
+          <div id="video-container" style="width: 100%; max-width: 400px; border: 2px solid #333;"></div>
           <div id="qr-result">Result: <span id="result"></span></div>
+          <button id="start-camera">Start Camera</button>
           <div class="form-floating my-4">
             <input type="text" class="form-control" id="order_tracking_id" placeholder="Order ID *" required>
             <label for="order_tracking_id">Order ID *</label>
