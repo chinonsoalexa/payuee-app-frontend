@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", async function () {
         const query = this.value.trim();
 
-        if (query.length > 1) { // Start searching after 1 characters
+        if (query.length > 0) { // Start searching after 1 characters
             const resultsContainer = document.getElementById("searchResults");
             resultsContainer.innerHTML = ''; // Clear previous results
             resultsContainer.innerHTML = `<li>Loading...</li>`;
