@@ -33,7 +33,7 @@ function renderSearch(results) {
                 : '';
 
             resultItem.innerHTML = `
-                <a href="${item.product_url_id}" class="menu-link menu-link_us-s d-flex align-items-center justify-content-between">
+                <a href="${item.product_url_id}" class="menu-link d-flex align-items-center justify-content-between">
                     <span>${item.title}</span>
                     ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="search-result__image-small">` : ''}
                 </a>
