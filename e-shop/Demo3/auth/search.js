@@ -24,22 +24,28 @@ function renderSearch(results) {
 
     if (results.length > 0) {
         results.forEach(item => {
-        const resultItem = document.createElement("li");
-        resultItem.classList.add("sub-menu__item");
+            const resultItem = document.createElement("li");
+            resultItem.classList.add("sub-menu__item");
 
-        resultItem.innerHTML = `
-        <a href="${item.product_url_id}" class="menu-link menu-link_us-s d-flex align-items-center justify-content-between">
-            <span>${item.title}</span>
-            <img src="https://payuee.com/image/${item.product_image[0].url}" alt="${item.title}" class="search-result__image-small">
-        </a>
-        `;
+            // Check if there's an image to display
+            const imageUrl = item.product_image?.[0]?.url
+                ? `https://payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
+                : '';
 
-        resultsContainer.appendChild(resultItem);
-      });
+            resultItem.innerHTML = `
+                <a href="${item.product_url_id}" class="menu-link menu-link_us-s d-flex align-items-center justify-content-between">
+                    <span>${item.title}</span>
+                    ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="search-result__image-small">` : ''}
+                </a>
+            `;
+
+            resultsContainer.appendChild(resultItem);
+        });
     } else {
-      resultsContainer.innerHTML = `<li>No results found</li>`;
+        resultsContainer.innerHTML = `<li>No results found</li>`;
     }
 }
+
 
 async function getSearchResults(query) {
     // Endpoint URL
