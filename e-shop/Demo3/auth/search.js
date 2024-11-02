@@ -25,19 +25,19 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function toggleButtons() {
         if (searchInput2.value.trim() !== "") {
             console.log("i'm here...");
-            if (searchInput2.value.trim().length > 0) { // Start searching after 1 characters
-                const resultsContainer2 = document.getElementById("searchResults2");
-                resultsContainer2.innerHTML = ''; // Clear previous results
-                resultsContainer2.innerHTML = `<li>Loading...</li>`;
-                await getSearchResults2(searchInput2.value.trim());
-            } else if (searchInput2.value.trim().length == "") {
-                const resultsContainer2 = document.getElementById("searchResults2");
-                resultsContainer2.innerHTML = ''; // Clear previous results
-                resultsContainer2.innerHTML = `<li>Enter a search key to search for a product</li>`;
-            }
+            // if (searchInput2.value.trim().length > 0) { // Start searching after 1 characters
+            //     const resultsContainer2 = document.getElementById("searchResults2");
+            //     resultsContainer2.innerHTML = ''; // Clear previous results
+            //     resultsContainer2.innerHTML = `<li>Loading...</li>`;
+            //     await getSearchResults2(searchInput2.value.trim());
+            // } else if (searchInput2.value.trim().length == "") {
+            //     const resultsContainer2 = document.getElementById("searchResults2");
+            //     resultsContainer2.innerHTML = ''; // Clear previous results
+            //     resultsContainer2.innerHTML = `<li>Enter a search key to search for a product</li>`;
+            // }
             searchButton.classList.add('hide'); // Hide search button
             clearButton.classList.remove('hide'); // Show clear button
-            productSearch.classList.remove('hide'); // Show clear button
+            productSearch.classList.remove('hide'); // Show search list
         } else {
             console.log("now here...");
             searchButton.classList.remove('hide'); // Show search button
@@ -204,6 +204,6 @@ async function getSearchResults2(query) {
         }
 
     } catch (error) {
-        console.error('Error fetching user balance: ', error);
+        console.error('Error fetching search details: ', error);
     }
 }
