@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (query.length > 1) { // Start searching after 1 characters
             const resultsContainer = document.getElementById("searchResults");
             resultsContainer.innerHTML = ''; // Clear previous results
-            resultsContainer.innerHTML = `<p>Loading...</p>`;
+            resultsContainer.innerHTML = `<li>Loading...</li>`;
             await getSearchResults(query);
         }
         
@@ -20,20 +20,20 @@ function renderSearch(results) {
 
     if (results.length > 0) {
         results.forEach(item => {
-        const resultItem = document.createElement("div");
-        resultItem.classList.add("col");
+        const resultItem = document.createElement("li");
+        resultItem.classList.add("sub-menu__item");
 
         resultItem.innerHTML = `
-          <a href="${item.product_url_id}" class="search-result__item">
-            <img src="../images/home/demo3/category_7.png" alt="${item.title}" class="search-result__image w-100">
-            <p class="search-result__name">${item.title}</p>
-          </a>
+        <a href="${item.product_url_id}" class="menu-link menu-link_us-s d-flex align-items-center justify-content-between">
+            <span>${item.title}</span>
+            <img src="${item.image}" alt="${item.title}" class="search-result__image-small">
+        </a>
         `;
 
         resultsContainer.appendChild(resultItem);
       });
     } else {
-      resultsContainer.innerHTML = `<p>No results found</p>`;
+      resultsContainer.innerHTML = `<li>No results found</li>`;
     }
 }
 
