@@ -22,7 +22,7 @@ function renderSearch(results) {
 
         resultItem.innerHTML = `
           <a href="${item.product_url_id}" class="search-result__item">
-            <img src="${item.image}" alt="${item.title}" class="search-result__image w-100">
+            <img src="../images/home/demo3/category_7.png" alt="${item.title}" class="search-result__image w-100">
             <p class="search-result__name">${item.title}</p>
           </a>
         `;
