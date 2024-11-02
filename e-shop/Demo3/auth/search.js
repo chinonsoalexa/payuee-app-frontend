@@ -15,7 +15,7 @@ function renderSearch(results) {
     const resultsContainer = document.getElementById("searchResults");
     resultsContainer.innerHTML = ''; // Clear previous results
 
-    if (data.length > 0) {
+    if (results.length > 0) {
         results.forEach(item => {
         const resultItem = document.createElement("div");
         resultItem.classList.add("col");
