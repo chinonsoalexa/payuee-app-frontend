@@ -137,3 +137,36 @@ async function getStores() {
         storeBody.appendChild(rowElement);
     });
 }
+
+function renderStores(store) {
+    const storeBody = document.getElementById('availableStores');
+    
+    // Clear any existing content
+    storeBody.innerHTML = "";
+
+    // Check if stores array is empty or null
+    if (!store) {
+        const noStoresMessage = document.createElement('div');
+        noStoresMessage.classList.add('store-location__search-result__item');
+        noStoresMessage.innerHTML = `
+            <h5>No available stores found</h5>
+            <a href="https://payuee.com/e-shop/Demo3/shop-outfits?page=1">Back to Shop</a>
+        `;
+        storeBody.appendChild(noStoresMessage);
+        return;
+    }
+
+    // Render store cards if stores exist
+    const rowElement = document.createElement('div');
+    rowElement.classList.add('store-location__search-result__item');
+
+    // Check if shop address is empty and set location accordingly
+    const location = store.shop_address ? `${store.shop_address}<br>${store.shop_state}, ${store.shop_city}` : `${store.shop_state}, ${store.shop_city}`;
+
+    rowElement.innerHTML = `
+        <h5>${store.shop_name}</h5>
+        <p>${store.shop_state}, ${store.shop_city}<br>${location}<br>Nigeria<br>${store.shop_phone}<br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
+        <a id="store_selector_${store.userID}" href="store/${store.store_unique_url}">Visit Store</a>
+    `;
+    storeBody.appendChild(rowElement);
+}
