@@ -132,7 +132,7 @@ async function getStores() {
         rowElement.innerHTML = `
             <h5>${store.shop_name}</h5>
             <p>${store.shop_state}, ${store.shop_city}<br>${location}<br>Nigeria<br>${store.shop_phone}<br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
-            <a id="store_selector_${store.userID}" href="shop-vendor.html/${store.store_unique_url}">Visit Store</a>
+            <a id="store_selector_${store.userID}" href="store/${store.store_unique_url}">Visit Store</a>
         `;
         storeBody.appendChild(rowElement);
     });

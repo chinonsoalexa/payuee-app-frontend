@@ -32,6 +32,10 @@
         {
           "source": "/gadgets/:nameAndId",
           "destination": "e-shop/Demo3/product_car"
+        },
+        {
+          "source": "/store/:nameAndId",
+          "destination": "e-shop/Demo3/shop-vendor"
         }
       ]
 }
