@@ -449,15 +449,15 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <form action="https://payuee-html.flexkitux.com/Demo3/search.html" method="GET">
+          <form action="#" method="GET">
             <div class="store-location__search">
-              <input class="store-location__search-input" type="text" name="search-keyword" placeholder="Enter your country or city">
+              <input id="storeSearchInput" class="store-location__search-input" type="text" name="search-keyword" placeholder="Enter store name or email">
               <button class="btn-icon store-location__search-btn" type="submit">
                 <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_search" /></svg>
               </button>
             </div>
 
-            <div class="store-location__search-result">
+            <div id="availableStores" class="store-location__search-result">
               <div class="store-location__search-result__item">
                 <h5>Store in London</h5>
                 <p>1418 River Drive, Suite 35 Cottonhall, CA 9622<br>United States<br>(0818) 979-9992<br>10 am - 10 pm EST, 7 days a week</p>
@@ -1137,20 +1137,13 @@
   <script src="js/plugins/swiper.min.js"></script>
   <script src="js/plugins/countdown.js"></script>
   <script src="js/plugins/jquery.fancybox.js"></script>
-  
-  <!-- GOOGLEMAP -->
-  <!-- prettier-ignore -->
-  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.₦{c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-    ({key: "AIzaSyAnKJxI0i5KGFgD3QTSg_aXbQk_Ze2kNAw", v: "beta"});</script>
-  <script src="js/googlemap-setting.js"></script>
 
   <!-- Footer Scripts -->
   <script src="js/theme.js"></script>
+  <script src="js-shop/shop/store-locator.js"></script>
 
   <!-- js login/logout code -->
   <script src="js-shop/auth/side-login/auth.js"></script>
 
 </body>
-
-<!-- Mirrored from payuee-html.flexkitux.com/Demo3/store_location.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 22:36:40 GMT -->
 </html>
