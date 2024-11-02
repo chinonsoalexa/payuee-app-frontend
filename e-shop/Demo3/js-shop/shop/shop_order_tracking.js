@@ -8,7 +8,7 @@ document.getElementById("start-camera").addEventListener("click", async function
     video.style.display = "block";
   
     // Use ZXing's BrowserQRCodeReader for real-time scanning
-    const codeReader = new ZXing.BrowserQRCodeReader();
+    const codeReader = new ZXing.BrowserQRCodeReader(50);
   
     try {
       // Get video stream from the user's camera
