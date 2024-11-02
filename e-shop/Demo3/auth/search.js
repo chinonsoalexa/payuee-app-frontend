@@ -21,7 +21,7 @@ function renderSearch(results) {
         resultItem.classList.add("col");
 
         resultItem.innerHTML = `
-          <a href="${item.link}" class="search-result__item">
+          <a href="${item.product_url_id}" class="search-result__item">
             <img src="${item.image}" alt="${item.title}" class="search-result__image w-100">
             <p class="search-result__name">${item.title}</p>
           </a>
