@@ -9,7 +9,7 @@ document.getElementById("start-camera").addEventListener("click", async function
   // Display the video element
   video.style.display = "block";
 
-  const codeReader = new ZXing.BrowserQRCodeReader(100); // Fast scan delay
+  const codeReader = new ZXing.BrowserQRCodeReader(5000); // Fast scan delay
 
   try {
     if (!scanning) {
