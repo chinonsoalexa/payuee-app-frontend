@@ -38,12 +38,9 @@ document.getElementById("startScan").addEventListener("click", () => {
   const orderIDInput = document.getElementById('orderID');
   const trackOrder = document.getElementById('trackOrder');
   const reader = document.getElementById('reader');
-  // const stopScan = document.getElementById('stopScan');
-  // Hide order ID input and show video element
   orderIDInput.classList.add('hidden');
   trackOrder.classList.add('hidden');
   reader.classList.remove('hidden');
-  // stopScan.classList.remove('hidden');
 
   navigator.mediaDevices.getUserMedia({ video: true })
     .then((stream) => {
