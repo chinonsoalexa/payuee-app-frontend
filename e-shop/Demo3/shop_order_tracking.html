@@ -473,7 +473,6 @@
           <p>To track your order please enter your Order ID in the box below and press the "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
           <video id="video"></video>
           <div>QR Code Result: <span id="result"></span></div>
-          <button id="start-camera" type="button" class="btn btn-primary btn-track w-100">Start Camera</button>
           <div class="form-floating my-4">
             <input type="text" class="form-control" id="order_tracking_id" placeholder="Order ID *" required>
             <label for="order_tracking_id">Order ID *</label>
@@ -482,7 +481,9 @@
             <input type="email" class="form-control" id="order_tracking_email" placeholder="Billing email *" required>
             <label for="order_tracking_email">Billing email *</label>
           </div>
-          <button type="submit" class="btn btn-primary btn-track w-100">TRACK</button>
+          <button type="submit" class="btn btn-primary btn-track w-100">TRACK ORDER</button>
+            <p>OR</p>
+          <button id="start-camera" type="button" class="btn btn-primary btn-track w-100">SCAN QR CODE</button>
         </form>
       </div>
     </section>
