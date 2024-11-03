@@ -1,3 +1,5 @@
+import { Html5Qrcode } from "html5-qrcode";
+
 document.getElementById("start-camera").addEventListener("click", async function() {
   const resultSpan = document.getElementById("result");
   
