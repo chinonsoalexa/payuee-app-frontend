@@ -5,6 +5,7 @@ const videoElement = document.getElementById('preview');
     const trackOrderButton = document.getElementById('trackOrder');
 
     let scanner; // Scanner object declared outside click events for reusability
+    let scanning = false;
 
     // Start camera button click handler
     startCameraButton.addEventListener('click', async function() {
