@@ -17,6 +17,10 @@ const videoElement = document.getElementById('preview');
       videoElement.classList.remove('hidden');
 
       try {
+        // Request camera permission
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        
         const cameras = await Instascan.Camera.getCameras();
         if (cameras.length > 0) {
           scanner = new Instascan.Scanner({ video: videoElement });
