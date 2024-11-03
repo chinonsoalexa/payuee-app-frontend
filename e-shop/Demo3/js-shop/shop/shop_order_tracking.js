@@ -21,9 +21,11 @@ const html5QrcodeScanner = new Html5QrcodeScanner(
 // Start scanning when the "Start Scanning" button is clicked
 document.getElementById("startScan").addEventListener("click", () => {
   const orderIDInput = document.getElementById('orderID');
+  const trackOrder = document.getElementById('trackOrder');
   const reader = document.getElementById('reader');
   // Hide order ID input and show video element
   orderIDInput.classList.add('hidden');
+  trackOrder.classList.add('hidden');
   reader.classList.remove('hidden');
 
   navigator.mediaDevices.getUserMedia({ video: true })
@@ -38,9 +40,11 @@ document.getElementById("startScan").addEventListener("click", () => {
 // Stop scanning when the "Stop Scanning" button is clicked
 document.getElementById("stopScan").addEventListener("click", () => {
   const orderIDInput = document.getElementById('orderID');
+  const trackOrder = document.getElementById('trackOrder');
   const reader = document.getElementById('reader');
   // Hide order ID input and show video element
   orderIDInput.classList.remove('hidden');
+  trackOrder.classList.remove('hidden');
   reader.classList.add('hidden');
 
   html5QrcodeScanner.clear().then(() => {
