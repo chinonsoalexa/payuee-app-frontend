@@ -1,26 +1,23 @@
-const videoElement = document.getElementById('preview');
+    const videoElement = document.getElementById('preview');
     const resultSpan = document.getElementById('result');
     const startCameraButton = document.getElementById('start-camera');
-    const orderIDInput = document.getElementById('orderID');
-    const trackOrderButton = document.getElementById('trackOrder');
 
-    let scanner; // Scanner object declared outside click events for reusability
+    let scanner;
     let scanning = false;
 
-    // Start camera button click handler
     startCameraButton.addEventListener('click', async function() {
       if (scanning) return; // Prevent re-initialization
       scanning = true;
 
       // Hide order ID input and show video element
-      orderIDInput.classList.add('hidden');
+      orderIDInput.classList.add('hidden'); // Assuming you have an orderIDInput element
       videoElement.classList.remove('hidden');
 
       try {
         // Request camera permission
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video.srcObject = stream;
-        
+        videoElement.srcObject = stream;
+
         const cameras = await Instascan.Camera.getCameras();
         if (cameras.length > 0) {
           scanner = new Instascan.Scanner({ video: videoElement });
@@ -43,20 +40,8 @@ const videoElement = document.getElementById('preview');
       }
     });
 
-    // Track order button click handler
-    trackOrderButton.addEventListener('click', function(event) {
-      event.preventDefault();
-
-      // Logic to handle order ID input (e.g., validate, submit to server for tracking)
-
-      // Reset scanning state if previously triggered
-      scanning = false;
-      stopScanner();
-
-      // Optionally, show order ID input and hide video element
-      orderIDInput.classList.remove('hidden');
-      videoElement.classList.add('hidden');
-    });
+    // Track order button click handler (assuming you have this functionality)
+    // ...
 
     function stopScanner() {
       if (scanner) {
