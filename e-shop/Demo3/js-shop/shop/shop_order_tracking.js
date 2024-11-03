@@ -1,37 +1,32 @@
 document.getElementById("start-camera").addEventListener("click", async function() {
   const video = document.getElementById("video");
   const resultSpan = document.getElementById("result");
-  // const startButton = document.getElementById("start-camera");
-
-  // Flag to prevent reinitializing the scan
-  let scanning = false;
+  let scanning = false; // Flag to prevent reinitializing the scan
 
   // Display the video element
   video.style.display = "block";
-
   const codeReader = new ZXing.BrowserQRCodeReader(100); // Fast scan delay
 
   try {
-    // Check if already scanning to prevent reinitialization
+    // Prevent reinitialization if already scanning
     if (!scanning) {
-      scanning = true;
+      scanning = true; // Set scanning flag to true
 
+      // Request access to the camera
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
       });
-      video.srcObject = stream;
+      video.srcObject = stream; // Set the video source to the stream
 
-      // Start decoding from video element
+      // Start decoding from the video element
       codeReader.decodeFromVideoElement(video, (result, error) => {
         if (result) {
+          // QR code detected
           resultSpan.textContent = result.text;
           console.log("QR Code Detected:", result.text);
-
-          // Stop scanning once a result is found
-          codeReader.reset();
-          stream.getTracks().forEach(track => track.stop()); // Stop camera stream
-          video.srcObject = null; // Clear video source to fully stop
-          scanning = false; // Reset the flag
+          
+          // Stop scanning and release resources
+          stopScanning(codeReader, stream, video);
         } else if (error && !(error instanceof ZXing.NotFoundException)) {
           console.error("QR Code scan error:", error);
         }
@@ -43,3 +38,11 @@ document.getElementById("start-camera").addEventListener("click", async function
     scanning = false; // Reset the flag on error
   }
 });
+
+// Function to stop scanning and release resources
+function stopScanning(codeReader, stream, video) {
+  codeReader.reset(); // Stop decoding
+  stream.getTracks().forEach(track => track.stop()); // Stop camera stream
+  video.srcObject = null; // Clear video source
+  scanning = false; // Reset the scanning flag
+}
