@@ -1,48 +1,45 @@
-import { Html5Qrcode } from "html5-qrcode";
-
 document.getElementById("start-camera").addEventListener("click", async function() {
+  const video = document.getElementById("video");
   const resultSpan = document.getElementById("result");
-  
-  // Create a new instance of Html5Qrcode
-  const html5QrCode = new Html5Qrcode("video");
-  
-  // Start the camera and scanning process
-  try {
-    // Start camera with the desired configuration
-    const cameraId = await Html5Qrcode.getCameras().then(devices => {
-      return devices.length ? devices[0].id : null; // Choose the first camera
-    });
+  // const startButton = document.getElementById("start-camera");
 
-    if (cameraId) {
-      html5QrCode.start(
-        cameraId, 
-        {
-          fps: 10, // Set frames per second
-          qrbox: 250 // Size of scanning box
-        },
-        (decodedText, decodedResult) => {
-          // QR code scanned
-          resultSpan.textContent = decodedText;
-          console.log("QR Code Detected:", decodedText);
-          
+  // Flag to prevent reinitializing the scan
+  let scanning = false;
+
+  // Display the video element
+  video.style.display = "block";
+
+  const codeReader = new ZXing.BrowserQRCodeReader(100); // Fast scan delay
+
+  try {
+    // Check if already scanning to prevent reinitialization
+    if (!scanning) {
+      scanning = true;
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" }
+      });
+      video.srcObject = stream;
+
+      // Start decoding from video element
+      codeReader.decodeFromVideoElement(video, (result, error) => {
+        if (result) {
+          resultSpan.textContent = result.text;
+          console.log("QR Code Detected:", result.text);
+
           // Stop scanning once a result is found
-          html5QrCode.stop().then(() => {
-            console.log("QR Code scanning stopped.");
-          }).catch(err => {
-            console.error("Failed to stop scanning:", err);
-          });
-        },
-        (errorMessage) => {
-          // Parsing error (not critical)
-          console.warn("QR Code scan error:", errorMessage);
+          codeReader.reset();
+          stream.getTracks().forEach(track => track.stop()); // Stop camera stream
+          video.srcObject = null; // Clear video source to fully stop
+          scanning = false; // Reset the flag
+        } else if (error && !(error instanceof ZXing.NotFoundException)) {
+          console.error("QR Code scan error:", error);
         }
-      ).catch(err => {
-        console.error("Error starting camera:", err);
-        alert("Could not start the camera.");
       });
     }
   } catch (error) {
-    console.error("Error accessing cameras:", error);
-    alert("Could not access cameras.");
+    console.error("Error accessing camera:", error);
+    alert("Could not access the camera.");
+    scanning = false; // Reset the flag on error
   }
 });
