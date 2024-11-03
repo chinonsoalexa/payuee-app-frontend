@@ -1,5 +1,6 @@
     const videoElement = document.getElementById('preview');
     const resultSpan = document.getElementById('result');
+    const orderID = document.getElementById('orderID');
     const startCameraButton = document.getElementById('start-camera');
 
     let scanner;
@@ -10,7 +11,7 @@
       scanning = true;
 
       // Hide order ID input and show video element
-      orderIDInput.classList.add('hidden'); // Assuming you have an orderIDInput element
+      orderID.classList.add('hidden'); // Assuming you have an orderID element
       videoElement.classList.remove('hidden');
 
       try {
