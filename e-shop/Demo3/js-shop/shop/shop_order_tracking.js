@@ -8,8 +8,6 @@ document.getElementById("start-camera").addEventListener("click", async function
   // Display the video element
   video.style.display = "block";
 
-  const codeReader = new ZXing.BrowserQRCodeReader(5000); // Fast scan delay
-
   try {
     if (!scanning) {
       scanning = true;
@@ -21,18 +19,39 @@ document.getElementById("start-camera").addEventListener("click", async function
 
       video.srcObject = stream;
 
-      codeReader.decodeFromVideoElement(video, (result, error) => {
-        if (result) {
-          resultSpan.textContent = result.text;
-          console.log("QR Code Detected:", result.text);
-
-          codeReader.reset();
-          stream.getTracks().forEach(track => track.stop());
-          video.srcObject = null;
-          scanning = false;
-        } else if (error && !(error instanceof ZXing.NotFoundException)) {
-          console.error("QR Code scan error:", error);
+      // Initialize QuaggaJS with the video stream
+      Quagga.init({
+        inputStream: {
+          name: "Live",
+          type: "LiveStream",
+          target: video
+        },
+        decoder: {
+          readers: ["code_128_reader"] // Specify QR code reader
         }
+      }, function(err) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log("Initialization finished. Ready to start");
+        Quagga.start();
+      });
+
+      // Handle decoded data from QuaggaJS
+      Quagga.onDetected(function(result) {
+        console.log(result);
+        const decodedData = result.codeResult.code;
+        console.log("Decoded data:", decodedData);
+        resultSpan.textContent = decodedData; // Display data
+
+        // You can add actions here based on the decoded data,
+        //  like sending it to a server, processing it further, etc.
+
+        codeReader.reset(); // Not needed with QuaggaJS
+        stream.getTracks().forEach(track => track.stop());
+        video.srcObject = null;
+        scanning = false;
       });
     }
   } catch (error) {
