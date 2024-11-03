@@ -1,34 +1,33 @@
-document.getElementById("start-camera").addEventListener("click", function() {
-  // Hide the start button once the scanner starts
-  document.getElementById("start-camera").style.display = "none";
+document.getElementById("start-camera").addEventListener("click", async function() {
+  const video = document.getElementById("video");
+  const resultSpan = document.getElementById("result");
+  const startButton = document.getElementById("start-camera");
 
-  const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-      // Handle the result of a successful QR code scan
-      document.getElementById("result").textContent = decodedText;
-      console.log("QR Code Detected:", decodedText);
+  // Hide the button and show the video element
+  startButton.style.display = "none";
+  video.style.display = "block";
 
-      // Stop the scanner after scanning the QR code
-      html5QrcodeScanner.clear().then(() => {
-          console.log("Camera stopped.");
-      }).catch((error) => {
-          console.error("Error stopping camera:", error);
-      });
-  };
+  // Initialize qr-scanner
+  const qrScanner = new QrScanner(video, result => {
+      resultSpan.textContent = result;
+      console.log("QR Code Detected:", result);
 
-  const qrCodeErrorCallback = (errorMessage) => {
-      // Ignore non-critical errors (optional)
-      console.log("Scanning error:", errorMessage);
-  };
-
-  // Start the QR code scanner
-  const html5QrcodeScanner = new Html5Qrcode("qr-reader");
-  html5QrcodeScanner.start(
-      { facingMode: "environment" }, // Set to "environment" for rear camera
-      { fps: 10, qrbox: { width: 250, height: 250 } },
-      qrCodeSuccessCallback,
-      qrCodeErrorCallback
-  ).catch((error) => {
-      console.error("Unable to start scanning:", error);
-      alert("Could not access the camera.");
+      // Stop scanning after detecting a QR code
+      qrScanner.stop();
+      video.style.display = "none";
+      startButton.style.display = "block"; // Show button again if needed
+  }, {
+      // Optional: specify facingMode to "environment" for rear camera
+      preferredCamera: 'environment'
   });
+
+  // Start the scanner
+  try {
+      await qrScanner.start();
+  } catch (error) {
+      console.error("Error accessing camera:", error);
+      alert("Could not access the camera.");
+      video.style.display = "none";
+      startButton.style.display = "block";
+  }
 });
