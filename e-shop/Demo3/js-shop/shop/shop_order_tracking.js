@@ -1,73 +1,64 @@
-document.getElementById("start-camera").addEventListener("click", async function() {
-  const video = document.getElementById("video");
-  const resultSpan = document.getElementById("result");
+const videoElement = document.getElementById('preview');
+    const resultSpan = document.getElementById('result');
+    const startCameraButton = document.getElementById('start-camera');
+    const orderIDInput = document.getElementById('orderID');
+    const trackOrderButton = document.getElementById('trackOrder');
 
-  // Flag to prevent reinitializing the scan
-  let scanning = false;
+    let scanner; // Scanner object declared outside click events for reusability
 
-  // Display the video element
-  video.style.display = "block";
-
-  try {
-    if (!scanning) {
+    // Start camera button click handler
+    startCameraButton.addEventListener('click', async function() {
+      if (scanning) return; // Prevent re-initialization
       scanning = true;
 
-      // Check for user permission
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment",   
-width: { ideal: 1280 }, height: { ideal: 720 } }
-        });
+      // Hide order ID input and show video element
+      orderIDInput.classList.add('hidden');
+      videoElement.classList.remove('hidden');
 
-        video.srcObject = stream;
+      try {
+        const cameras = await Instascan.Camera.getCameras();
+        if (cameras.length > 0) {
+          scanner = new Instascan.Scanner({ video: videoElement });
+          scanner.addListener('scan', function (content) {
+            console.log("QR Code Detected:", content);
+            resultSpan.textContent = content; // Display scanned data
 
-        // Initialize QuaggaJS with the video stream
-        Quagga.init({
-          inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: video
-          },
-          decoder: {
-            readers: ["qrcode_reader"] // Specify QR code reader
-          }
-        }, function(err) {
-          if (err) {
-            console.error(err);
-            alert("Error initializing QuaggaJS: " + err);
+            // Add logic to handle the scanned order ID (e.g., send to server, display tracking information)
+
             scanning = false;
-            video.srcObject = null;
-            return;
-          }
-
-          console.log("Initialization finished. Ready to start");
-          Quagga.start();
-        });
-
-        // Handle decoded data from QuaggaJS
-        Quagga.onDetected(function(result) {
-          console.log(result);
-          const decodedData = result.codeResult.code;
-          console.log("Decoded data:", decodedData);
-          resultSpan.textContent = decodedData; // Display data
-
-          // You can add actions here based on the decoded data,
-          //  like sending it to a server, processing it further, etc.
-
-          Quagga.stop();
-          stream.getTracks().forEach(track => track.stop());
-          video.srcObject = null;
-          scanning = false;
-        });
-      } else {
-        console.error("Camera access not supported by your browser.");
-        alert("Camera access not supported.");
+            stopScanner(); // Stop scanning after successful detection
+          });
+          await scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      } catch (error) {
+        console.error("Error accessing camera:", error);
         scanning = false;
       }
+    });
+
+    // Track order button click handler
+    trackOrderButton.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      // Logic to handle order ID input (e.g., validate, submit to server for tracking)
+
+      // Reset scanning state if previously triggered
+      scanning = false;
+      stopScanner();
+
+      // Optionally, show order ID input and hide video element
+      orderIDInput.classList.remove('hidden');
+      videoElement.classList.add('hidden');
+    });
+
+    function stopScanner() {
+      if (scanner) {
+        scanner.stop().then(() => {
+          console.log("Scanner stopped.");
+        }).catch(error => {
+          console.error("Error stopping scanner:", error);
+        });
+      }
     }
-  } catch (error) {
-    console.error("Error accessing camera:", error);
-    alert("Could not access the camera.");
-    scanning = false;
-  }
-});
