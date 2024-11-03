@@ -1,58 +1,39 @@
-const videoElement = document.getElementById('preview');
-const resultSpan = document.getElementById('result');
-const orderID = document.getElementById('orderID');
-const startCameraButton = document.getElementById('start-camera');
+// Function called when a QR code is successfully scanned
+function onScanSuccess(decodedText, decodedResult) {
+  document.getElementById('result').innerText = decodedText; // Display the result
+  console.log(`QR Code scanned: ${decodedText}`);
+}
 
-let scanner;
-let scanning = false;
+// Function called when there's a scanning error (e.g., QR code not found)
+function onScanFailure(error) {
+  console.warn(`QR Code scan error: ${error}`);
+}
 
-startCameraButton.addEventListener('click', async function() {
-  if (scanning) return; // Prevent re-initialization
-  scanning = true;
-
-  // Hide order ID input and show video element
-  orderID.classList.add('hidden');
-  videoElement.classList.remove('hidden');
-
-  try {
-    // Request camera permission
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const videoDevices = devices.filter(device => device.kind === 'videoinput');
-    const rearCamera = videoDevices.find(device => device.label.toLowerCase().includes('back')) || videoDevices[0];
-
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { deviceId: rearCamera.deviceId }
-    });
-
-    // const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }});
-    videoElement.srcObject = stream; // Set stream directly to video element
-
-    const cameras = await Instascan.Camera.getCameras();
-    if (cameras.length > 0) {
-      scanner = new Instascan.Scanner({ video: videoElement });
-      scanner.addListener('scan', function(content) {
-        console.log("QR Code Detected:", content);
-        resultSpan.textContent = content;
-
-        scanning = false;
-        stopScanner(); // Stop scanning after successful detection
-      });
-      await scanner.start(cameras[0]);
-    } else {
-      console.error('No cameras found.');
-    }
-  } catch (error) {
-    console.error("Error accessing camera:", error);
-    scanning = false;
+// Initialize the QR Code scanner, but don't start immediately
+const html5QrcodeScanner = new Html5QrcodeScanner(
+  "reader", 
+  {
+    fps: 10,            // Frames per second for scanning
+    qrbox: { width: 250, height: 250 } // Define scan area size
   }
+);
+
+// Start scanning when the "Start Scanning" button is clicked
+document.getElementById("startScan").addEventListener("click", () => {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then((stream) => {
+      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    })
+    .catch((error) => {
+      console.error("Camera access denied or unavailable:", error);
+    });
 });
 
-function stopScanner() {
-  if (scanner) {
-    scanner.stop().then(() => {
-      console.log("Scanner stopped.");
-    }).catch(error => {
-      console.error("Error stopping scanner:", error);
-    });
-  }
-}
+// Stop scanning when the "Stop Scanning" button is clicked
+document.getElementById("stopScan").addEventListener("click", () => {
+  html5QrcodeScanner.clear().then(() => {
+    console.log("Scanner stopped.");
+  }).catch((error) => {
+    console.error("Error stopping scanner:", error);
+  });
+});
