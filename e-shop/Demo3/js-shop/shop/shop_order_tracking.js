@@ -2,6 +2,9 @@
 function onScanSuccess(decodedText, decodedResult) {
   document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
+  const reader = document.getElementById('reader');
+  reader.classList.add('hidden');
+
   html5QrcodeScanner.clear().then(() => {
     console.log("Scanner stopped.");
   }).catch((error) => {
