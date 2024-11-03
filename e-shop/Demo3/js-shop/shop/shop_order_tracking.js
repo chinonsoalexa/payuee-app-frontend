@@ -16,7 +16,7 @@ startCameraButton.addEventListener('click', async function() {
 
   try {
     // Request camera permission
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }});
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }});
     videoElement.srcObject = stream; // Set stream directly to video element
 
     const cameras = await Instascan.Camera.getCameras();
