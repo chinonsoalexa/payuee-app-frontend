@@ -2,6 +2,11 @@
 function onScanSuccess(decodedText, decodedResult) {
   document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
+  html5QrcodeScanner.clear().then(() => {
+    console.log("Scanner stopped.");
+  }).catch((error) => {
+    console.error("Error stopping scanner:", error);
+  });
 }
 
 // Function called when there's a scanning error (e.g., QR code not found)
