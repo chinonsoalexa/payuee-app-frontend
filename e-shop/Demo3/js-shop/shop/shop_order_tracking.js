@@ -3,30 +3,35 @@ document.getElementById("start-camera").addEventListener("click", async function
   const resultSpan = document.getElementById("result");
   const startButton = document.getElementById("start-camera");
 
+  // Hide the button and display the video element
   video.style.display = "block";
-
-  // Try with a faster scan interval for responsiveness
-  const codeReader = new ZXing.BrowserQRCodeReader(100);
+  
+  const codeReader = new ZXing.BrowserQRCodeReader(100); // Faster scan delay
 
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "environment" }
-    });
+    // Check if there's already an active stream
+    if (!video.srcObject) {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" }
+      });
+      
+      video.srcObject = stream;
+      
+      // Start scanning for QR code
+      codeReader.decodeFromVideoElement(video, (result, error) => {
+        if (result) {
+          resultSpan.textContent = result.text;
+          console.log("QR Code Detected:", result.text);
 
-    video.srcObject = stream;
-
-    codeReader.decodeFromVideoElement(video, (result, error) => {
-      if (result) {
-        resultSpan.textContent = result.text;
-        console.log("QR Code Detected:", result.text);
-        codeReader.reset();
-        stream.getTracks().forEach(track => track.stop()); // Stop the camera after detecting
-      } else if (error && !(error instanceof ZXing.NotFoundException)) {
-        console.error("QR Code scan error:", error);
-      } else {
-        console.log("Scanning attempt, no QR code found yet."); // Logs when no code is found
-      }
-    });
+          // Stop scanning and close the camera
+          codeReader.reset();
+          stream.getTracks().forEach(track => track.stop()); // Stop the camera stream
+          video.srcObject = null; // Clear the video source
+        } else if (error && !(error instanceof ZXing.NotFoundException)) {
+          console.error("QR Code scan error:", error);
+        }
+      });
+    }
   } catch (error) {
     console.error("Error accessing camera:", error);
     alert("Could not access the camera.");
