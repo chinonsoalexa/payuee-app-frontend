@@ -3,30 +3,35 @@ document.getElementById("start-camera").addEventListener("click", async function
   const resultSpan = document.getElementById("result");
   const startButton = document.getElementById("start-camera");
 
-  // Hide the button and display the video element
+  // Flag to prevent reinitializing the scan
+  let scanning = false;
+
+  // Display the video element
   video.style.display = "block";
-  
-  const codeReader = new ZXing.BrowserQRCodeReader(100); // Faster scan delay
+
+  const codeReader = new ZXing.BrowserQRCodeReader(100); // Fast scan delay
 
   try {
-    // Check if there's already an active stream
-    if (!video.srcObject) {
+    // Check if already scanning to prevent reinitialization
+    if (!scanning) {
+      scanning = true;
+
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
       });
-      
       video.srcObject = stream;
-      
-      // Start scanning for QR code
+
+      // Start decoding from video element
       codeReader.decodeFromVideoElement(video, (result, error) => {
         if (result) {
           resultSpan.textContent = result.text;
           console.log("QR Code Detected:", result.text);
 
-          // Stop scanning and close the camera
+          // Stop scanning once a result is found
           codeReader.reset();
-          stream.getTracks().forEach(track => track.stop()); // Stop the camera stream
-          video.srcObject = null; // Clear the video source
+          stream.getTracks().forEach(track => track.stop()); // Stop camera stream
+          video.srcObject = null; // Clear video source to fully stop
+          scanning = false; // Reset the flag
         } else if (error && !(error instanceof ZXing.NotFoundException)) {
           console.error("QR Code scan error:", error);
         }
@@ -35,5 +40,6 @@ document.getElementById("start-camera").addEventListener("click", async function
   } catch (error) {
     console.error("Error accessing camera:", error);
     alert("Could not access the camera.");
+    scanning = false; // Reset the flag on error
   }
 });
