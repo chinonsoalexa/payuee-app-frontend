@@ -5,31 +5,38 @@ document.getElementById("start-camera").addEventListener("click", async function
 
   // Display the video element
   video.style.display = "block";
+
   const codeReader = new ZXing.BrowserQRCodeReader(100); // Fast scan delay
 
   try {
-    // Prevent reinitialization if already scanning
+    // Check if already scanning to prevent reinitialization
     if (!scanning) {
-      scanning = true; // Set scanning flag to true
+      scanning = true;
 
-      // Request access to the camera
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
       });
-      video.srcObject = stream; // Set the video source to the stream
+      video.srcObject = stream;
 
-      // Start decoding from the video element
+      // Start decoding from video element
       codeReader.decodeFromVideoElement(video, (result, error) => {
         if (result) {
-          // QR code detected
           resultSpan.textContent = result.text;
           console.log("QR Code Detected:", result.text);
-          
-          // Stop scanning and release resources
-          stopScanning(codeReader, stream, video);
+
+          // Stop scanning once a result is found
+          codeReader.reset();
+          stream.getTracks().forEach(track => track.stop()); // Stop camera stream
+          video.srcObject = null; // Clear video source to fully stop
+          scanning = false; // Reset the flag
         } else if (error && !(error instanceof ZXing.NotFoundException)) {
           console.error("QR Code scan error:", error);
         }
+      });
+      
+      // Use playVideoOnLoad function to handle playback
+      playVideoOnLoad(video, () => {
+        console.log("Video can play now");
       });
     }
   } catch (error) {
@@ -39,10 +46,34 @@ document.getElementById("start-camera").addEventListener("click", async function
   }
 });
 
-// Function to stop scanning and release resources
-function stopScanning(codeReader, stream, video) {
-  codeReader.reset(); // Stop decoding
-  stream.getTracks().forEach(track => track.stop()); // Stop camera stream
-  video.srcObject = null; // Clear video source
-  scanning = false; // Reset the scanning flag
+function playVideoOnLoad(videoElement, onPlayingCallback) {
+  const videoEndedListener = () => stopStreams();
+  const videoCanPlayListener = () => tryPlayVideo(videoElement);
+  
+  videoElement.addEventListener("ended", videoEndedListener);
+  videoElement.addEventListener("canplay", videoCanPlayListener);
+  videoElement.addEventListener("playing", onPlayingCallback);
+  
+  tryPlayVideo(videoElement); // Attempt to play the video initially
+}
+
+function isVideoPlaying(videoElement) {
+  return videoElement.currentTime > 0 && !videoElement.paused && !videoElement.ended && videoElement.readyState > 2;
+}
+
+async function tryPlayVideo(videoElement) {
+  if (isVideoPlaying(videoElement)) {
+    console.warn("Trying to play video that is already playing.");
+  } else {
+    try {
+      await videoElement.play();
+    } catch (error) {
+      console.warn("It was not possible to play the video.");
+    }
+  }
+}
+
+function stopStreams() {
+  // Implement your logic to stop streams here
+  console.log("Stopping streams...");
 }
