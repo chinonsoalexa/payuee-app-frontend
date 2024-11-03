@@ -16,7 +16,7 @@
 
       try {
         // Request camera permission
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }});
         videoElement.srcObject = stream;
 
         const cameras = await Instascan.Camera.getCameras();
