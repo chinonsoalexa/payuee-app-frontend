@@ -1,5 +1,4 @@
 document.getElementById("start-camera").addEventListener("click", async function() {
-  const video = document.getElementById("video");
   const resultSpan = document.getElementById("result");
   
   // Create a new instance of Html5Qrcode
