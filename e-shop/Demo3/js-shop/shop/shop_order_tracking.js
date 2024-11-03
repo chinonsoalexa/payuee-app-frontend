@@ -2,8 +2,15 @@
 function onScanSuccess(decodedText, decodedResult) {
   document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
+  const orderIDInput = document.getElementById('orderID');
+  const trackOrder = document.getElementById('trackOrder');
+  const stopScan = document.getElementById('stopScan');
   const reader = document.getElementById('reader');
+  // Hide order ID input and show video element
+  orderIDInput.classList.remove('hidden');
+  trackOrder.classList.remove('hidden');
   reader.classList.add('hidden');
+  stopScan.classList.add('hidden');
 
   html5QrcodeScanner.clear().then(() => {
     console.log("Scanner stopped.");
@@ -48,20 +55,20 @@ document.getElementById("startScan").addEventListener("click", () => {
 });
 
 // Stop scanning when the "Stop Scanning" button is clicked
-document.getElementById("stopScan").addEventListener("click", () => {
-  const orderIDInput = document.getElementById('orderID');
-  const trackOrder = document.getElementById('trackOrder');
-  const stopScan = document.getElementById('stopScan');
-  const reader = document.getElementById('reader');
-  // Hide order ID input and show video element
-  orderIDInput.classList.remove('hidden');
-  trackOrder.classList.remove('hidden');
-  reader.classList.add('hidden');
-  stopScan.classList.add('hidden');
+// document.getElementById("stopScan").addEventListener("click", () => {
+//   const orderIDInput = document.getElementById('orderID');
+//   const trackOrder = document.getElementById('trackOrder');
+//   const stopScan = document.getElementById('stopScan');
+//   const reader = document.getElementById('reader');
+//   // Hide order ID input and show video element
+//   orderIDInput.classList.remove('hidden');
+//   trackOrder.classList.remove('hidden');
+//   reader.classList.add('hidden');
+//   stopScan.classList.add('hidden');
 
-  html5QrcodeScanner.clear().then(() => {
-    console.log("Scanner stopped.");
-  }).catch((error) => {
-    console.error("Error stopping scanner:", error);
-  });
-});
+//   html5QrcodeScanner.clear().then(() => {
+//     console.log("Scanner stopped.");
+//   }).catch((error) => {
+//     console.error("Error stopping scanner:", error);
+//   });
+// });
