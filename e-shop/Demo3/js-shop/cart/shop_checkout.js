@@ -1236,7 +1236,9 @@ function updateShippingPrices(vendorsShippingFees) {
         // Display a message when no shipping fees are available
         const emptyRow = document.createElement('tr');
         emptyRow.innerHTML = `
-          <td colspan="2">No shipping fees available for vendor</td>
+          <td colspan="2" style="background-color: yellow; color: black; font-weight: bold;">
+            No shipping fees available for vendor
+            </td>
         `;
         shippingFeesTableBody.appendChild(emptyRow);
     } else {
