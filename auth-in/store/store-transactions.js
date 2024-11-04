@@ -831,7 +831,7 @@ async function onScanSuccess(decodedText, decodedResult) {
             const verificationStatus = document.getElementById('verificationStatus');
             verificationStatus.classList.remove('hidden');
             verificationStatus.style.color = 'red';
-            verificationStatus.textContent = responseData.error;
+            verificationStatus.textContent = response.error;
 
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
