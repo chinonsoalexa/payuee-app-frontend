@@ -396,6 +396,16 @@
   align-items: center;
 }
 
+.notification-info {
+  background-color: #fff3cd; /* Light yellow background */
+  color: #856404; /* Darker yellow text for contrast */
+  padding: 15px;
+  border: 1px solid #ffeeba; /* Yellow border */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold;
+  text-align: center;
+}
+
  </style>
  
 </head>
@@ -1330,7 +1340,7 @@
 
         <div class="mb-4">
           <div class="custom-scrollable-section mb-4">
-            <p id="verificationStatus">Please scan Qr Code to continue product verification</p>
+            <p id="verificationStatus" class="notification-info">Please scan the QR Code to continue product verification</p>
             <div id="reader" class="hidden"></div>
           </div>
           <div id="qrCodeDiv" class="d-grid">
