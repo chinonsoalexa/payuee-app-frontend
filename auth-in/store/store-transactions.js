@@ -281,6 +281,17 @@ function renderProducts(product) {
         ['image', 'title', 'status'].forEach(function (prefix) {
             document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
                 event.preventDefault();
+                if (product.scanned_qr_code) {
+                    reader.classList.add('hidden');
+                    verificationStatus.classList.remove('hidden');
+                    verificationStatus.style.color = 'green';
+                    verificationStatus.textContent = "successfully updated order scanned status";
+                
+                    // Show transaction and payment sections
+                    document.getElementById('transactionCodeSection').classList.remove('hidden');
+                    document.getElementById('paymentButtonDiv').classList.remove('hidden');
+                    document.getElementById('qrCodeDiv').classList.add('hidden');
+                }
                 getProductId(product.ID);
                 startProductScan(product.ID);
                 const transactionCodeInput = document.getElementById('transactionPinInput');
