@@ -282,6 +282,7 @@ function renderProducts(product) {
             document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
                 event.preventDefault();
                 getProductId(product.ID);
+                startProductScan(product.ID);
                 const transactionCodeInput = document.getElementById('transactionPinInput');
                 // Restrict input to numeric values only and show error if non-numeric characters are entered
                 transactionCodeInput.addEventListener('input', function () {
@@ -784,98 +785,95 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   );
   
-  let codde;
+  let productCode;
 
   function getProductId(id) {
-    codde = id;
-    // Start scanning when the "Start Scanning" button is clicked
+    productCode = id;
     document.getElementById("startScan").addEventListener("click", () => {
-        const verificationStatus = document.getElementById('verificationStatus');
-        const reader = document.getElementById('reader');
-        verificationStatus.classList.add('hidden');
-        reader.classList.remove('hidden');
-    
-        navigator.mediaDevices.getUserMedia({ video: true })
+      const verificationStatus = document.getElementById('verificationStatus');
+      const reader = document.getElementById('reader');
+      verificationStatus.classList.add('hidden');
+      reader.classList.remove('hidden');
+  
+      // Start the QR scanner
+      navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
-            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
-            console.error("Camera access denied or unavailable:", error);
+          console.error("Camera access denied or unavailable:", error);
         });
     });
   }
-
+  
   async function scannedQrCodeVerification(code) {
     const apiUrl = "https://api.payuee.com/scan-user-order";
-    // Construct the request body
-    const requestBody = {
-        order_id: +code,
-    };
-
+    const requestBody = { order_id: +code };
+  
     const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify(requestBody)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: 'include',
+      body: JSON.stringify(requestBody)
     };
-
+  
     try {
-        const response = await fetch(apiUrl, requestOptions);
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            const reader = document.getElementById('reader');
-            reader.classList.add('hidden');
-            const verificationStatus = document.getElementById('verificationStatus');
-            verificationStatus.classList.remove('hidden');
-            verificationStatus.style.color = 'red';
-            verificationStatus.textContent = response.error;
-
-            if (errorData.error === 'failed to get user from request') {
-                // need to do a data of just null event 
-                // displayErrorMessage();
-            } else if (errorData.error === 'failed to get transaction history') {
-                // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                // let's log user out the users session has expired
-                logout();
-            }else {
-                // displayErrorMessage();
-            }
-
-            return;
-        }
-
-        if (+code != +codde) {
-            const reader = document.getElementById('reader');
-            reader.classList.add('hidden');
-            const verificationStatus = document.getElementById('verificationStatus');
-            verificationStatus.classList.remove('hidden');
-            verificationStatus.style.color = 'red';
-            verificationStatus.textContent = "Wrong Qr Code Scanned";
-            return;
-        }
-
-        const responseData = await response.json();
-        const reader = document.getElementById('reader');
+      const response = await fetch(apiUrl, requestOptions);
+  
+      const reader = document.getElementById('reader');
+      const verificationStatus = document.getElementById('verificationStatus');
+  
+      if (!response.ok) {
+        const errorData = await response.json();
         reader.classList.add('hidden');
-        const verificationStatus = document.getElementById('verificationStatus');
         verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'green';
-        verificationStatus.textContent = responseData.success;
-        const transactionCodeSection = document.getElementById('transactionCodeSection');
-        transactionCodeSection.classList.remove('hidden');
-        const paymentButtonDiv = document.getElementById('paymentButtonDiv');
-        paymentButtonDiv.classList.remove('hidden');
-        const qrCodeDiv = document.getElementById('qrCodeDiv');
-        qrCodeDiv.classList.add('hidden');
-
-        return;
-
-        } finally {
-            codde = "";
+        verificationStatus.style.color = 'red';
+        verificationStatus.textContent = errorData.error || "An unknown error occurred";
+  
+        if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
+          // handle specific error cases if needed
+        } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
+          logout(); // Assume logout() function exists
         }
+        return;
+      }
+  
+      if (+code !== +productCode) {
+        reader.classList.add('hidden');
+        verificationStatus.classList.remove('hidden');
+        verificationStatus.style.color = 'red';
+        verificationStatus.textContent = "Wrong QR Code Scanned";
+        return;
+      }
+  
+      const responseData = await response.json();
+      reader.classList.add('hidden');
+      verificationStatus.classList.remove('hidden');
+      verificationStatus.style.color = 'green';
+      verificationStatus.textContent = responseData.success;
+  
+      // Show transaction and payment sections
+      document.getElementById('transactionCodeSection').classList.remove('hidden');
+      document.getElementById('paymentButtonDiv').classList.remove('hidden');
+      document.getElementById('qrCodeDiv').classList.add('hidden');
+    } finally {
+      productCode = ""; // Reset code after verification
+    }
+  }
+  
+  function startProductScan(id) {
+    productCode = id;
+    const verificationStatus = document.getElementById('verificationStatus');
+      const reader = document.getElementById('reader');
+      verificationStatus.classList.add('hidden');
+      reader.classList.remove('hidden');
+  
+      // Start the QR scanner
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
+        })
+        .catch((error) => {
+          console.error("Camera access denied or unavailable:", error);
+        });
   }
