@@ -159,6 +159,15 @@ async function getProducts(OrderId) {
     }
 }
 
+// Add download functionality to the button
+document.getElementById('download-qr-code').addEventListener('click', function() {
+    const qrCodeUrl = document.getElementById('qr-code-image').src;
+    const link = document.createElement('a');
+    link.href = qrCodeUrl;
+    link.download = 'payuee_qr_code.png';
+    link.click();
+  });
+
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
 
