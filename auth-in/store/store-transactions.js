@@ -758,18 +758,11 @@ function hideToast() {
 }
 
 // Function called when a QR code is successfully scanned
-function onScanSuccess(decodedText, decodedResult) {
+async function onScanSuccess(decodedText, decodedResult) {
     // document.getElementById('result').innerText = decodedText; // Display the result
     console.log(`QR Code scanned: ${decodedText}`);
-    // const orderIDInput = document.getElementById('orderID');
-    // const trackOrder = document.getElementById('trackOrder');
-    // // const stopScan = document.getElementById('stopScan');
-    const reader = document.getElementById('reader');
-    // // Hide order ID input and show video element
-    // orderIDInput.classList.remove('hidden');
-    // trackOrder.classList.remove('hidden');
-    reader.classList.add('hidden');
-    // stopScan.classList.add('hidden');
+    await scannedQrCodeVerification(decodedText);
+
   
     html5QrcodeScanner.clear().then(() => {
       console.log("Scanner stopped.");
@@ -809,3 +802,60 @@ function onScanSuccess(decodedText, decodedResult) {
         console.error("Camera access denied or unavailable:", error);
       });
   });
+
+  async function scannedQrCodeVerification(code) {
+    const apiUrl = "https://api.payuee.com/scan-user-order";
+    // Construct the request body
+    const requestBody = {
+        order_id: +code,
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            const reader = document.getElementById('reader');
+            reader.classList.add('hidden');
+            const verificationStatus = document.getElementById('verificationStatus');
+            verificationStatus.classList.remove('hidden');
+            verificationStatus.innerHTML = responseData.error;
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        const reader = document.getElementById('reader');
+        reader.classList.add('hidden');
+        const verificationStatus = document.getElementById('verificationStatus');
+        verificationStatus.classList.remove('hidden');
+        verificationStatus.innerHTML = responseData.success;
+
+        return;
+
+        } finally {
+
+        }
+  }
