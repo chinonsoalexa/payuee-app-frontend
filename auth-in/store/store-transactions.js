@@ -794,10 +794,10 @@ function onScanSuccess(decodedText, decodedResult) {
   
   // Start scanning when the "Start Scanning" button is clicked
   document.getElementById("startScan").addEventListener("click", () => {
-    // const orderIDInput = document.getElementById('orderID');
+    const verificationStatus = document.getElementById('verificationStatus');
     // const trackOrder = document.getElementById('trackOrder');
     const reader = document.getElementById('reader');
-    // orderIDInput.classList.add('hidden');
+    verificationStatus.classList.add('hidden');
     // trackOrder.classList.add('hidden');
     reader.classList.remove('hidden');
   
