@@ -109,6 +109,7 @@ async function getProducts(OrderId) {
         document.getElementById("email-address").textContent = responseData.success.customer_email;
         document.getElementById("order-note").textContent = responseData.success.order_note;
         document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_cost);
+        document.getElementById('qr-code-image').src = "https://payuee.com/image/" +responseData.success.qr_code_image;
 
         let orderStatusId = document.getElementById('orderStatusId');
 
