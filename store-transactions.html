@@ -1297,6 +1297,7 @@
 
         <div class="mb-4">
           <div class="custom-scrollable-section mb-4">
+            <p id="verificationStatus">Please scan Qr Code to continue product verification</p>
             <div id="reader" class="hidden"></div>
           </div>
           <div class="d-grid">
@@ -1337,7 +1338,7 @@
         </div>
 
         <!-- Transaction Code Section -->
-        <div id="transactionCodeSection" class="mb-4">
+        <div id="transactionCodeSection" class="mb-4 hidden">
           <h6 class="custom-section-title">Enter Transaction Pin <span style="color: red;">*</span></h6>
           <input type="password" id="transactionPinInput" class="custom-input" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
           <div class="text-end mt-2">
@@ -1346,7 +1347,7 @@
         </div>
 
         <!-- Pay Button -->
-        <div class="d-grid">
+        <div class="d-grid hidden">
           <button id="paymentButton" type="button" class="custom-button">Pay ₦3,100</button>
         </div>
       </div>
