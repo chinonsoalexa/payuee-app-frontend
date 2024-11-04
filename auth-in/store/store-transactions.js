@@ -759,13 +759,11 @@ function hideToast() {
 
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
-    // document.getElementById('result').innerText = decodedText; // Display the result
-    console.log(`QR Code scanned: ${decodedText}`);
     await scannedQrCodeVerification(decodedText);
 
   
     html5QrcodeScanner.clear().then(() => {
-      console.log("Scanner stopped.");
+    //   console.log("Scanner stopped.");
     }).catch((error) => {
       console.error("Error stopping scanner:", error);
     });
@@ -788,10 +786,8 @@ async function onScanSuccess(decodedText, decodedResult) {
   // Start scanning when the "Start Scanning" button is clicked
   document.getElementById("startScan").addEventListener("click", () => {
     const verificationStatus = document.getElementById('verificationStatus');
-    // const trackOrder = document.getElementById('trackOrder');
     const reader = document.getElementById('reader');
     verificationStatus.classList.add('hidden');
-    // trackOrder.classList.add('hidden');
     reader.classList.remove('hidden');
   
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -828,7 +824,8 @@ async function onScanSuccess(decodedText, decodedResult) {
             reader.classList.add('hidden');
             const verificationStatus = document.getElementById('verificationStatus');
             verificationStatus.classList.remove('hidden');
-            verificationStatus.innerHTML = responseData.error;
+            verificationStatus.style.color = 'red';
+            verificationStatus.textContent = responseData.error;
 
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
@@ -851,7 +848,8 @@ async function onScanSuccess(decodedText, decodedResult) {
         reader.classList.add('hidden');
         const verificationStatus = document.getElementById('verificationStatus');
         verificationStatus.classList.remove('hidden');
-        verificationStatus.innerHTML = responseData.success;
+        verificationStatus.style.color = 'green';
+        verificationStatus.textContent = responseData.success;
 
         return;
 
