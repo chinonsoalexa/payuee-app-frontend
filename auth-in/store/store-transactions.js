@@ -759,17 +759,24 @@ function hideToast() {
     toast.classList.remove('show');
 }
 
+let isScanning = false; // Flag to prevent multiple scans
+
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
+    // Prevent multiple scans if one is already in progress
+    if (isScanning) return;
+    isScanning = true; // Set flag to indicate scanning is in progress
+
     await scannedQrCodeVerification(decodedText);
 
-  
     html5QrcodeScanner.clear().then(() => {
-    //   console.log("Scanner stopped.");
+        isScanning = false; // Reset flag after stopping scanner
+        // console.log("Scanner stopped.");
     }).catch((error) => {
-      console.error("Error stopping scanner:", error);
+        console.error("Error stopping scanner:", error);
+        isScanning = false; // Reset flag in case of error
     });
-  }
+}
   
   // Function called when there's a scanning error (e.g., QR code not found)
   function onScanFailure(error) {
@@ -790,19 +797,7 @@ async function onScanSuccess(decodedText, decodedResult) {
   function getProductId(id) {
     productCode = id;
     document.getElementById("startScan").addEventListener("click", () => {
-      const verificationStatus = document.getElementById('verificationStatus');
-      const reader = document.getElementById('reader');
-      verificationStatus.classList.add('hidden');
-      reader.classList.remove('hidden');
-  
-      // Start the QR scanner
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
-        })
-        .catch((error) => {
-          console.error("Camera access denied or unavailable:", error);
-        });
+        startProductScan(id);
     });
   }
   
