@@ -281,6 +281,7 @@ function renderProducts(product) {
         ['image', 'title', 'status'].forEach(function (prefix) {
             document.getElementById(`${prefix}${product.ID}`).addEventListener('click', function(event) {
                 event.preventDefault();
+                getProductId(product.ID);
                 const transactionCodeInput = document.getElementById('transactionPinInput');
                 // Restrict input to numeric values only and show error if non-numeric characters are entered
                 transactionCodeInput.addEventListener('input', function () {
@@ -783,21 +784,26 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   );
   
-  // Start scanning when the "Start Scanning" button is clicked
-  document.getElementById("startScan").addEventListener("click", () => {
-    const verificationStatus = document.getElementById('verificationStatus');
-    const reader = document.getElementById('reader');
-    verificationStatus.classList.add('hidden');
-    reader.classList.remove('hidden');
-  
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-      })
-      .catch((error) => {
-        console.error("Camera access denied or unavailable:", error);
-      });
-  });
+  let codde;
+
+  function getProductId(id) {
+    codde = id;
+    // Start scanning when the "Start Scanning" button is clicked
+    document.getElementById("startScan").addEventListener("click", () => {
+        const verificationStatus = document.getElementById('verificationStatus');
+        const reader = document.getElementById('reader');
+        verificationStatus.classList.add('hidden');
+        reader.classList.remove('hidden');
+    
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        })
+        .catch((error) => {
+            console.error("Camera access denied or unavailable:", error);
+        });
+    });
+  }
 
   async function scannedQrCodeVerification(code) {
     const apiUrl = "https://api.payuee.com/scan-user-order";
@@ -843,6 +849,16 @@ async function onScanSuccess(decodedText, decodedResult) {
             return;
         }
 
+        if (+code != +codde) {
+            const reader = document.getElementById('reader');
+            reader.classList.add('hidden');
+            const verificationStatus = document.getElementById('verificationStatus');
+            verificationStatus.classList.remove('hidden');
+            verificationStatus.style.color = 'red';
+            verificationStatus.textContent = "Wrong Qr Code Scanned";
+            return;
+        }
+
         const responseData = await response.json();
         const reader = document.getElementById('reader');
         reader.classList.add('hidden');
@@ -850,10 +866,16 @@ async function onScanSuccess(decodedText, decodedResult) {
         verificationStatus.classList.remove('hidden');
         verificationStatus.style.color = 'green';
         verificationStatus.textContent = responseData.success;
+        const transactionCodeSection = document.getElementById('transactionCodeSection');
+        transactionCodeSection.classList.remove('hidden');
+        const paymentButtonDiv = document.getElementById('paymentButtonDiv');
+        paymentButtonDiv.classList.remove('hidden');
+        const qrCodeDiv = document.getElementById('qrCodeDiv');
+        qrCodeDiv.classList.add('hidden');
 
         return;
 
         } finally {
-
+            codde = "";
         }
   }
