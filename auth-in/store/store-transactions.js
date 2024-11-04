@@ -816,6 +816,14 @@ async function onScanSuccess(decodedText, decodedResult) {
     const apiUrl = "https://api.payuee.com/scan-user-order";
     const requestBody = { order_id: +code };
   
+    if (+code !== +productCode) {
+        reader.classList.add('hidden');
+        verificationStatus.classList.remove('hidden');
+        verificationStatus.style.color = 'red';
+        verificationStatus.textContent = "Wrong QR Code Scanned";
+        return;
+      }
+      
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -841,14 +849,6 @@ async function onScanSuccess(decodedText, decodedResult) {
         } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
           logout(); // Assume logout() function exists
         }
-        return;
-      }
-  
-      if (+code !== +productCode) {
-        reader.classList.add('hidden');
-        verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'red';
-        verificationStatus.textContent = "Wrong QR Code Scanned";
         return;
       }
   
