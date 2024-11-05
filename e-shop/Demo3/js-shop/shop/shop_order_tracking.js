@@ -92,8 +92,8 @@ async function updateOrderInfo(orderId) {
     const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
     history.pushState({ path: newUrl }, '', newUrl);
 
-    document.getElementById('getOrderTrackingDetails').classList.add('hidden');
-    document.getElementById('orderTrackingDetails').classList.remove('hidden');
+    document.getElementById('getOrderTrackingDetails').classList.add('hiddenn');
+    document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
     displayTrackingInfo(data.success.order_status);
 
     // Update order information
