@@ -28,7 +28,7 @@ async function onScanSuccess(decodedText, decodedResult) {
 
   // document.getElementById('result').innerText = decodedText; // Display the result
   // console.log(`QR Code scanned: ${decodedText}`);
-      document.getElementById('getOrderTrackingDetails').classList.add('hiddenn');
+  document.getElementById('getOrderTrackingDetails').classList.add('hiddenn');
   document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
   await updateOrderInfo(decodedText);
 
@@ -79,6 +79,27 @@ document.getElementById("startScan").addEventListener("click", () => {
     .catch((error) => {
       console.error("Camera access denied or unavailable:", error);
     });
+});
+
+document.getElementById('trackOrder').addEventListener('click', async function(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+  
+  // Retrieve the Order ID input value
+  const orderId = document.getElementById('order_tracking_id').value.trim();
+  
+  if (orderId) {
+    // Call the function to update order info with the retrieved order ID
+    document.getElementById('getOrderTrackingDetails').classList.add('hiddenn');
+    document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
+    await updateOrderInfo(orderId);
+    const orderIDInput = document.getElementById('orderID');
+    const trackOrder = document.getElementById('trackOrder');
+    // const reader = document.getElementById('reader');
+    // // Hide order ID input and show video element
+    orderIDInput.classList.remove('hiddenn');
+    trackOrder.classList.remove('hiddenn');
+  } 
 });
 
 async function updateOrderInfo(orderId) {
