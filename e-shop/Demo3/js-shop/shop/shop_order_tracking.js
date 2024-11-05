@@ -13,24 +13,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   } else {
     // console.log("OrderID found:", orderId);
     document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
+    await updateOrderInfo(orderId);
   }
 
-  // Call the function with the specific order ID
-  // updateOrderInfo(orderId);
+  
 });
 
 let isScanning = false; // Flag to prevent multiple scans
 
 // Function called when a QR code is successfully scanned
-function onScanSuccess(decodedText, decodedResult) {
+async function onScanSuccess(decodedText, decodedResult) {
   if (isScanning) return;
   isScanning = true; // Set flag to indicate scanning is in progress
 
   // document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
+  await updateOrderInfo(decodedText);
+
   const orderIDInput = document.getElementById('orderID');
   const trackOrder = document.getElementById('trackOrder');
-  // const stopScan = document.getElementById('stopScan');
   const reader = document.getElementById('reader');
   // Hide order ID input and show video element
   orderIDInput.classList.remove('hiddenn');
@@ -78,62 +79,54 @@ document.getElementById("startScan").addEventListener("click", () => {
     });
 });
 
-function updateOrderInfo(orderId) {
-  // Define the endpoint and include the order ID if necessary
-  const endpoint = `https://api.dorngwellness.com/get-order/${orderId}`;
+async function updateOrderInfo(orderId) {
+  // Define the endpoint and include the order ID
+  const endpoint = `https://api.payuee.com/track-order/${orderId}`;
 
-  // Make the request using Fetch API
-  fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-          // Update the order tracking current url
-          const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?OrderID=' + orderId;
-          history.pushState({ path: newUrl }, '', newUrl);
+  try {
+    // Make the request using Fetch API
+    const response = await fetch(endpoint);
+    const data = await response.json();
 
-          document.getElementById('getOrderTrackingDetails').classList.add('hidden');
-          document.getElementById('orderTrackingDetails').classList.remove('hidden');
-          displayTrackingInfo(data.success.order_status);
-          // Update order information
-          document.getElementById('orderNumber').textContent = data.success.ID;
-          
-          // Convert to a Date object
-          const date = new Date(data.success.CreatedAt);            
-          const formattedDate = date.toLocaleDateString();
-          document.getElementById('orderDate').textContent = formattedDate;
-          
-          document.getElementById('orderTotal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
-          // document.getElementById('paymentMethod').textContent = data.success.payment_method;
+    // Update the order tracking current URL
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
+    history.pushState({ path: newUrl }, '', newUrl);
 
-          // Clear existing order details and update with new data
-          const orderDetailsTable = document.getElementById('orderDetails');
-          orderDetailsTable.innerHTML = ''; // Clear existing rows
+    document.getElementById('getOrderTrackingDetails').classList.add('hidden');
+    document.getElementById('orderTrackingDetails').classList.remove('hidden');
+    displayTrackingInfo(data.success.order_status);
 
-          data.success.product_orders.forEach(item => {
-              const row = document.createElement('tr');
-              if (item.quantity <= 1) {
-                  row.innerHTML = `
-                  <td>${item.title}</td>
-                  <td>${formatNumberToNaira(item.order_cost)}</td>
-                  `;
-              }else {
-                  row.innerHTML = `
-                  <td>${item.title} x ${item.quantity}</td>
-                  <td>${formatNumberToNaira(item.order_cost)}</td>
-                  `;
-              }
+    // Update order information
+    document.getElementById('orderNumber').textContent = data.success.ID;
 
-              orderDetailsTable.appendChild(row);
-          });
+    // Convert to a Date object and format
+    const date = new Date(data.success.CreatedAt);
+    const formattedDate = date.toLocaleDateString();
+    document.getElementById('orderDate').textContent = formattedDate;
 
-          // Update totals
-          document.getElementById('subtotalMain2').textContent = `${formatNumberToNaira(data.success.order_sub_total_cost)}`;
-          document.getElementById('shippingCost').textContent = formatNumberToNaira(data.success.shipping_cost);
-          document.getElementById('orderDiscount').textContent = `${formatNumberToNaira(data.success.order_discount)}`;
-          document.getElementById('orderTotalFinal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
-      })
-      .catch(error => {
-          console.error('Error fetching order data:', error);
-      });
+    document.getElementById('orderTotal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
+
+    // Clear existing order details and update with new data
+    const orderDetailsTable = document.getElementById('orderDetails');
+    orderDetailsTable.innerHTML = ''; // Clear existing rows
+
+    data.success.product_orders.forEach(item => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${item.title}${item.quantity > 1 ? ` x ${item.quantity}` : ''}</td>
+        <td>${formatNumberToNaira(item.order_cost)}</td>
+      `;
+      orderDetailsTable.appendChild(row);
+    });
+
+    // Update totals
+    document.getElementById('subtotalMain2').textContent = `${formatNumberToNaira(data.success.order_sub_total_cost)}`;
+    document.getElementById('shippingCost').textContent = formatNumberToNaira(data.success.shipping_cost);
+    document.getElementById('orderDiscount').textContent = `${formatNumberToNaira(data.success.order_discount)}`;
+    document.getElementById('orderTotalFinal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
+  } catch (error) {
+    console.error('Error fetching order data:', error);
+  }
 }
 
 function formatNumberToNaira(number) {
