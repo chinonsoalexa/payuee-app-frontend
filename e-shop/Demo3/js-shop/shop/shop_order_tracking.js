@@ -28,10 +28,10 @@ function onScanSuccess(decodedText, decodedResult) {
   // const stopScan = document.getElementById('stopScan');
   const reader = document.getElementById('reader');
   // Hide order ID input and show video element
-  orderIDInput.classList.remove('hidden');
-  trackOrder.classList.remove('hidden');
-  reader.classList.add('hidden');
-  // stopScan.classList.add('hidden');
+  orderIDInput.classList.remove('hiddenn');
+  trackOrder.classList.remove('hiddenn');
+  reader.classList.add('hiddenn');
+  // stopScan.classList.add('hiddenn');
 
   html5QrcodeScanner.clear().then(() => {
     console.log("Scanner stopped.");
@@ -59,9 +59,9 @@ document.getElementById("startScan").addEventListener("click", () => {
   const orderIDInput = document.getElementById('orderID');
   const trackOrder = document.getElementById('trackOrder');
   const reader = document.getElementById('reader');
-  orderIDInput.classList.add('hidden');
-  trackOrder.classList.add('hidden');
-  reader.classList.remove('hidden');
+  orderIDInput.classList.add('hiddenn');
+  trackOrder.classList.add('hiddenn');
+  reader.classList.remove('hiddenn');
 
   navigator.mediaDevices.getUserMedia({ video: true })
     .then((stream) => {
@@ -79,10 +79,10 @@ document.getElementById("startScan").addEventListener("click", () => {
 //   const stopScan = document.getElementById('stopScan');
 //   const reader = document.getElementById('reader');
 //   // Hide order ID input and show video element
-//   orderIDInput.classList.remove('hidden');
-//   trackOrder.classList.remove('hidden');
-//   reader.classList.add('hidden');
-//   stopScan.classList.add('hidden');
+//   orderIDInput.classList.remove('hiddenn');
+//   trackOrder.classList.remove('hiddenn');
+//   reader.classList.add('hiddenn');
+//   stopScan.classList.add('hiddenn');
 
 //   html5QrcodeScanner.clear().then(() => {
 //     console.log("Scanner stopped.");
