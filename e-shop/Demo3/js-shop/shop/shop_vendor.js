@@ -94,6 +94,7 @@ async function getProducts() {
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
+        document.getElementById('storeName').textContent = responseData.vendor.shop_name;
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
