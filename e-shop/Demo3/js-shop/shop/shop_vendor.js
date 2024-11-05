@@ -55,16 +55,6 @@ async function getProducts() {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
-        // body: JSON.stringify({
-        //     page_number: +pageNumber,
-        //     category: "outfits",
-        //     max_distance: parseFloat(max_distance),
-        //     min_price: parseFloat(min_price),
-        //     max_price: parseFloat(max_price),
-        //     min_weight: parseFloat(min_weight),
-        //     max_weight: parseFloat(max_weight),
-        //     sort_option: +sort_option
-        // })
     };
 
     try {

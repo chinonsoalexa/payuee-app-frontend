@@ -90,17 +90,17 @@ async function updateOrderInfo(orderId) {
     });
 
     if (!response.ok) {
+      const data = await response.json();
+      if (data.error.message === "sorry you can only track order related to your order history") {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.classList.remove('hiddenn'); // Show the error message
+        errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
+        return; // Stop further execution if there's an error
+      }
       throw new Error('Failed to fetch order data.');
     }
 
     const data = await response.json();
-
-    if (data.error && data.error.message === "sorry you can only track order related to your order history") {
-      const errorMessage = document.getElementById('errorMessage');
-      errorMessage.classList.remove('hiddenn'); // Show the error message
-      errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
-      return; // Stop further execution if there's an error
-    }
 
     // Update the order tracking current URL
     const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
