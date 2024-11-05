@@ -98,6 +98,7 @@ async function updateOrderInfo(orderId) {
         errorMessage.classList.remove('hiddenn'); // Show the error message
         errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
         document.getElementById('orderTrackingDetails').classList.add('hiddenn');
+        document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
         return; // Stop further execution if there's an error
       }
       throw new Error('Failed to fetch order data.');

@@ -479,6 +479,10 @@
   <main>
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
+      <!-- Warning Message for Errors -->
+      <div id="errorMessage" class="warning hiddenn"> <!-- Initially hidden -->
+        Sorry, you can only track orders associated with your order history.
+      </div>
 
       <div id="getOrderTrackingDetails" class="order-tracking hiddenn">
         <form name="tracking-form" class="needs-validation" novalidate>
@@ -496,10 +500,7 @@
           <button id="startScan" type="button" class="btn btn-primary btn-track w-100">SCAN QR CODE</button>
         </form>
       </div>
-          <!-- Warning Message for Errors -->
-          <div id="errorMessage" class="warning hiddenn"> <!-- Initially hidden -->
-            Sorry, you can only track orders associated with your order history.
-          </div>
+
         <div id="orderTrackingDetails" class="order-complete hiddenn">
           <div class="order-complete__message">
             <div id="deliveredIcon" class="hidden">
