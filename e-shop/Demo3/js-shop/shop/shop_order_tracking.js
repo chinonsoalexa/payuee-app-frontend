@@ -28,6 +28,8 @@ async function onScanSuccess(decodedText, decodedResult) {
 
   // document.getElementById('result').innerText = decodedText; // Display the result
   // console.log(`QR Code scanned: ${decodedText}`);
+      document.getElementById('getOrderTrackingDetails').classList.add('hiddenn');
+  document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
   await updateOrderInfo(decodedText);
 
   // const orderIDInput = document.getElementById('orderID');
@@ -95,6 +97,7 @@ async function updateOrderInfo(orderId) {
         const errorMessage = document.getElementById('errorMessage');
         errorMessage.classList.remove('hiddenn'); // Show the error message
         errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
+        document.getElementById('orderTrackingDetails').classList.add('hiddenn');
         return; // Stop further execution if there's an error
       }
       throw new Error('Failed to fetch order data.');
