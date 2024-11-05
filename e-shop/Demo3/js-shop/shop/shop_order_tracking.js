@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Check if orderId is null or empty
   if (!orderId) {
-      console.log("OrderID not found in URL parameters");
+      // console.log("OrderID not found in URL parameters");
       document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
       return;
   } else {
-    console.log("OrderID found:", orderId);
+    // console.log("OrderID found:", orderId);
     document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
   }
 
