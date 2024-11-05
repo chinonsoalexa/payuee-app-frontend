@@ -121,6 +121,13 @@ async function updateOrderInfo(orderId) {
         document.getElementById('orderTrackingDetails').classList.add('hiddenn');
         document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
         return; // Stop further execution if there's an error
+      } else if (data.error === "failed to get order history") {
+          const errorMessage = document.getElementById('errorMessage');
+          errorMessage.classList.remove('hiddenn'); // Show the error message
+          errorMessage.textContent = "Wrong or invalid order detail";
+          document.getElementById('orderTrackingDetails').classList.add('hiddenn');
+          document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
+          return; // Stop further execution if there's an error
       }
       throw new Error('Failed to fetch order data.');
     }
