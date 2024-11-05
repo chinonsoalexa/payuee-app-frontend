@@ -32,12 +32,12 @@ async function onScanSuccess(decodedText, decodedResult) {
   document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
   await updateOrderInfo(decodedText);
 
-  // const orderIDInput = document.getElementById('orderID');
-  // const trackOrder = document.getElementById('trackOrder');
+  const orderIDInput = document.getElementById('orderID');
+  const trackOrder = document.getElementById('trackOrder');
   // const reader = document.getElementById('reader');
   // // Hide order ID input and show video element
-  // orderIDInput.classList.remove('hiddenn');
-  // trackOrder.classList.remove('hiddenn');
+  orderIDInput.classList.remove('hiddenn');
+  trackOrder.classList.remove('hiddenn');
   // reader.classList.add('hiddenn');
   // stopScan.classList.add('hiddenn');
 
@@ -109,6 +109,9 @@ async function updateOrderInfo(orderId) {
     // Update the order tracking current URL
     const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
     history.pushState({ path: newUrl }, '', newUrl);
+
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.classList.add('hiddenn'); // Show the error message
 
     document.getElementById('getOrderTrackingDetails').classList.add('hidden');
     document.getElementById('orderTrackingDetails').classList.remove('hidden');
