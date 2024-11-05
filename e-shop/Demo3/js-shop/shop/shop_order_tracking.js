@@ -27,7 +27,7 @@ async function onScanSuccess(decodedText, decodedResult) {
   isScanning = true; // Set flag to indicate scanning is in progress
 
   // document.getElementById('result').innerText = decodedText; // Display the result
-  console.log(`QR Code scanned: ${decodedText}`);
+  // console.log(`QR Code scanned: ${decodedText}`);
   await updateOrderInfo(decodedText);
 
   // const orderIDInput = document.getElementById('orderID');
@@ -88,8 +88,20 @@ async function updateOrderInfo(orderId) {
     const response = await fetch(endpoint, {
       credentials: 'include' // Include cookies in the request
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch order data.');
+    }
+
     const data = await response.json();
 
+    if (data.error && data.error.message === "sorry you can only track order related to your order history") {
+      const errorMessage = document.getElementById('errorMessage');
+      errorMessage.classList.remove('hidden'); // Show the error message
+      errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
+      return; // Stop further execution if there's an error
+    }
+    
     // Update the order tracking current URL
     const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
     history.pushState({ path: newUrl }, '', newUrl);
