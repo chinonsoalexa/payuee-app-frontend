@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 // Function called when a QR code is successfully scanned
 function onScanSuccess(decodedText, decodedResult) {
-  document.getElementById('result').innerText = decodedText; // Display the result
+  // document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
   const orderIDInput = document.getElementById('orderID');
   const trackOrder = document.getElementById('trackOrder');
