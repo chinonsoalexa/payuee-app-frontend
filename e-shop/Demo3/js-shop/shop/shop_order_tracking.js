@@ -2,18 +2,21 @@ document.addEventListener('DOMContentLoaded', async function () {
   // Get the URL parameters
   const urlParams = new URLSearchParams(window.location.search);
 
-  // Retrieve the value of 'OrderId'
+  // Retrieve the value of 'OrderID'
   const orderId = urlParams.get('OrderID');
 
-  // Check if orderId is null or emptynkj,
+  // Check if orderId is null or empty
   if (!orderId) {
-      document.getElementById('getOrderTrackingDetails').classList.remove('hidden');
+      console.log("OrderID not found in URL parameters");
+      document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
       return;
   } else {
-      document.getElementById('orderTrackingDetails').classList.remove('hidden');
-      // Call the function with the specific order ID
-      // updateOrderInfo(orderId);
+    console.log("OrderID found:", orderId);
+    document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
   }
+
+  // Call the function with the specific order ID
+  // updateOrderInfo(orderId);
 });
 
 // Function called when a QR code is successfully scanned
