@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', async function () {
   // updateOrderInfo(orderId);
 });
 
+let isScanning = false; // Flag to prevent multiple scans
+
 // Function called when a QR code is successfully scanned
 function onScanSuccess(decodedText, decodedResult) {
+  if (isScanning) return;
+  isScanning = true; // Set flag to indicate scanning is in progress
+
   // document.getElementById('result').innerText = decodedText; // Display the result
   console.log(`QR Code scanned: ${decodedText}`);
   const orderIDInput = document.getElementById('orderID');
@@ -36,7 +41,8 @@ function onScanSuccess(decodedText, decodedResult) {
   html5QrcodeScanner.clear().then(() => {
     console.log("Scanner stopped.");
   }).catch((error) => {
-    console.error("Error stopping scanner:", error);
+      console.error("Error stopping scanner:", error);
+      isScanning = false; // Reset flag in case of error
   });
 }
 
