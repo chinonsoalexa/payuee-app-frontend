@@ -30,13 +30,13 @@ async function onScanSuccess(decodedText, decodedResult) {
   console.log(`QR Code scanned: ${decodedText}`);
   await updateOrderInfo(decodedText);
 
-  const orderIDInput = document.getElementById('orderID');
-  const trackOrder = document.getElementById('trackOrder');
-  const reader = document.getElementById('reader');
-  // Hide order ID input and show video element
-  orderIDInput.classList.remove('hiddenn');
-  trackOrder.classList.remove('hiddenn');
-  reader.classList.add('hiddenn');
+  // const orderIDInput = document.getElementById('orderID');
+  // const trackOrder = document.getElementById('trackOrder');
+  // const reader = document.getElementById('reader');
+  // // Hide order ID input and show video element
+  // orderIDInput.classList.remove('hiddenn');
+  // trackOrder.classList.remove('hiddenn');
+  // reader.classList.add('hiddenn');
   // stopScan.classList.add('hiddenn');
 
   html5QrcodeScanner.clear().then(() => {
