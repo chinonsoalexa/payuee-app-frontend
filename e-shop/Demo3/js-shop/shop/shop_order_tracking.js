@@ -78,21 +78,89 @@ document.getElementById("startScan").addEventListener("click", () => {
     });
 });
 
-// Stop scanning when the "Stop Scanning" button is clicked
-// document.getElementById("stopScan").addEventListener("click", () => {
-//   const orderIDInput = document.getElementById('orderID');
-//   const trackOrder = document.getElementById('trackOrder');
-//   const stopScan = document.getElementById('stopScan');
-//   const reader = document.getElementById('reader');
-//   // Hide order ID input and show video element
-//   orderIDInput.classList.remove('hiddenn');
-//   trackOrder.classList.remove('hiddenn');
-//   reader.classList.add('hiddenn');
-//   stopScan.classList.add('hiddenn');
+function updateOrderInfo(orderId) {
+  // Define the endpoint and include the order ID if necessary
+  const endpoint = `https://api.dorngwellness.com/get-order/${orderId}`;
 
-//   html5QrcodeScanner.clear().then(() => {
-//     console.log("Scanner stopped.");
-//   }).catch((error) => {
-//     console.error("Error stopping scanner:", error);
-//   });
-// });
+  // Make the request using Fetch API
+  fetch(endpoint)
+      .then(response => response.json())
+      .then(data => {
+          // Update the order tracking current url
+          const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?OrderID=' + orderId;
+          history.pushState({ path: newUrl }, '', newUrl);
+
+          document.getElementById('getOrderTrackingDetails').classList.add('hidden');
+          document.getElementById('orderTrackingDetails').classList.remove('hidden');
+          displayTrackingInfo(data.success.order_status);
+          // Update order information
+          document.getElementById('orderNumber').textContent = data.success.ID;
+          
+          // Convert to a Date object
+          const date = new Date(data.success.CreatedAt);            
+          const formattedDate = date.toLocaleDateString();
+          document.getElementById('orderDate').textContent = formattedDate;
+          
+          document.getElementById('orderTotal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
+          // document.getElementById('paymentMethod').textContent = data.success.payment_method;
+
+          // Clear existing order details and update with new data
+          const orderDetailsTable = document.getElementById('orderDetails');
+          orderDetailsTable.innerHTML = ''; // Clear existing rows
+
+          data.success.product_orders.forEach(item => {
+              const row = document.createElement('tr');
+              if (item.quantity <= 1) {
+                  row.innerHTML = `
+                  <td>${item.title}</td>
+                  <td>${formatNumberToNaira(item.order_cost)}</td>
+                  `;
+              }else {
+                  row.innerHTML = `
+                  <td>${item.title} x ${item.quantity}</td>
+                  <td>${formatNumberToNaira(item.order_cost)}</td>
+                  `;
+              }
+
+              orderDetailsTable.appendChild(row);
+          });
+
+          // Update totals
+          document.getElementById('subtotalMain2').textContent = `${formatNumberToNaira(data.success.order_sub_total_cost)}`;
+          document.getElementById('shippingCost').textContent = formatNumberToNaira(data.success.shipping_cost);
+          document.getElementById('orderDiscount').textContent = `${formatNumberToNaira(data.success.order_discount)}`;
+          document.getElementById('orderTotalFinal').textContent = `${formatNumberToNaira(data.success.order_cost)}`;
+      })
+      .catch(error => {
+          console.error('Error fetching order data:', error);
+      });
+}
+
+function formatNumberToNaira(number) {
+  return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 2
+  }).format(number);
+}
+
+function displayTrackingInfo(status) {
+  if (status === "processing") {
+      document.getElementById('shippingIcon').classList.remove('hidden');
+
+      document.getElementById('orderCompleteText').textContent = 'Your order is being processed!';
+      document.getElementById('orderThanksText').textContent = 'Your order is being shipped to your destination.';
+  } else if (status === "shipped") {
+      document.getElementById('deliveredIcon').classList.remove('hidden');
+  
+      document.getElementById('orderCompleteText').textContent = 'Your order is completed!';
+      document.getElementById('orderThanksText').textContent = 'Thank you. Your order has been delivered successfully.';
+  } else {
+      // the order is being canceled
+      document.getElementById('canceledIcon').classList.remove('hidden');
+
+      document.getElementById('orderCompleteText').textContent = 'Your order was cancelled!';
+      document.getElementById('orderThanksText').textContent = 'Sorry your order was cancelled. If you think this was a mistake you can contact us at support@dorngherbal.com for more info.';
+  }
+
+}
