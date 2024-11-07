@@ -823,7 +823,7 @@ return array;
 }
 
   // Function to render products in the list
-function renderProducts(products) {
+function renderProducts2(products) {
     const productResults = document.getElementById("productResults");
     productResults.innerHTML = ""; // Clear previous results
 
@@ -892,7 +892,7 @@ function renderProducts(products) {
         }
 
         const responseData = await response.json();
-        renderProducts(responseData.success);
+        renderProducts2(responseData.success);
 } finally {
 
     }
