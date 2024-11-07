@@ -864,3 +864,49 @@ function sortingAlgo() {
       document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
     }
   });
+
+  async function fetchProducts(searchTerm) {
+    const apiUrl = "https://api.payuee.com/vendor-product-search";
+    loading();
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            search_term: searchTerm,
+            vendor_id: +vendorId,
+        })
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                // logUserOutIfTokenIsExpired();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        
+        return  responseData.success;
+} finally {
+
+    }
+}
