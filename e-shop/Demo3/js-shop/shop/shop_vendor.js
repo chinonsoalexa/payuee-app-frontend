@@ -892,7 +892,7 @@ function renderProducts(products) {
         }
 
         const responseData = await response.json();
-        renderProducts(responseData);
+        renderProducts(responseData.success);
 } finally {
 
     }
