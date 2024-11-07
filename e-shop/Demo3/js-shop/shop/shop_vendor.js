@@ -833,11 +833,11 @@ function renderProducts2(products) {
 
       productItem.innerHTML = `
         <div class="d-flex align-items-center">
+            <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
             <div>
-            <span class="text-secondary">Title: ${product.title}</span>
-            <span class="me-auto">Qty: ${product.stock_remaining}</span><br>
-          </div>
-          <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
+                <span class="text-secondary">Title: ${product.title}</span>
+                <span class="me-auto">Qty: ${product.stock_remaining}</span><br>
+            </div>
         </div>
       `;
       productResults.appendChild(productItem);
