@@ -696,3 +696,128 @@ function calculateCartSubtotal() {
     // Update the subtotal element in the UI
     document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
 }
+
+function sortingAlgo() {
+    // Add event listener to the select element
+    document.getElementById('sortingSelect').addEventListener('change', function() {
+        const selectedValue = this.value;  // Get the selected option value
+        console.log('Selected sorting option value:', selectedValue);
+        sort_option = selectedValue;
+        getProducts();
+    });
+    
+    const searchInput = document.getElementById('searchField');
+      
+    // Add an event listener to capture input changes
+    searchInput.addEventListener('input', function(event) {
+      const searchQuery = event.target.value;  // Get the current input value
+      
+      // Perform actions with the search query
+      console.log('Search query:', searchQuery);
+      
+      // You can call a function to handle the search here, e.g., make an API request or filter results
+      performSearch(searchQuery);
+    });
+    
+    // FILTER BY SHOP SEARCH
+    // Example search function (you can replace it with your logic)
+    function performSearch(query) {
+      if (query.length > 0) {
+        console.log('Performing search for:', query);
+        // Add your search logic here, such as making an API call or filtering displayed results
+              // Handle the color selection
+            //   loading();
+        
+              setTimeout(() => {
+              // Clear current product grid
+              document.getElementById('products-grid').innerHTML = '';
+          
+              // Shuffle products array before rendering
+            //   const shuffledProducts = shuffleArray(products);
+          
+              // Render the shuffled products
+            //   shuffledProducts.forEach((product) => {
+            //       renderProducts(product);
+            //   });
+          
+              }, 3000);
+      } else {
+        console.log('Search query is empty');
+        // Clear or reset search results if the input is empty
+      }
+    }
+    
+    // FILTER BY WEIGHT (KG) AND BY PRICE
+    const selectors = {
+        elementClass: '.price-range-slider',
+        minElement: '.price-range__min',
+        maxElement: '.price-range__max'
+      };
+      
+      // Iterate over each slider element
+      document.querySelectorAll(selectors.elementClass).forEach($se => {
+        const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+      
+        if ($se) {
+          // Initialize the slider using the Slider library
+          const priceRange = new Slider($se, {
+            tooltip_split: true,
+            formatter: function(value) {
+                if (currency == "kg") {
+                    return value + currency;
+                } else if (currency == 'km') {
+                    return value + currency;
+                }
+              return currency + value;
+            },
+          });
+      
+          // Event listener to get current min and max when slider stops moving
+          priceRange.on('slideStop', (value) => {
+            const currentMin = value[0];  // Current minimum value
+            const currentMax = value[1];  // Current maximum value
+            
+            // Log or use the min and max values however needed
+            console.log('Current Min:', currentMin);
+            console.log('Current Max:', currentMax);
+            if (currency == "kg") {
+                // Update the UI with the min and max values
+                const $minEl = $se.parentElement.querySelector(selectors.minElement);
+                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+                $minEl.innerText = `${currentMin}kg`;
+                $maxEl.innerText = `${currentMax}kg`;
+                min_weight = currentMin;
+                max_weight = currentMax;
+            } else if (currency == 'km') {
+                // Update the UI with the min and max values
+                const $minEl = $se.parentElement.querySelector(selectors.minElement);
+                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+                $minEl.innerText = `${currentMin}km`;
+                $maxEl.innerText = `${currentMax}km`;
+                max_distance = currentMax;
+            } else {
+                // Update the UI with the min and max values
+                const $minEl = $se.parentElement.querySelector(selectors.minElement);
+                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+                $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+                $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+                min_price = currentMin;
+                max_price = currentMax;
+            }
+      
+            // Optionally trigger some action with these values (e.g., filter products)
+            getProducts();
+          });
+        }
+      });
+      
+    }
+    
+    // Shuffle function using Fisher-Yates algorithm
+    function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+    }
+    return array;
+    }
