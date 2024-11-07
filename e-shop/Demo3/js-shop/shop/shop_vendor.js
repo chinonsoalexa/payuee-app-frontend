@@ -823,11 +823,10 @@ function sortingAlgo() {
     }
 
   // Function to render products in the list
-  async function renderProducts(searchQuery) {
+  async function renderProducts(products) {
     const productResults = document.getElementById("productResults");
     productResults.innerHTML = ""; // Clear previous results
 
-    const products = await fetchProducts(searchQuery);
     products.forEach(product => {
       const productItem = document.createElement("li");
       productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
@@ -846,10 +845,10 @@ function sortingAlgo() {
   }
 
   // Attach event listener to search input
-  document.getElementById("searchField").addEventListener("input", (event) => {
+  document.getElementById("searchField").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
     if (searchQuery.length > 1) {
-      renderProducts(searchQuery); // Render products on search input
+        await fetchProducts(searchQuery);
     } else {
       document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
     }
@@ -894,8 +893,7 @@ function sortingAlgo() {
         }
 
         const responseData = await response.json();
-        
-        return  responseData.success;
+        renderProducts(responseData.success);
 } finally {
 
     }
