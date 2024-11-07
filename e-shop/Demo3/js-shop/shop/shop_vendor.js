@@ -833,7 +833,7 @@ function sortingAlgo() {
 
       productItem.innerHTML = `
         <div class="d-flex align-items-center">
-          <img src="https://payuee.com/image${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
+          <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
           <div>
             <span class="me-auto">${product.stock_remaining}</span><br>
             <span class="text-secondary">${product.title}</span>
