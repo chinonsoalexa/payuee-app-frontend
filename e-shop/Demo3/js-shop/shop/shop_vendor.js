@@ -856,7 +856,6 @@ function sortingAlgo() {
 
   async function fetchProducts(searchTerm) {
     const apiUrl = "https://api.payuee.com/vendor-product-search";
-    // loading();
 
     const requestOptions = {
         method: "POST",
