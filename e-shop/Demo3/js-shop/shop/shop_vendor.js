@@ -115,9 +115,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop_vendor?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = updateLinkPro(CurrentPageOnLoad+1);
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop_vendor?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = updateLinkPro(CurrentPageOnLoad-1);
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -204,8 +204,34 @@ async function getProducts() {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${pageNumber}`;
-}
+    // Get the current URL
+    const currentUrl = window.location.href;
+    
+    // Match the store name and page number in the URL
+    const urlParts = currentUrl.match(/\/store\/([^?]+)\?page=(\d+)/);
+    
+    
+    const storeName = urlParts[1]; // Extracts the dynamic store name (e.g., "cointails-1")
+    // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
+    
+    // Generate the new URL
+    urlIdToUpdate.href = `https://payuee.com/store/${storeName}?page=${pageNumber}`;
+  }
+
+  function updateLinkPro(pageNumber) {
+    // Get the current URL
+    const currentUrl = window.location.href;
+    
+    // Match the store name and page number in the URL
+    const urlParts = currentUrl.match(/\/store\/([^?]+)\?page=(\d+)/);
+    
+    
+    const storeName = urlParts[1]; // Extracts the dynamic store name (e.g., "cointails-1")
+    // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
+    
+    // Generate the new URL
+    return `https://payuee.com/store/${storeName}?page=${pageNumber}`;
+  }
 
 function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
