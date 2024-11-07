@@ -813,17 +813,17 @@ function sortingAlgo() {
       
     }
     
-    // Shuffle function using Fisher-Yates algorithm
-    function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];  // Swap elements
-    }
-    return array;
-    }
+// Shuffle function using Fisher-Yates algorithm
+function shuffleArray(array) {
+for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+}
+return array;
+}
 
   // Function to render products in the list
-  async function renderProducts(products) {
+function renderProducts(products) {
     const productResults = document.getElementById("productResults");
     productResults.innerHTML = ""; // Clear previous results
 
