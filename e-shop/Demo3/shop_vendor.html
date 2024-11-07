@@ -811,8 +811,8 @@
 
     <div class="aside-content">
 
-      <!-- STORES -->
-      <div class="accordion" id="brand-filters">
+     <!-- STORES -->
+    <div class="accordion" id="brand-filters">
         <div class="accordion-item mb-4">
           <h5 class="accordion-header" id="accordion-heading-brand">
             <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-filter-brand" aria-expanded="true" aria-controls="accordion-filter-brand">
@@ -826,47 +826,11 @@
           </h5>
           <div id="accordion-filter-brand" class="accordion-collapse collapse show border-0" aria-labelledby="accordion-heading-brand" data-bs-parent="#brand-filters">
             <div class="search-field multi-select accordion-body px-0 pb-0">
-              <select class="d-none" multiple name="total-numbers-list">
-                <option value="1">Payuee e-Shop</option>
-                <option value="2">Cointails</option>
-                <option value="3">Letluxe</option>
-                <option value="4">Chillout</option>
-                <option value="5">Kenzo</option>
-                <option value="5">Givenchy</option>
-                <option value="5">Zara</option>
-              </select>
               <div class="search-field__input-wrapper mb-3">
-                <input type="text" name="search_text" class="search-field__input form-control form-control-sm border-light border-2" placeholder="SEARCH PRODCUTS" id="searchField">
+                <input type="text" name="search_text" class="search-field__input form-control form-control-sm border-light border-2" placeholder="SEARCH PRODUCTS" id="searchField">
               </div>
-              <ul class="multi-select__list list-unstyled">
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Payuee e-Shop</span>
-                  <span class="text-secondary">2</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Cointails</span>
-                  <span class="text-secondary">7</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Letluxe</span>
-                  <span class="text-secondary">10</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Chillout</span>
-                  <span class="text-secondary">39</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Kenzo</span>
-                  <span class="text-secondary">95</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Givenchy</span>
-                  <span class="text-secondary">1092</span>
-                </li>
-                <li class="search-suggestion__item multi-select__item text-primary js-search-select js-multi-select">
-                  <span class="me-auto">Zara</span>
-                  <span class="text-secondary">48</span>
-                </li>
+              <ul id="productResults" class="multi-select__list list-unstyled">
+                <!-- Product results will be dynamically inserted here -->
               </ul>
             </div>
           </div>

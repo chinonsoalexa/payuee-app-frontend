@@ -821,3 +821,46 @@ function sortingAlgo() {
     }
     return array;
     }
+
+    // Function to simulate fetching products based on a search query
+  async function fetchProducts(searchQuery) {
+    // Replace with actual API call
+    return [
+      { name: "Product 1", image: "https://payuee.com/e-Shop/Demo3/images/products/product_0-1.jpg", storeName: "Payuee e-Shop" },
+      { name: "Product 2", image: "https://payuee.com/e-Shop/Demo3/images/products/product_0-2.jpg", storeName: "Cointails" },
+      { name: "Product 3", image: "https://via.placeholder.com/100", storeName: "Letluxe" }
+    ].filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  }
+
+  // Function to render products in the list
+  async function renderProducts(searchQuery) {
+    const productResults = document.getElementById("productResults");
+    productResults.innerHTML = ""; // Clear previous results
+
+    const products = await fetchProducts(searchQuery);
+    products.forEach(product => {
+      const productItem = document.createElement("li");
+      productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
+
+      productItem.innerHTML = `
+        <div class="d-flex align-items-center">
+          <img src="${product.image}" alt="${product.name}" class="me-3" width="50" height="50">
+          <div>
+            <span class="me-auto">${product.storeName}</span><br>
+            <span class="text-secondary">${product.name}</span>
+          </div>
+        </div>
+      `;
+      productResults.appendChild(productItem);
+    });
+  }
+
+  // Attach event listener to search input
+  document.getElementById("searchField").addEventListener("input", (event) => {
+    const searchQuery = event.target.value;
+    if (searchQuery.length > 1) {
+      renderProducts(searchQuery); // Render products on search input
+    } else {
+      document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+    }
+  });
