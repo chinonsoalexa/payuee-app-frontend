@@ -4,21 +4,44 @@ var productDescription = "";
 var productDescription2 = "";
 var selectedCategories = [];
 
+// const input = document.querySelector('#tags');
+// const tagify = new Tagify(input, {
+//     maxTags: 9  // Attempting to set maxTags in case it works
+// });
+
+// // Manually enforce maxTags limit if necessary
+// tagify.on('add', () => {
+//     if (tagify.value.length > 9) {
+//         // alert("You can only add up to 9 tags.");
+//         console.log(tagify.value);
+//         tagify.value[tagify.value.length - 1] = null;
+        
+//         // Remove the last tag that was added
+//         tagify.removeTag(tagify.value[tagify.value.length - 1].value);
+//     }
+// });
+
 const input = document.querySelector('#tags');
 const tagify = new Tagify(input, {
-    maxTags: 9  // Attempting to set maxTags in case it works
+    maxTags: 9  // Setting maxTags property for Tagify
 });
 
-// Manually enforce maxTags limit if necessary
+// Enforce the 9-tag limit by removing any excess tags
 tagify.on('add', (event) => {
     if (tagify.value.length > 9) {
-        // alert("You can only add up to 9 tags.");
-        console.log(tagify.value);
+        console.log("Too many tags:", tagify.value);
         
-        // Remove the last tag that was added
-        tagify.removeTag(tagify.value[tagify.value.length - 1].value);
+        // Delay to ensure Tagify has added the tag before removing
+        setTimeout(() => {
+            // Remove the most recent tag added
+            tagify.removeTags(tagify.value[tagify.value.length - 1].value);
+            
+            // Optionally, alert the user
+            // alert("You can only add up to 9 tags.");
+        }, 100); // Adjust delay if necessary
     }
 });
+
 
 // Function to validate the form
 function validateForm() {
