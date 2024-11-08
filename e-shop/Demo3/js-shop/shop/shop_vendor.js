@@ -786,13 +786,6 @@ function sortingAlgo() {
                 $maxEl.innerText = `${currentMax}kg`;
                 min_weight = currentMin;
                 max_weight = currentMax;
-            } else if (currency == 'km') {
-                // Update the UI with the min and max values
-                const $minEl = $se.parentElement.querySelector(selectors.minElement);
-                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
-                $minEl.innerText = `${currentMin}km`;
-                $maxEl.innerText = `${currentMax}km`;
-                max_distance = currentMax;
             } else {
                 // Update the UI with the min and max values
                 const $minEl = $se.parentElement.querySelector(selectors.minElement);
