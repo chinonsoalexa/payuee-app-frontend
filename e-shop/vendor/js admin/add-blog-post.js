@@ -4,6 +4,22 @@ var productDescription = "";
 var productDescription2 = "";
 var selectedCategories = [];
 
+const input = document.querySelector('#tags');
+const tagify = new Tagify(input, {
+    maxTags: 9  // Attempting to set maxTags in case it works
+});
+
+// Manually enforce maxTags limit if necessary
+tagify.on('add', (event) => {
+    if (tagify.value.length > 9) {
+        // alert("You can only add up to 9 tags.");
+        console.log(tagify.value);
+        
+        // Remove the last tag that was added
+        tagify.removeTag(tagify.value[tagify.value.length - 1].value);
+    }
+});
+
 // Function to validate the form
 function validateForm() {
     // Check if blog title is provided
