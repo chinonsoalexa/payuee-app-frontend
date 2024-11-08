@@ -1,7 +1,7 @@
 var editor2 = new Quill("#editor2", {
   modules: { toolbar: "#toolbar2" },
   theme: "snow",
-  placeholder: "Enter blog post after first image...",
+  placeholder: "Enter description here...",
 });
 
 var editor3 = new Quill("#editor3", {
