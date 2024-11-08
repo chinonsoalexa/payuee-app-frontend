@@ -844,6 +844,7 @@ function renderProducts2(products) {
         } else if (product.category == "others") {
             url = "https://payuee.com/outfits/" + product.product_url_id;
         }
+        
       const productItem = document.createElement("li");
       productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
 
