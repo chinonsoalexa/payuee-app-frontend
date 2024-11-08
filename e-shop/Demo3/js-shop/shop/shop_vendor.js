@@ -827,6 +827,19 @@ function renderProducts2(products) {
     const productResults = document.getElementById("productResults");
     productResults.innerHTML = ""; // Clear previous results
 
+    if (products.length === 0) {
+        // Render a "No products found" message if there are no products
+        const noProductMessage = document.createElement("li");
+        noProductMessage.classList.add("no-products-message", "text-center", "text-muted");
+        noProductMessage.innerHTML = `
+            <div class="p-3">
+                <p>No product(s) found</p>
+            </div>
+        `;
+        productResults.appendChild(noProductMessage);
+        return;
+    }
+
     products.forEach(product => {
         let url = "";
         if (product.category === "outfits") {
@@ -859,7 +872,7 @@ function renderProducts2(products) {
             </a>
           </div>
         `;
-        
+
         productResults.appendChild(productItem);
     });
 }
