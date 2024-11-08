@@ -889,6 +889,29 @@ function renderCategories(categories, elementId) {
     });
   }
 
+  // Function to load the main image after the default image
+  function loadMainImage(defaultSrc, mainSrc) {
+    const imageElement = document.getElementById("mainImage");
+
+    // Set the default image initially
+    imageElement.src = defaultSrc;
+
+    // Create a new image to load the main image
+    const mainImageLoader = new Image();
+    mainImageLoader.src = mainSrc;
+
+    // When the main image is fully loaded, replace the default image
+    mainImageLoader.onload = function() {
+      imageElement.src = mainSrc;
+    };
+  }
+
+  // Call the function with the default and main image paths
+  loadMainImage(
+    "/e-shop/Demo3/../images/shop/shop_banner6.png",
+    "/e-shop/Demo3/../images/shop/shop_banner6.jpg"
+  );
+
   // Attach event listener to search input
   document.getElementById("searchField").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
