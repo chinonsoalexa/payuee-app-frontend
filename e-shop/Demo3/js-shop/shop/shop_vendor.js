@@ -754,26 +754,24 @@ function sortingAlgo() {
         maxElement: '.price-range__max'
       };
       
-      // Iterate over each slider element
-      document.querySelectorAll(selectors.elementClass).forEach($se => {
+    // Iterate over each slider element
+    document.querySelectorAll(selectors.elementClass).forEach($se => {
         const currency = $se.dataset.currency || '₦'; // Default currency is Naira
-      
+    
         if ($se) {
-          // Initialize the slider using the Slider library
-          const priceRange = new Slider($se, {
+        // Initialize the slider using the Slider library
+        const priceRange = new Slider($se, {
             tooltip_split: true,
             formatter: function(value) {
                 if (currency == "kg") {
                     return value + currency;
-                } else if (currency == 'km') {
-                    return value + currency;
-                }
-              return currency + value;
+                } 
+            return currency + value;
             },
-          });
-      
-          // Event listener to get current min and max when slider stops moving
-          priceRange.on('slideStop', (value) => {
+        });
+    
+        // Event listener to get current min and max when slider stops moving
+        priceRange.on('slideStop', (value) => {
             const currentMin = value[0];  // Current minimum value
             const currentMax = value[1];  // Current maximum value
             
@@ -804,13 +802,13 @@ function sortingAlgo() {
                 min_price = currentMin;
                 max_price = currentMax;
             }
-      
+    
             // Optionally trigger some action with these values (e.g., filter products)
             getProducts();
-          });
+        });
         }
-      });
-      
+    });
+        
     }
     
 // Shuffle function using Fisher-Yates algorithm
