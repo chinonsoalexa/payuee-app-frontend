@@ -909,7 +909,7 @@ function renderCategories(categories, elementId) {
   // Call the function with the default and main image paths
   loadMainImage(
     "/e-shop/Demo3/../images/shop/shop_banner6.png",
-    "/e-shop/Demo3/../images/shop/shop_banner6.jpg"
+    "/e-shop/Demo3/../images/shop/shop_bannerr6.jpg"
   );
 
   // Attach event listener to search input
