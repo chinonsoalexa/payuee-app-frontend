@@ -853,8 +853,8 @@ function renderProducts2(products) {
         <a href="${url}" class="text-decoration-none text-dark">
             <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
             <div>
-                <span class="text-secondary">Qty: ${product.stock_remaining}</span><br>
-                <span class="me-auto">Title: ${product.title}</span>
+                <span class="text-secondary">Qty: ${product.title}</span><br>
+                <span class="me-auto">Title: ${product.stock_remaining}</span>
             </div>
             </a>
         </div>
