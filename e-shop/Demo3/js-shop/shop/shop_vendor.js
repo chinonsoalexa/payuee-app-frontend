@@ -849,13 +849,13 @@ function renderProducts2(products) {
         productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
 
         productItem.innerHTML = `
-          <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
             <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center w-100">
-                <div class="text-content me-auto">
+                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
+                <div class="text-content">
                     <span class="text-secondary">Title: ${product.title}</span><br>
-                    <span class="me-auto">Qty: ${product.stock_remaining}</span>
+                    <span>Qty: ${product.stock_remaining}</span>
                 </div>
-                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image ms-3" width="50" height="50">
             </a>
           </div>
         `;
