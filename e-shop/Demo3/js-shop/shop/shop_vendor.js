@@ -850,12 +850,12 @@ function renderProducts2(products) {
 
         productItem.innerHTML = `
           <div class="d-flex align-items-center justify-content-between">
-            <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center">
-                <div>
-                    <span class="text-secondary">Qty: ${product.title}</span><br>
-                    <span class="me-auto">Title: ${product.stock_remaining}</span>
+            <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center w-100">
+                <div class="text-content me-auto">
+                    <span class="text-secondary">Title: ${product.title}</span><br>
+                    <span class="me-auto">Qty: ${product.stock_remaining}</span>
                 </div>
-                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="ms-3" width="50" height="50">
+                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image ms-3" width="50" height="50">
             </a>
           </div>
         `;
