@@ -864,6 +864,31 @@ function renderProducts2(products) {
     });
 }
 
+// Define the categories
+const categories = [
+    "StayHome", "New In", "Jackets", "Hoodies", "Men", "Women", "Trousers", "Accessories", "Shoes"
+  ];
+
+// Call the function to render categories
+renderCategories(categories, "categoryList");
+
+// Function to render categories
+function renderCategories(categories, elementId) {
+    const categoryList = document.getElementById(elementId);
+    categoryList.innerHTML = ""; // Clear any existing content
+
+    categories.forEach(category => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("me-3", "me-xl-4", "pe-1");
+
+      listItem.innerHTML = `
+        <a href="#" class="menu-link menu-link_us-s text-white">${category}</a>
+      `;
+
+      categoryList.appendChild(listItem);
+    });
+  }
+
   // Attach event listener to search input
   document.getElementById("searchField").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
