@@ -822,46 +822,47 @@ for (let i = array.length - 1; i > 0; i--) {
 return array;
 }
 
-  // Function to render products in the list
+// Function to render products in the list
 function renderProducts2(products) {
     const productResults = document.getElementById("productResults");
     productResults.innerHTML = ""; // Clear previous results
 
     products.forEach(product => {
-        let url = ""
-        if (product.category == "outfits") {
+        let url = "";
+        if (product.category === "outfits") {
             url = "https://payuee.com/outfits/" + product.product_url_id;
-        } else if (product.category == "jewelry") {
+        } else if (product.category === "jewelry") {
             url = "https://payuee.com/jewelry/" + product.product_url_id;
-        } else if (product.category == "kids-accessories") {
+        } else if (product.category === "kids-accessories") {
             url = "https://payuee.com/kids/" + product.product_url_id;
-        } else if (product.category == "cars-car-parts") {
+        } else if (product.category === "cars-car-parts") {
             url = "https://payuee.com/cars/" + product.product_url_id;
-        } else if (product.category == "tools") {
+        } else if (product.category === "tools") {
             url = "https://payuee.com/tools/" + product.product_url_id;
-        } else if (product.category == "gadgets") {
+        } else if (product.category === "gadgets") {
             url = "https://payuee.com/gadgets/" + product.product_url_id;
-        } else if (product.category == "others") {
+        } else if (product.category === "others") {
             url = "https://payuee.com/outfits/" + product.product_url_id;
         }
-        
-      const productItem = document.createElement("li");
-      productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
 
-      productItem.innerHTML = `
-        <div class="d-flex align-items-center">
-        <a href="${url}" class="text-decoration-none text-dark">
-            <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="me-3" width="50" height="50">
-            <div>
-                <span class="text-secondary">Qty: ${product.title}</span><br>
-                <span class="me-auto">Title: ${product.stock_remaining}</span>
-            </div>
+        const productItem = document.createElement("li");
+        productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
+
+        productItem.innerHTML = `
+          <div class="d-flex align-items-center justify-content-between">
+            <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center">
+                <div>
+                    <span class="text-secondary">Qty: ${product.title}</span><br>
+                    <span class="me-auto">Title: ${product.stock_remaining}</span>
+                </div>
+                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="ms-3" width="50" height="50">
             </a>
-        </div>
-      `;
-      productResults.appendChild(productItem);
+          </div>
+        `;
+        
+        productResults.appendChild(productItem);
     });
-  }
+}
 
   // Attach event listener to search input
   document.getElementById("searchField").addEventListener("input", async (event) => {
