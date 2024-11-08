@@ -754,53 +754,47 @@ function sortingAlgo() {
         maxElement: '.price-range__max'
       };
       
-    // Iterate over each slider element
-    document.querySelectorAll(selectors.elementClass).forEach($se => {
-        const currency = $se.dataset.currency || '₦'; // Default currency is Naira
-    
-        if ($se) {
+// Iterate over each slider element
+document.querySelectorAll(selectors.elementClass).forEach($se => {
+    const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+
+    if ($se) {
         // Initialize the slider using the Slider library
         const priceRange = new Slider($se, {
             tooltip_split: true,
             formatter: function(value) {
-                if (currency == "kg") {
-                    return value + currency;
-                } 
-            return currency + value;
+                // Format value based on currency type
+                return currency === "kg" ? `${value}kg` : `${currency}${value}`;
             },
         });
-    
+
         // Event listener to get current min and max when slider stops moving
         priceRange.on('slideStop', (value) => {
-            const currentMin = value[0];  // Current minimum value
-            const currentMax = value[1];  // Current maximum value
-            
-            // Log or use the min and max values however needed
-            console.log('Current Min:', currentMin);
-            console.log('Current Max:', currentMax);
-            if (currency == "kg") {
-                // Update the UI with the min and max values
-                const $minEl = $se.parentElement.querySelector(selectors.minElement);
-                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            const [currentMin, currentMax] = value;  // Destructure min and max values
+
+            // Select min and max elements within the current slider's parent
+            const $minEl = $se.parentElement.querySelector(selectors.minElement);
+            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+
+            if (currency === "kg") {
+                // Update min and max values for weight in kg
                 $minEl.innerText = `${currentMin}kg`;
                 $maxEl.innerText = `${currentMax}kg`;
                 min_weight = currentMin;
                 max_weight = currentMax;
             } else {
-                // Update the UI with the min and max values
-                const $minEl = $se.parentElement.querySelector(selectors.minElement);
-                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+                // Update min and max values for price in Naira
                 $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
                 $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
                 min_price = currentMin;
                 max_price = currentMax;
             }
-    
-            // Optionally trigger some action with these values (e.g., filter products)
+
+            // Optionally trigger an action with these values (e.g., filter products)
             getProducts();
         });
-        }
-    });
+    }
+});
         
     }
     
