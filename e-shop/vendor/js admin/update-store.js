@@ -198,33 +198,21 @@ function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
-        maxFiles: 1,
+        maxFiles: 1, // Maximum files allowed
         maxFilesize: 5, // Max file size in MB
         init: function () {
             this.on("addedfile", function (file) {
-                // Check if the number of uploaded images is already 2
-                if (imageArray.length >= 3) {
-                    showToastMessageE("Only three images are allowed for a product");
-                    // Remove the new file preview and don't add it to the array
-                    file.previewElement.remove();
-                    return; // Exit the function
+                // Check if the number of uploaded images is already 3
+                if (imageArray.length > 1) {
+                    // Remove the oldest file preview
+                    const oldestFile = imageArray.shift(); // Remove the first file from the array
+                    oldestFile.previewElement.remove();
                 }
 
-                // Check if the file already exists in the array
-                const fileExists = imageArray.some(existingFile => 
-                    existingFile.name === file.name && existingFile.size === file.size
-                );
-
-                if (fileExists) {
-                    // File already exists, remove the new file preview and don't add it to the array
-                    file.previewElement.remove();
-                    return; // Exit the function
-                }
-
-                // Add the file to the array if it doesn't already exist
+                // Add the new file to the array
                 imageArray.push(file);
 
-                // Get the existing remove icon (dz-error-mark)
+                // Get the remove icon (dz-error-mark) in the file preview
                 const removeIcon = file.previewElement.querySelector('.dz-error-mark');
 
                 if (removeIcon) {
@@ -244,14 +232,16 @@ function initializeDropzone() {
                     });
                 }
             });
+
             // Handle the maxfilesexceeded event
-            dropzone.on("maxfilesexceeded", function (file) {
-                showToastMessageE("Image sizes should be less than 5mb");
-                dropzone.removeFile(file); // Remove the extra file
+            this.on("maxfilesexceeded", function (file) {
+                showToastMessageE("Only three images are allowed, and sizes should be less than 5MB.");
+                this.removeFile(file); // Remove the extra file
             });
         }
     };
 }
+
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
