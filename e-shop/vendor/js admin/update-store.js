@@ -153,6 +153,7 @@ function initializeDropzone() {
     // Initialize Dropzone
     Dropzone.options.multiFileUploadA = {
         acceptedFiles: 'image/*',
+        maxFiles: 1,
         // acceptedFiles: 'image/*, video/mp4, video/x-msvideo, video/quicktime, video/x-matroska, video/webm',
         maxFilesize: 5, // Max file size in MB
         init: function () {
