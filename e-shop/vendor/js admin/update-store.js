@@ -148,6 +148,32 @@ async function postBlog() {
     }
 }
 
+const phoneInput = document.getElementById("companyPhone");
+
+phoneInput.addEventListener("input", (event) => {
+  // Remove any non-numeric characters
+  let value = event.target.value.replace(/\D/g, "");
+
+  // Limit to 11 characters
+  value = value.substring(0, 11);
+
+  // Format as 123-456-7890
+  if (value.length > 6) {
+    value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6)}`;
+  } else if (value.length > 3) {
+    value = `${value.slice(0, 3)}-${value.slice(3)}`;
+  }
+
+  event.target.value = value;
+});
+
+// Enforce only numeric input (optional if maxlength is in use)
+phoneInput.addEventListener("keypress", (event) => {
+  if (!/[0-9]/.test(event.key)) {
+    event.preventDefault();
+  }
+});
+
 // Initialize space to upload images
 function initializeDropzone() {
     // Initialize Dropzone

@@ -276,11 +276,35 @@
                     <form class="row needs-validation" novalidate="">
                       <div class="col-sm-12">
 
-                        <!-- blog title -->
+                        <!-- store name -->
                         <div class="mb-3">
                           <label for="validationCustom01">Store Name:</label>
                           <input class="form-control" id="validationCustom01" type="text" placeholder="Store Name..." required="">
                           <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- <div class="mb-3">
+                          <label for="companyPhone">Company Phone Number:</label>
+                          <input type="number" class="form-control" id="companyPhone" type="tel" placeholder="Phone Number..." maxlength="11" required pattern="[0-9]{11}">
+                          <div class="valid-feedback">Looks good!</div>
+                          <div class="invalid-feedback">Please enter a valid phone number (e.g., 123-456-7890).</div>
+                        </div> -->
+                        <div class="mb-3">
+                          <label for="companyPhone">Company Phone Number:</label>
+                          <input 
+                              type="tel" 
+                              class="form-control" 
+                              id="companyPhone" 
+                              placeholder="Phone Number..." 
+                              required>
+                          <small class="form-text text-muted">Format: 123-456-7890</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                          <label for="companyEmail">Company Email:</label>
+                          <input class="form-control" id="companyEmail" type="email" placeholder="Email Address..." required="">
+                          <div class="valid-feedback">Looks good!</div>
+                          <div class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
 
                         <!-- blog category -->
