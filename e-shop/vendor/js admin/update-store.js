@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Company Email:', companyEmail);
     
         if (validateForm()) {
-            await postBlog();
+            await updateStore();
         }
     });
     
 });
 
-async function postBlog() {
+async function updateStore() {
     // Create a new FormData object
     const formData = new FormData();
 
@@ -127,7 +127,7 @@ async function postBlog() {
     formData.append("StoreName", storeName);
     formData.append("StoreDescription", storeDescription);
     formData.append("companyPhone", getOnlyNumbers(companyPhone));
-    formData.append("ShopImage", selectedCategories);
+    formData.append("ShopCategories", selectedCategories);
 
     // Append images to the FormData object
     imageArray.forEach((image, index) => {
@@ -135,7 +135,7 @@ async function postBlog() {
     });
 
     try {
-        const response = await fetch('https://api.payuee.com/publish-blog', { // Replace with your actual endpoint URL
+        const response = await fetch('https://api.payuee.com/update-store', { // Replace with your actual endpoint URL
             method: 'POST',
             // headers: {
             //     'Content-Type': 'multipart/form-data'
@@ -153,7 +153,7 @@ async function postBlog() {
             console.error("Error posting product:", error);
         }
         const result = await response.json();
-        showToastMessageE("Blog posted successfully");
+        showToastMessageE("Store updated successfully");
         clearFields();
     } catch (error) {
         console.error("Network error:", error);
