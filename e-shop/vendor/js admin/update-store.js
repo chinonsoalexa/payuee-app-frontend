@@ -1,25 +1,7 @@
 var imageArray = [];
-var blogTitle = "";
-var productDescription = "";
-var productDescription2 = "";
+var storeName = "";
+var storeDescription = "";
 var selectedCategories = [];
-
-// const input = document.querySelector('#tags');
-// const tagify = new Tagify(input, {
-//     maxTags: 9  // Attempting to set maxTags in case it works
-// });
-
-// // Manually enforce maxTags limit if necessary
-// tagify.on('add', () => {
-//     if (tagify.value.length > 9) {
-//         // alert("You can only add up to 9 tags.");
-//         console.log(tagify.value);
-//         tagify.value[tagify.value.length - 1] = null;
-        
-//         // Remove the last tag that was added
-//         tagify.removeTag(tagify.value[tagify.value.length - 1].value);
-//     }
-// });
 
 const input = document.querySelector('#tags');
 const tagify = new Tagify(input, {
@@ -27,9 +9,9 @@ const tagify = new Tagify(input, {
 });
 
 // Enforce the 9-tag limit by removing any excess tags
-tagify.on('add', (event) => {
+tagify.on('add', () => {
     if (tagify.value.length > 9) {
-        console.log("Too many tags:", tagify.value);
+        // console.log("Too many tags:", tagify.value);
         
         // Delay to ensure Tagify has added the tag before removing
         setTimeout(() => {
@@ -37,7 +19,7 @@ tagify.on('add', (event) => {
             tagify.removeTags(tagify.value[tagify.value.length - 1].value);
             
             // Optionally, alert the user
-            // alert("You can only add up to 9 tags.");
+            showToastMessageE("You can only add up to 9 tags.");
         }, 100); // Adjust delay if necessary
     }
 });
@@ -46,26 +28,26 @@ tagify.on('add', (event) => {
 // Function to validate the form
 function validateForm() {
     // Check if blog title is provided
-    if (!blogTitle) {
-        alert("Blog title is required.");
+    if (!storeName) {
+        showToastMessageE("Blog title is required.");
         return false;
     }
 
     // Check if at least one description is provided
-    if (!productDescription && !productDescription2) {
-        alert("At least one product description is required.");
+    if (!storeDescription) {
+        showToastMessageE("At least one product description is required.");
         return false;
     }
 
     // Check if exactly three images are uploaded
     if (imageArray.length !== 3) {
-        alert("Exactly three images are required.");
+        showToastMessageE("Exactly three images are required.");
         return false;
     }
 
     // Check if at least one category is selected
     if (selectedCategories.length === 0) {
-        alert("At least one category must be selected.");
+        showToastMessageE("At least one category must be selected.");
         return false;
     }
 
@@ -80,41 +62,41 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('click', async function (event) {
         event.preventDefault();
 
-        // Access category
-        const categorySelect = document.querySelector('.js-example-placeholder-multiple');
+        // // Access category
+        // const categorySelect = document.querySelector('.js-example-placeholder-multiple');
         
-        // Function to get the selected categories
-        function getSelectedCategories() {
-            const selectedCategories = [];
-            // Loop through selected options
-            for (let option of categorySelect.selectedOptions) {
-                selectedCategories.push(option.value);
-            }
-            return selectedCategories;
-        }
+        // // Function to get the selected categories
+        // function getSelectedCategories() {
+        //     const selectedCategories = [];
+        //     // Loop through selected options
+        //     for (let option of categorySelect.selectedOptions) {
+        //         selectedCategories.push(option.value);
+        //     }
+        //     return selectedCategories;
+        // }
         
         // Fetch editors dynamically on click
         const qlEditor = document.querySelectorAll('.ql-editor'); // Get all editors
         const descriptionEditor = qlEditor[0]; // First editor
-        const descriptionEditor2 = qlEditor[1]; // Second editor (if it exists)
+        // const descriptionEditor2 = qlEditor[1]; // Second editor (if it exists)
 
         // Access the input element by its ID
-        const blogTitleInput = document.getElementById('validationCustom01');
+        const storeNameInput = document.getElementById('validationCustom01');
         
         // Get the value entered by the user
-        blogTitle = blogTitleInput.value.trim();
+        storeName = storeNameInput.value.trim();
 
         // Validate Descriptions
-        productDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : ''; // First editor content
-        productDescription2 = descriptionEditor2 ? descriptionEditor2.innerHTML.trim() : ''; // Second editor content
+        storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : ''; // First editor content
+        // storeDescription2 = descriptionEditor2 ? descriptionEditor2.innerHTML.trim() : ''; // Second editor content
 
         // Get the selected categories
-        selectedCategories = getSelectedCategories();
+        // selectedCategories = getSelectedCategories();
         
         // Log the results
-        // console.log('Product Title:', blogTitle);
-        // console.log('Product Description 1:', productDescription);
-        // console.log('Product Description 2:', productDescription2);
+        // console.log('Product Title:', storeName);
+        // console.log('Product Description 1:', storeDescription);
+        // console.log('Product Description 2:', storeDescription2);
         // console.log('Selected Categories:', selectedCategories);
 
         // Validate the form data
@@ -130,9 +112,9 @@ async function postBlog() {
     const formData = new FormData();
 
     // Append text fields to the FormData object
-    formData.append("blogTitle", blogTitle);
-    formData.append("blogDescription1", productDescription);
-    formData.append("blogDescription2", productDescription2);
+    formData.append("storeName", storeName);
+    formData.append("blogDescription1", storeDescription);
+    formData.append("blogDescription2", storeDescription2);
     formData.append("blogCategory", selectedCategories);
 
     // Append images to the FormData object
@@ -159,7 +141,7 @@ async function postBlog() {
             console.error("Error posting product:", error);
         }
         const result = await response.json();
-        alert("Blog posted successfully");
+        showToastMessageE("Blog posted successfully");
         clearFields();
     } catch (error) {
         console.error("Network error:", error);
@@ -177,7 +159,7 @@ function initializeDropzone() {
             this.on("addedfile", function (file) {
                 // Check if the number of uploaded images is already 2
                 if (imageArray.length >= 3) {
-                    alert("Only three images are allowed for a product");
+                    showToastMessageE("Only three images are allowed for a product");
                     // Remove the new file preview and don't add it to the array
                     file.previewElement.remove();
                     return; // Exit the function
@@ -219,7 +201,7 @@ function initializeDropzone() {
             });
             // Handle the maxfilesexceeded event
             dropzone.on("maxfilesexceeded", function (file) {
-                alert("Image sizes should be less than 5mb");
+                showToastMessageE("Image sizes should be less than 5mb");
                 dropzone.removeFile(file); // Remove the extra file
             });
         }
@@ -228,6 +210,14 @@ function initializeDropzone() {
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
+
+// show toast error
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
 
 async function logout() {
     // also send a request to the logout api endpoint
@@ -245,9 +235,9 @@ try {
     const response = await fetch(apiUrl, requestOptions);
     
     if (!response.ok) {
-            // alert('an error occurred. Please try again');
+            // showToastMessageE('an error occurred. Please try again');
                 if (!response.ok) {
-        alert('an error occurred. Please try again');
+        showToastMessageE('an error occurred. Please try again');
         return;
     }
         return;

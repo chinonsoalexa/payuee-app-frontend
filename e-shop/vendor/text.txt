@@ -156,7 +156,7 @@ href="order-history.html">
 </svg><span>Order History</span></a>
 
 <li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
-href="add-blog.html">
+href="update-store.html">
 <svg class="stroke-icon">
 <use href="#stroke-gallery"></use>
 </svg>
@@ -165,7 +165,7 @@ href="add-blog.html">
 </svg><span>Blog Post</span></a>
 
 <li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
-href="add-blog.html">
+href="update-store.html">
 <svg class="stroke-icon">
 <use href="#stroke-email"></use>
 </svg>

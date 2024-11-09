@@ -62,6 +62,16 @@
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
+
+      <div class="toast-container position-fixed top-0 end-0 p-3 toast-index toast-rtl">
+        <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex justify-content-between alert-secondary">
+            <div class="toast-body" id="toastError">...</div>
+            <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+      
       <!-- Page Header Start-->
       <div class="page-header">
         <div class="header-wrapper row m-0">
@@ -192,7 +202,7 @@
                       </svg><span>Order History</span></a>
   
                   <li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
-                      href="add-blog.html">
+                      href="update-store.html">
                       <svg class="stroke-icon">
                         <use href="#fill-Buy"></use>
                       </svg>
@@ -330,7 +340,7 @@
                       <p>Store Image </p>
                       <form class="dropzone dropzone-light" id="multiFileUploadA" action="#">
                         <div class="dz-message needsclick">
-                          <svg>
+                          <svg width="50" height="50">
                             <use href="#file-upload"></use>
                           </svg>
                           <h6>Drag your image here, or <a class="txt-primary" href="#!">browse</a></h6>
@@ -2913,10 +2923,11 @@
     <!-- Theme js-->
     <script src="js/script.js"></script>
     <script src="js/theme-customizer/customizer.js"></script>
-    <!-- Plugin used-->
+     <!-- Toast file -->
+     <script src="js/notify/custom-notify.js"></script>
 
     <!-- this is to send emails or post -->
-    <script src="js admin/add-blog-post.js"></script>
+    <script src="js admin/update-store.js"></script>
 
   </body>
 
