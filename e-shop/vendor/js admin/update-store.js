@@ -156,7 +156,8 @@ async function updateStore() {
             }
         } else {
             const error = await response.json();
-            console.error("Error posting product:", error);
+             showToastMessageE("Error updating store");
+             console.error("Error updating store: ", error);
         }
         const result = await response.json();
         showToastMessageE("Store updated successfully");
