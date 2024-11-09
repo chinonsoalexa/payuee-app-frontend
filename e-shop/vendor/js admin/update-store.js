@@ -3,7 +3,7 @@ var storeName = "";
 var companyPhone = "";
 var companyEmail = "";
 var storeDescription = "";
-var selectedCategories = [];
+var selectedCategories = "";
 
 const input = document.querySelector('#tags');
 const tagify = new Tagify(input, {
@@ -102,6 +102,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
         const companyEmailInput = document.getElementById('companyEmail');
         companyEmail = companyEmailInput.value.trim();
+
+        // Get the tags
+        const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
+        selectedCategories = selectedCategoriesInput.value;
     
         const qlEditor = document.querySelectorAll('.ql-editor');
         const descriptionEditor = qlEditor[0];
@@ -111,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Store Description:', storeDescription);
         console.log('Company Phone:', companyPhone);
         console.log('Company Email:', companyEmail);
+        console.log('Company Category:', selectedCategories);
     
         if (validateForm()) {
             await updateStore();
@@ -125,8 +130,9 @@ async function updateStore() {
 
     // Append text fields to the FormData object
     formData.append("StoreName", storeName);
+    formData.append("ShopEmail", companyEmail);
+    formData.append("ShopPhone", getOnlyNumbers(companyPhone));
     formData.append("StoreDescription", storeDescription);
-    formData.append("companyPhone", getOnlyNumbers(companyPhone));
     formData.append("ShopCategories", selectedCategories);
 
     // Append images to the FormData object
