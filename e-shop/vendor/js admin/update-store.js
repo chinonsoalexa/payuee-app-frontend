@@ -174,31 +174,48 @@ async function updateStore() {
 async function fetchDataAndFillForm() {
     try {
         const response = await fetch('https://api.payuee.com/get-store-details', {
-            credentials: 'include', // Include credentials such as cookies or authorization headers
+            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json', // Optional: Ensure the server expects JSON
-            }
+                'Content-Type': 'application/json',
+            },
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
         
-        if (data) {
-            // Populate form fields with fetched data
-            document.getElementById('storeName').value = data.storeName || '';
-            document.getElementById('companyPhone').value = data.companyPhone || '';
-            document.getElementById('companyEmail').value = data.companyEmail || '';
-            
-            const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
-            selectedCategoriesInput.value = data.selectedCategories || '';
+        if (data && data.success) {
+            // Access the store details from the "success" object
+            const storeData = data.success;
 
-            const qlEditor = document.querySelectorAll('.ql-editor');
-            if (qlEditor[0]) {
-                qlEditor[0].innerHTML = data.storeDescription || '';
+            // Populate form fields with fetched data
+            document.getElementById('storeName').value = storeData.shop_name || '';
+            document.getElementById('companyPhone').value = storeData.shop_phone || '';
+            document.getElementById('companyEmail').value = storeData.shop_email || '';
+            // document.getElementById('shopAddress').value = storeData.shop_address || '';
+            // document.getElementById('shopState').value = storeData.shop_state || '';
+            // document.getElementById('shopCity').value = storeData.shop_city || '';
+
+            // Populate the shop categories field
+            const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
+            selectedCategoriesInput.value = JSON.parse(storeData.shop_categories).map(category => category.value).join(', ') || '';
+
+            // Populate the shop description in the editor
+            const qlEditor = document.querySelector('.ql-editor');
+            if (qlEditor) {
+                qlEditor.innerHTML = storeData.shop_description || '';
             }
+
+            // Display the shop image in the imageContainer
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = ''; // Clear any previous images
+            const imgElement = document.createElement('img');
+            imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
+            imgElement.alt = storeData.shop_name;
+            imgElement.style.maxWidth = "100%"; // Style as needed
+            imageContainer.appendChild(imgElement);
         }
     } catch (error) {
         console.error('Error fetching store data:', error);
