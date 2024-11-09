@@ -5,6 +5,46 @@ var companyEmail = "";
 var storeDescription = "";
 var selectedCategories = "";
 
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function () {
+    // Populate form fields on load
+    fetchDataAndFillForm();
+
+    const form = document.getElementById('postButton');
+    
+    form.addEventListener('click', async function (event) {
+        event.preventDefault();
+    
+        const storeNameInput = document.getElementById('storeName');
+        storeName = storeNameInput.value.trim();
+    
+        const companyPhoneInput = document.getElementById('companyPhone');
+        companyPhone = companyPhoneInput.value.trim();
+    
+        const companyEmailInput = document.getElementById('companyEmail');
+        companyEmail = companyEmailInput.value.trim();
+
+        // Get the tags
+        const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
+        selectedCategories = selectedCategoriesInput.value;
+    
+        const qlEditor = document.querySelectorAll('.ql-editor');
+        const descriptionEditor = qlEditor[0];
+        storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
+    
+        // console.log('Store Name:', storeName);
+        // console.log('Store Description:', storeDescription);
+        // console.log('Company Phone:', companyPhone);
+        // console.log('Company Email:', companyEmail);
+        // console.log('Company Category:', selectedCategories);
+    
+        if (validateForm()) {
+            await updateStore();
+        }
+    });
+    
+});
+
 const input = document.querySelector('#tags');
 const tagify = new Tagify(input, {
     maxTags: 9  // Setting maxTags property for Tagify
@@ -87,43 +127,6 @@ function getOnlyNumbers(text) {
     return text.replace(/[^0-9]/g, '');
 }
 
-// Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('postButton');
-    
-    form.addEventListener('click', async function (event) {
-        event.preventDefault();
-    
-        const storeNameInput = document.getElementById('storeName');
-        storeName = storeNameInput.value.trim();
-    
-        const companyPhoneInput = document.getElementById('companyPhone');
-        companyPhone = companyPhoneInput.value.trim();
-    
-        const companyEmailInput = document.getElementById('companyEmail');
-        companyEmail = companyEmailInput.value.trim();
-
-        // Get the tags
-        const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
-        selectedCategories = selectedCategoriesInput.value;
-    
-        const qlEditor = document.querySelectorAll('.ql-editor');
-        const descriptionEditor = qlEditor[0];
-        storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
-    
-        console.log('Store Name:', storeName);
-        console.log('Store Description:', storeDescription);
-        console.log('Company Phone:', companyPhone);
-        console.log('Company Email:', companyEmail);
-        console.log('Company Category:', selectedCategories);
-    
-        if (validateForm()) {
-            await updateStore();
-        }
-    });
-    
-});
-
 async function updateStore() {
     // Create a new FormData object
     const formData = new FormData();
@@ -164,6 +167,31 @@ async function updateStore() {
         clearFields();
     } catch (error) {
         console.error("Network error:", error);
+    }
+}
+
+// Function to fetch data and fill in form fields
+async function fetchDataAndFillForm() {
+    try {
+        const response = await fetch('https://api.payuee.com/get-store-details'); // Replace with your actual endpoint
+        const data = await response.json();
+        
+        if (data) {
+            // Populate form fields with fetched data
+            document.getElementById('storeName').value = data.storeName || '';
+            document.getElementById('companyPhone').value = data.companyPhone || '';
+            document.getElementById('companyEmail').value = data.companyEmail || '';
+            
+            const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
+            selectedCategoriesInput.value = data.selectedCategories || '';
+
+            const qlEditor = document.querySelectorAll('.ql-editor');
+            if (qlEditor[0]) {
+                qlEditor[0].innerHTML = data.storeDescription || '';
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching store data:', error);
     }
 }
 

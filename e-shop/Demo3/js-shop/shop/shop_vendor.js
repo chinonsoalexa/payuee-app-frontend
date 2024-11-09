@@ -871,11 +871,6 @@ function renderProducts2(products) {
     });
 }
 
-// Define the categories
-// const categories = [
-//     "StayHome", "New In", "Jackets", "Hoodies", "Men", "Women", "Trousers", "Accessories", "Shoes"
-//   ];
-
 // Function to render categories
 function renderCategories(categories, elementId) {
     const categoryList = document.getElementById(elementId);
