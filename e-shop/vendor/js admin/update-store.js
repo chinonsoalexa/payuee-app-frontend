@@ -6,9 +6,9 @@ var storeDescription = "";
 var selectedCategories = "";
 
 // Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     // Populate form fields on load
-    fetchDataAndFillForm();
+    await fetchDataAndFillForm();
 
     const form = document.getElementById('postButton');
     
