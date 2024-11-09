@@ -194,14 +194,7 @@ async function fetchDataAndFillForm() {
             document.getElementById('storeName').value = storeData.shop_name || '';
             document.getElementById('companyPhone').value = storeData.shop_phone || '';
             document.getElementById('companyEmail').value = storeData.shop_email || '';
-            // document.getElementById('shopAddress').value = storeData.shop_address || '';
-            // document.getElementById('shopState').value = storeData.shop_state || '';
-            // document.getElementById('shopCity').value = storeData.shop_city || '';
-
-            // Populate the shop categories field
-            // const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
-            // selectedCategoriesInput.value = JSON.parse(storeData.shop_categories).map(category => category.value).join(', ') || '';
-
+            
             // Update Tags
             let tagsInput = document.getElementById('tags');
             tagsInput.value = storeData.shop_categories;
