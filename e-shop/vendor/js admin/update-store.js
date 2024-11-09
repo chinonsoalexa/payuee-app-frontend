@@ -173,7 +173,17 @@ async function updateStore() {
 // Function to fetch data and fill in form fields
 async function fetchDataAndFillForm() {
     try {
-        const response = await fetch('https://api.payuee.com/get-store-details'); // Replace with your actual endpoint
+        const response = await fetch('https://api.payuee.com/get-store-details', {
+            credentials: 'include', // Include credentials such as cookies or authorization headers
+            headers: {
+                'Content-Type': 'application/json', // Optional: Ensure the server expects JSON
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         
         if (data) {
@@ -194,6 +204,7 @@ async function fetchDataAndFillForm() {
         console.error('Error fetching store data:', error);
     }
 }
+
 
 const phoneInput = document.getElementById("companyPhone");
 
