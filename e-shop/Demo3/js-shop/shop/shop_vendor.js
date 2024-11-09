@@ -82,7 +82,7 @@ async function getProducts() {
         const responseData = await response.json();
 
         // Call the function to render categories
-        renderCategories(extractValues(responseData.vendor.shop_categories), "categoryList");
+        renderCategories(extractValuesFromShopCategories(responseData.vendor.shop_categories), "categoryList");
 
         // Call the function with the default and main image paths
         loadMainImage(
@@ -964,12 +964,17 @@ function renderCategories(categories, elementId) {
     }
 }
 
-function extractValues(jsonString) {
-    // Parse the JSON string into an array of objects
-    const array = JSON.parse(jsonString);
-  
-    // Map each object to its 'value' and join them with a comma
-    const valuesString = array.map(obj => obj.value).join(", ");
-  
-    return valuesString; // Return the final string
-  }
+  function extractValuesFromShopCategories(jsonString) {
+    try {
+        // Parse the JSON string into an array of objects
+        const parsedArray = JSON.parse(jsonString);
+
+        // Map over the array and extract each "value"
+        const valuesArray = parsedArray.map(item => item.value);
+
+        return valuesArray;
+    } catch (error) {
+        console.error("Error parsing JSON:", error);
+        return [];
+    }
+}
