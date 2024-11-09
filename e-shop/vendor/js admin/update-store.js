@@ -160,7 +160,7 @@ async function updateStore() {
         }
         const result = await response.json();
         showToastMessageS("Store updated successfully");
-        clearFields();
+        fetchDataAndFillForm();
     } catch (error) {
         console.error("Network error:", error);
     }
