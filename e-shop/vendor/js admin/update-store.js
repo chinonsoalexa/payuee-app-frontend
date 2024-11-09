@@ -160,7 +160,7 @@ async function updateStore() {
         }
         const result = await response.json();
         showToastMessageS("Store updated successfully");
-        fetchDataAndFillForm();
+        fillForm(result.success)
     } catch (error) {
         console.error("Network error:", error);
     }
@@ -185,36 +185,41 @@ async function fetchDataAndFillForm() {
         if (data && data.success) {
             // Access the store details from the "success" object
             const storeData = data.success;
-
-            // Populate form fields with fetched data
-            document.getElementById('storeName').value = storeData.shop_name || '';
-            document.getElementById('companyPhone').value = storeData.shop_phone || '';
-            document.getElementById('companyEmail').value = storeData.shop_email || '';
-
-            // Update Tags
-            let tagsInput = document.getElementById('tags');
-            tagsInput.value = storeData.shop_categories;
-
-            // Populate the shop description in the editor
-            const qlEditor = document.querySelector('.ql-editor');
-            if (qlEditor) {
-                qlEditor.innerHTML = storeData.shop_description || '';
-            }
-
-            // Display the shop image in the imageContainer
-            const imageContainer = document.getElementById('imageContainer');
-            imageContainer.innerHTML = ''; // Clear any previous images
-            const imgElement = document.createElement('img');
-            imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
-            imgElement.alt = storeData.shop_name;
-            imgElement.style.maxWidth = "100%"; // Style as needed
-            imageContainer.appendChild(imgElement);
+            fillForm(storeData)
         }
     } catch (error) {
         console.error('Error fetching store data:', error);
     }
 }
 
+function fillForm(storeData) {
+  // Access the store details from the "success" object
+  const storeData = data.success;
+
+  // Populate form fields with fetched data
+  document.getElementById('storeName').value = storeData.shop_name || '';
+  document.getElementById('companyPhone').value = storeData.shop_phone || '';
+  document.getElementById('companyEmail').value = storeData.shop_email || '';
+
+  // Update Tags
+  let tagsInput = document.getElementById('tags');
+  tagsInput.value = storeData.shop_categories;
+
+  // Populate the shop description in the editor
+  const qlEditor = document.querySelector('.ql-editor');
+  if (qlEditor) {
+      qlEditor.innerHTML = storeData.shop_description || '';
+  }
+
+  // Display the shop image in the imageContainer
+  const imageContainer = document.getElementById('imageContainer');
+  imageContainer.innerHTML = ''; // Clear any previous images
+  const imgElement = document.createElement('img');
+  imgElement.src = `https://payuee.com/image/${storeData.store_image}`;
+  imgElement.alt = storeData.shop_name;
+  imgElement.style.maxWidth = "100%"; // Style as needed
+  imageContainer.appendChild(imgElement);
+}
 
 const phoneInput = document.getElementById("companyPhone");
 
