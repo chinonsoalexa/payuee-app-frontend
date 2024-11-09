@@ -1,5 +1,7 @@
 var imageArray = [];
 var storeName = "";
+var companyPhone = "";
+var companyEmail = "";
 var storeDescription = "";
 var selectedCategories = [];
 
@@ -27,21 +29,27 @@ tagify.on('add', () => {
 
 // Function to validate the form
 function validateForm() {
-    // Check if blog title is provided
+    // Check if store name is provided
     if (!storeName) {
-        showToastMessageE("Blog title is required.");
+        showToastMessageE("Store name is required.");
+        return false;
+    }
+
+    if (!companyPhone) {
+        showToastMessageE("Company number is required.");
+        return false;
+    } else if (!validateCompanyPhone(companyPhone)) {
+        return false;
+    }
+
+    if (!companyEmail) {
+        showToastMessageE("Company email is required.");
         return false;
     }
 
     // Check if at least one description is provided
     if (!storeDescription) {
-        showToastMessageE("At least one product description is required.");
-        return false;
-    }
-
-    // Check if exactly three images are uploaded
-    if (imageArray.length !== 3) {
-        showToastMessageE("Exactly three images are required.");
+        showToastMessageE("Store description is required.");
         return false;
     }
 
@@ -51,8 +59,32 @@ function validateForm() {
         return false;
     }
 
+    // Check if exactly three images are uploaded
+    if (imageArray.length !== 1) {
+        showToastMessageE("Store Image is required.");
+        return false;
+    }
+
     // If all checks pass, return true
     return true;
+}
+
+function validateCompanyPhone(phone) {
+    // Remove any non-numeric characters from the phone number
+    const cleanedPhone = phone.replace(/[^0-9]/g, '');
+
+    // Check if the cleaned phone number has exactly 10 or 11 digits
+    if (cleanedPhone.length < 10 || cleanedPhone.length > 11) {
+        showToastMessageE("Company number must be exactly 10 or 11 digits.");
+        return false;
+    }
+
+    return true;
+}
+
+function getOnlyNumbers(text) {
+    // Use a regular expression to remove all non-numeric characters
+    return text.replace(/[^0-9]/g, '');
 }
 
 // Wait for DOM to load
@@ -61,50 +93,30 @@ document.addEventListener('DOMContentLoaded', function () {
     
     form.addEventListener('click', async function (event) {
         event.preventDefault();
-
-        // // Access category
-        // const categorySelect = document.querySelector('.js-example-placeholder-multiple');
-        
-        // // Function to get the selected categories
-        // function getSelectedCategories() {
-        //     const selectedCategories = [];
-        //     // Loop through selected options
-        //     for (let option of categorySelect.selectedOptions) {
-        //         selectedCategories.push(option.value);
-        //     }
-        //     return selectedCategories;
-        // }
-        
-        // Fetch editors dynamically on click
-        const qlEditor = document.querySelectorAll('.ql-editor'); // Get all editors
-        const descriptionEditor = qlEditor[0]; // First editor
-        // const descriptionEditor2 = qlEditor[1]; // Second editor (if it exists)
-
-        // Access the input element by its ID
-        const storeNameInput = document.getElementById('validationCustom01');
-        
-        // Get the value entered by the user
+    
+        const storeNameInput = document.getElementById('storeName');
         storeName = storeNameInput.value.trim();
-
-        // Validate Descriptions
-        storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : ''; // First editor content
-        // storeDescription2 = descriptionEditor2 ? descriptionEditor2.innerHTML.trim() : ''; // Second editor content
-
-        // Get the selected categories
-        // selectedCategories = getSelectedCategories();
-        
-        // Log the results
-        // console.log('Product Title:', storeName);
-        // console.log('Product Description 1:', storeDescription);
-        // console.log('Product Description 2:', storeDescription2);
-        // console.log('Selected Categories:', selectedCategories);
-
-        // Validate the form data
+    
+        const companyPhoneInput = document.getElementById('companyPhone');
+        companyPhone = companyPhoneInput.value.trim();
+    
+        const companyEmailInput = document.getElementById('companyEmail');
+        companyEmail = companyEmailInput.value.trim();
+    
+        const qlEditor = document.querySelectorAll('.ql-editor');
+        const descriptionEditor = qlEditor[0];
+        storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
+    
+        console.log('Store Name:', storeName);
+        console.log('Store Description:', storeDescription);
+        console.log('Company Phone:', companyPhone);
+        console.log('Company Email:', companyEmail);
+    
         if (validateForm()) {
             await postBlog();
-            // Proceed with form submission or AJAX request here
         }
     });
+    
 });
 
 async function postBlog() {
@@ -112,10 +124,10 @@ async function postBlog() {
     const formData = new FormData();
 
     // Append text fields to the FormData object
-    formData.append("storeName", storeName);
-    formData.append("blogDescription1", storeDescription);
-    formData.append("blogDescription2", storeDescription2);
-    formData.append("blogCategory", selectedCategories);
+    formData.append("StoreName", storeName);
+    formData.append("StoreDescription", storeDescription);
+    formData.append("companyPhone", getOnlyNumbers(companyPhone));
+    formData.append("ShopImage", selectedCategories);
 
     // Append images to the FormData object
     imageArray.forEach((image, index) => {
