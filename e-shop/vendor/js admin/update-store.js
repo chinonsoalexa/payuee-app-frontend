@@ -235,7 +235,7 @@ function initializeDropzone() {
 
             // Handle the maxfilesexceeded event
             this.on("maxfilesexceeded", function (file) {
-                showToastMessageE("Only three images are allowed, and sizes should be less than 5MB.");
+                showToastMessageE("only one image is allowed, and sizes should be less than 5MB.");
                 this.removeFile(file); // Remove the extra file
             });
         }
