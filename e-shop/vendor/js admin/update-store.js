@@ -157,13 +157,9 @@ async function updateStore() {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
-        } else {
-            const error = await response.json();
-             showToastMessageE("Error updating store");
-             console.error("Error updating store: ", error);
         }
         const result = await response.json();
-        showToastMessageE("Store updated successfully");
+        showToastMessageS("Store updated successfully");
         clearFields();
     } catch (error) {
         console.error("Network error:", error);
@@ -194,7 +190,7 @@ async function fetchDataAndFillForm() {
             document.getElementById('storeName').value = storeData.shop_name || '';
             document.getElementById('companyPhone').value = storeData.shop_phone || '';
             document.getElementById('companyEmail').value = storeData.shop_email || '';
-            
+
             // Update Tags
             let tagsInput = document.getElementById('tags');
             tagsInput.value = storeData.shop_categories;
@@ -297,6 +293,14 @@ function initializeDropzone() {
 
 // Call the function to initialize Dropzone for images
 initializeDropzone();
+
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
 
 // show toast error
 function showToastMessageE(message) {
