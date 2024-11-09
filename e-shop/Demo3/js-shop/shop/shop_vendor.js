@@ -84,6 +84,12 @@ async function getProducts() {
         // Call the function to render categories
         renderCategories(extractValues(responseData.vendor.shop_categories), "categoryList");
 
+        // Call the function with the default and main image paths
+        loadMainImage(
+            "/e-shop/Demo3/../images/shop/shop_banner6.png",
+            "https://payuee.com/image/"+responseData.vendor.shop_image
+        );
+
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
@@ -903,12 +909,6 @@ function renderCategories(categories, elementId) {
       imageElement.src = mainSrc;
     };
   }
-
-  // Call the function with the default and main image paths
-  loadMainImage(
-    "/e-shop/Demo3/../images/shop/shop_banner6.png",
-    "/e-shop/Demo3/../images/shop/shop_bannerr6.jpg"
-  );
 
   // Attach event listener to search input
   document.getElementById("searchField").addEventListener("input", async (event) => {
