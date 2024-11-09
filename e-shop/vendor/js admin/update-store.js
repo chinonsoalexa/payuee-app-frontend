@@ -111,10 +111,10 @@ function validateForm() {
     }
 
     // Check if exactly three images are uploaded
-    if (imageArray.length !== 1) {
-        showToastMessageE("Store Image is required.");
-        return false;
-    }
+    // if (imageArray.length !== 1) {
+    //     showToastMessageE("Store Image is required.");
+    //     return false;
+    // }
 
     // If all checks pass, return true
     return true;
@@ -206,7 +206,7 @@ async function fetchDataAndFillForm() {
 }
 
 function fillForm(storeData) {
-    
+
   // Populate form fields with fetched data
   document.getElementById('storeName').value = storeData.shop_name || '';
   document.getElementById('companyPhone').value = storeData.shop_phone || '';
