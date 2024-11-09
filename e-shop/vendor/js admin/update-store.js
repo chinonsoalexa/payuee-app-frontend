@@ -165,7 +165,7 @@ async function updateStore() {
         });
         // console.log("this is post data: ", formData);
         if (!response.ok) {
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+            if  (response.error === 'No Authentication cookie found' || response.error === "Unauthorized attempt! JWT's not valid!" || response.error === "No Refresh cookie found") {
                 logout();
             }
             showToastMessageE("An error occurred while updating the store.");
