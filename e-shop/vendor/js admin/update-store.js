@@ -206,9 +206,7 @@ async function fetchDataAndFillForm() {
 }
 
 function fillForm(storeData) {
-  // Access the store details from the "success" object
-  const storeData = data.success;
-
+    
   // Populate form fields with fetched data
   document.getElementById('storeName').value = storeData.shop_name || '';
   document.getElementById('companyPhone').value = storeData.shop_phone || '';
