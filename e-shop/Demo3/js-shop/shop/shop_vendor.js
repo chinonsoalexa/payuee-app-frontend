@@ -81,6 +81,9 @@ async function getProducts() {
 
         const responseData = await response.json();
 
+        // Call the function to render categories
+        renderCategories(extractValues(responseData.vendor.shop_categories), "categoryList");
+
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
@@ -863,12 +866,9 @@ function renderProducts2(products) {
 }
 
 // Define the categories
-const categories = [
-    "StayHome", "New In", "Jackets", "Hoodies", "Men", "Women", "Trousers", "Accessories", "Shoes"
-  ];
-
-// Call the function to render categories
-renderCategories(categories, "categoryList");
+// const categories = [
+//     "StayHome", "New In", "Jackets", "Hoodies", "Men", "Women", "Trousers", "Accessories", "Shoes"
+//   ];
 
 // Function to render categories
 function renderCategories(categories, elementId) {
@@ -963,3 +963,13 @@ function renderCategories(categories, elementId) {
 
     }
 }
+
+function extractValues(jsonString) {
+    // Parse the JSON string into an array of objects
+    const array = JSON.parse(jsonString);
+  
+    // Map each object to its 'value' and join them with a comma
+    const valuesString = array.map(obj => obj.value).join(", ");
+  
+    return valuesString; // Return the final string
+  }

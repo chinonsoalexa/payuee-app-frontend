@@ -242,7 +242,6 @@ function initializeDropzone() {
     };
 }
 
-
 // Call the function to initialize Dropzone for images
 initializeDropzone();
 
