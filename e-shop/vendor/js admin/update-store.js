@@ -7,42 +7,53 @@ var selectedCategories = "";
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', async function () {
+    console.log('DOM fully loaded and parsed.');
+
     // Populate form fields on load
     await fetchDataAndFillForm();
+    console.log('Data fetched and form populated.');
 
     const form = document.getElementById('postButton');
     
     form.addEventListener('click', async function (event) {
+        console.log('Post button clicked.');
         event.preventDefault();
-    
+
+        // Get the store name
         const storeNameInput = document.getElementById('storeName');
         storeName = storeNameInput.value.trim();
-    
+        console.log('Store Name:', storeName);
+
+        // Get the company phone
         const companyPhoneInput = document.getElementById('companyPhone');
         companyPhone = companyPhoneInput.value.trim();
-    
+        console.log('Company Phone:', companyPhone);
+
+        // Get the company email
         const companyEmailInput = document.getElementById('companyEmail');
         companyEmail = companyEmailInput.value.trim();
+        console.log('Company Email:', companyEmail);
 
-        // Get the tags
+        // Get the tags (categories)
         const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
         selectedCategories = selectedCategoriesInput.value;
-    
+        console.log('Company Category:', selectedCategories);
+
+        // Get the store description
         const qlEditor = document.querySelectorAll('.ql-editor');
         const descriptionEditor = qlEditor[0];
         storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
-    
-        // console.log('Store Name:', storeName);
-        // console.log('Store Description:', storeDescription);
-        // console.log('Company Phone:', companyPhone);
-        // console.log('Company Email:', companyEmail);
-        // console.log('Company Category:', selectedCategories);
-    
+        console.log('Store Description:', storeDescription);
+
+        // Validate form before submitting
         if (validateForm()) {
+            console.log('Form is valid, proceeding to update store.');
             await updateStore();
+        } else {
+            console.log('Form validation failed.');
         }
     });
-    
+
 });
 
 const input = document.querySelector('#tags');
