@@ -199,8 +199,12 @@ async function fetchDataAndFillForm() {
             // document.getElementById('shopCity').value = storeData.shop_city || '';
 
             // Populate the shop categories field
-            const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
-            selectedCategoriesInput.value = JSON.parse(storeData.shop_categories).map(category => category.value).join(', ') || '';
+            // const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
+            // selectedCategoriesInput.value = JSON.parse(storeData.shop_categories).map(category => category.value).join(', ') || '';
+
+            // Update Tags
+            let tagsInput = document.getElementById('tags');
+            tagsInput.value = storeData.shop_categories;
 
             // Populate the shop description in the editor
             const qlEditor = document.querySelector('.ql-editor');
