@@ -157,10 +157,12 @@ async function updateStore() {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
+            showToastMessageE("An error occurred while updating the store.");
+            return;
         }
         const result = await response.json();
         showToastMessageS("Store updated successfully");
-        fillForm(result.success)
+        fillForm(result.success);
     } catch (error) {
         console.error("Network error:", error);
     }
