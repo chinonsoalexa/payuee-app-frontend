@@ -233,8 +233,6 @@ function fillForm(storeData) {
         imgElement.alt = storeData.shop_name;
         imgElement.style.maxWidth = "100%"; // Style as needed
         imageContainer.appendChild(imgElement);
-  } else {
-    
   }
 
 }
