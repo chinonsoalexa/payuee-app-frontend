@@ -222,14 +222,21 @@ function fillForm(storeData) {
       qlEditor.innerHTML = storeData.shop_description || '';
   }
 
-  // Display the shop image in the imageContainer
-  const imageContainer = document.getElementById('imageContainer');
-  imageContainer.innerHTML = ''; // Clear any previous images
-  const imgElement = document.createElement('img');
-  imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
-  imgElement.alt = storeData.shop_name;
-  imgElement.style.maxWidth = "100%"; // Style as needed
-  imageContainer.appendChild(imgElement);
+  if (storeData.shop_image != "") {
+        // Display the shop image in the imageContainer
+        const imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = ''; // Clear any previous images
+        // Remove the class
+        imageContainer.classList.remove("hidden");
+        const imgElement = document.createElement('img');
+        imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
+        imgElement.alt = storeData.shop_name;
+        imgElement.style.maxWidth = "100%"; // Style as needed
+        imageContainer.appendChild(imgElement);
+  } else {
+    
+  }
+
 }
 
 const phoneInput = document.getElementById("companyPhone");
