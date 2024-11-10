@@ -234,7 +234,12 @@ function fillForm(storeData) {
         // Remove the class
         imageContainer.classList.remove("hidden");
   }
-
+    // Select the button by its ID
+    const visitStoreBtn = document.getElementById("visitStoreBtn");
+    // Add an onclick event to redirect to the store URL
+    visitStoreBtn.addEventListener("click", function() {
+        window.location.href = "https://payuee.com/store/" + storeData.store_unique_url;
+    });
 }
 
 const phoneInput = document.getElementById("companyPhone");
