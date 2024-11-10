@@ -688,7 +688,7 @@ function sortingAlgo() {
 // Add event listener to the select element
 document.getElementById('sortingSelect').addEventListener('change', function() {
     const selectedValue = this.value;  // Get the selected option value
-    console.log('Selected sorting option value:', selectedValue);
+    // console.log('Selected sorting option value:', selectedValue);
     sort_option = selectedValue;
     getProducts();
 });
@@ -700,7 +700,7 @@ searchInput.addEventListener('input', function(event) {
   const searchQuery = event.target.value;  // Get the current input value
   
   // Perform actions with the search query
-  console.log('Search query:', searchQuery);
+//   console.log('Search query:', searchQuery);
   
   // You can call a function to handle the search here, e.g., make an API request or filter results
   performSearch(searchQuery);

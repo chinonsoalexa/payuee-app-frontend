@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
+    sortingAlgo();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
@@ -710,7 +711,7 @@ function sortingAlgo() {
     // Add event listener to the select element
     document.getElementById('sortingSelect').addEventListener('change', function() {
         const selectedValue = this.value;  // Get the selected option value
-        console.log('Selected sorting option value:', selectedValue);
+        // console.log('Selected sorting option value:', selectedValue);
         sort_option = selectedValue;
         getProducts();
     });
