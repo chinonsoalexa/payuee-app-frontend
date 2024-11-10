@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-
+    initializePrizeRange();
     await getProducts();
 
 });
@@ -972,4 +972,27 @@ function renderCategories(categories, elementId) {
         console.error("Error parsing JSON:", error);
         return [];
     }
+}
+
+function initializePrizeRange() {
+    document.querySelectorAll('.price-range-slider').forEach($se => {
+        const currency = $se.dataset.currency || '₦';
+        $($se).slider({
+            min: parseFloat($se.getAttribute('data-slider-min')),
+            max: parseFloat($se.getAttribute('data-slider-max')),
+            step: parseFloat($se.getAttribute('data-slider-step')),
+            value: JSON.parse($se.getAttribute('data-slider-value')),
+            tooltip_split: true,
+            formatter: function(value) {
+                return currency === "kg" ? `${value}kg` : `${currency}${value}`;
+            }
+        }).on('slideStop', function(event) {
+            const [currentMin, currentMax] = event.value;
+            const $minEl = $se.parentElement.querySelector('.price-range__min');
+            const $maxEl = $se.parentElement.querySelector('.price-range__max');
+            $minEl.innerText = `${currentMin}${currency === "kg" ? 'kg' : ''}`;
+            $maxEl.innerText = `${currentMax}${currency === "kg" ? 'kg' : ''}`;
+        });
+    });
+    
 }
