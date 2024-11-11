@@ -394,7 +394,7 @@ function renderProducts(product, subscription) {
         isOutOfStock = true;
         buttonText = 'Your Item';
         buttonDisabled =  'disabled';
-    } else if (subscription.store.active != true) {
+    } else if (subscription.active != true) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Temporarily Unavailable';
