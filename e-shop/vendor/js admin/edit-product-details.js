@@ -1,4 +1,5 @@
 var productTitle = "";
+let eShopUserId = 0;
 var productDescription = "";
 var initialCost = 0.0;
 var netWeight = 0;
@@ -43,6 +44,7 @@ async function updateProduct() {
     const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
     const requestBody = {
         product_id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
+        eshop_user_id: parseInt(eShopUserId),
         product_title: productTitle,
         product_description: productDescription,
         initial_cost: parseFloat(initialCost),  // Ensure this is a float
@@ -516,6 +518,7 @@ async function getProduct(productID) {
         }
   
         const responseData = await response.json();
+        eShopUserId = responseData.success.eshop_user_id
         updateFields(responseData.success);
        
   } finally {
