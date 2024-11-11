@@ -510,6 +510,14 @@ function validatePrices() {
     }
 }
 
+// show toast error
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
 async function getProduct(productID) {
     const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
   

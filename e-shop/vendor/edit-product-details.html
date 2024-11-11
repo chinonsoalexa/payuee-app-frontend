@@ -152,6 +152,17 @@
     <!-- Page Header Ends                              -->
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3 toast-index toast-rtl">
+        <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex justify-content-between alert-secondary">
+            <div class="toast-body" id="toastError">...</div>
+            <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast"
+              aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+
       <!-- Page Sidebar Start-->
       <div class="sidebar-wrapper" data-layout="fill-svg">
         <div>
@@ -3162,6 +3173,9 @@
 
     <!-- sweet alert -->
   <script src="js/sweet-alert/sweetalert.min.js"></script>
+
+  <!-- Toast file -->
+  <script src="js/notify/custom-notify.js"></script>
 
 </body>
 
