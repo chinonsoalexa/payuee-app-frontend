@@ -138,7 +138,7 @@ async function getProducts() {
             });
         }
         responseData.success.forEach((product) => {
-            renderProducts(product, responseData.subscription);
+            renderProducts(product, responseData.store);
         });
         
         NextPageOnLoad = responseData.pagination.NextPage;
