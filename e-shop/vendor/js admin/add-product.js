@@ -574,6 +574,34 @@ function updateDropzoneUI() {
     imageContainer.appendChild(uploadedImagesDiv);
 }
 
+  // Toggle visibility of extra price input based on checkbox
+  const repostCheck = document.getElementById('repostCheck');
+  const extraPriceInput = document.getElementById('extraPriceInput');
+  const maxExtraPriceInput = document.getElementById('maxExtraPrice');
+  const sellingPriceInput = document.getElementById('sellingPrice');
+
+  repostCheck.addEventListener('change', function () {
+    extraPriceInput.style.display = this.checked ? 'block' : 'none';
+
+    // Reset max extra price value if checkbox is unchecked
+    if (!this.checked) maxExtraPriceInput.value = '';
+  });
+
+// Monitor changes in the max extra price and selling price
+  maxExtraPriceInput.addEventListener('input', validateMaxExtraPrice);
+  sellingPriceInput.addEventListener('input', validateMaxExtraPrice);
+
+  function validateMaxExtraPrice() {
+    const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
+    const maxExtraPrice = parseFloat(maxExtraPriceInput.value) || 0;
+
+    // Ensure maxExtraPrice does not exceed selling price
+    if (repostCheck.checked && maxExtraPrice > sellingPrice) {
+      maxExtraPriceInput.value = sellingPrice;
+      alert("Maximum extra price cannot exceed the selling price.");
+    }
+  }
+
 // Function to get product categories
 function getFormData() {
     // Get the selected category

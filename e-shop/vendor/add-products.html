@@ -427,7 +427,7 @@
                                             <label class="form-label d-block m-0">Add Tag</label>
                                           </div>
                                           <div class="col-12">
-                                            <input id="tags" name="basic-tags" value="Casual Wear, Sportswear, Party Dresses, Work Outfits, Baby Essentials, School Bags">
+                                            <input id="tags" name="basic-tags" value="Casual Wear, Sportswear, Work Outfits">
                                             <p class="f-light">Products can be tagged (SEO)</p>
                                           </div>
                                         </div>
@@ -474,6 +474,12 @@
                                           <p class="f-light">Enabling this option allows vendors to add this product to their own listings through post collaboration if it becomes unavailable. This feature helps maintain product visibility and availability across the platform.</p>
                                         </div>
                                       </div>   
+                                      <!-- Extra Price Input (Hidden by Default) -->
+                                      <div class="col-12" id="extraPriceInput" style="display: none;">
+                                        <label class="form-label">Maximum Extra Price for Vendors</label>
+                                        <input type="number" class="form-control" id="maxExtraPrice" placeholder="Enter max extra price" min="0">
+                                        <small class="text-muted">Set the maximum extra price vendors can add when collaborating.</small>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -487,12 +493,12 @@
                                   <div class="col-sm-6">
                                     <label class="form-label" for="initialCost">Initial cost <span
                                         class="txt-danger">*</span></label>
-                                    <input class="form-control" id="initialCost" type="number">
+                                    <input class="form-control" id="initialCost" type="number" min="0" placeholder="Enter initial price">
                                   </div>
                                   <div class="col-sm-6">
                                     <label class="form-label" for="sellingPrice">Selling price <span
                                         class="txt-danger">*</span></label>
-                                    <input class="form-control" id="sellingPrice" type="number">
+                                    <input class="form-control" id="sellingPrice" type="number" min="0" placeholder="Enter selling price">
                                   </div>
                                   <div class="col-sm-6">
                                     <label class="form-label">Choose your currency</label>
