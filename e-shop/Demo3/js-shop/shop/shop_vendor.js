@@ -325,9 +325,9 @@ function renderProducts(product) {
     if (vendorId == product.eshop_user_id) {
         editProduct = `
             <a href="https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
-                <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Repost Item">
+                <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#edit-content" />
+                        <use href="#icon_edit" />
                     </svg>
                 </button>
             </a>
