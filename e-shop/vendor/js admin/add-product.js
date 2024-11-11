@@ -550,6 +550,7 @@ repostCheck.addEventListener('change', function () {
 
 sellingPriceInput.addEventListener('input', validatePrices);
 initialCostInput.addEventListener('input', validatePrices);
+initialCostInput.addEventListener('keyup', validateCollabPrices);
 // maxExtraPriceInput.addEventListener('input', validateMaxExtraPrice);
 
 function validatePrices() {
@@ -560,14 +561,16 @@ function validatePrices() {
     sellingPriceInput.value = initialCost;
     showToastMessageE("Selling price cannot be greater than the initial cost.");
   }
-
-  if (extraPriceInput.value < sellingPrice) {
-    sellingPriceInput.value = extraPriceInput.value;
-    showToastMessageE("Selling price cannot be less than the collaboration max price.");
-  }
 }
 
+function validateCollabPrices() {
+    const initialCost = parseFloat(initialCostInput.value) || 0;
 
+    if (extraPriceInput.value < initialCost) {
+      sellingPriceInput.value = extraPriceInput.value;
+      showToastMessageE("Selling price cannot be less than the collaboration max price.");
+    }
+  }
 
 // Function to get product categories
 function getFormData() {
