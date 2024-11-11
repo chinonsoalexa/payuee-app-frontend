@@ -540,7 +540,7 @@ function showToastMessageE(message) {
 }
 
 async function getProduct(productID) {
-    const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
+    const apiUrl = "https://api.payuee.com/vendor/product-collaboration/" + productID;
   
     const requestOptions = {
         method: "GET",

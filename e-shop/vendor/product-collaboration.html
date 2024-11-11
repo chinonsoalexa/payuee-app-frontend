@@ -268,7 +268,7 @@
           <div class="page-title">
             <div class="row">
               <div class="col-sm-6 ps-0">
-                <h3>Edit Add-product</h3>
+                <h3>Vendor post collaboration</h3>
               </div>
               <div class="col-sm-6 pe-0">
                 <ol class="breadcrumb">
@@ -277,7 +277,7 @@
                         <use href="#stroke-home"></use>
                       </svg></a></li>
                   <li class="breadcrumb-item">ECommerce</li>
-                  <li class="breadcrumb-item active">Edit Add-product</li>
+                  <li class="breadcrumb-item active">Vendor post collaboration</li>
                 </ol>
               </div>
             </div>
@@ -288,7 +288,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Edit Product Form</h4>
+                    <h4>Vendor post collaboration</h4>
                   </div>
                   <div class="card-body">
                     <div class="row g-xl-5 g-3">
@@ -365,9 +365,9 @@
                                 <label class="form-label col-12 m-0" for="productTitle1">Edit Product Title <span
                                     class="txt-danger"> *</span></label>
                                 <div class="col-12 custom-input">
-                                  <input class="form-control is-invalid" id="productTitle1" type="text" required="">
+                                  <input class="form-control is-invalid" id="productTitle1" type="text" required="" readonly>
                                   <div class="valid-feedback">Looks good!</div>
-                                  <div class="invalid-feedback">A product name is required and recommended to be unique.
+                                  <div class="invalid-feedback">This is an uneditable field set by the main vendor.
                                   </div>
                                 </div>
                                 <div class="col-12">
@@ -392,7 +392,7 @@
                                             <label class="form-label m-0" for="validationDefault04">Edit Category</label>
                                           </div>
                                           <div class="col-12">
-                                            <select class="form-select" id="validationDefault04" required="">
+                                            <select class="form-select" id="validationDefault04" required="" disabled>
                                               <option selected="" value="outfits">Outfits</option>
                                               <option value="jewelry">Jewelry</option>
                                               <option value="kids-accessories">Kids Accessories</option>
@@ -401,7 +401,7 @@
                                               <option value="gadgets">Gadgets</option>
                                               <option value="others">Others</option>
                                             </select>                                          
-                                            <p class="f-light">A product can be added to a category</p>
+                                            <p class="f-light">This category is set by the main vendor and cannot be edited.</p>
                                           </div>
                                         </div>
                                       </div>
@@ -445,25 +445,11 @@
                                       </div>
                                       <div class="col-sm-6">
                                         <label class="form-label">Stock Availability</label>
-                                        <select class="form-select"  id="stockAvailabilityStatus">
+                                        <select class="form-select"  id="stockAvailabilityStatus" disabled>
                                           <option selected="" value="in-stock">In stock</option>
                                           <option value="pre-order">Pre-order</option>
                                         </select>
                                       </div>
-                                      <div class="col-12">
-                                        <label class="form-label">Allow Vendor Post Collaboration</label>
-                                        <div class="form-check">
-                                          <input class="form-check-input" id="repostCheck" type="checkbox">
-                                          <label class="form-check-label m-0" for="repostCheck">Allow Post Collaboration</label>
-                                          <p class="f-light">Enabling this option allows vendors to add this product to their own listings through post collaboration if it becomes unavailable. This feature helps maintain product visibility and availability across the platform.</p>
-                                        </div>
-                                      </div>   
-                                      <!-- Extra Price Input (Hidden by Default) -->
-                                      <div class="col-12" id="extraPriceBox" style="display: none;">
-                                        <label class="form-label">Maximum Extra Price for Vendors</label>
-                                        <input type="number" class="form-control" id="maxExtraPrice" placeholder="Enter max extra price" min="0">
-                                        <small class="text-muted">Set the maximum extra price vendors can add when collaborating.</small>
-                                      </div> 
                                     </div>
                                   </div>
                                 </div>
@@ -477,7 +463,7 @@
                                   <div class="col-sm-6">
                                     <label class="form-label" for="initialCost">Edit Initial cost <span
                                         class="txt-danger">*</span></label>
-                                    <input class="form-control" id="initialCost" type="number">
+                                    <input class="form-control" id="initialCost" type="number" readonly>
                                   </div>
                                   <div class="col-sm-6">
                                     <label class="form-label" for="sellingPrice">Edit Selling price <span
@@ -486,14 +472,14 @@
                                   </div>
                                   <div class="col-sm-6">
                                     <label class="form-label">Choose your currency</label>
-                                    <select id="currencySelect" class="form-select" aria-label="Default select example">
+                                    <select id="currencySelect" class="form-select" aria-label="Default select example" disabled>
                                       <option selected="NGN">Naira ₦</option>
                                     </select>
                                   </div>
                                   <div class="col-sm-6">
                                     <label class="form-label" for="productStock1">Edit Product Quantity<span
                                         class="txt-danger">*</span></label>
-                                    <input class="form-control" id="productStock1" type="number">
+                                    <input class="form-control" id="productStock1" type="number" readonly>
                                   </div>
                                   <div class="col-12">
                                     <label class="form-label">Edit product discount<i class="fas fa-question-circle ms-1"
@@ -527,12 +513,12 @@
                                             <h6 class="form-label">Edit Shipping Details</h6>
                                             <div class="row gx-xl-3 gx-md-2 gy-md-0 g-2">
                                               <div class="col-md-6">
-                                                <input class="form-control" id="estimatedDelivery" type="number" placeholder="Estimated Days to Delivery (e.g., 5 days)">
+                                                <input class="form-control" id="estimatedDelivery" type="number" placeholder="Estimated Days to Delivery (e.g., 5 days)" readonly>
                                               </div>
                                             </div>
                                             <div class="row mt-3">
                                               <div class="col-12">
-                                                <p class="f-light">Note: Actual delivery time may vary due to external factors such as weather or holidays.</p>
+                                                <p class="f-light">Note: Delivery time is set by the main vendor and may vary due to external factors such as weather or holidays. This information is non-editable.</p>
                                               </div>
                                             </div>
                                           </div>                                          
@@ -543,8 +529,8 @@
                                               <label class="form-label" for="netWeight">Edit Weight (kg)</label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper weight for product items."></i>
                                             </div>
                                             <div class="col-12">
-                                              <input class="form-control" id="netWeight" type="number">
-                                              <p class="f-light">Decide if the product is a digital or physical item. Shipping may be necessary for real-world items.</p>
+                                              <input class="form-control" id="netWeight" type="number" readonly>
+                                              <p class="f-light">Note: The product type (digital or physical) is set by the main vendor and cannot be edited. Shipping may be necessary for physical items.</p>
                                             </div>
                                           </div>
                                         </div>
@@ -554,13 +540,13 @@
                                               <label class="form-label" for="exampleFormControlInput1">Edit Dimensions </label><i class="fas fa-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper length/width and height for product items."></i>
                                             </div>
                                             <div class="col-md-4 col-sm-6"> 
-                                              <input class="form-control" id="productLength" type="number" placeholder="Length[l]">
+                                              <input class="form-control" id="productLength" type="number" placeholder="Length[l]" readonly>
                                             </div>
                                             <div class="col-md-4 col-sm-6"> 
-                                              <input class="form-control" id="productWidth" type="number" placeholder="Width[w]">
+                                              <input class="form-control" id="productWidth" type="number" placeholder="Width[w]" readonly>
                                             </div>
                                             <div class="col-md-4"> 
-                                              <input class="form-control" id="productHeight" type="number" placeholder="Height[h]">
+                                              <input class="form-control" id="productHeight" type="number" placeholder="Height[h]" readonly>
                                             </div>
                                           </div>
                                         </div>
@@ -570,7 +556,7 @@
                                               <label class="form-label" for="shippingClassSelection">Edit Shipping Class</label>
                                             </div>
                                             <div class="col-md-12">
-                                              <select class="form-select" id="shippingClassSelection">
+                                              <select class="form-select" id="shippingClassSelection" disabled>
                                                 <option selected="">Basic Shipping</option>
                                                 <option>Expedited Shipping</option>
                                                 <option>International Shipping</option>
