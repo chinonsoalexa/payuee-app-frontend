@@ -572,7 +572,9 @@ function validateCollabPrices() {
   
     // Ensure max extra price does not exceed selling price
     if (maxExtraPrice > sellingPrice) {
+        console.log(sellingPrice);
       maxExtraPriceInput.value = sellingPrice;
+        console.log(maxExtraPriceInput);
       showToastMessageE("Collaboration max price cannot exceed the selling price.");
     }
   }
