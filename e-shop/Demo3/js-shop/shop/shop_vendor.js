@@ -344,10 +344,20 @@ function renderProducts(product) {
         `;
     }    
 
-    // Determine if the button should be disabled and what text to display
-    const isOutOfStock = product.stock_remaining === 0;
-    const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
-    const buttonDisabled = isOutOfStock ? 'disabled' : '';
+    let isOutOfStock;
+    let buttonText;
+    let buttonDisabled;
+    if (vendorId == product.eshop_user_id) {
+        // Determine if the button should be disabled and what text to display
+        isOutOfStock = true;
+        buttonText = 'Your Item';
+        buttonDisabled =  'disabled';
+    } else {
+        // Determine if the button should be disabled and what text to display
+        isOutOfStock = product.stock_remaining === 0;
+        buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+        buttonDisabled = isOutOfStock ? 'disabled' : '';
+    }
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
