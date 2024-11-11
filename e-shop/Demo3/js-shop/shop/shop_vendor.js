@@ -321,6 +321,29 @@ function renderProducts(product) {
         url = "https://payuee.com/outfits/" + product.product_url_id;
     }
 
+    var editProduct;
+    if (vendorId == product.eshop_user_id) {
+        editProduct = `
+            <a href="https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
+                <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Repost Item">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon_view" />
+                    </svg>
+                </button>
+            </a>
+        `
+    } else {
+        editProduct = `
+            <a href="${url}" class="pc__btn-wl-wrapper">
+                <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Repost Item">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon_retweet" />
+                    </svg>
+                </button>
+            </a>
+        `
+    }
+
     // Determine if the button should be disabled and what text to display
     const isOutOfStock = product.stock_remaining === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
@@ -353,13 +376,7 @@ function renderProducts(product) {
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                <a href="${url}" class="pc__btn-wl-wrapper">
-                    <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_retweet" />
-                        </svg>
-                    </button>
-                </a>
+                ${editProduct}
             </div>
             ${percentage}
             <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
