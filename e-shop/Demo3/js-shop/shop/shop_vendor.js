@@ -138,7 +138,7 @@ async function getProducts() {
             });
         }
         responseData.success.forEach((product) => {
-            renderProducts(product, subscription);
+            renderProducts(product, responseData.subscription);
         });
         
         NextPageOnLoad = responseData.pagination.NextPage;
@@ -394,7 +394,7 @@ function renderProducts(product, subscription) {
         isOutOfStock = true;
         buttonText = 'Your Item';
         buttonDisabled =  'disabled';
-    } else if (responseData.store.active != true) {
+    } else if (subscription.store.active != true) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Temporarily Unavailable';
