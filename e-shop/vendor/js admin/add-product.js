@@ -99,6 +99,7 @@ async function postProduct() {
     // Create a new FormData object
     const formData = new FormData();
     calculateOverallQuality();
+    const maxExtraPriceInput2 = document.getElementById('maxExtraPrice');
     // Append text fields to the FormData object
     formData.append("productTitle", productTitle);
     formData.append("productDescription", productDescription);
@@ -113,6 +114,7 @@ async function postProduct() {
     formData.append("tags", tags);
     formData.append("publishStatus", publishStatus);
     formData.append("repost", repost);
+    formData.append("RepostMaxPrice", maxExtraPriceInput2);
     formData.append("estimateDeliveryStat", estimateDeliveryStat);
     formData.append("productLengthValue", productLengthValue);
     formData.append("productWidthValue", productWidthValue);
@@ -549,7 +551,7 @@ const initialCostInput = document.getElementById('initialCost');
 // Show/hide extra price box based on checkbox state
 repostCheck.addEventListener('change', function () {
     extraPriceBox.style.display = this.checked ? 'block' : 'none';
-
+    
     // Clear max price if unchecked
     if (!this.checked) {
         maxExtraPriceInput.value = '';
