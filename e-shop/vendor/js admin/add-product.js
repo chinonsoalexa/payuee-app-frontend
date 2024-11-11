@@ -558,8 +558,8 @@ repostCheck.addEventListener('change', function () {
     }
 });
 
-sellingPriceInput.addEventListener('input', validatePrices);
-initialCostInput.addEventListener('input', validatePrices);
+sellingPriceInput.addEventListener('blur', validatePrices);
+initialCostInput.addEventListener('blur', validatePrices);
 initialCostInput.addEventListener('blur', validateCollabPrices);
 
 // Validate selling price
