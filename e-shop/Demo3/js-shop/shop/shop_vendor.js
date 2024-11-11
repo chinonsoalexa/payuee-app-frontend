@@ -376,7 +376,7 @@ function renderProducts(product, subscription) {
         `;
     } else {
         editProduct = `
-            <a href="${url}" class="pc__btn-wl-wrapper">
+            <a href="https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
                 <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use href="#icon_retweet" />
