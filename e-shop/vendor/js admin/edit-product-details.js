@@ -484,6 +484,32 @@ function setUpdatedJsonFields() {
     validateFields();
 }
 
+// selling price input
+const sellingPriceInput = document.getElementById('sellingPrice');
+// initial cost input
+const initialCostInput = document.getElementById('initialCost');
+
+sellingPriceInput.addEventListener('blur', validatePrices);
+initialCostInput.addEventListener('blur', validatePrices);
+
+// Validate selling price
+function validatePrices() {
+    const initialCost = parseFloat(initialCostInput.value) || 0;
+    const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
+
+    // Ensure selling price does not exceed initial cost
+    if (sellingPrice > initialCost) {
+        sellingPriceInput.value = initialCost;
+        showToastMessageE("Selling price cannot be greater than the initial cost.");
+    }
+
+    // Ensure max price does not exceed the initial cost
+    if (maxExtraPriceInput.value && parseFloat(maxExtraPriceInput.value) > initialCost) {
+        maxExtraPriceInput.value = initialCost;
+        showToastMessageE("Max price cannot be greater than the initial cost.");
+    }
+}
+
 async function getProduct(productID) {
     const apiUrl = "https://api.payuee.com/vendor/product/" + productID;
   
