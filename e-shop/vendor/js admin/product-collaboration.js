@@ -41,27 +41,27 @@ async function updateProduct() {
     // Validate fields before proceeding
     if (validateFields()) {
         // All fields are valid, proceed with posting the product
-    const apiUrl = "https://api.payuee.com/vendor/update-vendor-product";
+    const apiUrl = "https://api.payuee.com/vendor/post-collaboration";
     const requestBody = {
         product_id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
-        eshop_user_id: parseInt(eShopUserId),
-        product_title: productTitle,
+        // eshop_user_id: parseInt(eShopUserId),
+        // product_title: productTitle,
         product_description: productDescription,
-        initial_cost: parseFloat(initialCost),  // Ensure this is a float
+        // initial_cost: parseFloat(initialCost),  // Ensure this is a float
         selling_price: parseFloat(sellingPrice),  // Ensure this is a float
-        product_stock: parseInt(productStock, 10),  // Convert to integer
-        net_weight: parseFloat(netWeight),  // Ensure this is a float
-        category: selectedCategory,
-        tags: tags,
+        // product_stock: parseInt(productStock, 10),  // Convert to integer
+        // net_weight: parseFloat(netWeight),  // Ensure this is a float
+        // category: selectedCategory,
+        // tags: tags,
         publish_status: publishStatus,
         featured_status: featuredStatus,
-        repost: Boolean(repost),  // Ensure it's a boolean
-        estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
-        productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
-        productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
-        productHeightValue: parseFloat(productHeightValue),  // Ensure this is a float
-        shippingClassSelectionValue: shippingClassSelectionValue,
-        stockAvailabilityStatusValue: stockAvailabilityStatusValue,
+        // repost: Boolean(repost),  // Ensure it's a boolean
+        // estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
+        // productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
+        // productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
+        // productHeightValue: parseFloat(productHeightValue),  // Ensure this is a float
+        // shippingClassSelectionValue: shippingClassSelectionValue,
+        // stockAvailabilityStatusValue: stockAvailabilityStatusValue,
     };    
 
     const requestOptions = {
@@ -97,27 +97,12 @@ async function updateProduct() {
 
         const responseData = await response.json();
         // Perform actions when confirmed
-        swal("Product Successfully Updated", {
-            icon: "success",
-            buttons: {
-                confirm: true,
-            },
-            }).then(() => {
-            
-            });
+        showToastMessageS("Product Successfully Updated");
     } finally {
         document.getElementById('publishButton').classList.remove('disabled');
         }
     } else {
-        // If validation fails, you can display an error message or highlight invalid fields
-        swal({
-            title: "Please correct the highlighted errors",
-            icon: "warning",
-            buttons: {
-                cancel: true,
-                confirm: true,
-            },
-        })
+        showToastMessageE("Please correct the highlighted errors");
     }
     // Re-enable the submit button after processing
     document.getElementById('publishButton').classList.remove('disabled');
@@ -414,32 +399,32 @@ function updateFields(product) {
 
 function setUpdatedJsonFields() {
     // Update Product Title
-    let productTitleInput = document.getElementById('productTitle1');
-    productTitle = productTitleInput.value;
+    // let productTitleInput = document.getElementById('productTitle1');
+    // productTitle = productTitleInput.value;
 
     // Get the product description and title
     const editor = document.querySelector('.ql-editor');
     productDescription = editor.innerText.trim();
 
     // Update Initial Cost
-    let initialCostInput = document.getElementById('initialCost');
-    initialCost = initialCostInput.value;
+    // let initialCostInput = document.getElementById('initialCost');
+    // initialCost = initialCostInput.value;
 
     // Update Selling Price
     let sellingPriceInput = document.getElementById('sellingPrice');
     sellingPrice = sellingPriceInput.value;
 
     // Update Product Stock
-    let productStockInput = document.getElementById('productStock1');
-    productStock = productStockInput.value;
+    // let productStockInput = document.getElementById('productStock1');
+    // productStock = productStockInput.value;
 
     // Update Net Weight
-    let netWeightInput = document.getElementById('netWeight');
-    netWeight = netWeightInput.value;
+    // let netWeightInput = document.getElementById('netWeight');
+    // netWeight = netWeightInput.value;
 
     // Update Category
-    let categorySelect = document.getElementById('validationDefault04');
-    selectedCategory = categorySelect.value;
+    // let categorySelect = document.getElementById('validationDefault04');
+    // selectedCategory = categorySelect.value;
 
     // Update Tags
     let tagsInput = document.getElementById('tags');
@@ -454,32 +439,32 @@ function setUpdatedJsonFields() {
     featuredStatus = featuredStatusInput.value;
     
     // Get the checkbox element
-    const repostCheckbox = document.getElementById('repostCheck');
-    repost = repostCheckbox.checked;
+    // const repostCheckbox = document.getElementById('repostCheck');
+    // repost = repostCheckbox.checked;
 
     // Estimated Delivery
-    const estimatedDelivery = document.getElementById('estimatedDelivery');
-    estimateDeliveryStat = estimatedDelivery.value;
+    // const estimatedDelivery = document.getElementById('estimatedDelivery');
+    // estimateDeliveryStat = estimatedDelivery.value;
 
     // Validate Product Length
-    const productLength = document.getElementById('productLength');
-    productLengthValue = productLength.value;
+    // const productLength = document.getElementById('productLength');
+    // productLengthValue = productLength.value;
 
     // Validate Product Width
-    const productWidth = document.getElementById('productWidth');
-    productWidthValue = productWidth.value;
+    // const productWidth = document.getElementById('productWidth');
+    // productWidthValue = productWidth.value;
 
     // Validate Product Height
-    const productHeight = document.getElementById('productHeight');
-    productHeightValue = productHeight.value;
+    // const productHeight = document.getElementById('productHeight');
+    // productHeightValue = productHeight.value;
 
     // Validate Shipping class
-    const shippingClassSelection = document.getElementById('shippingClassSelection');
-    shippingClassSelectionValue = shippingClassSelection.value;
+    // const shippingClassSelection = document.getElementById('shippingClassSelection');
+    // shippingClassSelectionValue = shippingClassSelection.value;
 
     // Validate Stock Availability
-    const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
-    stockAvailabilityStatusValue = stockAvailabilityStatus.value;
+    // const stockAvailabilityStatus = document.getElementById('stockAvailabilityStatus');
+    // stockAvailabilityStatusValue = stockAvailabilityStatus.value;
 
     validateFields();
 }
@@ -531,6 +516,14 @@ function validatePrices() {
     }
 }
 
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
 // show toast error
 function showToastMessageE(message) {
     document.getElementById('toastError').textContent = message;
@@ -558,7 +551,7 @@ async function getProduct(productID) {
   
             if (errorData.error === 'failed to get user from request') {
                 // need to do a data of just null event 
-                // displayErrorMessage();
+                showToastMessageE(errorData.error);
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
                 

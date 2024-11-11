@@ -97,27 +97,13 @@ async function updateProduct() {
 
         const responseData = await response.json();
         // Perform actions when confirmed
-        swal("Product Successfully Updated", {
-            icon: "success",
-            buttons: {
-                confirm: true,
-            },
-            }).then(() => {
-            
-            });
+        showToastMessageS("Product Successfully Updated");
     } finally {
         document.getElementById('publishButton').classList.remove('disabled');
         }
     } else {
         // If validation fails, you can display an error message or highlight invalid fields
-        swal({
-            title: "Please correct the highlighted errors",
-            icon: "warning",
-            buttons: {
-                cancel: true,
-                confirm: true,
-            },
-        })
+        showToastMessageS("Please correct the highlighted errors");
     }
     // Re-enable the submit button after processing
     document.getElementById('publishButton').classList.remove('disabled');
