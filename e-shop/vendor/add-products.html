@@ -45,7 +45,6 @@
   <link rel="stylesheet" type="text/css" href="css/vendors/tagify.css">
   <link rel="stylesheet" type="text/css" href="css/vendors/flatpickr/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="css/vendors/dropzone.css">
-  <link rel="stylesheet" type="text/css" href="css/vendors/sweetalert2.css">
   <!-- Plugins css Ends-->
   <!-- Bootstrap css-->
   <link rel="stylesheet" type="text/css" href="css/vendors/bootstrap.css">
@@ -78,6 +77,27 @@
   <!-- tap on tap ends-->
   <!-- page-wrapper Start-->
   <div class="page-wrapper compact-wrapper" id="pageWrapper">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3 toast-index toast-rtl">
+      <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-between alert-secondary">
+          <div class="toast-body" id="toastError">...</div>
+          <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3 toast-index toast-rtl">
+      <div class="toast hide toast fade" id="liveToast3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header toast-img"><img class="rounded me-2" src="images/dashboard/profile.png" alt="profile"><strong class="me-auto">Payuee Vendor</strong>
+          <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body toast-dark">
+          <h6 class="mb-2" id="toastMessage2">...</h6>
+        </div>
+      </div>
+    </div>
+
     <!-- Page Header Start-->
     <div class="page-header">
       <div class="header-wrapper row m-0">
@@ -3221,9 +3241,8 @@
   <!-- js file to post product -->
   <script src="js admin/add-product.js"></script>
 
-  <!-- sweet alert -->
-  <script src="js/sweet-alert/sweetalert.min.js"></script>
-
+  <!-- Toast file -->
+  <script src="js/notify/custom-notify.js"></script>
 </body>
 
 </html>

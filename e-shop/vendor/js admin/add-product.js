@@ -75,9 +75,6 @@ submitButton.addEventListener('click', async function (event) {
     productDescription = editor.innerText.trim();
     productTitle = productTitleInput.value;
 
-    // // console.log("Description:", productDescription);
-    // // console.log("Title:", productTitle);
-
     // Gather and validate form data
     getFormData();
     extractFormData();
@@ -88,14 +85,7 @@ submitButton.addEventListener('click', async function (event) {
         await postProduct();
     } else {
         // If validation fails, you can display an error message or highlight invalid fields
-        swal({
-            title: "Please correct the highlighted errors",
-            icon: "warning",
-            buttons: {
-                cancel: true,
-                confirm: true,
-            },
-        })
+        showToastMessageE("Please correct the highlighted errors")
     }
 
     // Re-enable the submit button after processing
@@ -145,17 +135,12 @@ async function postProduct() {
             if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
+            showToastMessageE("an unexpected error occurred")
+            return
         } else {
-            // const error = await response.json();
-            // console.error("Error posting product:", error);
+            
             const result = await response.json();
-            swal({
-                title: "Product posted successfully",
-                icon: "success",
-                buttons: {
-                    confirm: true,
-                },
-            })
+            showToastMessageS("Product posted successfully")
             clearFields();
         }
 
@@ -175,13 +160,7 @@ function initializeDropzone() {
             this.on("addedfile", async function (file) {
                 // Check if the number of uploaded images is already 4
                 if (imageArray.length >= 4) {
-                    swal({
-                        title: "Only four (4) images are allowed for a product",
-                        icon: "warning",
-                        buttons: {
-                            confirm: true,
-                        },
-                    });
+                    showToastMessageE("Only four (4) images are allowed for a product")
                     // Remove the new file preview and don't add it to the array
                     // Remove the file from the array
                     const index = imageArray.indexOf(file);
@@ -263,13 +242,8 @@ function initializeDropzone() {
 
 //                 // Check if the number of uploaded images is already 4
 //                 if (imageArray.length >= 4) {
-//                     swal({
-//                         title: "Only four (4) images are allowed for a product",
-//                         icon: "warning",
-//                         buttons: {
-//                             confirm: true,
-//                         },
-//                     });
+                        // showToastMessageE("Only four (4) images are allowed for a product")
+
 //                     // Remove the new file preview and don't add it to the array
 //                     file.previewElement.remove();
 //                     return; // Exit the function
@@ -482,7 +456,8 @@ async function detectObjects(image) {
     };
 
     img.onerror = () => {
-        console.error("Failed to load image.");
+        showToastMessageE("Failed to load image")
+        // console.error("Failed to load image.");
     };
 }
 
@@ -498,23 +473,10 @@ function processPredictions(predictions) {
 
     if (isUnauthorized) {
         // Notify the user or take action
-        swal({
-            title: "Unauthorized content detected",
-            icon: "warning",
-            buttons: {
-                confirm: false,
-            },
-            timer: 5000 
-        });
+        showToastMessageE("Unauthorized content detected")
     } else {
         // Optionally notify the user that authorized content was detected
-        // swal({
-        //     title: "Authorized content detected",
-        //     icon: "warning",
-        //     buttons: {
-        //         confirm: true,
-        //     },
-        // });
+        showToastMessageE("Authorized content detected")
     }
     return isUnauthorized; // Return whether the content is unauthorized
 }
@@ -574,33 +536,38 @@ function updateDropzoneUI() {
     imageContainer.appendChild(uploadedImagesDiv);
 }
 
-  // Toggle visibility of extra price input based on checkbox
-  const repostCheck = document.getElementById('repostCheck');
-  const extraPriceInput = document.getElementById('extraPriceInput');
-  const maxExtraPriceInput = document.getElementById('maxExtraPrice');
-  const sellingPriceInput = document.getElementById('sellingPrice');
+const repostCheck = document.getElementById('repostCheck');
+const extraPriceInput = document.getElementById('extraPriceInput');
+const maxExtraPriceInput = document.getElementById('maxExtraPrice');
+const sellingPriceInput = document.getElementById('sellingPrice');
+const initialCostInput = document.getElementById('initialCost');
 
-  repostCheck.addEventListener('change', function () {
-    extraPriceInput.style.display = this.checked ? 'block' : 'none';
+repostCheck.addEventListener('change', function () {
+  extraPriceInput.style.display = this.checked ? 'block' : 'none';
 
-    // Reset max extra price value if checkbox is unchecked
-    if (!this.checked) maxExtraPriceInput.value = '';
-  });
+  if (!this.checked) maxExtraPriceInput.value = '';
+});
 
-// Monitor changes in the max extra price and selling price
-  maxExtraPriceInput.addEventListener('input', validateMaxExtraPrice);
-  sellingPriceInput.addEventListener('input', validateMaxExtraPrice);
+sellingPriceInput.addEventListener('input', validatePrices);
+initialCostInput.addEventListener('input', validatePrices);
+// maxExtraPriceInput.addEventListener('input', validateMaxExtraPrice);
 
-  function validateMaxExtraPrice() {
-    const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
-    const maxExtraPrice = parseFloat(maxExtraPriceInput.value) || 0;
+function validatePrices() {
+  const initialCost = parseFloat(initialCostInput.value) || 0;
+  const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
 
-    // Ensure maxExtraPrice does not exceed selling price
-    if (repostCheck.checked && maxExtraPrice > sellingPrice) {
-      maxExtraPriceInput.value = sellingPrice;
-      alert("Maximum extra price cannot exceed the selling price.");
-    }
+  if (sellingPrice > initialCost) {
+    sellingPriceInput.value = initialCost;
+    showToastMessageE("Selling price cannot be greater than the initial cost.");
   }
+
+  if (extraPriceInput.value < sellingPrice) {
+    sellingPriceInput.value = extraPriceInput.value;
+    showToastMessageE("Selling price cannot be less than the collaboration max price.");
+  }
+}
+
+
 
 // Function to get product categories
 function getFormData() {
@@ -1017,6 +984,22 @@ function clearFields() {
 
 }
 
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
+// show toast error
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
 async function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
@@ -1035,13 +1018,7 @@ try {
     if (!response.ok) {
             // alert('an error occurred. Please try again');
         if (!response.ok) {
-            swal({
-                title: "an error occurred. Please try again",
-                icon: "warning",
-                buttons: {
-                    confirm: true,
-                },
-            });
+            showToastMessageE("an error occurred. Please try again")
             return;
         }
         return;
