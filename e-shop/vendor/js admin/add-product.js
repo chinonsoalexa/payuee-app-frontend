@@ -550,8 +550,7 @@ repostCheck.addEventListener('change', function () {
 
 sellingPriceInput.addEventListener('input', validatePrices);
 initialCostInput.addEventListener('input', validatePrices);
-initialCostInput.addEventListener('keyup', validateCollabPrices);
-// maxExtraPriceInput.addEventListener('input', validateMaxExtraPrice);
+initialCostInput.addEventListener('blur', validateCollabPrices);
 
 function validatePrices() {
   const initialCost = parseFloat(initialCostInput.value) || 0;
@@ -566,8 +565,8 @@ function validatePrices() {
 function validateCollabPrices() {
     const initialCost = parseFloat(initialCostInput.value) || 0;
 
-    if (extraPriceInput.value < initialCost) {
-      sellingPriceInput.value = extraPriceInput.value;
+    if (maxExtraPriceInput.value < initialCost) {
+      sellingPriceInput.value = maxExtraPriceInput.value;
       showToastMessageE("Selling price cannot be less than the collaboration max price.");
     }
   }
