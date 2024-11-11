@@ -555,6 +555,8 @@ repostCheck.addEventListener('change', function () {
         maxExtraPriceInput.value = '';
         maxExtraPriceInput.removeEventListener('blur', validateCollabPricesCheck);
         return;
+    } else {
+        maxExtraPriceInput.addEventListener('blur', validateCollabPricesCheck);
     }
 });
 
@@ -599,13 +601,15 @@ function validateCollabPrices() {
 
 // Ensure max price does not exceed selling price
 function validateCollabPricesCheck() {
-    const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
+    const initialCost = parseFloat(initialCostInput.value) || 0;
     const maxExtraPrice = parseFloat(maxExtraPriceInput.value) || 0;
 
-    // Ensure max extra price does not exceed selling price
-    if (maxExtraPrice > sellingPrice) {
-        maxExtraPriceInput.value = sellingPrice;
-        showToastMessageE("Collaboration max price cannot exceed the selling price.");
+    if (initialCost > 0) {
+        // Ensure max extra price does not exceed selling price
+        if (maxExtraPrice > initialCost) {
+            maxExtraPriceInput.value = initialCost;
+            showToastMessageE("Collaboration max price cannot exceed the initial cost.");
+        }
     }
 }
 
