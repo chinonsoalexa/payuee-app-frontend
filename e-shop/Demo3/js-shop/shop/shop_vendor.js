@@ -94,7 +94,7 @@ async function getProducts() {
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
         document.getElementById('storeName').textContent = responseData.vendor.shop_name;
-        if (responseData.store.subscription_type != "basic") {
+        if (responseData.store.subscription_type != "basic" && responseData.store.active == true) {
             document.getElementById('updateFilterStatus').innerHTML = `
                 <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="total-number" id="sortingSelect">
                     <option selected>Default Sorting</option>
