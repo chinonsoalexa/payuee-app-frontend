@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
-    // sortingAlgo();
 
     // Get the current URL
     const currentUrl = new URL(window.location.href);
@@ -95,7 +94,49 @@ async function getProducts() {
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
         document.getElementById('storeName').textContent = responseData.vendor.shop_name;
+        if (responseData.store.subscription_type != "basic") {
+            document.getElementById('updateFilterStatus').innerHTML = `
+                <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="total-number" id="sortingSelect">
+                    <option selected>Default Sorting</option>
+                    <option value="1">Featured</option>
+                    <option value="2">Best selling</option>
+                    <option value="3">Alphabetically, A-Z</option>
+                    <option value="4">Alphabetically, Z-A</option>
+                    <option value="5">Price, low to high</option>
+                    <option value="6">Price, high to low</option>
+                    <option value="7">Date, old to new</option>
+                    <option value="8">Date, new to old</option>
+                </select>
 
+                <div class="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0"></div>
+
+                <div class="col-size align-items-center order-1 d-none d-lg-flex">
+                    <span class="text-uppercase fw-medium me-2">View</span>
+                    <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="2">2</button>
+                    <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="3">3</button>
+                    <button class="btn-link fw-medium js-cols-size" data-target="products-grid"  data-cols="4">4</button>
+                </div><!-- /.col-size -->
+
+                <div class="shop-asc__seprator mx-3 bg-light d-none d-lg-block order-md-1"></div>
+
+                <div class="shop-filter d-flex align-items-center order-0 order-md-3">
+                    <button class="btn-link btn-link_f d-flex align-items-center ps-0 js-open-aside" data-aside="shopFilter">
+                    <svg class="d-inline-block align-middle me-2" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_filter" /></svg>
+                    <span class="text-uppercase fw-medium d-inline-block align-middle">Filter</span>
+                    </button>
+                </div><!-- /.col-size d-flex align-items-center ms-auto ms-md-3 -->
+            `;
+            sortingAlgo();
+            // Attach event listener to search input
+            document.getElementById("searchField").addEventListener("input", async (event) => {
+                const searchQuery = event.target.value;
+                if (searchQuery.length > 1) {
+                    await fetchProducts(searchQuery);
+                } else {
+                document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+                }
+            });
+        }
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
@@ -744,47 +785,6 @@ function sortingAlgo() {
         getProducts();
     });
     
-    // const searchInput = document.getElementById('searchField');
-      
-    // // Add an event listener to capture input changes
-    // searchInput.addEventListener('input', function(event) {
-    //   const searchQuery = event.target.value;  // Get the current input value
-      
-    //   // Perform actions with the search query
-    //   console.log('Search query:', searchQuery);
-      
-    //   // You can call a function to handle the search here, e.g., make an API request or filter results
-    //   performSearch(searchQuery);
-    // });
-    
-    // FILTER BY SHOP SEARCH
-    // Example search function (you can replace it with your logic)
-    function performSearch(query) {
-      if (query.length > 0) {
-        console.log('Performing search for:', query);
-        // Add your search logic here, such as making an API call or filtering displayed results
-              // Handle the color selection
-            //   loading();
-        
-              setTimeout(() => {
-              // Clear current product grid
-              document.getElementById('products-grid').innerHTML = '';
-          
-              // Shuffle products array before rendering
-            //   const shuffledProducts = shuffleArray(products);
-          
-              // Render the shuffled products
-            //   shuffledProducts.forEach((product) => {
-            //       renderProducts(product);
-            //   });
-          
-              }, 3000);
-      } else {
-        console.log('Search query is empty');
-        // Clear or reset search results if the input is empty
-      }
-    }
-    
     // FILTER BY WEIGHT (KG) AND BY PRICE
     const selectors = {
         elementClass: '.price-range-slider',
@@ -933,16 +933,6 @@ function renderCategories(categories, elementId) {
       imageElement.src = mainSrc;
     };
   }
-
-  // Attach event listener to search input
-  document.getElementById("searchField").addEventListener("input", async (event) => {
-    const searchQuery = event.target.value;
-    if (searchQuery.length > 1) {
-        await fetchProducts(searchQuery);
-    } else {
-      document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
-    }
-  });
 
   async function fetchProducts(searchTerm) {
     const apiUrl = "https://api.payuee.com/vendor-product-search";
