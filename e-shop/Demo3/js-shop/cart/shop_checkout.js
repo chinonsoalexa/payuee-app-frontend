@@ -1189,9 +1189,16 @@ function getUniqueVendorIds() {
     // Loop through each item in the cart
     cart.forEach(item => {
         // Ensure the eshop_user_id exists
-        if (item.eshop_user_id !== undefined) {
-            // Add the vendor ID to the Set (duplicates will be ignored automatically)
-            vendorIds.add(item.eshop_user_id);
+        if(!item.reposted) {
+            if (item.eshop_user_id !== undefined) {
+                // Add the vendor ID to the Set (duplicates will be ignored automatically)
+                vendorIds.add(item.eshop_user_id);
+            }
+        } else {
+            if (item.reposter_eshop_user_id !== undefined) {
+                // Add the vendor ID to the Set (duplicates will be ignored automatically)
+                vendorIds.add(item.reposter_eshop_user_id);
+            }
         }
     });
 
