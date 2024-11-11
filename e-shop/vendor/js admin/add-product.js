@@ -535,47 +535,79 @@ function updateDropzoneUI() {
     // Append the uploaded images below the icon
     imageContainer.appendChild(uploadedImagesDiv);
 }
-
+// max price check box
 const repostCheck = document.getElementById('repostCheck');
-const extraPriceInput = document.getElementById('extraPriceInput');
+// max price div box
+const extraPriceBox = document.getElementById('extraPriceBox');
+// max price input
 const maxExtraPriceInput = document.getElementById('maxExtraPrice');
+// selling price input
 const sellingPriceInput = document.getElementById('sellingPrice');
+// initial cost input
 const initialCostInput = document.getElementById('initialCost');
 
+// Show/hide extra price box based on checkbox state
 repostCheck.addEventListener('change', function () {
-  extraPriceInput.style.display = this.checked ? 'block' : 'none';
+    extraPriceBox.style.display = this.checked ? 'block' : 'none';
 
-  if (!this.checked) {
-    maxExtraPriceInput.value = '';
-    maxExtraPriceInput.addEventListener('blur', validateCollabPrices);
-  }
+    // Clear max price if unchecked
+    if (!this.checked) {
+        maxExtraPriceInput.value = '';
+        maxExtraPriceInput.removeEventListener('blur', validateCollabPricesCheck);
+        return;
+    }
 });
 
 sellingPriceInput.addEventListener('input', validatePrices);
 initialCostInput.addEventListener('input', validatePrices);
 initialCostInput.addEventListener('blur', validateCollabPrices);
 
+// Validate selling price
 function validatePrices() {
-  const initialCost = parseFloat(initialCostInput.value) || 0;
-  const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
+    const initialCost = parseFloat(initialCostInput.value) || 0;
+    const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
 
-  if (sellingPrice > initialCost) {
-    sellingPriceInput.value = initialCost;
-    showToastMessageE("Selling price cannot be greater than the initial cost.");
-  }
+    // Ensure selling price does not exceed initial cost
+    if (sellingPrice > initialCost) {
+        sellingPriceInput.value = initialCost;
+        showToastMessageE("Selling price cannot be greater than the initial cost.");
+    }
+
+    // Ensure max price does not exceed the initial cost
+    if (maxExtraPriceInput.value && parseFloat(maxExtraPriceInput.value) > initialCost) {
+        maxExtraPriceInput.value = initialCost;
+        showToastMessageE("Max price cannot be greater than the initial cost.");
+    }
 }
 
-// Function to validate collaboration max price against selling price
+// Validate collaboration max price
 function validateCollabPrices() {
+    const initialCost = parseFloat(initialCostInput.value) || 0;
+    const maxExtraPrice = parseFloat(maxExtraPriceInput.value) || 0;
+
+    // Ensure max price does not exceed the initial cost
+    if (maxExtraPrice > initialCost) {
+        maxExtraPriceInput.value = initialCost;
+        showToastMessageE("Max price cannot be greater than the initial cost.");
+    }
+
+    // Update max price if initial cost is greater than max price
+    if (maxExtraPrice <= initialCost && maxExtraPrice !== parseFloat(maxExtraPriceInput.value)) {
+        maxExtraPriceInput.value = initialCost;
+    }
+}
+
+// Ensure max price does not exceed selling price
+function validateCollabPricesCheck() {
     const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
     const maxExtraPrice = parseFloat(maxExtraPriceInput.value) || 0;
-  
+
     // Ensure max extra price does not exceed selling price
     if (maxExtraPrice > sellingPrice) {
-      maxExtraPriceInput.value = sellingPrice;
-      showToastMessageE("Collaboration max price cannot exceed the selling price.");
+        maxExtraPriceInput.value = sellingPrice;
+        showToastMessageE("Collaboration max price cannot exceed the selling price.");
     }
-  }
+}
 
 // Function to get product categories
 function getFormData() {
