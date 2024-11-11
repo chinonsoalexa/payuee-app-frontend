@@ -19,8 +19,8 @@ function handlePlanSelection(event, amount) {
 
 // Add event listeners for each plan button only once
 document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 1500));
-document.getElementById('businessPlan').addEventListener('click', (event) => handlePlanSelection(event, 5500));
-document.getElementById('premiumPlan').addEventListener('click', (event) => handlePlanSelection(event, 13500));
+document.getElementById('businessPlan').addEventListener('click', (event) => handlePlanSelection(event, 8500));
+document.getElementById('premiumPlan').addEventListener('click', (event) => handlePlanSelection(event, 15500));
 
 function processPayment() {
     const transactionCodeSection = document.getElementById('transactionCodeSection');
@@ -272,9 +272,9 @@ async function placeOrder() {
 
     if (chargeAmount == 1500) {
         vendorPlan = "basic";
-    } else if (chargeAmount == 5500) {
+    } else if (chargeAmount == 7500) {
         vendorPlan = "business";
-    } else if (chargeAmount == 13500) {
+    } else if (chargeAmount == 15500) {
         vendorPlan = "premium";
     }
 
