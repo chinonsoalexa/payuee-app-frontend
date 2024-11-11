@@ -389,7 +389,7 @@ function renderProducts(product, subscription) {
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
-    if (vendorId == product.eshop_user_id) {
+    if (subscription.user_store) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Your Item';
