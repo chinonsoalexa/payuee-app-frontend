@@ -364,7 +364,7 @@ function renderProducts(product, subscription) {
     }
 
     var editProduct;
-    if (vendorId == product.eshop_user_id) {
+    if (+vendorId == product.eshop_user_id) {
         editProduct = `
             <a href="https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
                 <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
