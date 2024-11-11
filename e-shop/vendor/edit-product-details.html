@@ -451,13 +451,19 @@
                                         </select>
                                       </div>
                                       <div class="col-12">
-                                        <label class="form-label">Allow Vendor Re-post</label>
+                                        <label class="form-label">Allow Vendor Post Collaboration</label>
                                         <div class="form-check">
                                           <input class="form-check-input" id="repostCheck" type="checkbox">
-                                          <label class="form-check-label m-0" for="repostCheck">Allow this product to be re-posted by vendors</label>
-                                          <p class="f-light">Enabling this option allows vendors to re-post this product in their listings if it becomes unavailable. Note: If the product is already re-posted, it may still be visible to buyers.</p>
+                                          <label class="form-check-label m-0" for="repostCheck">Allow Post Collaboration</label>
+                                          <p class="f-light">Enabling this option allows vendors to add this product to their own listings through post collaboration if it becomes unavailable. This feature helps maintain product visibility and availability across the platform.</p>
                                         </div>
                                       </div>   
+                                      <!-- Extra Price Input (Hidden by Default) -->
+                                      <div class="col-12" id="extraPriceBox" style="display: none;">
+                                        <label class="form-label">Maximum Extra Price for Vendors</label>
+                                        <input type="number" class="form-control" id="maxExtraPrice" placeholder="Enter max extra price" min="0">
+                                        <small class="text-muted">Set the maximum extra price vendors can add when collaborating.</small>
+                                      </div> 
                                     </div>
                                   </div>
                                 </div>

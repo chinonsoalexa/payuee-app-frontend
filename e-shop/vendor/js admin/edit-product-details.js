@@ -484,13 +484,24 @@ function setUpdatedJsonFields() {
     validateFields();
 }
 
-// selling price input
-const sellingPriceInput = document.getElementById('sellingPrice');
-// initial cost input
-const initialCostInput = document.getElementById('initialCost');
+
+// Show/hide extra price box based on checkbox state
+repostCheck.addEventListener('change', function () {
+    extraPriceBox.style.display = this.checked ? 'block' : 'none';
+    
+    // Clear max price if unchecked
+    if (!this.checked) {
+        maxExtraPriceInput.value = '';
+        maxExtraPriceInput.removeEventListener('blur', validateCollabPricesCheck);
+        return;
+    } else {
+        maxExtraPriceInput.addEventListener('blur', validateCollabPricesCheck);
+    }
+});
 
 sellingPriceInput.addEventListener('blur', validatePrices);
 initialCostInput.addEventListener('blur', validatePrices);
+initialCostInput.addEventListener('blur', validateCollabPrices);
 
 // Validate selling price
 function validatePrices() {
