@@ -481,8 +481,18 @@ function validatePrices() {
     const initialCost = parseFloat(initialCostInput.value) || 0;
     const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
     // Validate Selling Price
+    validateSellingPrice();
+    // Ensure selling price does not exceed initial cost
+    if (sellingPrice <= initialCost) {
+        let amount = initialCost/4
+        sellingPriceInput.value = initialCost+amount;
+        showToastMessageE("Selling price cannot be less than the initial cost.");
+    }
+}
+
+function validateSellingPrice() {
     const sellingPriceInput = document.getElementById('sellingPrice');
-    // const sellingPrice = parseFloat(sellingPriceInput.value);
+    const sellingPrice = parseFloat(sellingPriceInput.value);
     if (isNaN(sellingPrice) || sellingPrice <= 0 || sellingPrice <= initialCost) {
         console.log("Selling Price is invalid:", sellingPriceInput.value);
         sellingPriceInput.classList.add('is-invalid');
@@ -492,14 +502,7 @@ function validatePrices() {
         sellingPriceInput.classList.remove('is-invalid');
         sellingPriceInput.classList.add('is-valid');
     }
-    // Ensure selling price does not exceed initial cost
-    if (sellingPrice <= initialCost) {
-        let amount = initialCost/4
-        sellingPriceInput.value = initialCost+amount;
-        showToastMessageE("Selling price cannot be less than the initial cost.");
-    }
 }
-
 // show toast success
 function showToastMessageS(message) {
     document.getElementById('toastMessage2').textContent = message;
