@@ -421,7 +421,7 @@ function renderProducts(product) {
     }
 }
 
-  async function checkCollaborationEligibility(ID) {
+async function checkCollaborationEligibility(ID) {
     const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info";
 
     const requestOptions = {
@@ -448,7 +448,7 @@ function renderProducts(product) {
                 // let's log user out the users session has expired
                 // logUserOutIfTokenIsExpired();
             }else {
-                checkRepostEligibility(responseData.collaborate, errorData.error, null);
+                checkRepostEligibility(false, errorData.error, null);
             }
 
             return;

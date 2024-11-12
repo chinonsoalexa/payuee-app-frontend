@@ -474,7 +474,7 @@ async function checkCollaborationEligibility(ID) {
                 // let's log user out the users session has expired
                 // logUserOutIfTokenIsExpired();
             }else {
-                checkRepostEligibility(responseData.collaborate, errorData.error, null);
+                checkRepostEligibility(false, errorData.error, null);
             }
 
             return;
