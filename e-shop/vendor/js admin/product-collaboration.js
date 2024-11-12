@@ -214,7 +214,7 @@ function validateFields() {
     // Validate Selling Price
     const sellingPriceInput = document.getElementById('sellingPrice');
     const sellingPrice = parseFloat(sellingPriceInput.value);
-    if (isNaN(sellingPrice) || sellingPrice <= 0 || sellingPrice < initialCost) {
+    if (isNaN(sellingPrice) || sellingPrice <= 0 || sellingPrice <= initialCost) {
         console.log("Selling Price is invalid:", sellingPriceInput.value);
         sellingPriceInput.classList.add('is-invalid');
         sellingPriceInput.classList.remove('is-valid');
@@ -469,34 +469,13 @@ function setUpdatedJsonFields() {
     validateFields();
 }
 
-// max price check box
-const repostCheck = document.getElementById('repostCheck');
-// max price div box
-const extraPriceBox = document.getElementById('extraPriceBox');
-// max price input
-const maxExtraPriceInput = document.getElementById('maxExtraPrice');
 // selling price input
 const sellingPriceInput = document.getElementById('sellingPrice');
 // initial cost input
 const initialCostInput = document.getElementById('initialCost');
 
-// Show/hide extra price box based on checkbox state
-repostCheck.addEventListener('change', function () {
-    extraPriceBox.style.display = this.checked ? 'block' : 'none';
-    
-    // Clear max price if unchecked
-    if (!this.checked) {
-        maxExtraPriceInput.value = '';
-        maxExtraPriceInput.removeEventListener('blur', validateCollabPricesCheck);
-        return;
-    } else {
-        maxExtraPriceInput.addEventListener('blur', validateCollabPricesCheck);
-    }
-});
-
-sellingPriceInput.addEventListener('blur', validatePrices);
+// sellingPriceInput.addEventListener('blur', validatePrices);
 initialCostInput.addEventListener('blur', validatePrices);
-initialCostInput.addEventListener('blur', validateCollabPrices);
 
 // Validate selling price
 function validatePrices() {
@@ -504,15 +483,9 @@ function validatePrices() {
     const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
 
     // Ensure selling price does not exceed initial cost
-    if (sellingPrice > initialCost) {
+    if (sellingPrice <= initialCost) {
         sellingPriceInput.value = initialCost;
-        showToastMessageE("Selling price cannot be greater than the initial cost.");
-    }
-
-    // Ensure max price does not exceed the initial cost
-    if (maxExtraPriceInput.value && parseFloat(maxExtraPriceInput.value) > initialCost) {
-        maxExtraPriceInput.value = initialCost;
-        showToastMessageE("Max price cannot be greater than the initial cost.");
+        showToastMessageE("Selling price cannot be less than the initial cost.");
     }
 }
 
