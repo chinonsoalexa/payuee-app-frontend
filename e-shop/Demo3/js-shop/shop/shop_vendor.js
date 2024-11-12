@@ -323,24 +323,33 @@ function renderProducts(product, subscription) {
     let price;
     let percentage;
 
-    if (product.selling_price < product.initial_cost) {
-        price = `
-        <div class="product-card__price d-flex">
-            <span class="money price price-old">${formatNumberToNaira(product.initial_cost)}</span>
-            <span class="money price price-sale">${formatNumberToNaira(product.selling_price)}</span>
-        </div>`;
-        let currentPercent = calculatePercentageOff(product.initial_cost, product.selling_price)
-        percentage = `
-        <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                <div class="pc-labels__right ms-auto">
-                    <span class="pc-label pc-label_sale d-block text-white">-${currentPercent}%</span>
+    if (!product.reposted) {
+        if (product.selling_price < product.initial_cost) {
+            price = `
+            <div class="product-card__price d-flex">
+                <span class="money price price-old">${formatNumberToNaira(product.initial_cost)}</span>
+                <span class="money price price-sale">${formatNumberToNaira(product.selling_price)}</span>
+            </div>`;
+            let currentPercent = calculatePercentageOff(product.initial_cost, product.selling_price)
+            percentage = `
+            <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+                    <div class="pc-labels__right ms-auto">
+                        <span class="pc-label pc-label_sale d-block text-white">-${currentPercent}%</span>
+                    </div>
                 </div>
-            </div>
-        `
+            `
+        } else {
+            price = `
+            <div class="product-card__price d-flex">
+                <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+            </div>`
+            percentage = `
+            `
+        }
     } else {
         price = `
         <div class="product-card__price d-flex">
-            <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+            <span class="money price">${formatNumberToNaira(product.reposted_selling_price)}</span>
         </div>`
         percentage = `
         `
