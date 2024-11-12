@@ -44,24 +44,10 @@ async function updateProduct() {
     const apiUrl = "https://api.payuee.com/vendor/post-collaboration";
     const requestBody = {
         id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
-        // eshop_user_id: parseInt(eShopUserId),
-        // product_title: productTitle,
         product_description: productDescription,
-        // initial_cost: parseFloat(initialCost),  // Ensure this is a float
         reposted_selling_price: parseFloat(sellingPrice),  // Ensure this is a float
-        // product_stock: parseInt(productStock, 10),  // Convert to integer
-        // net_weight: parseFloat(netWeight),  // Ensure this is a float
-        // category: selectedCategory,
-        // tags: tags,
         publish_status: publishStatus,
         featured_status: featuredStatus,
-        // repost: Boolean(repost),  // Ensure it's a boolean
-        // estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
-        // productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
-        // productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
-        // productHeightValue: parseFloat(productHeightValue),  // Ensure this is a float
-        // shippingClassSelectionValue: shippingClassSelectionValue,
-        // stockAvailabilityStatusValue: stockAvailabilityStatusValue,
     };    
 
     const requestOptions = {
@@ -97,7 +83,7 @@ async function updateProduct() {
 
         const responseData = await response.json();
         // Perform actions when confirmed
-        showToastMessageS("Product Successfully Updated");
+        showToastMessageS("Vendor Collaboration Successful");
     } finally {
         document.getElementById('publishButton').classList.remove('disabled');
         }
