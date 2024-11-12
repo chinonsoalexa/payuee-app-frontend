@@ -373,7 +373,17 @@ function renderProducts(product, subscription) {
     }
 
     var editProduct;
-    if (subscription.user_store) {
+    if (subscription.user_store && product.reposted) {
+        editProduct = `
+            <a href="https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
+                <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon_edit" />
+                    </svg>
+                </button>
+            </a>
+        `;
+    } else if (subscription.user_store) {
         editProduct = `
             <a href="https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
                 <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
