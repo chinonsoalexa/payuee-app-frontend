@@ -573,7 +573,6 @@ function checkRepostEligibility(isEligible, errorMessage = null, collaborationUr
     // Show the modal
     new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
   }
-  
 
 function loading() {
     // Render loading skeletons for each element in the loader array
