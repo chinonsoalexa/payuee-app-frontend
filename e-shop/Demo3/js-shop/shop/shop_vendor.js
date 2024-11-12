@@ -377,7 +377,7 @@ function renderProducts(product, subscription) {
     } else {
         editProduct = `
             <div class="pc__btn-wl-wrapper">
-                <button id="collaborateButton" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                <button id="collaborateButtonCheck" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use href="#icon_retweet" />
                     </svg>
@@ -469,7 +469,7 @@ function renderProducts(product, subscription) {
         window.location.href = `${url}`;
     });
 
-    document.getElementById("collaborateButton").addEventListener("click", async function () {
+    document.getElementById("collaborateButtonCheck").addEventListener("click", async function () {
         checkCollaborationEligibility(product.ID);
     });
 
