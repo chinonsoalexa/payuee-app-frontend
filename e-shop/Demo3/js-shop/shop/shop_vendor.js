@@ -479,9 +479,13 @@ function renderProducts(product, subscription) {
         window.location.href = `${url}`;
     });
 
-    document.getElementById("collaborateButtonCheck").addEventListener("click", async function () {
-        checkCollaborationEligibility(product.ID);
-    });
+    // Attach the 'Collaborate' button event listener to this specific product card
+    const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
+    if (collaborateButton) {
+        collaborateButton.addEventListener("click", async function () {
+            await checkCollaborationEligibility(product.ID);
+        });
+    }
 
   function renderProductImages(imageUrls, title) {
     let imagesHtml = '';
