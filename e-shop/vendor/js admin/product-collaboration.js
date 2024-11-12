@@ -46,6 +46,7 @@ async function updateProduct() {
         id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
         product_description: productDescription,
         reposted_selling_price: parseFloat(sellingPrice),  // Ensure this is a float
+        tags: tags,
         publish_status: publishStatus,
         featured_status: featuredStatus,
     };    
