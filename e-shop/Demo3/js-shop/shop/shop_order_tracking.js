@@ -104,6 +104,14 @@ document.getElementById('trackOrder').addEventListener('click', async function(e
 
 async function updateOrderInfo(orderId) {
   // Define the endpoint and include the order ID
+  if (isNaN(+orderId)) {
+    const errorMessage = document.getElementById('errorMessage');
+        errorMessage.classList.remove('hiddenn'); // Show the error message
+        errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
+        document.getElementById('orderTrackingDetails').classList.add('hiddenn');
+        document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
+    return;
+  }
   const endpoint = `https://api.payuee.com/track-order/${orderId}`;
 
   try {
