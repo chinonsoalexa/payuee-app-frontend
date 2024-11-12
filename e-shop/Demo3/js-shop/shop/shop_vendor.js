@@ -374,7 +374,7 @@ function renderProducts(product, subscription) {
                 </button>
             </a>
         `;
-    } else if (!product.repost) {
+    } else if (!product.repost || !subscription.active) {
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
             <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
