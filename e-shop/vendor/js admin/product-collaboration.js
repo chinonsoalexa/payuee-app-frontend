@@ -480,7 +480,18 @@ sellingPriceInput.addEventListener('blur', validatePrices);
 function validatePrices() {
     const initialCost = parseFloat(initialCostInput.value) || 0;
     const sellingPrice = parseFloat(sellingPriceInput.value) || 0;
-
+    // Validate Selling Price
+    const sellingPriceInput = document.getElementById('sellingPrice');
+    // const sellingPrice = parseFloat(sellingPriceInput.value);
+    if (isNaN(sellingPrice) || sellingPrice <= 0 || sellingPrice <= initialCost) {
+        console.log("Selling Price is invalid:", sellingPriceInput.value);
+        sellingPriceInput.classList.add('is-invalid');
+        sellingPriceInput.classList.remove('is-valid');
+        isValid = false;
+    } else {
+        sellingPriceInput.classList.remove('is-invalid');
+        sellingPriceInput.classList.add('is-valid');
+    }
     // Ensure selling price does not exceed initial cost
     if (sellingPrice <= initialCost) {
         let amount = initialCost/4
