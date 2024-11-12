@@ -43,12 +43,12 @@ async function updateProduct() {
         // All fields are valid, proceed with posting the product
     const apiUrl = "https://api.payuee.com/vendor/post-collaboration";
     const requestBody = {
-        product_id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
+        id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
         // eshop_user_id: parseInt(eShopUserId),
         // product_title: productTitle,
         product_description: productDescription,
         // initial_cost: parseFloat(initialCost),  // Ensure this is a float
-        selling_price: parseFloat(sellingPrice),  // Ensure this is a float
+        reposted_selling_price: parseFloat(sellingPrice),  // Ensure this is a float
         // product_stock: parseInt(productStock, 10),  // Convert to integer
         // net_weight: parseFloat(netWeight),  // Ensure this is a float
         // category: selectedCategory,
