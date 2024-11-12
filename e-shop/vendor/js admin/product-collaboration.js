@@ -479,7 +479,7 @@ function validatePrices() {
     if (sellingPrice > initialCost*2) {
         let amount = initialCost/4
         sellingPriceInput.value = initialCost+amount;
-        showToastMessageE("Selling price cannot be greater than the max amount cost.");
+        showToastMessageE("Selling price cannot be greater than the vendor's max amount cost.");
     }
 }
 
