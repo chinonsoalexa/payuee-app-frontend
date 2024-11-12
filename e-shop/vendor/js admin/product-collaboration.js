@@ -483,7 +483,7 @@ function validatePrices() {
 
     // Ensure selling price does not exceed initial cost
     if (sellingPrice <= initialCost) {
-        let amount = initialCost/3
+        let amount = initialCost/4
         sellingPriceInput.value = initialCost+amount;
         showToastMessageE("Selling price cannot be less than the initial cost.");
     }
