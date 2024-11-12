@@ -496,18 +496,36 @@ function renderProducts(product, subscription) {
         });
     }
 
-  function renderProductImages(imageUrls, title) {
-    let imagesHtml = '';
-    imageUrls.forEach((url, num) => {
-      imagesHtml += `
-        <div class="swiper-slide">
-            <a href="https://payuee.com/image/${url.url}" class="product-link${num+1}">
-                <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num+1}">
-            </a>
-        </div>`;
-    });
-    return imagesHtml; // Return the full HTML string
-  }
+    function renderProductImages(imageUrls, title) {
+        // Define a default image URL
+        const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
+      
+        let imagesHtml = '';
+        if (!imageUrls || imageUrls.length === 0) {
+          // Use the default image if no images are available
+          imagesHtml += `
+            <div class="swiper-slide">
+              <a href="${defaultImageUrl}" class="product-link1">
+                <img loading="lazy" src="${defaultImageUrl}" width="330" height="400" alt="${title}" class="pc__img product-img1">
+              </a>
+            </div>`;
+        } else {
+          // Use the provided image URLs
+          imageUrls.forEach((url, num) => {
+            // Use a default image URL if any product image URL is missing or invalid
+            const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+      
+            imagesHtml += `
+              <div class="swiper-slide">
+                <a href="${imageUrl}" class="product-link${num + 1}">
+                  <img loading="lazy" src="${imageUrl}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                </a>
+              </div>`;
+          });
+        }
+      
+        return imagesHtml; // Return the full HTML string
+      }      
 
     // Add event listener to the 'Add To Cart' button
     if (!isOutOfStock) {
