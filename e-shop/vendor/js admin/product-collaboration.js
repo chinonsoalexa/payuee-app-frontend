@@ -474,8 +474,7 @@ const sellingPriceInput = document.getElementById('sellingPrice');
 // initial cost input
 const initialCostInput = document.getElementById('initialCost');
 
-// sellingPriceInput.addEventListener('blur', validatePrices);
-initialCostInput.addEventListener('blur', validatePrices);
+sellingPriceInput.addEventListener('blur', validatePrices);
 
 // Validate selling price
 function validatePrices() {
