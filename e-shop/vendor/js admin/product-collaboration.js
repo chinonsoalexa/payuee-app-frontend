@@ -503,6 +503,7 @@ function validateSellingPrice() {
         sellingPriceInput.classList.add('is-valid');
     }
 }
+
 // show toast success
 function showToastMessageS(message) {
     document.getElementById('toastMessage2').textContent = message;

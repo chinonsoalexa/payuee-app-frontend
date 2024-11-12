@@ -235,7 +235,11 @@ function renderProducts(product) {
     editButton.addEventListener('click', function() {
         // Your edit logic here
         // console.log('Edit button clicked for product ID:', product.ID);
-        window.location.href = 'edit-product-details.html?ProductID=' + product.ID;
+        if (!product.reposted) {
+            window.location.href = 'edit-product-details.html?ProductID=' + product.ID;
+        } else {    
+            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}`;
+        }
     });
 
     // Add event listener to the "Delete" button
