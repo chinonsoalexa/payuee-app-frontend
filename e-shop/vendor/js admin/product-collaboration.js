@@ -214,7 +214,7 @@ function validateFields() {
     // Validate Selling Price
     const sellingPriceInput = document.getElementById('sellingPrice');
     const sellingPrice = parseFloat(sellingPriceInput.value);
-    if (isNaN(sellingPrice) || sellingPrice <= 0) {
+    if (isNaN(sellingPrice) || sellingPrice <= 0 || sellingPrice < initialCost) {
         console.log("Selling Price is invalid:", sellingPriceInput.value);
         sellingPriceInput.classList.add('is-invalid');
         sellingPriceInput.classList.remove('is-valid');
