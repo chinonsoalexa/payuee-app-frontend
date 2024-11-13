@@ -29,9 +29,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Get individual parameter values
     productToUpdate = params.get("ProductID");
+    const edit = params.get('edit');
     
-    await getProduct(productToUpdate);
-
+    if (edit === 'true') {
+        await getProductEdit(productToUpdate);
+    } else {
+        await getProduct(productToUpdate);
+    }
 });
 
 async function updateProduct() {
@@ -515,6 +519,48 @@ function showToastMessageE(message) {
 
 async function getProduct(productID) {
     const apiUrl = "https://api.payuee.com/vendor/product-collaboration/" + productID;
+  
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+  
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+  
+        if (!response.ok) {
+            const errorData = await response.json();
+  
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                showToastMessageE(errorData.error);
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+  
+            return;
+        }
+  
+        const responseData = await response.json();
+        eShopUserId = responseData.success.eshop_user_id
+        updateFields(responseData.success);
+       
+  } finally {
+  
+    }
+  }
+
+  async function getProductEdit(productID) {
+    const apiUrl = "https://api.payuee.com/vendor/product-collaboration-edit/" + productID;
   
     const requestOptions = {
         method: "GET",

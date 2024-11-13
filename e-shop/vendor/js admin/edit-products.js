@@ -238,7 +238,7 @@ function renderProducts(product) {
         if (!product.reposted) {
             window.location.href = 'edit-product-details.html?ProductID=' + product.ID;
         } else {    
-            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}`;
+            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
         }
     });
 
