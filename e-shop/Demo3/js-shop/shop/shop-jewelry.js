@@ -637,13 +637,19 @@ function updateCartDrawer() {
         cart.forEach(cartProduct => {
             let price;
         
-            if (cartProduct.selling_price !== 0) {
-                price = `
-                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
-                `;
+            if (!cartProduct.reposted) {
+                if (cartProduct.selling_price !== 0) {
+                    price = `
+                    <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                    `;
+                } else {
+                    price = `
+                    <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                    `;
+                }
             } else {
                 price = `
-                 <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                    <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
                 `;
             }
 
