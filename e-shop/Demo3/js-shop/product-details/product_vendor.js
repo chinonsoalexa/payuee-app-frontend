@@ -19,33 +19,33 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     loading();
-    renderLoadingDetails();
-    // getProduct(productId);
-    setTimeout(() => {
-    // Check if productId exists
-    if (productId) {
-        // Find the product by ID
-        const product = products.find(product => product.ID === 3);
+    getProduct(productId);
+    
+  //   setTimeout(() => {
+  //   // Check if productId exists
+  //   if (productId) {
+  //       // Find the product by ID
+  //       const product = products.find(product => product.ID === 2);
 
-        if (product) {
-            renderLoadingDetails();
-            renderProductDetails(product);
-        } else {
-            // If product not found, default to product with ID 1
-            const product2 = products.find(product => product.ID === 3);
-            productId = 1; // Update productId to default
-            renderLoadingDetails();
-            renderProductDetails(product2);
-        }
-    } else {
-        // If no productId in URL, render the first product by default
-        // If product not found, default to product with ID 1
-        const product2 = products.find(product => product.ID === 1);
-        productId = 1; // Update productId to default
-          renderLoadingDetails();
-          renderProductDetails(product2);
-    }
-  }, 3000);
+  //       if (product) {
+  //           renderLoadingDetails();
+  //           renderProductDetails(product);
+  //       } else {
+  //           // If product not found, default to product with ID 1
+  //           const product2 = products.find(product => product.ID === 1);
+  //           productId = 1; // Update productId to default
+  //           renderLoadingDetails();
+  //           renderProductDetails(product2);
+  //       }
+  //   } else {
+  //       // If no productId in URL, render the first product by default
+  //       // If product not found, default to product with ID 1
+  //       const product2 = products.find(product => product.ID === 1);
+  //       productId = 1; // Update productId to default
+  //         renderLoadingDetails();
+  //         renderProductDetails(product2);
+  //   }
+  // }, 3000);
   // Other initializations...
 });
 
@@ -59,6 +59,7 @@ function getCurrentUrl(title, description) {
 }
 
 async function getProduct(productID) {
+    renderLoadingDetails();
   const apiUrl = "https://api.payuee.com/product/" + productID;
 
   const requestOptions = {
@@ -194,7 +195,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product) {
+function renderProductDetails(product, related) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -205,17 +206,6 @@ function renderProductDetails(product) {
     // Remove all child elements of the tbody
       productBody.innerHTML = "";
     // console.log(product);
-    let cartButton;
-    if (product.product_stock < 0) {
-      cartButton = `
-      <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
-      `
-    } else {
-      cartButton = `
-      <button id="addToCartButton" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
-      `
-    }
-
     let percentage;
    ReviewCount = product.product_review_count;
               
@@ -237,12 +227,23 @@ function renderProductDetails(product) {
       percentage = ``
   }      
 
+  let cartButton;
   let commentRender;
   // if (product.product_review_count > 0) {
   //     commentRender = generateReviewsHTML(product.customer_review);
   // } else {
   //   commentRender = '';
   // }
+
+  if (product.stock_remaining < 1) {
+    cartButton = `
+    <button class="btn btn-primary btn-addtocart btn-outofstock">Out of Stock</button>
+    `
+  } else {
+    cartButton = `
+    <button id="addToCartButton" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+    `
+  }
   
   var showMore;
 
@@ -264,7 +265,7 @@ function renderProductDetails(product) {
             <div class="product-single__image">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                 ${renderProductImages(product.product_image, product.title)}
+                  ${renderProductImages(product.product_image, product.title)}
                 </div>
                 <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></div>
                 <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></div>
@@ -304,7 +305,7 @@ function renderProductDetails(product) {
             <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
           <div class="product-single__price">
-          ${price}
+            ${price}
           </div>
           <div class="product-single__short-desc">
             <p>${product.description}</p>
@@ -327,17 +328,6 @@ function renderProductDetails(product) {
                 </div>
                 <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
               </div>
-              <div class="product-swatch color-swatches">
-                <label>Color</label>
-                <div class="swatch-list">
-                  <input type="radio" name="color" id="swatch-11">
-                  <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
-                  <input type="radio" name="color" id="swatch-12" checked>
-                  <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
-                  <input type="radio" name="color" id="swatch-13">
-                  <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
-                </div>
-              </div>
             </div>
             <div class="product-single__addtocart">
               <div class="qty-control position-relative">
@@ -349,7 +339,7 @@ function renderProductDetails(product) {
             </div>
           </form>
           <div class="product-single__addtolinks">
-            <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
+            <a id="collaborateButtonCheck" href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
             <share-button class="share-button">
               <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
                 <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
@@ -371,8 +361,8 @@ function renderProductDetails(product) {
                 </div>
               </details>
             </share-button>
-            <script src="/e-shop/Demo3/js/details-disclosure.js" defer="defer"></script>
-            <script src="/e-shop/Demo3/js/share.js" defer="defer"></script>
+            <script src="/e-shop/Demo3/js-shop/product-details/js/details-disclosure.js" defer="defer"></script>
+            <script src="/e-shop/Demo3/js-shop/product-details/js/share.js" defer="defer"></script>
           </div>
           <div class="product-single__meta-info">
             <div class="meta-item">
@@ -399,73 +389,60 @@ function renderProductDetails(product) {
     productBody.appendChild(rowElement);
     // renderUseGuide(product);
 
-  // Reinitialize the CartDrawer
-  if (typeof PayueeSections.CartDrawer !== 'undefined') {
-    new PayueeSections.CartDrawer();
-  }
+// Reinitialize the CartDrawer
+if (typeof PayueeSections.CartDrawer !== 'undefined') {
+  new PayueeSections.CartDrawer();
+}
 
-  // Reinitialize the SwiperSlideshow
-  if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
-    new PayueeSections.SwiperSlideshow()._initSliders();
-  }
+// Reinitialize the SwiperSlideshow
+if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
+  new PayueeSections.SwiperSlideshow()._initSliders();
+}
 
-  // Reinitialize the ProductSingleMedia
-  if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
-    new PayueeSections.ProductSingleMedia()._initProductMedia();
-  }
+// Reinitialize the ProductSingleMedia
+if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
+  new PayueeSections.ProductSingleMedia()._initProductMedia();
+}
 
-  // Reinitialize the StarRating
-  if (typeof PayueeElements.StarRating !== 'undefined') {
-    new PayueeElements.StarRating();
-  }
+// Reinitialize the StarRating
+if (typeof PayueeElements.StarRating !== 'undefined') {
+  new PayueeElements.StarRating();
+}
 
-  // Reinitialize Aside
-  if (typeof PayueeElements.Aside === 'function') {
-    new PayueeElements.Aside();
-  }
+// Reinitialize Aside
+if (typeof PayueeElements.Aside === 'function') {
+  new PayueeElements.Aside();
+}
 
-  // Add event listeners for quantity update buttons
-  const reduceButton = productBody.querySelector('.qty-control__reduce');
-  const increaseButton = productBody.querySelector('.qty-control__increase');
-  const quantityInput = productBody.querySelector('.qty-control__number');
+// Add event listeners for quantity update buttons
+const reduceButton = productBody.querySelector('.qty-control__reduce');
+const increaseButton = productBody.querySelector('.qty-control__increase');
+const quantityInput = productBody.querySelector('.qty-control__number');
 
-  let newQuantity1 = 1;
+let newQuantity1 = 1;
 
-  reduceButton.addEventListener('click', () => {
-      let currentQuantity = parseInt(quantityInput.value);
-      if (currentQuantity > 1) {
-          quantityInput.value = currentQuantity - 1;
-          newQuantity1-=1
-      }
-  });
-
-  increaseButton.addEventListener('click', () => {
+reduceButton.addEventListener('click', () => {
     let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity <= product.stock_remaining) {
-      quantityInput.value = currentQuantity + 1;
-      newQuantity1+=1
+    if (currentQuantity > 1) {
+        quantityInput.value = currentQuantity - 1;
+        newQuantity1-=1
     }
 });
 
-  quantityInput.addEventListener('change', () => {
-    let newQuantity = parseInt(quantityInput.value);
-      if (newQuantity < 1) {
-          quantityInput.value = 1;
-      }
-  });
+increaseButton.addEventListener('click', () => {
+  let currentQuantity = parseInt(quantityInput.value);
+  if (currentQuantity <= product.stock_remaining) {
+    quantityInput.value = currentQuantity + 1;
+    newQuantity1+=1
+  }
+});
 
-    // Add event listener to the 'Add To Cart' button
-    if (!product.product_stock < 1) {
-      const addToCartButton = document.getElementById('addToCartButton');
-      if (addToCartButton) {
-        addToCartButton.addEventListener('click', function() {
-          // event.preventDefault();
-          addToCart(product, newQuantity1);
-          updateCartNumber();
-          updateCartDrawer();
-        });
-      }
+quantityInput.addEventListener('change', () => {
+  let newQuantity = parseInt(quantityInput.value);
+    if (newQuantity < 1) {
+        quantityInput.value = 1;
     }
+});
 
   // Add event listener to the image wrapper
   const previousButton = document.getElementById('previousDetail');
@@ -484,7 +461,7 @@ function renderProductDetails(product) {
   });
 
   // Add event listener to the 'Add To Cart' button
-  if (!product.product_stock < 1) {
+  if (!product.stock_remaining < 1) {
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
       addToCartButton.addEventListener('click', function() {
@@ -496,16 +473,19 @@ function renderProductDetails(product) {
     }
   }
 
+
   function renderProductImages(imageUrls, title) {
     let imagesHtml = '';
     imageUrls.forEach((url) => {
       imagesHtml += `
-      <div class="swiper-slide product-single__image-item">
-        <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
-        <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom ${title}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-        </a>
-      </div>`;
+        <div class="swiper-slide product-single__image-item">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
+          <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom ${title}">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <use href="#icon_zoom" />
+            </svg>
+          </a>
+        </div>`;
     });
     return imagesHtml; // Return the full HTML string
   }
@@ -590,6 +570,14 @@ function renderProductDetails(product) {
     // You can add any other actions here
   });
   }
+
+    // Attach the 'Collaborate' button event listener to this specific product card
+    const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
+    if (collaborateButton) {
+        collaborateButton.addEventListener("click", async function () {
+            await checkCollaborationEligibility(product.ID);
+        });
+    }
 
   document.querySelector('form[name="customer-review-form"]').addEventListener('submit', async function (e) {
     e.preventDefault(); // Prevent default form submission
@@ -727,8 +715,85 @@ function renderProductDetails(product) {
     return emailRegex.test(email);
   }  
 
-  renderProductDescription(product);
+  renderRecommendedProduct(related);
 
+}
+
+async function checkCollaborationEligibility(ID) {
+  const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
+
+  const requestOptions = {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      credentials: 'include', // set credentials to include cookies
+  };
+
+  try {
+      const response = await fetch(apiUrl, requestOptions);
+
+      if (!response.ok) {
+          const errorData = await response.json();
+
+          if (errorData.error === 'failed to get user from request') {
+              // need to do a data of just null event 
+              // displayErrorMessage();
+          } else if (errorData.error === 'failed to get transaction history') {
+              // need to do a data of just null event 
+              
+          } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+              // let's log user out the users session has expired
+              // logUserOutIfTokenIsExpired();
+          }else {
+              checkRepostEligibility(false, errorData.error, null);
+          }
+
+          return;
+      }
+
+      const responseData = await response.json();
+      // Check eligibility, passing `true` for eligible, or `false` with an error message
+      checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
+} finally {
+
+  }
+}
+
+// Function to open modal with appropriate messages
+function checkRepostEligibility(isEligible, errorMessage = null, collaborationUrl = null) {
+  const eligibilityMessage = document.getElementById('eligibilityMessage');
+  const errorAlert = document.getElementById('errorArlert');
+  const errorMessageEl = document.getElementById('errorMessage');
+  const successAlert = document.getElementById('successAlert');
+  const collaborateButton = document.getElementById('collaborateButton');
+
+  // Reset modal state
+  errorAlert.classList.add('d-none');
+  successAlert.classList.add('d-none');
+  collaborateButton.classList.add('d-none');
+  collaborateButton.removeAttribute('href'); // Clear previous URL if any
+
+  // Display eligibility messages
+  if (isEligible) {
+    eligibilityMessage.textContent = "You are eligible to repost this product.";
+    successAlert.classList.remove('d-none');
+    collaborateButton.classList.remove('d-none');
+
+    // Set the new collaboration URL if provided
+    if (collaborationUrl) {
+      collaborateButton.href = collaborationUrl;
+    }
+  } else {
+    eligibilityMessage.textContent = "You are not eligible to repost this product.";
+    if (errorMessage) {
+      errorMessageEl.textContent = errorMessage;
+      errorAlert.classList.remove('d-none');
+    }
+  }
+
+  // Show the modal
+  new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
 }
 
 function renderUseGuide(product) {
@@ -749,7 +814,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="/e-shop/Demo3/${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -861,7 +926,7 @@ function renderProductDescription(product) {
           <div class="product-single__reviews-list">
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
@@ -882,7 +947,7 @@ function renderProductDescription(product) {
             </div>
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="/e-shop/Demo3/../images/avatar.jpg" alt="">
+                <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
@@ -958,7 +1023,7 @@ function renderProductDescription(product) {
 
       // Render the shuffled products
       // shuffledProducts.forEach((product) => {
-        renderRecommendedProduct(product);
+        // renderRecommendedProduct(product);
       // });
 }
 
@@ -971,14 +1036,18 @@ function shuffleArray(array) {
   return array;
 }
 
-function renderRecommendedProduct() {
+function renderRecommendedProduct(products) {
+  if (products.length < 1) {
+    document.getElementById("related_products1").innerHTML = "";
+    return;
+  }
 
   // Shuffle products array before rendering
-  const shuffledProducts = shuffleArray(products);
+  // const shuffledProducts = shuffleArray(products);
   document.getElementById('related_products_container').innerHTML = '';
 
   // Render the shuffled products
-  shuffledProducts.forEach((product) => {
+  products.forEach((product) => {
     const recommendElement = document.getElementById('related_products_container');
     
     // Create a new product card element
@@ -987,25 +1056,25 @@ function renderRecommendedProduct() {
     // rowElement.id = product.ID;
 
     // Determine if the button should be disabled and what text to display
-    // const isOutOfStock = product.stock_remaining === 0;
-    const isOutOfStock = 7 === 0;
+    const isOutOfStock = product.stock_remaining === 0;
+    // const isOutOfStock = 7 === 0;
     const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
     const buttonDisabled = isOutOfStock ? 'disabled' : '';
 
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
-        <a href="#">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image1}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="/e-shop/Demo3/${product.Image2}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
+        <a href="https://payuee.com/outfits/${product.product_url_id}">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
+          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
         </a>
         <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
       </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="/e-shop/Demo3/https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+        <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
         </div>
       </div>
       <div class="product-card__review d-flex align-items-center">
@@ -1016,7 +1085,7 @@ function renderRecommendedProduct() {
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
           <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
         </div>
-        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(344)} reviews</span>
+        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
       </div>
     `;
 
@@ -1159,7 +1228,7 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
   if (productIndex !== -1) {
       // Update the quantity based on action
       if (action === 'increase') {stock_remaining
-        if (cart[productIndex].quantity >= stock_remaining) {
+          if (cart[productIndex].quantity >= stock_remaining) {
               // do nothing
           } else {
               cart[productIndex].quantity++;
@@ -1212,7 +1281,7 @@ function renderLoadingDetails() {
 }
 
 // Function to add a product to the cart
-function addToCart(product) {
+function addToCart(product, quantity = 1) {
   // Get cart from local storage or initialize if not found
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -1220,10 +1289,10 @@ function addToCart(product) {
   const productIndex = cart.findIndex(item => item.ID === product.ID);
   if (productIndex !== -1) {
       // If product exists, increase quantity
-      cart[productIndex].quantity += 1;
+      cart[productIndex].quantity += quantity;
   } else {
       // If product does not exist, add new product to cart
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ ...product, quantity: quantity });
   }
 
   // Save updated cart to local storage
@@ -1263,7 +1332,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -1298,15 +1367,15 @@ function updateCartDrawer() {
           // Generate the HTML for the cart item
           cartItem.innerHTML = `
               <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.product_image[0].url}" alt="">
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
                 <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
-                <p class="cart-drawer-item__option text-secondary">Grams: ${cartProduct.net_weight}</p>
+                <p class="cart-drawer-item__option text-secondary">Net Weight: ${cartProduct.net_weight}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <div class="qty-control position-relative">
-                    <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
+                    <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" max="${cartProduct.stock_remaining}" class="qty-control__number border-0 text-center">
                     <div class="qty-control__reduce text-start" data-id="${cartProduct.ID}">-</div>
                     <div class="qty-control__increase text-end" data-id="${cartProduct.ID}">+</div>
                   </div>
@@ -1418,7 +1487,7 @@ function generateReviewsHTML(reviews) {
     const reviewHTML = `
       <div class="product-single__reviews-item">
         <div class="customer-avatar">
-          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1477,7 +1546,7 @@ function addNewComment(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/Demo3/js-shop/product-details//images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
@@ -1518,7 +1587,7 @@ function renderReviews(review) {
   // Create the HTML string with dynamic data using template literals
   rowElement.innerHTML = `
         <div class="customer-avatar">
-          <img loading="lazy" src="/e-shop/Demo3//images/avatar.jpg" alt="${review.name}">
+          <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="${review.name}">
         </div>
         <div class="customer-review">
           <div class="customer-name">
