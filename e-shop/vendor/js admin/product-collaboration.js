@@ -18,6 +18,7 @@ var shippingClassSelectionValue = "";
 var stockAvailabilityStatusValue = "";
 
 var productToUpdate;
+var edit;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Get individual parameter values
     productToUpdate = params.get("ProductID");
-    const edit = params.get('edit');
+    edit = params.get('edit');
     
     if (edit === 'true') {
         await getProductEdit(productToUpdate);
@@ -343,8 +344,13 @@ function updateFields(product) {
     initialCostInput.value = product.initial_cost;
 
     // Update Selling Price
-    let sellingPriceInput = document.getElementById('sellingPrice');
-    sellingPriceInput.value = product.selling_price;
+    if (edit != "true") {
+        let sellingPriceInput = document.getElementById('sellingPrice');
+        sellingPriceInput.value = product.selling_price;
+    } else {
+        let sellingPriceInput = document.getElementById('sellingPrice');
+        sellingPriceInput.value = product.reposted_selling_price;
+    }
 
     // Update Product Stock
     let productStockInput = document.getElementById('productStock1');
