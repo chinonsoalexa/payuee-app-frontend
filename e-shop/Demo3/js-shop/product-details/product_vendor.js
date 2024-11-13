@@ -93,7 +93,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success, responseData.related);
+      renderProductDetails(responseData.success);
       categoryId = responseData.success.category;
      
 } finally {
@@ -136,7 +136,7 @@ async function getNextProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success, responseData.related);
+      renderProductDetails(responseData.success);
       productId = responseData.success.ID;
       categoryId = responseData.success.category;
       replaceURL('/shop/' + responseData.success.product_url_id);
@@ -181,7 +181,7 @@ async function getPreviousProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success, responseData.related);
+      renderProductDetails(responseData.success);
       productId = responseData.success.ID;
       categoryId = responseData.success.category;
       replaceURL('/shop/' + responseData.success.product_url_id);
@@ -195,7 +195,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product, related) {
+function renderProductDetails(product, subscription) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 
@@ -339,7 +339,7 @@ function renderProductDetails(product, related) {
             </div>
           </form>
           <div class="product-single__addtolinks">
-            <a id="collaborateButtonCheck" href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Re-post Product</span></a>
+            <a id="collaborateButtonCheck" href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg><span>Edit Product</span></a>
             <share-button class="share-button">
               <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
                 <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
@@ -575,7 +575,13 @@ quantityInput.addEventListener('change', () => {
     const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
     if (collaborateButton) {
         collaborateButton.addEventListener("click", async function () {
-            await checkCollaborationEligibility(product.ID);
+          if (subscription.user_store && product.reposted) {
+            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
+          } else if (subscription.user_store) {
+            window.location.href = `https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}`;
+          } else {
+            checkRepostEligibility(false, "sorry you cannot edit this product", null);
+          }          
         });
     }
 
@@ -717,47 +723,6 @@ quantityInput.addEventListener('change', () => {
 
   renderRecommendedProduct(related);
 
-}
-
-async function checkCollaborationEligibility(ID) {
-  const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
-
-  const requestOptions = {
-      method: "GET",
-      headers: {
-          "Content-Type": "application/json",
-      },
-      credentials: 'include', // set credentials to include cookies
-  };
-
-  try {
-      const response = await fetch(apiUrl, requestOptions);
-
-      if (!response.ok) {
-          const errorData = await response.json();
-
-          if (errorData.error === 'failed to get user from request') {
-              // need to do a data of just null event 
-              // displayErrorMessage();
-          } else if (errorData.error === 'failed to get transaction history') {
-              // need to do a data of just null event 
-              
-          } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-              // let's log user out the users session has expired
-              // logUserOutIfTokenIsExpired();
-          }else {
-              checkRepostEligibility(false, errorData.error, null);
-          }
-
-          return;
-      }
-
-      const responseData = await response.json();
-      // Check eligibility, passing `true` for eligible, or `false` with an error message
-      checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
-} finally {
-
-  }
 }
 
 // Function to open modal with appropriate messages
