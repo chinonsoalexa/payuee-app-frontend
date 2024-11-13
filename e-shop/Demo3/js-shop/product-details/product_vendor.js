@@ -102,7 +102,7 @@ async function getProduct(productID) {
 }
 
 async function getNextProduct(productID) {
-  const apiUrl = "https://api.payuee.com/view-next-product/" + productID + "/" + categoryId;
+  const apiUrl = "https://api.payuee.com/vendor/view-next-product/" + productID + "/" + categoryId;
   renderLoadingDetails();
 
   const requestOptions = {
@@ -147,7 +147,7 @@ async function getNextProduct(productID) {
 }
 
 async function getPreviousProduct(productID) {
-  const apiUrl = "https://api.payuee.com/view-previous-product/" + productID + "/" + categoryId;
+  const apiUrl = "https://api.payuee.com/vendor/view-previous-product/" + productID + "/" + categoryId;
   renderLoadingDetails();
 
   const requestOptions = {
