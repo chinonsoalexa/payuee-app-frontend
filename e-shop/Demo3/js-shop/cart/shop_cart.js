@@ -59,22 +59,35 @@ function updateMainCart() {
             let subTotal;
             let singlePrice;
         
-            if (cartProduct.selling_price !== 0) {
-                subTotal = `
-                  <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
-                `;
+            if (!cartProduct.reposted) {
+                if (cartProduct.selling_price !== 0) {
+                    subTotal = `
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                    `;
+                } else {
+                    subTotal = `
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                    `;
+                }
             } else {
-                subTotal = `
-                  <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
-                `;
+              subTotal = `
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
+              `;
             }
-            if (cartProduct.selling_price !== 0) {
-                singlePrice = `
-                  <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
-                `;
+
+            if (!cartProduct.reposted) {
+                if (cartProduct.selling_price !== 0) {
+                    singlePrice = `
+                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
+                    `;
+                } else {
+                    singlePrice = `
+                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
+                    `;
+                }
             } else {
                 singlePrice = `
-                  <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
+                  <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.reposted_selling_price)}</span>
                 `;
             }
 
