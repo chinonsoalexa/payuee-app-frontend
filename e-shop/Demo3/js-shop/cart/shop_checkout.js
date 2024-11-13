@@ -944,7 +944,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
-            ID: Math.floor(Math.random() * 1000), // Replace with actual product ID if available
+            ID: item.ID,
             ...item // Use spread operator to include all product fields
         };
 
@@ -962,8 +962,14 @@ function getAndCalculateProductsPerVendor(vendorId) {
     let pricePerProductOrder = 0.00;
 
     cart.forEach(item => {
-        if (item.eshop_user_id === vendorId) {
-            pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
+        if (!item.reposted) {
+            if (item.eshop_user_id === vendorId) {
+                pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
+            }
+        } else {
+            if (item.eshop_user_id === vendorId) {
+                pricePerProductOrder += item.reposted_selling_price;
+            }
         }
     });
 
