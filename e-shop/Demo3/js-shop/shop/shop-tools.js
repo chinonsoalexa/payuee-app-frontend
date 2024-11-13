@@ -736,10 +736,14 @@ function updateQuantity(productId, action, product_stock, value = 1) {
 
         // Re-calculate the product price based on the quantity
         const product = cart[productIndex];
-        if (product.selling_price !== 0) {
-            product.totalPrice = product.selling_price * product.quantity;
+        if (!cartProduct.reposted) {
+            if (product.selling_price !== 0) {
+                product.totalPrice = product.selling_price * product.quantity;
+            } else {
+                product.totalPrice = product.initial_cost * product.quantity;
+            }
         } else {
-            product.totalPrice = product.price * product.quantity;
+          product.totalPrice = product.reposted_selling_price * product.quantity;
         }
 
         // Save the updated cart to local storage
@@ -779,11 +783,17 @@ function calculateCartSubtotal() {
     cart.forEach(item => {
         // Calculate the item's total price
         let itemTotal;
-        if (item.selling_price < item.initial_cost) {
-            itemTotal = item.selling_price * item.quantity;
+
+        if (!cartProduct.reposted) {
+            if (item.selling_price < item.initial_cost) {
+                itemTotal = item.selling_price * item.quantity;
+            } else {
+                itemTotal = item.initial_cost * item.quantity;
+            }
         } else {
-            itemTotal = item.initial_cost * item.quantity;
+            itemTotal = item.reposted_selling_price * item.quantity;
         }
+
         subtotal += itemTotal;
     });
 

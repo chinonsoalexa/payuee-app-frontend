@@ -24,7 +24,7 @@ function updateMainCart() {
         <tr>
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="images/product_not_available.jpg" width="120" height="120" alt="">
+                    <img loading="lazy" src="../../images/product_not_available.jpg" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>
@@ -178,109 +178,115 @@ function formatNumberToNaira(number) {
 }
 
 function updateCartDrawer() {
-    // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // Get cart from local storage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Get reference to the cart drawer element
-    const cartDrawer = document.getElementById('cartDrawer1');
-    
-    // Clear the cart drawer
-    cartDrawer.innerHTML = '';
+  // Get reference to the cart drawer element
+  const cartDrawer = document.getElementById('cartDrawer1');
+  
+  // Clear the cart drawer
+  cartDrawer.innerHTML = '';
 
-    // Check if the cart is empty
-    if (cart.length === 0) {
-        // Create and append a "No products added yet" message
-        const emptyMessage = document.createElement('div');
-        emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
-        emptyMessage.innerHTML = `
-        <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="images/product_not_available.jpg" alt="">
+  // Check if the cart is empty
+  if (cart.length === 0) {
+      // Create and append a "No products added yet" message
+      const emptyMessage = document.createElement('div');
+      emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
+      emptyMessage.innerHTML = `
+      <div class="position-relative">
+        <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/Demo3/../images/product_not_available.jpg" alt="">
+      </div>
+      <div class="cart-drawer-item__info flex-grow-1">
+        <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
+        <p class="cart-drawer-item__option text-secondary">Select Product</p>
+        <p class="cart-drawer-item__option text-secondary">"Add To Cart"</p>
+        <div class="d-flex align-items-center justify-content-between mt-1">
+          <div class="qty-control position-relative"></div>
+          <span class="cart-drawer-item__price money price"></span>
         </div>
-        <div class="cart-drawer-item__info flex-grow-1">
-          <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
-          <p class="cart-drawer-item__option text-secondary">Select Product</p>
-          <p class="cart-drawer-item__option text-secondary">"Add To Cart"</p>
-          <div class="d-flex align-items-center justify-content-between mt-1">
-            <div class="qty-control position-relative"></div>
-            <span class="cart-drawer-item__price money price"></span>
-          </div>
-        </div>
-        `;
-        cartDrawer.appendChild(emptyMessage);
-    } else {
-        // Loop through each item in the cart
-        cart.forEach(cartProduct => {
-            let price;
-        
-            if (cartProduct.selling_price !== 0) {
-                price = `
-                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
-                `;
-            } else {
-                price = `
-                 <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
-                `;
-            }
+      </div>
+      `;
+      cartDrawer.appendChild(emptyMessage);
+  } else {
+      // Loop through each item in the cart
+      cart.forEach(cartProduct => {
+          let price;
+      
+          if (!cartProduct.reposted) {
+              if (cartProduct.selling_price !== 0) {
+                  price = `
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                  `;
+              } else {
+                  price = `
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                  `;
+              }
+          } else {
+              price = `
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
+              `;
+          }
 
-            // Create a new cart item element
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
+          // Create a new cart item element
+          const cartItem = document.createElement('div');
+          cartItem.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
 
-            // Generate the HTML for the cart item
-            cartItem.innerHTML = `
+          // Generate the HTML for the cart item
+          cartItem.innerHTML = `
               <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"https://payuee.com/image/"+cartProduct.Image1}" alt="">
-                </div>
-                <div class="cart-drawer-item__info flex-grow-1">
-                  <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
-                  <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
-                  <p class="cart-drawer-item__option text-secondary">Net Weight: ${cartProduct.net_weight}</p>
-                  <div class="d-flex align-items-center justify-content-between mt-1">
-                    <div class="qty-control position-relative">
-                      <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
-                      <div class="qty-control__reduce text-start" data-id="${cartProduct.ID}">-</div>
-                      <div class="qty-control__increase text-end" data-id="${cartProduct.ID}">+</div>
-                    </div>
-                    ${price}
+                <img loading="lazy" class="cart-drawer-item__img" src="${"/image/" + cartProduct.product_image[0].url}" alt="">
+              </div>
+              <div class="cart-drawer-item__info flex-grow-1">
+                <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
+                <p class="cart-drawer-item__option text-secondary">Category: ${cartProduct.category}</p>
+                <p class="cart-drawer-item__option text-secondary">Net Weight: ${cartProduct.net_weight}</p>
+                <div class="d-flex align-items-center justify-content-between mt-1">
+                  <div class="qty-control position-relative">
+                    <input type="number" name="quantity" value="${cartProduct.quantity}" min="1" class="qty-control__number border-0 text-center">
+                    <div class="qty-control__reduce text-start" data-id="${cartProduct.ID}">-</div>
+                    <div class="qty-control__increase text-end" data-id="${cartProduct.ID}">+</div>
                   </div>
+                  ${price}
                 </div>
-                <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"></button>
-            `;
+              </div>
+              <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"></button>
+          `;
 
-            // Append the new cart item to the cart drawer
-            cartDrawer.appendChild(cartItem);
+          // Append the new cart item to the cart drawer
+          cartDrawer.appendChild(cartItem);
 
-            // Create and append the divider element
-            const divider = document.createElement('hr');
-            divider.classList.add('cart-drawer-divider');
-            cartDrawer.appendChild(divider);
+          // Create and append the divider element
+          const divider = document.createElement('hr');
+          divider.classList.add('cart-drawer-divider');
+          cartDrawer.appendChild(divider);
 
-            // Add event listeners for quantity update buttons
-            const reduceButton = cartItem.querySelector('.qty-control__reduce');
-            const increaseButton = cartItem.querySelector('.qty-control__increase');
-            const quantityInput = cartItem.querySelector('.qty-control__number');
-            const removeButton = cartItem.querySelector('.js-cart-item-remove');
+          // Add event listeners for quantity update buttons
+          const reduceButton = cartItem.querySelector('.qty-control__reduce');
+          const increaseButton = cartItem.querySelector('.qty-control__increase');
+          const quantityInput = cartItem.querySelector('.qty-control__number');
+          const removeButton = cartItem.querySelector('.js-cart-item-remove');
 
-            reduceButton.addEventListener('click', () => {
-                updateQuantity(cartProduct.ID, 'reduce', cartProduct.stock_remaining);
-            });
+          reduceButton.addEventListener('click', () => {
+              updateQuantity(cartProduct.ID, 'reduce', cartProduct.product_stock);
+          });
 
-            increaseButton.addEventListener('click', () => {
-                updateQuantity(cartProduct.ID, 'increase', cartProduct.stock_remaining);
-            });
+          increaseButton.addEventListener('click', () => {
+              updateQuantity(cartProduct.ID, 'increase', cartProduct.product_stock);
+          });
 
-            quantityInput.addEventListener('change', () => {
-                updateQuantity(cartProduct.ID, 'set', cartProduct.stock_remaining, parseInt(quantityInput.value));
-            });
+          quantityInput.addEventListener('change', () => {
+              updateQuantity(cartProduct.ID, 'set', cartProduct.product_stock, parseInt(quantityInput.value));
+          });
 
-            // Add event listener for remove button
-            removeButton.addEventListener('click', (event) => {
-                event.preventDefault();
-                removeFromCart(cartProduct.ID);
-            });
-        });
-    }
-    calculateCartSubtotal();
+          // Add event listener for remove button
+          removeButton.addEventListener('click', (event) => {
+              event.preventDefault();
+              removeFromCart(cartProduct.ID);
+          });
+      });
+  }
+  calculateCartSubtotal();
 }
 
 function updateQuantity(productId, action, stock_remaining, value = 1) {
@@ -306,11 +312,15 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
 
         // Re-calculate the product price based on the quantity
         const product = cart[productIndex];
-        if (product.selling_price !== 0) {
-            product.totalPrice = product.selling_price * product.quantity;
-        } else {
-            product.totalPrice = product.initial_cost * product.quantity;
-        }
+        if (!cartProduct.reposted) {
+          if (product.selling_price !== 0) {
+              product.totalPrice = product.selling_price * product.quantity;
+          } else {
+              product.totalPrice = product.initial_cost * product.quantity;
+          }
+      } else {
+        product.totalPrice = product.reposted_selling_price * product.quantity;
+      }
 
         // Save the updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -341,29 +351,32 @@ function removeFromCart(productId) {
 }
 
 function calculateCartSubtotal() {
-    // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // Get cart from local storage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Initialize subtotal
-    let subtotal = 0;
+  // Initialize subtotal
+  let subtotal = 0;
 
-    // Loop through each item in the cart and calculate the subtotal
-    cart.forEach(item => {
-        // Calculate the item's total price
-        let itemTotal;
-        if (item.selling_price < item.initial_cost) {
-            itemTotal = item.selling_price * item.quantity;
-        } else {
-            itemTotal = item.initial_cost * item.quantity;
-        }
-        subtotal += itemTotal;
-    });
+  // Loop through each item in the cart and calculate the subtotal
+  cart.forEach(item => {
+      // Calculate the item's total price
+      let itemTotal;
 
-    console.log("subtotal is: ", subtotal);
-    
-    // Update the subtotal element in the UI
-    document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
-    document.getElementById('subtotalMain').innerText = formatNumberToNaira(subtotal);
+      if (!cartProduct.reposted) {
+          if (item.selling_price < item.initial_cost) {
+              itemTotal = item.selling_price * item.quantity;
+          } else {
+              itemTotal = item.initial_cost * item.quantity;
+          }
+      } else {
+          itemTotal = item.reposted_selling_price * item.quantity;
+      }
+
+      subtotal += itemTotal;
+  });
+
+  // Update the subtotal element in the UI
+  document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
 }
 
 function updateCartNumber() {
