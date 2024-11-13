@@ -721,7 +721,7 @@ quantityInput.addEventListener('change', () => {
     return emailRegex.test(email);
   }  
 
-  renderRecommendedProduct(related);
+  // renderRecommendedProduct(related);
 
 }
 
@@ -1001,76 +1001,6 @@ function shuffleArray(array) {
   return array;
 }
 
-function renderRecommendedProduct(products) {
-  if (products.length < 1) {
-    document.getElementById("related_products1").innerHTML = "";
-    return;
-  }
-
-  // Shuffle products array before rendering
-  // const shuffledProducts = shuffleArray(products);
-  document.getElementById('related_products_container').innerHTML = '';
-
-  // Render the shuffled products
-  products.forEach((product) => {
-    const recommendElement = document.getElementById('related_products_container');
-    
-    // Create a new product card element
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('swiper-slide', 'product-card'); 
-    // rowElement.id = product.ID;
-
-    // Determine if the button should be disabled and what text to display
-    const isOutOfStock = product.stock_remaining === 0;
-    // const isOutOfStock = 7 === 0;
-    const buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
-    const buttonDisabled = isOutOfStock ? 'disabled' : '';
-
-    rowElement.innerHTML = `
-    <div class="pc__img-wrapper">
-        <a href="https://payuee.com/outfits/${product.product_url_id}">
-          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img">
-          <img loading="lazy" src="https://payuee.com/image/${product.product_image[0].url}" width="330" height="400" alt="${product.title}" class="pc__img pc__img-second">
-        </a>
-        <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-      </div>
-
-      <div class="pc__info position-relative">
-        <p class="pc__category">${product.category}</p>
-        <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
-        <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
-        </div>
-      </div>
-      <div class="product-card__review d-flex align-items-center">
-        <div class="reviews-group d-flex">
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-          <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-        </div>
-        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
-      </div>
-    `;
-
-    // Append the new element to the container
-    recommendElement.appendChild(rowElement);
-        // Add event listener to the 'Add To Cart' button
-        if (!isOutOfStock) {
-          const addToCartButton = rowElement.querySelector('.pc__atc');
-          addToCartButton.addEventListener('click', function() {
-              addToCart(product);
-              updateCartNumber();
-              updateCartDrawer();
-          });
-      }
-  });
-
-    // Reinitialize Swiper
-    reinitializeSwiper();
-}
-
 // Function to reinitialize Swiper
 function reinitializeSwiper() {
   // Destroy the existing Swiper instance if it exists
@@ -1113,41 +1043,6 @@ function reinitializeSwiper() {
       },
     },
   });
-}
-
-function loading() {
-  // Render loading skeletons for each element in the loader array
-  document.getElementById('related_products_container').innerHTML = '';
-  loader.forEach(() => {
-      renderLoading();
-  });
-}
-
-function renderLoading() {
-  // Assuming you have a reference to the container element
-  const productBody = document.getElementById('related_products_container');
-
-  // Create a new element for the skeleton loader
-  const rowElement = document.createElement('div');
-  rowElement.classList.add('swiper-slide', 'product-card','product-card-wrapper');
-
-  // Create the HTML string with dynamic data using template literals
-  rowElement.innerHTML = `
-      <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-          <!-- Skeleton Loader -->
-          <div class="skeleton-wrapperr">
-              <div class="skeletonn skeleton-imgg loading-cursorr"></div>
-              <div class="skeletonn skeleton-titlee loading-cursorr"></div>
-              <div class="skeletonn skeleton-categoryy loading-cursorr"></div>
-              <div class="skeletonn skeleton-pricee loading-cursorr"></div>
-              <div class="skeletonn skeleton-revieww loading-cursorr"></div>
-              <div class="skeletonn skeleton-labell loading-cursorr"></div>
-          </div>
-      </div>
-  `;
-
-  // Append the new element to the container
-  productBody.appendChild(rowElement);
 }
 
 function formatNumber(value) {
