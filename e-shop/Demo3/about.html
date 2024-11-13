@@ -211,29 +211,33 @@
 
     <nav class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
       <div class="container">
-        <form action="#" method="GET" class="search-field position-relative mt-4 mb-3">
-          <div class="position-relative">
+    <form action="#" method="GET" class="search-field position-relative mt-4 mb-3">
+        <div class="position-relative">
             <input id="searchFIeldM" class="search-field__input w-100 border rounded-1" type="text" name="search-keyword" placeholder="Search products">
             <button id="searchButtonM" class="btn-icon search-popup__submit pb-0 me-2" type="submit">
-              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_search" /></svg>
+                <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#icon_search" />
+                </svg>
             </button>
             <button id="clearButtonM" class="btn-icon search-popup__submit pb-0 me-2" type="button">
-              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_close" />
-              </svg>
-            </button>          
-          </div>
-          
-          <div class="position-absolute start-0 top-100 m-0 w-100">
+                <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#icon_close" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="position-absolute start-0 top-100 m-0 w-100">
             <div class="search-popup__results">
-              <div id="productSearch2" class="sub-menu search-suggestion hiddenn">
-                  <ul  style="background-color: white; z-index: 1000; position: relative;" id="searchResults2" class="sub-menu__list list-unstyled">
-                    <!-- render search terms here -->
-                  </ul>
-              </div>
+                <div id="productSearch2" class="sub-menu search-suggestion hiddenn">
+                    <ul style="background-color: white; z-index: 1000; position: relative;" id="searchResults2" class="sub-menu__list list-unstyled">
+                        <!-- render search terms here -->
+                    </ul>
+                </div>
             </div>
-        </form><!-- /.header-search -->
-      </div><!-- /.container -->
+        </div>
+    </form><!-- /.header-search -->
+</div><!-- /.container -->
+
 
       <div class="container">
         <div class="overflow-hidden">
