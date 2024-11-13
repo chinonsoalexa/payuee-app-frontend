@@ -911,14 +911,20 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
     // Group products by eshop_user_id
     cartItems.forEach(item => {
-        const { eshop_user_id, order_cost, quantity } = item;
-
-        if (!ordersMap[eshop_user_id]) {
+        const { eshop_user_id, original_eshop_user_id, order_cost, quantity } = item;
+        let vendorID;
+        if (!item.reposted) {
+            vendorID = item.eshop_user_id;
+        } else {
+            vendorID = item.original_eshop_user_id;
+        }
+        if (!ordersMap[item.eshop_user_id]) {
             // Initialize a new order for this eshop_user_id
-            ordersMap[eshop_user_id] = {
+            ordersMap[item.eshop_user_id] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
                     eshop_user_id: item.eshop_user_id, // Update eshop_user_id from cart
+                    original_eshop_user_id: item.original_eshop_user_id, // Update original_eshop_user_id from cart
                     order_cost: 0.0,
                     order_sub_total_cost: 0.0,
                     shipping_cost: 0.0,
@@ -930,11 +936,11 @@ function createNewOrders(cartItems, orderHistoryBody) {
         }
 
         // Update the order totals in order history
-        const order = ordersMap[eshop_user_id].order_history_body;
-        const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id).toFixed());
-        const shippingCost = parseFloat(calculateShippingFeePerVendor(item.eshop_user_id).toFixed(2));
-        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id).toFixed(2));
-        const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
+        const order = ordersMap[vendorID].order_history_body;
+        const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed());
+        const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
+        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
+        const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
         
         order.order_cost = productCost + shippingCost;
         order.order_sub_total_cost = productCost;
@@ -944,7 +950,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
-            ID: Math.floor(Math.random() * 1000), // Replace with actual product ID if available
+            ID: item.ID, // Replace with actual product ID if available
             ...item // Use spread operator to include all product fields
         };
 
@@ -962,9 +968,16 @@ function getAndCalculateProductsPerVendor(vendorId) {
     let pricePerProductOrder = 0.00;
 
     cart.forEach(item => {
-        if (item.eshop_user_id === vendorId) {
-            pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
+        if (!item.reposted) {
+            if (item.eshop_user_id === vendorId) {
+                pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
+            }
+        } else {
+            if (item.original_eshop_user_id === vendorId) {
+                pricePerProductOrder += reposted_selling_price;
+            }
         }
+
     });
 
     return pricePerProductOrder;
@@ -978,16 +991,22 @@ function getAndCalculateProductsDiscountsPerVendor(vendorId) {
 
     // Loop through each item in the cart
     cart.forEach(item => {
-        // Ensure the eshop_user_id exists
-        if (item.eshop_user_id === vendorId) {
-           // Calculate the item's total price
-        if (item.initial_cost <= 0) {
-            return 0; // Prevent division by zero or negative values
-        };
-        if (item.selling_price < item.initial_cost) {
-            discount += item.initial_cost - item.selling_price; 
-            // discount += item.selling_price - item.initial_cost;
-        };
+        if (!item.reposted) {
+            // Ensure the eshop_user_id exists
+            if (item.eshop_user_id === vendorId) {
+            // Calculate the item's total price
+                if (item.initial_cost <= 0) {
+                    return 0; // Prevent division by zero or negative values
+                };
+                if (item.selling_price < item.initial_cost) {
+                    discount += item.initial_cost - item.selling_price; 
+                };
+            }
+        } else {
+            // Ensure the eshop_user_id exists
+            if (item.original_eshop_user_id === vendorId) {
+                return 0; // Prevent division by zero or negative values
+            }
         }
     });
 
@@ -1002,9 +1021,15 @@ function getAndCalculateProductsQuantityPerVendor(vendorId) {
 
     // Loop through each item in the cart
     cart.forEach(item => {
-        // Ensure the eshop_user_id exists
-        if (item.eshop_user_id === vendorId) {
-            quantity += item.quantity;
+        if (!item.reposted) {
+            // Ensure the eshop_user_id exists
+            if (item.eshop_user_id === vendorId) {
+                quantity += item.quantity;
+            }
+        } else {
+            if (item.original_eshop_user_id === vendorId) {
+                quantity += item.quantity;
+            }
         }
     });
 
@@ -1112,7 +1137,11 @@ async function placeOrder() {
         'product_image',
         'initial_cost',
         'selling_price',
-        'estimated_delivery'
+        'estimated_delivery',
+        'reposted',
+        'repost_max_price',
+        'original_eshop_user_id',
+        'reposted_selling_price',
     ];
 
     // Function to clean cart items
@@ -1195,9 +1224,9 @@ function getUniqueVendorIds() {
                 vendorIds.add(item.eshop_user_id);
             }
         } else {
-            if (item.reposter_eshop_user_id !== undefined) {
+            if (item.original_eshop_user_id !== undefined) {
                 // Add the vendor ID to the Set (duplicates will be ignored automatically)
-                vendorIds.add(item.reposter_eshop_user_id);
+                vendorIds.add(item.original_eshop_user_id);
             }
         }
     });
@@ -1211,7 +1240,11 @@ function calculateTotalWeightForVendor(eshop_user_id) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Filter the products in the cart by the specific eshop_user_id
-    const vendorProducts = cart.filter(product => product.eshop_user_id === eshop_user_id);
+    const vendorProducts = cart.filter(product => 
+        product.reposted 
+            ? product.original_eshop_user_id === eshop_user_id 
+            : product.eshop_user_id === eshop_user_id
+    );    
 
     // Initialize total weight
     let totalWeightKg = 0;
