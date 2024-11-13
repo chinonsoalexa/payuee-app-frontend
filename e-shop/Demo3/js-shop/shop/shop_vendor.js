@@ -372,6 +372,10 @@ function renderProducts(product, subscription) {
         url = "https://payuee.com/outfits/" + product.product_url_id;
     }
 
+    if (subscription.user_store) {
+        url = "https://payuee.com/vendor/" + product.product_url_id;
+    }
+    
     var editProduct;
     if (subscription.user_store && product.reposted) {
         editProduct = `
