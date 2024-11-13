@@ -93,7 +93,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.store);
       categoryId = responseData.success.category;
      
 } finally {
