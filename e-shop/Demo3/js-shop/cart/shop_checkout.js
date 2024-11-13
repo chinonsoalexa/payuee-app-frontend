@@ -871,54 +871,37 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
 function calculateDistance(VenLat1, VenLon1, CusLat2, CusLon2) {
     const R = 6371; // Radius of the Earth in km
     const dLat = (CusLat2 - VenLat1) * (Math.PI / 180);
     const dLon = (CusLon2 - VenLon1) * (Math.PI / 180);
-    const a = 
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(VenLat1 * (Math.PI / 180)) * Math.cos(CusLat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in km
-    return distance;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(VenLat1 * (Math.PI / 180)) * Math.cos(CusLat2 * (Math.PI / 180)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-function calculateDiscount() {
-    // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Initialize subtotal
-    let discount = 0.00;
-    // Loop through each item in the cart and calculate the subtotal
-    cart.forEach(item => {
-        // Calculate the item's total price
-        if (item.initial_cost <= 0) {
-            return 0; // Prevent division by zero or negative values
-        };
+function calculateDiscount(cart) {
+    return cart.reduce((totalDiscount, item) => {
         if (item.selling_price < item.initial_cost) {
-            discount += item.selling_price - item.initial_cost;
-        };
-    });
-    
-    return discount; // Return the result rounded to two decimal places
+            totalDiscount += item.initial_cost - item.selling_price;
+        }
+        return totalDiscount;
+    }, 0.00);
 }
 
 // Function to create new orders
 function createNewOrders(cartItems, orderHistoryBody) {
     const ordersMap = {};
 
-    // Group products by eshop_user_id
     cartItems.forEach(item => {
-        const { eshop_user_id, order_cost, quantity } = item;
+        const vendorID = item.reposted ? item.reposter_eshop_user_id : item.eshop_user_id;
 
-        if (!ordersMap[eshop_user_id]) {
-            // Initialize a new order for this eshop_user_id
-            ordersMap[eshop_user_id] = {
+        if (!ordersMap[vendorID]) {
+            ordersMap[vendorID] = {
                 order_history_body: {
-                    ...orderHistoryBody, // Spread the order history body
-                    eshop_user_id: item.eshop_user_id, // Update eshop_user_id from cart
+                    ...orderHistoryBody,
+                    eshop_user_id: vendorID,
                     order_cost: 0.0,
                     order_sub_total_cost: 0.0,
                     shipping_cost: 0.0,
@@ -929,122 +912,76 @@ function createNewOrders(cartItems, orderHistoryBody) {
             };
         }
 
-        // Update the order totals in order history
-        const order = ordersMap[eshop_user_id].order_history_body;
-        const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id).toFixed());
-        const shippingCost = parseFloat(calculateShippingFeePerVendor(item.eshop_user_id).toFixed(2));
-        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id).toFixed(2));
-        const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
-        
+        const order = ordersMap[vendorID].order_history_body;
+        const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed(2));
+        const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
+        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
+        const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
+
         order.order_cost = productCost + shippingCost;
         order.order_sub_total_cost = productCost;
         order.shipping_cost = shippingCost;
         order.order_discount = discount;
         order.quantity = historyQuantity;
 
-        // Add product order details, keeping only desired fields
         const productOrderBody = {
             ID: item.ID,
-            ...item // Use spread operator to include all product fields
+            ...item
         };
 
-        // Add the product to the product_order_body array
-        ordersMap[eshop_user_id].product_order_body.push(productOrderBody);
+        ordersMap[vendorID].product_order_body.push(productOrderBody);
     });
 
-    // Convert ordersMap to an array
-    const orders = Object.values(ordersMap);
-    return orders;
+    return Object.values(ordersMap);
 }
 
 function getAndCalculateProductsPerVendor(vendorId) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let pricePerProductOrder = 0.00;
-
-    cart.forEach(item => {
-        if (!item.reposted) {
-            if (item.eshop_user_id === vendorId) {
-                pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
-            }
-        } else {
-            if (item.eshop_user_id === vendorId) {
-                pricePerProductOrder += item.reposted_selling_price;
-            }
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    return cart.reduce((totalCost, item) => {
+        if (item.eshop_user_id === vendorId || item.reposter_eshop_user_id === vendorId) {
+            totalCost += item.reposted ? item.reposted_selling_price : (item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost);
         }
-    });
-
-    return pricePerProductOrder;
+        return totalCost;
+    }, 0.00);
 }
 
 function getAndCalculateProductsDiscountsPerVendor(vendorId) {
-    // Retrieve the cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    let discount = 0.00;
-
-    // Loop through each item in the cart
-    cart.forEach(item => {
-        // Ensure the eshop_user_id exists
-        if (item.eshop_user_id === vendorId) {
-           // Calculate the item's total price
-        if (item.initial_cost <= 0) {
-            return 0; // Prevent division by zero or negative values
-        };
-        if (item.selling_price < item.initial_cost) {
-            discount += item.initial_cost - item.selling_price; 
-            // discount += item.selling_price - item.initial_cost;
-        };
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    return cart.reduce((discount, item) => {
+        if (item.eshop_user_id === vendorId || item.reposter_eshop_user_id === vendorId) {
+            if (item.selling_price < item.initial_cost) {
+                discount += item.initial_cost - item.selling_price;
+            }
         }
-    });
-
-    return discount;
+        return discount;
+    }, 0.00);
 }
 
 function getAndCalculateProductsQuantityPerVendor(vendorId) {
-    // Retrieve the cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    let quantity = 0;
-
-    // Loop through each item in the cart
-    cart.forEach(item => {
-        // Ensure the eshop_user_id exists
-        if (item.eshop_user_id === vendorId) {
-            quantity += item.quantity;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    return cart.reduce((totalQuantity, item) => {
+        if (item.eshop_user_id === vendorId || item.reposter_eshop_user_id === vendorId) {
+            totalQuantity += item.quantity;
         }
-    });
-
-    return quantity;
+        return totalQuantity;
+    }, 0);
 }
 
 function calculateShippingFeePerVendor(vendorId) {
     let shippingFees = 0.00;
-    let totalWeight = 0.00;
+    let totalWeight = calculateTotalWeightForVendor(vendorId);
     let distance;
 
-    // Check if there are any shipping fees data available
-    if (!shippingData || shippingData.length === 0) {
-        // return 0 when no shipping fees are available
-        return shippingFees;
-    }
-
-    // Loop through the vendors and calculate their shipping fees
     shippingData.forEach(fee => {
         if (fee.eshop_user_id === vendorId) {
-
-            // Calculate the distance between the store and selected city in kilometers only once
             distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
 
-            // If shipping is not based on weight, calculate the fee using distance alone
             if (!fee.calculate_using_kg) {
                 shippingFees += distance * fee.shipping_fee_per_km;
             } else {
-                // If shipping is based on weight, calculate total weight and fee accordingly
-                totalWeight = calculateTotalWeightForVendor(vendorId);
                 shippingFees += distance * fee.shipping_fee_per_km * totalWeight;
             }
 
-            // Ensure the shipping fee is not lower or higher than the defined limits
             if (shippingFees < fee.shipping_fee_less) {
                 shippingFees = fee.shipping_fee_less;
             } else if (shippingFees > fee.shipping_fee_greater) {
@@ -1059,10 +996,6 @@ function calculateShippingFeePerVendor(vendorId) {
 async function placeOrder() {
     let OrderCost = 0.0;
 
-    const checkbox = document.getElementById('ship_different_address');
-    const isChecked = checkbox.checked;
-
-    // Construct the order history body
     const orderHistoryBody = {
         order_cost: parseFloat(OrderCost.toFixed(2)),
         order_sub_total_cost: parseFloat(orderSubTotalCost.toFixed(2)),
@@ -1084,30 +1017,15 @@ async function placeOrder() {
         save_shipping_address: isChecked
     };
 
-    // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Iterate through each product in the cart
     cart.forEach((product) => {
-
-        if (!product.reposted) {
-            if (product.selling_price < product.initial_cost) {
-                product.order_cost = parseFloat(product.selling_price.toFixed(2));
-                OrderCost += product.selling_price;
-            } else {
-                product.order_cost = parseFloat(product.initial_cost.toFixed(2));
-                OrderCost += product.initial_cost;
-            }
-        } else {
-            product.order_cost = parseFloat(product.reposted_selling_price.toFixed(2));
-            OrderCost += product.reposted_selling_price;
-        }
+        product.order_cost = parseFloat((product.reposted ? product.reposted_selling_price : (product.selling_price < product.initial_cost ? product.selling_price : product.initial_cost)).toFixed(2));
+        OrderCost += product.order_cost;
     });
 
-    // Update order_cost with the final value after the loop
     orderHistoryBody.order_cost = parseFloat(OrderCost.toFixed(2));
 
-    // Fields you want to keep
     const desiredFields = [
         'ID',
         'category',
@@ -1117,11 +1035,9 @@ async function placeOrder() {
         'eshop_user_id',
         'product_url_id',
         'currency',
-        'featured',
         'order_cost',
         'net_weight',
         'quantity',
-        'product_image',
         'initial_cost',
         'selling_price',
         'estimated_delivery',
@@ -1131,27 +1047,15 @@ async function placeOrder() {
         'reposted_selling_price'
     ];
 
-    // Function to clean cart items
-    const cleanCartItems = (items) => {
-        return items.map(item => {
-            return desiredFields.reduce((acc, field) => {
-                acc[field] = item[field];
-                return acc;
-            }, {});
-        });
-    };
+    const cleanCartItems = (items) => items.map(item => desiredFields.reduce((acc, field) => {
+        acc[field] = item[field];
+        return acc;
+    }, {}));
 
-    // Clean the cart item
     const cleanedCartItem = cleanCartItems(cart);
 
-    // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
 
-    const checkoutButton = document.getElementById('placeOrderButton');
-    
-    checkoutButton.disabled = true;
-
-    // Construct the request body
     const requestBody = {
         Latitude: parseFloat(latitude.toFixed(2)),
         Longitude: parseFloat(longitude.toFixed(2)),
@@ -1161,37 +1065,20 @@ async function placeOrder() {
     };
 
     try {
-        // Send POST request using Fetch API and wait for the response
         const response = await fetch('https://api.payuee.com/place-order', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',  // Include cookies with the request
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
             body: JSON.stringify(requestBody)
         });
 
         const data = await response.json();
-
         if (!data.ok) {
-            if (data.error == "sorry you cannot order your own product") {
-                showToastMessageE("sorry you cannot order your own product");
-            }
+            showToastMessageE("sorry you cannot order your own product");
         }
-
-        const checkoutButton = document.getElementById('placeOrderButton');
-    
-        checkoutButton.disabled = false;
-
-        // Return the response data so the calling function can use it
-        return data;
     } catch (error) {
-        const checkoutButton = document.getElementById('placeOrderButton');
-    
-        checkoutButton.disabled = false;
-        // Handle any errors that occur
         console.error('Error:', error);
-        throw error; // Propagate the error so calling function can handle it
+        throw error;
     }
 }
 
