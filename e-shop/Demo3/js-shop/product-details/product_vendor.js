@@ -326,7 +326,7 @@ function renderProductDetails(product, subscription) {
                   <input type="radio" name="size" id="swatch-5">
                   <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
                 </div>
-                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+                <!-- <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a> -->
               </div>
             </div>
             <div class="product-single__addtocart">
