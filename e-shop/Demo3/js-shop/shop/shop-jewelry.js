@@ -423,7 +423,7 @@ function renderProducts(product) {
 }
 
 async function checkCollaborationEligibility(ID) {
-    const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info";
+    const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
 
     const requestOptions = {
         method: "GET",
