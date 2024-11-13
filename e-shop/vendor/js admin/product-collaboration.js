@@ -49,7 +49,7 @@ async function updateProduct() {
     const apiUrl = "https://api.payuee.com/vendor/post-collaboration";
     const requestBody = {
         id: parseInt(productToUpdate),  // Ensure this is an integer if it's supposed to be
-        product_description: productDescription,
+        description: productDescription,
         reposted_selling_price: parseFloat(sellingPrice),  // Ensure this is a float
         tags: tags,
         publish_status: publishStatus,
