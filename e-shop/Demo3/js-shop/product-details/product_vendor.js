@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Update cart number and drawer
     updateCartNumber();
     updateCartDrawer();
-    loading();
+    // loading();
     getProduct(productId);
     
   //   setTimeout(() => {
