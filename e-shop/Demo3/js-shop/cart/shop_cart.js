@@ -24,7 +24,7 @@ function updateMainCart() {
         <tr>
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="../../images/product_not_available.jpg" width="120" height="120" alt="">
+                    <img loading="lazy" src="https://payuee.com/e-shop/images/product_not_available.jpg" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>

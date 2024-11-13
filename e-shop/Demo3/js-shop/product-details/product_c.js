@@ -1253,11 +1253,15 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
 
       // Re-calculate the product price based on the quantity
       const product = cart[productIndex];
-      if (product.selling_price !== 0) {
-          product.totalPrice = product.selling_price * product.quantity;
-      } else {
-          product.totalPrice = product.price * product.quantity;
-      }
+      if (!cartProduct.reposted) {
+        if (product.selling_price !== 0) {
+            product.totalPrice = product.selling_price * product.quantity;
+        } else {
+            product.totalPrice = product.initial_cost * product.quantity;
+        }
+    } else {
+      product.totalPrice = product.reposted_selling_price * product.quantity;
+    }
 
       // Save the updated cart to local storage
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -1362,15 +1366,21 @@ function updateCartDrawer() {
       cart.forEach(cartProduct => {
           let price;
       
-          if (cartProduct.selling_price !== 0) {
-              price = `
-              <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
-              `;
-          } else {
-              price = `
-               <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
-              `;
-          }
+          if (!cartProduct.reposted) {
+            if (cartProduct.selling_price !== 0) {
+                price = `
+                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                `;
+            } else {
+                price = `
+                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                `;
+            }
+        } else {
+            price = `
+                <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
+            `;
+        }
 
           // Create a new cart item element
           const cartItem = document.createElement('div');
