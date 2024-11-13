@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   //       if (product) {
   //           renderLoadingDetails();
-  //           renderProductDetails(product);
+  //           renderProductDetails(product), responseData.store;
   //       } else {
   //           // If product not found, default to product with ID 1
   //           const product2 = products.find(product => product.ID === 1);
   //           productId = 1; // Update productId to default
   //           renderLoadingDetails();
-  //           renderProductDetails(product2);
+  //           renderProductDetails(product2, responseData.store);
   //       }
   //   } else {
   //       // If no productId in URL, render the first product by default
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   //       const product2 = products.find(product => product.ID === 1);
   //       productId = 1; // Update productId to default
   //         renderLoadingDetails();
-  //         renderProductDetails(product2);
+  //         renderProductDetails(product2, responseData.store);
   //   }
   // }, 3000);
   // Other initializations...
@@ -136,7 +136,7 @@ async function getNextProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.store);
       productId = responseData.success.ID;
       categoryId = responseData.success.category;
       replaceURL('/shop/' + responseData.success.product_url_id);
@@ -181,7 +181,7 @@ async function getPreviousProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success);
+      renderProductDetails(responseData.success, responseData.store);
       productId = responseData.success.ID;
       categoryId = responseData.success.category;
       replaceURL('/shop/' + responseData.success.product_url_id);
