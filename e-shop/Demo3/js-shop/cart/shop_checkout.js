@@ -1089,12 +1089,18 @@ async function placeOrder() {
 
     // Iterate through each product in the cart
     cart.forEach((product) => {
-        if (product.selling_price < product.initial_cost) {
-            product.order_cost = parseFloat(product.selling_price.toFixed(2));
-            OrderCost += product.selling_price;
+
+        if (!product.reposted) {
+            if (product.selling_price < product.initial_cost) {
+                product.order_cost = parseFloat(product.selling_price.toFixed(2));
+                OrderCost += product.selling_price;
+            } else {
+                product.order_cost = parseFloat(product.initial_cost.toFixed(2));
+                OrderCost += product.initial_cost;
+            }
         } else {
-            product.order_cost = parseFloat(product.initial_cost.toFixed(2));
-            OrderCost += product.initial_cost;
+            product.order_cost = parseFloat(product.reposted_selling_price.toFixed(2));
+            OrderCost += product.reposted_selling_price;
         }
     });
 
@@ -1118,7 +1124,11 @@ async function placeOrder() {
         'product_image',
         'initial_cost',
         'selling_price',
-        'estimated_delivery'
+        'estimated_delivery',
+        'reposted',
+        'repost_max_price',
+        'reposter_eshop_user_id',
+        'reposted_selling_price'
     ];
 
     // Function to clean cart items
