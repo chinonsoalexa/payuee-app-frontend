@@ -937,11 +937,11 @@ function createNewOrders(cartItems, orderHistoryBody) {
         }
 
         // Update the order totals in order history
-        const order = ordersMap[vendorID].order_history_body;
-        const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed());
+        const order = ordersMap[item.eshop_user_id].order_history_body;
+        const productCost = parseFloat(getAndCalculateProductsPerVendor(item.eshop_user_id).toFixed());
         const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
-        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
-        const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
+        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(item.eshop_user_id).toFixed(2));
+        const historyQuantity = getAndCalculateProductsQuantityPerVendor(item.eshop_user_id);
         
         order.order_cost = productCost + shippingCost;
         order.order_sub_total_cost = productCost;
@@ -974,7 +974,7 @@ function getAndCalculateProductsPerVendor(vendorId) {
                 pricePerProductOrder += item.selling_price < item.initial_cost ? item.selling_price : item.initial_cost;
             }
         } else {
-            if (item.original_eshop_user_id === vendorId) {
+            if (item.eshop_user_id === vendorId) {
                 pricePerProductOrder += reposted_selling_price;
             }
         }
@@ -1028,7 +1028,7 @@ function getAndCalculateProductsQuantityPerVendor(vendorId) {
                 quantity += item.quantity;
             }
         } else {
-            if (item.original_eshop_user_id === vendorId) {
+            if (item.eshop_user_id === vendorId) {
                 quantity += item.quantity;
             }
         }
