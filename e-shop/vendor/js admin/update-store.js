@@ -155,7 +155,7 @@ async function updateStore() {
     });
 
     try {
-        const response = await fetch('https://api.payuee.com/update-store', { // Replace with your actual endpoint URL
+        const response = await fetch('https://api.payuee.com/vendor/update-store', { // Replace with your actual endpoint URL
             method: 'POST',
             // headers: {
             //     'Content-Type': 'multipart/form-data'
@@ -182,7 +182,7 @@ async function updateStore() {
 // Function to fetch data and fill in form fields
 async function fetchDataAndFillForm() {
     try {
-        const response = await fetch('https://api.payuee.com/get-store-details', {
+        const response = await fetch('https://api.payuee.com/vendor/get-store-details', {
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
