@@ -274,14 +274,19 @@ function renderCheckoutProducts() {
         // Loop through each item in the cart
         cart.forEach(cartProduct => {
             let price;
-        
-            if (cartProduct.selling_price < cartProduct.initial_cost) {
-                price = `
-                <td>${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</td>
-                `;
+            if (cartProduct.reposted != true) {
+                if (cartProduct.selling_price < cartProduct.initial_cost) {
+                    price = `
+                    <td>${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</td>
+                    `;
+                } else {
+                    price = `
+                    <td>${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</td>
+                    `;
+                }
             } else {
                 price = `
-                 <td>${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</td>
+                <td>${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</td>
                 `;
             }
 
