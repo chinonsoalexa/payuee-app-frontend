@@ -166,11 +166,11 @@ function printDiv() {
   newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>
 
 <!--
-          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                 Payuee Marketplace                 |
-        [ ] - - - - - - - - - - - - ( ) - - - - - - - - - - - - [ ]
-        |                 Buyer     ↔     Seller                 |
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |       Payuee Marketplace       |
+        [ ] - - - - - - ( ) - - - - - - [ ]
+         |   Buyer     ↔     Seller       |
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               Bringing Buyers & Sellers Together
 -->');
 
