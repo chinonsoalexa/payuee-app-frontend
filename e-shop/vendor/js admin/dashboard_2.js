@@ -16,7 +16,7 @@ const siteVisitData = {
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-    await getDorngAnalytics();
+    await getVendorAnalytics();
 
 });
   
@@ -25,8 +25,8 @@ var categories;
 var dataSeries1; // For series1
 var dataSeries2; // Example modification for series2
 
-async function getDorngAnalytics() {
-    const apiUrl = "https://api.payuee.com/get-dorng-analytics";
+async function getVendorAnalytics() {
+    const apiUrl = "https://api.payuee.com/get-vendor-analytics";
 
     const requestOptions = {
         method: "GET",
