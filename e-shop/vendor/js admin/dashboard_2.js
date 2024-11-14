@@ -59,7 +59,11 @@ async function getVendorAnalytics() {
         }
 
         const responseData = await response.json();
-        updateAnalyticsData(responseData.user_analytics);
+        if (!responseData.user_analytics || responseData.user_analytics == null) {
+          updateAnalyticsDataNa();
+        } else {
+          updateAnalyticsData(responseData.user_analytics);
+        }
         categories = Object.keys(responseData.site_visits);
         dataSeries1 = Object.values(responseData.site_visits); // For series1
         dataSeries2 = dataSeries1.map(val => val * 0.8); // Example modification for series2
@@ -114,6 +118,45 @@ function updateAnalyticsData(data) {
   // Dynamically update the product arrow icon
   let productIcon = document.querySelector("#total-product .arrow-chart use");
   productIcon.setAttribute('href', data.is_products_better ? '#arrow-chart-up' : '#arrow-chart');
+}
+
+function updateAnalyticsDataNa() {
+  // Helper function to format percentage with +/- sign
+  function formatPercentage(change, isBetter) {
+    return `${isBetter ? '+' : '-'}${formatNumber(change)}%`;
+  }
+
+  // Update Total Revenue
+  document.getElementById("revenue-amount").innerText = 'NA';
+  document.getElementById("revenue-percentage").innerText = 'NA';
+
+  // Dynamically update the revenue arrow icon
+  let revenueIcon = document.querySelector("#total-revenue .arrow-chart use");
+  revenueIcon.setAttribute('href', '#arrow-chart');
+
+  // Update Total Sales
+  document.getElementById("sales-amount").innerText = 'NA';
+  document.getElementById("sales-percentage").innerText = 'NA';
+
+  // Dynamically update the sales arrow icon
+  let salesIcon = document.querySelector("#total-sales .arrow-chart use");
+  salesIcon.setAttribute('href', '#arrow-chart');
+
+  // Update Total Customer
+  document.getElementById("customer-amount").innerText = 'NA';
+  document.getElementById("customer-percentage").innerText = 'NA';
+
+  // Dynamically update the customer arrow icon
+  let customerIcon = document.querySelector("#total-customer .arrow-chart use");
+  customerIcon.setAttribute('href', '#arrow-chart');
+
+  // Update Total Product
+  document.getElementById("product-amount").innerText = 'NA';
+  document.getElementById("product-percentage").innerText = 'NA';
+
+  // Dynamically update the product arrow icon
+  let productIcon = document.querySelector("#total-product .arrow-chart use");
+  productIcon.setAttribute('href', '#arrow-chart');
 }
 
 function formatNumber(num) {
