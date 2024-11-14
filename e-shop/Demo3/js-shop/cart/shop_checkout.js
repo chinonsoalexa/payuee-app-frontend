@@ -917,19 +917,19 @@ function calculateDiscount() {
 // Function to create new orders
 function createNewOrders(cartItems, orderHistoryBody) {
     const ordersMap = {};
-    console.log("Starting createNewOrders function...");
+    // console.log("Starting createNewOrders function...");
 
     // Group products by eshop_user_id or original_eshop_user_id if reposted
     cartItems.forEach((item, index) => {
-        console.log(`Processing item ${index + 1}/${cartItems.length}:`, item);
+        // console.log(`Processing item ${index + 1}/${cartItems.length}:`, item);
 
         const { eshop_user_id, original_eshop_user_id, order_cost, quantity } = item;
         const vendorID = item.reposted ? original_eshop_user_id : eshop_user_id;
-        console.log("Determined vendorID:", vendorID);
+        // console.log("Determined vendorID:", vendorID);
 
         // Initialize a new order if not yet in ordersMap
         if (!ordersMap[vendorID]) {
-            console.log(`Initializing new order for vendorID: ${vendorID}`);
+            // console.log(`Initializing new order for vendorID: ${vendorID}`);
             ordersMap[vendorID] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
@@ -954,10 +954,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
             const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id).toFixed(2));
             const historyQuantity = getAndCalculateProductsQuantityPerVendor(eshop_user_id);
 
-            console.log("Product cost:", productCost);
-            console.log("Shipping cost:", shippingCost);
-            console.log("Discount:", discount);
-            console.log("Quantity:", historyQuantity);
+            // console.log("Product cost:", productCost);
+            // console.log("Shipping cost:", shippingCost);
+            // console.log("Discount:", discount);
+            // console.log("Quantity:", historyQuantity);
 
             order.order_cost = productCost + shippingCost;
             order.order_sub_total_cost = productCost;
@@ -965,17 +965,18 @@ function createNewOrders(cartItems, orderHistoryBody) {
             order.order_discount = discount;
             order.quantity = historyQuantity;
         } catch (error) {
-            console.error("Error calculating order totals for vendorID:", vendorID, error);
+            // console.error("Error calculating order totals for vendorID:", vendorID, error);
         }
 
         // Add product order details, keeping only desired fields
+        const { product_image, ...productOrderData } = item; // Exclude product_image
         const productOrderBody = {
-            ID: item.ID, // Replace with actual product ID if available
-            ...item // Use spread operator to include all product fields
+            ID: item.ID,
+            ...productOrderData
         };
 
         // Add the product to the product_order_body array
-        console.log("Adding product to product_order_body for vendorID:", vendorID);
+        // console.log("Adding product to product_order_body for vendorID:", vendorID);
         ordersMap[vendorID].product_order_body.push(productOrderBody);
     });
 
@@ -1132,12 +1133,16 @@ async function placeOrder() {
 
     // Iterate through each product in the cart
     cart.forEach((product) => {
-        if (product.selling_price < product.initial_cost) {
-            product.order_cost = parseFloat(product.selling_price.toFixed(2));
-            OrderCost += product.selling_price;
+        if (!product.reposted) {
+            if (product.selling_price < product.initial_cost) {
+                product.order_cost = parseFloat(product.selling_price.toFixed(2));
+                OrderCost += product.selling_price;
+            } else {
+                product.order_cost = parseFloat(product.initial_cost.toFixed(2));
+                OrderCost += product.initial_cost;
+            }
         } else {
-            product.order_cost = parseFloat(product.initial_cost.toFixed(2));
-            OrderCost += product.initial_cost;
+            product.order_cost = parseFloat(product.reposted_selling_price.toFixed(2));
         }
     });
 
