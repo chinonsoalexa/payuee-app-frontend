@@ -996,7 +996,7 @@ function getAndCalculateProductsPerVendor(vendorId) {
             }
         } else {
             if (item.eshop_user_id === vendorId) {
-                pricePerProductOrder += reposted_selling_price;
+                pricePerProductOrder += item.reposted_selling_price;
             }
         }
 
