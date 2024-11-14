@@ -917,14 +917,19 @@ function calculateDiscount() {
 // Function to create new orders
 function createNewOrders(cartItems, orderHistoryBody) {
     const ordersMap = {};
+    console.log("Starting createNewOrders function...");
 
     // Group products by eshop_user_id or original_eshop_user_id if reposted
-    cartItems.forEach(item => {
+    cartItems.forEach((item, index) => {
+        console.log(`Processing item ${index + 1}/${cartItems.length}:`, item);
+
         const { eshop_user_id, original_eshop_user_id, order_cost, quantity } = item;
         const vendorID = item.reposted ? original_eshop_user_id : eshop_user_id;
-        
+        console.log("Determined vendorID:", vendorID);
+
         // Initialize a new order if not yet in ordersMap
         if (!ordersMap[vendorID]) {
+            console.log(`Initializing new order for vendorID: ${vendorID}`);
             ordersMap[vendorID] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
@@ -943,16 +948,25 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Update the order totals in order history
         const order = ordersMap[vendorID].order_history_body;
-        const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed(2));
-        const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
-        const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
-        const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
-        
-        order.order_cost = productCost + shippingCost;
-        order.order_sub_total_cost = productCost;
-        order.shipping_cost = shippingCost;
-        order.order_discount = discount;
-        order.quantity = historyQuantity;
+        try {
+            const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed(2));
+            const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
+            const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
+            const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
+
+            console.log("Product cost:", productCost);
+            console.log("Shipping cost:", shippingCost);
+            console.log("Discount:", discount);
+            console.log("Quantity:", historyQuantity);
+
+            order.order_cost = productCost + shippingCost;
+            order.order_sub_total_cost = productCost;
+            order.shipping_cost = shippingCost;
+            order.order_discount = discount;
+            order.quantity = historyQuantity;
+        } catch (error) {
+            console.error("Error calculating order totals for vendorID:", vendorID, error);
+        }
 
         // Add product order details, keeping only desired fields
         const productOrderBody = {
@@ -961,14 +975,15 @@ function createNewOrders(cartItems, orderHistoryBody) {
         };
 
         // Add the product to the product_order_body array
+        console.log("Adding product to product_order_body for vendorID:", vendorID);
         ordersMap[vendorID].product_order_body.push(productOrderBody);
     });
 
     // Convert ordersMap to an array
     const orders = Object.values(ordersMap);
+    console.log("Finished processing orders:", orders);
     return orders;
 }
-
 
 function getAndCalculateProductsPerVendor(vendorId) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
