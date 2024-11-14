@@ -949,10 +949,10 @@ function createNewOrders(cartItems, orderHistoryBody) {
         // Update the order totals in order history
         const order = ordersMap[vendorID].order_history_body;
         try {
-            const productCost = parseFloat(getAndCalculateProductsPerVendor(vendorID).toFixed(2));
+            const productCost = parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2));
             const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
-            const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(vendorID).toFixed(2));
-            const historyQuantity = getAndCalculateProductsQuantityPerVendor(vendorID);
+            const discount = parseFloat(getAndCalculateProductsDiscountsPerVendor(eshop_user_id).toFixed(2));
+            const historyQuantity = getAndCalculateProductsQuantityPerVendor(eshop_user_id);
 
             console.log("Product cost:", productCost);
             console.log("Shipping cost:", shippingCost);
