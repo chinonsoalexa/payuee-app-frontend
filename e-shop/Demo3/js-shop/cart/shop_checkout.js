@@ -936,8 +936,8 @@ function createNewOrders(cartItems, orderHistoryBody) {
             ordersMap[eshop_user_id] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
-                    eshop_user_id,
-                    original_eshop_user_id,
+                    eshop_user_id: item.eshop_user_id,
+                    original_eshop_user_id: item.original_eshop_user_id,
                     reposted: item.reposted,
                     order_cost: 0.0,
                     order_sub_total_cost: 0.0,
