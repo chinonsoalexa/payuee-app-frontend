@@ -75,74 +75,45 @@ function updateAnalyticsData(data) {
     return `${isBetter ? '+' : '-'}${formatNumber(change)}%`;
   }
 
-  // Helper function to format number with '₦' or return 'NA' if no data available
-  function formatAmount(amount) {
-    return amount != null && amount !== 0 ? `₦${formatNumber(amount)}` : 'NA';
-  }
+  // Update Total Revenue
+  document.getElementById("revenue-amount").innerText = `₦${formatNumber(data.total_revenue)}`;
+  let revenuePercentageElement = document.getElementById("revenue-percentage");
+  revenuePercentageElement.innerText = formatPercentage(data.revenue_change, data.is_revenue_better);
+  revenuePercentageElement.className = data.is_revenue_better ? 'font-success' : 'font-danger';
 
-  // Check if data is available for total revenue, if not display 'NA'
-  if (data.total_revenue == null || data.total_revenue === 0) {
-    document.getElementById("revenue-amount").innerText = 'NA';
-    document.getElementById("revenue-percentage").innerText = 'NA';
-  } else {
-    // Update Total Revenue
-    document.getElementById("revenue-amount").innerText = `₦${formatNumber(data.total_revenue)}`;
-    let revenuePercentageElement = document.getElementById("revenue-percentage");
-    revenuePercentageElement.innerText = formatPercentage(data.revenue_change, data.is_revenue_better);
-    revenuePercentageElement.className = data.is_revenue_better ? 'font-success' : 'font-danger';
+  // Dynamically update the revenue arrow icon
+  let revenueIcon = document.querySelector("#total-revenue .arrow-chart use");
+  revenueIcon.setAttribute('href', data.is_revenue_better ? '#arrow-chart-up' : '#arrow-chart');
 
-    // Dynamically update the revenue arrow icon
-    let revenueIcon = document.querySelector("#total-revenue .arrow-chart use");
-    revenueIcon.setAttribute('href', data.is_revenue_better ? '#arrow-chart-up' : '#arrow-chart');
-  }
+  // Update Total Sales
+  document.getElementById("sales-amount").innerText = `${formatNumber(data.total_sales)} NGN`;
+  let salesPercentageElement = document.getElementById("sales-percentage");
+  salesPercentageElement.innerText = formatPercentage(data.sales_change, data.is_sales_better);
+  salesPercentageElement.className = data.is_sales_better ? 'font-success' : 'font-danger';
 
-  // Check if data is available for total sales, if not display 'NA'
-  if (data.total_sales == null || data.total_sales === 0) {
-    document.getElementById("sales-amount").innerText = 'NA';
-    document.getElementById("sales-percentage").innerText = 'NA';
-  } else {
-    // Update Total Sales
-    document.getElementById("sales-amount").innerText = `${formatNumber(data.total_sales)} NGN`;
-    let salesPercentageElement = document.getElementById("sales-percentage");
-    salesPercentageElement.innerText = formatPercentage(data.sales_change, data.is_sales_better);
-    salesPercentageElement.className = data.is_sales_better ? 'font-success' : 'font-danger';
+  // Dynamically update the sales arrow icon
+  let salesIcon = document.querySelector("#total-sales .arrow-chart use");
+  salesIcon.setAttribute('href', data.is_sales_better ? '#arrow-chart-up' : '#arrow-chart');
 
-    // Dynamically update the sales arrow icon
-    let salesIcon = document.querySelector("#total-sales .arrow-chart use");
-    salesIcon.setAttribute('href', data.is_sales_better ? '#arrow-chart-up' : '#arrow-chart');
-  }
+  // Update Total Customer
+  document.getElementById("customer-amount").innerText = `${formatNumber(data.total_customers)}`;
+  let customerPercentageElement = document.getElementById("customer-percentage");
+  customerPercentageElement.innerText = formatPercentage(data.customer_change, data.is_customers_better);
+  customerPercentageElement.className = data.is_customers_better ? 'font-success' : 'font-danger';
 
-  // Check if data is available for total customers, if not display 'NA'
-  if (data.total_customers == null || data.total_customers === 0) {
-    document.getElementById("customer-amount").innerText = 'NA';
-    document.getElementById("customer-percentage").innerText = 'NA';
-  } else {
-    // Update Total Customer
-    document.getElementById("customer-amount").innerText = `${formatNumber(data.total_customers)}`;
-    let customerPercentageElement = document.getElementById("customer-percentage");
-    customerPercentageElement.innerText = formatPercentage(data.customer_change, data.is_customers_better);
-    customerPercentageElement.className = data.is_customers_better ? 'font-success' : 'font-danger';
+  // Dynamically update the customer arrow icon
+  let customerIcon = document.querySelector("#total-customer .arrow-chart use");
+  customerIcon.setAttribute('href', data.is_customers_better ? '#arrow-chart-up' : '#arrow-chart');
 
-    // Dynamically update the customer arrow icon
-    let customerIcon = document.querySelector("#total-customer .arrow-chart use");
-    customerIcon.setAttribute('href', data.is_customers_better ? '#arrow-chart-up' : '#arrow-chart');
-  }
+  // Update Total Product
+  document.getElementById("product-amount").innerText = `${formatNumber(data.total_products)}`;
+  let productPercentageElement = document.getElementById("product-percentage");
+  productPercentageElement.innerText = formatPercentage(data.product_change, data.is_products_better);
+  productPercentageElement.className = data.is_products_better ? 'font-success' : 'font-danger';
 
-  // Check if data is available for total products, if not display 'NA'
-  if (data.total_products == null || data.total_products === 0) {
-    document.getElementById("product-amount").innerText = 'NA';
-    document.getElementById("product-percentage").innerText = 'NA';
-  } else {
-    // Update Total Product
-    document.getElementById("product-amount").innerText = `${formatNumber(data.total_products)}`;
-    let productPercentageElement = document.getElementById("product-percentage");
-    productPercentageElement.innerText = formatPercentage(data.product_change, data.is_products_better);
-    productPercentageElement.className = data.is_products_better ? 'font-success' : 'font-danger';
-
-    // Dynamically update the product arrow icon
-    let productIcon = document.querySelector("#total-product .arrow-chart use");
-    productIcon.setAttribute('href', data.is_products_better ? '#arrow-chart-up' : '#arrow-chart');
-  }
+  // Dynamically update the product arrow icon
+  let productIcon = document.querySelector("#total-product .arrow-chart use");
+  productIcon.setAttribute('href', data.is_products_better ? '#arrow-chart-up' : '#arrow-chart');
 }
 
 function formatNumber(num) {

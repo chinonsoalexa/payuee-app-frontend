@@ -1253,7 +1253,7 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
 
       // Re-calculate the product price based on the quantity
       const product = cart[productIndex];
-      if (!cartProduct.reposted) {
+      if (!product.reposted) {
         if (product.selling_price !== 0) {
             product.totalPrice = product.selling_price * product.quantity;
         } else {
