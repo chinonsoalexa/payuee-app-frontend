@@ -171,7 +171,7 @@ function printDiv() {
         [ ] - - - - - - - - - - - - ( ) - - - - - - - - - - - - [ ]
         |                 Buyer     ↔     Seller                 |
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Secure. Trusted. Easy.
+              Bringing Buyers & Sellers Together
 -->');
 
   newWin.document.close();
