@@ -377,6 +377,7 @@ function calculateCartSubtotal() {
 
   // Update the subtotal element in the UI
   document.getElementById('cart_sub_total_price').innerText = formatNumberToNaira(subtotal);
+  document.getElementById('subtotalMain').innerText = formatNumberToNaira(subtotal);
 }
 
 function updateCartNumber() {
