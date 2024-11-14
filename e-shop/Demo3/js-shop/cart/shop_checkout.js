@@ -1166,7 +1166,9 @@ async function placeOrder() {
     };
 
     // Clean the cart item
+    console.log("started placing order 32");
     const cleanedCartItem = cleanCartItems(cart);
+    console.log("started placing order 43");
 
     // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
