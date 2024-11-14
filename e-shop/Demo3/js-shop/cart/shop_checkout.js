@@ -925,6 +925,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
                     ...orderHistoryBody, // Spread the order history body
                     eshop_user_id: item.eshop_user_id, // Update eshop_user_id from cart
                     original_eshop_user_id: item.original_eshop_user_id, // Update original_eshop_user_id from cart
+                    reposted: item.reposted,
                     order_cost: 0.0,
                     order_sub_total_cost: 0.0,
                     shipping_cost: 0.0,
