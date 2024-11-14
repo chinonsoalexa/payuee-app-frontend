@@ -810,7 +810,7 @@ function calculateCartSubtotal() {
         // Calculate the item's total price
         let itemTotal;
 
-        if (!cartProduct.reposted) {
+        if (!item.reposted) {
             if (item.selling_price < item.initial_cost) {
                 itemTotal = item.selling_price * item.quantity;
             } else {
