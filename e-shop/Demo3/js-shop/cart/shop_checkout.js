@@ -488,17 +488,21 @@ async function CalculateCartSubtotal() {
         // console.log("Processing item:", item);
 
         // Ensure item properties are present and valid
-        if (item.selling_price !== undefined && item.initial_cost !== undefined && item.quantity !== undefined) {
-            // Calculate the item's total price
-            let itemTotal;
-            if (item.selling_price < item.initial_cost) {
-                itemTotal = item.selling_price * item.quantity;
+        if (item.reposted != true) {
+            if (item.selling_price !== undefined && item.initial_cost !== undefined && item.quantity !== undefined) {
+                // Calculate the item's total price
+                let itemTotal;
+                if (item.selling_price < item.initial_cost) {
+                    itemTotal = item.selling_price * item.quantity;
+                } else {
+                    itemTotal = item.initial_cost * item.quantity;
+                }
+                subtotal += itemTotal;
             } else {
-                itemTotal = item.initial_cost * item.quantity;
+                // console.warn("Item missing properties:", item);
             }
-            subtotal += itemTotal;
         } else {
-            // console.warn("Item missing properties:", item);
+            subtotal += item.reposted_selling_price;
         }
     });
 
