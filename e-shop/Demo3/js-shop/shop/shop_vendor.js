@@ -43,6 +43,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     await getProducts();
 
+    var analyticsData = sessionStorage.getItem('analyticsData');
+
+    if (analyticsData === null) {
+        // Key does not exist in localStorage
+        sessionStorage.setItem('analyticsData', 'true');
+
+        fetch('https://api.payuee.com/vendor-analytics/' + vendorId, {
+            method: 'GET'
+        });
+    }
+
 });
 
 async function getProducts() {
