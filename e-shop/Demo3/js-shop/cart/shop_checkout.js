@@ -1077,6 +1077,7 @@ function calculateShippingFeePerVendor(vendorId) {
 }
 
 async function placeOrder() {
+    console.log("started placing order");
     let OrderCost = 0.0;
 
     const checkbox = document.getElementById('ship_different_address');
@@ -1191,6 +1192,8 @@ async function placeOrder() {
             if (data.error == "sorry you cannot order your own product") {
                 showToastMessageE("sorry you cannot order your own product");
             }
+            showToastMessageE("an error occurred while placing order");
+            return;
         }
 
         const checkoutButton = document.getElementById('placeOrderButton');
