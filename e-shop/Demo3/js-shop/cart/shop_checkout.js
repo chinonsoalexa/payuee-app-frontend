@@ -748,9 +748,11 @@ placeOrderButton.addEventListener("click", function(event) {
             return
         }
 
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
+        checkoutButton.disabled = true;
         // Simulate checking balance 
         const customerBalance = await getUsersBalance();
-
         if (customerBalance === null || customerBalance < totalCharge || customerBalance < 1) {
         // Hide checkout modal and show insufficient balance modal
             paymentModal.hide();
@@ -764,7 +766,8 @@ placeOrderButton.addEventListener("click", function(event) {
                     // Logic to fund the wallet goes here
                     window.location.href = 'https://payuee.com/fund-wallet';
                 });
-                return;
+            checkoutButton.disabled = false;
+            return;
             }, 300); // Delay for smooth transition
         } else {
 
@@ -928,9 +931,9 @@ function createNewOrders(cartItems, orderHistoryBody) {
         // console.log("Determined vendorID:", vendorID);
 
         // Initialize a new order if not yet in ordersMap
-        if (!ordersMap[vendorID]) {
+        if (!ordersMap[eshop_user_id]) {
             // console.log(`Initializing new order for vendorID: ${vendorID}`);
-            ordersMap[vendorID] = {
+            ordersMap[eshop_user_id] = {
                 order_history_body: {
                     ...orderHistoryBody, // Spread the order history body
                     eshop_user_id,
@@ -947,7 +950,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
         }
 
         // Update the order totals in order history
-        const order = ordersMap[vendorID].order_history_body;
+        const order = ordersMap[eshop_user_id].order_history_body;
         try {
             const productCost = parseFloat(getAndCalculateProductsPerVendor(eshop_user_id).toFixed(2));
             const shippingCost = parseFloat(calculateShippingFeePerVendor(vendorID).toFixed(2));
@@ -969,7 +972,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
         }
 
         // Add product order details, keeping only desired fields
-        const { product_image, ...productOrderData } = item; // Exclude product_image
+        // const { product_image, ...productOrderData } = item; // Exclude product_image
         const productOrderBody = {
             ID: item.ID,
             ...productOrderData
@@ -977,7 +980,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
         // Add the product to the product_order_body array
         // console.log("Adding product to product_order_body for vendorID:", vendorID);
-        ordersMap[vendorID].product_order_body.push(productOrderBody);
+        ordersMap[eshop_user_id].product_order_body.push(productOrderBody);
     });
 
     // Convert ordersMap to an array
@@ -1193,9 +1196,6 @@ async function placeOrder() {
     // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
 
-    const checkoutButton = document.getElementById('placeOrderButton');
-    
-    checkoutButton.disabled = true;
     console.log("started placing order 5");
 
     // Construct the request body
