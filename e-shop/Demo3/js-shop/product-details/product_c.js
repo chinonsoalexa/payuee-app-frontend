@@ -5,7 +5,7 @@ var pageNumber = 1;
 var categoryId = "";
 
 // Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 15 }, (_, i) => i);
+const loader = Array.from({ length: 16 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Get URL parameters

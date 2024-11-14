@@ -17,7 +17,7 @@ var min_weight = 1;
 var max_weight = 10;
 
 // Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 15 }, (_, i) => i);
+const loader = Array.from({ length: 16 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
