@@ -1,5 +1,10 @@
+let storedVendorName = null; // Temporary storage for the API response
+get_auth_status();
 document.addEventListener('DOMContentLoaded', function () {
-    get_auth_status();
+    // Only update if we already have the vendor name from the API response
+    if (storedVendorName !== null) {
+        updateVendorName(storedVendorName);
+    }
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
         logout();
@@ -45,7 +50,10 @@ async function check_auth_status() {
             }
             return;
         }
-        updateVendorName(response.store_name);
+        // Event listener to wait until the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            updateVendorName(response.store_name);
+        });
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
@@ -54,14 +62,54 @@ async function check_auth_status() {
     }
 }
 
-// Function to update the vendor name
-function updateVendorName(newName) {
-    // Get the element by its ID
-    const vendorNameElement = document.getElementById("vendorName");
+async function check_auth_status() {
+    const apiUrl = "https://api.payuee.com/vendor/auth-status";
 
-    // Update the text content
-    vendorNameElement.textContent = newName;
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                logout();
+            } else {
+                logout();
+            }
+            return;
+        }
+
+        const responseData = await response.json(); // Parse response JSON
+        storedVendorName = responseData.store_name; // Store vendor name temporarily
+
+        // Update the vendor name immediately if DOM is already loaded
+        if (document.readyState === "complete") {
+            updateVendorName(storedVendorName);
+        }
+        
+        localStorage.setItem('auth', 'true');
+    } finally {
+        if (localStorage.getItem('auth') !== 'true') {
+            window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
+        }
+    }
 }
+
+function updateVendorName(newName) {
+    const vendorNameElement = document.getElementById("vendorName");
+    if (vendorNameElement) {
+        vendorNameElement.textContent = newName;
+    }
+}
+
 
 async function logout() {
     // also send a request to the logout api endpoint
