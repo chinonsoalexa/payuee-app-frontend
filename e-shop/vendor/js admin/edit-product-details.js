@@ -380,6 +380,7 @@ function updateFields(product) {
     const repostCheckbox = document.getElementById('repostCheck');
     if (product.repost) {
         repostCheckbox.checked = true;
+        extraPriceBox.style.display = this.checked ? 'block' : 'none';
         const maxExtraPriceInput = document.getElementById("maxExtraPrice");
         maxExtraPriceInput.value = product.repost_max_price;
     }

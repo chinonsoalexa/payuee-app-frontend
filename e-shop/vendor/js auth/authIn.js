@@ -45,12 +45,22 @@ async function check_auth_status() {
             }
             return;
         }
+        updateVendorName(response.store_name);
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
             window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
         }
     }
+}
+
+// Function to update the vendor name
+function updateVendorName(newName) {
+    // Get the element by its ID
+    const vendorNameElement = document.getElementById("vendorName");
+
+    // Update the text content
+    vendorNameElement.textContent = newName;
 }
 
 async function logout() {
