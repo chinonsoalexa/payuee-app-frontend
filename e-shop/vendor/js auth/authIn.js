@@ -110,7 +110,6 @@ function updateVendorName(newName) {
     }
 }
 
-
 async function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";

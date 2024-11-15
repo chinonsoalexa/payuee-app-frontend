@@ -502,16 +502,15 @@ repostCheck.addEventListener('change', function () {
     // Clear max price if unchecked
     if (!this.checked) {
         maxExtraPriceInput.value = '';
-        maxExtraPriceInput.removeEventListener('blur', validateCollabPricesCheck);
+        maxExtraPriceInput.removeEventListener('blur', validatePrices);
         return;
     } else {
-        maxExtraPriceInput.addEventListener('blur', validateCollabPricesCheck);
+        maxExtraPriceInput.addEventListener('blur', validatePrices);
     }
 });
 
 sellingPriceInput.addEventListener('blur', validatePrices);
 initialCostInput.addEventListener('blur', validatePrices);
-initialCostInput.addEventListener('blur', validateCollabPrices);
 
 // Validate selling price
 function validatePrices() {
