@@ -1,6 +1,6 @@
-let storedVendorName = null; // Temporary storage for the API response
-let isPremium = false;
+
 get_auth_status();
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
@@ -65,7 +65,7 @@ async function check_auth_status() {
     }
 }
 
-function updateVendorName(newName) {vendorName1
+function updateVendorName(newName) {
     const vendorName1Element = document.getElementById("vendorName1");
     const vendorNameElement = document.getElementById("vendorName");
     if (vendorNameElement) {
