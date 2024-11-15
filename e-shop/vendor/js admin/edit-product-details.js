@@ -9,7 +9,8 @@ var selectedCategory = "";
 var tags = "";
 var publishStatus = "";
 var featuredStatus = "";
-var repost= '';
+var repost = '';
+var RepostMaxPrice = 0.0;
 var estimateDeliveryStat = 0;
 var productLengthValue = 0.0;
 var productWidthValue = 0.0;
@@ -56,6 +57,7 @@ async function updateProduct() {
         publish_status: publishStatus,
         featured_status: featuredStatus,
         repost: Boolean(repost),  // Ensure it's a boolean
+        repost_max_price: parseFloat(RepostMaxPrice),
         estimateDeliveryStat: parseInt(estimateDeliveryStat, 10),  // Convert to integer
         productLengthValue: parseFloat(productLengthValue),  // Ensure this is a float
         productWidthValue: parseFloat(productWidthValue),  // Ensure this is a float
@@ -442,6 +444,10 @@ function setUpdatedJsonFields() {
     // Get the checkbox element
     const repostCheckbox = document.getElementById('repostCheck');
     repost = repostCheckbox.checked;
+    
+
+    const maxExtraPriceInput = document.getElementById("maxExtraPrice");
+    RepostMaxPrice = maxExtraPriceInput.value;
 
     // Estimated Delivery
     const estimatedDelivery = document.getElementById('estimatedDelivery');
