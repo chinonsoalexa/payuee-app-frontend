@@ -1,9 +1,13 @@
 let storedVendorName = null; // Temporary storage for the API response
+let isPremium = false;
 get_auth_status();
 document.addEventListener('DOMContentLoaded', function () {
     // Only update if we already have the vendor name from the API response
     if (storedVendorName !== null) {
         updateVendorName(storedVendorName);
+    }
+    if (isPremium) {
+        document.getElementById("generateDescriptionAI").style.display = "block";
     }
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
@@ -89,6 +93,9 @@ async function check_auth_status() {
 
         const responseData = await response.json(); // Parse response JSON
         storedVendorName = responseData.store_name; // Store vendor name temporarily
+        if (responseData.store_details.subscription_type == "premium") {
+            isPremium = true; // Store vendor name temporarily
+        }
 
         // Update the vendor name immediately if DOM is already loaded
         if (document.readyState === "complete") {
