@@ -748,7 +748,7 @@ placeOrderButton.addEventListener("click", function(event) {
             return
         }
 
-        const checkoutButton = document.getElementById('placeOrderButton');
+        const checkoutButton = document.getElementById('paymentButton');
     
         checkoutButton.disabled = true;
         // Simulate checking balance 
@@ -1102,7 +1102,7 @@ function calculateShippingFeePerVendor(vendorId) {
 }
 
 async function placeOrder() {
-    console.log("started placing order");
+    // console.log("started placing order");
     let OrderCost = 0.0;
 
     const checkbox = document.getElementById('ship_different_address');
@@ -1230,14 +1230,14 @@ async function placeOrder() {
             return;
         }
 
-        const checkoutButton = document.getElementById('placeOrderButton');
+        const checkoutButton = document.getElementById('paymentButton');
     
         checkoutButton.disabled = false;
 
         // Return the response data so the calling function can use it
         return data;
     } catch (error) {
-        const checkoutButton = document.getElementById('placeOrderButton');
+        const checkoutButton = document.getElementById('paymentButton');
     
         checkoutButton.disabled = false;
         // Handle any errors that occur
