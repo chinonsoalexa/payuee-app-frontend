@@ -1132,7 +1132,6 @@ async function placeOrder() {
 
     // Get cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log("started placing order 2");
 
     // Iterate through each product in the cart
     cart.forEach((product) => {
@@ -1151,7 +1150,6 @@ async function placeOrder() {
 
     // Update order_cost with the final value after the loop
     orderHistoryBody.order_cost = parseFloat(OrderCost.toFixed(2));
-    console.log("started placing order 3");
 
     // Fields you want to keep
     const desiredFields = [
@@ -1176,7 +1174,6 @@ async function placeOrder() {
         'original_eshop_user_id',
         'reposted_selling_price',
     ];
-    console.log("started placing order 4");
 
     // Function to clean cart items
     const cleanCartItems = (items) => {
@@ -1189,14 +1186,10 @@ async function placeOrder() {
     };
 
     // Clean the cart item
-    console.log("started placing order 32");
     const cleanedCartItem = cleanCartItems(cart);
-    console.log("started placing order 43");
 
     // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
-
-    console.log("started placing order 5");
 
     // Construct the request body
     const requestBody = {
@@ -1206,7 +1199,6 @@ async function placeOrder() {
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
-    console.log("started placing order 6");
 
     try {
         // Send POST request using Fetch API and wait for the response
@@ -1218,7 +1210,6 @@ async function placeOrder() {
             credentials: 'include',  // Include cookies with the request
             body: JSON.stringify(requestBody)
         });
-        console.log("started placing order 7");
 
         const data = await response.json();
 
