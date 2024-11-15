@@ -16,7 +16,7 @@ function get_auth_status() {
         // logUserOutIfTokenIsExpired();
         // let's redirect to a non-authenticated page cause the user is not authenticated
         localStorage.removeItem('auth');
-        window.location.href = '../shop.html';
+        window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
     }
     check_auth_status();
 }
@@ -88,7 +88,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = '../shop.html'
+        window.location.href = 'https://payuee.com/e-shop/Demo3/login_register'
     } finally{
         // do nothing
     }
