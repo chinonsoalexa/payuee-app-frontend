@@ -375,6 +375,11 @@ function updateFields(product) {
     const radioButton = document.querySelector(`input[name="radio5"][value="${product.discount_type}"]`);
     if (radioButton) {
         radioButton.checked = true;
+    }
+
+    const repostCheckbox = document.getElementById('repostCheck');
+    if (product.repost) {
+        repostCheckbox.checked = true;
         const maxExtraPriceInput = document.getElementById("maxExtraPrice");
         maxExtraPriceInput.value = product.repost_max_price;
     }
