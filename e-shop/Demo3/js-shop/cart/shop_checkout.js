@@ -975,7 +975,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
         // const { product_image, ...productOrderData } = item; // Exclude product_image
         const productOrderBody = {
             ID: item.ID,
-            ...productOrderData
+            ...item
         };
 
         // Add the product to the product_order_body array
