@@ -22,7 +22,7 @@ function get_auth_status() {
 }
 
 async function check_auth_status() {
-    const apiUrl = "https://api.payuee.com/auth-status";
+    const apiUrl = "https://api.payuee.com/vendor/auth-status";
 
     const requestOptions = {
         method: "GET",
