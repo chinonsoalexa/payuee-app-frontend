@@ -1159,11 +1159,3 @@ function renderCategories(categories, elementId) {
         return [];
     }
 }
-
-// Check if vendor is premium and show the button if true
-// document.addEventListener("DOMContentLoaded", function() {
-//     const isPremium = true;
-//     if (isPremium) {
-//         document.getElementById("generateDescriptionAI").style.display = "block";
-//     }
-// });
