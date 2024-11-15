@@ -1,15 +1,7 @@
 let storedVendorName = null; // Temporary storage for the API response
 let isPremium = false;
-let data;
 get_auth_status();
 document.addEventListener('DOMContentLoaded', function () {
-    // Only update if we already have the vendor name from the API response
-    if (data.store_details.subscription_type == "premium" && data.store_details.active) {
-        document.getElementById("generateDescriptionAI").style.display = "block";
-    }
-    // Update the vendor name immediately if DOM is already loaded
-    updateVendorName(data.store_name);
-
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
         logout();
@@ -28,43 +20,9 @@ function get_auth_status() {
         localStorage.removeItem('auth');
         window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
     }
-    check_auth_status();
-}
-
-async function check_auth_status() {
-    const apiUrl = "https://api.payuee.com/vendor/auth-status";
-
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-    };
-
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-
-        if (!response.ok) {
-            const errorData = await response.json();
-
-            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                        logout();
-            } else {
-                logout();
-            }
-            return;
-        }
-        // Event listener to wait until the DOM is fully loaded
-        document.addEventListener("DOMContentLoaded", function() {
-            updateVendorName(response.store_name);
-        });
-        localStorage.setItem('auth', 'true');
-    } finally {
-        if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        check_auth_status();
+    });
 }
 
 async function check_auth_status() {
@@ -93,8 +51,12 @@ async function check_auth_status() {
         }
 
         const responseData = await response.json(); // Parse response JSON
-        data = responseData;
-        
+        // Only update if we already have the vendor name from the API response
+        if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
+            document.getElementById("generateDescriptionAI").style.display = "block";
+        }
+        // Update the vendor name immediately if DOM is already loaded
+        updateVendorName(responseData.store_name);
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
