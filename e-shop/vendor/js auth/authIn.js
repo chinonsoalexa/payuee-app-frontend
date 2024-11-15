@@ -103,10 +103,14 @@ async function check_auth_status() {
     }
 }
 
-function updateVendorName(newName) {
+function updateVendorName(newName) {vendorName1
+    const vendorName1Element = document.getElementById("vendorName1");
     const vendorNameElement = document.getElementById("vendorName");
     if (vendorNameElement) {
         vendorNameElement.textContent = newName;
+    }
+    if (vendorName1Element) {
+        vendorName1Element.textContent = newName;
     }
 }
 
