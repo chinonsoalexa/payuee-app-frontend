@@ -48,7 +48,7 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = '../shop.html';
+            window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
         }
     }
 }
