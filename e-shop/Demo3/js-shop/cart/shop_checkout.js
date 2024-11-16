@@ -1248,7 +1248,7 @@ async function placeOrder() {
     
         checkoutButton.disabled = false;
         const result = await response.json();
-        showToastMessageS("Order Successfully added")
+        showToastMessageS("Successfully Sent Order(s) to Vendor(s)")
         // Return the response data so the calling function can use it
         return data;
     } catch (error) {
