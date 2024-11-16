@@ -1083,7 +1083,7 @@ function renderRecommendedProduct(products) {
         <p class="pc__category">${product.category}</p>
         <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
         <div class="product-card__price d-flex">
-          <span class="money price">${formatNumberToNaira(product.selling_price)}</span>
+          <span class="money price">${formatNumberToNaira(product.reposted ? product.reposted_selling_price : product.selling_price)}</span>
         </div>
       </div>
       <div class="product-card__review d-flex align-items-center">
