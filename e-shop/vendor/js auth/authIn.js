@@ -54,6 +54,7 @@ async function check_auth_status() {
         // Only update if we already have the vendor name from the API response
         if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
             document.getElementById("generateDescriptionAI").style.display = "block";
+            document.getElementById("generateTagAI").style.display = "block";
         }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
