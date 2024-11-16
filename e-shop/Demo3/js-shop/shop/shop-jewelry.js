@@ -310,22 +310,10 @@ function renderProducts(product) {
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
-    if (subscription.user_store) {
-        // Determine if the button should be disabled and what text to display
-        isOutOfStock = true;
-        buttonText = 'Your Item';
-        buttonDisabled =  'disabled';
-    } else if (subscription.active != true) {
-        // Determine if the button should be disabled and what text to display
-        isOutOfStock = true;
-        buttonText = 'Temporarily Unavailable';
-        buttonDisabled =  'disabled';
-    } else {
-        // Determine if the button should be disabled and what text to display
-        isOutOfStock = product.stock_remaining === 0;
-        buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
-        buttonDisabled = isOutOfStock ? 'disabled' : '';
-    }
+    // Determine if the button should be disabled and what text to display
+    isOutOfStock = product.stock_remaining === 0;
+    buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+    buttonDisabled = isOutOfStock ? 'disabled' : '';
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
