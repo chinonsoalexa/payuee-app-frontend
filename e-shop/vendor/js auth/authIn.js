@@ -53,8 +53,19 @@ async function check_auth_status() {
         const responseData = await response.json(); // Parse response JSON
         // Only update if we already have the vendor name from the API response
         if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
+            // Display the buttons
             document.getElementById("generateDescriptionAI").style.display = "block";
             document.getElementById("generateTagAI").style.display = "block";
+        
+            // Add event listener for 'generateDescriptionAI' button click
+            document.getElementById("generateDescriptionAI").addEventListener("click", function() {
+                generateDescriptionAI();  // Your AI function for generating descriptions
+            });
+        
+            // Add event listener for 'generateTagAI' button click
+            document.getElementById("generateTagAI").addEventListener("click", function() {
+                generateTagAI();  // Your AI function for generating tags
+            });
         }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
@@ -86,6 +97,17 @@ async function check_auth_status() {
             window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
         }
     }
+}
+
+// Define your AI functions (example placeholders)
+function generateDescriptionAI() {
+    console.log("Generating description using AI...");
+    // Call your AI functionality here
+}
+
+function generateTagAI() {
+    console.log("Generating tags using AI...");
+    // Call your AI functionality here
 }
 
 function updateVendorName(newName) {
