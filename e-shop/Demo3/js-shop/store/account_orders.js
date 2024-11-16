@@ -693,7 +693,7 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <td>#000</td>
-        <td><img id="image" class="align-self-center img-fluid img-60" src="../favicon2.png}" alt="Payuee e-Shop"></td>
+        <td><img id="image" class="align-self-center img-fluid img-60" src="../images/favicon2.png" alt="Payuee e-Shop"></td>
         <td id="title"><h6><a href="#">Loading...</a></h6></td>
         <td>Loading...</td>
         <td>Loading...</td>
