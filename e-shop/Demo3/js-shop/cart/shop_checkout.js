@@ -797,7 +797,7 @@ placeOrderButton.addEventListener("click", function(event) {
             customerPhoneNumber = formData.phone;
             try {
                 const result = await placeOrder();
-                if (result.success) {
+                if (result.success === "successfully added new order") {
                     // Hide checkout modal and simulate a successful transaction
                     paymentModal.hide();
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
