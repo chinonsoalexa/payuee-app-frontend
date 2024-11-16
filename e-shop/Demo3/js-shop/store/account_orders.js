@@ -300,7 +300,7 @@ function renderProducts(product) {
 
     if (product.order_status === "processing") {
         // Special handling for cancel transaction button
-        document.getElementById(`btn-danger${product.ID}`).addEventListener('click', function(event) {
+        document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
 
             // Logic for checking cancellation eligibility
