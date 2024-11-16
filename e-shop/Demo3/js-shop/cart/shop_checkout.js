@@ -971,11 +971,12 @@ function createNewOrders(cartItems, orderHistoryBody) {
             // console.log("Discount:", discount);
             // console.log("Quantity:", historyQuantity);
 
-            order.order_cost = productCost + shippingCost;
-            order.order_sub_total_cost = productCost;
-            order.shipping_cost = shippingCost;
-            order.order_discount = discount;
-            order.quantity = historyQuantity;
+            // Update order totals in order history, ensuring the values are floats
+            order.order_cost = parseFloat((productCost + shippingCost).toFixed(2)); // Ensuring it's float
+            order.order_sub_total_cost = parseFloat(productCost.toFixed(2)); // Ensuring it's float
+            order.shipping_cost = parseFloat(shippingCost.toFixed(2)); // Ensuring it's float
+            order.order_discount = parseFloat(discount.toFixed(2)); // Ensuring it's float
+            order.quantity = historyQuantity; // This will remain an integer since quantity is expected to be int
         } catch (error) {
             // console.error("Error calculating order totals for vendorID:", vendorID, error);
         }
