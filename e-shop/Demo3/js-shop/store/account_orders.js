@@ -687,30 +687,20 @@ function loading() {
 
 function renderLoading() {
     // Assuming you have a reference to the container element
-    const productBody = document.getElementById('order-grid');
+    const productBody = document.getElementById('order-gridd');
 
     // Create a new element for the skeleton loader
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('col-xxl-4', 'col-md-6');
+    const rowElement = document.createElement('tr');
+    // rowElement.classList.add('col-xxl-4', 'col-md-6');
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <div class="prooduct-details-box">                                 
-            <div class="skeleton loading-cursor d-flex"><img class="align-self-center img-fluid img-60" src="../images/favicon2.png" alt="Payuee e-Shop">
-            <div class="loading-cursor flex-grow-1 ms-3">
-                <div class="skeleton loading-cursor product-name">
-                <h6><a href="#">Loading...</a></h6>
-                </div>
-                <div class="skeleton loading-cursor rating">Payuee e-Shop</div>
-                <div class="skeleton loading-cursor price d-flex"> 
-                <div class="skeleton loading-cursor text-muted me-2">Price</div>: Loading...
-                </div>
-                <div class="skeleton loading-cursor avaiabilty">
-                <div class="skeleton loading-cursor text-success">Loading...</div>
-                </div><a class="skeleton loading-cursor btn btn-primary btn-xs" href="#">Loading...</a><i class="close" data-feather="x"></i>
-            </div>
-            </div>
-        </div>
+        <td>#000</td>
+        <td><img id="image" class="align-self-center img-fluid img-60" src="../favicon2.png}" alt="Payuee e-Shop"></td>
+        <td id="title"><h6><a href="#">Loading...</a></h6></td>
+        <td>Loading...</td>
+        <td>Loading...</td>
+        <td>Loading...</td>
     `;
 
     // Append the new element to the container
