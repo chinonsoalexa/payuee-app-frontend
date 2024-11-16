@@ -1232,22 +1232,21 @@ async function placeOrder() {
         const data = await response.json();
 
         if (!data.ok) {
-            if (data.error == "sorry you cannot order your own product") {
-                showToastMessageE("sorry you cannot order your own product");
-                const checkoutButton = document.getElementById('paymentButton');
-                checkoutButton.disabled = false;
-                return
-            }
             const checkoutButton = document.getElementById('paymentButton');
             checkoutButton.disabled = false;
             showToastMessageE("an error occurred while placing order");
+
+            if (data.error == "sorry you cannot order your own product") {
+                showToastMessageE("sorry you cannot order your own product");
+                return
+            }
             return;
         }
 
         const checkoutButton = document.getElementById('paymentButton');
     
         checkoutButton.disabled = false;
-        const result = await response.json();
+        // const result = await response.json();
         showToastMessageS("Successfully Sent Order(s) to Vendor(s)")
         // Return the response data so the calling function can use it
         return data;
