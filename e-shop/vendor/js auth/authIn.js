@@ -57,7 +57,7 @@ async function check_auth_status() {
         }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
-        
+
         // Get references to the buttons
         const publishButton = document.getElementById('publishButton');
         const upgradeButton = document.getElementById('upgradeButton');
@@ -67,6 +67,11 @@ async function check_auth_status() {
             // Subscription has expired, show Upgrade button
             publishButton.style.display = 'none'; // Hide the "Publish" button
             upgradeButton.style.display = 'block'; // Show the "Upgrade" button
+            // Add an event listener for the click event
+            upgradeButton.addEventListener("click", function() {
+                // Redirect to a different page (change the URL as needed)
+                window.location.href = "https://payuee.com/e-shop/Demo3/pricing.html";  // Replace with your desired URL
+            });
         } else {
             // Subscription is still active, show Update button
             publishButton.style.display = 'block'; // Show the "Publish" button

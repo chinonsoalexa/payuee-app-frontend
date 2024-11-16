@@ -1030,35 +1030,6 @@ function clearFields() {
 
 }
 
-// Example subscription expiration date (this could come from your backend)
-const subscriptionExpiryDate = '2024-11-15';  // YYYY-MM-DD format
-
-// Get current date
-const currentDate = new Date();
-const expirationDate = new Date(subscriptionExpiryDate);
-
-// Function to check if the subscription has expired
-function hasSubscriptionExpired(expirationDate, currentDate) {
-    return expirationDate < currentDate;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-
-// Get references to the buttons
-const publishButton = document.getElementById('publishButton');
-const upgradeButton = document.getElementById('upgradeButton');
-
-// Check the subscription status and display the appropriate button
-if (hasSubscriptionExpired(expirationDate, currentDate)) {
-    // Subscription has expired, show Upgrade button
-    publishButton.style.display = 'none'; // Hide the "Publish" button
-    upgradeButton.style.display = 'block'; // Show the "Upgrade" button
-} else {
-    // Subscription is still active, show Update button
-    publishButton.style.display = 'block'; // Show the "Publish" button
-    upgradeButton.style.display = 'none'; // Hide the "Upgrade" button
-}
-});
 // show toast success
 function showToastMessageS(message) {
     document.getElementById('toastMessage2').textContent = message;
