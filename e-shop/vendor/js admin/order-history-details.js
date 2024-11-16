@@ -110,12 +110,12 @@ async function getProducts(OrderId) {
         document.getElementById("order-note").textContent = responseData.success.order_note;
         document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_cost);
         if (!responseData.success.qr_code_image) {
-            // Find the <tr> element by its ID or other means and hide it
-            document.getElementById('qrcodeSection').style.display = 'none'; // Hides the <tr> element
+            document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
-          document.getElementById('qr-code-image').src = "https://payuee.com/image/" +responseData.success.qr_code_image;
+            document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
+            document.getElementById('qr-code-image').src = "https://payuee.com/image/" +responseData.success.qr_code_image;
         }
-        
+
         let orderStatusId = document.getElementById('orderStatusId');
 
         let content = '';
