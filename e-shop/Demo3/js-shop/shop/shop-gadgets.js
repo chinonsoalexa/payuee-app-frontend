@@ -210,7 +210,7 @@ async function getProducts() {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-gadgets?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -239,19 +239,6 @@ function deactivateCurrentButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-// function displayImage(productURL, productTitle, imageURLarray) {
-//     slideDiv = '';
-//     // Loop through the product_image array and generate HTML
-//     imageURLarray.forEach((image, index) => {
-        
-//         slideDiv += `
-//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
-//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
-//             </a>
-//         `;
-//     });
-//     return slideDiv;
-// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
@@ -818,7 +805,7 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
     sort_option = selectedValue;
     getProducts();
 });
-  
+
 // Get the search input field by its ID
 const searchInput = document.getElementById('searchField');
   
