@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 function clearElementsByClass() {
     // Get the parent container
-    let container = document.getElementById('order-grid');
+    let container = document.getElementById('order-gridd');
     container.innerHTML = '';
 }
 
@@ -675,7 +675,7 @@ const loader = Array.from({ length: 12 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
-    const productBody = document.getElementById('order-grid');
+    const productBody = document.getElementById('order-gridd');
     productBody.innerHTML = '';
     loader.forEach(() => {
         renderLoading();
