@@ -507,7 +507,7 @@
   <main>
     <div class="mb-4 pb-4"></div>
     <section class="my-account container">
-      <h2 class="page-title">Orders</h2>
+      <h2 class="page-title">Store Transactions</h2>
       <div class="row">
         <div class="col-lg-3">
           <ul class="account-nav">
@@ -533,39 +533,33 @@
                 </tr>
               </thead>
               <tbody id="order-gridd">
-                <tr>
-                  <td>image</td>
-                  <td>title</td>
-                  <td>status</td>
-                  <td>Price</td>
-                  <td><button class="btn btn-danger">CANCEL</button></td>
-                  <td><button class="btn btn-success">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2417</td>
-                  <td>October 2, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">CANCEL</button></td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2418</td>
-                  <td>October 3, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">CANCEL</button></td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2419</td>
-                  <td>October 4, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">CANCEL</button></td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
+                <!-- render product details here -->
               </tbody>
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>
+                    <div id="paginationDiv" class="card-body disabsled">
+                      <nav id="paginationList" aria-label="Page navigation example">
+                        <ul class="pagination pagination-dark pagin-border-dark gap-2">
+                          <li class="page-item"><a id="previousPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Prev</span></a></li>
+                          <li class="page-item"><a id="constantBeforePage" class="page-link rounded-circle" href="javascript:void(0)">1</a></li>
+                          <li class="page-item"><a id="dotBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="twoBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="beforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="currentPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="afterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="twoAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="dotAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="constantAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="nextPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true"></span><span class="sr-only">Next</span>»</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+            </table>
             </table>
           </div>
         </div>
