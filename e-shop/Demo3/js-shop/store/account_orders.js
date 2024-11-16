@@ -526,14 +526,14 @@ function handleModalShow(product, modalID) {
 function showModal(modalID) {
 
     // Show the specified modal programmatically
-    const modalElement = document.getElementById(modalID).removeAttribute('inert');
+    const modalElement = document.getElementById(modalID);
     const modalInstance = new bootstrap.Modal(modalElement);
     modalInstance.show();
 }
 
 // Function to hide the modal programmatically
 function hideModal(modalID) {
-    const modalElement = document.getElementById(modalID).setAttribute('inert', true);
+    const modalElement = document.getElementById(modalID);
     const modalInstance = bootstrap.Modal.getInstance(modalElement); // Retrieve the existing modal instance
     if (modalInstance) {
         modalInstance.hide(); // Hide the modal
