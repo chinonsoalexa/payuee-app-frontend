@@ -57,6 +57,22 @@ async function check_auth_status() {
         }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
+        
+        // Get references to the buttons
+        const publishButton = document.getElementById('publishButton');
+        const upgradeButton = document.getElementById('upgradeButton');
+
+        // Check the subscription status and display the appropriate button
+        if (responseData.store_details.active) {
+            // Subscription has expired, show Upgrade button
+            publishButton.style.display = 'none'; // Hide the "Publish" button
+            upgradeButton.style.display = 'block'; // Show the "Upgrade" button
+        } else {
+            // Subscription is still active, show Update button
+            publishButton.style.display = 'block'; // Show the "Publish" button
+            upgradeButton.style.display = 'none'; // Hide the "Upgrade" button
+        }
+
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {

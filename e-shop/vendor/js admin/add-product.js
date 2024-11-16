@@ -1045,18 +1045,17 @@ function hasSubscriptionExpired(expirationDate, currentDate) {
 document.addEventListener('DOMContentLoaded', function () {
 
 // Get references to the buttons
-const nextButton = document.getElementById('nextButton');
+const publishButton = document.getElementById('publishButton');
 const upgradeButton = document.getElementById('upgradeButton');
-const buttonText = document.getElementById('buttonText');
 
 // Check the subscription status and display the appropriate button
 if (hasSubscriptionExpired(expirationDate, currentDate)) {
     // Subscription has expired, show Upgrade button
-    nextButton.style.display = 'none'; // Hide the "Publish" button
+    publishButton.style.display = 'none'; // Hide the "Publish" button
     upgradeButton.style.display = 'block'; // Show the "Upgrade" button
 } else {
     // Subscription is still active, show Update button
-    nextButton.style.display = 'block'; // Show the "Publish" button
+    publishButton.style.display = 'block'; // Show the "Publish" button
     upgradeButton.style.display = 'none'; // Hide the "Upgrade" button
 }
 });
