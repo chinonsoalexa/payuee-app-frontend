@@ -548,12 +548,19 @@ function formatNumber(value) {
 }
 
 function formatNumberToNaira(number) {
-    return new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 2
-    }).format(number);
+    let formattedNumber;
+    if (number >= 1_000_000_000) {
+        formattedNumber = `₦${(number / 1_000_000_000).toFixed(1).replace('.0', '')}B`;
+    } else if (number >= 1_000_000) {
+        formattedNumber = `₦${(number / 1_000_000).toFixed(1).replace('.0', '')}M`;
+    } else if (number >= 1_000) {
+        formattedNumber = `₦${(number / 1_000).toFixed(1).replace('.0', '')}K`;
+    } else {
+        formattedNumber = `₦${number.toFixed(0)}`;
+    }
+    return formattedNumber;
 }
+
 
 // Function to add a product to the cart
 function addToCart(product) {
