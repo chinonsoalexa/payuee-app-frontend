@@ -808,6 +808,13 @@ placeOrderButton.addEventListener("click", function(event) {
                     // clear the products in the local storage
                     checkoutButton.disabled = false;
                     localStorage.removeItem("cart");
+                    // Select the element you want to attach the click event to
+                    const element = document.getElementById("viewTransactionDetails"); // Replace "viewTransactionDetails" with the actual ID
+                    // Add the click event listener
+                    element.addEventListener("click", () => {
+                        // Redirect to the URL with the OrderID as a query parameter
+                        window.location.href = `"https://payuee.com/e-shop/Demo3/shop_order_complete?OrderID="${result.order[0]}`;
+                    });
                     return;
                 } else {
                     checkoutButton.disabled = false;
