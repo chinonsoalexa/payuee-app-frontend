@@ -664,7 +664,7 @@ resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 // Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 12 }, (_, i) => i);
+const loader = Array.from({ length: 5 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
