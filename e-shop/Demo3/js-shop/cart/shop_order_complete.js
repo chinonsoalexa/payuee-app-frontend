@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get individual parameter values
     OrderID = params.get("OrderID");
 
-    // document.getElementById('orderTrackingDetails').classList.remove('hiddenn');
-    await updateOrderInfo(orderId);
+    await updateOrderInfo(OrderID);
 });
 
 async function updateOrderInfo(orderId) {
