@@ -799,9 +799,11 @@ placeOrderButton.addEventListener("click", function(event) {
                     let transactionCodeInput = document.getElementById('transactionCodeInput');
                     transactionCodeInput.value = "";
                     // clear the products in the local storage
+                    checkoutButton.disabled = false;
                     localStorage.removeItem("cart");
                     return;
                 } else {
+                    checkoutButton.disabled = false;
                     showToastMessageE(result.error)
                 }
             } catch (error) {
