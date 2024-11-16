@@ -797,6 +797,7 @@ placeOrderButton.addEventListener("click", function(event) {
             customerPhoneNumber = formData.phone;
             try {
                 const result = await placeOrder();
+                console.log("this is the order data: ", result);
                 if (result.success === "successfully added new order") {
                     // Hide checkout modal and simulate a successful transaction
                     paymentModal.hide();
