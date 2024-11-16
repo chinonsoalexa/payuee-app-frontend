@@ -63,7 +63,7 @@ async function check_auth_status() {
         const upgradeButton = document.getElementById('upgradeButton');
 
         // Check the subscription status and display the appropriate button
-        if (responseData.store_details.active) {
+        if (!responseData.store_details.active) {
             // Subscription has expired, show Upgrade button
             publishButton.style.display = 'none'; // Hide the "Publish" button
             upgradeButton.style.display = 'block'; // Show the "Upgrade" button
