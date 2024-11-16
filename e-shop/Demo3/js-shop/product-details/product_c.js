@@ -775,7 +775,7 @@ async function checkCollaborationEligibility(ID) {
 // Function to open modal with appropriate messages
 function checkRepostEligibility(isEligible, errorMessage = null, collaborationUrl = null) {
   const eligibilityMessage = document.getElementById('eligibilityMessage');
-  const errorAlert = document.getElementById('errorArlert');
+  const errorAlert = document.getElementById('errorAlert');
   const errorMessageEl = document.getElementById('errorMessage');
   const successAlert = document.getElementById('successAlert');
   const collaborateButton = document.getElementById('collaborateButton');
