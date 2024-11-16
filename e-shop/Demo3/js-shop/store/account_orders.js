@@ -8,6 +8,8 @@ var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 var ratingAmount = 0;
 
+let productCode;
+
 let pageNumber;
 
 // Emoji
@@ -785,8 +787,6 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   );
   
-  let productCode;
-
   function getProductId(id) {
     productCode = id;
     document.getElementById("startScan").addEventListener("click", () => {
