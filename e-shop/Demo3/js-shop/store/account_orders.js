@@ -219,11 +219,11 @@ async function getProducts(pageNumber) {
 }
 
 function renderProducts(product) {
-    const productBody = document.getElementById('order-grid');
+    const productBody = document.getElementById('order-gridd');
 
     // Create a new product card element
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('col-xxl-4', 'col-md-6');
+    const rowElement = document.createElement('tr');
+    // rowElement.classList.add('col-xxl-4', 'col-md-6');
     rowElement.id = product.ID; // Set the ID of the row
 
     let productStatus;
@@ -231,46 +231,44 @@ function renderProducts(product) {
 
     if (product.order_status === "cancelled") {
         productStatus = `
-        <a class="btn btn-danger btn-xs" id="status${product.ID}">Cancelled</a><i class="close" data-feather="x"></i>
+        <button class="btn btn-danger"  id="status${product.ID}">CANCELLED</button>
         `
     } else if (product.order_status === "shipped") {
         productStatus = `
-        <a class="btn btn-success btn-xs" id="status${product.ID}">Shipped</a><i class="close" data-feather="x"></i>
+        <button class="btn btn-success"  id="status${product.ID}">SHIPPED</button>
         `
     } else {
         productStatus = `
-        <a class="btn btn-primary btn-xs" id="status${product.ID}">Processing</a><i class="close" data-feather="x"></i>
+        <button class="btn btn-primary"  id="status${product.ID}">PROCESSING</button>
         `
     }
 
     if (product.order_status === "processing") {
         productIssue = `
-        <div id="text-danger${product.ID}"><a href="#" style="color: red;">Cancel</a></div>
+        <button class="btn btn-danger${product.ID}">CANCEL</button>
         `
     } else if (product.order_status === "shipped" || product.order_status === "cancelled") {
         productIssue = `
-        <div id="report-danger${product.ID}"><a href="#" style="color: red;">Report</a></div>
+        <button class="btn btn-danger${product.ID}">REPORT</button>
         `
     }
+    // <tr>
+    //     <td>${product.ID}</td>
+    //     <td><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}"></td>
+    //     <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
+    //     <td>${formatNumberToNaira(product.order_cost)}</td>
+    //     <td>${productIssue}</td>
+    //     <td>${productStatus}</td>
+    // </tr>
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
-                <div class="flex-grow-1 ms-3">
-                    <div id="title${product.ID}" class="product-name">
-                    <h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6>
-                    </div>
-                    <div class="rating">${product.customer_fname+" "+product.customer_user_sname}</div>
-                    <div class="price d-flex"> 
-                    <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
-                    </div>
-                    <div class="avaiabilty">
-                    ${productIssue}
-                    </div>${productStatus}
-                </div>
-            </div>
-        </div>
+        <td>${product.ID}</td>
+        <td><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}"></td>
+        <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
+        <td>${formatNumberToNaira(product.order_cost)}</td>
+        <td>${productIssue}</td>
+        <td>${productStatus}</td>
     `;
 
     // Append the new element to the container
@@ -312,7 +310,7 @@ function renderProducts(product) {
 
     if (product.order_status === "processing") {
         // Special handling for cancel transaction button
-        document.getElementById(`text-danger${product.ID}`).addEventListener('click', function(event) {
+        document.getElementById(`btn-danger${product.ID}`).addEventListener('click', function(event) {
             event.preventDefault();
 
             // Logic for checking cancellation eligibility
