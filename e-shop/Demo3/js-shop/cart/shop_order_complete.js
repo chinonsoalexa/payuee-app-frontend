@@ -58,14 +58,14 @@ async function updateOrderInfo(orderId) {
       const data = await response.json();
   
       // Update the order tracking current URL
-      const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
-      history.pushState({ path: newUrl }, '', newUrl);
+    //   const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?OrderID=${orderId}`;
+    //   history.pushState({ path: newUrl }, '', newUrl);
   
-      const errorMessage = document.getElementById('errorMessage');
-      errorMessage.classList.add('hiddenn'); // Show the error message
+    //   const errorMessage = document.getElementById('errorMessage');
+    //   errorMessage.classList.add('hiddenn'); // Show the error message
   
-      document.getElementById('getOrderTrackingDetails').classList.add('hidden');
-      document.getElementById('orderTrackingDetails').classList.remove('hidden');
+    //   document.getElementById('getOrderTrackingDetails').classList.add('hidden');
+    //   document.getElementById('orderTrackingDetails').classList.remove('hidden');
       displayTrackingInfo(data.success.order_status);
   
       // Update order information
