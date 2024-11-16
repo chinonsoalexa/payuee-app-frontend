@@ -1003,7 +1003,7 @@ function createNewOrders(cartItems, orderHistoryBody) {
 
     // Convert ordersMap to an array
     const orders = Object.values(ordersMap);
-    console.log("Finished processing orders:", orders);
+    // console.log("Finished processing orders:", orders);
     return orders;
 }
 
@@ -1243,13 +1243,15 @@ async function placeOrder() {
             return;
         }
 
-        const checkoutButton = document.getElementById('paymentButton');
-    
-        checkoutButton.disabled = false;
+           // Parse JSON response if request was successful
+            const result = await response.json();
+            const checkoutButton = document.getElementById('paymentButton');
+            checkoutButton.disabled = false;
+
         // const result = await response.json();
         showToastMessageS("Successfully Sent Order(s) to Vendor(s)")
         // Return the response data so the calling function can use it
-        return data;
+        return result;
     } catch (error) {
         const checkoutButton = document.getElementById('paymentButton');
     
