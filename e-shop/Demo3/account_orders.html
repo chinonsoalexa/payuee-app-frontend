@@ -462,50 +462,43 @@
             <li><a href="login_register.html" class="menu-link menu-link_us-s">Logout</a></li>
           </ul>
         </div>
+        
         <div class="col-lg-9">
-          <div class="page-content my-account__orders-list">
-            <table class="orders-table">
-              <thead>
-                <tr>
-                  <th>Order</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Total</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#2416</td>
-                  <td>October 1, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2417</td>
-                  <td>October 2, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2418</td>
-                  <td>October 3, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-                <tr>
-                  <td>#2419</td>
-                  <td>October 4, 2023</td>
-                  <td>On hold</td>
-                  <td>₦1,200.65 for 3 items</td>
-                  <td><button class="btn btn-primary">VIEW</button></td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header pb-0">
+                    <h5>Store Transaction</h5>
+                  </div>
+                  <div class="card-body">
+                    <div id="order-grid" class="row g-sm-4 g-3">
+                      <!-- where the product history is rendered -->
+                    </div>
+                    <div id="paginationDiv" class="card-body disabled">
+                      <nav id="paginationList" aria-label="Page navigation example">
+                        <ul class="pagination pagination-dark pagin-border-dark gap-2">
+                          <li class="page-item"><a id="previousPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                          <li class="page-item"><a id="constantBeforePage" class="page-link rounded-circle" href="javascript:void(0)">1</a></li>
+                          <li class="page-item"><a id="dotBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="twoBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="beforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="currentPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="afterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="twoAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="dotAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="constantAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                          <li class="page-item"><a id="nextPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- Container-fluid Ends-->
         </div>
       </div>
     </section>
@@ -1134,6 +1127,452 @@
       </div>
     </div><!-- /.modal-dialog -->
   </div><!-- /.quickview position-fixed -->
+  
+<!-- Verify transaction modal -->
+ <div class="modal fade custom-modal" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Secure Payment
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body">
+        <!-- Scrollable Order Preview -->
+        <h6 class="custom-section-title">Ordered Products: ID <span id="paymentOrderId"></span></h6>
+        <div class="custom-scrollable-section mb-4">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Net Weight</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="orderedProductsTable">
+              <!-- Add product rows dynamically here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Payment Breakdown Section -->
+        <div class="mb-4">
+          <h6 class="custom-section-title">Order Summary</h6>
+          <div class="d-flex justify-content-between custom-summary-item">
+            <span>Subtotal:</span>
+            <span id="cartSubTotalPopUp">₦2,090</span>
+          </div>
+          <div class="d-flex justify-content-between custom-summary-item">
+            <span>Shipping:</span>
+            <span id="shippingSubTotalPopUp">₦1,010</span>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between custom-total">
+            <strong>Total:</strong>
+            <strong id="cartShippingTotalPopUp">₦3,100</strong>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="mb-4">
+          <h6 class="custom-section-title">Verification Method</h6>
+          <div class="d-flex align-items-center">
+            <input type="radio" id="payuee" name="paymentMethod" checked class="custom-radio me-2">
+            <label for="payuee" class="me-4 custom-label">Payuee e-Pay</label>
+          </div>
+        </div>
+
+        <!-- Secure Payment Message -->
+        <div class="custom-alert">
+          <i class="bi bi-shield-lock-fill"></i> Your payment is 100% secure.
+        </div>
+
+        <div class="mb-4">
+          <div class="custom-scrollable-section mb-4">
+            <p id="verificationStatus" class="notification-info">Please scan the QR Code to continue product verification</p>
+            <div id="reader" class="hidden"></div>
+          </div>
+          <div id="qrCodeDiv" class="d-grid">
+            <button id="startScan" type="button" class="custom-button">Scan Qr Code</button>
+          </div>
+        </div>
+
+        <!-- Transaction Code Section -->
+        <div id="transactionCodeSection" class="mb-4 hidden">
+          <h6 class="custom-section-title">Enter Transaction Pin <span style="color: red;">*</span></h6>
+          <input type="password" id="transactionPinInput" class="custom-input" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
+          <div class="text-end mt-2">
+            <a href="#" id="forgotTransactionPinLink" class="custom-link">Forgot Transaction Pin?</a>
+          </div>
+        </div>
+
+        <!-- Pay Button -->
+        <div id="paymentButtonDiv" class="d-grid hidden">
+          <button id="paymentButton" type="button" class="custom-button">Pay ₦3,100</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          By completing your purchase, you agree to our <a href="#" class="custom-link">Terms & Conditions</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transaction successful modal -->
+<div class="modal fade custom-modal" id="transactionSuccessModal" tabindex="-1" aria-labelledby="transactionSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Transaction Successful
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: green;"></i>
+        <h5 class="mt-3">Transaction Completed!</h5>
+        <p class="mt-2">Thank you for your purchase. Your payment was successful, and your order has been processed.</p>
+          <div class="card height-equal">
+            <div class="card-header pb-0 pb-0">
+              <h4>Rate Transaction</h4>
+              <p class="f-m-light mt-1">Rate this transaction if the process was okay with you.</p>
+            </div>
+            <div class="card-body">
+              <div class="rating-container">
+                <ul class="feedback">
+                  <li class="angry me-0" data-rating="1">
+                    <div>
+                      <svg class="eye left">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="eye right">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="mouth">
+                        <use xlink:href="assets/svg/icon-sprite.svg#mouth"></use>
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="sad me-0" data-rating="2">
+                    <div>
+                      <svg class="eye left">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="eye right">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="mouth">
+                        <use xlink:href="assets/svg/icon-sprite.svg#mouth"></use>
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="ok me-0" data-rating="3">
+                    <div></div>
+                  </li>
+                  <li class="good active me-0" data-rating="4">
+                    <div>
+                      <svg class="eye left">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="eye right">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="mouth">
+                        <use xlink:href="assets/svg/icon-sprite.svg#mouth"></use>
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="happy me-0" data-rating="5">
+                    <div>
+                      <svg class="eye left">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                      <svg class="eye right">
+                        <use xlink:href="assets/svg/icon-sprite.svg#eye"></use>
+                      </svg>
+                    </div>
+                  </li>
+                </ul>
+              </div>              
+            </div>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="button" class="custom-button" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Need help? <a href="#" class="custom-link">Contact Support</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transaction failed modal -->
+<div class="modal fade custom-modal" id="transactionFailedModal" tabindex="-1" aria-labelledby="transactionFailedModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Transaction Failed
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-x-circle-fill" style="font-size: 3rem; color: red;"></i>
+        <h5 class="mt-3">Transaction Failed!</h5>
+        <p class="mt-2">Oops! Something went wrong with your payment verification. Please try again later.</p>
+        <div class="d-grid mt-4">
+          <button type="button" class="custom-button" data-bs-dismiss="modal">Try Again</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Need help? <a href="#" class="custom-link">Contact Support</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transaction Cancellation & Dispute Modal -->
+<div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo me-2">
+          Payuee e-Pay - Transaction Cancellation & Dispute
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <!-- Transaction Cancellation Section -->
+        <h6>Cancellation Policy: Check Before You Cancel: ID <span id="cancelationOrderId"></span></h6>
+        <div class="mb-3">
+          <p id="cancellationEligibilityMessage">Check if you're eligible to cancel: You can cancel your order if less than 30% of the time between the order date and delivery has passed. Please note, a 0.5% trust fee will be deducted from the refund amount for the trust rendered. After the 30% time period has passed, cancellations aren't allowed.</p>
+        </div>
+
+        <!-- Display result if eligible or not -->
+        <div class="mb-3">
+          <h6>Cancellation Status</h6>
+          <p id="cancellationStatus" class="text-muted"></p>
+        </div>
+
+        <!-- Transaction Pin Input -->
+        <div id="transactionPinToCancelTrn" class="mb-3 disabled">
+          <h6>Enter Transaction Pin to Cancel <span class="text-danger">*</span></h6>
+          <input type="password" id="transactionPinInput2" class="form-control" placeholder="Enter your transaction pin" inputmode="numeric" pattern="\d{6}" minlength="6" maxlength="6" required>
+          <div class="text-end mt-2">
+            <a href="#" id="forgotTransactionPinLink" class="text-primary">Forgot Transaction Pin?</a>
+          </div>
+        </div>
+
+        <!-- Report Issue Section -->
+        <div class="mb-3">
+          <h6>Report Order Issue</h6>
+          <textarea id="reportIssueInput3" class="form-control" placeholder="Describe the issue (e.g., wrong product delivered, product damage, etc.)" rows="4"></textarea>
+          <div class="text-end mt-2">
+            <button id="cancelButton" type="button" class="btn btn-danger w-100 disabled" style="padding: 10px 15px; border-radius: 0.25rem;">Cancel Order</button>
+            <button id="reportIssueButton" type="button" class="btn btn-danger w-100 disabled" style="padding: 10px 15px; border-radius: 0.25rem;">Report Issue</button>
+          </div>
+        </div>
+
+        <!-- Secure Message -->
+        <div class="custom-alert">
+          <i class="bi bi-shield-lock-fill"></i> Your transaction detail is 100% secure.
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="small text-muted text-center">
+          By submitting, you agree to our <a href="#" class="text-decoration-underline">Terms & Conditions</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transaction Dispute -->
+<div class="modal fade" id="transactionDisputeModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo me-2">
+          Payuee e-Pay - Transaction Dispute
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <!-- Transaction Cancellation Section -->
+        <h6>Transaction Dispute</h6>
+        <div class="mb-3">
+          <p>If you're still experiencing issues with your order, feel free to submit your report, and we'll assist you accordingly.</p>
+        </div>
+
+        <!-- Report Issue Section -->
+        <div class="mb-3">
+          <h6>Report Order Issue</h6>
+          <textarea id="reportIssueInput" class="form-control" placeholder="Describe the issue (e.g., wrong product delivered, product damage, etc.)" rows="4"></textarea>
+          <div class="text-end mt-2">
+            <button id="reportIssueButton2" type="button" class="btn btn-danger w-100" style="padding: 10px 15px; border-radius: 0.25rem;">Report Issue</button>
+          </div>
+        </div>
+
+        <!-- Secure Message -->
+        <div class="custom-alert">
+          <i class="bi bi-shield-lock-fill"></i> Your transaction detail is 100% secure.
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="small text-muted text-center">
+          By submitting, you agree to our <a href="#" class="text-decoration-underline">Terms & Conditions</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Successful Dispute modal -->
+<div class="modal fade custom-modal" id="disputeSuccessfulSubmission" tabindex="-1" aria-labelledby="transactionSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Successful Dispute Submission
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: green;"></i>
+        <h5 class="mt-3">Dispute Submitted!</h5>
+        <p class="mt-2">Thank you for submitting your dispute. We have received your request, and it will be carefully reviewed by our team. We appreciate your patience and will notify you of any updates regarding your submission.</p>
+        <div class="d-grid mt-4">
+          <button type="button" class="custom-button" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Need help? <a href="#" class="custom-link">Contact Support</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Successful Dispute modal -->
+<div class="modal fade custom-modal" id="orderdisputeSuccessfulCancellation" tabindex="-1" aria-labelledby="transactionSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Successful Order Cancellation
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: green;"></i>
+        <h5 class="mt-3">Order Cancelled!</h5>
+        <p class="mt-2">Thank you for your request. Your order has been successfully cancelled, and we have processed your cancellation. We appreciate your trust in our service and will notify you if there are any further updates regarding your transaction.</p>
+        <div class="d-grid mt-4">
+          <button type="button" class="custom-button" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Need help? <a href="#" class="custom-link">Contact Support</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Failed Dispute modal -->
+<div class="modal fade custom-modal" id="disputeFailedModal" tabindex="-1" aria-labelledby="transactionFailedModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="e-shop/images/payuee_signin.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Dispute Submission Failed
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-x-circle-fill" style="font-size: 3rem; color: red;"></i>
+        <h5 class="mt-3">Dispute Submission Failed!</h5>
+        <p class="mt-2">Oops! Something went wrong while submitting your dispute. Please try again later.</p>
+        <div class="d-grid mt-4">
+          <button type="button" class="custom-button" data-bs-dismiss="modal">Try Again</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Need help? <a href="#" class="custom-link">Contact Support</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast">
+    <div class="toast-content">
+        <span id="toast-message"></span>
+        <button id="close-toast" class="close-toast-btn">&times;</button>
+    </div>
+</div>
+
 
   <!-- Go To Top -->
   <div id="scrollTop" class="visually-hidden end-0"></div>
@@ -1155,10 +1594,10 @@
 
   <!-- js login/logout code -->
   <script src="js-shop/auth/side-login/auth.js"></script>
+  <script src="js-shop/store/account_orders.js"></script>
 
 </body>
 
-<!-- Mirrored from payuee-html.flexkitux.com/Demo3/account_orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 22:37:01 GMT -->
 </html>
 
 <!--
