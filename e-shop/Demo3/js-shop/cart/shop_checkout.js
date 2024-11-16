@@ -797,32 +797,39 @@ placeOrderButton.addEventListener("click", function(event) {
             customerPhoneNumber = formData.phone;
             try {
                 const result = await placeOrder();
-                if (result.ok){
+                if (result.ok) {
                     // Hide checkout modal and simulate a successful transaction
                     paymentModal.hide();
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
+                    
                     // Show the transaction success modal
                     transactionSuccessModal.show();
+                    
                     let transactionCodeInput = document.getElementById('transactionCodeInput');
                     transactionCodeInput.value = "";
-                    // clear the products in the local storage
+                    
+                    // Clear the products in local storage
                     checkoutButton.disabled = false;
                     localStorage.removeItem("cart");
+                    
                     // Select the element you want to attach the click event to
-                    const element = document.getElementById("viewTransactionDetails"); // Replace "viewTransactionDetails" with the actual ID
+                    const element = document.getElementById("viewTransactionDetails");
+                    
                     // Add the click event listener
                     element.addEventListener("click", () => {
                         // Redirect to the URL with the OrderID as a query parameter
-                        window.location.href = `"https://payuee.com/e-shop/Demo3/shop_order_complete?OrderID="${result.order[0]}`;
+                        window.location.href = `https://payuee.com/e-shop/Demo3/shop_order_complete?OrderID=${result.order[0]}`;
                     });
                     return;
                 } else {
                     checkoutButton.disabled = false;
-                    showToastMessageE(result.error)
+                    showToastMessageE(result.error);
                 }
             } catch (error) {
-                // showToastMessageE(error.error)
+                console.error('Error:', error);
+                showToastMessageE("An error occurred while processing your order.");
             }
+            
         
         }
 
