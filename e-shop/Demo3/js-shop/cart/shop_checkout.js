@@ -1202,8 +1202,8 @@ async function placeOrder() {
 
     // Construct the request body
     const requestBody = {
-        Latitude: parseFloat(latitude.toFixed(2)),
-        Longitude: parseFloat(longitude.toFixed(2)),
+        Latitude: Math.round(latitude * 100) / 100,  // Round to 2 decimal places
+        Longitude: Math.round(longitude * 100) / 100,  // Round to 2 decimal places
         ShippingDetails: shippingData,
         TransCode: String(TransactionCode),
         Orders: newOrders,
