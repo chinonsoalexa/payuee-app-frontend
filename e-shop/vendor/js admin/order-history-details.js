@@ -180,18 +180,24 @@ function renderProducts(product) {
     const rowElement = document.createElement('tr');
     rowElement.id = product.ID; // Set the ID of the row
 
+    let price = 0;
+    if (!product.reposted) {
+        price = product.order_cost;
+    } else {
+        price = product.reposted_selling_price;
+    }
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <td><img class="img-fluid img-40" src="${"https://payuee.com/image/"+product.first_image_url}" alt="${product.title}"></td>
         <td>
         <div class="product-name"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
         </td>
-        <td>${formatNumberToNaira(product.order_cost)}</td>
+        <td>${formatNumberToNaira(price)}</td>
         <td>
         ${product.quantity}
         </td>
         <td>${product.net_weight}g</td>
-        <td>${formatNumberToNaira(product.order_cost * product.quantity)}</td>
+        <td>${formatNumberToNaira(price * product.quantity)}</td>
     `;
 
     // Append the new element to the container
