@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     updateCartNumber();
     updateCartDrawer();
     renderCheckoutProducts();
+    const paymentModalElement = document.getElementById('checkoutModal');
     const paymentModal = new bootstrap.Modal(paymentModalElement);
     paymentModal.show();    // Show the modal programmatically
     
