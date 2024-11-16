@@ -477,11 +477,19 @@ quantityInput.addEventListener('change', () => {
   }
 
   function renderProductImages(imageUrls, title) {
+    // Default image URL if imageUrls is empty or an image URL is missing
+    const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
+
+    // If imageUrls is empty, use the default image URL
+    if (!imageUrls || imageUrls.length === 0) {
+      imageUrls = [{ url: defaultImageUrl }];
+    }
     let imagesHtml = '';
     imageUrls.forEach((url) => {
+      const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
       imagesHtml += `
         <div class="product-single__image-item">
-          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="553" height="775" alt="${title}">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${imageUrl}" width="553" height="775" alt="${title}">
         </div>`;
     });
     return imagesHtml; // Return the full HTML string

@@ -498,18 +498,30 @@ quantityInput.addEventListener('change', () => {
   }
 
   function renderProductImages(imageUrls, title) {
+    // Default image URL if imageUrls is empty or an image URL is missing
+    const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
+  
+    // If imageUrls is empty, use the default image URL
+    if (!imageUrls || imageUrls.length === 0) {
+      imageUrls = [{ url: defaultImageUrl }];
+    }
+  
     let imagesHtml = '';
     imageUrls.forEach((url) => {
+      const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+  
       imagesHtml += `
-      <div class="swiper-slide product-single__image-item">
-        <img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="674" height="674" alt="${title}">
-        <a data-fancybox="gallery" href="https://payuee.com/image/${url.url}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
-        </a>
-      </div>`;
+        <div class="swiper-slide product-single__image-item">
+          <img loading="lazy" class="h-auto" src="${imageUrl}" width="674" height="674" alt="${title}">
+          <a data-fancybox="gallery" href="${imageUrl}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_zoom" /></svg>
+          </a>
+        </div>`;
     });
+    
     return imagesHtml; // Return the full HTML string
   }
+  
 
   function extractValues(jsonString) {
     // Parse the JSON string into an array of objects
