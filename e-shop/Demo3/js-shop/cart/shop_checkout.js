@@ -825,12 +825,11 @@ placeOrderButton.addEventListener("click", function(event) {
                     checkoutButton.disabled = false;
                     showToastMessageE(result.error);
                 }
+                return;
             } catch (error) {
                 console.error('Error:', error);
                 showToastMessageE("An error occurred while processing your order.");
             }
-            
-        
         }
 
         let transactionCodeInput = document.getElementById('transactionCodeInput');
