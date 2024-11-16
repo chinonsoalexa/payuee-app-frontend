@@ -221,6 +221,8 @@ async function getProducts(pageNumber) {
 function renderProducts(product) {
     const productBody = document.getElementById('order-gridd');
 
+    productBody.innerHTML = "";
+    
     // Create a new product card element
     const rowElement = document.createElement('tr');
     // rowElement.classList.add('col-xxl-4', 'col-md-6');
@@ -252,14 +254,6 @@ function renderProducts(product) {
         <button class="btn btn-danger${product.ID}">REPORT</button>
         `
     }
-    // <tr>
-    //     <td>${product.ID}</td>
-    //     <td><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}"></td>
-    //     <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
-    //     <td>${formatNumberToNaira(product.order_cost)}</td>
-    //     <td>${productIssue}</td>
-    //     <td>${productStatus}</td>
-    // </tr>
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
