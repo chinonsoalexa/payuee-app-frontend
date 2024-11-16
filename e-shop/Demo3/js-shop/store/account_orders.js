@@ -259,13 +259,14 @@ function renderProducts(product) {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td>#${product.ID}</td>
-        <td><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}"></td>
-        <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
-        <td>${formatNumberToNaira(product.order_cost)}</td>
-        <td>${productIssue}</td>
-        <td>${productStatus}</td>
-    `;
+    <td>#${product.ID}</td>
+    <td><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}"></td>
+    <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
+    <td>${formatNumberToNaira(product.order_cost)}</td>
+    <td>${productIssue}</td>
+    <td>${productStatus}</td>
+`;
+
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
