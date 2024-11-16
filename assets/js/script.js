@@ -1,9 +1,5 @@
 /*! -----------------------------------------------------------------------------------
-    Template Name: Crocs Admin
-    Template URI: https://admin.pixelstrap.net/crocs/template/
-    Description: This is Admin theme
-    Author: Pixelstrap
-    Author URI: https://themeforest.net/user/pixelstrap
+    
 -----------------------------------------------------------------------------------
         01. password show hide
         02. Background Image js
