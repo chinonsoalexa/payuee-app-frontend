@@ -130,9 +130,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/account_orders?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/account_orders?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -222,7 +222,7 @@ function renderProducts(product) {
     const productBody = document.getElementById('order-gridd');
 
     productBody.innerHTML = "";
-    
+
     // Create a new product card element
     const rowElement = document.createElement('tr');
     // rowElement.classList.add('col-xxl-4', 'col-md-6');
@@ -638,7 +638,7 @@ function renderOrderedProducts(products) {
 }
   
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://payuee.com/e-shop/Demo3/account_orders?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
