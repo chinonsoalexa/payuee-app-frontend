@@ -67,6 +67,53 @@
   color: #666;
 }
 
+/* Pagination Container */
+#paginationDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px; /* Add space between table and pagination */
+  width: 100%;
+}
+
+/* Pagination List Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin: 0;
+  font-size: 0.85rem; /* Smaller font size */
+}
+
+/* Pagination Links */
+.page-item .page-link {
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover and Active States */
+.page-item .page-link:hover,
+.page-item.active .page-link {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .pagination {
+    font-size: 0.75rem; /* Further reduce font size on smaller screens */
+  }
+}
 
   </style>
 </head>
