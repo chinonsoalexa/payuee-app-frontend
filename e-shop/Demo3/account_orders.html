@@ -19,7 +19,8 @@
   <link rel="stylesheet" href="css/extra.css" type="text/css">
   <script src="auth/search.js"></script>
 
-  <link rel="stylesheet" href="../../assets/css/maine.css">
+  <!-- modal css with small custom styling -->
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style2.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,6 +31,221 @@
     .disabled {
       display: none;
     }
+
+    
+/*  css for modal start */
+.custom-modal .modal-dialog {
+  max-width: 600px;
+}
+
+.custom-modal-content {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.custom-modal-header {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.custom-modal-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.custom-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.custom-btn-close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.custom-modal-body {
+  padding: 20px;
+}
+
+.custom-section-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.custom-scrollable-section {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.custom-table th, .custom-table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.custom-product-image {
+  width: 50px;
+  height: 50px;
+}
+
+.custom-summary-item {
+  margin-bottom: 8px;
+}
+
+.custom-total strong {
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.custom-alert {
+  background-color: #e9f7ef;
+  color: #1e7e34;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+}
+
+.custom-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.custom-button {
+  background-color: #0056b3;
+  color: #fff;
+  padding: 12px 0;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  border: none;
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+}
+
+.custom-logo {
+  width: 32px;
+  height: auto;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+}
+
+.modal-body h6 {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+}
+
+.alert {
+  font-size: 0.875rem;
+}
+
+/* Toast container */
+.toast {
+    visibility: hidden;
+    min-width: 200px; /* Reduce the minimum width */
+    max-width: 300px; /* Set a max width to prevent it from being too large */
+    background-color: #262fcc; /* Softer background color than black */
+    color: #f1f1f1; /* Light text for contrast */
+    text-align: left;
+    border-radius: 12px; /* Curved edges */
+    position: fixed;
+    z-index: 9999;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px; /* Reduced padding for a more compact look */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+/* Visible state of the toast */
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Toast content */
+.toast-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Close button */
+.close-toast-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px; /* Slightly smaller font size */
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.close-toast-btn:hover {
+    color: #ff6b6b; /* Red color on hover */
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.feedback {
+  display: flex;
+  justify-content: center; /* Center the icons */
+  list-style: none;
+  padding: 0;
+}
+
+.feedback li {
+  margin: 0 10px; /* Adjust spacing between icons if needed */
+}
+
+.feedback div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-info {
+  background-color: #fff3cd; /* Light yellow background */
+  color: #856404; /* Darker yellow text for contrast */
+  padding: 15px;
+  border: 1px solid #ffeeba; /* Yellow border */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold;
+  text-align: center;
+}
 
   </style>
 </head>
