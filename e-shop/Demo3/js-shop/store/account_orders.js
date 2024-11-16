@@ -246,7 +246,7 @@ function renderProducts(product) {
         `
     } else if (product.order_status === "shipped" || product.order_status === "cancelled") {
         productIssue = `
-        <button id="btn-danger${product.ID}" class="btn btn-danger"><a href="#">REPORT</a></button>
+        <button id="report-danger${product.ID}" class="btn btn-danger"><a href="#">REPORT</a></button>
         `
     }
 
