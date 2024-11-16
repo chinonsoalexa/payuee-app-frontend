@@ -1226,7 +1226,12 @@ async function placeOrder() {
         if (!data.ok) {
             if (data.error == "sorry you cannot order your own product") {
                 showToastMessageE("sorry you cannot order your own product");
+                const checkoutButton = document.getElementById('paymentButton');
+                checkoutButton.disabled = false;
+                return
             }
+            const checkoutButton = document.getElementById('paymentButton');
+            checkoutButton.disabled = false;
             showToastMessageE("an error occurred while placing order");
             return;
         }
