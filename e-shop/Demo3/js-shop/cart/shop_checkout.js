@@ -1134,7 +1134,6 @@ function calculateShippingFeePerVendor(vendorId) {
 }
 
 async function placeOrder() {
-    // console.log("started placing order");
     let OrderCost = 0.0;
 
     const checkbox = document.getElementById('ship_different_address');
@@ -1165,7 +1164,6 @@ async function placeOrder() {
     // Get cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Iterate through each product in the cart
     cart.forEach((product) => {
         if (!product.reposted) {
             if (product.selling_price < product.initial_cost) {
@@ -1180,34 +1178,16 @@ async function placeOrder() {
         }
     });
 
-    // Update order_cost with the final value after the loop
     orderHistoryBody.order_cost = parseFloat(OrderCost.toFixed(2));
 
-    // Fields you want to keep
     const desiredFields = [
-        'ID',
-        'category',
-        'title',
-        'description',
-        'user_id',
-        'eshop_user_id',
-        'product_url_id',
-        'currency',
-        'featured',
-        'order_cost',
-        'net_weight',
-        'quantity',
-        'product_image',
-        'initial_cost',
-        'selling_price',
-        'estimated_delivery',
-        'reposted',
-        'repost_max_price',
-        'original_eshop_user_id',
-        'reposted_selling_price',
+        'ID', 'category', 'title', 'description', 'user_id', 'eshop_user_id', 
+        'product_url_id', 'currency', 'featured', 'order_cost', 'net_weight', 
+        'quantity', 'product_image', 'initial_cost', 'selling_price', 
+        'estimated_delivery', 'reposted', 'repost_max_price', 
+        'original_eshop_user_id', 'reposted_selling_price'
     ];
 
-    // Function to clean cart items
     const cleanCartItems = (items) => {
         return items.map(item => {
             return desiredFields.reduce((acc, field) => {
@@ -1217,29 +1197,24 @@ async function placeOrder() {
         });
     };
 
-    // Clean the cart item
     const cleanedCartItem = cleanCartItems(cart);
-
-    // Create new orders from the cart
     const newOrders = createNewOrders(cleanedCartItem, orderHistoryBody);
 
-    // Construct the request body
     const requestBody = {
-        Latitude: parseFloat(latitude),  // Round to 2 decimal places
-        Longitude: parseFloat(longitude),  // Round to 2 decimal places
+        Latitude: parseFloat(latitude),
+        Longitude: parseFloat(longitude),
         ShippingDetails: shippingData,
         TransCode: String(TransactionCode),
         Orders: newOrders,
     };
 
     try {
-        // Send POST request using Fetch API and wait for the response
         const response = await fetch('https://api.payuee.com/place-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',  // Include cookies with the request
+            credentials: 'include',
             body: JSON.stringify(requestBody)
         });
 
@@ -1248,31 +1223,26 @@ async function placeOrder() {
         if (!data.ok) {
             const checkoutButton = document.getElementById('paymentButton');
             checkoutButton.disabled = false;
-            showToastMessageE("an error occurred while placing order");
+            showToastMessageE(data.error || "An error occurred while placing order");
 
             if (data.error == "sorry you cannot order your own product") {
                 showToastMessageE("sorry you cannot order your own product");
-                return
+                return;
             }
             return;
         }
 
-           // Parse JSON response if request was successful
-            const result = await response.json();
-            const checkoutButton = document.getElementById('paymentButton');
-            checkoutButton.disabled = false;
+        const checkoutButton = document.getElementById('paymentButton');
+        checkoutButton.disabled = false;
+        showToastMessageS("Successfully Sent Order(s) to Vendor(s)");
 
-        // const result = await response.json();
-        showToastMessageS("Successfully Sent Order(s) to Vendor(s)")
-        // Return the response data so the calling function can use it
-        return result;
+        return data;
     } catch (error) {
         const checkoutButton = document.getElementById('paymentButton');
-    
         checkoutButton.disabled = false;
-        // Handle any errors that occur
         console.error('Error:', error);
-        throw error; // Propagate the error so calling function can handle it
+        showToastMessageE("An error occurred while processing your order");
+        throw error;
     }
 }
 
