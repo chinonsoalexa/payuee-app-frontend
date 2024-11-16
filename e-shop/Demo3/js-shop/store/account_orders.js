@@ -208,13 +208,6 @@ async function getProducts(pageNumber) {
             document.getElementById('dotAfterPage').classList.add('disabled');
             document.getElementById('dotAfterPage').disabled = true;
         }
-        
-        // if (AllRecordsOnPageLoad > 8) {
-        //     // let's remove the disable on the next page navigation button
-        //     // Assuming some condition or event triggers the display change
-        //     document.getElementById('paginationList').classList.remove('disabled');
-        //     document.getElementById('paginationList').disabled = false;
-        // } 
 } finally {
 
     }
