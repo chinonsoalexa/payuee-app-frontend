@@ -259,7 +259,7 @@ function renderProducts(product) {
         class="align-self-center img-fluid img-60" 
         src="https://payuee.com/image/${product.product_orders[0].first_image_url}" 
         alt="${product.title}" 
-        onerror="this.onerror=null; this.src='../../images/default_img.png';">
+        onerror="this.onerror=null; this.src='../../assets/images/default_img.png';">
     </td>
     <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
     <td>${formatNumberToNaira(product.order_cost)}</td>
