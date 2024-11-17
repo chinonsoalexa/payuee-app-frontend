@@ -667,7 +667,11 @@ function updateCartDrawer() {
             // Generate the HTML for the cart item
             cartItem.innerHTML = `
                 <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="${"/image/" + cartProduct.product_image[0].url}" alt="">
+                  <img loading="lazy" class="cart-drawer-item__img" 
+     src="${cartProduct.product_image[0]?.url ? "/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+     alt="${cartProduct.title}" 
+     onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
+
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
                   <h6 class="cart-drawer-item__title fw-normal">${cartProduct.title}</h6>
