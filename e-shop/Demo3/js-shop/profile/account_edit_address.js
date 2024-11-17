@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    await getShippingFees();
+    await getUsersAddress();
 });
 
-async function getShippingFees() {
+async function getUsersAddress() {
     // Endpoint URL
     const apiUrl = "https://api.payuee.com/shipping_address";
 
-    // Request body is just the array of IDs
-    const requestBody = getUniqueVendorIds();  // Directly send the array, not as an object
-    const checkoutButton = document.getElementById('placeOrderButton');
-    
-    checkoutButton.disabled = true;
     const requestOptions = {
         method: "POST",
         headers: {
