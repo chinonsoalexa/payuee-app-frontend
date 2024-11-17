@@ -3,8 +3,6 @@ var stateSelected;
 var citySelected;
 var latitude = 0.0;
 var longitude = 0.0;
-var customerState = "Illinois";
-var customerCity = "Springfield";
 
 document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
@@ -348,32 +346,61 @@ async function registerEshop(email, password, name) {
                 // need to do a data of just null event 
                 showToastMessageE('Please check your email to verify your email ID');
                 //  send user email verification notification
-
-                // displayErrorMessage();
+                resendOtpEmail(email);
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
-                showToastMessageE('User already exist, please login');
+                showToastMessageE('user already exist, please login');
             } else {
                 showToastMessageE('Error signing you up. Please try again');
-                // displayErrorMessage();
             }
 
             return;
         }
 
         const responseData = await response.json();
-        showToastMessageS('Registration successful');
+        showToastMessageS('Please verify your email address');
             
-        // Check if `redirectTo` exists in the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectTo = urlParams.get('redirectTo');
+        //  Send email verification email
+} finally {
 
-        // Redirect to `redirectTo` if it exists, else go to a default page
-        if (redirectTo) {
-            window.location.href = redirectTo;
-        } else {
-            window.location.href = 'https://payuee.com/e-shop/Demo3/home'; // Replace with your default page
+    }
+}
+
+async function resendOtpEmail(email) {
+    const apiUrl = "https://api.payuee.com/app/resend-otp";
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            Email: email,
+        })
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'user not found in the db') {
+                //  send user email verification notification
+                showToastMessageE('User not found');
+            } else if (errorData.error === 'email verification failed') {
+                // need to do a data of just null event 
+                showToastMessageE('Email verification failed');
+            } else {
+                showToastMessageE('Error signing you up. Please try again');
+            }
+
+            return;
         }
+
+        const responseData = await response.json();
+        showToastMessageS(responseData.success);
 } finally {
 
     }
