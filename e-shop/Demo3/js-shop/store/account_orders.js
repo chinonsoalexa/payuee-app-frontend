@@ -102,7 +102,6 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
         responseData.success.forEach((product) => {
-            // product.product_review_count = 6500;
             renderProducts(product);
         });
         
@@ -216,7 +215,7 @@ async function getProducts(pageNumber) {
 function renderProducts(product) {
     const productBody = document.getElementById('order-gridd');
 
-    productBody.innerHTML = "";
+    // productBody.innerHTML = "";
 
     // Create a new product card element
     const rowElement = document.createElement('tr');
@@ -254,7 +253,12 @@ function renderProducts(product) {
     rowElement.innerHTML = `
     <td>#${product.ID}</td>
     <td>
-    ${product.product_orders[0].title}
+        <img 
+        id="image${product.ID}" 
+        class="align-self-center img-fluid img-60" 
+        src="https://payuee.com/image/${product.product_orders[0].first_image_url}" 
+        alt="${product.title}" 
+        onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
     </td>
     <td id="title${product.ID}"><h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6></td>
     <td>${formatNumberToNaira(product.order_cost)}</td>
