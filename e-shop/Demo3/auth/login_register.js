@@ -174,7 +174,7 @@ function renderCities(cities) {
             const selectedCity = event.target.dataset.cityName;
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
-            updateShippingPrices(shippingData);
+            // updateShippingPrices(shippingData);
 
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
