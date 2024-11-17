@@ -136,6 +136,7 @@ function renderStates(states) {
             customerState = event.target.dataset.state;
             document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
             document.getElementById('city-dropdown').value = ''; // Reset the city input value
+            // CalculateCartSubtotal() 
             // console.log(`Selected State: ${selectedState}, ISO Code: ${isoCode}`);
             stateSelected = selectedState;
             citySelected = '';
@@ -178,6 +179,7 @@ function renderCities(cities) {
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
 
+            // CalculateCartSubtotal();
             // Perform additional actions if needed, such as toggling visibility
             toggleClassById("formeCityList", "js-content_visible");
         }
@@ -212,6 +214,19 @@ function showToastMessageE(message) {
     const toastElement = document.getElementById('liveToast1');
     const toast = new bootstrap.Toast(toastElement);
     toast.show();
+}
+
+function toggleClassById(elementId, className) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        if (element.classList.contains(className)) {
+            // If the class exists, remove it
+            element.classList.remove(className);
+        } else {
+            // If the class does not exist, add it
+            element.classList.add(className);
+        }
+    }
 }
 
 async function loginEshop(email, password) {
