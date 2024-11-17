@@ -156,7 +156,7 @@ async function registerEshop(email, password, name) {
         }
 
         const responseData = await response.json();
-        showToastMessageS('Login successful');
+        showToastMessageS('Registration successful');
             
         // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
