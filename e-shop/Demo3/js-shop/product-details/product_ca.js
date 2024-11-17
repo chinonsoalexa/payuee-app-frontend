@@ -1067,24 +1067,23 @@ function renderRecommendedProduct(products) {
     rowElement.innerHTML = `
     <div class="pc__img-wrapper">
         <a href="https://payuee.com/outfits/${product.product_url_id}">
-          <img loading="lazy" 
-     src="https://payuee.com/image/${product.product_image[0]?.url || '../../e-shop/images/default_img.png'}" 
-     width="330" 
-     height="400" 
-     alt="${product.title}" 
-     class="pc__img" 
-     onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
-
-<img loading="lazy" 
-     src="https://payuee.com/image/${product.product_image[0]?.url || '../../e-shop/images/default_img.png'}" 
-     width="330" 
-     height="400" 
-     alt="${product.title}" 
-     class="pc__img pc__img-second" 
-     onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
+            <img loading="lazy" 
+                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                width="330" 
+                height="400" 
+                alt="${product.title}" 
+                class="pc__img" 
+                onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
+            <img loading="lazy" 
+                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                width="330" 
+                height="400" 
+                alt="${product.title}" 
+                class="pc__img pc__img-second" 
+                onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
         </a>
-        <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-      </div>
+        <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium...">
+    </div>
 
       <div class="pc__info position-relative">
         <p class="pc__category">${product.category}</p>
