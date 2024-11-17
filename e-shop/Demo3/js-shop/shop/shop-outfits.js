@@ -406,7 +406,7 @@ function renderProducts(product) {
         if (!imageUrls || imageUrls.length === 0) {
             imagesHtml = `
                 <div class="swiper-slide">
-                    <a href="../../e-shop/images/default_img.png" class="product-link1">
+                    <a href="#" class="product-link1">
                         <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img product-img1">
                     </a>
                 </div>`;
