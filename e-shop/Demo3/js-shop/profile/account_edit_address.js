@@ -38,6 +38,8 @@ async function getShippingFees() {
             const data = await response.json();
             address = data.address;
 
+            if (address.customer_email)
+
             shippingName.value = address.customer_fname + " " + address.customer_user_sname;
             shippingAddress.value = address.customer_street_address_1;
             shippingState.value = address.customer_state + " " + address.customer_city + " " + "Nigeria";
