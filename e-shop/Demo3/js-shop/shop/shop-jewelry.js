@@ -386,18 +386,30 @@ function renderProducts(product) {
         });
     }
 
-  function renderProductImages(imageUrls, title) {
-    let imagesHtml = '';
-    imageUrls.forEach((url, num) => {
-      imagesHtml += `
-        <div class="swiper-slide">
-            <a href="https://payuee.com/image/${url.url}" class="product-link${num+1}">
-                <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num+1}">
-            </a>
-        </div>`;
-    });
-    return imagesHtml; // Return the full HTML string
-  }
+    function renderProductImages(imageUrls, title) {
+        let imagesHtml = '';
+    
+        // Check if there are any image URLs; if not, use a default image
+        if (!imageUrls || imageUrls.length === 0) {
+            imagesHtml = `
+                <div class="swiper-slide">
+                    <a href="#" class="product-link1">
+                        <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img product-img1">
+                    </a>
+                </div>`;
+        } else {
+            imageUrls.forEach((url, num) => {
+                imagesHtml += `
+                    <div class="swiper-slide">
+                        <a href="https://payuee.com/image/${url.url}" class="product-link${num + 1}">
+                            <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                        </a>
+                    </div>`;
+            });
+        }
+    
+        return imagesHtml; // Return the full HTML string
+    }    
 
     // Add event listener to the 'Add To Cart' button
     if (!isOutOfStock) {
