@@ -136,7 +136,6 @@ function renderStates(states) {
             customerState = event.target.dataset.state;
             document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
             document.getElementById('city-dropdown').value = ''; // Reset the city input value
-            CalculateCartSubtotal() 
             // console.log(`Selected State: ${selectedState}, ISO Code: ${isoCode}`);
             stateSelected = selectedState;
             citySelected = '';
@@ -179,7 +178,6 @@ function renderCities(cities) {
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
 
-            CalculateCartSubtotal();
             // Perform additional actions if needed, such as toggling visibility
             toggleClassById("formeCityList", "js-content_visible");
         }
