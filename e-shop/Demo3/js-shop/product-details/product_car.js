@@ -208,23 +208,30 @@ function renderProductDetails(product, related) {
     let percentage;
    ReviewCount = product.product_review_count;
               
-    if (product.selling_price < product.initial_cost) {
-      price = `
-      <span class="old-price">${formatNumberToNaira(product.initial_cost)}</span>
-      <span class="special-price">${formatNumberToNaira(product.selling_price)}</span>
-      `;
-      let currentPercent = calculatePercentageOff(product.initial_cost, product.selling_price)
-      percentage = `
-      <div class="product-label sale-label">
-      <span>-${currentPercent}%</span>
-      </div>
-      `
+        if (!product.reposted) {
+        if (product.selling_price < product.initial_cost) {
+        price = `
+        <span class="old-price">${formatNumberToNaira(product.initial_cost)}</span>
+        <span class="special-price">${formatNumberToNaira(product.selling_price)}</span>
+        `;
+        let currentPercent = calculatePercentageOff(product.initial_cost, product.selling_price)
+        percentage = `
+        <div class="product-label sale-label">
+        <span>-${currentPercent}%</span>
+        </div>
+        `
+    } else {
+        price = `
+        <span class="current-price">${formatNumberToNaira(product.initial_cost)}</span>
+        `
+        percentage = ``
+    }      
   } else {
-      price = `
-      <span class="current-price">${formatNumberToNaira(product.initial_cost)}</span>
-      `
-      percentage = ``
-  }      
+    price = `
+    <span class="current-price">${formatNumberToNaira(product.reposted_selling_price)}</span>
+    `
+    percentage = ``
+  }     
 
   let cartButton;
   let commentRender;
