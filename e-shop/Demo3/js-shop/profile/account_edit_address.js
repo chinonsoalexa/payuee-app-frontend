@@ -33,17 +33,17 @@ async function getUsersAddress() {
             address = data.address;
 
             if (address.customer_email) {  // Check if address.customer_email exists
-                shippingName.value = address.customer_fname + " " + address.customer_user_sname;
-                shippingAddress.value = address.customer_street_address_1;
-                shippingState.value = address.customer_state + " " + address.customer_city + " " + "Nigeria";
-                shippingEmail.value = address.customer_email;
-                shippingPhone.value = address.customer_phone_number;
+                shippingName.textContent = address.customer_fname + " " + address.customer_user_sname;
+                shippingAddress.textContent = address.customer_street_address_1;
+                shippingState.textContent = address.customer_state + " " + address.customer_city + " " + "Nigeria";
+                shippingEmail.textContent = address.customer_email;
+                shippingPhone.textContent = address.customer_phone_number;
             } else {
-                shippingName.value = "NA";
-                shippingAddress.value = "NA";
-                shippingState.value = "NA";
-                shippingEmail.value = "NA";
-                shippingPhone.value = "NA";
+                shippingName.textContent = "NA";
+                shippingAddress.textContent = "NA";
+                shippingState.textContent = "NA";
+                shippingEmail.textContent = "NA";
+                shippingPhone.textContent = "NA";
             }
     
         }
