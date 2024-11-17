@@ -301,6 +301,10 @@ async function registerEshop(email, password, name) {
             FirstName: name,
             email: email,
             password: password,
+            state: customerState,
+            city: customerCity,
+            latitude: latitude,
+            longitude: longitude,
         })
     };
 
