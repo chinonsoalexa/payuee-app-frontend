@@ -511,15 +511,15 @@ function renderProducts(product, subscription) {
 
     function renderProductImages(imageUrls, title) {
         // Define a default image URL
-        const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
+        // const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
       
         let imagesHtml = '';
         if (!imageUrls || imageUrls.length === 0) {
           // Use the default image if no images are available
           imagesHtml += `
             <div class="swiper-slide">
-              <a href="${defaultImageUrl}" class="product-link1">
-                <img loading="lazy" src="${defaultImageUrl}" width="330" height="400" alt="${title}" class="pc__img product-img1">
+              <a href="../../e-shop/images/default_img.png" class="product-link1">
+                <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img product-img1">
               </a>
             </div>`;
         } else {
