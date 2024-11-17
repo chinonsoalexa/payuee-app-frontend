@@ -213,6 +213,7 @@ function renderCities(cities) {
 
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
+            citySelected = selectedCity;
 
             // CalculateCartSubtotal();
             // Perform additional actions if needed, such as toggling visibility
@@ -330,8 +331,8 @@ async function registerEshop(email, password, name) {
             FirstName: name,
             email: email,
             password: password,
-            state: customerState,
-            city: customerCity,
+            state: citySelected,
+            city: citySelected,
             latitude: latitude,
             longitude: longitude,
         })
