@@ -148,6 +148,7 @@ async function getProducts() {
                 }
             });
         }
+        
         responseData.success.forEach((product) => {
             renderProducts(product, responseData.store);
         });
