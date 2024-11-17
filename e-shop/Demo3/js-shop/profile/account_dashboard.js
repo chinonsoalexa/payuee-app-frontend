@@ -29,12 +29,12 @@ async function getUserInfo() {
             const data = await response.json();
             user = data.user;
 
-            if (user.customer_email) {  // Check if address.customer_email exists
+            if (user) {  // Check if address.customer_email exists
                 userName1.textContent = user;
                 userName2.textContent = user;
             } else {
                 userName1.textContent = "NA";
-                userName1.textContent = "NA";
+                userName2.textContent = "NA";
             }
     
         }
