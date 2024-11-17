@@ -473,9 +473,17 @@ async function verifyEshop(Email, SentOTP) {
         }
 
         const responseData = await response.json();
-        showToastMessageS('Please verify your email address');
-        toggleOTP();
-        //  Send email verification email
+        showToastMessageS('Successfully registered');
+        // Check if `redirectTo` exists in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectTo = urlParams.get('redirectTo');
+
+        // Redirect to `redirectTo` if it exists, else go to a default page
+        if (redirectTo) {
+            window.location.href = redirectTo;
+        } else {
+            window.location.href = 'https://payuee.com/e-shop/Demo3/home'; // Replace with your default page
+        }
 } finally {
 
     }
