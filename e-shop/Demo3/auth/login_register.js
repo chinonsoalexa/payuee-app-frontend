@@ -43,8 +43,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         };
 
         // Check if email or password fields are empty
-        if (!registerData.email || !registerData.password || !registerData.FirstName || latitude <= 0 || longitude <= 0) {
+        if (!registerData.email || !registerData.password || !registerData.FirstName) {
             showToastMessageE('Please fill in all fields.');
+            return;
+        }
+        if (latitude <= 0 || longitude <= 0) {
+            showToastMessageE('Please select your state & city');
             return;
         }
 
