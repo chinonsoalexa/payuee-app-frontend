@@ -4,12 +4,14 @@ var citySelected;
 var latitude = 0.0;
 var longitude = 0.0;
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
     const loginForm = document.forms['login-form'];
 
     const registerButton = document.getElementById('registerButton'); // Target the login button
     const registerForm = document.forms['register-form'];
+
+    await loadStates();
 
     // Handle login button click
     loginButton.addEventListener('click', function (event) {
