@@ -462,6 +462,28 @@
           <a class="nav-link nav-link_underscore" id="register-tab" data-bs-toggle="tab" href="#tab-item-register" role="tab" aria-controls="tab-item-register" aria-selected="false">Register</a>
         </li>
       </ul>
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3 toast-index toast-rtl">
+        <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex justify-content-between alert-secondary">
+            <div class="toast-body" id="toastError" style="color: red;">...</div>
+            <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toast-container position-fixed top-0 end-0 p-3 toast-index toast-rtl">
+        <div class="toast hide toast fade" id="liveToast3" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header toast-img"><img class="rounded me-2" src="../images/pr" alt="profile"><strong id="vendorName" class="me-auto">Payuee Shoppers</strong>
+            <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body toast-dark">
+            <h6 class="mb-2" id="toastMessage2">...</h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGIN FORM -->
       <div class="tab-content pt-2" id="login_register_tab_content">
         <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
           <div class="login-form">
@@ -486,7 +508,7 @@
                 <a href="../../page/forgot-email-to-send.html" class="btn-text ms-auto">Lost password?</a>
               </div>
   
-              <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
+              <button id="loginButton" class="btn btn-primary w-100 text-uppercase" type="button">Log In</button>
   
               <!-- PAYUEE Login Button -->
               <div class="text-center mt-4">
@@ -504,6 +526,8 @@
             </form>
           </div>
         </div>
+
+        <!-- REGISTER FORM -->
         <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
           <div class="register-form">
             <form name="register-form" class="needs-validation" novalidate>
@@ -531,6 +555,11 @@
               </div>
   
               <button class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+
+              <!-- <div class="customer-option mt-4 text-center">
+                <span class="text-secondary">Already have account?</span>
+                <a href="#login-tab" class="btn-text js-show-register">Login</a>
+              </div> -->
             </form>
           </div>
         </div>
@@ -1182,10 +1211,12 @@
 
   <!-- js login/logout code -->
   <script src="js-shop/auth/side-login/auth.js"></script>
-
+  <!-- login js file -->
+  <script src="auth/login_register.js"></script>
+  <!-- Toast file -->
+  <script src="../vendor/js/notify/custom-notify.js"></script>
 </body>
 
-<!-- Mirrored from payuee-html.flexkitux.com/Demo3/login_register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 22:36:39 GMT -->
 </html>
 
 <!--
