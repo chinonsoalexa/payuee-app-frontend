@@ -7,12 +7,11 @@ async function getUsersAddress() {
     const apiUrl = "https://api.payuee.com/shipping_address";
 
     const requestOptions = {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include',  // Include cookies with the request
-        body: JSON.stringify(requestBody)  // Send array as JSON
     };
     
     try {
