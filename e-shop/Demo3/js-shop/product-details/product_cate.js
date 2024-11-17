@@ -482,29 +482,37 @@ quantityInput.addEventListener('change', () => {
 
 
   function renderProductImages(imageUrls, title) {
-  // Default image URL if imageUrls is empty or an image URL is missing
-  const defaultImageUrl = '../../e-shop/images/default_img.png';
-
-  // If imageUrls is empty, use the default image URL
-  if (!imageUrls || imageUrls.length === 0) {
-    imageUrls = [{ url: defaultImageUrl }];
-  }
-
+    // Default image URL if imageUrls is empty or an image URL is missing
+    const defaultImageUrl = '../../e-shop/images/default_img.png';
+  
+    // If imageUrls is empty, use the default image URL
+    if (!imageUrls || imageUrls.length === 0) {
+      imageUrls = [{ url: defaultImageUrl }];
+    }
+  
     let imagesHtml = '';
     imageUrls.forEach((url) => {
+      // Set the image URL or fall back to the default image
       const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+  
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
-          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${imageUrl}" width="674" height="674" alt="${title}">
-          <a data-fancybox="gallery" href="https://payuee.com/image/${imageUrl}" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom ${title}">
+          <img loading="lazy" class="h-auto" 
+               src="${imageUrl}" 
+               width="674" height="674" 
+               alt="${title}"
+               onerror="this.onerror=null; this.src='${defaultImageUrl}';">
+          <a data-fancybox="gallery" href="${imageUrl}" 
+             data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom ${title}">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <use href="#icon_zoom" />
             </svg>
           </a>
         </div>`;
     });
+  
     return imagesHtml; // Return the full HTML string
-  }
+  }  
 
   function renderSlideImages(imageUrls, title) {
     let imagesHtml = '';

@@ -499,23 +499,28 @@ quantityInput.addEventListener('change', () => {
   function renderProductImages(imageUrls, title) {
     // Default image URL if imageUrls is empty or an image URL is missing
     const defaultImageUrl = '../../e-shop/images/default_img.png';
-
+  
     // If imageUrls is empty, use the default image URL
     if (!imageUrls || imageUrls.length === 0) {
       imageUrls = [{ url: defaultImageUrl }];
     }
-
+  
     let imagesHtml = '';
     imageUrls.forEach((url) => {
+      // Set the image URL or fall back to the default image
       const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
   
       imagesHtml += `
         <div class="product-single__image-item">
-          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${imageUrl}" width="798" height="740" alt="${title}">
+          <img loading="lazy" class="h-auto" 
+               src="${imageUrl}" 
+               width="798" height="740" 
+               alt="${title}"
+               onerror="this.onerror=null; this.src='${defaultImageUrl}';">
         </div>`;
     });
     return imagesHtml; // Return the full HTML string
-  }
+  }  
 
   // Select the 'Show More' link element by its ID
   const showMoreLink = document.getElementById('show-more-link');
