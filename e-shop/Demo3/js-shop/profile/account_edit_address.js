@@ -38,11 +38,11 @@ async function getShippingFees() {
             const data = await response.json();
             address = data.address;
 
-            shippingName.value = data.customer_fname + " " + data.customer_user_sname;
-            shippingAddress.value = data.customer_street_address_1;
-            shippingState.value = data.customer_state + " " + data.customer_city + " " + "Nigeria";
-            shippingEmail.value = data.customer_email;
-            shippingPhone.value = data.customer_phone_number;
+            shippingName.value = address.customer_fname + " " + address.customer_user_sname;
+            shippingAddress.value = address.customer_street_address_1;
+            shippingState.value = address.customer_state + " " + address.customer_city + " " + "Nigeria";
+            shippingEmail.value = address.customer_email;
+            shippingPhone.value = address.customer_phone_number;
     
         }
 
