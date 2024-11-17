@@ -32,13 +32,19 @@ async function getUsersAddress() {
             const data = await response.json();
             address = data.address;
 
-            if (address.customer_email)
-
-            shippingName.value = address.customer_fname + " " + address.customer_user_sname;
-            shippingAddress.value = address.customer_street_address_1;
-            shippingState.value = address.customer_state + " " + address.customer_city + " " + "Nigeria";
-            shippingEmail.value = address.customer_email;
-            shippingPhone.value = address.customer_phone_number;
+            if (address.customer_email) {  // Check if address.customer_email exists
+                shippingName.value = address.customer_fname + " " + address.customer_user_sname;
+                shippingAddress.value = address.customer_street_address_1;
+                shippingState.value = address.customer_state + " " + address.customer_city + " " + "Nigeria";
+                shippingEmail.value = address.customer_email;
+                shippingPhone.value = address.customer_phone_number;
+            } else {
+                shippingName.value = "NA";
+                shippingAddress.value = "NA";
+                shippingState.value = "NA";
+                shippingEmail.value = "NA";
+                shippingPhone.value = "NA";
+            }
     
         }
 
