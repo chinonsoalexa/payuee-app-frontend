@@ -271,6 +271,77 @@
     text-align: center;
   }
   
+  /* Base styles */
+.page-content {
+  padding: 1rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.orders-table th, 
+.orders-table td {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .orders-table th,
+  .orders-table td {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .pagination .page-item {
+    margin: 0.25rem;
+  }
+  
+  .pagination .page-link {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .orders-table th,
+  .orders-table td {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+  
+  .pagination {
+    justify-content: space-around;
+  }
+  
+  .pagination .page-link {
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .orders-table th,
+  .orders-table td {
+    font-size: 1.1rem;
+  }
+  
+  .pagination {
+    justify-content: flex-end;
+  }
+  
+  .pagination .page-link {
+    padding: 0.75rem 1rem;
+  }
+}
+
     </style>
 
 </head>
@@ -747,7 +818,7 @@
                   <li class="page-item"><a id="nextPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true"></span><span class="sr-only">Next</span>»</a></li>
                 </ul>
               </nav>
-            </div>
+          </div>
         </div>
       </div>
     </section>

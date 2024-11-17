@@ -215,8 +215,6 @@ async function getProducts(pageNumber) {
 function renderProducts(product) {
     const productBody = document.getElementById('order-gridd');
 
-    // productBody.innerHTML = "";
-
     // Create a new product card element
     const rowElement = document.createElement('tr');
     // rowElement.classList.add('col-xxl-4', 'col-md-6');
