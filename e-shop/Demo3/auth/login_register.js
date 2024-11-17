@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     registerButton.addEventListener('click', function (event) {
         event.preventDefault();
-    
+        
         // Get the data from the registration form
         const registerData = {
             FirstName: registerForm.register_username.value.trim(),
@@ -347,6 +347,7 @@ async function registerEshop(email, password, name) {
                 showToastMessageE('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
+                toggleOTP();
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
                 showToastMessageE('user already exist, please login');
@@ -359,7 +360,7 @@ async function registerEshop(email, password, name) {
 
         const responseData = await response.json();
         showToastMessageS('Please verify your email address');
-            
+        toggleOTP();
         //  Send email verification email
 } finally {
 
@@ -403,5 +404,34 @@ async function resendOtpEmail(email) {
         showToastMessageS(responseData.success);
 } finally {
 
+    }
+}
+
+function toggleOTP() {
+    // Get the OTP div and other form divs by their IDs
+    const otpDiv = document.getElementById('otpDiv');
+    const nameDiv = document.getElementById('nameDiv');
+    const emailDiv = document.getElementById('emailDiv');
+    const stateDiv = document.getElementById('stateDiv');
+    const cityDiv = document.getElementById('cityDiv');
+    const passwordDiv = document.getElementById('passwordDiv');
+
+    // Check if OTP div has the d-none class
+    if (otpDiv.classList.contains('d-none')) {
+        // Show OTP div and hide others
+        otpDiv.classList.remove('d-none');
+        nameDiv.classList.add('d-none');
+        emailDiv.classList.add('d-none');
+        stateDiv.classList.add('d-none');
+        cityDiv.classList.add('d-none');
+        passwordDiv.classList.add('d-none');
+    } else {
+        // Hide OTP div and show all other fields
+        otpDiv.classList.add('d-none');
+        nameDiv.classList.remove('d-none');
+        emailDiv.classList.remove('d-none');
+        stateDiv.classList.remove('d-none');
+        cityDiv.classList.remove('d-none');
+        passwordDiv.classList.remove('d-none');
     }
 }
