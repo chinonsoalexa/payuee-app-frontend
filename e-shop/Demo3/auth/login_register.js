@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         
         // Get the data from the registration form
         const verifyData = {
-            Email: registerForm.register_email.value.trim(),
-            SentOTP: verifyForm.register_password.value.trim(),
+            Email: verifyForm.register_email.value.trim(),
+            SentOTP: verifyForm.register_otp.value.trim(),
         };
     
          // Regular expression to match only numbers (at least 8 digits)
