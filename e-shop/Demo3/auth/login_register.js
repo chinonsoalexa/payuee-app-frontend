@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
+        // Email format validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(loginData.email)) {
+            showToastMessageE('Please enter a valid email address.');
+            return;
+        }
+
         // Call the login API endpoint
         loginEshop(loginForm.login_email.value.trim(), loginForm.login_password.value.trim());
         
@@ -37,28 +44,43 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     registerButton.addEventListener('click', function (event) {
         event.preventDefault();
-        // Get the data from the login form 
+    
+        // Get the data from the registration form
         const registerData = {
             FirstName: registerForm.register_username.value.trim(),
             email: registerForm.register_email.value.trim(),
             password: registerForm.register_password.value.trim(),
         };
-
-        // Check if email or password fields are empty
-        if (!registerData.email || !registerData.password || !registerData.FirstName) {
+    
+        // Check if any fields are empty
+        if (!registerData.FirstName || !registerData.email || !registerData.password) {
             showToastMessageE('Please fill in all fields.');
             return;
         }
-
-        if (latitude <= 0 || longitude <= 0) {
+    
+        // Email format validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(registerData.email)) {
+            showToastMessageE('Please enter a valid email address.');
+            return;
+        }
+    
+        // Check for valid latitude and longitude values
+        if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
             showToastMessageE('Please select your state & city');
             return;
         }
-
-        // Call the login API endpoint
+    
+        // Optional: Password strength check (at least 8 characters, one letter, one number)
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(registerData.password)) {
+            showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
+            return;
+        }
+    
+        // Call the register API endpoint
         registerEshop(registerData.email, registerData.password, registerData.FirstName);
-        
-    });
+    });    
 
 });
 
