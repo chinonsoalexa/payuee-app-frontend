@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         };
 
         // Check if email or password fields are empty
-        if (!registerData.email || !registerData.password || !registerData.FirstName) {
+        if (!registerData.email || !registerData.password || !registerData.FirstName || latitude <= 0 || longitude <= 0) {
             showToastMessageE('Please fill in all fields.');
             return;
         }
@@ -174,7 +174,6 @@ function renderCities(cities) {
             const selectedCity = event.target.dataset.cityName;
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
-            // updateShippingPrices(shippingData);
 
             // Update the input value and other elements
             document.getElementById('city-dropdown').value = selectedCity;
