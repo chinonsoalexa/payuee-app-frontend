@@ -1,3 +1,9 @@
+var stateIsoCode;
+var stateSelected;
+var citySelected;
+var latitude = 0.0;
+var longitude = 0.0;
+
 document.addEventListener('DOMContentLoaded', function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
     const loginForm = document.forms['login-form'];
@@ -46,6 +52,151 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+// Function to fetch and populate state data
+async function loadStates() {
+    try {
+        // Update the URL to the correct path of your JSON file
+        const response = await fetch('nigeria_states.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const states = await response.json();
+        
+        renderStates(states);
+        const searchInput = document.getElementById('stateSearchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value;
+            filterStates(searchTerm, states);
+        });
+
+    } catch (error) {
+        console.error('Error fetching state data:', error);
+    }
+}
+
+// Function to fetch and populate city data based on state_iso2
+async function loadCities(stateIso2) {
+    try {
+        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const cities = await response.json();
+        
+        // Filter cities by state_iso2
+        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+
+        // Sort cities alphabetically by name
+        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
+
+        renderCities(filteredCities);
+
+        const searchInput = document.getElementById('citySearchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value;
+            filterCities(searchTerm, filteredCities);
+        });
+
+    } catch (error) {
+        console.error('Error fetching city data:', error);
+    }
+}
+
+function renderStates(states) {
+    const stateList = document.getElementById('state-list');
+    stateList.innerHTML = ''; // Clear existing items
+
+    if (states.length === 0) {
+        // No states found
+        const noResultsItem = document.createElement('li');
+        noResultsItem.textContent = 'No states found';
+        noResultsItem.classList.add('search-suggestion__item');
+        stateList.appendChild(noResultsItem);
+    } else {
+        // Render the states
+        states.forEach(state => {
+            const listItem = document.createElement('li');
+            listItem.textContent = state.name;
+            listItem.id = state.id;
+            listItem.classList.add('search-suggestion__item', 'js-search-select');
+            listItem.dataset.iso2 = state.iso2; // Store ISO2 code in data attribute
+            listItem.dataset.state = state.name; // Store State in data attribute
+            stateList.appendChild(listItem); // Append list item to the list
+        });
+    }
+
+    // Add click event listener to each list item
+    stateList.addEventListener('click', async function (event) {
+        if (event.target.classList.contains('js-search-select')) {
+            const selectedState = event.target.textContent;
+            const isoCode = event.target.dataset.iso2;
+            customerState = event.target.dataset.state;
+            document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
+            document.getElementById('city-dropdown').value = ''; // Reset the city input value
+            CalculateCartSubtotal() 
+            // console.log(`Selected State: ${selectedState}, ISO Code: ${isoCode}`);
+            stateSelected = selectedState;
+            citySelected = '';
+            toggleClassById("formeStateList", "js-content_visible");
+            await loadCities(isoCode);
+        }
+    });
+}
+
+// Function to render cities to the DOM
+function renderCities(cities) {
+    const cityList = document.getElementById('city-list');
+    cityList.innerHTML = ''; // Clear existing items
+
+    if (cities.length === 0) {
+        const noResultsItem = document.createElement('li');
+        noResultsItem.textContent = 'No cities found';
+        noResultsItem.classList.add('search-suggestion__item');
+        cityList.appendChild(noResultsItem);
+    } else {
+        cities.forEach(city => {
+            const listItem = document.createElement('li');
+            listItem.textContent = city.name;
+            listItem.classList.add('search-suggestion__item', 'js-search-select');
+            listItem.dataset.cityName = city.name; // Store city name in data attribute
+            listItem.dataset.latitude = city.latitude; // Store latitude in data attribute
+            listItem.dataset.longitude = city.longitude; // Store longitude in data attribute
+            cityList.appendChild(listItem);
+        });
+    }
+
+    // Add click event listener to each city list item
+    cityList.addEventListener('click', function (event) {
+        if (event.target.classList.contains('js-search-select')) {
+            const selectedCity = event.target.dataset.cityName;
+            latitude = parseFloat(event.target.dataset.latitude);
+            longitude = parseFloat(event.target.dataset.longitude);
+            updateShippingPrices(shippingData);
+
+            // Update the input value and other elements
+            document.getElementById('city-dropdown').value = selectedCity;
+
+            CalculateCartSubtotal();
+            // Perform additional actions if needed, such as toggling visibility
+            toggleClassById("formeCityList", "js-content_visible");
+        }
+    });
+}
+
+function filterStates(term, states) {
+    const filtered = states.filter(state => 
+        state.name.toLowerCase().includes(term.toLowerCase())
+    );
+    renderStates(filtered);
+}
+
+function filterCities(term, cities) {
+    const filtered = cities.filter(state => 
+        state.name.toLowerCase().includes(term.toLowerCase())
+    );
+    renderCities(filtered);
+}
 
 // Show success toast
 function showToastMessageS(message) {
@@ -117,7 +268,7 @@ async function loginEshop(email, password) {
 }
 
 async function registerEshop(email, password, name) {
-    const apiUrl = "https://api.payuee.com/sign-in";
+    const apiUrl = "https://api.payuee.com/app/sign-up";
 
     const requestOptions = {
         method: "POST",

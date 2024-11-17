@@ -531,21 +531,69 @@
         <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
           <div class="register-form">
             <form name="register-form" class="needs-validation" novalidate>
-              <div class="form-floating mb-3">
+
+              <div id="otpDiv" class="form-floating mb-3 d-none">
+                <input name="register_username" type="number" class="form-control form-control_gray" id="customerOtpRegisterInput" placeholder="OTP Code" required>
+                <label for="customerOtpRegisterInput">OTP Code</label>
+              </div>
+
+              <div id="nameDiv" class="form-floating mb-3">
                 <input name="register_username" type="text" class="form-control form-control_gray" id="customerNameRegisterInput" placeholder="Username" required>
                 <label for="customerNameRegisterInput">Username</label>
               </div>
   
               <div class="pb-3"></div>
   
-              <div class="form-floating mb-3">
+              <div id="emailDiv" class="form-floating mb-3">
                 <input name="register_email" type="email" class="form-control form-control_gray" id="customerEmailRegisterInput" placeholder="Email address *" required>
                 <label for="customerEmailRegisterInput">Email address *</label>
               </div>
   
               <div class="pb-3"></div>
+              
+              <div class="col-md-12">
+                <div class="search-field my-3">
+                  <div class="form-label-fixed hover-container" id="formeStateList">
+                    <label for="search-dropdown" class="form-label">States / Region*</label>
+                    <div class="js-hover__open" id="statesInput">
+                      <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a State...">
+                    </div>
+                    <div class="filters-container js-hidden-content mt-2">
+                      <div class="search-field__input-wrapper">
+                        <input id="stateSearchInput" type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
+                      </div>
+                      <ul class="search-suggestion list-unstyled" id="state-list">
+                        <!-- this is where states would be rendered -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="pb-3"></div>
+
+              <div class="col-md-12">
+                <div class="search-field my-3">
+                    <div class="form-label-fixed hover-container" id="formeCityList">
+                        <label for="city-dropdown" class="form-label">Town / City*</label>
+                        <div class="js-hover__open" id="citiesInput">
+                            <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="city-dropdown" name="search-keyword" readonly placeholder="Choose a City...">
+                        </div>
+                        <div class="filters-container js-hidden-content mt-2">
+                            <div class="search-field__input-wrapper">
+                                <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" id="citySearchInput" placeholder="Search">
+                            </div>
+                            <ul class="search-suggestion list-unstyled" id="city-list">
+                                <!-- This is where cities would be rendered -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="pb-3"></div>
   
-              <div class="form-floating mb-3">
+              <div id="passwordDiv" class="form-floating mb-3">
                 <input name="register_password" type="password" class="form-control form-control_gray" id="customerPasswodRegisterInput" placeholder="Password *" required>
                 <label for="customerPasswodRegisterInput">Password *</label>
               </div>
