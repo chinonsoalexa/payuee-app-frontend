@@ -3,6 +3,8 @@ var stateSelected;
 var citySelected;
 var latitude = 0.0;
 var longitude = 0.0;
+var customerState = "Illinois";
+var customerCity = "Springfield";
 
 document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             showToastMessageE('Please fill in all fields.');
             return;
         }
+
         if (latitude <= 0 || longitude <= 0) {
             showToastMessageE('Please select your state & city');
             return;
