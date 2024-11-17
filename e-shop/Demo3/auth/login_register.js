@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     const registerButton = document.getElementById('registerButton'); // Target the login button
     const registerForm = document.forms['register-form'];
 
+    const verifyButton = document.getElementById('verifyButton'); // Target the login button
+    const verifyForm = document.forms['register-form'];
+
     await loadStates();
 
     // Handle login button click
@@ -85,6 +88,26 @@ document.addEventListener('DOMContentLoaded', async function () {
     
         // Call the register API endpoint
         registerEshop(registerData.email, registerData.password, registerData.FirstName);
+    });    
+
+    registerButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        // Get the data from the registration form
+        const verifyData = {
+            Email: registerForm.register_email.value.trim(),
+            SentOTP: registerForm.register_password.value.trim(),
+        };
+    
+         // Regular expression to match only numbers (at least 8 digits)
+        const passwordPattern = /^\d{6,}$/;
+        if (!passwordPattern.test(verifyData.SentOTP)) {
+            showToastMessageE('Invalid OTP');
+            return;
+        }
+    
+        // Call the verify API endpoint
+        verifyEshop(verifyData.Email, verifyData.SentOTP);
     });    
 
 });
@@ -407,6 +430,52 @@ async function resendOtpEmail(email) {
     }
 }
 
+async function registerEshop(Email, SentOTP) {
+    const apiUrl = "https://api.payuee.com/app/email-verification";
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify({
+            Email: Email,
+            SentOTP: SentOTP,
+        })
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'User already exist, please verify your email ID') {
+                // need to do a data of just null event 
+                showToastMessageE('Please check your email to verify your email ID');
+                //  send user email verification notification
+                resendOtpEmail(email);
+                toggleOTP();
+            } else if (errorData.error === 'User already exist, please login') {
+                // need to do a data of just null event 
+                showToastMessageE('user already exist, please login');
+            } else {
+                showToastMessageE('Error signing you up. Please try again');
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        showToastMessageS('Please verify your email address');
+        toggleOTP();
+        //  Send email verification email
+} finally {
+
+    }
+}
+
 function toggleOTP() {
     // Get the OTP div and other form divs by their IDs
     const otpDiv = document.getElementById('otpDiv');
@@ -415,11 +484,14 @@ function toggleOTP() {
     const stateDiv = document.getElementById('stateDiv');
     const cityDiv = document.getElementById('cityDiv');
     const passwordDiv = document.getElementById('passwordDiv');
+    const registerButton = document.getElementById('registerButton');
+    const verifyButton = document.getElementById('verifyButton');
 
     // Check if OTP div has the d-none class
     if (otpDiv.classList.contains('d-none')) {
         // Show OTP div and hide others
         otpDiv.classList.remove('d-none');
+        verifyButton.classList.remove('d-none');
         nameDiv.classList.add('d-none');
         emailDiv.classList.add('d-none');
         stateDiv.classList.add('d-none');
@@ -428,6 +500,7 @@ function toggleOTP() {
     } else {
         // Hide OTP div and show all other fields
         otpDiv.classList.add('d-none');
+        verifyButton.classList.add('d-none');
         nameDiv.classList.remove('d-none');
         emailDiv.classList.remove('d-none');
         stateDiv.classList.remove('d-none');
