@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
+        // Optional: Password strength check (at least 8 characters, one letter, one number)
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(loginData.password)) {
+            showToastMessageE('Invalid email or password');
+            return;
+        }
+
         // Call the login API endpoint
         loginEshop(loginForm.login_email.value.trim(), loginForm.login_password.value.trim());
         
