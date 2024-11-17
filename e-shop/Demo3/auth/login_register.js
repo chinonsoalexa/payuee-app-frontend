@@ -90,13 +90,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         registerEshop(registerData.email, registerData.password, registerData.FirstName);
     });    
 
-    registerButton.addEventListener('click', function (event) {
+    verifyButton.addEventListener('click', function (event) {
         event.preventDefault();
         
         // Get the data from the registration form
         const verifyData = {
             Email: registerForm.register_email.value.trim(),
-            SentOTP: registerForm.register_password.value.trim(),
+            SentOTP: verifyForm.register_password.value.trim(),
         };
     
          // Regular expression to match only numbers (at least 8 digits)
@@ -430,7 +430,7 @@ async function resendOtpEmail(email) {
     }
 }
 
-async function registerEshop(Email, SentOTP) {
+async function verifyEshop(Email, SentOTP) {
     const apiUrl = "https://api.payuee.com/app/email-verification";
 
     const requestOptions = {
@@ -451,17 +451,22 @@ async function registerEshop(Email, SentOTP) {
         if (!response.ok) {
             const errorData = await response.json();
 
-            if (errorData.error === 'User already exist, please verify your email ID') {
+            if (errorData.error === 'email limit check exceeded') {
                 // need to do a data of just null event 
-                showToastMessageE('Please check your email to verify your email ID');
+                showToastMessageE('email limit check exceeded check email for new OTP');
                 //  send user email verification notification
-                resendOtpEmail(email);
-                toggleOTP();
-            } else if (errorData.error === 'User already exist, please login') {
+                resendOtpEmail(Email);
+            } else if (errorData.error === 'error getting otp by email for limit check') {
                 // need to do a data of just null event 
-                showToastMessageE('user already exist, please login');
+                showToastMessageE('error verifying otp email');
+            } else if (errorData.error === 'Wrong OTP') {
+                // need to do a data of just null event 
+                showToastMessageE('wrong OTP code');
+            }  else if (errorData.error === 'Verification Code Expired') {
+                // need to do a data of just null event 
+                showToastMessageE('Verification code expired');
             } else {
-                showToastMessageE('Error signing you up. Please try again');
+                showToastMessageE('Error verifying OTP. Please try again');
             }
 
             return;
