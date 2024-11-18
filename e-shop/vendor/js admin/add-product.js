@@ -1120,7 +1120,7 @@ async function generateAiDescription(TitleData) {
 
         // Set the content of the rich text editor
         quillEditor.root.innerHTML = "";
-        quillEditor.root.innerHTML = product.description;
+        quillEditor.root.innerHTML = responseData.success;
 } finally {
 
     }
