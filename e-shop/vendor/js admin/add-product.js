@@ -478,7 +478,7 @@ function processPredictions(predictions) {
         showToastMessageE("Unauthorized content detected")
     } else {
         // Optionally notify the user that authorized content was detected
-        showToastMessageE("Authorized content detected")
+        // showToastMessageE("Authorized content detected")
     }
     return isUnauthorized; // Return whether the content is unauthorized
 }
