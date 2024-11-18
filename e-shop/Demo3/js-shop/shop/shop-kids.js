@@ -215,6 +215,24 @@ async function getProducts() {
     }
 }
 
+ // Function to render store list
+ function renderStores(data, products) {
+    const storeList = document.querySelector('.multi-select__list');
+    storeList.innerHTML = ''; // Clear existing items
+
+    data.forEach(store => {
+        const listItem = document.createElement('li');
+        listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
+
+        listItem.innerHTML = `
+            <span class="me-auto" onclick="redirectToShop('${store.eshop_user_id}')">${store.store_name}</span>
+            <span class="text-secondary" onclick="redirectToShop('${store.eshop_user_id}')">${getProductCountForVendor(store.eshop_user_id, products)}</span>
+        `;
+
+        storeList.appendChild(listItem);
+    });
+}
+
   // Function to render store list
  function renderStores2(data, products) {
     const storeList = document.querySelector('.multi-select__list');
@@ -225,8 +243,8 @@ async function getProducts() {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto" onclick="redirectToShop(${store.store_unique_url})">${store.shop_name}</span>
-            <span class="text-secondary" onclick="redirectToShop(${store.store_unique_url})">${getProductCountForVendor(store.ID, products)}</span>
+            <span class="me-auto" onclick="redirectToShop('${store.store_unique_url}')">${store.shop_name}</span>
+            <span class="text-secondary" onclick="redirectToShop('${store.store_unique_url}')">${getProductCountForVendor(store.ID, products)}</span>
         `;
 
         storeList.appendChild(listItem);
@@ -295,24 +313,6 @@ async function searchStores(query) {
   
     }
   }
-
- // Function to render store list
- function renderStores(data, products) {
-    const storeList = document.querySelector('.multi-select__list');
-    storeList.innerHTML = ''; // Clear existing items
-
-    data.forEach(store => {
-        const listItem = document.createElement('li');
-        listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
-
-        listItem.innerHTML = `
-            <span class="me-auto" onclick="redirectToShop(${store.eshop_user_id})">${store.store_name}</span>
-            <span class="text-secondary" onclick="redirectToShop(${store.eshop_user_id})">${getProductCountForVendor(store.eshop_user_id, products)}</span>
-        `;
-
-        storeList.appendChild(listItem);
-    });
-}
 
 // Function to get product count for a specific vendor
 function getProductCountForVendor(eshop_user_id, products) {

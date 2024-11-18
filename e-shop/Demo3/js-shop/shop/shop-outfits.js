@@ -226,8 +226,8 @@ async function getProducts() {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto" onclick="redirectToShop(${store.eshop_user_id})">${store.store_name}</span>
-            <span class="text-secondary" onclick="redirectToShop(${store.eshop_user_id})">${getProductCountForVendor(store.eshop_user_id, products)}</span>
+            <span class="me-auto" onclick="redirectToShop('${store.eshop_user_id}')">${store.store_name}</span>
+            <span class="text-secondary" onclick="redirectToShop('${store.eshop_user_id}')">${getProductCountForVendor(store.eshop_user_id, products)}</span>
         `;
 
         storeList.appendChild(listItem);
@@ -244,8 +244,8 @@ async function getProducts() {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto" onclick="redirectToShop(${store.store_unique_url})">${store.shop_name}</span>
-            <span class="text-secondary" onclick="redirectToShop(${store.store_unique_url})">${getProductCountForVendor(store.ID, products)}</span>
+            <span class="me-auto" onclick="redirectToShop('${store.store_unique_url}')">${store.shop_name}</span>
+            <span class="text-secondary" onclick="redirectToShop('${store.store_unique_url}')">${getProductCountForVendor(store.ID, products)}</span>
         `;
 
         storeList.appendChild(listItem);
