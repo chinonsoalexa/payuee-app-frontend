@@ -53,7 +53,7 @@ if (!isNaN(lastPart)) {
 
 console.log(vendorId);  // Check the extracted vendorId
 
-CartNumber();
+// CartNumber();
     updateCartDrawer();
 
     // Get the current URL
