@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // If it's just a number like '2', directly parse it
         vendorId = parseInt(lastPart, 10);
     }
+    
     updateCartNumber();
     updateCartDrawer();
 
