@@ -16,8 +16,8 @@ var max_distance = 10;
 var min_weight = 1;
 var max_weight = 10;
 
-var stores = '';
-var products = '';
+var stores = [];
+var products = [];
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 16 }, (_, i) => i);
