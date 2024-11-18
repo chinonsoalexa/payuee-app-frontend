@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Get the last part of the URL path
         const lastPart = parts[parts.length - 1];
         // If it's a number, parse it
-        vendorId = parseInt(url, 10);
+        vendorId = lastPart;
     } else {
         // If not, set vendorId to null or handle as needed
-        vendorId = parseInt(lastPart, 10);
+        vendorId = url;
         // vendorId = null;
     }
 
