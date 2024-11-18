@@ -23,8 +23,20 @@ const loader = Array.from({ length: 16 }, (_, i) => i);
 document.addEventListener('DOMContentLoaded', async function () {
     // Get URL parameters
     const url = window.location.pathname;
-    const parts = url.split('-');
-    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
+
+    // Check if the URL contains a hyphenated format (e.g., "epic-wears-2")
+    const regex = /(\d+)$/;  // This regex will match the number at the end of the string
+
+    const match = url.match(regex);
+
+    // Extract vendor ID
+    let vendorId;
+    if (match) {
+        vendorId = parseInt(match[0], 10);  // Extract and convert the matched number
+    } else {
+        // If the format doesn't match (e.g., just "2"), treat it as a direct number
+        vendorId = parseInt(url, 10);
+    }
     updateCartNumber();
     updateCartDrawer();
 
