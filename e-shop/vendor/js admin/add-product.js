@@ -1049,6 +1049,17 @@ function showToastMessageE(message) {
 const generateDescriptionButton = document.getElementById('generateDescriptionAI');
 const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
 
+// Function to toggle the disabled state and visibility of the button
+function toggleButtonState() {
+    if (generateDescriptionButton.disabled) {
+        generateDescriptionButton.disabled = false; // Enable the button
+        generateDescriptionButton.style.display = 'inline-block'; // Show the button
+    } else {
+        generateDescriptionButton.disabled = true; // Disable the button
+        generateDescriptionButton.style.display = 'none'; // Hide the button
+    }
+}
+
 if (generateDescriptionButton) {
     generateDescriptionButton.addEventListener('click', function (event) {
         event.preventDefault();
@@ -1058,6 +1069,7 @@ if (generateDescriptionButton) {
         } else {
             // Proceed with the AI description generation
             showToastMessageS('Generating AI description...');
+            toggleButtonState();
             // Add your AI description generation logic here
             generateAiDescription(productTitleInput.value.trim());
         }
@@ -1122,7 +1134,7 @@ async function generateAiDescription(TitleData) {
         quillEditor.root.innerHTML = responseData.success;
         showToastMessageS('Done Generating AI description');
     } finally {
-
+        toggleButtonState();
     }
 }
 
