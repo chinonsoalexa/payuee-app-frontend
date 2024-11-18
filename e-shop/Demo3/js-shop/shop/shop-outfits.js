@@ -681,9 +681,12 @@ function updateCartDrawer() {
             cartItem.innerHTML = `
                 <div class="position-relative">
                   <img loading="lazy" class="cart-drawer-item__img" 
-     src="${cartProduct.product_image[0]?.url ? "/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+     src="${(cartProduct.product_image && cartProduct.product_image[0]?.url) 
+             ? "/image/" + cartProduct.product_image[0].url 
+             : '../../e-shop/images/default_img.png'}" 
      alt="${cartProduct.title}" 
      onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
+
 
                 </div>
                 <div class="cart-drawer-item__info flex-grow-1">
