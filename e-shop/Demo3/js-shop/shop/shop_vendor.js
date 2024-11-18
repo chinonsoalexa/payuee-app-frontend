@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts() {
-    const apiUrl = "https://api.payuee.com/vendor/products/" + pageNumber + "/" + vendorId;
+    const apiUrl = "https://api.payuee.com/vendor/products/" + pageNumber + `/${vendorId}`;
     loading();
 
     const requestOptions = {
