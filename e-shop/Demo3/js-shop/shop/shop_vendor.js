@@ -23,27 +23,8 @@ const loader = Array.from({ length: 16 }, (_, i) => i);
 document.addEventListener('DOMContentLoaded', async function () {
     // Get URL parameters
     const url = window.location.pathname;
-
-    // Split the URL by slashes to handle different parts
-    const parts = url.split('/');
-    
-    // Get the last part of the URL, which might be 'epic-wears-2' or just '2'
-    const lastPart = parts[parts.length - 1];
-    
-    // Check if the last part contains a hyphen and a number at the end (e.g., 'epic-wears-2')
-    const regex = /(\d+)$/;
-    
-    let vendorId;
-    
-    const match = lastPart.match(regex);
-    if (match) {
-        // If it's a format like 'epic-wears-2', extract the number
-        vendorId = parseInt(match[0], 10);
-    } else {
-        // If it's just a number like '2', directly parse it
-        vendorId = parseInt(lastPart, 10);
-    }
-    
+    const parts = url.split('-');
+    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
 
