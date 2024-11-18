@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     let vendorId;
 
     // Check if the last part is a number
-    if (isNaN(url)) {
-        // If it's a number, parse it
-        vendorId = parseInt(url, 10);
-    } else {
+    if (url.includes('-')) {
         // Split the URL by hyphens
         const parts = url.split('-');
         // Get the last part of the URL path
         const lastPart = parts[parts.length - 1];
+        // If it's a number, parse it
+        vendorId = parseInt(url, 10);
+    } else {
         // If not, set vendorId to null or handle as needed
         vendorId = parseInt(lastPart, 10);
         // vendorId = null;
