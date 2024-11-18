@@ -935,36 +935,7 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
     getProducts();
 });
   
-// Get the search input field by its ID
-const searchInput = document.getElementById('searchField2');
-  
-// Add an event listener to capture input changes
-searchInput.addEventListener('input', function(event) {
-  const searchQuery = event.target.value;  // Get the current input value
-  
-  // Perform actions with the search query
-  console.log('Search query:', searchQuery);
-  
-  // You can call a function to handle the search here, e.g., make an API request or filter results
-  performSearch(searchQuery);
-});
 
-// FILTER BY SHOP SEARCH
-// Example search function (you can replace it with your logic)
-function performSearch(query) {
-  if (query.length > 0) {
-    // console.log('Performing search for:', query);
-    
-          setTimeout(() => {
-          // Clear current product grid
-          document.getElementById('products-grid').innerHTML = '';
-      
-          }, 3000);
-  } else {
-    // console.log('Search query is empty');
-    // Clear or reset search results if the input is empty
-  }
-}
 
 // FILTER BY WEIGHT (KG) AND BY PRICE
 const selectors = {

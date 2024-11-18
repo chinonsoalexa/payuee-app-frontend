@@ -31,17 +31,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentUrl = new URL(window.location.href);
     // Assuming you have a reference to the table body element
 
-    // setTimeout(() => {
-    //     // console.log('m here')
-    //     // updateProductsFromData(productts);
-    //         // render the store products
-    //         document.getElementById('products-grid').innerHTML = '';
-    // products.forEach((product) => {
-    //     renderProducts(product);
-    // });
-    //     // console.log('just finished here')
-    // }, 3000);
-
     // Extract parameters using URLSearchParams
     const params = new URLSearchParams(currentUrl.search);
 
@@ -960,47 +949,6 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
     sort_option = selectedValue;
     getProducts();
 });
-
-const searchInput = document.getElementById('searchField');
-  
-// Add an event listener to capture input changes
-searchInput.addEventListener('input', function(event) {
-  const searchQuery = event.target.value;  // Get the current input value
-  
-  // Perform actions with the search query
-//   console.log('Search query:', searchQuery);
-  
-  // You can call a function to handle the search here, e.g., make an API request or filter results
-  performSearch(searchQuery);
-});
-
-// FILTER BY SHOP SEARCH
-// Example search function (you can replace it with your logic)
-function performSearch(query) {
-  if (query.length > 0) {
-    console.log('Performing search for:', query);
-    // Add your search logic here, such as making an API call or filtering displayed results
-          // Handle the color selection
-        //   loading();
-    
-          setTimeout(() => {
-          // Clear current product grid
-          document.getElementById('products-grid').innerHTML = '';
-      
-          // Shuffle products array before rendering
-        //   const shuffledProducts = shuffleArray(products);
-      
-          // Render the shuffled products
-        //   shuffledProducts.forEach((product) => {
-        //       renderProducts(product);
-        //   });
-      
-          }, 3000);
-  } else {
-    console.log('Search query is empty');
-    // Clear or reset search results if the input is empty
-  }
-}
 
 // FILTER BY WEIGHT (KG) AND BY PRICE
 const selectors = {
