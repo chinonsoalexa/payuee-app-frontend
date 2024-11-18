@@ -320,6 +320,7 @@ async function loginEshop(email, password) {
         // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
+        localStorage.setItem('auth', 'true');
 
         // Redirect to `redirectTo` if it exists, else go to a default page
         if (redirectTo) {
@@ -470,6 +471,7 @@ async function verifyEshop(Email, SentOTP) {
         // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
+        localStorage.setItem('auth', 'true');
 
         // Redirect to `redirectTo` if it exists, else go to a default page
         if (redirectTo) {

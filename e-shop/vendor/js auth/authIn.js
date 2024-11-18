@@ -99,17 +99,6 @@ async function check_auth_status() {
     }
 }
 
-// Define your AI functions (example placeholders)
-function generateDescriptionAI() {
-    console.log("Generating description using AI...");
-    // Call your AI functionality here
-}
-
-function generateTagAI() {
-    console.log("Generating tags using AI...");
-    // Call your AI functionality here
-}
-
 function updateVendorName(newName) {
     const vendorName1Element = document.getElementById("vendorName1");
     const vendorNameElement = document.getElementById("vendorName");
