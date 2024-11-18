@@ -216,7 +216,7 @@ async function getProducts() {
     const storeList = document.querySelector('.multi-select__list');
     storeList.innerHTML = ''; // Clear existing items
 
-    data.stores.forEach(store => {
+    data.forEach(store => {
         const listItem = document.createElement('li');
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
