@@ -94,6 +94,8 @@ async function getProducts() {
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
+
+        renderStores(responseData.stores, responseData.success);
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
@@ -207,6 +209,29 @@ async function getProducts() {
 } finally {
 
     }
+}
+
+ // Function to render store list
+function renderStores(data, products) {
+    const storeList = document.querySelector('.multi-select__list');
+    storeList.innerHTML = ''; // Clear existing items
+
+    data.stores.forEach(store => {
+        const listItem = document.createElement('li');
+        listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
+
+        listItem.innerHTML = `
+            <span class="me-auto">${store.store_name}</span>
+            <span class="text-secondary">${getProductCountForVendor(store.eshop_user_id, products)}</span>
+        `;
+
+        storeList.appendChild(listItem);
+    });
+}
+
+// Function to get product count for a specific vendor
+function getProductCountForVendor(eshop_user_id, products) {
+    return products.filter(product => product.eshop_user_id === eshop_user_id).length;
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
