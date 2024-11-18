@@ -275,6 +275,52 @@ async function getSearchResults(query) {
     }
 }
 
+async function searchStores(query) {
+    const apiUrl = "https://api.payuee.com/search-stores";
+
+    const requestBody = {
+        query: query, 
+    };   
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+  
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+  
+        if (!response.ok) {
+            const errorData = await response.json();
+  
+            // if (errorData.error === 'failed to get user from request') {
+            //     // need to do a data of just null event 
+            //     // displayErrorMessage();
+            // } else if (errorData.error === 'failed to get transaction history') {
+            //     // need to do a data of just null event 
+                
+            // } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+            //     // let's log user out the users session has expired
+            //     logout();
+            // }else {
+            //     // displayErrorMessage();
+            // }
+  
+            return;
+        }
+  
+        const responseData = await response.json();
+        renderSearchResults(responseData.success);
+       
+  } finally {
+  
+    }
+  }
+
 // Function to render products in the list
 function renderSearchResults(products) {
     const productResults = document.getElementById("productResults");
@@ -362,20 +408,6 @@ function deactivateCurrentButton() {
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
-
-// function displayImage(productURL, productTitle, imageURLarray) {
-//     slideDiv = '';
-//     // Loop through the product_image array and generate HTML
-//     imageURLarray.forEach((image, index) => {
-        
-//         slideDiv += `
-//             <a href="https://payuee.com/outfits/${productURL}" class="product-link${index + 1}">
-//                 <img loading="lazy" src="https://payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
-//             </a>
-//         `;
-//     });
-//     return slideDiv;
-// }
 
 function renderProducts(product) {
     const productBody = document.getElementById('products-grid');
