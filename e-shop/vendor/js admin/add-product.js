@@ -1059,6 +1059,7 @@ if (generateDescriptionButton) {
             showToastMessageS('Generating AI description...');
             // Add your AI description generation logic here
             generateAiDescription(productTitleInput.value.trim());
+            showToastMessageS('Done Generating AI description');
         }
     });
 }
