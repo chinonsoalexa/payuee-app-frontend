@@ -38,13 +38,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
-        // Optional: Password strength check (at least 8 characters, one letter, one number)
-        // const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        // if (!passwordPattern.test(loginData.password)) {
-        //     showToastMessageE('Invalid email or password');
-        //     return;
-        // }
-
         // Call the login API endpoint
         loginEshop(loginForm.login_email.value.trim(), loginForm.login_password.value.trim());
         
@@ -505,6 +498,7 @@ function toggleOTP() {
         // Show OTP div and hide others
         otpDiv.classList.remove('d-none');
         verifyButton.classList.remove('d-none');
+        registerButton.classList.add('d-none');
         nameDiv.classList.add('d-none');
         emailDiv.classList.add('d-none');
         stateDiv.classList.add('d-none');
@@ -519,5 +513,6 @@ function toggleOTP() {
         stateDiv.classList.remove('d-none');
         cityDiv.classList.remove('d-none');
         passwordDiv.classList.remove('d-none');
+        registerButton.classList.remove('d-none');
     }
 }
