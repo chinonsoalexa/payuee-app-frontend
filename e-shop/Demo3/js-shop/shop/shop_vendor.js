@@ -110,7 +110,7 @@ async function getProducts() {
         const responseData = await response.json();
 
         // Call the function to render categories
-        renderCategories(extractValuesFromShopCategories(responseData.vendor.shop_categories), "categoryList");
+        renderCategories(extractValuesFromShopCategories(responseData.vendor.tags), "categoryList");
 
         // Call the function with the default and main image paths
         loadMainImage(
