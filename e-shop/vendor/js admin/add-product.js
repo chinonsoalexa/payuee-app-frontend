@@ -1060,7 +1060,6 @@ if (generateDescriptionButton) {
             showToastMessageS('Generating AI description...');
             // Add your AI description generation logic here
             generateAiDescription(productTitleInput.value.trim());
-            showToastMessageS('Done Generating AI description');
         }
     });
 }
@@ -1121,7 +1120,8 @@ async function generateAiDescription(TitleData) {
         // Set the content of the rich text editor
         quillEditor.root.innerHTML = "";
         quillEditor.root.innerHTML = responseData.success;
-} finally {
+        showToastMessageS('Done Generating AI description');
+    } finally {
 
     }
 }
