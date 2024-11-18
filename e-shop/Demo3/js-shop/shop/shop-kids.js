@@ -215,7 +215,7 @@ async function getProducts() {
     }
 }
 
- // Function to render store list
+  // Function to render store list
  function renderStores2(data, products) {
     const storeList = document.querySelector('.multi-select__list');
     storeList.innerHTML = ''; // Clear existing items
@@ -225,13 +225,18 @@ async function getProducts() {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto">${store.shop_name}</span>
-            <span class="text-secondary">${getProductCountForVendor(store.ID, products)}</span>
+            <span class="me-auto" onclick="redirectToShop(${store.store_unique_url})">${store.shop_name}</span>
+            <span class="text-secondary" onclick="redirectToShop(${store.store_unique_url})">${getProductCountForVendor(store.ID, products)}</span>
         `;
 
         storeList.appendChild(listItem);
     });
 }
+
+function redirectToShop(storeId) {
+    const url = `https://payuee.com/store/${storeId}`; // Customize the URL as needed
+    window.location.href = url;
+  }
 
 // Attach event listener to search input
 document.getElementById("searchField2").addEventListener("input", async (event) => {
@@ -301,8 +306,8 @@ async function searchStores(query) {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto">${store.store_name}</span>
-            <span class="text-secondary">${getProductCountForVendor(store.eshop_user_id, products)}</span>
+            <span class="me-auto" onclick="redirectToShop(${store.eshop_user_id})">${store.store_name}</span>
+            <span class="text-secondary" onclick="redirectToShop(${store.eshop_user_id})">${getProductCountForVendor(store.eshop_user_id, products)}</span>
         `;
 
         storeList.appendChild(listItem);
