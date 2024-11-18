@@ -21,10 +21,25 @@ var max_weight = 10;
 const loader = Array.from({ length: 16 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
-    // Get URL parameters
+    // Get the current URL path
     const url = window.location.pathname;
-    const parts = url.split('-');
-    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
+
+    // Initialize vendorId
+    let vendorId;
+
+    // Check if the last part is a number
+    if (url.includes('-')) {
+        // Split the URL by hyphens
+        const parts = url.split('-');
+        // Get the last part of the URL path
+        const lastPart = parts[parts.length - 1];
+        // If it's a number, parse it
+        vendorId = lastPart;
+    } else {
+        // If not, set vendorId to null or handle as needed
+        vendorId = url;
+    }
+    
     updateCartNumber();
     updateCartDrawer();
 
