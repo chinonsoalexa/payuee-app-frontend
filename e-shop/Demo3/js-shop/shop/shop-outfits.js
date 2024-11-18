@@ -242,7 +242,6 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
     } else {
     document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
     renderStores(stores, success);
-
     }
 });
 
