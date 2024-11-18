@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         // If it's a number, parse it
         vendorId = parseInt(url, 10);
     } else {
-            // Split the URL by hyphens
+        // Split the URL by hyphens
         const parts = url.split('-');
-
         // Get the last part of the URL path
         const lastPart = parts[parts.length - 1];
         // If not, set vendorId to null or handle as needed
