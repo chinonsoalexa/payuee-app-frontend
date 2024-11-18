@@ -21,39 +21,11 @@ var max_weight = 10;
 const loader = Array.from({ length: 16 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
-
-// Get the current URL path
-const url = window.location.pathname;
-
-// Split the URL by hyphens
-const parts = url.split('-');
-
-// Initialize the vendorId variable
-let vendorId;
-
-// Check if the last part of the URL is numeric
-const lastPart = parts[parts.length - 1];
-
-// If the last part is numeric (e.g., "2"), set vendorId directly
-if (!isNaN(lastPart)) {
-    vendorId = parseInt(lastPart, 10); // Direct number from the last part
-} else {
-    // If the last part is a non-numeric string (like "epic-wears-2")
-    // Try to extract the number using a regex from the last part
-    const regex = /(\d+)$/;  // Regex to match a number at the end
-    const match = lastPart.match(regex);
-
-    if (match) {
-        vendorId = parseInt(match[0], 10);  // Extract and convert the matched number
-    } else {
-        // Handle the case where no numeric ID is found (e.g., if it's just "epic-wears")
-        vendorId = null; // Or set a default or fallback ID if needed
-    }
-}
-
-console.log(vendorId);  // Check the extracted vendorId
-
-// CartNumber();
+    // Get URL parameters
+    const url = window.location.pathname;
+    const parts = url.split('-');
+    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
+    updateCartNumber();
     updateCartDrawer();
 
     // Get the current URL
