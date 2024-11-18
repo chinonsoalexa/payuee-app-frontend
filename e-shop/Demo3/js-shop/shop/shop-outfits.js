@@ -234,7 +234,6 @@ async function getProducts() {
     });
 }
 
- // Function to render store list
   // Function to render store list
  function renderStores2(data, products) {
     const storeList = document.querySelector('.multi-select__list');
