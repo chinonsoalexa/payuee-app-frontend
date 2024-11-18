@@ -238,9 +238,11 @@ function renderStores(data, products) {
 document.getElementById("searchField2").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
     if (searchQuery.length > 1) {
-        await fetchProducts(searchQuery);
+        await getSearchResults(searchQuery);
     } else {
     document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+    renderStores(stores, success);
+
     }
 });
 
