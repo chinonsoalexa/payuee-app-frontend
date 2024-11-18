@@ -244,47 +244,33 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
     }
 });
 
-async function fetchProducts(searchTerm) {
-    const apiUrl = "https://api.payuee.com/vendor-product-search";
+async function getSearchResults(query) {
+    // Endpoint URL
+    const apiUrl = "https://api.payuee.com/search-products/" + query;
 
     const requestOptions = {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify({
-            search_term: searchTerm,
-            vendor_id: +vendorId,
-        })
+        credentials: 'include',  // Include cookies with the request
     };
-
+    
     try {
         const response = await fetch(apiUrl, requestOptions);
-
+        
         if (!response.ok) {
-            const errorData = await response.json();
-
-            if (errorData.error === 'failed to get user from request') {
-                // need to do a data of just null event 
-                // displayErrorMessage();
-            } else if (errorData.error === 'failed to get transaction history') {
-                // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                // let's log user out the users session has expired
-                // logUserOutIfTokenIsExpired();
-            }else {
-                // displayErrorMessage();
-            }
-
+            const data = await response.json();
+            // showToastMessageE(`response: ${data}`);
             return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            renderSearchResults(data.success);
         }
 
-        const responseData = await response.json();
-        renderSearchResults(responseData.success);
-} finally {
-
+    } catch (error) {
+        console.error('Error fetching user balance: ', error);
     }
 }
 
