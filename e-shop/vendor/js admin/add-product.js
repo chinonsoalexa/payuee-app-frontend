@@ -1050,7 +1050,8 @@ const generateDescriptionButton = document.getElementById('generateDescriptionAI
 const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
 
 if (generateDescriptionButton) {
-    generateDescriptionButton.addEventListener('click', function () {
+    generateDescriptionButton.addEventListener('click', function (event) {
+        event.preventDefault();
         // Check if the product title field is empty
         if (!productTitleInput.value.trim()) {
             showToastMessageE('Please enter a product title before generating a description.');
