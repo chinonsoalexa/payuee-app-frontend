@@ -24,18 +24,24 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get URL parameters
     const url = window.location.pathname;
 
-    // Check if the URL contains a hyphenated format (e.g., "epic-wears-2")
-    const regex = /(\d+)$/;  // This regex will match the number at the end of the string
-
-    const match = url.match(regex);
-
-    // Extract vendor ID
+    // Split the URL by slashes to handle different parts
+    const parts = url.split('/');
+    
+    // Get the last part of the URL, which might be 'epic-wears-2' or just '2'
+    const lastPart = parts[parts.length - 1];
+    
+    // Check if the last part contains a hyphen and a number at the end (e.g., 'epic-wears-2')
+    const regex = /(\d+)$/;
+    
     let vendorId;
+    
+    const match = lastPart.match(regex);
     if (match) {
-        vendorId = parseInt(match[0], 10);  // Extract and convert the matched number
+        // If it's a format like 'epic-wears-2', extract the number
+        vendorId = parseInt(match[0], 10);
     } else {
-        // If the format doesn't match (e.g., just "2"), treat it as a direct number
-        vendorId = parseInt(url, 10);
+        // If it's just a number like '2', directly parse it
+        vendorId = parseInt(lastPart, 10);
     }
     updateCartNumber();
     updateCartDrawer();
