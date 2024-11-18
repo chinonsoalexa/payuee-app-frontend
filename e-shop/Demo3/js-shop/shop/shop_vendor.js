@@ -8,7 +8,7 @@ var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
 var pageNumber;
-var vendorId;
+var vendorId = '';
 
 var sort_option = 7;
 var min_price = 2500;
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
         // If not, set vendorId to null or handle as needed
         vendorId = url;
-        // vendorId = null;
     }
 
     console.log(vendorId);  // Output the vendorId
