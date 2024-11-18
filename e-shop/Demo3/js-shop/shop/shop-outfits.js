@@ -308,7 +308,11 @@ async function searchStores(query) {
         }
   
         const responseData = await response.json();
-        renderStores2(responseData.success, products);
+        if (responseData && responseData.success[0]) {
+            renderStores2(responseData.success, products);
+        } else {
+            renderStores(stores, products);
+        }
        
   } finally {
   
