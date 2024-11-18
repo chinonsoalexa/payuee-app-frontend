@@ -241,7 +241,7 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
         await getSearchResults(searchQuery);
     } else {
     document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
-    renderStores(stores, success);
+    renderStores(stores, products);
     }
 });
 
@@ -271,7 +271,7 @@ async function getSearchResults(query) {
         }
 
     } catch (error) {
-        console.error('Error fetching user balance: ', error);
+        console.error('Error fetching search results: ', error);
     }
 }
 
@@ -287,7 +287,7 @@ function renderSearchResults(products) {
         noProductMessage.innerHTML = ``;
         productResults.appendChild(noProductMessage);
 
-        renderStores(stores, success);
+        renderStores(stores, products);
         return;
     }
 
