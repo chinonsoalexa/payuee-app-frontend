@@ -1046,6 +1046,54 @@ function showToastMessageE(message) {
     toast.show(); // Show the toast
 }
 
+async function updateBlog() {
+
+    const apiUrl = "https://api.payuee.com/vendor/ai-description";
+
+    // Construct the request body
+    const requestBody = {
+        Title: TitleData,
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'wrong plan detected') {
+                // need to do a data of just null event 
+                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                // displayErrorMessage();
+            } else if (errorData.error === 'AI Description Generation Timed Out') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+
+} finally {
+
+    }
+}
+
 async function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
