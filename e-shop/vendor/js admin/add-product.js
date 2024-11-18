@@ -1046,7 +1046,24 @@ function showToastMessageE(message) {
     toast.show(); // Show the toast
 }
 
-async function updateBlog() {
+const generateDescriptionButton = document.getElementById('generateDescriptionAI');
+const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
+
+if (generateDescriptionButton) {
+    generateDescriptionButton.addEventListener('click', function () {
+        // Check if the product title field is empty
+        if (!productTitleInput.value.trim()) {
+            showToastMessageE('Please enter a product title before generating a description.');
+        } else {
+            // Proceed with the AI description generation
+            showToastMessageS('Generating AI description...');
+            // Add your AI description generation logic here
+            generateAiDescription(productTitleInput.value.trim());
+        }
+    });
+}
+
+async function generateAiDescription(TitleData) {
 
     const apiUrl = "https://api.payuee.com/vendor/ai-description";
 
@@ -1076,7 +1093,7 @@ async function updateBlog() {
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
-                
+                showToastMessageE('AI Description Generation Timed Out');
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 logout();
@@ -1089,6 +1106,19 @@ async function updateBlog() {
 
         const responseData = await response.json();
 
+        responseData.success
+
+        // Assuming 'editor2' is the container element for your rich text editor
+        const editorContainer = document.getElementById('editor2');
+
+        // If using Quill, for example:
+        const quillEditor = new Quill(editorContainer, {
+            theme: 'snow'  // or 'bubble', depending on your setup
+        });
+
+        // Set the content of the rich text editor
+        quillEditor.root.innerHTML = "";
+        quillEditor.root.innerHTML = product.description;
 } finally {
 
     }
