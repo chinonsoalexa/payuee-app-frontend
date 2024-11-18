@@ -8,7 +8,7 @@ var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
 var pageNumber;
-var vendorId = '';
+var vendorId;
 
 var sort_option = 7;
 var min_price = 2500;
@@ -21,27 +21,10 @@ var max_weight = 10;
 const loader = Array.from({ length: 16 }, (_, i) => i);
 
 document.addEventListener('DOMContentLoaded', async function () {
-    // Get the current URL path
+    // Get URL parameters
     const url = window.location.pathname;
-
-    // Initialize vendorId
-    let vendorId;
-
-    // Check if the last part is a number
-    if (url.includes('-')) {
-        // Split the URL by hyphens
-        const parts = url.split('-');
-        // Get the last part of the URL path
-        const lastPart = parts[parts.length - 1];
-        // If it's a number, parse it
-        vendorId = lastPart;
-    } else {
-        // If not, set vendorId to null or handle as needed
-        vendorId = url;
-    }
-
-    console.log(vendorId);  // Output the vendorId
-
+    const parts = url.split('-');
+    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
 
@@ -74,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts() {
-    const apiUrl = "https://api.payuee.com/vendor/products/" + pageNumber + `/${vendorId}`;
+    const apiUrl = "https://api.payuee.com/vendor/products/" + pageNumber + "/" + vendorId;
     loading();
 
     const requestOptions = {
@@ -110,7 +93,7 @@ async function getProducts() {
         const responseData = await response.json();
 
         // Call the function to render categories
-        renderCategories(extractValuesFromShopCategories(responseData.vendor.tags), "categoryList");
+        renderCategories(extractValuesFromShopCategories(responseData.vendor.shop_categories), "categoryList");
 
         // Call the function with the default and main image paths
         loadMainImage(
