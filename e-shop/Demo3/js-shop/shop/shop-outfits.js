@@ -235,7 +235,7 @@ function renderStores(data, products) {
 }
 
 // Attach event listener to search input
-document.getElementById("searchField").addEventListener("input", async (event) => {
+document.getElementById("searchField2").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
     if (searchQuery.length > 1) {
         await fetchProducts(searchQuery);
@@ -976,7 +976,7 @@ document.getElementById('sortingSelect').addEventListener('change', function() {
 });
   
 // Get the search input field by its ID
-const searchInput = document.getElementById('searchField');
+const searchInput = document.getElementById('searchField2');
   
 // Add an event listener to capture input changes
 searchInput.addEventListener('input', function(event) {
