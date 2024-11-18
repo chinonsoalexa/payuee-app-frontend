@@ -263,7 +263,7 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
     if (searchQuery.length > 1) {
         await searchStores(searchQuery);
     } else {
-    document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+     // Clear results when search query is too short
     renderStores(stores, products);
     }
 });
