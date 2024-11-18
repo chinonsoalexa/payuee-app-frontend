@@ -263,7 +263,7 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
     }
 });
 
-async function searchStores(query) {
+async function searchStores(query) {q
     const apiUrl = "https://api.payuee.com/search-stores";
 
     const requestBody = {

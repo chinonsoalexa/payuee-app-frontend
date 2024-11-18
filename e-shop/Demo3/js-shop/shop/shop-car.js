@@ -15,8 +15,8 @@ var max_price = 35000;
 var max_distance = 10;
 var min_weight = 1;
 var max_weight = 10;
-var stores;
-var products;
+var stores = [];
+var products = [];
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 16 }, (_, i) => i);
@@ -244,6 +244,82 @@ async function getProducts() {
     });
 }
 
+ // Function to render store list
+ function renderStores2(data, products) {
+    const storeList = document.querySelector('.multi-select__list');
+    storeList.innerHTML = ''; // Clear existing items
+
+    data.forEach(store => {
+        const listItem = document.createElement('li');
+        listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
+
+        listItem.innerHTML = `
+            <span class="me-auto">${store.shop_name}</span>
+            <span class="text-secondary">${getProductCountForVendor(store.ID, products)}</span>
+        `;
+
+        storeList.appendChild(listItem);
+    });
+}
+
+// Attach event listener to search input
+document.getElementById("searchField2").addEventListener("input", async (event) => {
+    const searchQuery = event.target.value;
+    if (searchQuery.length > 1) {
+        await searchStores(searchQuery);
+    } else {
+    document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+    renderStores(stores, products);
+    }
+});
+
+async function searchStores(query) {q
+    const apiUrl = "https://api.payuee.com/search-stores";
+
+    const requestBody = {
+        query: query, 
+    };   
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+  
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+  
+        if (!response.ok) {
+            const errorData = await response.json();
+            renderStores(stores, products);
+  
+            // if (errorData.error === 'failed to get user from request') {
+            //     // need to do a data of just null event 
+            //     // displayErrorMessage();
+            // } else if (errorData.error === 'failed to get transaction history') {
+            //     // need to do a data of just null event 
+                
+            // } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+            //     // let's log user out the users session has expired
+            //     logout();
+            // }else {
+            //     // displayErrorMessage();
+            // }
+  
+            return;
+        }
+  
+        const responseData = await response.json();
+        renderStores2(responseData.success, products);
+       
+  } finally {
+  
+    }
+  }
+  
 // Function to get product count for a specific vendor
 function getProductCountForVendor(eshop_user_id, products) {
     return products.filter(product => product.eshop_user_id === eshop_user_id).length;
