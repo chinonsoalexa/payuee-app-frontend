@@ -108,6 +108,8 @@ async function getProducts() {
             renderProducts(product);
         });
         
+                stores = responseData.stores;
+        products = responseData.success;
         renderStores(responseData.stores, responseData.success);
 
         NextPageOnLoad = responseData.pagination.NextPage;

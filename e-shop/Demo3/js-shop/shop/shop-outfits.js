@@ -234,46 +234,34 @@ function renderStores(data, products) {
     });
 }
 
+ // Function to render store list
+ function renderStores2(data, products) {
+    const storeList = document.querySelector('.multi-select__list');
+    storeList.innerHTML = ''; // Clear existing items
+
+    data.forEach(store => {
+        const listItem = document.createElement('li');
+        listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
+
+        listItem.innerHTML = `
+            <span class="me-auto">${store.shop_name}</span>
+            <span class="text-secondary">${getProductCountForVendor(store.ID, products)}</span>
+        `;
+
+        storeList.appendChild(listItem);
+    });
+}
+
 // Attach event listener to search input
 document.getElementById("searchField2").addEventListener("input", async (event) => {
     const searchQuery = event.target.value;
     if (searchQuery.length > 1) {
-        await getSearchResults(searchQuery);
+        await searchStores(searchQuery);
     } else {
     document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
-    renderStores(stores, products);
+    renderStores2(stores, products);
     }
 });
-
-async function getSearchResults(query) {
-    // Endpoint URL
-    const apiUrl = "https://api.payuee.com/search-products/" + query;
-
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include',  // Include cookies with the request
-    };
-    
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-        
-        if (!response.ok) {
-            const data = await response.json();
-            // showToastMessageE(`response: ${data}`);
-            return;
-        }else {
-            // Process the response data
-            const data = await response.json();
-            renderSearchResults(data.success);
-        }
-
-    } catch (error) {
-        console.error('Error fetching search results: ', error);
-    }
-}
 
 async function searchStores(query) {
     const apiUrl = "https://api.payuee.com/search-stores";
@@ -314,65 +302,12 @@ async function searchStores(query) {
         }
   
         const responseData = await response.json();
-        renderSearchResults(responseData.success);
+        renderStores2(responseData.success, products);
        
   } finally {
   
     }
   }
-
-// Function to render products in the list
-function renderSearchResults(products) {
-    const productResults = document.getElementById("productResults");
-    productResults.innerHTML = ""; // Clear previous results
-
-    if (products.length === 0) {
-        // Render a "No products found" message if there are no products
-        const noProductMessage = document.createElement("li");
-        noProductMessage.classList.add("no-products-message", "text-center", "text-muted");
-        noProductMessage.innerHTML = ``;
-        productResults.appendChild(noProductMessage);
-
-        renderStores(stores, products);
-        return;
-    }
-
-    products.forEach(product => {
-        let url = "";
-        if (product.category === "outfits") {
-            url = "https://payuee.com/outfits/" + product.product_url_id;
-        } else if (product.category === "jewelry") {
-            url = "https://payuee.com/jewelry/" + product.product_url_id;
-        } else if (product.category === "kids-accessories") {
-            url = "https://payuee.com/kids/" + product.product_url_id;
-        } else if (product.category === "cars-car-parts") {
-            url = "https://payuee.com/cars/" + product.product_url_id;
-        } else if (product.category === "tools") {
-            url = "https://payuee.com/tools/" + product.product_url_id;
-        } else if (product.category === "gadgets") {
-            url = "https://payuee.com/gadgets/" + product.product_url_id;
-        } else if (product.category === "others") {
-            url = "https://payuee.com/outfits/" + product.product_url_id;
-        }
-
-        const productItem = document.createElement("li");
-        productItem.classList.add("search-suggestion__item", "multi-select__item", "text-primary", "js-search-select", "js-multi-select");
-
-        productItem.innerHTML = `
-          <div class="d-flex align-items-center">
-            <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center w-100">
-                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
-                <div class="text-content">
-                    <span class="text-secondary">Title: ${product.title}</span><br>
-                    <span>Qty: ${product.stock_remaining}</span>
-                </div>
-            </a>
-          </div>
-        `;
-
-        productResults.appendChild(productItem);
-    });
-}
 
 // Function to get product count for a specific vendor
 function getProductCountForVendor(eshop_user_id, products) {
