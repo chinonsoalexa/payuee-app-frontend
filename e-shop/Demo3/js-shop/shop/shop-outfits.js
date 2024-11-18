@@ -259,7 +259,7 @@ document.getElementById("searchField2").addEventListener("input", async (event) 
         await searchStores(searchQuery);
     } else {
     document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
-    renderStores2(stores, products);
+    renderStores(stores, products);
     }
 });
 
@@ -284,6 +284,7 @@ async function searchStores(query) {
   
         if (!response.ok) {
             const errorData = await response.json();
+            renderStores(stores, products);
   
             // if (errorData.error === 'failed to get user from request') {
             //     // need to do a data of just null event 
