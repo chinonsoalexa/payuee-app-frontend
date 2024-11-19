@@ -115,11 +115,16 @@ async function getProducts() {
         }
 
         const responseData = await response.json();
-
+        
         // Clear specific elements by id name before updating
         document.getElementById('products-grid').innerHTML = '';
         responseData.featured.forEach((product) => {
             renderProducts(product);
+        });
+
+        document.getElementById('products-grid2').innerHTML = '';
+        responseData.outfits.forEach((product) => {
+            renderProductDiscounts(product);
         });
         
 } finally {
@@ -672,7 +677,38 @@ function renderProductDiscounts(product) {
             updateCartDrawer();
         });
     }
+    reinitializeSwiper();
 }
+
+// Function to reinitialize Swiper
+function reinitializeSwiper() {
+    // Destroy the existing Swiper instance if it exists
+    const existingSwiper = document.querySelector('.swiper-container.js-swiper-slider.swiper-initialized');
+    if (existingSwiper && existingSwiper.swiper) {
+      existingSwiper.swiper.destroy(true, true); // Destroy old instance
+    }
+  
+    // Select the swiper container and parse custom settings from HTML data attribute
+    const swiperContainer = document.querySelector('.js-swiper-slider');
+    const dataSettings = JSON.parse(swiperContainer.getAttribute('data-settings'));
+  
+    // Initialize Swiper for the new related products
+    const swiper = new Swiper('.js-swiper-slider', {
+      ...dataSettings, // Spread operator to apply data settings from HTML
+      autoplay: dataSettings.autoplay || false,
+      pagination: dataSettings.pagination !== false
+        ? {
+            el: '.products-pagination',
+            type: 'bullets',
+            clickable: true,
+          }
+        : false,
+      navigation: {
+        nextEl: '.products-carousel__next',
+        prevEl: '.products-carousel__prev',
+      },
+    });
+  }  
 
 function renderProductsDiscount(product) {
     const productBody = document.getElementById('products-grid2');
