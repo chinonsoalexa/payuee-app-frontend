@@ -461,7 +461,6 @@ function renderProducts(product) {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <div class="col-6 col-md-4 col-lg-3">
             <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
               <div class="pc__img-wrapper">
                 <a href="product1_simple.html">
@@ -482,7 +481,6 @@ function renderProducts(product) {
                 </div>
               </div>
             </div>
-          </div>
     `;
 
     // Append the new element to the container
