@@ -101,7 +101,7 @@ async function getProducts() {
 
         // Clear specific elements by id name before updating
         document.getElementById('products-grid').innerHTML = '';
-        responseData.success.forEach((product) => {
+        responseData.featured.forEach((product) => {
             renderProducts(product);
         });
         
