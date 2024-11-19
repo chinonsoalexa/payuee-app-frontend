@@ -58,14 +58,14 @@ async function check_auth_status() {
             document.getElementById("generateTagAI").style.display = "block";
         
             // Add event listener for 'generateDescriptionAI' button click
-            document.getElementById("generateDescriptionAI").addEventListener("click", function() {
-                generateDescriptionAI();  // Your AI function for generating descriptions
-            });
+            // document.getElementById("generateDescriptionAI").addEventListener("click", function() {
+            //     generateDescriptionAI();  // Your AI function for generating descriptions
+            // });
         
             // Add event listener for 'generateTagAI' button click
-            document.getElementById("generateTagAI").addEventListener("click", function() {
-                generateTagAI();  // Your AI function for generating tags
-            });
+            // document.getElementById("generateTagAI").addEventListener("click", function() {
+            //     generateTagAI();  // Your AI function for generating tags
+            // });
         }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
