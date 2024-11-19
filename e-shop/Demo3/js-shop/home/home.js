@@ -517,6 +517,23 @@ function renderProducts(product) {
 
     let price;
     let percentage;
+    let urll = ""
+
+    if (product.category == "outfits") {
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
+    } else if (product.category == "jewelry") {
+        urll = "https://payuee.com/jewelry/" + product.product_url_id;
+    } else if (product.category == "kids-accessories") {
+        urll = "https://payuee.com/kids/" + product.product_url_id;
+    } else if (product.category == "cars-car-parts") {
+        urll = "https://payuee.com/cars/" + product.product_url_id;
+    } else if (product.category == "tools") {
+        urll = "https://payuee.com/tools/" + product.product_url_id;
+    } else if (product.category == "gadgets") {
+        urll = "https://payuee.com/gadgets/" + product.product_url_id;
+    } else if (product.category == "others") {
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
+    }
 
     if (!product.reposted) {
         if (product.selling_price < product.initial_cost) {
@@ -654,18 +671,16 @@ function renderProducts(product) {
         // Check if there are any image URLs; if not, use a default image
         if (!imageUrls || imageUrls.length === 0) {
             imagesHtml = `
-                    <a href="#">
+                    <a href="${urll}">
                     <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img">
                     </a>`;
         } else {
-            imageUrls.forEach((url, num) => {
+            // imageUrls.forEach((url) => {
                 imagesHtml += `
-                    <div class="swiper-slide">
-                        <a href="https://payuee.com/outfits/${url.url}" class="product-link${num + 1}">
-                            <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
-                        </a>
-                    </div>`;
-            });
+                    <a href="${urll}">
+                        <img loading="lazy" src="https://payuee.com/image/${imageUrls[0].url}" width="330" height="400" alt="${title}" class="pc__img">
+                    </a>`;
+            // });
         }
     
         return imagesHtml; // Return the full HTML string
