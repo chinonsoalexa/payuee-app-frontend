@@ -248,7 +248,7 @@ function renderProductDetails(product, subscription) {
     `
   } else {
     cartButton = `
-    <button id="addToCartButton" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+    <button class="btn btn-primary btn-addtocart btn-outofstock">Your Item</button>
     `
   }
   
