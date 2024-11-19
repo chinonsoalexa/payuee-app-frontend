@@ -497,22 +497,15 @@ function renderProducts(product) {
     }
 
     function renderProductImages(imageUrls, title) {
-        let imagesHtml = '';
+        const defaultImageUrl = "../../e-shop/images/default_img.png";
+        const productImageUrl = imageUrls && imageUrls.length > 0
+            ? `https://payuee.com/image/${imageUrls[0].url}`
+            : defaultImageUrl;
     
-        // Check if there are any image URLs; if not, use a default image
-        if (!imageUrls || imageUrls.length === 0) {
-            imagesHtml = `
-                    <a href="${urll}">
-                    <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img">
-                    </a>`;
-        } else {
-            imagesHtml += `
-                <a href="${urll}">
-                    <img loading="lazy" src="https://payuee.com/image/${imageUrls[0].url}" width="330" height="400" alt="${title}" class="pc__img">
-                </a>`;
-        }
-    
-        return imagesHtml; // Return the full HTML string
+        return `
+            <a href="${urll}">
+                <img loading="lazy" src="${productImageUrl}" alt="${title}" class="pc__img" style="width: 330px; height: 400px;">
+            </a>`;
     }    
 
     // Add event listener to the 'Add To Cart' button
