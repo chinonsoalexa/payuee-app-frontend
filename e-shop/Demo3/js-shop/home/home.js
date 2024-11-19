@@ -438,22 +438,16 @@ function renderProducts(product) {
     if (!product.repost) {
         editProduct = `
         <a href="${urll}" class="pc__btn-wl-wrapper">
-            <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_view" />
-                </svg>
+            <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
             </button>
         </a>
     `;
     } else {
         editProduct = `
-            <div class="pc__btn-wl-wrapper">
-                <button id="collaborateButtonCheck" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_retweet" />
-                    </svg>
-                </button>
-            </div>
+            <button id="collaborateButtonCheck" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg>
+            </button>
         `;
     }    
 
@@ -484,9 +478,7 @@ function renderProducts(product) {
 
                 <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
                   <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-                  <button id="collaborateButtonCheck" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg>
-                  </button>
+                  ${editProduct}
                 </div>
               </div>
             </div>
