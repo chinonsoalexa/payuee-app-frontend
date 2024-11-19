@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-    // loading();
+    
     await getProducts();
 
 });
@@ -65,7 +65,7 @@ function renderLoading() {
 
 async function getProducts() {
     const apiUrl = "https://api.payuee.com/get-featured-products";
-    loading();
+    // loading();
 
     const requestOptions = {
         method: "GET",
