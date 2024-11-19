@@ -71,9 +71,9 @@ async function updateProduct() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            if (errorData.error === 'this product has not been reposted and cannot be edited as a reposted product') {
+            if (errorData.error === 'this product has already been reposted by you') {
                 // need to do a data of just null event 
-                showToastMessageE("This product has not been reposted and cannot be edited as a reposted product");
+                showToastMessageE("This product has already been reposted by you");
                 // displayErrorMessage();
             } else if (errorData.error === 'you cannot repost your own product') {
                 // need to do a data of just null event 
