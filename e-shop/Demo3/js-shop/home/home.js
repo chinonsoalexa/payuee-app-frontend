@@ -65,7 +65,7 @@ function renderLoading() {
 
 async function getProducts() {
     const apiUrl = "https://api.payuee.com/get-featured-products";
-    // loading();
+    loading();
 
     const requestOptions = {
         method: "GET",
@@ -100,7 +100,7 @@ async function getProducts() {
         const responseData = await response.json();
 
         // Clear specific elements by id name before updating
-        // document.getElementById('products-grid').innerHTML = '';
+        document.getElementById('products-grid').innerHTML = '';
         responseData.featured.forEach((product) => {
             renderProducts(product);
         });
