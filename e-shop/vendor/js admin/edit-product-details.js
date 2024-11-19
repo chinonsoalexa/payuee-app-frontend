@@ -339,16 +339,20 @@ function updateFields(product) {
     let productTitleInput = document.getElementById('productTitle1');
     productTitleInput.value = product.title;
 
-    // Assuming 'editor2' is the container element for your rich text editor
-    const editorContainer = document.getElementById('editor2');
+    // // Assuming 'editor2' is the container element for your rich text editor
+    // const editorContainer = document.getElementById('editor2');
 
-    // If using Quill, for example:
-    const quillEditor = new Quill(editorContainer, {
-        theme: 'snow'  // or 'bubble', depending on your setup
-    });
+    // // If using Quill, for example:
+    // const quillEditor = new Quill(editorContainer, {
+    //     theme: 'snow'  // or 'bubble', depending on your setup
+    // });
 
-    // Set the content of the rich text editor
-    quillEditor.root.innerHTML = product.description;
+    // // Set the content of the rich text editor
+    // quillEditor.root.innerHTML = product.description;
+
+    // Get the product description and title
+    const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+    editor.innerText = product.description;
 
     // Update Initial Cost
     let initialCostInput = document.getElementById('initialCost');
@@ -579,6 +583,179 @@ async function getProduct(productID) {
   
     }
   }
+
+
+const generateDescriptionButton = document.getElementById('generateDescriptionAI');
+const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
+
+// ai tag generation button
+const generateTagButton = document.getElementById("generateTagAI");
+
+// Function to toggle the disabled state and visibility of the button
+function toggleButtonState() {
+    if (generateDescriptionButton.disabled) {
+        generateDescriptionButton.disabled = false; // Enable the button
+        generateDescriptionButton.style.display = 'inline-block'; // Show the button
+    } else {
+        generateDescriptionButton.disabled = true; // Disable the button
+        generateDescriptionButton.style.display = 'none'; // Hide the button
+    }
+}
+
+if (generateDescriptionButton) {
+    generateDescriptionButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        // Check if the product title field is empty
+        if (!productTitleInput.value.trim()) {
+            showToastMessageE('Please enter a product title before generating a description.');
+        } else {
+            // Proceed with the AI description generation
+            showToastMessageS('Generating AI description...');
+            toggleButtonState();
+            // Add your AI description generation logic here
+            generateAiDescription(productTitleInput.value.trim());
+        }
+    });
+}
+
+async function generateAiDescription(TitleData) {
+
+    const apiUrl = "https://api.payuee.com/vendor/ai-description";
+
+    // Construct the request body
+    const requestBody = {
+        Title: TitleData,
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'wrong plan detected') {
+                // need to do a data of just null event 
+                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                // displayErrorMessage();
+            } else if (errorData.error === 'AI Description Generation Timed Out') {
+                // need to do a data of just null event 
+                showToastMessageE('AI Description Generation Timed Out');
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+
+        responseData.success
+        // Get the product description and title
+        const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+        productDescription = responseData.success;
+        editor.innerText = responseData.success;
+
+        validateFields();
+        showToastMessageS('Done Generating AI description');
+    } finally {
+        toggleButtonState();
+    }
+}
+
+// Function to toggle the disabled state and visibility of the button
+function toggleTagButtonState() {
+    if (generateTagButton.disabled) {
+        generateTagButton.disabled = false; // Enable the button
+        generateTagButton.style.display = 'inline-block'; // Show the button
+    } else {
+        generateTagButton.disabled = true; // Disable the button
+        generateTagButton.style.display = 'none'; // Hide the button
+    }
+}
+
+if (generateTagButton) {
+    generateTagButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        // Check if the product title field is empty
+        if (!productTitleInput.value.trim()) {
+            showToastMessageE('Please enter a product title before generating tags.');
+        } else {
+            const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+            productDescription = editor.innerText.trim();
+            showToastMessageS('Generating AI description...');
+            generateAiTag(this.value, productDescription);  // Your AI function for generating tags
+        }
+    });
+}
+
+async function generateAiTag(TitleData, productDescription) {
+
+    const apiUrl = "https://api.payuee.com/vendor/ai-tag";
+
+    // Construct the request body
+    const requestBody = {
+        Title: TitleData,
+        Description: productDescription,
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'wrong plan detected') {
+                // need to do a data of just null event 
+                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                // displayErrorMessage();
+            } else if (errorData.error === 'AI Description Generation Timed Out') {
+                // need to do a data of just null event 
+                showToastMessageE('AI Description Generation Timed Out');
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        // Update Tags
+        let tagsInput = document.getElementById('tags');
+        tagsInput.value = "";
+        tagsInput.value = responseData.success;
+
+        validateFields();
+        showToastMessageS('Done Generating AI tags');
+    } finally {
+        toggleButtonState();
+    }
+}
+
 
   async function logout() {
     // also send a request to the logout api endpoint

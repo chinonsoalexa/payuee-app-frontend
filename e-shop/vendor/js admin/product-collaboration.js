@@ -610,7 +610,6 @@ async function getProduct(productID) {
     }
   }
 
-
 const generateDescriptionButton = document.getElementById('generateDescriptionAI');
 const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
 
