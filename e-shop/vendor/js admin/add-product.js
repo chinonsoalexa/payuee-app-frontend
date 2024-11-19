@@ -1154,7 +1154,7 @@ if (generateTagButton) {
         } else {
             const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
             productDescription = editor.innerText.trim();
-            showToastMessageS('Generating AI description...');
+            showToastMessageS('Generating AI tags...');
             generateAiTag(this.value, productDescription);  // Your AI function for generating tags
         }
     });
