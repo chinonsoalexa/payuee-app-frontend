@@ -534,6 +534,146 @@ function renderProducts(product) {
     }
 }
 
+function renderProductDiscounts(product) {
+    const productBody = document.getElementById('products-grid2');
+
+    // Create a new product card element
+    const rowElement = document.createElement('div');
+    rowElement.classList.add('swiper-slide', 'product-card', 'product-card_style3');
+    rowElement.id = product.ID; // Set the ID of the row
+    // rowElement.dataset.productId = product.ID; // Add a data attribute for easy access
+
+    let price;
+    let percentage;
+    let urll = ""
+
+    if (product.category == "outfits") {
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
+    } else if (product.category == "jewelry") {
+        urll = "https://payuee.com/jewelry/" + product.product_url_id;
+    } else if (product.category == "kids-accessories") {
+        urll = "https://payuee.com/kids/" + product.product_url_id;
+    } else if (product.category == "cars-car-parts") {
+        urll = "https://payuee.com/cars/" + product.product_url_id;
+    } else if (product.category == "tools") {
+        urll = "https://payuee.com/tools/" + product.product_url_id;
+    } else if (product.category == "gadgets") {
+        urll = "https://payuee.com/gadgets/" + product.product_url_id;
+    } else if (product.category == "others") {
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
+    }
+
+    if (!product.reposted) {
+        if (product.selling_price < product.initial_cost) {
+            price = `
+            <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
+            <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
+            `;
+            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
+        } else {
+            price = `
+            <div class="product-card__price d-flex">
+                <span class="money price text-secondary">${formatNumberToNaira(product.initial_cost)}</span>
+            </div>`
+            percentage = `
+            `
+        }
+    } else {
+        price = `
+            <span class="money price text-secondary">${formatNumberToNaira(product.reposted_selling_price)}</span>
+            `
+        percentage = `
+        `
+    }
+
+    var editProduct;
+    if (!product.repost) {
+        editProduct = `
+        <a href="${urll}" class="pc__btn-wl-wrapper">
+            <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
+            </button>
+        </a>
+    `;
+    } else {
+        editProduct = `
+            <button id="collaborateButtonCheck" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg>
+            </button>
+        `;
+    }    
+
+    let isOutOfStock;
+    let buttonText;
+    let buttonDisabled;
+    // Determine if the button should be disabled and what text to display
+    isOutOfStock = product.stock_remaining === 0;
+    buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
+    buttonDisabled = isOutOfStock ? 'disabled' : '';
+
+    // Create the HTML string with dynamic data using template literals
+    rowElement.innerHTML = `
+            <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
+              <div class="pc__img-wrapper">
+                <a href="product1_simple.html">
+                  ${renderProductImages2(product.product_image, product.title)}
+                </a>
+                ${percentage}
+              </div>
+
+              <div class="pc__info position-relative">
+                <h6 class="pc__title">${product.title}</h6>
+                <div class="product-card__price d-flex align-items-center">
+                  ${price}
+                </div>
+
+                <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
+                  <button id="cartButtonT" class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+                  ${editProduct}
+                </div>
+              </div>
+            </div>
+    `;
+
+    // Append the new element to the container
+    productBody.appendChild(rowElement);
+
+    // Attach the 'Collaborate' button event listener to this specific product card
+    const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
+    if (collaborateButton) {
+        collaborateButton.addEventListener("click", async function () {
+            await checkCollaborationEligibility(product.ID);
+        });
+    }
+
+    function renderProductImages2(imageUrls, title) {
+        const defaultImageUrl = "../../e-shop/images/default_img.png";
+        const productImageUrl = imageUrls && imageUrls.length > 0
+            ? `https://payuee.com/image/${imageUrls[0].url}`
+            : defaultImageUrl;
+
+        const productImageUrl2 = imageUrls && imageUrls.length > 0
+        ? `https://payuee.com/image/${imageUrls[0].url}`
+        : defaultImageUrl;
+    
+        return `
+            <a href="${urll}">
+                <img loading="lazy" src="${productImageUrl}" alt="${title}" class="pc__img" style="width: 330px; height: 400px;">
+                <img loading="lazy" src="${productImageUrl2}" alt="${title}" class="pc__img pc__img-second" style="width: 330px; height: 400px;">
+            </a>`;
+    }    
+
+    // Add event listener to the 'Add To Cart' button
+    if (!isOutOfStock) {
+        const addToCartButton = rowElement.querySelector('#cartButtonT');
+        addToCartButton.addEventListener('click', function() {
+            addToCart(product);
+            updateCartNumber();
+            updateCartDrawer();
+        });
+    }
+}
+
 function renderProductsDiscount(product) {
     const productBody = document.getElementById('products-grid2');
 
