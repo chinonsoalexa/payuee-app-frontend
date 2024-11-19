@@ -328,16 +328,19 @@ function updateFields(product) {
     let productTitleInput = document.getElementById('productTitle1');
     productTitleInput.value = product.title;
 
-    // Assuming 'editor2' is the container element for your rich text editor
-    const editorContainer = document.getElementById('editor2');
+    // // Assuming 'editor2' is the container element for your rich text editor
+    // const editorContainer = document.getElementById('editor2');
 
-    // If using Quill, for example:
-    const quillEditor = new Quill(editorContainer, {
-        theme: 'snow'  // or 'bubble', depending on your setup
-    });
+    // // If using Quill, for example:
+    // const quillEditor = new Quill(editorContainer, {
+    //     theme: 'snow'  // or 'bubble', depending on your setup
+    // });
 
-    // Set the content of the rich text editor
-    quillEditor.root.innerHTML = product.description;
+    // // Set the content of the rich text editor
+    // quillEditor.root.innerHTML = product.description;
+    // Get the product description and title
+    const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+    editor.innerText =product.description;
 
     // Update Initial Cost
     let initialCostInput = document.getElementById('initialCost');
