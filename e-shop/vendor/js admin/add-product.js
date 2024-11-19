@@ -1123,18 +1123,11 @@ async function generateAiDescription(TitleData) {
         const responseData = await response.json();
 
         responseData.success
+        // Get the product description and title
+        const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+        productDescription = responseData.success;
+        editor.innerText = responseData.success;
 
-        // Assuming 'editor2' is the container element for your rich text editor
-        const editorContainer = document.getElementById('editor2');
-
-        // If using Quill, for example:
-        const quillEditor = new Quill(editorContainer, {
-            theme: 'snow'  // or 'bubble', depending on your setup
-        });
-
-        // Set the content of the rich text editor
-        quillEditor.root.innerHTML = "";
-        quillEditor.root.innerHTML = responseData.success;
         validateFields();
         showToastMessageS('Done Generating AI description');
     } finally {
