@@ -409,7 +409,7 @@ function setUpdatedJsonFields() {
     const quillEditor = new Quill(editorContainer, {
         theme: 'snow'  // or 'bubble', depending on your setup
     });
-    
+
     // Get the product description and title
     const editor = document.querySelector('.ql-editor');
     productDescription = editor.innerText.trim();

@@ -534,6 +534,14 @@ function validatePrices() {
     }
 }
 
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
 // show toast error
 function showToastMessageE(message) {
     document.getElementById('toastError').textContent = message;
