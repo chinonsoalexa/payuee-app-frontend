@@ -71,8 +71,9 @@ async function updateProduct() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            if (errorData.error === 'failed to get user from request') {
+            if (errorData.error === 'this product has already been reposted by you') {
                 // need to do a data of just null event 
+                showToastMessageE("This product has already been reposted by you");
                 // displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
