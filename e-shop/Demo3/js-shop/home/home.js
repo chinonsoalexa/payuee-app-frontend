@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-    loading();
+    // loading();
     // await getProducts();
 
 });
@@ -583,17 +583,21 @@ function renderProducts(product) {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-       <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
               <div class="pc__img-wrapper">
                 <a href="product1_simple.html">
-                  <img loading="lazy" src="../images/home/demo3/product-4.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                  <img loading="lazy" src="../images/home/demo3/product-7.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                  ${renderProductImages(product.product_image, product.title)}
                 </a>
+                <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${percentage}</div>
               </div>
 
               <div class="pc__info position-relative">
-                <h6 class="pc__title"><a href="product1_simple.html">Cropped Faux Leather Jacket</a></h6>
+                <h6 class="pc__title">${product.title}</h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price text-secondary">₦29</span>
+                  <span class="money price-old">₦129</span>
+                  <span class="money price text-secondary">₦99</span>
                 </div>
 
                 <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
@@ -608,6 +612,7 @@ function renderProducts(product) {
                 </div>
               </div>
             </div>
+          </div>
     `;
 
     // Append the new element to the container
@@ -649,11 +654,9 @@ function renderProducts(product) {
         // Check if there are any image URLs; if not, use a default image
         if (!imageUrls || imageUrls.length === 0) {
             imagesHtml = `
-                <div class="swiper-slide">
-                    <a href="#" class="product-link1">
-                        <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img product-img1">
-                    </a>
-                </div>`;
+                    <a href="#">
+                    <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img">
+                    </a>`;
         } else {
             imageUrls.forEach((url, num) => {
                 imagesHtml += `
