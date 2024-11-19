@@ -477,7 +477,7 @@ function renderProducts(product) {
                 </div>
 
                 <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                  <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+                  <button id="cartButtonT" class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
                   ${editProduct}
                 </div>
               </div>
@@ -517,7 +517,7 @@ function renderProducts(product) {
 
     // Add event listener to the 'Add To Cart' button
     if (!isOutOfStock) {
-        const addToCartButton = rowElement.querySelector('.pc__atc');
+        const addToCartButton = rowElement.querySelector('#cartButtonT');
         addToCartButton.addEventListener('click', function() {
             addToCart(product);
             updateCartNumber();
