@@ -417,7 +417,7 @@ function renderProducts(product) {
             <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
             <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
             `;
-            percentage = calculatePercentageOff(product.initial_cost, product.selling_price)
+            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
         } else {
             price = `
             <div class="product-card__price d-flex">
@@ -467,7 +467,7 @@ function renderProducts(product) {
                 <a href="product1_simple.html">
                   ${renderProductImages(product.product_image, product.title)}
                 </a>
-                <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${percentage}</div>
+                ${percentage}
               </div>
 
               <div class="pc__info position-relative">
