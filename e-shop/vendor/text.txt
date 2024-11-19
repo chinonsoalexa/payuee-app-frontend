@@ -129,7 +129,7 @@ alt=""></a>
 aria-hidden="true"></i></div>
 </li>
 <li class="sidebar-list"> </i><a class="sidebar-link sidebar-title link-nav"
-href="dashboard-02.html">
+href="dashboard.html">
 <svg class="stroke-icon">
 <use href="#stroke-home"></use>
 </svg>
