@@ -71,13 +71,13 @@ async function updateProduct() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            if (errorData.error === 'this product has already been reposted by you') {
+            if (errorData.error === 'this product has not been reposted and cannot be edited as a reposted product') {
                 // need to do a data of just null event 
-                showToastMessageE("This product has already been reposted by you");
+                showToastMessageE("This product has not been reposted and cannot be edited as a reposted product");
                 // displayErrorMessage();
-            } else if (errorData.error === 'failed to get transaction history') {
+            } else if (errorData.error === 'you cannot repost your own product') {
                 // need to do a data of just null event 
-                
+                showToastMessageE("You cannot repost your own product");
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 logout();
