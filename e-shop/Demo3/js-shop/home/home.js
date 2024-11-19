@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-    loading();
+    // loading();
     await getProducts();
 
 });
