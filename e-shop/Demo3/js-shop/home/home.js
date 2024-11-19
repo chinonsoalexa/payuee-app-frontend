@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-    // loading();
-    // await getProducts();
+    loading();
+    await getProducts();
 
 });
 
@@ -64,25 +64,15 @@ function renderLoading() {
 }
 
 async function getProducts() {
-    const apiUrl = "https://api.payuee.com/get-store-products";
+    const apiUrl = "https://api.payuee.com/get-featured-products";
     loading();
 
     const requestOptions = {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
         credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify({
-            page_number: +pageNumber,
-            category: "outfits",
-            max_distance: parseFloat(max_distance),
-            min_price: parseFloat(min_price),
-            max_price: parseFloat(max_price),
-            min_weight: parseFloat(min_weight),
-            max_weight: parseFloat(max_weight),
-            sort_option: +sort_option
-        })
     };
 
     try {
@@ -91,8 +81,8 @@ async function getProducts() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            if (errorData.error === 'failed to get user from request') {
-                // need to do a data of just null event 
+            if (errorData.error === 'failed to get featured product') {
+                
                 // displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
@@ -109,126 +99,12 @@ async function getProducts() {
 
         const responseData = await response.json();
 
-        // updateProductsFromData(responseData.success);
-        // Clear specific elements by class name before updating
+        // Clear specific elements by id name before updating
         document.getElementById('products-grid').innerHTML = '';
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
-
-        stores = responseData.stores;
-        products = responseData.success;
-        renderStores(responseData.stores, responseData.success);
         
-        NextPageOnLoad = responseData.pagination.NextPage;
-        PreviousPageOnLoad = responseData.pagination.PreviousPage;
-        CurrentPageOnLoad = responseData.pagination.CurrentPage;
-        TotalPageOnLoad = responseData.pagination.TotalPages;
-        TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
-        TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
-        ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
-        AllRecordsOnPageLoad = responseData.pagination.AllRecords;
-        // console.log(responseData);
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.set('page', CurrentPageOnLoad);
-        window.history.pushState({path: newUrl.href}, '', newUrl.href);
-        
-        if (TotalPageOnLoad > 1) {
-            document.getElementById('paginationDiv').classList.remove('disabled');
-            document.getElementById('paginationDiv').disabled = false;
-        }
-
-        if (CurrentPageOnLoad <= 1) {
-            deactivatePreviousButton();
-            deactivateBeforeButton();
-        } else if (CurrentPageOnLoad >= TotalPageOnLoad) {
-            deactivateNextButton();
-        }
-
-        let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad+1}`;
-        let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/Demo3/shop-outfits?page=${CurrentPageOnLoad-1}`;
-
-        if (CurrentPageOnLoad < 4) {
-            // let's disable the next page navigation button
-            document.getElementById('constantBeforePage').classList.add('disabled');
-            document.getElementById('constantBeforePage').disabled = true;
-        }
-
-        if (CurrentPageOnLoad < 5) {
-            // let's disable the next page navigation button
-            document.getElementById('dotBeforePage').classList.add('disabled');
-            document.getElementById('dotBeforePage').disabled = true;
-        }
-
-        if (CurrentPageOnLoad > 2) {
-            // let's update the pagination with the next page
-            var currentPageElement = document.getElementById("twoBeforePage");
-            updateLink(currentPageElement, TwoBeforePageOnLoad);
-            currentPageElement.textContent = TwoBeforePageOnLoad;
-        } else {
-            // let's disable the next page navigation button
-            document.getElementById('twoBeforePage').classList.add('disabled');
-            document.getElementById('twoBeforePage').disabled = true;
-        }
-
-        // let's update the pagination with the next page
-        var currentPageElement = document.getElementById("beforePage");
-        updateLink(currentPageElement, PreviousPageOnLoad);
-        currentPageElement.textContent = PreviousPageOnLoad;
-
-        // let's update the pagination with the current page
-        var currentPageElement = document.getElementById("currentPage");
-        updateLink(currentPageElement, CurrentPageOnLoad);
-        currentPageElement.textContent = CurrentPageOnLoad;
-        deactivateCurrentButton();
-
-        if (CurrentPageOnLoad >= TotalPageOnLoad) {
-            // let's disable the next page navigation button
-            document.getElementById('afterPage').classList.add('disabled');
-            document.getElementById('afterPage').disabled = true;
-        } else {
-            // let's update the pagination with the next page
-            var currentPageElement = document.getElementById("afterPage");
-            updateLink(currentPageElement, NextPageOnLoad);
-            currentPageElement.textContent = NextPageOnLoad;
-        }
-
-        if (TwoAfterPageOnLoad < TotalPageOnLoad) {
-            // let's update the pagination with the next page
-            var currentPageElement = document.getElementById("twoAfterPage");
-            updateLink(currentPageElement, TwoAfterPageOnLoad);
-            currentPageElement.textContent = TwoAfterPageOnLoad;
-        } else {
-            // let's disable the next page navigation button
-            document.getElementById('twoAfterPage').classList.add('disabled');
-            document.getElementById('twoAfterPage').disabled = true;
-        }
-
-        if (TwoAfterPageOnLoad > TotalPageOnLoad) {
-            // let's disable the next page navigation button
-            document.getElementById('constantAfterPage').classList.add('disabled');
-            document.getElementById('constantAfterPage').disabled = true;
-        } else {
-            // let's update the pagination with the next page
-            var currentPageElement = document.getElementById("constantAfterPage");
-            updateLink(currentPageElement, TotalPageOnLoad);
-            currentPageElement.textContent = TotalPageOnLoad;
-        }
-
-        if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
-            // let's disable the next page navigation button
-            document.getElementById('dotAfterPage').classList.add('disabled');
-            document.getElementById('dotAfterPage').disabled = true;
-        }
-        
-        if (AllRecordsOnPageLoad > 8) {
-            // let's remove the disable on the next page navigation button
-            // Assuming some condition or event triggers the display change
-            document.getElementById('paginationList').classList.remove('disabled');
-            document.getElementById('paginationList').disabled = false;
-        } 
 } finally {
 
     }
@@ -538,31 +414,22 @@ function renderProducts(product) {
     if (!product.reposted) {
         if (product.selling_price < product.initial_cost) {
             price = `
-            <div class="product-card__price d-flex">
-                <span class="money price price-old">${formatNumberToNaira(product.initial_cost)}</span>
-                <span class="money price price-sale">${formatNumberToNaira(product.selling_price)}</span>
-            </div>`;
-            let currentPercent = calculatePercentageOff(product.initial_cost, product.selling_price)
-            percentage = `
-            <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                    <div class="pc-labels__right ms-auto">
-                        <span class="pc-label pc-label_sale d-block text-white">-${currentPercent}%</span>
-                    </div>
-                </div>
-            `
+            <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
+            <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
+            `;
+            percentage = calculatePercentageOff(product.initial_cost, product.selling_price)
         } else {
             price = `
             <div class="product-card__price d-flex">
-                <span class="money price">${formatNumberToNaira(product.initial_cost)}</span>
+                <span class="money price text-secondary">${formatNumberToNaira(product.initial_cost)}</span>
             </div>`
             percentage = `
             `
         }
     } else {
         price = `
-        <div class="product-card__price d-flex">
-            <span class="money price">${formatNumberToNaira(product.reposted_selling_price)}</span>
-        </div>`
+            <span class="money price text-secondary">${formatNumberToNaira(product.reposted_selling_price)}</span>
+            `
         percentage = `
         `
     }
@@ -604,7 +471,6 @@ function renderProducts(product) {
             <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
               <div class="pc__img-wrapper">
                 <a href="product1_simple.html">
-                  <img loading="lazy" src="../images/home/demo3/product-7.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                   ${renderProductImages(product.product_image, product.title)}
                 </a>
                 <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${percentage}</div>
@@ -613,18 +479,13 @@ function renderProducts(product) {
               <div class="pc__info position-relative">
                 <h6 class="pc__title">${product.title}</h6>
                 <div class="product-card__price d-flex align-items-center">
-                  <span class="money price-old">₦129</span>
-                  <span class="money price text-secondary">₦99</span>
+                  ${price}
                 </div>
 
                 <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                  <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                  <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                    <span class="d-none d-xxl-block">Quick View</span>
-                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg></span>
-                  </button>
-                  <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
+                  <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+                  <button id="collaborateButtonCheck" class="pc__btn-wl bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_retweet" /></svg>
                   </button>
                 </div>
               </div>
@@ -634,28 +495,6 @@ function renderProducts(product) {
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
-
-    // Reinitialize the SwiperSlideshow after adding the product
-    if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
-        new PayueeSections.SwiperSlideshow()._initSliders();
-    }
-
-    // If there are more complex product media types, reinitialize them as well
-    if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
-        new PayueeSections.ProductSingleMedia()._initProductMedia();
-    }
-
-    // Reinitialize Aside
-    if (typeof PayueeElements.Aside === 'function') {
-        new PayueeElements.Aside();
-    }
-
-    // Add event listener to the image wrapper
-    const imgWrapper = rowElement.querySelector('.swiper-wrapper');
-    imgWrapper.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
-    });
 
     // Attach the 'Collaborate' button event listener to this specific product card
     const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
@@ -675,12 +514,10 @@ function renderProducts(product) {
                     <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img">
                     </a>`;
         } else {
-            // imageUrls.forEach((url) => {
-                imagesHtml += `
-                    <a href="${urll}">
-                        <img loading="lazy" src="https://payuee.com/image/${imageUrls[0].url}" width="330" height="400" alt="${title}" class="pc__img">
-                    </a>`;
-            // });
+            imagesHtml += `
+                <a href="${urll}">
+                    <img loading="lazy" src="https://payuee.com/image/${imageUrls[0].url}" width="330" height="400" alt="${title}" class="pc__img">
+                </a>`;
         }
     
         return imagesHtml; // Return the full HTML string
@@ -696,3 +533,80 @@ function renderProducts(product) {
         });
     }
 }
+
+async function checkCollaborationEligibility(ID) {
+    const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                // logUserOutIfTokenIsExpired();
+            }else {
+                checkRepostEligibility(false, errorData.error, null);
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        // Check eligibility, passing `true` for eligible, or `false` with an error message
+        checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
+} finally {
+
+    }
+}
+
+// Function to open modal with appropriate messages
+function checkRepostEligibility(isEligible, errorMessage = null, collaborationUrl = null) {
+    const eligibilityMessage = document.getElementById('eligibilityMessage');
+    const errorAlert = document.getElementById('errorAlert');
+    const errorMessageEl = document.getElementById('errorMessage');
+    const successAlert = document.getElementById('successAlert');
+    const collaborateButton = document.getElementById('collaborateButton');
+  
+    // Reset modal state
+    errorAlert.classList.add('d-none');
+    successAlert.classList.add('d-none');
+    collaborateButton.classList.add('d-none');
+    collaborateButton.removeAttribute('href'); // Clear previous URL if any
+  
+    // Display eligibility messages
+    if (isEligible) {
+      eligibilityMessage.textContent = "You are eligible to repost this product.";
+      successAlert.classList.remove('d-none');
+      collaborateButton.classList.remove('d-none');
+  
+      // Set the new collaboration URL if provided
+      if (collaborationUrl) {
+        collaborateButton.href = collaborationUrl;
+      }
+    } else {
+      eligibilityMessage.textContent = "You are not eligible to repost this product.";
+      if (errorMessage) {
+        errorMessageEl.textContent = errorMessage;
+        errorAlert.classList.remove('d-none');
+      }
+    }
+  
+    // Show the modal
+    new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
+  }
