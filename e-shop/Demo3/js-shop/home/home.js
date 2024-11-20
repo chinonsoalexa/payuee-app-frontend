@@ -886,6 +886,15 @@ async function checkCollaborationEligibility(ID) {
     }
 }
 
+function calculatePercentageOff(previousPrice, currentPrice) {
+    if (previousPrice <= 0) {
+        return 0; // Prevent division by zero or negative values
+    }
+    const discount = previousPrice - currentPrice;
+    const percentageOff = (discount / previousPrice) * 100;
+    return percentageOff.toFixed(0); // Return the result rounded to two decimal places
+  }
+
 // Function to open modal with appropriate messages
 function checkRepostEligibility(isEligible, errorMessage = null, collaborationUrl = null) {
     const eligibilityMessage = document.getElementById('eligibilityMessage');
