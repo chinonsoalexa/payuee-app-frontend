@@ -4,6 +4,7 @@ const loader = Array.from({ length: 8 }, (_, i) => i);
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
+    
     updateCartDrawer();
 
     // Get the current URL
