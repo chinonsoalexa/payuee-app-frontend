@@ -12,6 +12,8 @@ var storeState;
 var stateISO
 var cityISO
 var pricePerKM = 0;
+var isNew = "";
+
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Initialize and load states when the page is loaded
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const urlParams = new URLSearchParams(window.location.search);
 
     // Get the value of the 'new' parameter
-    const isNew = urlParams.get('new');
+    isNew = urlParams.get('new');
 
     // Check the value and run conditions
     if (isNew === 'true') {
@@ -506,6 +508,28 @@ async function setShippingFees() {
     .then(response => {
         if (response.ok) {  // Check for a successful response
             showToastMessage("Shipping fees updated successfully.");
+            if (isNew === 'true') {
+                // Do something if the 'new' parameter is set to true
+                // After the user successfully updates shipping fees
+                swal({
+                    title: "Shipping fees saved!",
+                    text: "Let's go and post your first product.",
+                    icon: "success",
+                    buttons: {
+                        confirm: {
+                            text: "Add First Product",
+                            closeModal: true,
+                        },
+                    },
+                }).then((result) => {
+                    if (result) {
+                        // Redirect to the Add Product page
+                        localStorage.setItem("firstProductAdded", "true");
+                        window.location.href = "add-products.html";
+                    }
+                });
+                // Add any specific code you want to execute here
+            }
         } else {
             const errorData = response; // Handle error if response is not ok
             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
