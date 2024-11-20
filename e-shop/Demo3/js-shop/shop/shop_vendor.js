@@ -150,7 +150,7 @@ async function getProducts() {
         }
 
         responseData.success.forEach((product) => {
-            renderProducts(product, responseData.store);
+            renderProducts(product, responseData.store, responseData.user_id);
         });
         
         NextPageOnLoad = responseData.pagination.NextPage;
@@ -323,7 +323,7 @@ function deactivateCurrentButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-function renderProducts(product, subscription) {
+function renderProducts(product, subscription, userId) {
     const productBody = document.getElementById('products-grid');
 
     // Create a new product card element
@@ -430,11 +430,16 @@ function renderProducts(product, subscription) {
             </div>
         `;
     }    
-
+    
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
     if (subscription.user_store) {
+        // Determine if the button should be disabled and what text to display
+        isOutOfStock = true;
+        buttonText = 'Your Item';
+        buttonDisabled =  'disabled';
+    } else if (product.original_eshop_user_id == userId) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Your Item';
