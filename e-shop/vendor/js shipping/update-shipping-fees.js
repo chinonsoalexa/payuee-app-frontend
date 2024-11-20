@@ -15,6 +15,34 @@ var pricePerKM = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Initialize and load states when the page is loaded
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Get the value of the 'new' parameter
+    const isNew = urlParams.get('new');
+
+    // Check the value and run conditions
+    if (isNew === 'true') {
+        // Do something if the 'new' parameter is set to true
+        // After redirecting to the shipping page
+        swal({
+            title: "You're almost there!",
+            text: "Set up your shipping fees to ensure a smooth experience for your customers.",
+            icon: "info",
+            buttons: {
+                confirm: {
+                    text: "Got it!",
+                    value: true,
+                },
+            },
+        }).then((result) => {
+            if (result) {
+                // Optional: Additional action if needed after confirmation
+            }
+        });
+        // Add any specific code you want to execute here
+    }
+
     getShippingFees();
     await loadStates1();
     await loadStates();

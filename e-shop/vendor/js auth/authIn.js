@@ -67,6 +67,20 @@ async function check_auth_status() {
             //     generateTagAI();  // Your AI function for generating tags
             // });
         }
+
+        if (responseData.total_products < 1) {
+            swal({
+                title: "Hi " + responseData.store_name + "!" + " welcome to Payuee e-Shop Let's get you started...",
+                icon: "success",
+                buttons: {
+                    confirm: true,
+                },
+            }).then(async (result) => {
+                if (result) {
+                    window.location.href = "update-shipping-fees.html";
+                }
+            });
+        }
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
 
