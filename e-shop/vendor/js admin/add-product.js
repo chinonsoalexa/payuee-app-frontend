@@ -45,6 +45,7 @@ const authorizedCategories = [
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
+    checkFirstProduct();
     const submitButton = document.getElementById('nextButton');
     const productTitleInput = document.getElementById('productTitle1');
     const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
@@ -94,6 +95,24 @@ submitButton.addEventListener('click', async function (event) {
 });
 
 });
+
+function checkFirstProduct() {
+    if (localStorage.getItem("firstProductAdded") != "true") {
+        // Prompt the user to add their first product
+        swal({
+            title: "Let's add your first product!",
+            text: "Get started by entering a descriptive title for your product.",
+            icon: "success",
+            buttons: {
+                confirm: true,
+            },
+        }).then(() => {
+            // Focus the cursor on the title input after closing the alert
+            localStorage.setItem("firstProductAdded", "true");
+            document.getElementById("productTitle1").focus();
+        })        
+    }
+}
 
 async function postProduct() {
     // Create a new FormData object

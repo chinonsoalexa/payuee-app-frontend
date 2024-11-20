@@ -513,7 +513,7 @@ async function setShippingFees() {
                 // After the user successfully updates shipping fees
                 swal({
                     title: "Shipping fees saved!",
-                    text: "Let's go and post your first product.",
+                    text: "Let's add your first product!",
                     icon: "success",
                     buttons: {
                         confirm: {
@@ -524,7 +524,7 @@ async function setShippingFees() {
                 }).then((result) => {
                     if (result) {
                         // Redirect to the Add Product page
-                        localStorage.setItem("firstProductAdded", "true");
+                        localStorage.setItem("firstProductAdded", "false");
                         window.location.href = "add-products.html";
                     }
                 });
