@@ -639,7 +639,7 @@ function renderProductDiscounts(product) {
             updateCartDrawer();
         });
     }
-    reinitializeSwiper();
+    // reinitializeSwiper();
 }
 
 function renderProductImages2(imageUrls, title, urll) {
