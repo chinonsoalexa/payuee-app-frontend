@@ -162,6 +162,22 @@ async function postProduct() {
             
             const result = await response.json();
             showToastMessageS("Product posted successfully")
+            if (localStorage.getItem("firstProductAdded") == "true") {
+                swal({
+                    title: "Congratulations!",
+                    text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
+                    icon: "success",
+                    buttons: {
+                        confirm: "Awesome!",
+                    },
+                }).then(() => {
+                    // Remove an item by its key
+                    localStorage.removeItem("firstProductAdded");         
+                    // Optionally redirect them to their dashboard or another relevant page
+                    window.location.href = "vendor-dashboard.html";
+                });
+                     
+            }
             clearFields();
         }
 
