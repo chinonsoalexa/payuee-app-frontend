@@ -41,6 +41,7 @@ var subtotal = 0;
 var usersSavedAddress;
 var transactionCodeStatus = false;
 var TransactionCode = "";
+var orderStatus = false;
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
@@ -805,7 +806,7 @@ placeOrderButton.addEventListener("click", function(event) {
             try {
                 const result = await placeOrder();
                 console.log("this is the order data: ", result);
-                if (result.success === "successfully added new order") {
+                if (orderStatus) {
                     // Hide checkout modal and simulate a successful transaction
                     paymentModal.hide();
                     document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
@@ -830,12 +831,12 @@ placeOrderButton.addEventListener("click", function(event) {
                     });
                     return;
                 } else {
-                    checkoutButton.disabled = false;
-                    showToastMessageE(result.error);
+                    // checkoutButton.disabled = false;
+                    // showToastMessageE(result.error);
                 }
                 return;
             } catch (error) {
-                console.error('Error:', error);
+                // console.error('Error:', error);
                 showToastMessageE("An error occurred while processing your order.");
             }
         }
@@ -1251,14 +1252,14 @@ async function placeOrder() {
         });
 
         const data = await response.json();
-
+        orderStatus = data.success;
         if (!data.success) {
             const checkoutButton = document.getElementById('paymentButton');
             checkoutButton.disabled = false;
             showToastMessageE("an error occurred while placing order");
 
             if (data.error == "sorry you cannot order your own product") {
-                showToastMessageE("sorry you cannot order your own product");
+                showToastMessageE(data.error2);
                 return
             }
             return;
