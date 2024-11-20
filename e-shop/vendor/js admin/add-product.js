@@ -168,13 +168,16 @@ async function postProduct() {
                     text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
                     icon: "success",
                     buttons: {
-                        confirm: "Awesome!",
+                        confirm: "View Store",
                     },
-                }).then(() => {
+                }).then((result) => {
                     // Remove an item by its key
-                    localStorage.removeItem("firstProductAdded");         
-                    // Optionally redirect them to their dashboard or another relevant page
-                    window.location.href = "vendor-dashboard.html";
+                    localStorage.removeItem("firstProductAdded");      
+                    if (result)  {
+                        // Optionally redirect them to their dashboard or another relevant page
+                        window.location.href = "https://payuee.com/store/" + result.store_id;
+                    }  
+
                 });
                      
             }
