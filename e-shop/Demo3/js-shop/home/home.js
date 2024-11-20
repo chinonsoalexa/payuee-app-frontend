@@ -569,7 +569,7 @@ function renderProductDiscounts(product) {
                 <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
                 <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
             `;
-            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
+            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
         } else {
             price = `
                 <div class="product-card__price d-flex">
@@ -639,7 +639,6 @@ function renderProductDiscounts(product) {
             updateCartDrawer();
         });
     }
-    // reinitializeSwiper();
 }
 
 function renderProductImages2(imageUrls, title, urll) {
@@ -659,36 +658,6 @@ function renderProductImages2(imageUrls, title, urll) {
         </a>`;
 }
 
-
-// Function to reinitialize Swiper
-function reinitializeSwiper() {
-    // Destroy the existing Swiper instance if it exists
-    const existingSwiper = document.querySelector('.swiper-container.js-swiper-slider.swiper-initialized');
-    if (existingSwiper && existingSwiper.swiper) {
-      existingSwiper.swiper.destroy(true, true); // Destroy old instance
-    }
-  
-    // Select the swiper container and parse custom settings from HTML data attribute
-    const swiperContainer = document.querySelector('.js-swiper-slider');
-    const dataSettings = JSON.parse(swiperContainer.getAttribute('data-settings'));
-  
-    // Initialize Swiper for the new related products
-    const swiper = new Swiper('.js-swiper-slider', {
-      ...dataSettings, // Spread operator to apply data settings from HTML
-      autoplay: dataSettings.autoplay || false,
-      pagination: dataSettings.pagination !== false
-        ? {
-            el: '.products-pagination',
-            type: 'bullets',
-            clickable: true,
-          }
-        : false,
-      navigation: {
-        nextEl: '.products-carousel__next',
-        prevEl: '.products-carousel__prev',
-      },
-    });
-  }  
 
 async function checkCollaborationEligibility(ID) {
     const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
