@@ -217,9 +217,16 @@ async function getProducts() {
 }
 
  // Function to render store list
- function renderStores(data, products) {
+function renderStores(data, products) {
     const storeList = document.querySelector('.multi-select__list');
     storeList.innerHTML = ''; // Clear existing items
+
+    // Check if data is null or an empty array
+    if (!data || data.length === 0) {
+        // Optionally display a message or take alternative action
+        storeList.innerHTML = `<li class="text-secondary">No stores available.</li>`;
+        return;
+    }
 
     data.forEach(store => {
         const listItem = document.createElement('li');
@@ -233,6 +240,7 @@ async function getProducts() {
         storeList.appendChild(listItem);
     });
 }
+
 
   // Function to render store list
  function renderStores2(data, products) {

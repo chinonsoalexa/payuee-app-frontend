@@ -805,35 +805,38 @@ placeOrderButton.addEventListener("click", function(event) {
             try {
                 const result = await placeOrder();
                 console.log("this is the order data: ", result);
-                // Hide checkout modal and simulate a successful transaction
-                paymentModal.hide();
-                document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
-                
-                // Show the transaction success modal
-                transactionSuccessModal.show();
-                
-                let transactionCodeInput = document.getElementById('transactionCodeInput');
-                transactionCodeInput.value = "";
-                
-                // Clear the products in local storage
-                checkoutButton.disabled = false;
-                localStorage.removeItem("cart");
-                
-                // Select the element you want to attach the click event to
-                const element = document.getElementById("viewTransactionDetails");
-                
-                // Add the click event listener
-                element.addEventListener("click", () => {
-                    // Redirect to the URL with the OrderID as a query parameter
-                    window.location.href = `https://payuee.com/e-shop/Demo3/shop_order_complete?OrderID=${result.order[0]}`;
-                });
-                
+                if (result.success === "successfully added new order") {
+                    // Hide checkout modal and simulate a successful transaction
+                    paymentModal.hide();
+                    document.getElementById('amountToCharge').textContent = formatNumberToNaira(orderCost);
+                    
+                    // Show the transaction success modal
+                    transactionSuccessModal.show();
+                    
+                    let transactionCodeInput = document.getElementById('transactionCodeInput');
+                    transactionCodeInput.value = "";
+                    
+                    // Clear the products in local storage
+                    checkoutButton.disabled = false;
+                    localStorage.removeItem("cart");
+                    
+                    // Select the element you want to attach the click event to
+                    const element = document.getElementById("viewTransactionDetails");
+                    
+                    // Add the click event listener
+                    element.addEventListener("click", () => {
+                        // Redirect to the URL with the OrderID as a query parameter
+                        window.location.href = `https://payuee.com/e-shop/Demo3/shop_order_complete?OrderID=${result.order[0]}`;
+                    });
+                    return;
+                } else {
+                    checkoutButton.disabled = false;
+                    showToastMessageE(result.error);
+                }
                 return;
             } catch (error) {
-                // console.error('Error:', error);
+                console.error('Error:', error);
                 showToastMessageE("An error occurred while processing your order.");
-                checkoutButton.disabled = false;
-                showToastMessageE(error);
             }
         }
 
