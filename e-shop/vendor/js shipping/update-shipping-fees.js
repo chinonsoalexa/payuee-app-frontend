@@ -507,7 +507,7 @@ async function setShippingFees() {
     })
     .then(response => response.json())
     .then(response => {
-        if (response.ok) {  // Check for a successful response
+        if (response.success) {  // Check for a successful response
             showToastMessage("Shipping fees updated successfully.");
             if (isNew === 'true') {
                 // Do something if the 'new' parameter is set to true
