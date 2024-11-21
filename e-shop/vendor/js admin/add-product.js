@@ -163,23 +163,27 @@ async function postProduct() {
             
             const result = await response.json();
             showToastMessageS("Product posted successfully")
-            if (localStorage.getItem("firstProductAdded") == "last") {
-                swal({
-                    title: "Congratulations!",
-                    text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
-                    icon: "success",
-                    buttons: {
-                        confirm: "View Store",
-                    },
-                }).then((result) => {
-                    // Remove an item by its key
-                    localStorage.removeItem("firstProductAdded");      
-                    if (result)  {
-                        // Optionally redirect them to their dashboard or another relevant page
-                        window.location.href = "https://payuee.com/store/" + result.store_id;
-                    }  
+            if (localStorage.getItem("firstProductAdded") == "second") {
+                return;
+            } else  {
+                if (localStorage.getItem("firstProductAdded") == "last") {
+                    swal({
+                        title: "Congratulations!",
+                        text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
+                        icon: "success",
+                        buttons: {
+                            confirm: "View Store",
+                        },
+                    }).then((result) => {
+                        // Remove an item by its key
+                        localStorage.removeItem("firstProductAdded");      
+                        if (result)  {
+                            // Optionally redirect them to their dashboard or another relevant page
+                            window.location.href = "https://payuee.com/store/" + result.store_id;
+                        }  
 
-                });
+                    });
+                }
                      
             }
             clearFields();
