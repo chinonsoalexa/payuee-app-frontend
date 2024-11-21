@@ -1173,6 +1173,7 @@ async function generateAiDescription(TitleData) {
 
         validateFields();
         showToastMessageS('Done Generating AI description');
+
     } finally {
         toggleButtonState();
     }
@@ -1278,7 +1279,10 @@ async function check_posting_status() {
 
             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
-            } else {
+            } else if (errorData.error === 'No files uploaded') {
+                showToastMessageE("Please upload an image ");
+                return;
+            }else {
                 logout();
             }
             return;
