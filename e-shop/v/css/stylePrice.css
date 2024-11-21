@@ -1,0 +1,263 @@
+/* CSS Styling for Pricing Cards */
+.page-body {
+    padding: 2rem 0;
+  }
+  
+  .pricing-card {
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .pricing-card.basic {
+    background-color: #f8f9fa;
+    border-color: #87ceeb;
+  }
+
+  .pricing-card.basic .btn-signup {
+    background-color: #d3d3d3; /* Soft Gray */
+    color: #333;   
+    border: none;
+  }
+
+  .pricing-card.basic .btn-signup:hover {
+    background-color: #87ceeb; /* Dark Teal */
+    color: #fff;
+  }  
+
+  .pricing-card.basic .title,
+  .pricing-card.basic .price {
+    color: #87ceeb; /* Text color for premium visibility */
+    font-weight: bold;
+  }
+  
+  .pricing-card.business {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+  }
+
+  .pricing-card.business .btn-signup {
+    background-color: #4169e1; /* Royal Blue */
+    color: #fff;    
+    border: none;
+  }
+
+  .pricing-card.business .btn-signup:hover {
+    background-color: #008080; /* Dark Teal */
+    color: #fff;
+  }  
+
+  .pricing-card.business .title,
+  .pricing-card.business .price {
+    color: #0056b3; /* Text color for premium visibility */
+    font-weight: bold;
+  }
+
+  .pricing-card.gold {
+    border: 2px solid #b8860b; /* Darker gold border */
+    color: #4b3f00; /* Darker text for readability */
+  
+    /* Add shadow and slight gradient for a premium look */
+    border-radius: 8px; 
+  }
+  
+  /* Optional: Adjust title and price to stand out */
+  .pricing-card.gold .title,
+  .pricing-card.gold .price {
+    color: #4b3f00; /* Text color for premium visibility */
+    font-weight: bold;
+  }
+  
+  /* Optional: Modify button styling */
+  .pricing-card.gold .btn-signup {
+    background-color: #b8860b;
+    color: #fff;
+    border: none;
+  }
+  
+  .pricing-card.gold .btn-signup:hover {
+    background-color: #4b3f00; /* Darker shade on hover */
+  }  
+  
+  .title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .price {
+    font-size: 2rem;
+    color: #007bff;
+    margin: 1rem 0;
+  }
+  
+  .price span {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .features li {
+    font-size: 0.9rem;
+    color: #666;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .btn-signup {
+    background-color: #230606;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-signup:hover {
+    background-color: #230606;
+    color: #fff;
+  }
+  
+  /* Simple Card */
+  .simple-card {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .simple-card h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+  
+  .btn-simple {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #fff;
+    color: #007bff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+  }
+  
+  .btn-simple:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Free Trial Badge */
+.trial-badge {
+    background-color: #ff5733; /* Bright color to stand out */
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  /* Note below the features list */
+  .note {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 8px;
+  }
+
+   /* Free Trial Badge */
+   .trial-badge {
+    background-color: #ff5733;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* Adjust icon and list item spacing */
+  .features li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .features li i {
+    margin-right: 8px;
+    color: #4CAF50; /* Choose an icon color that fits your design */
+  }
+
+  /* Note Style */
+.note {
+    background-color: #f0f8ff;
+    color: #333;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-left: 3px solid #007bff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .note i {
+    color: #007bff;
+    margin-right: 8px;
+  }
+  
+  .secondary-sticky-header {
+    position: sticky;
+    top: 90px; /* Adjust to the height of .main-header */
+    z-index: -1; /* Should be slightly lower than .main-header */
+    background-color: transparent;
+    padding: 15px 0;
+  }
+  
+/* Existing tiltShake animation */
+@keyframes tiltShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(5deg); }
+}
+
+/* Trial badge styling */
+.trial-badge {
+  display: inline-block;
+  cursor: pointer;
+  transform-origin: center; /* Center rotation */
+}
+
+/* Apply tiltShake animation when hovering over basicPlan */
+.basicPlan:hover .trial-badge {
+  animation: tiltShake 0.5s ease;
+}
+
+/* Optional: Trigger tilt shake on click by adding tilt-shake class */
+.trial-badge.tilt-shake {
+  animation: tiltShake 0.5s ease;
+}
