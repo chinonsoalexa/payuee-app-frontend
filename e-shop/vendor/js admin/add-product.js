@@ -93,6 +93,17 @@ submitButton.addEventListener('click', async function (event) {
     
 });
 
+    // Get the input element
+    const estimatedDeliveryInput = document.getElementById("estimatedDelivery");
+
+    // Add an event listener to enforce the maximum value
+    estimatedDeliveryInput.addEventListener("input", () => {
+        // If the input value is greater than 30, set it back to 30
+        if (estimatedDeliveryInput.value > 30) {
+            estimatedDeliveryInput.value = 30;
+        }
+    });
+    
     checkFirstProduct();
     check_posting_status();
 });
@@ -190,7 +201,7 @@ async function postProduct() {
         }
 
     } catch (error) {
-        console.error("Network error:", error);
+        // console.error("Network error:", error);
     }
 }
 
@@ -1174,17 +1185,33 @@ async function generateAiDescription(TitleData) {
 
         // Validate Description
         // const editor = document.getElementById('editor2');
-        console.log("Product Description:", productDescription);
+        // console.log("Product Description:", productDescription);
         if (!productDescription) {
             editor.classList.add('is-invalid');
             editor.classList.remove('is-valid');
-            isValid = false;
+            // isValid = false;
             // console.log("Product Description is invalid.");
         } else {
             editor.classList.remove('is-invalid');
             editor.classList.add('is-valid');
             // console.log("Product Description is valid.");
         }
+
+        // Validate Product Title
+        const productTitleInput = document.getElementById('productTitle1');
+        const productTitle = productTitleInput.value.trim();
+        // console.log("Product Title:", productTitle);
+        if (!productTitle) {
+            productTitleInput.classList.add('is-invalid');
+            productTitleInput.classList.remove('is-valid');
+            // isValid = false;
+            // console.log("Product Title is invalid.");
+        } else {
+            productTitleInput.classList.remove('is-invalid');
+            productTitleInput.classList.add('is-valid');
+            // console.log("Product Title is valid.");
+        }
+
         showToastMessageS('Done Generating AI description');
 
     } finally {
@@ -1269,11 +1296,11 @@ async function generateAiTag(TitleData, productDescription) {
         // Validate Tags
         // const tagsInput = document.getElementById('tags');
         const tags = tagsInput.value.trim();
-        console.log("Tags:", tags);
+        // console.log("Tags:", tags);
         if (!tags) {
             tagsInput.classList.add('is-invalid');
             tagsInput.classList.remove('is-valid');
-            isValid = false;
+            // isValid = false;
             // console.log("Tags are invalid.");
         } else {
             tagsInput.classList.remove('is-invalid');

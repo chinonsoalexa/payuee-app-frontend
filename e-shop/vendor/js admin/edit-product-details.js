@@ -31,6 +31,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get individual parameter values
     productToUpdate = params.get("ProductID");
     
+    // Get the input element
+    const estimatedDeliveryInput = document.getElementById("estimatedDelivery");
+
+    // Add an event listener to enforce the maximum value
+    estimatedDeliveryInput.addEventListener("input", () => {
+        // If the input value is greater than 30, set it back to 30
+        if (estimatedDeliveryInput.value > 30) {
+            estimatedDeliveryInput.value = 30;
+        }
+    });
+
     await getProduct(productToUpdate);
 
 });
