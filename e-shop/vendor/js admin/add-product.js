@@ -101,9 +101,10 @@ submitButton.addEventListener('click', async function (event) {
         // If the input value is greater than 30, set it back to 30
         if (estimatedDeliveryInput.value > 30) {
             estimatedDeliveryInput.value = 30;
+            showToastMessageE("delivery time frame cannot be greater than 30")
         }
     });
-    
+
     checkFirstProduct();
     check_posting_status();
 });
