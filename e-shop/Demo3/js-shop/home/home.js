@@ -644,6 +644,19 @@ function renderProductDiscounts(product) {
 
 // Function to reinitialize the Swiper
 // Function to reinitialize a specific Swiper instance by ID
+// function reinitializeSwiper(id) {
+//     // Destroy any existing Swiper instance attached to the element
+//     const swiperContainer = document.getElementById(id);
+    
+//     if (swiperContainer.swiper) {
+//       swiperContainer.swiper.destroy(true, true);
+//     }
+  
+//     // Initialize a new Swiper instance with settings
+//     const settings = JSON.parse(swiperContainer.getAttribute('data-settings') || '{}');
+//     new Swiper(swiperContainer, settings);
+//   }
+
 function reinitializeSwiper(id) {
     // Destroy any existing Swiper instance attached to the element
     const swiperContainer = document.getElementById(id);
@@ -652,10 +665,31 @@ function reinitializeSwiper(id) {
       swiperContainer.swiper.destroy(true, true);
     }
   
-    // Initialize a new Swiper instance with settings
-    const settings = JSON.parse(swiperContainer.getAttribute('data-settings') || '{}');
+    // Parse settings from the data attribute, and set default options as a fallback
+    const userSettings = JSON.parse(swiperContainer.getAttribute('data-settings') || '{}');
+    
+    // Merge user settings with defaults
+    const defaultSettings = {
+      preventClicks: true,
+      preventClicksPropagation: true,
+      preloadImages: true,
+      updateOnImagesReady: true,
+      loop: false,
+      allowSlidePrev: true,
+      allowSlideNext: true,
+      direction: 'horizontal', // Ensures it moves from right to left
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      speed: 500, // Adjust speed as needed
+    };
+  
+    const settings = { ...defaultSettings, ...userSettings };
+    
+    // Reinitialize Swiper with combined settings
     new Swiper(swiperContainer, settings);
-  }
+  }  
 
 //   function reinitializeSwiper(id) {
 //     const swiperContainer = document.getElementById(id);
