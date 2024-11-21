@@ -63,6 +63,7 @@ document.getElementById('validationCustom01').addEventListener('input', function
     const distance = calculateDistance(vendorCityLat, vendorCityLon, cityLat, cityLon);
     const shippingFees = document.getElementById('validationCustom02');
     const shippingDistance = document.getElementById('validationCustom03');
+    const shippingLessThan = document.getElementById("validationCustom031")
     
     let shippingFee = distance * shippingFeePerKm;
 
