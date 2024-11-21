@@ -1168,12 +1168,12 @@ async function generateAiDescription(TitleData) {
         responseData.success
         // Get the product description and title
         const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
+        const productDescription = editor.textContent.trim();
         productDescription = responseData.success;
         editor.innerText = responseData.success;
 
         // Validate Description
         // const editor = document.getElementById('editor2');
-        const productDescription = editor.textContent.trim();
         console.log("Product Description:", productDescription);
         if (!productDescription) {
             editor.classList.add('is-invalid');
