@@ -1171,7 +1171,20 @@ async function generateAiDescription(TitleData) {
         productDescription = responseData.success;
         editor.innerText = responseData.success;
 
-        validateFields();
+        // Validate Description
+        // const editor = document.getElementById('editor2');
+        const productDescription = editor.textContent.trim();
+        console.log("Product Description:", productDescription);
+        if (!productDescription) {
+            editor.classList.add('is-invalid');
+            editor.classList.remove('is-valid');
+            isValid = false;
+            // console.log("Product Description is invalid.");
+        } else {
+            editor.classList.remove('is-invalid');
+            editor.classList.add('is-valid');
+            // console.log("Product Description is valid.");
+        }
         showToastMessageS('Done Generating AI description');
 
     } finally {
@@ -1253,7 +1266,20 @@ async function generateAiTag(TitleData, productDescription) {
         tagsInput.value = "";
         tagsInput.value = responseData.success;
 
-        validateFields();
+        // Validate Tags
+        // const tagsInput = document.getElementById('tags');
+        const tags = tagsInput.value.trim();
+        console.log("Tags:", tags);
+        if (!tags) {
+            tagsInput.classList.add('is-invalid');
+            tagsInput.classList.remove('is-valid');
+            isValid = false;
+            // console.log("Tags are invalid.");
+        } else {
+            tagsInput.classList.remove('is-invalid');
+            tagsInput.classList.add('is-valid');
+            // console.log("Tags are valid.");
+        }
         showToastMessageS('Done Generating AI tags');
     } finally {
         toggleButtonState();
