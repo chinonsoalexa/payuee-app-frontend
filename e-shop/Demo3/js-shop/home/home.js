@@ -642,21 +642,6 @@ function renderProductDiscounts(product) {
     reinitializeSwiper('mySwiper');
 }
 
-// Function to reinitialize the Swiper
-// Function to reinitialize a specific Swiper instance by ID
-// function reinitializeSwiper(id) {
-//     // Destroy any existing Swiper instance attached to the element
-//     const swiperContainer = document.getElementById(id);
-    
-//     if (swiperContainer.swiper) {
-//       swiperContainer.swiper.destroy(true, true);
-//     }
-  
-//     // Initialize a new Swiper instance with settings
-//     const settings = JSON.parse(swiperContainer.getAttribute('data-settings') || '{}');
-//     new Swiper(swiperContainer, settings);
-//   }
-
 function reinitializeSwiper(id) {
     // Destroy any existing Swiper instance attached to the element
     const swiperContainer = document.getElementById(id);
@@ -690,64 +675,6 @@ function reinitializeSwiper(id) {
     // Reinitialize Swiper with combined settings
     new Swiper(swiperContainer, settings);
   }  
-
-//   function reinitializeSwiper(id) {
-//     const swiperContainer = document.getElementById(id);
-  
-//     if (!swiperContainer) {
-//       console.warn(`Element with ID ${id} not found.`);
-//       return;
-//     }
-  
-//     // Destroy existing Swiper instance if it exists
-//     if (swiperContainer.swiper) {
-//       swiperContainer.swiper.destroy(true, true);
-//     }
-  
-//     // Define Swiper configuration based on snippets provided
-//     const swiperConfig = {
-//       preventClicks: true,
-//       preventClicksPropagation: true,
-//       slideToClickedSlide: false,
-//       preloadImages: true,
-//       updateOnImagesReady: true,
-//       loop: false,
-//       loopAdditionalSlides: 0,
-//       loopedSlides: null,
-//       loopFillGroupWithBlank: false,
-//       loopPreventsSlide: true,
-//       allowSlidePrev: true,
-//       allowSlideNext: true,
-//       swipeHandler: null,
-//       noSwiping: true,
-//       noSwipingClass: "swiper-no-swiping",
-//       noSwipingSelector: null,
-//       passiveListeners: true,
-//       containerModifierClass: "swiper-container-",
-//       slideClass: "swiper-slide",
-//       slideBlankClass: "swiper-slide-invisible-blank",
-//       slideActiveClass: "swiper-slide-active",
-//       slideDuplicateActiveClass: "swiper-slide-duplicate-active",
-//       slideVisibleClass: "swiper-slide-visible",
-//       slideDuplicateClass: "swiper-slide-duplicate",
-//       slideNextClass: "swiper-slide-next",
-//       slideDuplicateNextClass: "swiper-slide-duplicate-next",
-//       slidePrevClass: "swiper-slide-prev",
-//       slideDuplicatePrevClass: "swiper-slide-duplicate-prev",
-//       wrapperClass: "swiper-wrapper",
-//       runCallbacksOnInit: true,
-//       _emitClasses: false,
-//     };
-  
-//     // Initialize new Swiper instance
-//     const newSwiper = new Swiper(swiperContainer, swiperConfig);
-  
-//     // Emit classes if necessary
-//     newSwiper.emitContainerClasses();
-//     newSwiper.emitSlidesClasses();
-  
-//     return newSwiper;
-//   }
 
 function renderProductImages2(imageUrls, title, urll) {
     const defaultImageUrl = "../../e-shop/images/default_img.png";
