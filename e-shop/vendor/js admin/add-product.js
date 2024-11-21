@@ -1168,7 +1168,7 @@ async function generateAiDescription(TitleData) {
         responseData.success
         // Get the product description and title
         const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
-        const productDescription = editor.textContent.trim();
+        let productDescription = editor.textContent.trim();
         productDescription = responseData.success;
         editor.innerText = responseData.success;
 
