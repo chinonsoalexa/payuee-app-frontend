@@ -93,7 +93,7 @@ submitButton.addEventListener('click', async function (event) {
     
 });
 
-    checkFirstProduct();
+    // checkFirstProduct();
 
 });
 
@@ -164,22 +164,21 @@ async function postProduct() {
             const result = await response.json();
             showToastMessageS("Product posted successfully")
             if (localStorage.getItem("firstProductAdded") == "last") {
-                swal({
-                    title: "Congratulations!",
-                    text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
-                    icon: "success",
-                    buttons: {
-                        confirm: "View Store",
-                    },
-                }).then((result) => {
-                    // Remove an item by its key
-                    localStorage.removeItem("firstProductAdded");      
-                    if (result)  {
-                        // Optionally redirect them to their dashboard or another relevant page
-                        window.location.href = "https://payuee.com/store/" + result.store_id;
-                    }  
-
-                });
+                // swal({
+                //     title: "Congratulations!",
+                //     text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
+                //     icon: "success",
+                //     buttons: {
+                //         confirm: "View Store",
+                //     },
+                // }).then((result) => {
+                //     // Remove an item by its key
+                //     localStorage.removeItem("firstProductAdded");      
+                //     if (result)  {
+                //         // Optionally redirect them to their dashboard or another relevant page
+                //         window.location.href = "https://payuee.com/store/" + result.store_id;
+                //     }  
+                // });
                      
             }
             clearFields();
@@ -1288,20 +1287,20 @@ async function check_posting_status() {
             document.getElementById("generateTagAI").style.display = "block";
         }
 
-        if (responseData.total_products < 1) {
-            swal({
-                title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
-                text: "Let's set up your shipping fees to get your shop ready for orders.",
-                icon: "success",
-                buttons: {
-                    confirm: "Start Setup",
-                },
-            }).then(async (result) => {
-                if (result) {
-                    window.location.href = "update-shipping-fees.html?new=true";
-                }
-            });
-        }
+        // if (responseData.total_products < 1) {
+        //     swal({
+        //         title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
+        //         text: "Let's set up your shipping fees to get your shop ready for orders.",
+        //         icon: "success",
+        //         buttons: {
+        //             confirm: "Start Setup",
+        //         },
+        //     }).then(async (result) => {
+        //         if (result) {
+        //             window.location.href = "update-shipping-fees.html?new=true";
+        //         }
+        //     });
+        // }
 
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
