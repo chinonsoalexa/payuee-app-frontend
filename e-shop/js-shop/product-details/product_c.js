@@ -282,10 +282,10 @@ function renderProductDetails(product, related) {
         <div class="product-single__thumbnail">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="../images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
+              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0.jpg" width="104" height="104" alt=""></div>
+              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
+              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
+              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
             </div>
           </div>
         </div>
@@ -950,7 +950,7 @@ function renderProductDescription(product) {
           <div class="product-single__reviews-list">
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="../images/avatar.jpg" alt="">
+                <img loading="lazy" src="images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
@@ -971,7 +971,7 @@ function renderProductDescription(product) {
             </div>
             <div class="product-single__reviews-item">
               <div class="customer-avatar">
-                <img loading="lazy" src="../images/avatar.jpg" alt="">
+                <img loading="lazy" src="images/avatar.jpg" alt="">
               </div>
               <div class="customer-review">
                 <div class="customer-name">
