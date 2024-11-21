@@ -174,10 +174,10 @@ async function postProduct() {
                         buttons: {
                             confirm: "View Store",
                         },
-                    }).then((result) => {
+                    }).then((resultt) => {
                         // Remove an item by its key
                         localStorage.removeItem("firstProductAdded");      
-                        if (result)  {
+                        if (resultt)  {
                             // Optionally redirect them to their dashboard or another relevant page
                             window.location.href = "https://payuee.com/store/" + result.store_id;
                         }  
