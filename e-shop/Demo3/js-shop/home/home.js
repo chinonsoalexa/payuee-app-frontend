@@ -639,19 +639,22 @@ function renderProductDiscounts(product) {
             updateCartDrawer();
         });
     }
-    reinitializeSwiper();
+    reinitializeSwiper('mySwiper');
 }
 
 // Function to reinitialize the Swiper
-function reinitializeSwiper() {
-    // Check if the Swiper instance already exists
-    if (window.mySwiper) {
-      // Destroy the existing Swiper instance
-      window.mySwiper.destroy(true, true);
+// Function to reinitialize a specific Swiper instance by ID
+function reinitializeSwiper(id) {
+    // Destroy any existing Swiper instance attached to the element
+    const swiperContainer = document.getElementById(id);
+    
+    if (swiperContainer.swiper) {
+      swiperContainer.swiper.destroy(true, true);
     }
   
-    // Reinitialize the Swiper
-    window.mySwiper = new Swiper('.js-swiper-slider', JSON.parse(document.querySelector('.js-swiper-slider').getAttribute('data-settings')));
+    // Initialize a new Swiper instance with settings
+    const settings = JSON.parse(swiperContainer.getAttribute('data-settings') || '{}');
+    new Swiper(swiperContainer, settings);
   }
 
 function renderProductImages2(imageUrls, title, urll) {
