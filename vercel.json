@@ -10,32 +10,64 @@
           "destination": "e-shop/product_cate"
         },
         {
+          "source": "/outfits/v/:nameAndId",
+          "destination": "e-shop/v/product_cate"
+        },
+        {
           "source": "/tools/:nameAndId",
           "destination": "e-shop/product_car"
+        },
+        {
+          "source": "/tools/v/:nameAndId",
+          "destination": "e-shop/v/product_car"
         },
         {
           "source": "/vendor/:nameAndId",
           "destination": "e-shop/product_vendor"
         },
         {
+          "source": "/vendor/v/:nameAndId",
+          "destination": "e-shop/v/product_vendor"
+        },
+        {
           "source": "/cars/:nameAndId",
           "destination": "e-shop/product_car"
+        },
+        {
+          "source": "/cars/v/:nameAndId",
+          "destination": "e-shop/v/product_car"
         },
         {
           "source": "/jewelry/:nameAndId",
           "destination": "e-shop/product_ca"
         },
         {
+          "source": "/jewelry/v/:nameAndId",
+          "destination": "e-shop/v/product_ca"
+        },
+        {
           "source": "/kids/:nameAndId",
           "destination": "e-shop/product_c"
+        },
+        {
+          "source": "/kids/v/:nameAndId",
+          "destination": "e-shop/v/product_c"
         },
         {
           "source": "/gadgets/:nameAndId",
           "destination": "e-shop/product_car"
         },
         {
+          "source": "/gadgets/v/:nameAndId",
+          "destination": "e-shop/v/product_car"
+        },
+        {
           "source": "/store/:nameAndId",
           "destination": "e-shop/shop_vendor"
+        },
+        {
+          "source": "/store/v/:nameAndId",
+          "destination": "e-shop/v/shop_vendor"
         }
       ]
 }
