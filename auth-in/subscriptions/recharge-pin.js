@@ -311,7 +311,7 @@ try {
 
         // const data = response.json();
         localStorage.removeItem('auth')
-        window.location.href = '../index.html'
+        window.location.href = '../indexs.html'
     } finally{
         // do nothing
     }

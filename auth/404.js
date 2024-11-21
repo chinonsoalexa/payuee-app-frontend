@@ -7,7 +7,7 @@ document.getElementById('not_found').addEventListener('click', function () {
 function page_not_found() {
     if (localStorage.getItem('auth') !== 'true') {
         // let's redirect to a non-authenticated page cause the user is not authenticated
-        window.location.href = 'index.html';
+        window.location.href = 'indexs.html';
         // let's clear auth local storage item
         localStorage.removeItem('auth');
     } else {
