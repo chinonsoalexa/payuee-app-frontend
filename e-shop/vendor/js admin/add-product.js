@@ -45,7 +45,6 @@ const authorizedCategories = [
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
-    checkFirstProduct();
     const submitButton = document.getElementById('nextButton');
     const productTitleInput = document.getElementById('productTitle1');
     const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
@@ -93,6 +92,8 @@ submitButton.addEventListener('click', async function (event) {
     document.getElementById('publishButton').classList.remove('disabled');
     
 });
+
+    checkFirstProduct();
 
 });
 
