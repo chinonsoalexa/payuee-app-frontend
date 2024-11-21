@@ -98,7 +98,7 @@ submitButton.addEventListener('click', async function (event) {
 });
 
 function checkFirstProduct() {
-    if (localStorage.getItem("firstProductAdded") != "true") {
+    if (localStorage.getItem("firstProductAdded") == "second") {
         // Prompt the user to add their first product
         swal({
             title: "Let's add your first product!",
@@ -109,7 +109,7 @@ function checkFirstProduct() {
             },
         }).then(() => {
             // Focus the cursor on the title input after closing the alert
-            localStorage.setItem("firstProductAdded", "true");
+            localStorage.setItem("firstProductAdded", "last");
             document.getElementById("productTitle1").focus();
         })        
     }
@@ -163,7 +163,7 @@ async function postProduct() {
             
             const result = await response.json();
             showToastMessageS("Product posted successfully")
-            if (localStorage.getItem("firstProductAdded") == "true") {
+            if (localStorage.getItem("firstProductAdded") == "last") {
                 swal({
                     title: "Congratulations!",
                     text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",

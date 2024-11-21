@@ -524,7 +524,7 @@ async function setShippingFees() {
                 }).then((result) => {
                     if (result) {
                         // Redirect to the Add Product page
-                        localStorage.setItem("firstProductAdded", "false");
+                        localStorage.setItem("firstProductAdded", "second");
                         window.location.href = "add-products.html";
                     }
                 });
