@@ -18,7 +18,7 @@ function get_auth_status() {
         // logUserOutIfTokenIsExpired();
         // let's redirect to a non-authenticated page cause the user is not authenticated
         localStorage.removeItem('auth');
-        window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
+        window.location.href = 'https://payuee.com/e-shop/login_register';
     }
     document.addEventListener('DOMContentLoaded', function () {
         check_auth_status();
@@ -97,7 +97,7 @@ async function check_auth_status() {
                 // Add an event listener for the click event
                 upgradeButton.addEventListener("click", function() {
                     // Redirect to a different page (change the URL as needed)
-                    window.location.href = "https://payuee.com/e-shop/Demo3/pricing.html";  // Replace with your desired URL
+                    window.location.href = "https://payuee.com/e-shop/pricing.html";  // Replace with your desired URL
                 });
             } else {
                 // Subscription is still active, show Update button
@@ -108,7 +108,7 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'https://payuee.com/e-shop/Demo3/login_register';
+            window.location.href = 'https://payuee.com/e-shop/login_register';
         }
     }
 }
@@ -149,7 +149,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = 'https://payuee.com/e-shop/Demo3/login_register'
+        window.location.href = 'https://payuee.com/e-shop/login_register'
     } finally{
         // do nothing
     }

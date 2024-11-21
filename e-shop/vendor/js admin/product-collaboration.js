@@ -677,7 +677,7 @@ async function generateAiDescription(TitleData) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                window.location.replace('https://payuee.com/e-shop/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
@@ -760,14 +760,14 @@ async function generateAiTag(TitleData, productDescription) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                window.location.replace('https://payuee.com/e-shop/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
                 showToastMessageE('AI Description Generation Timed Out');
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
-                window.location.replace('https://payuee.com/e-shop/Demo3/login_register');
+                window.location.replace('https://payuee.com/e-shop/login_register');
                 logout();
             }else {
                 // displayErrorMessage();
