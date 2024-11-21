@@ -929,7 +929,7 @@ function renderUseGuide(product) {
 //           <div class="product-single__reviews-list">
 //             <div class="product-single__reviews-item">
 //               <div class="customer-avatar">
-//                 <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
+//                 <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="">
 //               </div>
 //               <div class="customer-review">
 //                 <div class="customer-name">
@@ -950,7 +950,7 @@ function renderUseGuide(product) {
 //             </div>
 //             <div class="product-single__reviews-item">
 //               <div class="customer-avatar">
-//                 <img loading="lazy" src="/e-shop/../images/avatar.jpg" alt="">
+//                 <img loading="lazy" src="/e-shop/images/avatar.jpg" alt="">
 //               </div>
 //               <div class="customer-review">
 //                 <div class="customer-name">

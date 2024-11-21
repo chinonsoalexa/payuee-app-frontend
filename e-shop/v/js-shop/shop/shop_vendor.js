@@ -97,7 +97,7 @@ async function getProducts() {
 
         // Call the function with the default and main image paths
         loadMainImage(
-            "/e-shop/../images/shop/shop_banner6.png",
+            "/e-shop/images/shop/shop_banner6.png",
             "https://payuee.com/image/"+responseData.vendor.shop_image
         );
 
@@ -783,7 +783,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/../images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
