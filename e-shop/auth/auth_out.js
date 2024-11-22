@@ -1,15 +1,15 @@
-
-get_auth_status();
-
-// this is for authenticated pages
+// Check if user is authenticated and redirect to the authenticated page if so
 function get_auth_status() {
     if (localStorage.getItem('auth') === 'true') {
-        // let's push user to auth page
+        // Push user to authenticated home page
         window.location.href = 'https://payuee.com/e-shop/home';
-    }
+    } else {
+        // Only check authentication status if not already authenticated
         check_auth_status();
+    }
 }
 
+// Check authentication status by calling the server API
 async function check_auth_status() {
     const apiUrl = "https://api.payuee.com/user-auth-status";
 
@@ -18,31 +18,62 @@ async function check_auth_status() {
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include', // set credentials to include cookies
+        credentials: 'include', // Include cookies with the request
     };
 
     try {
         const response = await fetch(apiUrl, requestOptions);
 
         if (!response.ok) {
-            const errorData = await response.json();
-
-            if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                logout();
-            } else {
-                logout();
-            }
+            // Redirect to logout if authentication fails
+            logout();
             return;
         }
 
         const responseData = await response.json(); // Parse response JSON
 
+        // Update local storage and redirect to home on successful authentication
         localStorage.setItem('auth', 'true');
         window.location.href = 'https://payuee.com/e-shop/home';
-    } finally {
+
+    } catch (error) {
+        console.error("Error checking authentication status:", error);
+        logout();
     }
 }
 
+// Function to log out the user and clear authentication state
+async function logout() {
+    const apiUrl = "https://api.payuee.com/log-out";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // Include cookies with the request
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            // Show error if logout request fails
+            showToastMessageE('An error occurred during logout.');
+            return;
+        }
+
+        const data = await response.json();
+        localStorage.removeItem('auth'); // Clear authentication state
+        window.location.href = 'https://payuee.com/e-shop/login_register'; // Redirect to login page
+
+    } catch (error) {
+        console.error("Error during logout:", error);
+        showToastMessageE("Failed to log out. Please try again.");
+    }
+}
+
+// Display error messages in a toast
 function showToastMessageE(message) {
     document.getElementById('toastError').textContent = message;
     const toastElement = document.getElementById('liveToast1');
@@ -50,33 +81,5 @@ function showToastMessageE(message) {
     toast.show();
 }
 
-async function logout() {
-    // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
-
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-    };
-    
-try {
-    const response = await fetch(apiUrl, requestOptions);
-    
-    if (!response.ok) {
-            // alert('an error occurred. Please try again');
-                if (!response.ok) {
-        showToastMessageE('an error occurred');
-        return;
-    }
-        return;
-      }
-        const data = await response.json();
-        localStorage.removeItem('auth')
-        // window.location.href = 'https://payuee.com/e-shop/login_register'
-    } finally{
-        // do nothing
-    }
-}
+// Initial call to check authentication status on page load
+get_auth_status();
