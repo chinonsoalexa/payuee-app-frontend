@@ -72,12 +72,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
     
-        // Password strength check (at least 8 characters, one letter, one number)
-        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        if (!passwordPattern.test(registerData.password)) {
+        // Password strength check (at least 8 characters, including at least one letter and one number)
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+        if (!passwordPattern.test(confirmPassword)) {
             showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
             return;
         }
+
     
         // Call the register API endpoint
         registerEshop(registerData.email, registerData.password, registerData.FirstName);
