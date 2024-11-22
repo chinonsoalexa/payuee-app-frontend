@@ -32,8 +32,19 @@ function checkUserFromURL() {
 document.getElementById('send_email_button').addEventListener('click', async function (event) {
     event.preventDefault(); // Prevent form submission
     
+    if (!isValidEmail(document.getElementById('customerNameEmailInput').value)) {
+        showToastMessageE("Please enter a valid email address");
+        return;
+    }
+
+    disableButton('send_email_button');
     await sendEmailOtp(document.getElementById('customerNameEmailInput').value);
 });
+
+function isValidEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  }
 
 async function sendEmailOtp(emailOTP) {
 
@@ -59,15 +70,49 @@ async function sendEmailOtp(emailOTP) {
         if (!response.ok) {
             // throw new Error(`HTTP error! Status: ${response.status}`);
             data = await response.json();
-            if (data.error == 'Failed to get previous email OTP') {
-                showError('otpError', "Email not found, please re-enter your email address.");
+            if (data.error == 'User already exist, please verify your email ID') {
+                showToastMessageE("User already exist, please verify your email ID");
             } else {
-                showError('otpError', 'An error occurred. Please try again.');
+                showToastMessageE('An error occurred. Please try again.');
             }
             return;
         } 
         const data = await response.json();
+
+        showToastMessageS(data.success);
+
     } finally {
-        // do nothing cause error has been handled
+        enableButton('send_email_button');
     }
+}
+
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
+}
+
+// Get the button element
+const sendEmailButton = document.getElementById("send_email_button");
+
+// Function to disable the button
+function disableButton(button_id) {
+    const sendEmailButton = document.getElementById(button_id);
+    sendEmailButton.disabled = true;
+    sendEmailButton.classList.add("disabled"); // Optional: add a disabled style class if desired
+}
+
+// Function to enable the button
+function enableButton(button_id) {
+    const sendEmailButton = document.getElementById(button_id);
+    sendEmailButton.disabled = false;
+    sendEmailButton.classList.remove("disabled"); // Optional: remove disabled style class
 }
