@@ -37,10 +37,17 @@ async function check_auth_status() {
 
         const responseData = await response.json(); // Parse response JSON
 
-            window.location.href = 'https://payuee.com/e-shop/home';
-             localStorage.setItem('user_auth', 'true');
+        localStorage.setItem('user_auth', 'true');
+        window.location.href = 'https://payuee.com/e-shop/home';
     } finally {
     }
+}
+
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1');
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
 }
 
 async function logout() {
@@ -61,7 +68,7 @@ try {
     if (!response.ok) {
             // alert('an error occurred. Please try again');
                 if (!response.ok) {
-        alert('an error occurred. Please try again');
+        showToastMessageE('an error occurred');
         return;
     }
         return;

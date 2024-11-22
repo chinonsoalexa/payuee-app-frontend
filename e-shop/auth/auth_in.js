@@ -48,6 +48,14 @@ async function check_auth_status() {
     }
 }
 
+
+function showToastMessageE(message) {
+    document.getElementById('toastError').textContent = message;
+    const toastElement = document.getElementById('liveToast1');
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+}
+
 async function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
@@ -65,10 +73,10 @@ try {
     
     if (!response.ok) {
             // alert('an error occurred. Please try again');
-                if (!response.ok) {
-        alert('an error occurred. Please try again');
-        return;
-    }
+        if (!response.ok) {
+            showToastMessageE('an error occurred');
+            return;
+        }
         return;
       }
         const data = await response.json();
