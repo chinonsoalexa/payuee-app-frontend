@@ -86,6 +86,46 @@ async function sendEmailOtp(emailOTP) {
     }
 }
 
+async function sendEmailOtp(emailOTP) {
+
+    // send a post request with the otp
+    const otp = {
+        Email: emailOTP,
+    };
+
+    const apiUrl = "https://api.payuee.com/app/forgotten-password-email";
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(otp),
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            // throw new Error(`HTTP error! Status: ${response.status}`);
+            data = await response.json();
+            if (data.error == 'User already exist, please verify your email ID') {
+                showToastMessageE("User already exist, please verify your email ID");
+            } else {
+                showToastMessageE('An error occurred. Please try again.');
+            }
+            return;
+        } 
+        const data = await response.json();
+
+        showToastMessageS(data.success);
+
+    } finally {
+        enableButton('send_email_button');
+    }
+}
+
 function showToastMessageS(message) {
     document.getElementById('toastMessage2').textContent = message;
     const toastElement = document.getElementById('liveToast3'); // Get the toast element
