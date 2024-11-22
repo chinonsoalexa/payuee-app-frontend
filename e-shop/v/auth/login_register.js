@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     const verifyButton = document.getElementById('verifyButton'); // Target the login button
     const verifyForm = document.forms['register-form'];
 
+    // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
+    document.querySelector('.js-show-register').addEventListener('click', function(e) {
+        e.preventDefault();
+        const registerTab = new bootstrap.Tab(document.getElementById('register-tab'));
+        registerTab.show();
+    });
+
     await loadStates();
 
     // Handle login button click
