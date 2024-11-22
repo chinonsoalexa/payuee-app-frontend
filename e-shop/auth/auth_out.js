@@ -3,7 +3,7 @@ get_auth_status();
 
 // this is for authenticated pages
 function get_auth_status() {
-    if (localStorage.getItem('user_auth') === 'true') {
+    if (localStorage.getItem('auth') === 'true') {
         // let's push user to auth page
         window.location.href = 'https://payuee.com/e-shop/home';
     }
@@ -37,7 +37,7 @@ async function check_auth_status() {
 
         const responseData = await response.json(); // Parse response JSON
 
-        localStorage.setItem('user_auth', 'true');
+        localStorage.setItem('auth', 'true');
         window.location.href = 'https://payuee.com/e-shop/home';
     } finally {
     }
@@ -74,7 +74,7 @@ try {
         return;
       }
         const data = await response.json();
-        localStorage.removeItem('user_auth')
+        localStorage.removeItem('auth')
         // window.location.href = 'https://payuee.com/e-shop/login_register'
     } finally{
         // do nothing

@@ -3,14 +3,14 @@ get_auth_status();
 
 // this is for authenticated pages
 function get_auth_status() {
-    if (localStorage.getItem('user_auth') !== 'true') {
+    if (localStorage.getItem('auth') !== 'true') {
         // let's clear auth local storage item
         //  let's log user out the users session has expired
             
         logout();
         // logUserOutIfTokenIsExpired();
         // let's redirect to a non-authenticated page cause the user is not authenticated
-        localStorage.removeItem('user_auth');
+        localStorage.removeItem('auth');
         window.location.href = 'https://payuee.com/e-shop/v/login_register';
     }
         check_auth_status();
@@ -43,7 +43,7 @@ async function check_auth_status() {
 
         const responseData = await response.json(); // Parse response JSON
 
-        localStorage.setItem('user_auth', 'true');
+        localStorage.setItem('auth', 'true');
     } finally {
     }
 }
@@ -80,7 +80,7 @@ try {
         return;
       }
         const data = await response.json();
-        localStorage.removeItem('user_auth')
+        localStorage.removeItem('auth')
         window.location.href = 'https://payuee.com/e-shop/login_register'
     } finally{
         // do nothing
