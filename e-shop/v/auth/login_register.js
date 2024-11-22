@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Handle login button click
     loginButton.addEventListener('click', function (event) {
         event.preventDefault();
+        
+        const form = document.getElementById("loginForm");
+
+        // Check if the form is valid
+        if (form.checkValidity()) {
+            // Get the form data
+        } else {
+            form.reportValidity(); // Show validation errors if any
+        }
+
         // Get the data from the login form
         const loginData = {
             email: loginForm.login_email.value.trim(),
@@ -45,6 +55,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     registerButton.addEventListener('click', function (event) {
         event.preventDefault();
+
+        const form = document.getElementById("registerForm");
+
+        // Check if the form is valid
+        if (form.checkValidity()) {
+            // Get the form data
+        } else {
+            form.reportValidity(); // Show validation errors if any
+        }
         
         // Get the data from the registration form
         const registerData = {

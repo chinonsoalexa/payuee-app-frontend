@@ -488,7 +488,7 @@
       <div class="tab-content pt-2" id="login_register_tab_content">
         <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
           <div class="login-form">
-            <form name="login-form" class="needs-validation" novalidate>
+            <form id="loginForm" name="login-form" class="needs-validation" novalidate>
               <div class="form-floating mb-3">
                 <input name="login_email" type="email" class="form-control form-control_gray" id="customerNameEmailInput1" placeholder="Email address *" required>
                 <label for="customerNameEmailInput1">Email address *</label>
@@ -531,7 +531,7 @@
         </div>
 
         <!-- REGISTER FORM -->
-        <div class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
+        <div id="registerForm" class="tab-pane fade" id="tab-item-register" role="tabpanel" aria-labelledby="register-tab">
           <div class="register-form">
             <form name="register-form" class="needs-validation" novalidate>
 
