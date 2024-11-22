@@ -28,10 +28,12 @@ function checkUserFromURL() {
 
             if (newPassword == "" || confirmPassword == "") {
                 showToastMessageE('Please fill in all fields with new password');
+                return;
             }
 
             if (newPassword !== confirmPassword) {
                 showToastMessageE('Passwords do not match');
+                return;
             }
 
             // Password strength check (at least 8 characters, one letter, one number)
@@ -145,9 +147,10 @@ async function confirmEmailOtp(user, confirmPassword, token) {
         const data = await response.json();
 
         showToastMessageS(data.success);
-        document.getElementById('customerNameEmailInput').value = '';
+        document.getElementById('customerNewPasswordInput').value = '';
+        document.getElementById('customerConfirmPasswordInput').value = '';
     } finally {
-        enableButton('send_email_button');
+        enableButton('confirm_password_button');
     }
 }
 
