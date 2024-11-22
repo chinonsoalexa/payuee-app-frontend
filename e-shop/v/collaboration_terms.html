@@ -191,6 +191,7 @@
       <path d="M5.44444 9.66664H8.55556V8.11109H5.44444V9.66664ZM0 0.333313V1.88887H14V0.333313H0ZM2.33333 5.77776H11.6667V4.2222H2.33333V5.77776Z" fill="currentColor"/>
     </symbol>
   </svg>
+
   <!-- Mobile Header -->
   <div class="header-mobile header_sticky">
     <div class="container d-flex align-items-center h-100">
@@ -245,7 +246,7 @@
         <div class="overflow-hidden">
           <ul class="navigation__list list-unstyled position-relative">
             <li class="navigation__item">
-              <a href="e-shop/index.html" class="navigation__link js-nav-right d-flex align-items-center">Home</a>
+              <a href="../../index.html" class="navigation__link js-nav-right d-flex align-items-center">Home</a>
             </li>
 
             <li class="navigation__item">
@@ -273,7 +274,7 @@
                 <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg>Pages</a>
                 <ul class="list-unstyled">
                   <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-                  
+                  <li class="sub-menu__item"><a href="login_register.html" class="menu-link menu-link_us-s">Login / Register</a></li>
                   <li class="sub-menu__item"><a href="lookbook.html" class="menu-link menu-link_us-s">Showroom</a></li>
                   <li class="sub-menu__item"><a href="../../index-in.html" class="menu-link menu-link_us-s">e-Pay</a></li>
             <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">FaQ</a></li>
@@ -295,7 +296,7 @@
 
       <div class="border-top mt-auto pb-2">
           <div id="myAccount1" class="customer-links container mt-4 mb-2 pb-1">
-            <a href="account_dashboard.html">
+            <a href="login_register.html">
               <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
               <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
             </a>
@@ -354,7 +355,7 @@
         <nav class="navigation">
           <ul class="navigation__list list-unstyled d-flex">
             <li class="navigation__item">
-              <a href="e-shop/index.html" class="navigation__link">Home</a>
+              <a href="../../index.html" class="navigation__link">Home</a>
             </li>
             <li class="navigation__item">
               <a href="#" class="navigation__link">Shop List</a>
@@ -374,7 +375,7 @@
               <a href="#" class="navigation__link">Info</a>
               <ul class="default-menu list-unstyled">
                 <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-                
+                <li class="sub-menu__item"><a href="login_register.html" class="menu-link menu-link_us-s">Login / Register</a></li>
                 <li class="sub-menu__item"><a href="lookbook.html" class="menu-link menu-link_us-s">Showroom</a></li>
                 <li class="sub-menu__item"><a href="../../index-in.html" class="menu-link menu-link_us-s">e-Pay</a></li>
             <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">FaQ</a></li>
@@ -430,10 +431,8 @@
           </div><!-- /.header-tools__item hover-container -->
 
           <div class="header-tools__item hover-container">
-           <a class="header-tools__item" href="account_dashboard.html">
-              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <use href="#icon_user" />
-              </svg>
+            <a class="header-tools__item js-open-aside" href="#" data-aside="customerForms">
+              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
             </a>
           </div>
 
@@ -456,60 +455,117 @@
   <!-- End Header Type 2 -->
 
   <main>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3 toast-index toast-rtl">
+      <div class="toast hide toast fade" id="liveToast1" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-between alert-secondary">
+          <div class="toast-body" id="toastError" style="color: red;">...</div>
+          <button class="btn-close btn-close-white me-2 m-auto" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3 toast-index toast-rtl">
+      <div class="toast hide toast fade" id="liveToast3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header toast-img">
+          <img class="rounded me-2" src="images/default_img.png" alt="profile">
+          <strong id="vendorName" class="me-auto">Payuee Shoppers</strong>
+          <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body toast-dark">
+          <h6 class="mb-2" id="toastMessage2">...</h6>
+        </div>
+      </div>
+    </div> 
     <div class="mb-5 pb-4"></div>
+
     <section class="container mw-930 lh-30">
-      <h2 class="section-title text-uppercase fw-bold mb-5">Terms and Conditions for Use of Payuee e-Shop Platform</h2>
-      
-      <h6 class="mb-3">Your use of this platform is governed by these terms of use</h6>
-      <p class="mb-4 pb-3">By accessing or using Payuee e-Shop ("Platform" or "Service"), you agree to comply with these Terms and Conditions ("Terms"), which form a legally binding agreement between you and Payuee. If you do not agree to these Terms, please do not use our services.</p>
-      
-      <h6 class="mb-3">Eligibility</h6>
-      <p class="mb-4 pb-3">You must be at least 18 years old to register and use this platform. By using Payuee, you affirm that you meet this age requirement.</p>
-      
-      <h6 class="mb-3">Account Registration and Security</h6>
-      <p class="mb-4 pb-3">You are responsible for ensuring that all registration information provided is accurate, complete, and up to date. Unauthorized use of your account must be reported to Payuee immediately.</p>
+    <h2 class="section-title text-uppercase fw-bold mb-5">Terms and Conditions for Vendor Collaboration on Payuee e-Shop</h2>
     
-      <h6 class="mb-3">Use of the Platform</h6>
-      <p class="mb-4 pb-3">You agree to use Payuee e-Shop only for lawful purposes. Unauthorized use includes but is not limited to selling prohibited items, misrepresenting product information, and using bots to interfere with the platform.</p>
-      
-      <h6 class="mb-3">Vendor Obligations</h6>
-      <p class="mb-4 pb-3">Vendors must ensure that listings comply with product guidelines and provide accurate information regarding shipping fees and terms of sale. Vendors must also pay applicable fees and taxes as required by Payuee for transactions conducted on the platform.</p>
-      
-      <h6 class="mb-3">Buyer Obligations</h6>
-      <p class="mb-4 pb-3">Buyers must make prompt payments for purchases and abide by all platform rules regarding refunds, exchanges, and dispute resolution.</p>
-      
-      <h6 class="mb-3">Fees and Payment</h6>
-      <p class="mb-4 pb-3">Payuee reserves the right to charge fees for certain services and may amend these fees with prior notice. Failure to pay applicable fees may result in account suspension or termination.</p>
-      
-      <h6 class="mb-3">Content Ownership and Intellectual Property</h6>
-      <p class="mb-4 pb-3">By submitting any content on Payuee, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, and distribute such content in connection with the platform.</p>
-      
-      <h6 class="mb-3">User Conduct and Prohibited Activities</h6>
-      <p class="mb-4 pb-3">You agree not to engage in conduct that is harmful, threatening, abusive, or otherwise objectionable, including harassment, posting misleading information, and engaging in spamming or phishing.</p>
-      
-      <h6 class="mb-3">Termination and Suspension of Account</h6>
-      <p class="mb-4 pb-3">Payuee reserves the right to suspend or terminate any account at its sole discretion, including for violations of these Terms or for legal non-compliance.</p>
-      
-      <h6 class="mb-3">Limitation of Liability</h6>
-      <p class="mb-4 pb-3">Payuee will not be liable for any indirect, incidental, or consequential damages arising from your use of the platform, including loss of revenue or data.</p>
-      
-      <h6 class="mb-3">Dispute Resolution</h6>
-      <p class="mb-4 pb-3">Disputes arising from the use of Payuee e-Shop will be resolved through binding arbitration in Port Harcourt Nigeria in accordance with applicable arbitration rules.</p>
-      
-      <h6 class="mb-3">Modifications</h6>
-      <p class="mb-4 pb-3">Payuee reserves the right to modify these Terms at any time. Continued use of the platform after any changes signifies acceptance of the revised Terms.</p>
-      
-      <h6 class="mb-3">Governing Law & Jurisdiction</h6>
-      <p class="mb-4 pb-3">These Terms and Conditions are governed by and construed in accordance with the laws of Nigeria. You agree to submit to the exclusive jurisdiction of the courts located within Port Harcourt Nigeria for the resolution of any disputes.</p>
-      
-      <h6 class="mb-3">Contact Information</h6>
-      <p class="mb-4 pb-3">For questions or concerns regarding these Terms, please contact us at support@payuee.com.</p>
-    </section>
+    <h6 class="mb-3">Overview and Acceptance</h6>
+    <p class="mb-4 pb-3">
+      These Terms and Conditions ("Terms") govern the collaborative relationship between vendors ("Vendors" or "you") on Payuee e-Shop ("Platform" or "Service"). By participating as a vendor on this platform, whether listing or reposting products, you agree to comply with these Terms, which form a legally binding agreement between you and Payuee. If you do not agree to these Terms, please refrain from using the Platform.
+    </p>
+    
+    <h6 class="mb-3">Eligibility and Vendor Registration</h6>
+    <p class="mb-4 pb-3">
+      To participate as a Vendor, you must be a registered business entity or an individual of at least 18 years of age. Vendors are required to complete registration, provide accurate information, and ensure all submitted details are up-to-date. Payuee reserves the right to suspend or terminate any Vendor account in case of incomplete or misleading information.
+    </p>
+    
+    <h6 class="mb-3">Collaboration Structure and Responsibilities</h6>
+    <p class="mb-4 pb-3">
+      Vendors may choose to list products originally or repost existing products from other vendors. Responsibilities include but are not limited to:
+      <ul>
+        <li>Providing accurate descriptions, images, and pricing for all products listed or reposted.</li>
+        <li>Ensuring compliance with all applicable laws, regulations, and Payuee guidelines for product sales and advertising.</li>
+        <li>Updating any product details immediately upon any changes (e.g., price adjustments, availability, etc.).</li>
+      </ul>
+    </p>
+    
+    <h6 class="mb-3">Revenue Sharing and Payment Terms</h6>
+    <p class="mb-4 pb-3">
+      Payuee will facilitate payments for products sold on the Platform, including original and reposted items. The following terms apply:
+      <ul>
+        <li>Revenue for reposted products will be shared between the original and reposting vendors according to the applicable revenue-sharing percentage specified by Payuee. Payuee may change the revenue-sharing model with prior notice.</li>
+        <li>Vendors are responsible for all applicable fees, taxes, and deductions as stipulated by Payuee.</li>
+        <li>Vendors may withdraw their earnings at any time after the successful completion of sales, provided there are no disputes associated with the transactions. Payments will be made available in the vendor's account for withdrawal following the finalization of each sale.</li>
+      </ul>
+    </p>
+    
+    <h6 class="mb-3">Intellectual Property and Content Usage</h6>
+    <p class="mb-4 pb-3">
+      By listing or reposting products, Vendors grant Payuee a non-exclusive, worldwide, royalty-free license to use, modify, and distribute product images and descriptions in connection with the Platform. Vendors are responsible for ensuring they have the right to grant this license for any content they upload.
+    </p>
+    
+    <h6 class="mb-3">Prohibited Activities</h6>
+    <p class="mb-4 pb-3">
+      Vendors agree not to engage in any activities that could harm Payuee or other vendors, including but not limited to:
+      <ul>
+        <li>Posting false or misleading information about products or transactions.</li>
+        <li>Attempting to circumvent Payuee’s revenue-sharing or payment structure.</li>
+        <li>Engaging in any form of unauthorized communication with buyers outside of Payuee.</li>
+      </ul>
+    </p>
+    
+    <h6 class="mb-3">Dispute Resolution and Order Management</h6>
+    <p class="mb-4 pb-3">
+      Payuee reserves the right to resolve disputes between vendors or between vendors and buyers in its sole discretion. Vendors agree to comply with Payuee’s dispute resolution procedures, including, if applicable:
+      <ul>
+        <li>Providing requested information regarding any disputed transactions.</li>
+        <li>Honoring refund or exchange requests that comply with Payuee’s platform policies.</li>
+      </ul>
+    </p>
+    
+    <h6 class="mb-3">Termination and Account Suspension</h6>
+    <p class="mb-4 pb-3">
+      Payuee reserves the right to suspend or terminate any vendor account for violations of these Terms or for any activity deemed detrimental to the platform. Suspended or terminated vendors forfeit any remaining funds in their account pending a thorough review.
+    </p>
+    
+    <h6 class="mb-3">Limitation of Liability</h6>
+    <p class="mb-4 pb-3">
+      To the extent permitted by law, Payuee will not be liable for any indirect, incidental, or consequential damages arising from vendor collaboration on the platform, including lost profits, revenue, or data. Payuee’s liability shall be limited to the amount earned by the vendor in the last Transaction.
+    </p>
+    
+    <h6 class="mb-3">Modifications and Updates</h6>
+    <p class="mb-4 pb-3">
+      Payuee reserves the right to modify these Terms at any time, with prior notification. Continued participation on the platform after modifications signify acceptance of the revised Terms.
+    </p>
+    
+    <h6 class="mb-3">Governing Law and Jurisdiction</h6>
+    <p class="mb-4 pb-3">
+      These Terms are governed by and construed under the laws of Nigeria. Any disputes shall be resolved in the Federal Court of Nigeria, with the parties agreeing to submit to exclusive jurisdiction.
+    </p>
+    
+    <h6 class="mb-3">Contact Information</h6>
+    <p class="mb-4 pb-3">
+      For questions, concerns, or further clarification regarding these Terms, please reach out to Payuee at support@payuee.com.
+    </p>
+  </section>
+
+    
   </main>
 
   <div class="mb-5 pb-xl-5"></div>
   
-  <!-- Footer Type 1 -->
   <!-- Footer Type 2 -->
   <footer class="footer footer_type_2">
 
@@ -557,13 +613,13 @@
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Shop</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="shop-outfits.html" class="menu-link menu-link_us-s">Shop Outfits</a></li>
-            <li class="sub-menu__item"><a href="shop-jewelry.html" class="menu-link menu-link_us-s">Shop Jewelry</a></li>
-            <li class="sub-menu__item"><a href="shop-car.html" class="menu-link menu-link_us-s">Shop Cars</a></li>
-            <li class="sub-menu__item"><a href="shop-tools.html" class="menu-link menu-link_us-s">Shop Tools</a></li>
-            <li class="sub-menu__item"><a href="shop-gadgets.html" class="menu-link menu-link_us-s">Shop Gadgets</a></li>
-            <li class="sub-menu__item"><a href="shop-kids.html" class="menu-link menu-link_us-s">Shop Kid Outfits</a></li>
-            <li class="sub-menu__item"><a href="shop.html" class="menu-link menu-link_us-s">Shop All</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-outfits.html" class="menu-link menu-link_us-s">Shop Outfits</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-jewelry.html" class="menu-link menu-link_us-s">Shop Jewelry</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-car.html" class="menu-link menu-link_us-s">Shop Cars</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-tools.html" class="menu-link menu-link_us-s">Shop Tools</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-gadgets.html" class="menu-link menu-link_us-s">Shop Gadgets</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop-kids.html" class="menu-link menu-link_us-s">Shop Kid Outfits</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop.html" class="menu-link menu-link_us-s">Shop All</a></li>
           </ul>
         </div><!-- /.footer-column -->
 
@@ -571,11 +627,11 @@
           <h6 class="sub-menu__title text-uppercase">Help</h6>
           <ul class="sub-menu__list list-unstyled">
             <li class="sub-menu__item"><a href="contact.html" class="menu-link menu-link_us-s">Customer Service</a></li>
-            <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-            <li class="sub-menu__item"><a href="shop_order_tracking.html" class="menu-link menu-link_us-s">Order Tracking</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/shop_order_tracking.html" class="menu-link menu-link_us-s">Order Tracking</a></li>
             <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Find a Store</a></li>
             <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Legal & Privacy</a></li>
-            <li class="sub-menu__item"><a href="../vendor/dashboard.html" class="menu-link menu-link_us-s">Vendor Dashboard</a></li>
+            <li class="sub-menu__item"><a href="https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/../vendor/dashboard.html" class="menu-link menu-link_us-s">Vendor Dashboard</a></li>
             <li class="sub-menu__item"><a href="https://payuee.com/video-tutorial" class="menu-link menu-link_us-s">Tutorials</a></li>
           </ul>
         </div><!-- /.footer-column -->
@@ -583,13 +639,11 @@
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Company</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="contact.html" class="menu-link menu-link_us-s">Customer Service</a></li>
-            <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-            <li class="sub-menu__item"><a href="shop_order_tracking.html" class="menu-link menu-link_us-s">Order Tracking</a></li>
-            <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Find a Store</a></li>
-            <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Legal & Privacy</a></li>
-            <li class="sub-menu__item"><a href="../vendor/dashboard.html" class="menu-link menu-link_us-s">Vendor Dashboard</a></li>
-            <li class="sub-menu__item"><a href="https://payuee.com/video-tutorial" class="menu-link menu-link_us-s">Tutorials</a></li>
+            <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">About Us</a></li>
+            <li class="sub-menu__item"><a href="pricing.html" class="menu-link menu-link_us-s">Pricing</a></li>
+            <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">FaQ</a></li>
+            <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Terms</a></li>
+            <li class="sub-menu__item"><a href="contact.html" class="menu-link menu-link_us-s">Contact Us</a></li>
           </ul>
         </div><!-- /.footer-column -->
         
@@ -659,9 +713,149 @@
     </div><!-- /.row -->
   </footer><!-- /.footer-mobile container position-fixed d-md-none bottom-0 -->
 
-  <!-- Customer Login Form Start -->
+  <!-- Customer Login Form -->
+  <div class="aside aside_right overflow-hidden customer-forms" id="customerForms">
+    <div class="customer-forms__wrapper d-flex position-relative">
 
-<!-- Customer Login Form End -->
+      <!-- LOGIN FORM -->
+      <div class="customer__login">
+        <div class="aside-header d-flex align-items-center">
+          <h3 class="text-uppercase fs-6 mb-0">Login</h3>
+          <button class="btn-close-lg js-close-aside ms-auto"></button>
+        </div><!-- /.aside-header -->
+
+        <form id="loginForm" name="login-form" class="aside-content">
+          <div class="form-floating mb-3">
+            <input name="login_email" type="email" class="form-control form-control_gray" id="customerNameEmailInput1" placeholder="Email address *" required>
+            <label for="customerNameEmailInput1">Email address *</label>
+          </div>
+          
+
+          <div class="pb-3"></div>
+
+          <div class="form-floating mb-3">
+            <input name="login_password" type="password" class="form-control form-control_gray" id="customerPasswodInput" placeholder="Password *" required>
+            <label for="customerPasswodInput">Password *</label>
+          </div>
+
+          <div class="d-flex align-items-center mb-3 pb-2">
+            <div class="form-check mb-0">
+              <input name="remember" class="form-check-input form-check-input_fill" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label text-secondary" for="flexCheckDefault">Remember me</label>
+            </div>
+            <a href="reset_password.html" class="btn-text ms-auto">Lost password?</a>
+          </div>
+
+          <button id="loginButton" class="btn btn-primary w-100 text-uppercase" type="button">Log In</button>
+
+          <!-- PAYUEE Login Button -->
+          <div class="text-center mt-4">
+            <span class="text-secondary">or</span>
+            <button 
+              class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center mt-3"
+              onclick="window.location.href='../../page/signin-new.html';">
+              <img src="images/payuee_signin.png" alt="Payuee Logo" class="me-2" width="40" height="40">
+              Login with PAYUEE
+            </button>            
+          </div>
+
+          <div class="customer-option mt-4 text-center">
+            <span class="text-secondary">No account yet?</span>
+            <a href="#register-tab" class="btn-text js-show-register">Create Account</a>
+          </div>
+        </form>
+      </div><!-- /.customer__login -->
+
+      <!-- REGISTER FORM -->
+      <div class="customer__register">
+        <div class="aside-header d-flex align-items-center">
+          <h3 class="text-uppercase fs-6 mb-0">Create an account</h3>
+          <button class="btn-close-lg js-close-aside btn-close-aside ms-auto"></button>
+        </div><!-- /.aside-header -->
+
+        <form name="register-form" class="aside-content">
+          <div id="otpDiv" class="form-floating mb-3 d-none">
+            <input name="register_otp" type="number" class="form-control form-control_gray" id="customerOtpRegisterInput" placeholder="OTP Code" required>
+            <label for="customerOtpRegisterInput">OTP Code</label>
+          </div>
+
+          <div class="pb-1"></div>
+
+          <div id="nameDiv" class="form-floating mb-3">
+            <input name="register_username" type="text" class="form-control form-control_gray" id="customerNameRegisterInput" placeholder="Username" required>
+            <label for="customerNameRegisterInput">Username</label>
+          </div>
+
+          <div class="pb-1"></div>
+
+          <div id="emailDiv" class="form-floating mb-3">
+            <input name="register_email" type="email" class="form-control form-control_gray" id="customerEmailRegisterInput" placeholder="Email address *" required>
+            <label for="customerEmailRegisterInput">Email address *</label>
+          </div>
+
+          <div class="pb-1"></div>
+
+          <div id="stateDiv" class="col-md-12">
+            <div class="search-field my-3">
+              <div class="form-label-fixed hover-container" id="formeStateList">
+                <label for="search-dropdown" class="form-label">States / Region*</label>
+                <div class="js-hover__open" id="statesInput">
+                  <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a State...">
+                </div>
+                <div class="filters-container js-hidden-content mt-2">
+                  <div class="search-field__input-wrapper">
+                    <input id="stateSearchInput" type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
+                  </div>
+                  <ul class="search-suggestion list-unstyled" id="state-list">
+                    <!-- this is where states would be rendered -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pb-1"></div>
+
+          <div id="cityDiv" class="col-md-12">
+            <div class="search-field my-3">
+                <div class="form-label-fixed hover-container" id="formeCityList">
+                    <label for="city-dropdown" class="form-label">Town / City*</label>
+                    <div class="js-hover__open" id="citiesInput">
+                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="city-dropdown" name="search-keyword" readonly placeholder="Choose a City...">
+                    </div>
+                    <div class="filters-container js-hidden-content mt-2">
+                        <div class="search-field__input-wrapper">
+                            <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" id="citySearchInput" placeholder="Search">
+                        </div>
+                        <ul class="search-suggestion list-unstyled" id="city-list">
+                            <!-- This is where cities would be rendered -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="pb-1"></div>
+
+          <div id="passwordDiv" class="form-floating mb-3">
+            <input name="register_password" type="password" class="form-control form-control_gray" id="customerPasswodRegisterInput" placeholder="Password *" required>
+            <label for="customerPasswodRegisterInput">Password *</label>
+          </div>
+
+          <p class="text-secondary mb-4">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p>
+
+          <button id="registerButton" class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+          <button id="verifyButton" class="btn btn-primary w-100 text-uppercase d-none" type="submit">Verify</button>
+
+          <div class="customer-option mt-4 text-center">
+            <span class="text-secondary">Already have account?</span>
+            <a href="#" class="btn-text js-show-login">Login</a>
+          </div>
+        </form>
+      </div><!-- /.customer__register -->
+
+    </div><!-- /.customer-forms__wrapper -->
+  </div><!-- /.aside aside_right -->
 
   <!-- Cart Drawer -->
   <div class="aside aside_right overflow-hidden cart-drawer" id="cartDrawer">
@@ -1070,10 +1264,11 @@
 
   <!-- js login/logout code -->
   <script src="js-shop/auth/side-login/auth.js"></script>
+  <!-- Toast file -->
+  <script src="../vendor/js/notify/custom-notify.js"></script>
 
 </body>
 
-<!-- Mirrored from payuee-html.flexkitux.com/terms.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 22:36:46 GMT -->
 </html>
 
 <!--
