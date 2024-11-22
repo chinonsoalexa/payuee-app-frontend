@@ -119,7 +119,7 @@ function validateAndSendFunds() {
     } else if (sendFundsToStatus == "paystack") {
         BankType = "paystack";
         AccountNumber = document.getElementById("AccountNumber").value;
-        paystackAmount = document.getElementById("AmountToTransfer").value;
+        payueeAmount = document.getElementById("AmountToTransfer").value;
         if (AccountNumber == "") {
             validated = false;
             showError('accountNumberError', "Please enter an account number");
@@ -127,13 +127,13 @@ function validateAndSendFunds() {
             validated = false;
             showError('accountNumberError', "Please enter a complete account number");
         }
-        if (paystackAmount == "") {
+        if (payueeAmount == "") {
             validated = false;
             showError('amountToTransferError', "Please enter an amount to transfer");
-        } else if (paystackAmount < 100) {
+        } else if (payueeAmount < 100) {
             validated = false;
             showError('amountToTransferError', "Please minimum transfer amount is ₦100");
-        } else if (paystackAmount > 100000) {
+        } else if (payueeAmount > 100000) {
             validated = false;
             showError('amountToTransferError', "Please maximum transfer amount is ₦100,000");
         }
@@ -143,11 +143,26 @@ function validateAndSendFunds() {
         if (sendFundsToStatus == "payuee") {
             FundsToSendToPayuee(payueeEmailId, payueeAmount);
         } else if (sendFundsToStatus == "paystack") {
-            FundsToSendToPaystack(AccountName, paystackAmount);
+            transCharge = calculateTotalCharge(payueeAmount);
+            FundsToSendToPaystack(AccountName, payueeAmount);
         }
     }
 }
 
+function calculateTotalCharge(originalPrice) {
+    let additionalPercentage = 1.5;
+    let paystackPercentage = 1.5;
+    
+    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
+    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
+    let secondPrice = totalAmount - originalPrice;
+
+    if (originalPrice > 5000) {
+        return Math.ceil(secondPrice += 25);
+    }
+
+    return Math.ceil(secondPrice += 5);
+}
 
 function FundsToSendToPayuee(email, amount) {
     const installPopup = document.getElementById('balance-popup');
