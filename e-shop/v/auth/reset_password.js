@@ -20,26 +20,49 @@ function checkUserFromURL() {
         // Add a class
         reset_password.classList.remove("d-none");
 
+        document.getElementById('confirm_password_button').addEventListener('click', async function (event) {
+            event.preventDefault(); // Prevent form submission
+            
+            let newPassword = document.getElementById('customerNewPasswordInput').value;
+            let confirmPassword = document.getElementById('customerConfirmPasswordInput').value;
+
+            if (newPassword == "" || confirmPassword == "") {
+                showToastMessageE('Please fill in all fields with new password');
+            }
+
+            if (newPassword !== confirmPassword) {
+                showToastMessageE('Passwords do not match');
+            }
+
+            // Password strength check (at least 8 characters, one letter, one number)
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(confirmPassword)) {
+                showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
+                return;
+            }
+        
+            disableButton('confirm_password_button');
+            await confirmEmailOtp(user, confirmPassword, token);
+        });
     } else {
         // Select the element you want to modify
         const send_email = document.getElementById("send_email");
         // Remove a class
         send_email.classList.remove("d-none");
+
+        document.getElementById('send_email_button').addEventListener('click', async function (event) {
+            event.preventDefault(); // Prevent form submission
+            
+            if (!isValidEmail(document.getElementById('customerNameEmailInput').value)) {
+                showToastMessageE("Please enter a valid email address");
+                return;
+            }
+        
+            disableButton('send_email_button');
+            await sendEmailOtp(document.getElementById('customerNameEmailInput').value);
+        });
     }
 }
-
-
-document.getElementById('send_email_button').addEventListener('click', async function (event) {
-    event.preventDefault(); // Prevent form submission
-    
-    if (!isValidEmail(document.getElementById('customerNameEmailInput').value)) {
-        showToastMessageE("Please enter a valid email address");
-        return;
-    }
-
-    disableButton('send_email_button');
-    await sendEmailOtp(document.getElementById('customerNameEmailInput').value);
-});
 
 function isValidEmail(email) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -86,14 +109,16 @@ async function sendEmailOtp(emailOTP) {
     }
 }
 
-async function sendEmailOtp(emailOTP) {
+async function confirmEmailOtp(user, confirmPassword, token) {
 
     // send a post request with the otp
     const otp = {
-        Email: emailOTP,
+        Email: user,
+        SentOTP: token,
+        Password: confirmPassword,
     };
 
-    const apiUrl = "https://api.payuee.com/app/forgotten-password-email";
+    const apiUrl = "https://api.payuee.com/app/forgotten-password-verification";
 
     const requestOptions = {
         method: "POST",
@@ -120,7 +145,7 @@ async function sendEmailOtp(emailOTP) {
         const data = await response.json();
 
         showToastMessageS(data.success);
-
+        document.getElementById('customerNameEmailInput').value = '';
     } finally {
         enableButton('send_email_button');
     }
