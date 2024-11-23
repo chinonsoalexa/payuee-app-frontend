@@ -65,10 +65,10 @@ async function logout() {
 
         const data = await response.json();
         localStorage.removeItem('auth'); // Clear authentication state
-        window.location.href = 'https://payuee.com/e-shop/v/login_register'; // Redirect to login page
+        location.replace('https://payuee.com/e-shop/v/login_register'); // Redirect to login page
 
     } catch (error) {
-        console.error("Error during logout:", error);
+        // console.error("Error during logout:", error);
         showToastMessageE("Failed to log out. Please try again.");
     }
 }
