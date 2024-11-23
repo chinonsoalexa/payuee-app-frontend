@@ -75,6 +75,17 @@
 .image-preview-container img:hover {
   opacity: 0.9; /* Slight fade on hover */
 }
+
+.card-header button i[data-feather="chevron-down"] {
+    color: white; /* Change to white for visibility */
+    width: 18px;  /* Adjust size if necessary */
+    height: 18px;
+}
+
+.card-header button span i {
+    margin-right: 8px; /* Add spacing between the question icon and text */
+}
+
   </style>
 </head>
 
@@ -331,9 +342,11 @@
                     <div class="card">
                       <div class="card-header">
                         <h5 class="mb-0">
-                          <button class="btn btn-link collapsed ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon" aria-expanded="false" aria-controls="collapseicon">
-                            <i data-feather="help-circle"></i> How do I create a vendor account on Payuee?
-                            <i data-feather="chevron-down" class="ms-auto"></i>
+                          <button class="btn btn-link collapsed ps-0 d-flex justify-content-between align-items-center w-100" 
+                                  data-bs-toggle="collapse" data-bs-target="#collapseicon" 
+                                  aria-expanded="false" aria-controls="collapseicon">
+                            <span><i data-feather="help-circle"></i> How do I create a vendor account on Payuee?</span>
+                            <i data-feather="chevron-down"></i> <!-- Dropdown arrow icon -->
                           </button>
                         </h5>
                       </div>
@@ -342,7 +355,7 @@
                           To create a vendor account, go to the Payuee website and click "Sign Up" to register as a vendor. Fill in the required details, upload necessary documents, and your account will be set up for approval.
                         </div>
                       </div>
-                    </div>
+                    </div>                    
                     
                     <div class="card">
                       <div class="card-header">
