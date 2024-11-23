@@ -2,6 +2,7 @@
 get_auth_status();
 
 document.addEventListener('DOMContentLoaded', function () {
+    feather.replace();
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
         logout();
