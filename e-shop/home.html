@@ -309,7 +309,7 @@
                 <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg>Pages</a>
                 <ul class="list-unstyled">
                   <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-                  <li class="sub-menu__item"><a href="login_register.html" class="menu-link menu-link_us-s">Login / Register</a></li>
+                  
                   <li class="sub-menu__item"><a href="lookbook.html" class="menu-link menu-link_us-s">Showroom</a></li>
                   <li class="sub-menu__item"><a href="../../index-in.html" class="menu-link menu-link_us-s">e-Pay</a></li>
             <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">FaQ</a></li>
@@ -332,7 +332,7 @@
 
       <div class="border-top mt-auto pb-2">
           <div id="myAccount1" class="customer-links container mt-4 mb-2 pb-1">
-            <a href="login_register.html">
+            <a href="account_dashboard.html">
               <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
               <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
             </a>
@@ -379,7 +379,7 @@
   </div><!-- /.header-mobile -->
 
   <!-- Header Type 2 -->
-  <header id="header" class="header header-fullwidth header-transparent-bg">
+  <header id="header" class="header header_sticky">
     <div class="container">
       <div class="header-desk header-desk_type_1">
         <div class="logo">
@@ -391,7 +391,7 @@
         <nav class="navigation">
           <ul class="navigation__list list-unstyled d-flex">
             <li class="navigation__item">
-              <a href="#" class="navigation__link">Home</a>
+              <a href="e-shop/index.html" class="navigation__link">Home</a>
             </li>
             <li class="navigation__item">
               <a href="#" class="navigation__link">Shop List</a>
@@ -411,7 +411,7 @@
               <a href="#" class="navigation__link">Info</a>
               <ul class="default-menu list-unstyled">
                 <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
-                <li class="sub-menu__item"><a href="login_register.html" class="menu-link menu-link_us-s">Login / Register</a></li>
+                
                 <li class="sub-menu__item"><a href="lookbook.html" class="menu-link menu-link_us-s">Showroom</a></li>
                 <li class="sub-menu__item"><a href="../../index-in.html" class="menu-link menu-link_us-s">e-Pay</a></li>
             <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">FaQ</a></li>
@@ -467,12 +467,14 @@
             </div><!-- /.search-popup -->
           </div><!-- /.header-tools__item hover-container -->
 
-          <div id="myAccount1" class="customer-links container mt-4 mb-2 pb-1">
-            <a href="account_dashboard.html">
-              <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
-              <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
+          <div class="header-tools__item hover-container">
+           <a class="header-tools__item" href="account_dashboard.html">
+              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon_user" />
+              </svg>
             </a>
           </div>
+
           
 
           <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
@@ -1612,7 +1614,7 @@
 
   <!-- <hr class="mt-2 text-secondary"> -->
 
-  <!-- Footer Type 2 -->
+  <!-- Footer Type 1 -->
   <footer class="footer footer_type_2">
 
     <div class="footer-middle container">
@@ -1694,7 +1696,7 @@
             <li class="sub-menu__item"><a href="https://payuee.com/video-tutorial" class="menu-link menu-link_us-s">Tutorials</a></li>
           </ul>
         </div><!-- /.footer-column -->
-
+        
         <div class="footer-column mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Opening Time</h6>
           <ul class="list-unstyled">
@@ -1723,7 +1725,7 @@
         </div><!-- /.footer-settings -->
       </div><!-- /.container d-flex align-items-center -->
     </div><!-- /.footer-bottom container -->
-  </footer>
+  </footer><!-- /.footer footer_type_1 -->
 
   <footer class="footer-mobile container w-100 px-5 d-md-none bg-body">
     <div class="row text-center">
