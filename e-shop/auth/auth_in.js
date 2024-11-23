@@ -1,15 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Function to log out
-    async function logout() {
-        // Your logout functionality
-    }
 
     // Check if `LoginLink1` exists and add event listener
     const loginLink1 = document.getElementById('LoginLink1');
     if (loginLink1) {
         loginLink1.addEventListener('click', function (e) {
             e.preventDefault();
-            logout();
+            logout2();
         });
     }
 
@@ -18,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginLink2) {
         loginLink2.addEventListener('click', function (e) {
             e.preventDefault();
-            logout();
+            logout2();
         });
     }
 });
@@ -84,6 +80,34 @@ async function logout() {
         // If logout API call succeeds, clear local storage and redirect
         localStorage.removeItem('auth');
         window.location.href = 'https://payuee.com/e-shop/login_register';
+
+    } catch (error) {
+        console.error("Error during logout:", error);
+        showToastMessageE("Failed to log out. Please try again.");
+    }
+}
+
+async function logout2() {
+    const apiUrl = "https://api.payuee.com/log-out";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // Set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            showToastMessageE('An error occurred while logging out.');
+            return;
+        }
+
+        // If logout API call succeeds, clear local storage and redirect
+        localStorage.removeItem('auth');
+        window.location.href = 'https://payuee.com/e-shop/v/login_register';
 
     } catch (error) {
         console.error("Error during logout:", error);
