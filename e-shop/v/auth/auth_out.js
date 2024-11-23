@@ -65,7 +65,7 @@ async function logout() {
 
         // Clear local storage auth state and redirect to login page
         localStorage.removeItem('auth');
-        location.replace('https://payuee.com/e-shop/v/login_register');
+        // location.replace('https://payuee.com/e-shop/v/login_register');
 
     } catch (error) {
         console.error("Error during logout:", error);
