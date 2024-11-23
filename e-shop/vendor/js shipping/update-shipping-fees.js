@@ -574,6 +574,7 @@ try {
         const shippingGreaterThan = document.getElementById("validationCustom021")
         const shippingLessThan = document.getElementById("validationCustom031")
         pricePerKMm.value = data.success.shipping_fee_per_km;
+        pricePerKM = data.success.shipping_fee_per_km;
         shippingGreaterThan.value = data.success.shipping_fee_greater;
         shippingLessThan.value = data.success.shipping_fee_less;
 
