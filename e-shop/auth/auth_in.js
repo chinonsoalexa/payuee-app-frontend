@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Check if `LoginLink1` exists and add event listener
-    const loginLink1 = document.getElementById('LoginLink1');
+    const loginLink1 = document.getElementById('logoutLink1');
     if (loginLink1) {
         loginLink1.addEventListener('click', function (e) {
             e.preventDefault();
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Check if `LoginLink2` exists and add event listener
-    const loginLink2 = document.getElementById('LoginLink2');
+    const loginLink2 = document.getElementById('logoutLink2');
     if (loginLink2) {
         loginLink2.addEventListener('click', function (e) {
             e.preventDefault();
