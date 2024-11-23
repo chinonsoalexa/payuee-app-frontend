@@ -14,6 +14,8 @@ const siteVisitData = {
     "12th Fri": 75
   };
 
+  feather.replace();
+  
 document.addEventListener('DOMContentLoaded', async function () {
 
     await getVendorAnalytics();
