@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if `logoutLink1` exists and add event listener
+    // Add event listeners for logout links if they exist
     const loginLink1 = document.getElementById('logoutLink1');
     if (loginLink1) {
         loginLink1.addEventListener('click', function (e) {
@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Check if `logoutLink2` exists and add event listener
     const loginLink2 = document.getElementById('logoutLink2');
     if (loginLink2) {
         loginLink2.addEventListener('click', function (e) {
@@ -16,16 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
             logout();
         });
     }
-
-    // Check auth status on page load
-    get_auth_status();
 });
 
 // Function to check if the user is authenticated and redirect if not
 function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
-        logout(); // Clear auth data and redirect if not authenticated
+        // Redirect to login if auth status is not valid
+        logout();
     } else {
+        // Verify auth status with the server
         check_auth_status();
     }
 }
@@ -38,19 +36,21 @@ async function check_auth_status() {
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include', // Set credentials to include cookies
+        credentials: 'include', // Include cookies with the request
     };
 
     try {
         const response = await fetch(apiUrl, requestOptions);
 
         if (!response.ok) {
-            logout(); // Redirect if authentication fails
+            // If authentication fails, log out the user
+            logout();
             return;
         }
 
+        // Update auth status on success
         const responseData = await response.json();
-        localStorage.setItem('auth', 'true'); // Update auth status on success
+        localStorage.setItem('auth', 'true');
 
     } catch (error) {
         console.error("Error checking auth status:", error);
@@ -66,7 +66,7 @@ async function logout() {
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include', // Set credentials to include cookies
+        credentials: 'include', // Include cookies with the request
     };
 
     try {
@@ -77,7 +77,7 @@ async function logout() {
             return;
         }
 
-        // Clear local storage and redirect
+        // Clear auth data and redirect to login page
         localStorage.removeItem('auth');
         location.replace('https://payuee.com/e-shop/v/login_register');
 
@@ -87,7 +87,7 @@ async function logout() {
     }
 }
 
-// Function to show an error message toast
+// Function to show an error message in a toast
 function showToastMessageE(message) {
     const toastErrorElement = document.getElementById('toastError');
     const toastElement = document.getElementById('liveToast1');
@@ -97,6 +97,9 @@ function showToastMessageE(message) {
         const toast = new bootstrap.Toast(toastElement);
         toast.show();
     } else {
-        console.warn("Toast elements not found");
+        console.warn("Toast elements not found.");
     }
 }
+
+// Check auth status on page load
+get_auth_status();
