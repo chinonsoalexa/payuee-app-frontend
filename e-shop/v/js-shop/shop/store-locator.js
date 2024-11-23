@@ -29,7 +29,7 @@ function isNullOrEmpty(value) {
 }
 
 async function getStore(id) {
-    const apiUrl = "https://api.payuee.com/get-store/" + id;
+    const apiUrl = "https://api.payuee.com/open/get-store/" + id;
   
     const requestOptions = {
         method: "GET",
@@ -70,7 +70,7 @@ async function getStore(id) {
   }
 
 async function getStores() {
-    const apiUrl = "https://api.payuee.com/get-stores";
+    const apiUrl = "https://api.payuee.com/open/get-stores";
   
     const requestOptions = {
         method: "GET",

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts() {
-    const apiUrl = "https://api.payuee.com/get-store-products";
+    const apiUrl = "https://api.payuee.com/open/get-store-products";
     loading();
 
     const requestOptions = {
@@ -97,9 +97,7 @@ async function getProducts() {
             renderProducts(product);
         });
 
-                stores = responseData.stores;
         products = responseData.success;
-        renderStores(responseData.stores, responseData.success);
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
@@ -407,7 +405,7 @@ function renderProducts(product) {
     }
 
     var editProduct;
-    if (!product.repost) {
+    
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
             <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
@@ -417,17 +415,6 @@ function renderProducts(product) {
             </button>
         </a>
     `;
-    } else {
-        editProduct = `
-            <div class="pc__btn-wl-wrapper">
-                <button id="collaborateButtonCheck" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_retweet" />
-                    </svg>
-                </button>
-            </div>
-        `;
-    }    
 
     let isOutOfStock;
     let buttonText;
@@ -452,7 +439,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/gadgets/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/tools/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -497,16 +484,10 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/gadgets/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/tools/${product.product_url_id}`;
     });
 
-    // Attach the 'Collaborate' button event listener to this specific product card
-    const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
-    if (collaborateButton) {
-        collaborateButton.addEventListener("click", async function () {
-            await checkCollaborationEligibility(product.ID);
-        });
-    }
+
 
     function renderProductImages(imageUrls, title) {
         let imagesHtml = '';
@@ -544,83 +525,6 @@ function renderProducts(product) {
     }
 }
 
-async function checkCollaborationEligibility(ID) {
-    const apiUrl = "https://api.payuee.com/vendor/product-collaboration-info/" + ID;
-
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-    };
-
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-
-        if (!response.ok) {
-            const errorData = await response.json();
-
-            if (errorData.error === 'failed to get user from request') {
-                // need to do a data of just null event 
-                // displayErrorMessage();
-            } else if (errorData.error === 'failed to get transaction history') {
-                // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-                // let's log user out the users session has expired
-                // logUserOutIfTokenIsExpired();
-            }else {
-                checkRepostEligibility(false, errorData.error, null);
-            }
-
-            return;
-        }
-
-        const responseData = await response.json();
-        // Check eligibility, passing `true` for eligible, or `false` with an error message
-        checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
-} finally {
-
-    }
-}
-
-// Function to open modal with appropriate messages
-function checkRepostEligibility(isEligible, errorMessage = null, collaborationUrl = null) {
-    const eligibilityMessage = document.getElementById('eligibilityMessage');
-    const errorAlert = document.getElementById('errorAlert');
-    const errorMessageEl = document.getElementById('errorMessage');
-    const successAlert = document.getElementById('successAlert');
-    const collaborateButton = document.getElementById('collaborateButton');
-  
-    // Reset modal state
-    errorAlert.classList.add('d-none');
-    successAlert.classList.add('d-none');
-    collaborateButton.classList.add('d-none');
-    collaborateButton.removeAttribute('href'); // Clear previous URL if any
-  
-    // Display eligibility messages
-    if (isEligible) {
-      eligibilityMessage.textContent = "You are eligible to repost this product.";
-      successAlert.classList.remove('d-none');
-      collaborateButton.classList.remove('d-none');
-  
-      // Set the new collaboration URL if provided
-      if (collaborationUrl) {
-        collaborateButton.href = collaborationUrl;
-      }
-    } else {
-      eligibilityMessage.textContent = "You are not eligible to repost this product.";
-      if (errorMessage) {
-        errorMessageEl.textContent = errorMessage;
-        errorAlert.classList.remove('d-none');
-      }
-    }
-  
-    // Show the modal
-    new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
-  }
-  
 function loading() {
     // Render loading skeletons for each element in the loader array
     document.getElementById('products-grid').innerHTML = '';

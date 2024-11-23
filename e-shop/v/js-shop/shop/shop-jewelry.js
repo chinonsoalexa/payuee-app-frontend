@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function getProducts() {
-    const apiUrl = "https://api.payuee.com/get-store-products";
+    const apiUrl = "https://api.payuee.com/open/get-store-products";
     loading();
 
     const requestOptions = {
