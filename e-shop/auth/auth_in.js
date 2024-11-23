@@ -1,3 +1,28 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to log out
+    async function logout() {
+        // Your logout functionality
+    }
+
+    // Check if `LoginLink1` exists and add event listener
+    const loginLink1 = document.getElementById('LoginLink1');
+    if (loginLink1) {
+        loginLink1.addEventListener('click', function (e) {
+            e.preventDefault();
+            logout();
+        });
+    }
+
+    // Check if `LoginLink2` exists and add event listener
+    const loginLink2 = document.getElementById('LoginLink2');
+    if (loginLink2) {
+        loginLink2.addEventListener('click', function (e) {
+            e.preventDefault();
+            logout();
+        });
+    }
+});
+
 // Function to check if the user is authenticated and redirect if not
 function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
