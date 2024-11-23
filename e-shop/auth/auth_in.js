@@ -79,7 +79,7 @@ async function logout() {
 
         // If logout API call succeeds, clear local storage and redirect
         localStorage.removeItem('auth');
-        window.location.href = 'https://payuee.com/e-shop/v/login_register';
+        location.replace('https://payuee.com/e-shop/v/login_register');
 
     } catch (error) {
         console.error("Error during logout:", error);
@@ -107,7 +107,7 @@ async function logout2() {
 
         // If logout API call succeeds, clear local storage and redirect
         localStorage.removeItem('auth');
-        window.location.href = 'https://payuee.com/e-shop/v/login_register';
+        location.replace('https://payuee.com/e-shop/v/login_register');
 
     } catch (error) {
         // console.error("Error during logout:", error);
