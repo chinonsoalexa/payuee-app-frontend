@@ -2,7 +2,7 @@
 function get_auth_status() {
     if (localStorage.getItem('auth') === 'true') {
         // Redirect to authenticated home page
-        window.location.href = 'https://payuee.com/e-shop/home';
+        location.replace('https://payuee.com/e-shop/home');
     } else {
         // Check authentication status if not already authenticated
         check_auth_status();
@@ -32,7 +32,7 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true'); // Store auth status on success
 
         // Redirect to the home page on successful authentication
-        window.location.href = 'https://payuee.com/e-shop/home';
+        location.replace('https://payuee.com/e-shop/home');
 
     } catch (error) {
         console.error("Error checking authentication status:", error);
