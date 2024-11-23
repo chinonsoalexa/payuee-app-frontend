@@ -2093,6 +2093,11 @@ svg.f-light {
   border-color: #2d33ee !important;
 }
 
+/* ICON STYLING */
+.sidebar-main .sidebar-link svg {
+  stroke: white !important; /* Set icon color to white */
+}
+
 .btn-outline-secondary-2x:not([disabled]):not(.disabled).active {
   background-color: #FF9766;
   border-color: #FF9766;
