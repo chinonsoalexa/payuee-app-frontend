@@ -60,7 +60,7 @@ function getCurrentUrl(title, description) {
 
 async function getProduct(productID) {
     renderLoadingDetails();
-  const apiUrl = "https://api.payuee.com/vendor/view-product/" + productID;
+  const apiUrl = "https://api.payuee.com/open/view-product/" + productID;
 
   const requestOptions = {
       method: "GET",
@@ -93,7 +93,7 @@ async function getProduct(productID) {
       }
 
       const responseData = await response.json();
-      renderProductDetails(responseData.success, responseData.store);
+      renderProductDetails(responseData.success);
       categoryId = responseData.success.category;
      
 } finally {
@@ -147,7 +147,7 @@ async function getNextProduct(productID) {
 }
 
 async function getPreviousProduct(productID) {
-  const apiUrl = "https://api.payuee.com/vendor/view-previous-product/" + productID + "/" + categoryId;
+  const apiUrl = "https://api.payuee.com/open/view-previous-product/" + productID + "/" + categoryId;
   renderLoadingDetails();
 
   const requestOptions = {
@@ -195,7 +195,7 @@ function getCurrentUrlU(title, description) {
   return "u="+window.location.href+"&text=Check%20"+encodeURIComponent(title)+"%20out!%20"+encodeURIComponent(description);
 }
 
-function renderProductDetails(product, subscription) {
+function renderProductDetails(product,) {
     // Assuming you have a reference to the container element
     const productBody = document.getElementById('products-details-grid');
 

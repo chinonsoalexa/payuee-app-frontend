@@ -59,7 +59,7 @@ function getCurrentUrl(title, description) {
 }
 
 async function getProduct(productID) {
-  const apiUrl = "https://api.payuee.com/product/" + productID;
+  const apiUrl = "https://api.payuee.com/open/product/" + productID;
   renderLoadingDetails();
 
   const requestOptions = {
