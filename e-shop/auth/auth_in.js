@@ -1,29 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Check if `LoginLink1` exists and add event listener
+    // Check if `logoutLink1` exists and add event listener
     const loginLink1 = document.getElementById('logoutLink1');
     if (loginLink1) {
         loginLink1.addEventListener('click', function (e) {
             e.preventDefault();
-            logout2();
+            logout();
         });
     }
 
-    // Check if `LoginLink2` exists and add event listener
+    // Check if `logoutLink2` exists and add event listener
     const loginLink2 = document.getElementById('logoutLink2');
     if (loginLink2) {
         loginLink2.addEventListener('click', function (e) {
             e.preventDefault();
-            logout2();
+            logout();
         });
     }
+
+    // Check auth status on page load
+    get_auth_status();
 });
 
 // Function to check if the user is authenticated and redirect if not
 function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
-        // Clear user auth data and redirect to login if not authenticated
-        logout();
+        logout(); // Clear auth data and redirect if not authenticated
     } else {
         check_auth_status();
     }
@@ -52,9 +53,8 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true'); // Update auth status on success
 
     } catch (error) {
-        // Optionally, handle network errors here (e.g., by showing a message)
         console.error("Error checking auth status:", error);
-        logout();
+        logout(); // Log out on error
     }
 }
 
@@ -77,7 +77,7 @@ async function logout() {
             return;
         }
 
-        // If logout API call succeeds, clear local storage and redirect
+        // Clear local storage and redirect
         localStorage.removeItem('auth');
         location.replace('https://payuee.com/e-shop/v/login_register');
 
@@ -87,41 +87,16 @@ async function logout() {
     }
 }
 
-async function logout2() {
-    const apiUrl = "https://api.payuee.com/log-out";
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // Set credentials to include cookies
-    };
-
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-
-        if (!response.ok) {
-            showToastMessageE('An error occurred while logging out.');
-            return;
-        }
-
-        // If logout API call succeeds, clear local storage and redirect
-        localStorage.removeItem('auth');
-        location.replace('https://payuee.com/e-shop/v/login_register');
-
-    } catch (error) {
-        // console.error("Error during logout:", error);
-        showToastMessageE("Failed to log out. Please try again.");
-    }
-}
-
 // Function to show an error message toast
 function showToastMessageE(message) {
-    document.getElementById('toastError').textContent = message;
+    const toastErrorElement = document.getElementById('toastError');
     const toastElement = document.getElementById('liveToast1');
-    const toast = new bootstrap.Toast(toastElement);
-    toast.show();
-}
 
-// Call get_auth_status on page load or as needed to enforce authentication
-get_auth_status();
+    if (toastErrorElement && toastElement) {
+        toastErrorElement.textContent = message;
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    } else {
+        console.warn("Toast elements not found");
+    }
+}
