@@ -65,7 +65,7 @@ async function logout() {
 
         const data = await response.json();
         localStorage.removeItem('auth'); // Clear authentication state
-        window.location.href = 'https://payuee.com/e-shop/login_register'; // Redirect to login page
+        window.location.href = 'https://payuee.com/e-shop/v/login_register'; // Redirect to login page
 
     } catch (error) {
         console.error("Error during logout:", error);
