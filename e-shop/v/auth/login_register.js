@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
     const loginForm = document.forms['login-form'];
 
-    const registerButton = document.getElementById('registerButton'); // Target the register button
+    const registerButton1 = document.getElementById('registerButton1'); // Target the register button
     const registerForm = document.forms['register-form'];
 
-    const verifyButton = document.getElementById('verifyButton'); // Target the verify button
+    const verifyButton1 = document.getElementById('verifyButton1'); // Target the verify button
     const verifyForm = document.forms['register-form'];
 
     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     loginButton.addEventListener('click', loginButtonClickHandler);
 
     // Handle register button click
-    const registerButtonClickHandler = function (event) {
+    const registerButton1ClickHandler = function (event) {
         event.preventDefault();
         
         const registerData = {
@@ -86,11 +86,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     // Remove previous listener (if any) and add the event listener
-    registerButton.removeEventListener('click', registerButtonClickHandler);
-    registerButton.addEventListener('click', registerButtonClickHandler);
+    registerButton1.removeEventListener('click', registerButton1ClickHandler);
+    registerButton1.addEventListener('click', registerButton1ClickHandler);
 
     // Handle verify button click
-    const verifyButtonClickHandler = function (event) {
+    const verifyButton1ClickHandler = function (event) {
         event.preventDefault();
         
         const verifyData = {
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     // Remove previous listener (if any) and add the event listener
-    verifyButton.removeEventListener('click', verifyButtonClickHandler);
-    verifyButton.addEventListener('click', verifyButtonClickHandler);
+    verifyButton1.removeEventListener('click', verifyButton1ClickHandler);
+    verifyButton1.addEventListener('click', verifyButton1ClickHandler);
 });
 
 
@@ -354,7 +354,7 @@ async function registerEshop(email, password, name) {
             FirstName: name,
             email: email,
             password: password,
-            state: citySelected,
+            state: stateSelected,
             city: citySelected,
             latitude: latitude,
             longitude: longitude,
@@ -372,9 +372,7 @@ async function registerEshop(email, password, name) {
                 showToastMessageS('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
-                console.log("Before toggleOTP call");
                 toggleOTP();
-                console.log("After toggleOTP call");
                 return;
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
@@ -388,9 +386,7 @@ async function registerEshop(email, password, name) {
 
         const responseData = await response.json();
         showToastMessageS('Please verify your email address');
-        console.log("Before toggleOTP call");
         toggleOTP();
-        console.log("After toggleOTP call");
         //  Send email verification email
 } finally {
 
@@ -505,15 +501,15 @@ function toggleOTP() {
     const stateDiv = document.getElementById('stateDiv');
     const cityDiv = document.getElementById('cityDiv');
     const passwordDiv = document.getElementById('passwordDiv');
-    const registerButton = document.getElementById('registerButton');
-    const verifyButton = document.getElementById('verifyButton');
+    const registerButton1 = document.getElementById('registerButton1');
+    const verifyButton1 = document.getElementById('verifyButton1');
 
     // Check if OTP div has the d-none class
     if (otpDiv.classList.contains('d-none')) {
         // Show OTP div and hide others
         otpDiv.classList.remove('d-none');
-        verifyButton.classList.remove('d-none');
-        registerButton.classList.add('d-none');
+        verifyButton1.classList.remove('d-none');
+        registerButton1.classList.add('d-none');
         nameDiv.classList.add('d-none');
         emailDiv.classList.add('d-none');
         stateDiv.classList.add('d-none');
@@ -522,12 +518,12 @@ function toggleOTP() {
     } else {
         // Hide OTP div and show all other fields
         otpDiv.classList.add('d-none');
-        verifyButton.classList.add('d-none');
+        verifyButton1.classList.add('d-none');
         nameDiv.classList.remove('d-none');
         emailDiv.classList.remove('d-none');
         stateDiv.classList.remove('d-none');
         cityDiv.classList.remove('d-none');
         passwordDiv.classList.remove('d-none');
-        registerButton.classList.remove('d-none');
+        registerButton1.classList.remove('d-none');
     }
 }
