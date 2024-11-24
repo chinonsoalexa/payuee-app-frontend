@@ -20,6 +20,12 @@ var stockAvailabilityStatusValue = "";
 
 var productToUpdate;
 
+// Initialize an empty string to store selected values
+let selectedSizes = {
+    clothing: '',
+    shoes: ''
+  };
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
@@ -45,7 +51,70 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getProduct(productToUpdate);
 
+
+  // Get the category select element
+  const categorySelect = document.getElementById("validationDefault04");
+  
+  // Get the size input sections
+  const sizeInputSection = document.getElementById("sizeInputSection");
+  const outfitSizeSection = document.getElementById("outfitSizeSection");
+  const shoeSizeSection = document.getElementById("shoeSizeSection");
+
+  // Function to toggle size input sections based on category
+  function toggleSizeInputs() {
+    const selectedCategory = categorySelect.value;
+
+    // Show size input sections based on category
+    if (selectedCategory === "outfits" || selectedCategory === "kids-accessories") {
+      sizeInputSection.style.display = "block";
+      outfitSizeSection.style.display = "block";
+      shoeSizeSection.style.display = "block";
+    } else {
+      sizeInputSection.style.display = "none";
+    }
+  }
+
+  // Add event listener to category select element
+  categorySelect.addEventListener("change", toggleSizeInputs);
+
+  // Initial call to ensure size input section is set correctly on page load
+  toggleSizeInputs();
+
+    // Add event listeners to checkboxes for clothing and shoes
+    document.querySelectorAll('input[name="size"]').forEach(input => {
+    input.addEventListener('change', function(e) {
+        // Determine if the change is for clothing or shoes based on the input ID
+        if (e.target.closest('#outfitSizeSection')) {
+        updateSelectedSizes(e, 'clothing');
+        } else if (e.target.closest('#shoeSizeSection')) {
+        updateSelectedSizes(e, 'shoes');
+        }
+    });
+    });
 });
+
+// Function to update selected sizes for clothing or shoes
+function updateSelectedSizes(e, category) {
+    const value = e.target.value;
+    
+    if (e.target.checked) {
+      // Add the selected size to the corresponding category
+      if (selectedSizes[category]) {
+        selectedSizes[category] += `,${value}`;
+      } else {
+        selectedSizes[category] = value;
+      }
+    } else {
+      // Remove the selected size from the corresponding category
+      selectedSizes[category] = selectedSizes[category]
+        .split(',')
+        .filter(item => item !== value)
+        .join(',');
+    }
+    
+    // Log the selected sizes for debugging
+    // console.log(selectedSizes);
+  }
 
 async function updateProduct() {
     setUpdatedJsonFields();
@@ -65,6 +134,8 @@ async function updateProduct() {
         product_stock: parseInt(productStock, 10),  // Convert to integer
         net_weight: parseFloat(netWeight),  // Ensure this is a float
         category: selectedCategory,
+        clothing_sizes: selectedSizes.clothing,
+        shoe_sizes: selectedSizes.shoes,
         tags: tags,
         publish_status: publishStatus,
         featured_status: featuredStatus,

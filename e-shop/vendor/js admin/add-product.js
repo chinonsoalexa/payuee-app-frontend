@@ -175,7 +175,7 @@ function updateSelectedSizes(e, category) {
     }
     
     // Log the selected sizes for debugging
-    console.log(selectedSizes);
+    // console.log(selectedSizes);
   }
 
 function checkFirstProduct() {
