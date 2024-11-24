@@ -332,7 +332,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/v/shop/jewelry?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -452,7 +452,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/jewelry/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/v/jewelry/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">

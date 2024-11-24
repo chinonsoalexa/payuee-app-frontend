@@ -125,9 +125,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/shop-kids?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/v/shop-kids?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/shop-kids?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/v/shop-kids?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -258,7 +258,7 @@ function renderStores(data, products) {
 }
 
 function redirectToShop(storeId) {
-    const url = `https://payuee.com/store/${storeId}`; // Customize the URL as needed
+    const url = `https://payuee.com/v/store/${storeId}`; // Customize the URL as needed
     window.location.href = url;
   }
 
@@ -330,7 +330,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/shop-kids?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/v/shop-kids?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {

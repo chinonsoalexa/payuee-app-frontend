@@ -126,9 +126,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/v/e-shop/shop-outfits?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/v/e-shop/shop-outfits?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -239,7 +239,6 @@ function renderStores(data, products) {
     });
 }
 
-
   // Function to render store list
  function renderStores2(data, products) {
     const storeList = document.querySelector('.multi-select__list');
@@ -259,7 +258,7 @@ function renderStores(data, products) {
 }
 
 function redirectToShop(storeId) {
-    const url = `https://payuee.com/store/${storeId}`; // Customize the URL as needed
+    const url = `https://payuee.com/v/store/${storeId}`; // Customize the URL as needed
     window.location.href = url;
   }
 
@@ -331,7 +330,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/v/e-shop/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -439,7 +438,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/tools/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/v/outfits/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -484,7 +483,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/tools/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/v/v/outfits/${product.product_url_id}`;
     });
 
 
@@ -504,8 +503,8 @@ function renderProducts(product) {
             imageUrls.forEach((url, num) => {
                 imagesHtml += `
                     <div class="swiper-slide">
-                        <a href="https://payuee.com/image/${url.url}" class="product-link${num + 1}">
-                            <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                        <a href="https://payuee.com/v/image/${url.url}" class="product-link${num + 1}">
+                            <img loading="lazy" src="https://payuee.com/v/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
                         </a>
                     </div>`;
             });
@@ -651,7 +650,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/v/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
