@@ -24,6 +24,12 @@ let model;
 let isUnauthorized = true;
 // const compress = new Compress();
 
+// Initialize an empty string to store selected values
+let selectedSizes = {
+    clothing: '',
+    shoes: ''
+  };
+
 const authorizedCategories = [
     "person", "bicycle", "car", "motorcycle", "airplane", "bus",
     "train", "truck", "boat", "traffic light", "fire hydrant", 
@@ -136,7 +142,41 @@ submitButton.addEventListener('click', async function (event) {
   // Initial call to ensure size input section is set correctly on page load
   toggleSizeInputs();
 
+    // Add event listeners to checkboxes for clothing and shoes
+    document.querySelectorAll('input[name="size"]').forEach(input => {
+    input.addEventListener('change', function(e) {
+        // Determine if the change is for clothing or shoes based on the input ID
+        if (e.target.closest('#outfitSizeSection')) {
+        updateSelectedSizes(e, 'clothing');
+        } else if (e.target.closest('#shoeSizeSection')) {
+        updateSelectedSizes(e, 'shoes');
+        }
+    });
+    });
 });
+
+// Function to update selected sizes for clothing or shoes
+function updateSelectedSizes(e, category) {
+    const value = e.target.value;
+    
+    if (e.target.checked) {
+      // Add the selected size to the corresponding category
+      if (selectedSizes[category]) {
+        selectedSizes[category] += `,${value}`;
+      } else {
+        selectedSizes[category] = value;
+      }
+    } else {
+      // Remove the selected size from the corresponding category
+      selectedSizes[category] = selectedSizes[category]
+        .split(',')
+        .filter(item => item !== value)
+        .join(',');
+    }
+    
+    // Log the selected sizes for debugging
+    console.log(selectedSizes);
+  }
 
 function checkFirstProduct() {
     if (localStorage.getItem("firstProductAdded") == "second") {
