@@ -388,10 +388,11 @@ async function registerEshop(email, password, name) {
 
             if (errorData.error === 'User already exist, please verify your email ID') {
                 // need to do a data of just null event 
-                showToastMessageE('Please check your email to verify your email ID');
+                showToastMessageS('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
                 toggleOTP();
+                return;
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
                 showToastMessageE('user already exist, please login');
