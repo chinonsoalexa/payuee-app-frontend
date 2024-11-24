@@ -252,7 +252,7 @@ function initializeDropzone() {
                 };
                 reader.readAsDataURL(file);
 
-                // Call detectObjects and await its return
+                // Call detectObjects and await its return to check image content
                 await detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
