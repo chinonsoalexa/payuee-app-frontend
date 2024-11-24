@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     loginButton.addEventListener('click', function (event) {
         event.preventDefault();
         
-        const form = document.getElementById("loginForm");
+        // const form = document.getElementById("loginForm");
 
         // Check if the form is valid
         // if (form.checkValidity()) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     registerButton.addEventListener('click', function (event) {
         event.preventDefault();
 
-        const form = document.getElementById("registerForm");
+        // const form = document.getElementById("registerForm");
 
         // Check if the form is valid
         // if (form.checkValidity()) {
