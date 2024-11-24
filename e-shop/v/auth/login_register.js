@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
         // Password strength check (at least 8 characters, including at least one letter and one number)
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-        if (!passwordPattern.test(confirmPassword)) {
+        if (!passwordPattern.test(registerData.password)) {
             showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
             return;
         }
