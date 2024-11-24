@@ -207,13 +207,30 @@ function renderProducts(product) {
         OrderCost = product.initial_cost;
     }
 
+    let url = ""
+    if (product.category == "outfits") {
+        url = "https://payuee.com/outfits/" + product.product_url_id;
+    } else if (product.category == "jewelry") {
+        url = "https://payuee.com/jewelry/" + product.product_url_id;
+    } else if (product.category == "kids-accessories") {
+        url = "https://payuee.com/kids/" + product.product_url_id;
+    } else if (product.category == "cars-car-parts") {
+        url = "https://payuee.com/cars/" + product.product_url_id;
+    } else if (product.category == "tools") {
+        url = "https://payuee.com/tools/" + product.product_url_id;
+    } else if (product.category == "gadgets") {
+        url = "https://payuee.com/gadgets/" + product.product_url_id;
+    } else if (product.category == "others") {
+        url = "https://payuee.com/outfits/" + product.product_url_id;
+    }
+
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
             <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_image[0].url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
-                <h6><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></h6>
+                <h6><a href="${url}">${product.title}</a></h6>
                 </div>
                 <div class="rating">${product.publish_status}</div>
                 <div class="price d-flex"> 
