@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton'); // Target the login button
     const loginForm = document.forms['login-form'];
 
-    const registerButton = document.getElementById('registerButton'); // Target the login button
+    const registerButton = document.getElementById('registerButton'); // Target the register button
     const registerForm = document.forms['register-form'];
 
-    const verifyButton = document.getElementById('verifyButton'); // Target the login button
+    const verifyButton = document.getElementById('verifyButton'); // Target the verify button
     const verifyForm = document.forms['register-form'];
 
     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
@@ -24,113 +24,94 @@ document.addEventListener('DOMContentLoaded', async function () {
     await loadStates();
 
     // Handle login button click
-    loginButton.addEventListener('click', function (event) {
+    const loginButtonClickHandler = function (event) {
         event.preventDefault();
         
-        // const form = document.getElementById("loginForm");
-
-        // Check if the form is valid
-        // if (form.checkValidity()) {
-        //     // Get the form data
-        // } else {
-        //     form.reportValidity(); // Show validation errors if any
-        // }
-
-        // Get the data from the login form
         const loginData = {
             email: loginForm.login_email.value.trim(),
             password: loginForm.login_password.value.trim(),
         };
 
-        // Check if email or password fields are empty
         if (!loginData.email || !loginData.password) {
             showToastMessageE('Please fill in both email and password fields.');
             return;
         }
 
-        // Email format validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(loginData.email)) {
             showToastMessageE('Please enter a valid email address.');
             return;
         }
 
-        // Call the login API endpoint
         loginEshop(loginForm.login_email.value.trim(), loginForm.login_password.value.trim());
-        
-    });
+    };
 
-    registerButton.addEventListener('click', function (event) {
+    // Remove previous listener (if any) and add the event listener
+    loginButton.removeEventListener('click', loginButtonClickHandler);
+    loginButton.addEventListener('click', loginButtonClickHandler);
+
+    // Handle register button click
+    const registerButtonClickHandler = function (event) {
         event.preventDefault();
-
-        // const form = document.getElementById("registerForm");
-
-        // Check if the form is valid
-        // if (form.checkValidity()) {
-        //     // Get the form data
-        // } else {
-        //     form.reportValidity(); // Show validation errors if any
-        // }
         
-        // Get the data from the registration form
         const registerData = {
             FirstName: registerForm.register_username.value.trim(),
             email: registerForm.register_email.value.trim(),
             password: registerForm.register_password.value.trim(),
         };
     
-        // Check if any fields are empty
         if (!registerData.FirstName || !registerData.email || !registerData.password) {
             showToastMessageE('Please fill in all fields.');
             return;
         }
     
-        // Email format validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(registerData.email)) {
             showToastMessageE('Please enter a valid email address.');
             return;
         }
     
-        // Check for valid latitude and longitude values
         if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
             showToastMessageE('Please select your state & city');
             return;
         }
     
-        // Password strength check (at least 8 characters, including at least one letter and one number)
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
         if (!passwordPattern.test(registerData.password)) {
             showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
             return;
         }
 
-    
-        // Call the register API endpoint
         registerEshop(registerData.email, registerData.password, registerData.FirstName);
-    });    
+    };
 
-    verifyButton.addEventListener('click', function (event) {
+    // Remove previous listener (if any) and add the event listener
+    registerButton.removeEventListener('click', registerButtonClickHandler);
+    registerButton.addEventListener('click', registerButtonClickHandler);
+
+    // Handle verify button click
+    const verifyButtonClickHandler = function (event) {
         event.preventDefault();
         
-        // Get the data from the registration form
         const verifyData = {
             Email: verifyForm.register_email.value.trim(),
             SentOTP: verifyForm.register_otp.value.trim(),
         };
     
-         // Regular expression to match only numbers (at least 8 digits)
-        const passwordPattern = /^\d{6,}$/;
-        if (!passwordPattern.test(verifyData.SentOTP)) {
+        const otpPattern = /^\d{6,}$/;
+        if (!otpPattern.test(verifyData.SentOTP)) {
             showToastMessageE('Invalid OTP');
             return;
         }
     
-        // Call the verify API endpoint
         verifyEshop(verifyData.Email, verifyData.SentOTP);
-    });    
+    };
 
+    // Remove previous listener (if any) and add the event listener
+    verifyButton.removeEventListener('click', verifyButtonClickHandler);
+    verifyButton.addEventListener('click', verifyButtonClickHandler);
 });
+
 
 // Function to fetch and populate state data
 async function loadStates() {
