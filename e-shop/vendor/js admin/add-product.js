@@ -448,20 +448,6 @@ function calculateOverallQuality() {
     }
 }
 
-// Function to calculate overall quality of all uploaded images
-function calculateOverallQuality() {
-    const totalSharpness = sharpnessArray.reduce((sum, sharpness) => sum + sharpness, 0);
-    const averageSharpness = totalSharpness / sharpnessArray.length;
-    
-    if (averageSharpness > 80) {
-        imageQuality = 3;
-    } else if (averageSharpness > 30) {
-        imageQuality = 2;
-    } else {
-        imageQuality = 1;
-    }
-}
-
 function optimizeImage(file, callback) {
     compress.compress([file], {
         size: 2, // Max size in MB
@@ -502,7 +488,7 @@ async function detectObjects(image) {
             imageArray.splice(index, 1);
         }
         image.previewElement.remove(); 
-        // console.error("Model is not loaded yet.");
+        showToastMessageE("Model is not loaded yet.")
         return;
     }
 
