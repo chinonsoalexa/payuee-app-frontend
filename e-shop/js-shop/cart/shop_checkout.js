@@ -61,6 +61,18 @@ document.addEventListener('DOMContentLoaded', async function () {
         await loadStates();
         await getShippingFees();
     }
+
+    // Add event listener to the link
+    document.getElementById('forgotTransactionPinLink').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Store the current page URL in local storage
+        const currentUrl = window.location.href;
+        localStorage.setItem('redirectTo', currentUrl);
+
+        // Redirect to the reset transaction PIN page
+        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
+    });
 });
 
 // Function to fetch and populate state data

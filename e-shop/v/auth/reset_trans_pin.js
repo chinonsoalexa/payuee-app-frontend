@@ -157,8 +157,12 @@ async function confirmEmailOtp(user, confirmPassword, token) {
 
             // Check if `redirectTo` has a valid URL before redirecting
             if (redirectTo) {
+                // Remove `redirectTo` from local storage after using it
+                localStorage.removeItem('redirectTo');
                 window.location.href = redirectTo;
             } else {
+                // Remove `redirectTo` from local storage after using it
+                localStorage.removeItem('redirectTo');
                 // Fallback to the home page if `redirectTo` is empty
                 window.location.href = 'https://payuee.com/e-shop/home';
             }
