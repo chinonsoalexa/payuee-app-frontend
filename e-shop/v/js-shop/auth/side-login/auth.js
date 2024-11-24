@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         const form = document.getElementById("loginForm");
 
         // Check if the form is valid
-        if (form.checkValidity()) {
-            // Get the form data
-        } else {
-            form.reportValidity(); // Show validation errors if any
-        }
+        // if (form.checkValidity()) {
+        //     // Get the form data
+        // } else {
+        //     form.reportValidity(); // Show validation errors if any
+        // }
 
         // Get the data from the login form
         const loginData = {
@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         const form = document.getElementById("registerForm");
 
         // Check if the form is valid
-        if (form.checkValidity()) {
-            // Get the form data
-        } else {
-            form.reportValidity(); // Show validation errors if any
-        }
+        // if (form.checkValidity()) {
+        //     // Get the form data
+        // } else {
+        //     form.reportValidity(); // Show validation errors if any
+        // }
         
         // Get the data from the registration form
         const registerData = {

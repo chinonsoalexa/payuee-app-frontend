@@ -209,6 +209,8 @@ async function postProduct() {
     formData.append("imageQuality", imageQuality);
     formData.append("sellingPrice", sellingPrice);
     formData.append("currency", currency);
+    formData.append("ClothingSizes", selectedSizes.clothing);
+    formData.append("ShoeSizes", selectedSizes.shoes);
     formData.append("productStock", productStock);
     formData.append("discountType", discountType);
     formData.append("category", selectedCategory);
