@@ -332,6 +332,30 @@ function validateFields() {
     return isValid;
 }
 
+function disableSelectedSizes(clothingSizes, shoeSizes) {
+    // Split the sizes by comma into arrays
+    const clothingSizeArray = clothingSizes.split(",");
+    const shoeSizeArray = shoeSizes.split(",");
+  
+    // Disable clothing sizes that are already selected
+    clothingSizeArray.forEach(size => {
+      const clothingCheckbox = document.getElementById(`swatch-${size}`);
+      if (clothingCheckbox) {
+        clothingCheckbox.checked = true;
+        clothingCheckbox.disabled = true;
+      }
+    });
+  
+    // Disable shoe sizes that are already selected
+    shoeSizeArray.forEach(size => {
+      const shoeCheckbox = document.getElementById(`swatch-${size}`);
+      if (shoeCheckbox) {
+        shoeCheckbox.checked = true;
+        shoeCheckbox.disabled = true;
+      }
+    });
+  }
+  
 function updateFields(product) {
 
     // Update Product Title
@@ -351,6 +375,8 @@ function updateFields(product) {
     // Get the product description and title
     const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
     editor.innerText =product.description;
+
+    disableSelectedSizes(product.clothing_sizes, product.shoe_sizes);
 
     // Update Initial Cost
     let initialCostInput = document.getElementById('initialCost');

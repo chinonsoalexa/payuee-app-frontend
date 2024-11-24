@@ -437,7 +437,7 @@ function updateFields(product) {
     const editor = document.querySelector('.ql-editor'); // Assuming this is a rich text editor
     editor.innerText = product.description;
 
-    disableSelectedSizes(product.clothing_sizes, product.shoe_sizes);
+    selectSizes(product.clothing_sizes, product.shoe_sizes);
 
     // Update Initial Cost
     let initialCostInput = document.getElementById('initialCost');
@@ -678,29 +678,27 @@ async function getProduct(productID) {
   }
 
 // Function to disable checkboxes based on available sizes
-function disableSelectedSizes(clothingSizes, shoeSizes) {
+function selectSizes(clothingSizes, shoeSizes) {
     // Split the sizes by comma into arrays
     const clothingSizeArray = clothingSizes.split(",");
     const shoeSizeArray = shoeSizes.split(",");
-  
-    // Disable clothing sizes that are already selected
+
+    // Mark clothing sizes as selected
     clothingSizeArray.forEach(size => {
-      const clothingCheckbox = document.getElementById(`swatch-${size}`);
-      if (clothingCheckbox) {
-        clothingCheckbox.checked = true;
-        clothingCheckbox.disabled = true;
-      }
+        const clothingCheckbox = document.getElementById(`swatch-${size}`);
+        if (clothingCheckbox) {
+            clothingCheckbox.checked = true;  // Mark as checked without disabling
+        }
     });
-  
-    // Disable shoe sizes that are already selected
+
+    // Mark shoe sizes as selected
     shoeSizeArray.forEach(size => {
-      const shoeCheckbox = document.getElementById(`swatch-${size}`);
-      if (shoeCheckbox) {
-        shoeCheckbox.checked = true;
-        shoeCheckbox.disabled = true;
-      }
+        const shoeCheckbox = document.getElementById(`swatch-${size}`);
+        if (shoeCheckbox) {
+            shoeCheckbox.checked = true;  // Mark as checked without disabling
+        }
     });
-  }
+}
 
 const generateDescriptionButton = document.getElementById('generateDescriptionAI');
 const productTitleInput = document.getElementById('productTitle1'); // assuming the title input has this id
