@@ -152,8 +152,17 @@ async function confirmEmailOtp(user, confirmPassword, token) {
 
         // Redirect after 3 seconds (3000 milliseconds)
         setTimeout(function() {
-            window.location.href = 'https://payuee.com/e-shop/v/login_register';
-        }, 3000); // Adjust the delay time in milliseconds as needed
+            // Retrieve `redirectTo` from Local Storage
+            const redirectTo = localStorage.getItem('redirectTo');
+
+            // Check if `redirectTo` has a valid URL before redirecting
+            if (redirectTo) {
+                window.location.href = redirectTo;
+            } else {
+                // Fallback to the home page if `redirectTo` is empty
+                window.location.href = 'https://payuee.com/e-shop/home';
+            }
+        }, 2000); // Adjust the delay time in milliseconds as needed
 
     } finally {
         enableButton('confirm_password_button');
