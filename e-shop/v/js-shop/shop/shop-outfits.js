@@ -483,7 +483,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/v/v/outfits/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/outfits/v/${product.product_url_id}`;
     });
 
 
@@ -503,8 +503,8 @@ function renderProducts(product) {
             imageUrls.forEach((url, num) => {
                 imagesHtml += `
                     <div class="swiper-slide">
-                        <a href="https://payuee.com/v/image/${url.url}" class="product-link${num + 1}">
-                            <img loading="lazy" src="https://payuee.com/v/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                        <a href="https://payuee.com/image/${url.url}" class="product-link${num + 1}">
+                            <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
                         </a>
                     </div>`;
             });
@@ -650,7 +650,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/v/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
