@@ -72,73 +72,102 @@
 }
 
 /* Base swatch button style */
+/* Base styles for the swatches */
 .swatch {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem; /* Smaller padding for better fit */
   cursor: pointer;
   border: 2px solid #ddd;
   border-radius: 50px;
   transition: background-color 0.2s;
+  font-size: 0.9rem;  /* Slightly smaller font size */
 }
 
-/* Hover effect for swatches */
 .swatch:hover {
   background-color: #f1f1f1;
 }
 
-/* Checked swatch appearance */
 input[type="checkbox"]:checked + .swatch {
   background-color: #5C61F2;
   color: white;
   border-color: #ddd;
 }
 
-/* Hides the checkbox input itself */
 input[type="checkbox"] {
   display: none;
 }
 
-/* Style for the swatch with aria-label */
 .swatch.js-swatch {
   position: relative;
 }
 
-/* Displaying the aria-label as a tooltip */
 .swatch.js-swatch::after {
   content: attr(aria-label);
   position: absolute;
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #666;
 }
 
-/* Style for the swatch list container */
-.swatch-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: start;
-}
-
-/* Clothing Size Section (e.g., S, M, L, XL) */
-#outfitSizeSection .swatch {
-  min-width: 60px;
-  text-align: center;
-}
-
-/* Shoe Size Section (e.g., Less than 25, 25-30, etc.) */
+/* Responsive adjustments */
+#outfitSizeSection .swatch,
 #shoeSizeSection .swatch {
-  min-width: 100px;
-  text-align: center;
+  padding: 0.4rem 0.8rem;  /* Adjust padding */
+  font-size: 0.9rem;        /* Adjust font size */
 }
 
-/* Optional small description text */
-small.text-muted {
-  font-size: 0.85rem;
-  color: #888;
+/* Swatch list spacing */
+#outfitSizeSection .swatch-list,
+#shoeSizeSection .swatch-list {
+  gap: 0.4rem;             /* Adjust gap between swatches */
 }
+
+/* Label Adjustments */
+#outfitSizeSection label,
+#shoeSizeSection label {
+  display: inline-block;
+  max-width: 100%;         /* Prevents stretching */
+  white-space: nowrap;     /* Prevents wrapping of text */
+}
+
+/* Mobile & tablet adjustments */
+@media (max-width: 768px) {
+  .swatch {
+    padding: 0.3rem 0.6rem; /* Smaller padding */
+    font-size: 0.8rem;       /* Smaller font size */
+  }
+
+  .swatch-list {
+    flex-wrap: wrap;         /* Stack items on small screens */
+    gap: 0.3rem;             /* Reduce gap for better spacing */
+  }
+
+  #outfitSizeSection .swatch,
+  #shoeSizeSection .swatch {
+    padding: 0.3rem 0.6rem;  /* Smaller padding for mobile */
+    font-size: 0.8rem;       /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .swatch {
+    padding: 0.2rem 0.5rem; /* Even smaller padding */
+    font-size: 0.75rem;      /* Smaller font size */
+  }
+
+  .swatch-list {
+    gap: 0.2rem;            /* Even smaller gap */
+  }
+
+  #outfitSizeSection .swatch,
+  #shoeSizeSection .swatch {
+    padding: 0.2rem 0.5rem;  /* Adjust padding further */
+    font-size: 0.75rem;      /* Further reduce font size */
+  }
+}
+
   </style>
 </head>
 
@@ -549,6 +578,7 @@ small.text-muted {
                                           </div>
                                           <small class="text-muted">Enter multiple available shoe sizes (e.g., 40, 42, 44).</small>
                                         </div>
+                                      </div>
                                         
 
                                       <div class="col-sm-6">
