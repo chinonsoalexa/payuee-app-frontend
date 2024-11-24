@@ -19,7 +19,7 @@ function get_auth_status() {
         // logUserOutIfTokenIsExpired();
         // let's redirect to a non-authenticated page cause the user is not authenticated
         localStorage.removeItem('auth');
-        window.location.href = 'https://payuee.com/e-shop/login_register';
+        window.location.href = 'https://payuee.com/e-shop/v/login_register';
     }
     document.addEventListener('DOMContentLoaded', function () {
         check_auth_status();
@@ -112,7 +112,7 @@ async function check_auth_status() {
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'https://payuee.com/e-shop/login_register';
+            window.location.href = 'https://payuee.com/e-shop/v/login_register';
         }
     }
 }
@@ -153,7 +153,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = 'https://payuee.com/e-shop/login_register'
+        window.location.href = 'https://payuee.com/e-shop/v/login_register'
     } finally{
         // do nothing
     }

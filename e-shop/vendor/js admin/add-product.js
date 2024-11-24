@@ -252,7 +252,7 @@ function initializeDropzone() {
                 };
                 reader.readAsDataURL(file);
 
-                // Call detectObjects and await its return to check image content
+                // Call detectObjects and await its return
                 await detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
@@ -375,6 +375,7 @@ function initializeDropzone() {
 
 // Function to check image clarity using OpenCV
 
+
 function checkImageClarity(base64Image, file) {
     const img = new Image();
     img.src = base64Image;
@@ -431,6 +432,20 @@ function checkImageClarity(base64Image, file) {
             calculateOverallQuality();
         }
     };
+}
+
+// Function to calculate overall quality of all uploaded images
+function calculateOverallQuality() {
+    const totalSharpness = sharpnessArray.reduce((sum, sharpness) => sum + sharpness, 0);
+    const averageSharpness = totalSharpness / sharpnessArray.length;
+    
+    if (averageSharpness > 80) {
+        imageQuality = 3;
+    } else if (averageSharpness > 30) {
+        imageQuality = 2;
+    } else {
+        imageQuality = 1;
+    }
 }
 
 // Function to calculate overall quality of all uploaded images
