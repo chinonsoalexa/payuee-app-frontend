@@ -391,7 +391,9 @@ async function registerEshop(email, password, name) {
                 showToastMessageS('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
+                console.log("Before toggleOTP call");
                 toggleOTP();
+                console.log("After toggleOTP call");
                 return;
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
@@ -405,7 +407,9 @@ async function registerEshop(email, password, name) {
 
         const responseData = await response.json();
         showToastMessageS('Please verify your email address');
+        console.log("Before toggleOTP call");
         toggleOTP();
+        console.log("After toggleOTP call");
         //  Send email verification email
 } finally {
 
