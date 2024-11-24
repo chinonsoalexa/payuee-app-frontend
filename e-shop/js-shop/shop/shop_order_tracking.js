@@ -77,6 +77,11 @@ document.getElementById("startScan").addEventListener("click", () => {
       html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     })
     .catch((error) => {
+      const errorMessage = document.getElementById('errorMessage');
+      errorMessage.classList.remove('hiddenn'); // Show the error message
+      errorMessage.textContent = "Camera access denied or unavailable";
+      document.getElementById('orderTrackingDetails').classList.add('hiddenn');
+      document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
       console.error("Camera access denied or unavailable:", error);
     });
 });
