@@ -85,7 +85,9 @@ async function logout() {
         localStorage.removeItem('auth');
         // Get the full URL of the current page
         const fullUrl = window.location.href;
-        location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${fullUrl}`);
+
+        // Redirect to the login/register page with the current URL as the redirectTo parameter
+        location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
 
     } catch (error) {
         console.error("Error during logout:", error);
