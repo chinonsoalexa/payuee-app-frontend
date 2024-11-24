@@ -1394,9 +1394,7 @@ async function check_posting_status() {
         }
         localStorage.setItem('auth', 'true');
     } finally {
-        if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'https://payuee.com/e-shop/v/login_register';
-        }
+        
     }
 }
 
