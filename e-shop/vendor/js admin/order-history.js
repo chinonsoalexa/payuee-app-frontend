@@ -221,6 +221,12 @@ function renderProducts(product) {
 
     const productStatus = getProductStatus(product);
 
+    let redirectUrl = `order-history-details.html?OrderId=${product.ID}`;
+
+    if (product.reposted) {
+        redirectUrl = `repost-order-history-details.html?OrderId=${product.original_eshop_user_id}`;
+    }
+
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
