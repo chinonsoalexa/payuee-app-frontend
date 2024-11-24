@@ -1347,9 +1347,21 @@ function pureFadeOut(e) {
     }, 350);
   });
 
-  document.querySelector('.js-show-register').addEventListener('click', function(e) {
-    document.querySelector(this.getAttribute("href")).click();
-  });
+  // Select the element
+  const registerButton = document.querySelector('.js-show-register');
+
+  // Check if the element exists before adding the event listener
+  if (registerButton) {
+      registerButton.addEventListener('click', function(e) {
+          // e.preventDefault(); // Prevent the default behavior of the link
+          const target = document.querySelector(this.getAttribute("href"));
+          
+          // Check if the target element exists before clicking
+          if (target) {
+              target.click();
+          }
+      });
+  }
 
   $(document).on('click', 'button.js-add-wishlist, a.add-to-wishlist', function() {
     if($(this).hasClass("active"))
