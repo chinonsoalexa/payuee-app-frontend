@@ -32,14 +32,15 @@ function checkUserFromURL() {
             }
 
             if (newPassword !== confirmPassword) {
-                showToastMessageE('Passwords do not match');
+                showToastMessageE('Transaction pin do not match');
                 return;
             }
 
-            // Password strength check (at least 8 characters, including at least one letter and one number)
-            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+            // Pattern to match an 8-digit numeric password
+            const passwordPattern = /^\d{6}$/;
+
             if (!passwordPattern.test(confirmPassword)) {
-                showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
+                showToastMessageE('Transaction Pin must be exactly 6 digits long.');
                 return;
             }
         
