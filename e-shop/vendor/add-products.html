@@ -59,6 +59,86 @@
   .disabled {
     display: none;
   }
+/* Visually hiding checkboxes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+/* Base swatch button style */
+.swatch {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  transition: background-color 0.2s;
+}
+
+/* Hover effect for swatches */
+.swatch:hover {
+  background-color: #f1f1f1;
+}
+
+/* Checked swatch appearance */
+input[type="checkbox"]:checked + .swatch {
+  background-color: #5C61F2;
+  color: white;
+  border-color: #ddd;
+}
+
+/* Hides the checkbox input itself */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Style for the swatch with aria-label */
+.swatch.js-swatch {
+  position: relative;
+}
+
+/* Displaying the aria-label as a tooltip */
+.swatch.js-swatch::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Style for the swatch list container */
+.swatch-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: start;
+}
+
+/* Clothing Size Section (e.g., S, M, L, XL) */
+#outfitSizeSection .swatch {
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Shoe Size Section (e.g., Less than 25, 25-30, etc.) */
+#shoeSizeSection .swatch {
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Optional small description text */
+small.text-muted {
+  font-size: 0.85rem;
+  color: #888;
+}
   </style>
 </head>
 
@@ -418,6 +498,59 @@
                                           </div>
                                         </div>
                                       </div>
+
+                                      <!-- Size Inputs (Hidden by Default) -->
+                                      <div class="col-12" id="sizeInputSection" style="display: none;">
+                                        <div id="outfitSizeSection" style="display: none;">
+                                          <label class="form-label">Available Sizes (Clothing)</label>
+                                          <div class="swatch-list d-flex gap-3">
+                                            <!-- Clothing Sizes -->
+                                            <input type="checkbox" name="size" id="swatch-XS" value="XS" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-XS" aria-label="" title="Extra Small">XS</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-S" value="S" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-S" aria-label="" title="Small">S</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-M" value="M" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-M" aria-label="" title="Medium">M</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-L" value="L" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-L" aria-label="" title="Large">L</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-XL" value="XL" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-XL" aria-label="" title="Extra Large">XL</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-XXL" value="XXL" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-XXL" aria-label="" title="Extra Extra Large">XXL</label>
+                                          </div>
+                                        </div>
+
+                                        <div id="shoeSizeSection" style="display: none;">
+                                          <label class="form-label">Available Sizes (Shoes)</label>
+                                          <div class="swatch-list d-flex gap-3">
+                                            <!-- Shoe Sizes -->
+                                            <input type="checkbox" name="size" id="swatch-20" value="20" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-20" title="Less than 20"><- 20</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-20-25" value="20-25" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-20-25" title="20 to 25">20-25</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-25-30" value="25-30" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-25-30" title="25 to 30">25-30</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-30-40" value="30-40" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-30-40" title="30 to 40">30-40</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-40-45" value="40-45" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-40-45" title="40 to 45">40-45</label>
+                                            
+                                            <input type="checkbox" name="size" id="swatch-45" value="45" class="visually-hidden">
+                                            <label class="swatch js-swatch" for="swatch-45" title="Greater than 45">45 -></label>
+                                          </div>
+                                          <small class="text-muted">Enter multiple available shoe sizes (e.g., 40, 42, 44).</small>
+                                        </div>
+                                        
+
                                       <div class="col-sm-6">
                                         <div class="row g-2 product-tag">
                                           <div class="col-12">
@@ -435,7 +568,8 @@
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
+                                  </div>
+
                                   </div>
                                   <div class="col-12">
                                     <div class="row g-3">

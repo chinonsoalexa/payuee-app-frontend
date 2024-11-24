@@ -107,6 +107,35 @@ submitButton.addEventListener('click', async function (event) {
 
     checkFirstProduct();
     check_posting_status();
+
+  // Get the category select element
+  const categorySelect = document.getElementById("validationDefault04");
+  
+  // Get the size input sections
+  const sizeInputSection = document.getElementById("sizeInputSection");
+  const outfitSizeSection = document.getElementById("outfitSizeSection");
+  const shoeSizeSection = document.getElementById("shoeSizeSection");
+
+  // Function to toggle size input sections based on category
+  function toggleSizeInputs() {
+    const selectedCategory = categorySelect.value;
+
+    // Show size input sections based on category
+    if (selectedCategory === "outfits" || selectedCategory === "kids-accessories") {
+      sizeInputSection.style.display = "block";
+      outfitSizeSection.style.display = "block";
+      shoeSizeSection.style.display = "block";
+    } else {
+      sizeInputSection.style.display = "none";
+    }
+  }
+
+  // Add event listener to category select element
+  categorySelect.addEventListener("change", toggleSizeInputs);
+
+  // Initial call to ensure size input section is set correctly on page load
+  toggleSizeInputs();
+
 });
 
 function checkFirstProduct() {
