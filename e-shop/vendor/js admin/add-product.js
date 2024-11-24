@@ -244,16 +244,16 @@ function initializeDropzone() {
                     return; // Exit the function
                 }
 
-                // Load the image and check clarity
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64Image = event.target.result;
-                    checkImageClarity(base64Image, file);
-                };
-                reader.readAsDataURL(file);
+                // // Load the image and check clarity
+                // const reader = new FileReader();
+                // reader.onload = function(event) {
+                //     const base64Image = event.target.result;
+                //     checkImageClarity(base64Image, file);
+                // };
+                // reader.readAsDataURL(file);
 
-                // Call detectObjects and await its return
-                await detectObjects(file);
+                // // Call detectObjects and await its return
+                // await detectObjects(file);
 
                 // Add the file to the array if it doesn't already exist
                 imageArray.push(file);
@@ -375,7 +375,6 @@ function initializeDropzone() {
 
 // Function to check image clarity using OpenCV
 
-
 function checkImageClarity(base64Image, file) {
     const img = new Image();
     img.src = base64Image;
@@ -488,7 +487,7 @@ async function detectObjects(image) {
             imageArray.splice(index, 1);
         }
         image.previewElement.remove(); 
-        showToastMessageE("Model is not loaded yet.")
+        // console.error("Model is not loaded yet.");
         return;
     }
 
@@ -1161,7 +1160,7 @@ async function generateAiDescription(TitleData) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/login_register');
+                window.location.replace('https://payuee.com/e-shop/v/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
@@ -1273,14 +1272,14 @@ async function generateAiTag(TitleData, productDescription) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/login_register');
+                window.location.replace('https://payuee.com/e-shop/v/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
                 showToastMessageE('AI Description Generation Timed Out');
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
-                window.location.replace('https://payuee.com/e-shop/login_register');
+                window.location.replace('https://payuee.com/e-shop/v/login_register');
                 logout();
             }else {
                 // displayErrorMessage();
@@ -1396,7 +1395,7 @@ async function check_posting_status() {
         localStorage.setItem('auth', 'true');
     } finally {
         if (localStorage.getItem('auth') !== 'true') {
-            window.location.href = 'https://payuee.com/e-shop/login_register';
+            window.location.href = 'https://payuee.com/e-shop/v/login_register';
         }
     }
 }
