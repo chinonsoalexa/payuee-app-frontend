@@ -150,7 +150,7 @@ async function getProducts() {
         }
 
         responseData.success.forEach((product) => {
-            renderProducts(product, responseData.store, responseData.user_id);
+            renderProducts(product, responseData.store);
         });
         
         NextPageOnLoad = responseData.pagination.NextPage;
@@ -323,7 +323,7 @@ function deactivateCurrentButton() {
     resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
-function renderProducts(product, subscription, userId) {
+function renderProducts(product, subscription) {
     const productBody = document.getElementById('products-grid');
 
     // Create a new product card element
@@ -389,72 +389,20 @@ function renderProducts(product, subscription, userId) {
     }
     
     var editProduct;
-    if (subscription.user_store && product.reposted) {
         editProduct = `
-            <a href="https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true" class="pc__btn-wl-wrapper">
-                <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_edit" />
-                    </svg>
-                </button>
-            </a>
-        `;
-    } else if (subscription.user_store) {
-        editProduct = `
-            <a href="https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}" class="pc__btn-wl-wrapper">
-                <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_edit" />
-                    </svg>
-                </button>
-            </a>
-        `;
-    } else if (product.original_eshop_user_id == userId) {
-        editProduct = `
-        <a href="${url}" class="pc__btn-wl-wrapper">
+           <a href="${url}" class="pc__btn-wl-wrapper">
             <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#icon_view" />
                 </svg>
             </button>
         </a>
-    `;
-    } else if (!product.repost || !subscription.active) {
-        editProduct = `
-        <a href="${url}" class="pc__btn-wl-wrapper">
-            <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_view" />
-                </svg>
-            </button>
-        </a>
-    `;
-    } else {
-        editProduct = `
-            <div class="pc__btn-wl-wrapper">
-                <button id="collaborateButtonCheck" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_retweet" />
-                    </svg>
-                </button>
-            </div>
         `;
-    }    
     
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
-    if (subscription.user_store) {
-        // Determine if the button should be disabled and what text to display
-        isOutOfStock = true;
-        buttonText = 'Your Item';
-        buttonDisabled =  'disabled';
-    } else if (product.original_eshop_user_id == userId) {
-        // Determine if the button should be disabled and what text to display
-        isOutOfStock = true;
-        buttonText = 'Your Item';
-        buttonDisabled =  'disabled';
-    } else if (subscription.active != true) {
+    if (subscription.active != true) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Temporarily Unavailable';
