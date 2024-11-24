@@ -258,7 +258,7 @@ function renderStores(data, products) {
 }
 
 function redirectToShop(storeId) {
-    const url = `https://payuee.com/v/store/${storeId}`; // Customize the URL as needed
+    const url = `https://payuee.com/e-shop/v/store/${storeId}`; // Customize the URL as needed
     window.location.href = url;
   }
 

@@ -126,9 +126,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/v/e-shop/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/v/shop-outfits?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/v/e-shop/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/v/shop-outfits?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -258,7 +258,7 @@ function renderStores(data, products) {
 }
 
 function redirectToShop(storeId) {
-    const url = `https://payuee.com/v/store/${storeId}`; // Customize the URL as needed
+    const url = `https://payuee.com/e-shop/v/store/${storeId}`; // Customize the URL as needed
     window.location.href = url;
   }
 
@@ -330,7 +330,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/v/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -438,7 +438,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/v/outfits/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://payuee.com/outfits/v/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
