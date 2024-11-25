@@ -572,6 +572,13 @@ function renderProducts(product, subscription, userId) {
     if (!isOutOfStock) {
         const addToCartButton = rowElement.querySelector('.pc__atc');
         addToCartButton.addEventListener('click', function() {
+            // Check if clothing or shoe size is empty and size is not selected
+            if ((product.clothing_sizes !== "" || product.shoes_sizes !== "") && sizeSelect === "") {
+                event.preventDefault();
+                event.stopPropagation(); // Stop the event from propagating further
+                window.location.href = url;
+                return;
+            }
             addToCart(product);
             updateCartNumber();
             updateCartDrawer();

@@ -469,6 +469,7 @@ quantityInput.addEventListener('change', () => {
           event.preventDefault();
           event.stopPropagation(); // Stop the event from propagating further
           triggerShake(); // Trigger shake animation
+          return;
         }
         // Proceed with adding to the cart if conditions are met
         addToCart(product, newQuantity1);
