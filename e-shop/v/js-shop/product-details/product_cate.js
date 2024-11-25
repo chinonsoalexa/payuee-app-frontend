@@ -463,6 +463,8 @@ quantityInput.addEventListener('change', () => {
   }
 
   function renderSizes(clothingSizes, shoeSizes) {
+    if (clothingSizes == "" && shoeSizeArray == "") return
+    
     // Define labels for each size if needed
     const sizeLabels = {
       XS: "Extra Small",
