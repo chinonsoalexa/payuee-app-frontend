@@ -7,6 +7,9 @@ var TwoAfterPageOnLoad;
 var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
+// Initialize loader array with 8 elements (e.g., with null values)
+const loader = Array.from({ length: 12 }, (_, i) => i);
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
@@ -297,9 +300,6 @@ dotButtonAfter.classList.add('deactivated'); // Add a class to the button
 var resendButton = document.getElementById('currentPage');
 resendButton.classList.add('deactivated'); // Add a class to the button
 }
-
-// Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 12 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
