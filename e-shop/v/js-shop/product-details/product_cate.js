@@ -412,7 +412,6 @@ document.querySelector(".swatch-list").addEventListener("change", function(event
   }
 });
 
-
 // Add event listeners for quantity update buttons
 const reduceButton = productBody.querySelector('.qty-control__reduce');
 const increaseButton = productBody.querySelector('.qty-control__increase');
@@ -507,9 +506,9 @@ function renderSizes(clothingSizes, shoeSizes) {
     const id = `swatch-${index + 1}`;
     const label = sizeLabels[size] || size; // Use label from sizeLabels or fallback to size
 
-    // Append input and label elements to the HTML string
+    // Append input and label elements to the HTML string, adding value for radio button
     htmlOutput += `
-      <input type="radio" name="size" id="${id}">
+      <input type="radio" name="size" id="${id}" value="${size}">
       <label class="swatch js-swatch" for="${id}" aria-label="${label}" 
              data-bs-toggle="tooltip" data-bs-placement="top" title="${label}">
         ${size}
