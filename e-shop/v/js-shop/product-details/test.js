@@ -40,8 +40,6 @@ function renderSizes(clothingSizes, shoeSizes) {
           ${size}
         </label>
 
-        <input type="radio" name="size" id="swatch-1">
-        <label class="swatch js-swatch" for="swatch-1" aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Small">XS</label>
       `;
     });
   

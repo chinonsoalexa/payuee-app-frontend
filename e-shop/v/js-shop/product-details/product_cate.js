@@ -403,6 +403,18 @@ if (typeof PayueeElements.Aside === 'function') {
   new PayueeElements.Aside();
 }
 
+// Render sizes and set event listener to get selected size
+const sizeContainer = document.getElementById("size-options-container"); // This should be the container where you want to display sizes
+
+// Listen for changes to any radio button in the size options
+sizeContainer.addEventListener("change", (event) => {
+  if (event.target.name === "size") {
+    const selectedSize = event.target.value;
+    console.log("Selected size:", selectedSize);
+    // Do something with the selectedSize, e.g., store it or use it in calculations
+  }
+});
+
 // Add event listeners for quantity update buttons
 const reduceButton = productBody.querySelector('.qty-control__reduce');
 const increaseButton = productBody.querySelector('.qty-control__increase');
