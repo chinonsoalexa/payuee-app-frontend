@@ -101,6 +101,12 @@ async function getProducts(OrderId) {
         const formattedDate = `Date: ${day}-${month}-${year} Time: ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${period} UTC`;
         document.getElementById("order-date").textContent = formattedDate;
         document.getElementById("customer-name").textContent = responseData.success.customer_fname + " " + responseData.success.customer_user_sname;
+        if (!responseData.success.outfit_size) {
+            document.getElementById('outfitSize').style.display = 'none'; // Hides the <tr> element
+        } else {
+            document.getElementById('outfitSize').style.display = 'block'; // Hides the <tr> element
+            document.getElementById('customer-size').src = responseData.success.outfit_size;
+        }
         document.getElementById("company-name").textContent = responseData.success.customer_company_name;
         document.getElementById("customer-state").textContent = responseData.success.customer_state;
         document.getElementById("customer-city").textContent = responseData.success.customer_city;
