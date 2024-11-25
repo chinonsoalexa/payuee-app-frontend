@@ -230,6 +230,13 @@ function renderProducts(product) {
     //     redirectUrl = `repost-order-history-details.html?OrderId=${product.original_eshop_user_id}`;
     // }
 
+    let orderType = "";
+    if (product.reposted) {
+        orderType = `Reposted`;
+    }else {
+        orderType = `Original`;
+    }
+
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
@@ -243,7 +250,7 @@ function renderProducts(product) {
                 <div class="text-muted me-2">Price</div>: ${formatNumberToNaira(product.order_cost)}
                 </div>
                 <div class="avaiabilty">
-                <div class="text-success">In stock</div>
+                <div class="text-success">${orderType}</div>
                 </div>${productStatus}
             </div>
             </div>
