@@ -1227,7 +1227,6 @@ function formatNumberToNaira(number) {
     return formattedNumber;
 }
 
-
 function calculatePercentageOff(previousPrice, currentPrice) {
   if (previousPrice <= 0) {
       return 0; // Prevent division by zero or negative values
@@ -1310,6 +1309,12 @@ function addToCart(product, quantity = 1) {
       // If product exists, increase quantity
       cart[productIndex].quantity += quantity;
   } else {
+    // check if cloth size and shoe size are empty
+    if (product.clothing_sizes != "" || product.shoes_sizes != "") {
+        triggerShake();
+        return;
+    }
+
       // If product does not exist, add new product to cart
       cart.push({ ...product, quantity: quantity });
   }
