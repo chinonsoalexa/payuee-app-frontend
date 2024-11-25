@@ -464,9 +464,9 @@ quantityInput.addEventListener('change', () => {
       addToCartButton.addEventListener('click', function(event) {
         // Check if clothing or shoe size is empty and size is not selected
         if ((product.clothing_sizes !== "" || product.shoes_sizes !== "") && sizeSelect === "") {
-          event.preventDefault(); // Prevent cart sidebar from opening
+          event.preventDefault();
+          event.stopPropagation(); // Stop the event from propagating further
           triggerShake(); // Trigger shake animation
-          return; // Exit function so the cart won't be updated
         }
         // Proceed with adding to the cart if conditions are met
         addToCart(product, newQuantity1);
