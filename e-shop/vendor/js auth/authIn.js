@@ -53,21 +53,21 @@ async function check_auth_status() {
 
         const responseData = await response.json(); // Parse response JSON
         // Only update if we already have the vendor name from the API response
-        if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
-            // Display the buttons
-            document.getElementById("generateDescriptionAI").style.display = "block";
-            document.getElementById("generateTagAI").style.display = "block";
+        // if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
+        //     // Display the buttons
+        //     document.getElementById("generateDescriptionAI").style.display = "block";
+        //     document.getElementById("generateTagAI").style.display = "block";
         
-            // Add event listener for 'generateDescriptionAI' button click
-            // document.getElementById("generateDescriptionAI").addEventListener("click", function() {
-            //     generateDescriptionAI();  // Your AI function for generating descriptions
-            // });
+        //     // Add event listener for 'generateDescriptionAI' button click
+        //     // document.getElementById("generateDescriptionAI").addEventListener("click", function() {
+        //     //     generateDescriptionAI();  // Your AI function for generating descriptions
+        //     // });
         
-            // Add event listener for 'generateTagAI' button click
-            // document.getElementById("generateTagAI").addEventListener("click", function() {
-            //     generateTagAI();  // Your AI function for generating tags
-            // });
-        }
+        //     // Add event listener for 'generateTagAI' button click
+        //     // document.getElementById("generateTagAI").addEventListener("click", function() {
+        //     //     generateTagAI();  // Your AI function for generating tags
+        //     // });
+        // }
 
         if (window.location.pathname !== "/e-shop/vendor/update-shipping-fees") {
             if (responseData.total_products < 1) {
