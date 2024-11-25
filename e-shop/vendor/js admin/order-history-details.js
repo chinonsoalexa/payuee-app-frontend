@@ -1,3 +1,6 @@
+// Initialize loader array with 8 elements (e.g., with null values)
+const loader = Array.from({ length: 4 }, (_, i) => i);
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
@@ -253,9 +256,6 @@ async function updateOrderStatus(orderID, orderStatus) {
 
     }
 }
-
-// Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 4 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
