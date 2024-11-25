@@ -518,10 +518,10 @@ function renderProducts(product) {
         const addToCartButton = rowElement.querySelector('.pc__atc');
         addToCartButton.addEventListener('click', function(event) {
             // Check if clothing or shoe size is empty and size is not selected
-            if ((product.clothing_sizes !== "" || product.shoes_sizes !== "") && sizeSelect === "") {
+            if (product.clothing_sizes !== "" || product.shoes_sizes !== "") {
                 event.preventDefault();
                 event.stopPropagation(); // Stop the event from propagating further
-                window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+                window.location.href = `https://payuee.com/kids/${product.product_url_id}`;
                 return;
             }
             addToCart(product);
