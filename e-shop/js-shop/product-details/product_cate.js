@@ -531,6 +531,18 @@ quantityInput.addEventListener('change', () => {
     return returnedData;
   }
 
+  function triggerShake() {
+    const swatchList = document.querySelector(".swatch-list");
+    
+    // Add the shake class to trigger the animation
+    swatchList.classList.add("shake");
+    
+    // Optionally, remove the shake class after animation completes (to allow re-triggering)
+    setTimeout(() => {
+      swatchList.classList.remove("shake");
+    }, 500); // Duration should match the animation time (500ms)
+  }
+
   function renderProductImages(imageUrls, title) {
     // Default image URL if imageUrls is empty or an image URL is missing
     const defaultImageUrl = '../../e-shop/images/default_img.png';

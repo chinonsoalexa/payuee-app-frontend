@@ -22,7 +22,30 @@
 
   <!-- Document Title -->
   <title>Shop Detail v1 - Variable | Payuee e-Shop</title>
+<style>
+  @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
 
+    .swatch-list {
+      display: flex;
+      gap: 10px;
+    }
+
+    .swatch {
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+</style>
 </head>
 
 <body>
