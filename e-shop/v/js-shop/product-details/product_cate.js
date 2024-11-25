@@ -403,7 +403,7 @@ if (typeof PayueeElements.Aside === 'function') {
   new PayueeElements.Aside();
 }
 
-document.getElementById("size-options").addEventListener("change", function(event) {
+document.querySelector(".swatch-list").addEventListener("change", function(event) {
   // Check if the event target is a radio input
   if (event.target && event.target.type === "radio") {
     const selectedSize = event.target.value; // Get the value (size) of the selected radio button
@@ -411,6 +411,7 @@ document.getElementById("size-options").addEventListener("change", function(even
     // Do something with the selected size (e.g., update UI or store it)
   }
 });
+
 
 // Add event listeners for quantity update buttons
 const reduceButton = productBody.querySelector('.qty-control__reduce');
