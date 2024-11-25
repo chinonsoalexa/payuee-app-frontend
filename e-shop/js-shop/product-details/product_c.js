@@ -1397,7 +1397,7 @@ function triggerShake() {
 }
 
 // Function to add a product to the cart
-function addToCart(product) {
+function addToCart(product, quantity = 1) {
   // Get cart from local storage or initialize if not found
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -1405,10 +1405,10 @@ function addToCart(product) {
   const productIndex = cart.findIndex(item => item.ID === product.ID);
   if (productIndex !== -1) {
       // If product exists, increase quantity
-      cart[productIndex].quantity += 1;
+      cart[productIndex].quantity += quantity;
   } else {
       // If product does not exist, add new product to cart
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ ...product, quantity: quantity, outfit_size: sizeSelect });
   }
 
   // Save updated cart to local storage

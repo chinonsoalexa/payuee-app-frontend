@@ -1316,7 +1316,7 @@ function addToCart(product, quantity = 1) {
       cart[productIndex].quantity += quantity;
   } else {
       // If product does not exist, add new product to cart
-      cart.push({ ...product, quantity: quantity });
+      cart.push({ ...product, quantity: quantity, outfit_size: sizeSelect });
   }
 
   // Save updated cart to local storage
