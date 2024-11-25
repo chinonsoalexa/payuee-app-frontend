@@ -460,11 +460,17 @@ quantityInput.addEventListener('change', () => {
   });
 
   // Add event listener to the 'Add To Cart' button
-  if (!product.stock_remaining < 1) {
+  if (product.stock_remaining >= 1) {
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
-      addToCartButton.addEventListener('click', function() {
-        // event.preventDefault();
+      addToCartButton.addEventListener('click', function(event) {
+        // Check if clothing or shoe size is empty and size is not selected
+        if ((product.clothing_sizes !== "" || product.shoes_sizes !== "") && sizeSelect === "") {
+          event.preventDefault();
+          event.stopPropagation(); // Stop the event from propagating further
+          triggerShake(); // Trigger shake animation
+        }
+        // Proceed with adding to the cart if conditions are met
         addToCart(product, newQuantity1);
         updateCartNumber();
         updateCartDrawer();
@@ -1383,6 +1389,18 @@ function renderLoadingDetails() {
 
   // Append the new element to the container
   productBody.appendChild(rowElement);
+}
+
+function triggerShake() {
+  const swatchList = document.querySelector(".swatch-list");
+  
+  // Add the shake class to trigger the animation
+  swatchList.classList.add("shake");
+  
+  // Optionally, remove the shake class after animation completes (to allow re-triggering)
+  setTimeout(() => {
+    swatchList.classList.remove("shake");
+  }, 500); // Duration should match the animation time (500ms)
 }
 
 // Function to add a product to the cart
