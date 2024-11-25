@@ -521,7 +521,6 @@ function renderSizes(clothingSizes, shoeSizes) {
   return returnedData;
 }
 
-
   function renderProductImages(imageUrls, title) {
     // Default image URL if imageUrls is empty or an image URL is missing
     const defaultImageUrl = '../../e-shop/images/default_img.png';
