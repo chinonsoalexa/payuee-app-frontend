@@ -462,8 +462,13 @@ quantityInput.addEventListener('change', () => {
   if (!product.stock_remaining < 1) {
     const addToCartButton = document.getElementById('addToCartButton');
     if (addToCartButton) {
-      addToCartButton.addEventListener('click', function() {
-        // event.preventDefault();
+      addToCartButton.addEventListener('click', function(event) {
+            // check if cloth size and shoe size are empty
+          if (product.clothing_sizes != "" || product.shoes_sizes != "") {
+            event.preventDefault();
+            triggerShake();
+            return;
+        }
         addToCart(product, newQuantity1);
         updateCartNumber();
         updateCartDrawer();
@@ -1309,12 +1314,6 @@ function addToCart(product, quantity = 1) {
       // If product exists, increase quantity
       cart[productIndex].quantity += quantity;
   } else {
-    // check if cloth size and shoe size are empty
-    if (product.clothing_sizes != "" || product.shoes_sizes != "") {
-        triggerShake();
-        return;
-    }
-
       // If product does not exist, add new product to cart
       cart.push({ ...product, quantity: quantity });
   }
