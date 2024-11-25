@@ -403,15 +403,12 @@ if (typeof PayueeElements.Aside === 'function') {
   new PayueeElements.Aside();
 }
 
-// Render sizes and set event listener to get selected size
-const sizeContainer = document.getElementById("size-options-container"); // This should be the container where you want to display sizes
-
-// Listen for changes to any radio button in the size options
-sizeContainer.addEventListener("change", (event) => {
-  if (event.target.name === "size") {
-    const selectedSize = event.target.value;
+document.getElementById("size-options").addEventListener("change", function(event) {
+  // Check if the event target is a radio input
+  if (event.target && event.target.type === "radio") {
+    const selectedSize = event.target.value; // Get the value (size) of the selected radio button
     console.log("Selected size:", selectedSize);
-    // Do something with the selectedSize, e.g., store it or use it in calculations
+    // Do something with the selected size (e.g., update UI or store it)
   }
 });
 
