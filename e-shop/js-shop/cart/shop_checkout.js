@@ -1220,6 +1220,7 @@ async function placeOrder() {
         'product_image',
         'initial_cost',
         'selling_price',
+        'outfit_size',
         'estimated_delivery',
         'reposted',
         'repost_max_price',
