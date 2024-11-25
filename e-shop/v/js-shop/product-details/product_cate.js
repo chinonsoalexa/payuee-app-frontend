@@ -3,6 +3,7 @@ var productId;
 var ReviewCount;
 var pageNumber = 1;
 var categoryId = "";
+var sizeSelect = "";
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 16 }, (_, i) => i);
@@ -407,8 +408,7 @@ document.querySelector(".swatch-list").addEventListener("change", function(event
   // Check if the event target is a radio input
   if (event.target && event.target.type === "radio") {
     const selectedSize = event.target.value; // Get the value (size) of the selected radio button
-    console.log("Selected size:", selectedSize);
-    // Do something with the selected size (e.g., update UI or store it)
+    sizeSelect = selectedSize;
   }
 });
 
