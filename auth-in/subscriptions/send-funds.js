@@ -294,6 +294,8 @@ async function sendFunds() {
                     window.location.href = responseData.success.data.authorization_url;
                     return
                 }
+                window.location.href = "https://payuee.com/successful.html"
+                return
             } else {
                 window.location.href = "https://payuee.com/successful.html"
                 return
