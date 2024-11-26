@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Handle login button click
     const loginButtonClickHandler = function (event) {
         event.preventDefault();
-        
+        event.stopPropagation();
         const loginData = {
             email: loginForm.login_email.value.trim(),
             password: loginForm.login_password.value.trim(),
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Handle register button click
     const registerButton1ClickHandler = function (event) {
         event.preventDefault();
+        event.stopPropagation();
         
         const registerData = {
             FirstName: registerForm.register_username.value.trim(),
