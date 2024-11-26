@@ -150,18 +150,14 @@ function validateAndSendFunds() {
 }
 
 function calculateTotalCharge(originalPrice) {
-    let additionalPercentage = 1.5;
-    let paystackPercentage = 1.5;
-    
-    // Calculate the total amount to ensure you receive 500 naira after Paystack's fees
-    let totalAmount = originalPrice / (1 - (paystackPercentage / 100)) * (1 + additionalPercentage / 100);
-    let secondPrice = totalAmount - originalPrice;
-
-    if (originalPrice > 5000) {
-        return Math.ceil(secondPrice += 25);
+    // Apply the fixed charge based on the price range
+    if (originalPrice > 50000) {
+        return Math.ceil(55); // NGN 55 for transfers above NGN 50,000
+    } else if (originalPrice > 5000) {
+        return Math.ceil(30); // NGN 30 for transfers between NGN 5,001 and NGN 50,000
+    } else {
+        return Math.ceil(15); // NGN 15 for transfers of NGN 5,000 and below
     }
-
-    return Math.ceil(secondPrice += 5);
 }
 
 function FundsToSendToPayuee(email, amount) {
