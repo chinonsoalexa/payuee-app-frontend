@@ -48,7 +48,17 @@ radioButtons.forEach(button => {
     button.addEventListener('change', function () {
         // Perform your desired action here
         // console.log(`Selected option: ${this.id}`);
-
+        payueeEmailId = "";
+        payueeAmount = 0;
+        validated = "";
+        transCharge = 0;
+        BankType = "";
+        BankCountryType = "";
+        AccountNumber = "";
+        AccountName = "";
+        Description = "";
+        BankCode = "";
+        Bank = "";
         if (this.id === "payuee") {
             enableTransferDiv();
         } else if (this.id === "paystack") {
