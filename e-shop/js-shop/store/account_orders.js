@@ -860,15 +860,26 @@ async function onScanSuccess(decodedText, decodedResult) {
       verificationStatus.classList.add('hidden');
       reader.classList.remove('hidden');
 
-    // Start the QR scanner
+    // Check if the browser supports camera access
     navigator.mediaDevices.getUserMedia({ video: true })
-      if (!html5QrcodeScanner) {
-          html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-              fps: 10,
-              qrbox: { width: 250, height: 250 },
-          });
-      }
-  
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        .then((stream) => {
+            if (!html5QrcodeScanner) {
+                html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 }
+                });
+            }
+
+            // Start the scanner
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        })
+        .catch((error) => {
+            if (error.name === "NotAllowedError") {
+                console.error("Camera access was denied by the user or browser settings");
+                showToast("Please allow camera access to use the scanner.");
+            } else {
+                console.error("Error accessing the camera:", error);
+            }
+        });
   }
   
