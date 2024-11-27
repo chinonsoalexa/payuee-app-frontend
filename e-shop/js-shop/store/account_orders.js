@@ -737,13 +737,15 @@ function showToast(message, duration = 5000) {
     // Show the toast
     toast.classList.add('show');
 
+    // Add click event to close button
+    closeToastBtn.removeEventListener('click', hideToast); // Remove existing listener
+    closeToastBtn.addEventListener('click', hideToast);
+
     // Hide the toast after the duration
     setTimeout(() => {
         hideToast();
     }, duration);
 
-    // Add click event to close button
-    closeToastBtn.addEventListener('click', hideToast);
 }
 
 // Hide toast function
@@ -875,12 +877,24 @@ async function onScanSuccess(decodedText, decodedResult) {
 
   // Start the QR scanner
   navigator.mediaDevices.getUserMedia({ video: true })
-    if (!html5QrcodeScanner) {
-        html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-            fps: 10,
-            qrbox: { width: 250, height: 250 },
-        });
-    }
 
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+    .then((stream) => {
+        if (!html5QrcodeScanner) {
+            html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+                fps: 10,
+                qrbox: { width: 250, height: 250 },
+            });
+        }
+    
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    })
+    .catch((error) => {
+        if (error.name === "NotAllowedError") {
+            console.error("Camera access was denied by the user or browser settings");
+            showToast("Please allow camera access for the scanner to work.");
+        } else {
+            console.error("Error accessing the camera:", error);
+        }
+    });
 }
