@@ -764,13 +764,16 @@ async function onScanSuccess(decodedText, decodedResult) {
 
     await scannedQrCodeVerification(decodedText);
 
-    // Clear the scanner and reset the scanning flag
-    html5QrcodeScanner.clear().then(() => {
-        isScanning = false;
-    }).catch((error) => {
-        console.error("Error stopping scanner:", error);
-        isScanning = false;
-    });
+    // Clear the scanner to stop the camera
+    if (html5QrcodeScanner) {
+        html5QrcodeScanner.clear().then(() => {
+            // console.log("Camera stopped successfully.");
+            isScanning = false; // Reset scanning flag
+        }).catch((error) => {
+            // console.error("Error stopping scanner:", error);
+            isScanning = false; // Ensure the scanning flag is reset in case of error
+        });
+    }
 }
   
 // Function called when there's a scanning error (e.g., QR code not found)
