@@ -92,7 +92,7 @@ async function check_auth_status() {
         //     //     generateTagAI();  // Your AI function for generating tags
         //     // });
         // }
-        daysRemaining = redirectToRenewPage;
+        daysRemaining = responseData.store_details.days_remaining;
         if (window.location.pathname !== "/e-shop/vendor/update-shipping-fees") {
             if (responseData.total_products < 1) {
                 swal({
