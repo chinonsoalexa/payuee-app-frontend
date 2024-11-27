@@ -777,13 +777,14 @@ async function onScanSuccess(decodedText, decodedResult) {
   }
   
   // Initialize the QR Code scanner, but don't start immediately
-  const html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    {
-      fps: 10,            // Frames per second for scanning
-      qrbox: { width: 250, height: 250 } // Define scan area size
-    }
-  );
+    let html5QrcodeScanner;
+//   const html5QrcodeScanner = new Html5QrcodeScanner(
+//     "reader", 
+//     {
+//       fps: 10,            // Frames per second for scanning
+//       qrbox: { width: 250, height: 250 } // Define scan area size
+//     }
+//   );
   
   function getProductId(id) {
     productCode = id;
@@ -847,19 +848,39 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   }
   
+//   function startProductScan(id) {
+//     productCode = id;
+//     const verificationStatus = document.getElementById('verificationStatus');
+//       const reader = document.getElementById('reader');
+//       verificationStatus.classList.add('hidden');
+//       reader.classList.remove('hidden');
+  
+//       // Start the QR scanner
+//       navigator.mediaDevices.getUserMedia({ video: true })
+//         .then((stream) => {
+//           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
+//         })
+//         .catch((error) => {
+//           console.error("Camera access denied or unavailable:", error);
+//         });
+//   }
+
   function startProductScan(id) {
     productCode = id;
     const verificationStatus = document.getElementById('verificationStatus');
-      const reader = document.getElementById('reader');
-      verificationStatus.classList.add('hidden');
-      reader.classList.remove('hidden');
-  
-      // Start the QR scanner
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
-        })
-        .catch((error) => {
-          console.error("Camera access denied or unavailable:", error);
+    const reader = document.getElementById('reader');
+
+    verificationStatus.classList.add('hidden');
+    reader.classList.remove('hidden');
+
+  // Start the QR scanner
+  navigator.mediaDevices.getUserMedia({ video: true })
+    if (!html5QrcodeScanner) {
+        html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
         });
-  }
+    }
+
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+}
