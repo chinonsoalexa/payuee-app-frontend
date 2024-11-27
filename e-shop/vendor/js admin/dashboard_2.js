@@ -1,23 +1,23 @@
 // Example JSON data
-const siteVisitData = {
-    "1st Mon": 30,
-    "2nd Tue": 21,
-    "3rd Wed": 25,
-    "4th Thu": 40,
-    "5th Fri": 35,
-    "6th Sat": 50,
-    "7th Sun": 60,
-    "8th Mon": 45,
-    "9th Tue": 55,
-    "10th Wed": 65,
-    "11th Thu": 30,
-    "12th Fri": 75
-  };
+// const siteVisitData = {
+//     "1st Mon": 30,
+//     "2nd Tue": 21,
+//     "3rd Wed": 25,
+//     "4th Thu": 40,
+//     "5th Fri": 35,
+//     "6th Sat": 50,
+//     "7th Sun": 60,
+//     "8th Mon": 45,
+//     "9th Tue": 55,
+//     "10th Wed": 65,
+//     "11th Thu": 30,
+//     "12th Fri": 75
+//   };
 
   feather.replace();
   
   document.addEventListener('DOMContentLoaded', async function () {
-    
+
     await getVendorAnalytics();
     
   });
