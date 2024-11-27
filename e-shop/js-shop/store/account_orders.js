@@ -12,9 +12,6 @@ let productCode;
 
 let pageNumber;
 
-const reader = document.getElementById('reader');
-const verificationStatus = document.getElementById('verificationStatus');
-
 // Emoji
 (function () {
     document.querySelectorAll(".feedback li").forEach((entry) =>
@@ -58,17 +55,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getProducts(pageNumber);
 
-    // Add event listener to the link
-    document.getElementById('forgotTransactionPinLink').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-
-        // Store the current page URL in local storage
-        const currentUrl = window.location.href;
-        localStorage.setItem('redirectTo', currentUrl);
-
-        // Redirect to the reset transaction PIN page
-        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
-    });
 });
 
 function clearElementsByClass() {
@@ -751,14 +737,13 @@ function showToast(message, duration = 5000) {
     // Show the toast
     toast.classList.add('show');
 
-    // Add click event to close button
-    closeToastBtn.removeEventListener('click', hideToast); // Remove existing listener
-    closeToastBtn.addEventListener('click', hideToast);
-    
     // Hide the toast after the duration
     setTimeout(() => {
         hideToast();
     }, duration);
+
+    // Add click event to close button
+    closeToastBtn.addEventListener('click', hideToast);
 }
 
 // Hide toast function
@@ -779,10 +764,11 @@ async function onScanSuccess(decodedText, decodedResult) {
 
     html5QrcodeScanner.clear().then(() => {
         isScanning = false; // Reset flag after stopping scanner
+        // console.log("Scanner stopped.");
     }).catch((error) => {
         console.error("Error stopping scanner:", error);
-        isScanning = false; // Ensure flag is reset even on error
-    });    
+        isScanning = false; // Reset flag in case of error
+    });
 }
   
   // Function called when there's a scanning error (e.g., QR code not found)
@@ -791,7 +777,13 @@ async function onScanSuccess(decodedText, decodedResult) {
   }
   
   // Initialize the QR Code scanner, but don't start immediately
-  let html5QrcodeScanner;
+  const html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", 
+    {
+      fps: 10,            // Frames per second for scanning
+      qrbox: { width: 250, height: 250 } // Define scan area size
+    }
+  );
   
   function getProductId(id) {
     productCode = id;
@@ -821,6 +813,9 @@ async function onScanSuccess(decodedText, decodedResult) {
   
     try {
       const response = await fetch(apiUrl, requestOptions);
+  
+      const reader = document.getElementById('reader');
+      const verificationStatus = document.getElementById('verificationStatus');
   
       if (!response.ok) {
         const errorData = await response.json();
@@ -853,33 +848,18 @@ async function onScanSuccess(decodedText, decodedResult) {
   }
   
   function startProductScan(id) {
-      productCode = id;
-      const verificationStatus = document.getElementById('verificationStatus');
+    productCode = id;
+    const verificationStatus = document.getElementById('verificationStatus');
       const reader = document.getElementById('reader');
-  
       verificationStatus.classList.add('hidden');
       reader.classList.remove('hidden');
-
-    // Check if the browser supports camera access
-    navigator.mediaDevices.getUserMedia({ video: true })
+  
+      // Start the QR scanner
+      navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
-            if (!html5QrcodeScanner) {
-                html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-                    fps: 10,
-                    qrbox: { width: 250, height: 250 }
-                });
-            }
-
-            // Start the scanner
-            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
-            if (error.name === "NotAllowedError") {
-                console.error("Camera access was denied by the user or browser settings");
-                showToast("Please allow camera access to use the scanner.");
-            } else {
-                console.error("Error accessing the camera:", error);
-            }
+          console.error("Camera access denied or unavailable:", error);
         });
   }
-  
