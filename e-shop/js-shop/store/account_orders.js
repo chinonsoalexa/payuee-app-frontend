@@ -753,6 +753,7 @@ function hideToast() {
     const toast = document.getElementById('toast');
     toast.classList.remove('show');
 }
+
 let isScanning = false; // Flag to prevent multiple scans
 let html5QrcodeScanner = null; // To hold the QR code scanner instance
 
@@ -852,8 +853,8 @@ function startProductScan(id) {
     reader.classList.remove('hidden');
 
     // Check if the browser supports camera access
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
+    // navigator.mediaDevices.getUserMedia({ video: true })
+        // .then((stream) => {
             if (!html5QrcodeScanner) {
                 html5QrcodeScanner = new Html5QrcodeScanner("reader", {
                     fps: 10,
@@ -863,15 +864,15 @@ function startProductScan(id) {
 
             // Start the scanner
             html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-        })
-        .catch((error) => {
-            if (error.name === "NotAllowedError") {
-                console.error("Camera access was denied by the user or browser settings");
-                showToast("Please allow camera access to use the scanner.");
-            } else {
-                console.error("Error accessing the camera:", error);
-            }
-        });
+        // })
+        // .catch((error) => {
+        //     if (error.name === "NotAllowedError") {
+        //         console.error("Camera access was denied by the user or browser settings");
+        //         showToast("Please allow camera access to use the scanner.");
+        //     } else {
+        //         console.error("Error accessing the camera:", error);
+        //     }
+        // });
 }
 
 // Utility function to show toast messages
