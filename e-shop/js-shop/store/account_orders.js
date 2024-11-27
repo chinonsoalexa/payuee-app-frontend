@@ -223,6 +223,12 @@ async function getProducts(pageNumber) {
     }
 }
 
+document.getElementById("closePaymentModal").addEventListener("click", function (event) {
+    event.preventDefault();
+    hideModal('checkoutModal');
+    html5QrcodeScanner.clear();
+});
+
 function renderProducts(product) {
     const productBody = document.getElementById('order-gridd');
 
@@ -748,13 +754,14 @@ function showToast(message, duration = 5000) {
     // Show the toast
     toast.classList.add('show');
 
+    // Add click event to close button
+    closeToastBtn.removeEventListener('click', hideToast); // Remove existing listener
+    closeToastBtn.addEventListener('click', hideToast);
+
     // Hide the toast after the duration
     setTimeout(() => {
         hideToast();
     }, duration);
-
-    // Add click event to close button
-    closeToastBtn.addEventListener('click', hideToast);
 }
 
 // Hide toast function
