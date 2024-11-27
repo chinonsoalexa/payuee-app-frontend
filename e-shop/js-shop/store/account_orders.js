@@ -862,6 +862,7 @@ async function onScanSuccess(decodedText, decodedResult) {
           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
-          console.error("Camera access denied or unavailable:", error);
+            showToast("Camera access denied or unavailable");
+            console.log("Camera access denied or unavailable:", error);
         });
   }
