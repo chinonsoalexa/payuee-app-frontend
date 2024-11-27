@@ -16,11 +16,38 @@ const siteVisitData = {
 
   feather.replace();
   
-document.addEventListener('DOMContentLoaded', async function () {
-
+  document.addEventListener('DOMContentLoaded', async function () {
+    console.log("DOM fully loaded");
+  
     await getVendorAnalytics();
-
-});
+    console.log("Vendor analytics fetched");
+  
+    const expirationDate = new Date("2024-12-05T23:59:59"); // Replace with actual expiration date
+    const currentDate = new Date();
+  
+    const timeDiff = expirationDate - currentDate;
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  
+    console.log(`Days remaining until expiration: ${daysRemaining}`); // Debug log
+  
+    const expirationNotice = document.getElementById("expirationNotice");
+    console.log("Expiration Notice Element:", expirationNotice);
+  
+    if (!expirationNotice) {
+      console.error("Expiration notice element not found in DOM.");
+      return;
+    }
+  
+    if (daysRemaining > 0 && daysRemaining <= 7) {
+      console.log("Displaying expiration notice");
+      expirationNotice.innerHTML = `
+        <p>Your subscription expires in <strong>${daysRemaining} days</strong>. Click here to renew now!</p>
+      `;
+      expirationNotice.classList.remove("hidden");
+      expirationNotice.classList.add("visible");
+    }
+  });
+  
   
 // Convert the data to the format expected by ApexCharts
 var categories;

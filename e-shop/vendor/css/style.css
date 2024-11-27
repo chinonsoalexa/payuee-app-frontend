@@ -4224,6 +4224,27 @@ strong ~ p {
     }
   }
   
+  .expiration-notice {
+  background-color: #ffe6e6;
+  color: #d9534f;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #d9534f;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.expiration-notice.hidden {
+  display: none;
+}
+
+.expiration-notice:hover {
+  background-color: #ffcccc;
+}
+
 .list-group-horizontal-sm .list-group-item.border-left-secondary, .list-group-horizontal-md .list-group-item.border-left-secondary, .list-group-horizontal-lg .list-group-item.border-left-secondary, .list-group-horizontal-xl .list-group-item.border-left-secondary, .list-group-horizontal-xxl .list-group-item.border-left-secondary {
   border-left: 4px solid #FF9766;
 }
