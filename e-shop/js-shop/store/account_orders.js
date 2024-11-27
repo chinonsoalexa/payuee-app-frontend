@@ -55,6 +55,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getProducts(pageNumber);
 
+    document.getElementById("closePaymentModal").addEventListener("click", function (event) {
+        event.preventDefault();
+        hideModal('checkoutModal');
+        html5QrcodeScanner.clear();
+    });
 });
 
 function clearElementsByClass() {
