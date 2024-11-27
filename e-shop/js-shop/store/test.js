@@ -872,3 +872,26 @@ async function onScanSuccess(decodedText, decodedResult) {
       html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   }
   
+  document.getElementById("closePaymentModal").addEventListener("click", function (event) {
+    event.preventDefault();
+    hideModal('checkoutModal');
+    html5QrcodeScanner.clear();
+});
+
+showToast("Please allow camera access to use the scanner");
+
+async function onScanSuccess(decodedText, decodedResult) {
+    // Prevent multiple scans if one is already in progress
+    if (isScanning) return;
+    isScanning = true; // Set flag to indicate scanning is in progress
+
+    await scannedQrCodeVerification(decodedText);
+
+    html5QrcodeScanner.clear().then(() => {
+        isScanning = false; // Reset flag after stopping scanner
+        // console.log("Scanner stopped.");
+    }).catch((error) => {
+        console.error("Error stopping scanner:", error);
+        isScanning = false; // Reset flag in case of error
+    });
+}

@@ -55,11 +55,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getProducts(pageNumber);
 
-    document.getElementById("closePaymentModal").addEventListener("click", function (event) {
-        event.preventDefault();
-        hideModal('checkoutModal');
-        html5QrcodeScanner.clear();
-    });
 });
 
 function clearElementsByClass() {
@@ -742,14 +737,13 @@ function showToast(message, duration = 5000) {
     // Show the toast
     toast.classList.add('show');
 
-    // Add click event to close button
-    closeToastBtn.removeEventListener('click', hideToast); // Remove existing listener
-    closeToastBtn.addEventListener('click', hideToast);
-
     // Hide the toast after the duration
     setTimeout(() => {
         hideToast();
     }, duration);
+
+    // Add click event to close button
+    closeToastBtn.addEventListener('click', hideToast);
 }
 
 // Hide toast function
@@ -866,7 +860,6 @@ async function onScanSuccess(decodedText, decodedResult) {
           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
-          showToast("Please allow camera access to use the scanner");
           console.error("Camera access denied or unavailable:", error);
         });
   }
