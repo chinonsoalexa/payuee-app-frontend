@@ -400,13 +400,17 @@ if (typeof PayueeElements.Aside === 'function') {
   new PayueeElements.Aside();
 }
 
-document.querySelector(".swatch-list").addEventListener("change", function(event) {
-  // Check if the event target is a radio input
-  if (event.target && event.target.type === "radio") {
-    const selectedSize = event.target.value; // Get the value (size) of the selected radio button
-    sizeSelect = selectedSize;
-  }
-});
+const swatchList = document.querySelector(".swatch-list");
+if (swatchList) {
+  swatchList.addEventListener("change", function(event) {
+    // Check if the event target is a radio input
+    if (event.target && event.target.type === "radio") {
+      const selectedSize = event.target.value; // Get the value (size) of the selected radio button
+      sizeSelect = selectedSize;
+    }
+  });
+}
+
 
 // Add event listeners for quantity update buttons
 const reduceButton = productBody.querySelector('.qty-control__reduce');
