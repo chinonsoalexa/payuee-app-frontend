@@ -791,14 +791,14 @@ async function onScanSuccess(decodedText, decodedResult) {
   }
   
   // Initialize the QR Code scanner, but don't start immediately
-//   let html5QrcodeScanner;
-  const html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    {
-      fps: 10,            // Frames per second for scanning
-      qrbox: { width: 250, height: 250 } // Define scan area size
-    }
-  );
+  let html5QrcodeScanner;
+//   const html5QrcodeScanner = new Html5QrcodeScanner(
+//     "reader", 
+//     {
+//       fps: 10,            // Frames per second for scanning
+//       qrbox: { width: 250, height: 250 } // Define scan area size
+//     }
+//   );
   
   function getProductId(id) {
     productCode = id;
