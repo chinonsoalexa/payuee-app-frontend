@@ -31,6 +31,7 @@ function loading() {
     loader.forEach(() => {
         renderLoading();
     });
+    reinitializeSwiper('mySwiper');
 }
 
 function renderLoading() {
