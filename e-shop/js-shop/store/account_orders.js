@@ -753,7 +753,6 @@ function hideToast() {
     const toast = document.getElementById('toast');
     toast.classList.remove('show');
 }
-
 let isScanning = false; // Flag to prevent multiple scans
 let html5QrcodeScanner = null; // To hold the QR code scanner instance
 
@@ -764,16 +763,13 @@ async function onScanSuccess(decodedText, decodedResult) {
 
     await scannedQrCodeVerification(decodedText);
 
-    // Clear the scanner to stop the camera
-    if (html5QrcodeScanner) {
-        html5QrcodeScanner.clear().then(() => {
-            // console.log("Camera stopped successfully.");
-            isScanning = false; // Reset scanning flag
-        }).catch((error) => {
-            // console.error("Error stopping scanner:", error);
-            isScanning = false; // Ensure the scanning flag is reset in case of error
-        });
-    }
+    // Clear the scanner and reset the scanning flag
+    html5QrcodeScanner.clear().then(() => {
+        isScanning = false;
+    }).catch((error) => {
+        console.error("Error stopping scanner:", error);
+        isScanning = false;
+    });
 }
   
 // Function called when there's a scanning error (e.g., QR code not found)
