@@ -35,7 +35,7 @@ let pageNumber;
     );
   })();  
 
-document.addEventListener('DOMContentLoaded', async function () {
+  document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
     // showToast("hi i'm a skeleton loader");
@@ -55,6 +55,17 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getProducts(pageNumber);
 
+    // Add event listener to the link
+    document.getElementById('forgotTransactionPinLink').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Store the current page URL in local storage
+        const currentUrl = window.location.href;
+        localStorage.setItem('redirectTo', currentUrl);
+
+        // Redirect to the reset transaction PIN page
+        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
+    });
 });
 
 function clearElementsByClass() {
@@ -863,6 +874,6 @@ async function onScanSuccess(decodedText, decodedResult) {
         })
         .catch((error) => {
             showToast("Camera access denied or unavailable");
-          console.error("Camera access denied or unavailable:", error);
+            // console.error("Camera access denied or unavailable:", error);
         });
   }
