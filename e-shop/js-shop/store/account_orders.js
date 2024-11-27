@@ -690,7 +690,7 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <td>#000</td>
-        <td><img id="image" class="align-self-center img-fluid img-60" src="images/favicon2.png" alt="Payuee e-Shop"></td>
+        <td><img id="image" class="align-self-center img-fluid img-60" src="../images/favicon2.png" alt="Payuee e-Shop"></td>
         <td id="title"><h6><a href="#">Loading...</a></h6></td>
         <td>Loading...</td>
         <td>Loading...</td>
@@ -756,21 +756,19 @@ let isScanning = false; // Flag to prevent multiple scans
 
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
-    if (isScanning) return; // Prevent multiple scans if one is already in progress
+    // Prevent multiple scans if one is already in progress
+    if (isScanning) return;
     isScanning = true; // Set flag to indicate scanning is in progress
 
     await scannedQrCodeVerification(decodedText);
 
-    // Clear the scanner to stop the camera
-    if (html5QrcodeScanner) {
-        html5QrcodeScanner.clear().then(() => {
-            // console.log("Camera stopped successfully.");
-            isScanning = false; // Reset scanning flag
-        }).catch((error) => {
-            // console.error("Error stopping scanner:", error);
-            isScanning = false; // Ensure the scanning flag is reset in case of error
-        });
-    }
+    html5QrcodeScanner.clear().then(() => {
+        isScanning = false; // Reset flag after stopping scanner
+        // console.log("Scanner stopped.");
+    }).catch((error) => {
+        console.error("Error stopping scanner:", error);
+        isScanning = false; // Reset flag in case of error
+    });
 }
   
   // Function called when there's a scanning error (e.g., QR code not found)
@@ -862,7 +860,6 @@ async function onScanSuccess(decodedText, decodedResult) {
           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
-            showToast("Camera access denied or unavailable");
-            console.log("Camera access denied or unavailable:", error);
+          console.error("Camera access denied or unavailable:", error);
         });
   }
