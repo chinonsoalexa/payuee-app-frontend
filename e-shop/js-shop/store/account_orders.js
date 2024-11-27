@@ -753,97 +753,97 @@ function hideToast() {
     const toast = document.getElementById('toast');
     toast.classList.remove('show');
 }
-
 let isScanning = false; // Flag to prevent multiple scans
+let html5QrcodeScanner = null; // To hold the QR code scanner instance
 
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
-    // Prevent multiple scans if one is already in progress
-    if (isScanning) return;
+    if (isScanning) return; // Prevent multiple scans if one is already in progress
     isScanning = true; // Set flag to indicate scanning is in progress
 
     await scannedQrCodeVerification(decodedText);
 
+    // Clear the scanner and reset the scanning flag
     html5QrcodeScanner.clear().then(() => {
-        isScanning = false; // Reset flag after stopping scanner
-        // console.log("Scanner stopped.");
+        isScanning = false;
     }).catch((error) => {
         console.error("Error stopping scanner:", error);
-        isScanning = false; // Reset flag in case of error
+        isScanning = false;
     });
 }
   
-  // Function called when there's a scanning error (e.g., QR code not found)
-  function onScanFailure(error) {
+// Function called when there's a scanning error (e.g., QR code not found)
+function onScanFailure(error) {
     console.warn(`QR Code scan error: ${error}`);
-  }
+}
   
-  // Initialize the QR Code scanner, but don't start immediately
-    let html5QrcodeScanner;
-  
-  function getProductId(id) {
+// Function to handle getting the product ID and initializing the scanner
+function getProductId(id) {
     productCode = id;
-    document.getElementById("startScan").addEventListener("click", () => {
+    const startScanButton = document.getElementById("startScan");
+    startScanButton.addEventListener("click", () => {
         startProductScan(id);
     });
-  }
+}
   
-  async function scannedQrCodeVerification(code) {
+// Function to verify the scanned QR code with an API
+async function scannedQrCodeVerification(code) {
     const apiUrl = "https://api.payuee.com/scan-user-order";
     const requestBody = { order_id: +code };
-  
+
+    const reader = document.getElementById('reader');
+    const verificationStatus = document.getElementById('verificationStatus');
+
     if (+code !== +productCode) {
         reader.classList.add('hidden');
         verificationStatus.classList.remove('hidden');
         verificationStatus.style.color = 'red';
         verificationStatus.textContent = "Wrong QR Code Scanned";
         return;
-      }
-      
+    }
+
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: 'include',
-      body: JSON.stringify(requestBody)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify(requestBody)
     };
-  
+
     try {
-      const response = await fetch(apiUrl, requestOptions);
-  
-      const reader = document.getElementById('reader');
-      const verificationStatus = document.getElementById('verificationStatus');
-  
-      if (!response.ok) {
-        const errorData = await response.json();
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            reader.classList.add('hidden');
+            verificationStatus.classList.remove('hidden');
+            verificationStatus.style.color = 'red';
+            verificationStatus.textContent = errorData.error || "An unknown error occurred";
+
+            if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
+                // handle specific error cases if needed
+            } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
+                logout(); // Assume logout() function exists
+            }
+            return;
+        }
+
+        const responseData = await response.json();
         reader.classList.add('hidden');
         verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'red';
-        verificationStatus.textContent = errorData.error || "An unknown error occurred";
-  
-        if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
-          // handle specific error cases if needed
-        } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
-          logout(); // Assume logout() function exists
-        }
-        return;
-      }
-  
-      const responseData = await response.json();
-      reader.classList.add('hidden');
-      verificationStatus.classList.remove('hidden');
-      verificationStatus.style.color = 'green';
-      verificationStatus.textContent = responseData.success;
-  
-      // Show transaction and payment sections
-      document.getElementById('transactionCodeSection').classList.remove('hidden');
-      document.getElementById('paymentButtonDiv').classList.remove('hidden');
-      document.getElementById('qrCodeDiv').classList.add('hidden');
-    } finally {
-      productCode = ""; // Reset code after verification
-    }
-  }
+        verificationStatus.style.color = 'green';
+        verificationStatus.textContent = responseData.success;
 
-  function startProductScan(id) {
+        // Show transaction and payment sections
+        document.getElementById('transactionCodeSection').classList.remove('hidden');
+        document.getElementById('paymentButtonDiv').classList.remove('hidden');
+        document.getElementById('qrCodeDiv').classList.add('hidden');
+    } finally {
+        productCode = ""; // Reset product code after verification
+    }
+}
+
+// Function to start scanning
+function startProductScan(id) {
     productCode = id;
     const verificationStatus = document.getElementById('verificationStatus');
     const reader = document.getElementById('reader');
@@ -851,25 +851,46 @@ async function onScanSuccess(decodedText, decodedResult) {
     verificationStatus.classList.add('hidden');
     reader.classList.remove('hidden');
 
-  // Start the QR scanner
-//   navigator.mediaDevices.getUserMedia({ video: true })
+    // Check if the browser supports camera access
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            if (!html5QrcodeScanner) {
+                html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 }
+                });
+            }
 
-    .then((stream) => {
-        if (!html5QrcodeScanner) {
-            html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-                fps: 10,
-                qrbox: { width: 250, height: 250 },
-            });
-        }
-    
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    })
-    .catch((error) => {
-        if (error.name === "NotAllowedError") {
-            console.error("Camera access was denied by the user or browser settings");
-            showToast("Please allow camera access for the scanner to work.");
-        } else {
-            console.error("Error accessing the camera:", error);
-        }
-    });
+            // Start the scanner
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        })
+        .catch((error) => {
+            if (error.name === "NotAllowedError") {
+                console.error("Camera access was denied by the user or browser settings");
+                showToast("Please allow camera access to use the scanner.");
+            } else {
+                console.error("Error accessing the camera:", error);
+            }
+        });
+}
+
+// Utility function to show toast messages
+function showToast(message, duration = 5000) {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    const closeToastBtn = document.getElementById('close-toast');
+
+    toastMessage.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        hideToast();
+    }, duration);
+
+    closeToastBtn.addEventListener('click', hideToast);
+}
+
+function hideToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.remove('show');
 }
