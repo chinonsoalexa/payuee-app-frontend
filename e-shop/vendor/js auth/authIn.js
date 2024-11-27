@@ -1,13 +1,37 @@
 
 get_auth_status();
 
+let daysRemaining = 14;
+
 document.addEventListener('DOMContentLoaded', function () {
     feather.replace();
     document.getElementById('logOutButton').addEventListener('click', async function(event) {
         event.preventDefault();
         logout();
     })
+  
+    const expirationNotice = document.getElementById("expirationNotice");
+    // console.log("Expiration Notice Element:", expirationNotice);
+  
+    if (!expirationNotice) {
+      console.error("Expiration notice element not found in DOM.");
+      return;
+    }
+  
+    if (daysRemaining > 0 && daysRemaining <= 7) {
+      expirationNotice.innerHTML = `
+        <p>Your subscription expires in <strong>${daysRemaining} days</strong>. Click here to renew now!</p>
+      `;
+      expirationNotice.classList.remove("hidden");
+      expirationNotice.classList.add("visible");
+    }
 });
+
+function redirectToRenewPage() {
+    const renewalPageURL = "/renew-subscription"; // Replace with your actual renewal page URL
+    console.log(`Redirecting to: ${renewalPageURL}`); // Optional debug log
+    window.location.href = renewalPageURL;
+  }
 
 // this is for authenticated pages
 function get_auth_status() {
@@ -68,7 +92,7 @@ async function check_auth_status() {
         //     //     generateTagAI();  // Your AI function for generating tags
         //     // });
         // }
-
+        daysRemaining = 
         if (window.location.pathname !== "/e-shop/vendor/update-shipping-fees") {
             if (responseData.total_products < 1) {
                 swal({
