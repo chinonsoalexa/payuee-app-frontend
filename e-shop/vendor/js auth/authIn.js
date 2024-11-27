@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function redirectToRenewPage() {
-    const renewalPageURL = "/renew-subscription"; // Replace with your actual renewal page URL
-    console.log(`Redirecting to: ${renewalPageURL}`); // Optional debug log
+    const renewalPageURL = "https://payuee.com/e-shop/pricing"; // Replace with your actual renewal page URL
+    // console.log(`Redirecting to: ${renewalPageURL}`); // Optional debug log
     window.location.href = renewalPageURL;
   }
 
@@ -92,7 +92,7 @@ async function check_auth_status() {
         //     //     generateTagAI();  // Your AI function for generating tags
         //     // });
         // }
-        daysRemaining = 
+        daysRemaining = redirectToRenewPage;
         if (window.location.pathname !== "/e-shop/vendor/update-shipping-fees") {
             if (responseData.total_products < 1) {
                 swal({
