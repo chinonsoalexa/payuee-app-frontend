@@ -690,7 +690,7 @@ function renderLoading() {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <td>#000</td>
-        <td><img id="image" class="align-self-center img-fluid img-60" src="../images/favicon2.png" alt="Payuee e-Shop"></td>
+        <td><img id="image" class="align-self-center img-fluid img-60" src="images/favicon2.png" alt="Payuee e-Shop"></td>
         <td id="title"><h6><a href="#">Loading...</a></h6></td>
         <td>Loading...</td>
         <td>Loading...</td>
@@ -737,13 +737,14 @@ function showToast(message, duration = 5000) {
     // Show the toast
     toast.classList.add('show');
 
+    // Add click event to close button
+    closeToastBtn.removeEventListener('click', hideToast); // Remove existing listener
+    closeToastBtn.addEventListener('click', hideToast);
+
     // Hide the toast after the duration
     setTimeout(() => {
         hideToast();
     }, duration);
-
-    // Add click event to close button
-    closeToastBtn.addEventListener('click', hideToast);
 }
 
 // Hide toast function
@@ -860,6 +861,7 @@ async function onScanSuccess(decodedText, decodedResult) {
           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
+          showToast("Please allow camera access to use the scanner");
           console.error("Camera access denied or unavailable:", error);
         });
   }
