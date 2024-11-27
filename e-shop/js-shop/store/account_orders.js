@@ -785,6 +785,8 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   );
   
+  let productCode;
+
   function getProductId(id) {
     productCode = id;
     document.getElementById("startScan").addEventListener("click", () => {
@@ -860,6 +862,7 @@ async function onScanSuccess(decodedText, decodedResult) {
           html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
         })
         .catch((error) => {
+            showToast("Camera access denied or unavailable");
           console.error("Camera access denied or unavailable:", error);
         });
   }
