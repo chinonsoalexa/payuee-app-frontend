@@ -785,7 +785,7 @@ async function onScanSuccess(decodedText, decodedResult) {
     }
   );
   
-  let productCode;
+//   let productCode;
 
   function getProductId(id) {
     productCode = id;
