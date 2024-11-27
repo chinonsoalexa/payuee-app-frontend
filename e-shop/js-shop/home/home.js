@@ -677,7 +677,7 @@ function reinitializeSwiper(id) {
     new Swiper(swiperContainer, settings);
   }  
 
-function renderProductImages2(imageUrls, title, urll) {
+  function renderProductImages2(imageUrls, title, urll) {
     const defaultImageUrl = "../../e-shop/images/default_img.png";
     const productImageUrl = imageUrls && imageUrls.length > 0
         ? `https://payuee.com/image/${imageUrls[0].url}`
@@ -688,9 +688,17 @@ function renderProductImages2(imageUrls, title, urll) {
         : defaultImageUrl;
 
     return `
-        <a href="${urll}">
-            <img loading="lazy" src="${productImageUrl}" alt="${title}" class="pc__img" style="width: 330px; height: 400px;">
-            <img loading="lazy" src="${productImageUrl2}" alt="${title}" class="pc__img pc__img-second" style="width: 330px; height: 400px;">
+        <a href="${urll}" style="position: relative; width: 100%; height: auto; overflow: hidden; display: block;">
+            <img 
+                loading="lazy" 
+                src="${productImageUrl}" 
+                alt="${title}" 
+                style="width: 100%; height: auto; object-fit: cover; display: block;">
+            <img 
+                loading="lazy" 
+                src="${productImageUrl2}" 
+                alt="${title}" 
+                style="width: 100%; height: auto; object-fit: cover; display: none;">
         </a>`;
 }
 
