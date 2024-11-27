@@ -756,19 +756,21 @@ let isScanning = false; // Flag to prevent multiple scans
 
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
-    // Prevent multiple scans if one is already in progress
-    if (isScanning) return;
+    if (isScanning) return; // Prevent multiple scans if one is already in progress
     isScanning = true; // Set flag to indicate scanning is in progress
 
     await scannedQrCodeVerification(decodedText);
 
-    html5QrcodeScanner.clear().then(() => {
-        isScanning = false; // Reset flag after stopping scanner
-        // console.log("Scanner stopped.");
-    }).catch((error) => {
-        console.error("Error stopping scanner:", error);
-        isScanning = false; // Reset flag in case of error
-    });
+    // Clear the scanner to stop the camera
+    if (html5QrcodeScanner) {
+        html5QrcodeScanner.clear().then(() => {
+            // console.log("Camera stopped successfully.");
+            isScanning = false; // Reset scanning flag
+        }).catch((error) => {
+            // console.error("Error stopping scanner:", error);
+            isScanning = false; // Ensure the scanning flag is reset in case of error
+        });
+    }
 }
   
   // Function called when there's a scanning error (e.g., QR code not found)
