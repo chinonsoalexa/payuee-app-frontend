@@ -767,108 +767,149 @@ function hideToast() {
     toast.classList.remove('show');
 }
 
+
 let isScanning = false; // Flag to prevent multiple scans
+let html5QrcodeScanner = null; // Ensure this is defined globally
 
 // Function called when a QR code is successfully scanned
 async function onScanSuccess(decodedText, decodedResult) {
-    // Prevent multiple scans if one is already in progress
-    if (isScanning) return;
-    isScanning = true; // Set flag to indicate scanning is in progress
+    if (isScanning) return; // Prevent multiple scans if one is in progress
+    isScanning = true;
 
-    await scannedQrCodeVerification(decodedText);
-
-    html5QrcodeScanner.clear().then(() => {
-        isScanning = false; // Reset flag after stopping scanner
-    }).catch((error) => {
-        console.error("Error stopping scanner:", error);
-        isScanning = false; // Ensure flag is reset even on error
-    });    
+    try {
+        await scannedQrCodeVerification(decodedText);
+    } catch (error) {
+        console.error("Error during QR code verification:", error);
+    } finally {
+        // Clear the QR code scanner and reset the scanning flag
+        html5QrcodeScanner.clear().then(() => {
+            isScanning = false;
+        }).catch((error) => {
+            console.error("Error stopping scanner:", error);
+            isScanning = false;
+        });
+    }
 }
-  
-  // Function called when there's a scanning error (e.g., QR code not found)
-  function onScanFailure(error) {
+
+// Function called when there's a scanning error (e.g., QR code not found)
+function onScanFailure(error) {
     console.warn(`QR Code scan error: ${error}`);
-  }
-  
-  // Initialize the QR Code scanner, but don't start immediately
-  let html5QrcodeScanner;
-  
-  function getProductId(id) {
+}
+
+// Function to set up the "Start Scan" button with the product ID
+function getProductId(id) {
     productCode = id;
     document.getElementById("startScan").addEventListener("click", () => {
         startProductScan(id);
     });
-  }
-  
-  async function scannedQrCodeVerification(code) {
+}
+
+// Function to verify the scanned QR code with the API
+async function scannedQrCodeVerification(code) {
     const apiUrl = "https://api.payuee.com/scan-user-order";
     const requestBody = { order_id: +code };
-  
+
+    const reader = document.getElementById('reader');
+    const verificationStatus = document.getElementById('verificationStatus');
+
     if (+code !== +productCode) {
         reader.classList.add('hidden');
         verificationStatus.classList.remove('hidden');
         verificationStatus.style.color = 'red';
         verificationStatus.textContent = "Wrong QR Code Scanned";
         return;
-      }
-      
+    }
+
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: 'include',
-      body: JSON.stringify(requestBody)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify(requestBody)
     };
-  
+
     try {
-      const response = await fetch(apiUrl, requestOptions);
-  
-      if (!response.ok) {
-        const errorData = await response.json();
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            reader.classList.add('hidden');
+            verificationStatus.classList.remove('hidden');
+            verificationStatus.style.color = 'red';
+            verificationStatus.textContent = errorData.error || "An unknown error occurred";
+
+            if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
+                logout(); // Assume logout() function exists
+            }
+            return;
+        }
+
+        const responseData = await response.json();
         reader.classList.add('hidden');
         verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'red';
-        verificationStatus.textContent = errorData.error || "An unknown error occurred";
-  
-        if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
-          // handle specific error cases if needed
-        } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
-          logout(); // Assume logout() function exists
-        }
-        return;
-      }
-  
-      const responseData = await response.json();
-      reader.classList.add('hidden');
-      verificationStatus.classList.remove('hidden');
-      verificationStatus.style.color = 'green';
-      verificationStatus.textContent = responseData.success;
-  
-      // Show transaction and payment sections
-      document.getElementById('transactionCodeSection').classList.remove('hidden');
-      document.getElementById('paymentButtonDiv').classList.remove('hidden');
-      document.getElementById('qrCodeDiv').classList.add('hidden');
-    } finally {
-      productCode = ""; // Reset code after verification
-    }
-  }
-  
-  function startProductScan(id) {
-      productCode = id;
-      const verificationStatus = document.getElementById('verificationStatus');
-      const reader = document.getElementById('reader');
-  
-      verificationStatus.classList.add('hidden');
-      reader.classList.remove('hidden');
+        verificationStatus.style.color = 'green';
+        verificationStatus.textContent = responseData.success;
 
-    // Start the QR scanner
+        // Show transaction and payment sections
+        document.getElementById('transactionCodeSection').classList.remove('hidden');
+        document.getElementById('paymentButtonDiv').classList.remove('hidden');
+        document.getElementById('qrCodeDiv').classList.add('hidden');
+    } catch (error) {
+        console.error("Error during API request:", error);
+    } finally {
+        productCode = ""; // Reset product code after verification
+    }
+}
+
+// Function to start the product scan
+function startProductScan(id) {
+    productCode = id;
+    const verificationStatus = document.getElementById('verificationStatus');
+    const reader = document.getElementById('reader');
+
+    verificationStatus.classList.add('hidden');
+    reader.classList.remove('hidden');
+
+    // Check if the browser supports camera access
     navigator.mediaDevices.getUserMedia({ video: true })
-      if (!html5QrcodeScanner) {
-          html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-              fps: 10,
-              qrbox: { width: 250, height: 250 },
-          });
-      }
-  
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-  }
-  
+        .then(() => {
+            // Initialize the QR code scanner if not already initialized
+            if (!html5QrcodeScanner) {
+                html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 }
+                });
+            }
+
+            // Start the QR code scanner
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        })
+        .catch((error) => {
+            if (error.name === "NotAllowedError") {
+                showToast("Camera access denied. Please allow camera access in your browser settings.");
+            } else {
+                showToast("Camera access unavailable. Ensure your device has a working camera.");
+            }
+            console.error("Camera access error:", error);
+        });
+}
+
+// Utility function to show toast messages
+function showToast(message, duration = 5000) {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    const closeToastBtn = document.getElementById('close-toast');
+
+    toastMessage.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        hideToast();
+    }, duration);
+
+    closeToastBtn.addEventListener('click', hideToast);
+}
+
+function hideToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.remove('show');
+}
