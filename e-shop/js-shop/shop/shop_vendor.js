@@ -573,8 +573,8 @@ function renderProducts(product, subscription, userId) {
         const addToCartButton = rowElement.querySelector('.pc__atc');
         addToCartButton.addEventListener('click', function(event) {
                      // Check if clothing or shoe size is empty and size is not selected
-            const swatchList = document.querySelector(".swatch-list");
-            if (swatchList) {
+            // const swatchList = document.querySelector(".swatch-list");
+            // if (swatchList) {
                 // Check if clothing or shoe size is empty and size is not selected
                 if (product.clothing_sizes !== "" || product.shoes_sizes !== "") {
                     event.preventDefault();
@@ -582,7 +582,7 @@ function renderProducts(product, subscription, userId) {
                     window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
                     return;
                 }
-            }
+            // }
             addToCart(product);
             updateCartNumber();
             updateCartDrawer();
