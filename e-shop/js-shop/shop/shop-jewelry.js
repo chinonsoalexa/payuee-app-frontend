@@ -93,6 +93,29 @@ async function getProducts() {
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
+        const productBody = document.getElementById('products-grid');
+
+        // Check if the product is null or empty
+        if (!responseData.success || Object.keys(responseData.success).length === 0) {
+            // Clear existing content
+            productBody.innerHTML = "";
+    
+            // Create a message for no products
+            const emptyMessage = document.createElement('div');
+            emptyMessage.classList.add('no-products-message', 'text-center');
+            emptyMessage.innerHTML = `
+                <div class="no-products-container">
+                    <img src="../../e-shop/images/become_vendor.png" alt="Become a Vendor" class="no-products-image" />
+                    <h2 class="no-products-title">Be the First Vendor in Your Area (Jewelry)!</h2>
+                    <p class="no-products-text">Start showcasing your amazing products today and reach thousands of potential customers in your locality.</p>
+                    <a href="https://payuee.com/e-shop/pricing" class="btn btn-primary btn-lg mt-3">Become a Vendor Now</a>
+                </div>
+            `;
+    
+            // Append the message to the product grid
+            productBody.appendChild(emptyMessage);
+            return; // Exit the function since there's no product to render
+        }
         responseData.success.forEach((product) => {
             renderProducts(product);
         });
