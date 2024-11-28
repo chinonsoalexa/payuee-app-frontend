@@ -92,7 +92,7 @@ async function getProducts() {
         const responseData = await response.json();
 
         document.getElementById('products-grid').innerHTML = '';
-        
+
         const productBody = document.getElementById('products-grid');
 
         // Check if the product is null or empty
@@ -108,7 +108,7 @@ async function getProducts() {
                     <img src="../../e-shop/images/become_vendor.png" alt="Become a Vendor" class="no-products-image" />
                     <h2 class="no-products-title">Be the First Vendor in Your Area!</h2>
                     <p class="no-products-text">Start showcasing your amazing products today and reach thousands of potential customers in your locality.</p>
-                    <a href="https://payuee.com/e-shop/vendor/signup" class="btn btn-primary btn-lg mt-3">Become a Vendor Now</a>
+                    <a href="https://payuee.com/e-shop/pricing" class="btn btn-primary btn-lg mt-3">Become a Vendor Now</a>
                 </div>
             `;
     
