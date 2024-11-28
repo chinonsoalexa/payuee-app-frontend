@@ -597,7 +597,7 @@ quantityInput.addEventListener('change', () => {
       const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
-          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${imageUrl}" width="104" height="104" alt="${title}">
+          <img loading="lazy" class="h-auto" src="${imageUrl}" width="104" height="104" alt="${title}">
         </div>`;
     });
     return imagesHtml; // Return the full HTML string
