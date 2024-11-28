@@ -283,10 +283,7 @@ function renderProductDetails(product, related) {
         <div class="product-single__thumbnail">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-1.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-2.jpg" width="104" height="104" alt=""></div>
-              <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="images/products/product_0-3.jpg" width="104" height="104" alt=""></div>
+              ${renderProductImages22(product.product_image, product.title)}
             </div>
           </div>
         </div>
@@ -586,6 +583,25 @@ quantityInput.addEventListener('change', () => {
     return imagesHtml; // Return the full HTML string
   }
   
+  function renderProductImages22(imageUrls, title) {
+    // Default image URL if imageUrls is empty or an image URL is missing
+    const defaultImageUrl = '../../e-shop/images/default_img.png';
+
+    // If imageUrls is empty, use the default image URL
+    if (!imageUrls || imageUrls.length === 0) {
+      imageUrls = [{ url: defaultImageUrl }];
+    }
+    
+    let imagesHtml = '';
+    imageUrls.forEach((url) => {
+      const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+      imagesHtml += `
+        <div class="swiper-slide product-single__image-item">
+          <img loading="lazy" class="h-auto" src="https://payuee.com/image/${imageUrl}" width="104" height="104" alt="${title}">
+        </div>`;
+    });
+    return imagesHtml; // Return the full HTML string
+  }
 
   function extractValues(jsonString) {
     // Parse the JSON string into an array of objects
