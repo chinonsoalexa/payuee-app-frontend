@@ -483,10 +483,10 @@ async function setShippingFees() {
     .then(response => {
         if (response.success) {  // Check for a successful response
             showToastMessage("Shipping fees updated successfully.");
-                // Redirect to the Add Product page
-                if (localStorage.getItem("product", "one") == "one") {
-                    window.location.href = "add-products.html";
-                };
+            // Redirect to the Add Product page
+            if (localStorage.getItem("product") == "one") {
+                window.location.href = "add-products.html";
+            };
         } else {
             const errorData = response; // Handle error if response is not ok
             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
