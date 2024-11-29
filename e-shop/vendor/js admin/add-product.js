@@ -112,7 +112,7 @@ submitButton.addEventListener('click', async function (event) {
     });
 
     checkFirstProduct();
-    check_posting_status();
+    // check_posting_status();
 
   // Get the category select element
   const categorySelect = document.getElementById("validationDefault04");
