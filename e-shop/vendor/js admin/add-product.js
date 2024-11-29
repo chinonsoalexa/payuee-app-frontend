@@ -1430,10 +1430,10 @@ async function check_posting_status() {
                     confirm: "Start Setup",
                 },
             }).then(async (result) => {
-                if (result) {
+                // if (result) {
                      localStorage.setItem("product", "one");
                     window.location.href = "update-shipping-fees";
-                }
+                // }
             });
         }
 
