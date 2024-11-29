@@ -66,7 +66,9 @@ async function handlePaymentClick(event) {
 
     const checkoutButton = document.getElementById('paymentButton');
     checkoutButton.disabled = true;
-
+   if (basicPlanId == chargeAmount) {
+      customerBalance == chargeAmount;
+   }
     const customerBalance = await getUsersBalance();
 
     if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
