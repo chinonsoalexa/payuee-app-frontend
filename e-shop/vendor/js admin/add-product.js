@@ -73,9 +73,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // Assuming 'form' is the form element and 'submitButton' is the submit button
 submitButton.addEventListener('click', async function (event) {
     event.preventDefault();
+    if (submitButton.classList.contains("disabled")) {
+        // Prevent further action if already disabled
+        return;
+    }
 
-    // Disable the submit button
-    document.getElementById('publishButton').classList.add('disabled');
+    // Disable the button
+    submitButton.classList.add("disabled");
+    submitButton.style.pointerEvents = "none"; // Prevent clicking
+    submitButton.style.opacity = "0.5"; // Optional: Visual feedback
 
     // Get the product description and title
     productDescription = editor.innerText.trim();
@@ -90,6 +96,10 @@ submitButton.addEventListener('click', async function (event) {
         // All fields are valid, proceed with posting the product
         await postProduct();
     } else {
+        // Enable the button again after the operation
+        submitButton.classList.remove("disabled");
+        submitButton.style.pointerEvents = "auto";
+        submitButton.style.opacity = "1"; // Restore the original appearance
         // If validation fails, you can display an error message or highlight invalid fields
         showToastMessageE("Please correct the highlighted errors")
     }
@@ -229,7 +239,7 @@ async function postProduct() {
     imageArray.forEach((image, index) => {
         formData.append("imageArray", image, `image${index}.jpg`);
     });
-
+    const nextButton = document.getElementById("nextButton");
     try {
         const response = await fetch('https://api.payuee.com/vendor/publish-product', { // Replace with your actual endpoint URL
             method: 'POST',
@@ -241,38 +251,28 @@ async function postProduct() {
                 logout();
             }
             showToastMessageE("an unexpected error occurred")
+            // Enable the button again after the operation
+            nextButton.classList.remove("disabled");
+            nextButton.style.pointerEvents = "auto";
+            nextButton.style.opacity = "1"; // Restore the original appearance
             return
         } else {
             
             const result = await response.json();
             showToastMessageS("Product posted successfully")
-            if (localStorage.getItem("firstProductAdded") == "second") {
-                return;
-            } else  {
-                if (localStorage.getItem("firstProductAdded") == "last") {
-                    swal({
-                        title: "Congratulations!",
-                        text: "Your first product is live on Payuee! You're all set to start selling. Good luck!",
-                        icon: "success",
-                        buttons: {
-                            confirm: "View Store",
-                        },
-                    }).then((resultt) => {
-                        // Remove an item by its key
-                        localStorage.removeItem("firstProductAdded");      
-                        if (resultt)  {
-                            // Optionally redirect them to their store to view first post item
-                            window.location.href = "https://payuee.com/store/" + result.store_id;
-                        }  
 
-                    });
-                }
-                     
-            }
             clearFields();
+            // Enable the button again after the operation
+            nextButton.classList.remove("disabled");
+            nextButton.style.pointerEvents = "auto";
+            nextButton.style.opacity = "1"; // Restore the original appearance
         }
 
     } catch (error) {
+        // Enable the button again after the operation
+        nextButton.classList.remove("disabled");
+        nextButton.style.pointerEvents = "auto";
+        nextButton.style.opacity = "1"; // Restore the original appearance
         // console.error("Network error:", error);
     }
 }
