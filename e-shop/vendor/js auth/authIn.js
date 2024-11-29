@@ -85,7 +85,7 @@ async function check_posting_status() {
 
         const responseData = await response.json(); // Parse response JSON
 
-        if (!window.location.pathname.includes("update-shipping-fees.html")) {
+        if (!window.location.pathname.includes("update-shipping-fees")) {
             if (responseData.total_products < 1) {
                 swal({
                     title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",

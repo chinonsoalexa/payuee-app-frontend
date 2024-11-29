@@ -1433,7 +1433,7 @@ async function check_posting_status() {
                     },
                 }).then(async (result) => {
                     if (result) {
-                        window.location.href = "update-shipping-fees.html?new=true";
+                        window.location.href = "update-shipping-fees?new=true";
                     }
                 });
             }
