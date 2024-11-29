@@ -1444,6 +1444,7 @@ async function check_posting_status() {
                 },
             }).then(() => {
                 // Focus the cursor on the title input after closing the alert
+                localStorage.removeItem('product');
                 document.getElementById("productTitle1").focus();
             })    
         }
