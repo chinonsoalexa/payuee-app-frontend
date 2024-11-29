@@ -229,8 +229,36 @@ async function getProducts(pageNumber) {
     }
 }
 
+function renderNoTransactions() {
+    const productBody = document.getElementById('order-grid');
+
+    // Clear existing content
+    productBody.innerHTML = '';
+
+    // Create a message element for the no transactions state
+    const emptyMessage = document.createElement('div');
+    emptyMessage.classList.add('no-transactions-message');
+    emptyMessage.innerHTML = `
+        <div class="alert alert-info text-center">
+            <h5>Exciting Opportunities Await You!</h5>
+            <p>It looks like you haven't made any purchases yet. Don't worry, our vast range of vendors has everything you need!</p>
+            <p>Explore products from various vendors and make your first purchase today. Start shopping and unlock the full potential of Payuee e-Shop!</p>
+            <p><a href="https://payuee.com/e-shop/home" class="btn btn-primary">Browse Products Now</a></p>
+        </div>
+    `;
+
+    // Append the message to the container
+    productBody.appendChild(emptyMessage);
+}
+
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
+
+    // Clear existing content if needed or check if empty
+    if (!product || product.length === 0) {
+        renderNoTransactions();
+        return;
+    }
 
     // Create a new product card element
     const rowElement = document.createElement('div');
