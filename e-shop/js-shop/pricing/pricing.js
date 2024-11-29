@@ -224,6 +224,11 @@ async function getSubscriptionDetails() {
         if (response.ok) {
             const data = await response.json();
             transactionCodeStatus = data.status;
+                // Check if success data is empty or undefined
+            if (!data.success || Object.keys(data.success).length === 0) {
+                console.log("No subscription data available");
+                return; // Exit the function if success is empty
+            }
             const plan = data.success.subscription_type;
             const days = data.success.days_remaining;
             if (days <= 7) {
