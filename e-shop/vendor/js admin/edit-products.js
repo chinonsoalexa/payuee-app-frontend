@@ -197,6 +197,18 @@ async function getProducts(pageNumber) {
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
 
+    // If there are no products, show a message to encourage the user to post a product
+    if (productBody.children.length === 0) {
+        const noProductsMessage = document.createElement('div');
+        noProductsMessage.classList.add('no-products-message');
+        noProductsMessage.innerHTML = `
+            <h5>No products available yet.</h5>
+            <p>It looks like you haven't listed any products in your store. To get started, let's post your first product!</p>
+            <a href="add-product.html" class="btn btn-primary">Post Your First Product</a>
+        `;
+        productBody.appendChild(noProductsMessage);
+    }
+
     // Create a new product card element
     const rowElement = document.createElement('div');
     rowElement.classList.add('col-xxl-4', 'col-md-6');

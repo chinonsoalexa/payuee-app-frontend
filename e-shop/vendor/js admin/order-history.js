@@ -214,8 +214,31 @@ function getProductStatus(product) {
     return productStatus;
 }
 
+function renderEmptyOrderHistory() {
+    const productBody = document.getElementById('order-grid');
+    
+    // Clear the existing content
+    productBody.innerHTML = '';
+
+    // Create a message element for the empty state
+    const emptyMessage = document.createElement('div');
+    emptyMessage.classList.add('empty-order-message');
+    emptyMessage.innerHTML = `
+        <div class="alert alert-info text-center">
+            <h5>Your store is waiting for its first order!</h5>
+            <p>Why not refer buyers to your store and let them discover your amazing products?</p>
+            <p>Invite buyers to visit your store and place their first order today!</p>
+            <p><a href="/refer-buyers" class="btn btn-primary">Refer Buyers to Your Store</a></p>
+        </div>
+    `;
+
+    // Append the message to the container
+    productBody.appendChild(emptyMessage);
+}
+
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
+
 
     // Create a new product card element
     const rowElement = document.createElement('div');
