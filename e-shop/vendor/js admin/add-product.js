@@ -1423,7 +1423,7 @@ async function check_posting_status() {
         if (localStorage.getItem("product") != "two") {
             if (responseData.total_products < 1) {
                 swal({
-                    title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
+                    title: "Welcome to Payuee e-Shop, " + responseData.store_name,
                     text: "Let's set up your shipping fees to get your shop ready for orders.",
                     icon: "success",
                     buttons: {
