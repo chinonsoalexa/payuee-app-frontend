@@ -198,7 +198,7 @@ function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
 
     // If there are no products, show a message to encourage the user to post a product
-    if (productBody.children.length === 0) {
+    if (!product || product.length === 0) {
         const noProductsMessage = document.createElement('div');
         noProductsMessage.classList.add('no-products-message');
         noProductsMessage.innerHTML = `
