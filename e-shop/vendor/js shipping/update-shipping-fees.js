@@ -485,6 +485,7 @@ async function setShippingFees() {
             showToastMessage("Shipping fees updated successfully.");
             // Redirect to the Add Product page
             if (localStorage.getItem("product") == "one") {
+                localStorage.setItem('product', "two");
                 window.location.href = "add-products.html";
             };
         } else {

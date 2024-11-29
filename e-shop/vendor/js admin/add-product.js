@@ -1420,21 +1420,32 @@ async function check_posting_status() {
             document.getElementById("generateDescriptionAI").style.display = "block";
             document.getElementById("generateTagAI").style.display = "block";
         }
-
-        if (responseData.total_products < 1) {
+        if (localStorage.getItem("product") != "two") {
+            if (responseData.total_products < 1) {
+                swal({
+                    title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
+                    text: "Let's set up your shipping fees to get your shop ready for orders.",
+                    icon: "success",
+                    buttons: {
+                        confirm: "Start Setup",
+                    },
+                }).then(async (result) => {
+                    localStorage.setItem("product", "one");
+                    window.location.href = "update-shipping-fees";
+                });
+            }
+        } else if (localStorage.getItem("product") == "two") {
             swal({
-                title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
-                text: "Let's set up your shipping fees to get your shop ready for orders.",
+                title: "Let's add your first product!",
+                text: "Get started by entering a descriptive title for your product.",
                 icon: "success",
                 buttons: {
-                    confirm: "Start Setup",
+                    confirm: true,
                 },
-            }).then(async (result) => {
-                // if (result) {
-                     localStorage.setItem("product", "one");
-                    window.location.href = "update-shipping-fees";
-                // }
-            });
+            }).then(() => {
+                // Focus the cursor on the title input after closing the alert
+                document.getElementById("productTitle1").focus();
+            })    
         }
 
         // Update the vendor name immediately if DOM is already loaded
