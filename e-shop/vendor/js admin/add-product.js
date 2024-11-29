@@ -1515,7 +1515,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = '../shop.html'
+        window.location.href = "https://payuee.com/e-shop/v/login_register";
     } finally{
         // do nothing
     }
