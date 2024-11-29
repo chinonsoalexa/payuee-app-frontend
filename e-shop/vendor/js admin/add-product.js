@@ -111,7 +111,7 @@ submitButton.addEventListener('click', async function (event) {
         }
     });
 
-    checkFirstProduct();
+    // checkFirstProduct();
     check_posting_status();
 
   // Get the category select element
@@ -178,23 +178,23 @@ function updateSelectedSizes(e, category) {
     // console.log(selectedSizes);
   }
 
-function checkFirstProduct() {
-    if (localStorage.getItem("firstProductAdded") == "second") {
-        // Prompt the user to add their first product
-        swal({
-            title: "Let's add your first product!",
-            text: "Get started by entering a descriptive title for your product.",
-            icon: "success",
-            buttons: {
-                confirm: true,
-            },
-        }).then(() => {
-            // Focus the cursor on the title input after closing the alert
-            localStorage.setItem("firstProductAdded", "last");
-            document.getElementById("productTitle1").focus();
-        })        
-    }
-}
+// function checkFirstProduct() {
+//     if (localStorage.getItem("firstProductAdded") == "second") {
+//         // Prompt the user to add their first product
+//         swal({
+//             title: "Let's add your first product!",
+//             text: "Get started by entering a descriptive title for your product.",
+//             icon: "success",
+//             buttons: {
+//                 confirm: true,
+//             },
+//         }).then(() => {
+//             // Focus the cursor on the title input after closing the alert
+//             localStorage.setItem("firstProductAdded", "last");
+//             document.getElementById("productTitle1").focus();
+//         })        
+//     }
+// }
 
 async function postProduct() {
     // Create a new FormData object

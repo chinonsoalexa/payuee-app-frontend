@@ -58,7 +58,7 @@ async function getProducts(OrderId) {
                 
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
-                logUserOutIfTokenIsExpired();
+                logout();
             }else {
                 // displayErrorMessage();
             }
@@ -247,7 +247,7 @@ async function updateOrderStatus(orderID, orderStatus) {
                 
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
-                logUserOutIfTokenIsExpired();
+                logout();
             }else {
                 // displayErrorMessage();
             }
@@ -312,7 +312,7 @@ function formatNumberToNaira(number) {
 }
 
 
-function logUserOutIfTokenIsExpired() {
+function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
 
@@ -330,6 +330,37 @@ try {
         // const data = response.json();
         localStorage.removeItem('auth')
         window.location.href = 'indexs.html'
+    } finally{
+        // do nothing
+    }
+}
+
+async function logout() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://api.payuee.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+            // alert('an error occurred. Please try again');
+        if (!response.ok) {
+            showToastMessageE("an error occurred. Please try again")
+            return;
+        }
+        return;
+      }
+        const data = await response.json();
+        localStorage.removeItem('auth')
+        window.location.href = '../shop.html'
     } finally{
         // do nothing
     }
