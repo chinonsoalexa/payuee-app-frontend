@@ -12,38 +12,12 @@ var storeState;
 var stateISO
 var cityISO
 var pricePerKM = 0;
-var isNew = "";
 
 
 document.addEventListener('DOMContentLoaded', async function () {
     // Initialize and load states when the page is loaded
     // Get the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-
-    // Get the value of the 'new' parameter
-    isNew = urlParams.get('new');
-
-    // Check the value and run conditions
-    if (isNew === 'true') {
-        // Do something if the 'new' parameter is set to true
-        // After redirecting to the shipping page
-        swal({
-            title: "You're almost there!",
-            text: "Set up your shipping fees to ensure a smooth experience for your customers.",
-            icon: "info",
-            buttons: {
-                confirm: {
-                    text: "Got it!",
-                    value: true,
-                },
-            },
-        }).then((result) => {
-            if (result) {
-                // Optional: Additional action if needed after confirmation
-            }
-        });
-        // Add any specific code you want to execute here
-    }
 
     getShippingFees();
     await loadStates1();
@@ -509,28 +483,10 @@ async function setShippingFees() {
     .then(response => {
         if (response.success) {  // Check for a successful response
             showToastMessage("Shipping fees updated successfully.");
-            if (isNew === 'true') {
-                // Do something if the 'new' parameter is set to true
-                // After the user successfully updates shipping fees
-                swal({
-                    title: "Shipping fees saved!",
-                    text: "Let's add your first product!",
-                    icon: "success",
-                    buttons: {
-                        confirm: {
-                            text: "Add First Product",
-                            closeModal: true,
-                        },
-                    },
-                }).then((result) => {
-                    if (result) {
-                        // Redirect to the Add Product page
-                        localStorage.setItem("firstProductAdded", "second");
-                        window.location.href = "add-products.html";
-                    }
-                });
-                // Add any specific code you want to execute here
-            }
+                // Redirect to the Add Product page
+                if (localStorage.getItem("product", "one") == "one") {
+                    window.location.href = "add-products.html";
+                };
         } else {
             const errorData = response; // Handle error if response is not ok
             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
