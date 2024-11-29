@@ -148,8 +148,8 @@ async function logout() {
             return;
         }
 
-        // localStorage.removeItem("auth");
-        // window.location.href = "https://payuee.com/e-shop/v/login_register";
+        localStorage.removeItem("auth");
+        window.location.href = "https://payuee.com/e-shop/v/login_register";
     } catch (error) {
         console.error("Logout failed:", error);
     }
