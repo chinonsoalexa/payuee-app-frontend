@@ -70,6 +70,10 @@ async function check_auth_status() {
 
         if (!response.ok) {
             const errorData = await response.json();
+            if (errorData.error == "vendor not found") { 
+                window.location.href = "https://payuee.com/e-shop/pricing";
+                return;
+            }
             if (
                 errorData.error === "No Authentication cookie found" ||
                 errorData.error === "Unauthorized attempt! JWT's not valid!" ||
@@ -144,8 +148,8 @@ async function logout() {
             return;
         }
 
-        localStorage.removeItem("auth");
-        window.location.href = "https://payuee.com/e-shop/v/login_register";
+        // localStorage.removeItem("auth");
+        // window.location.href = "https://payuee.com/e-shop/v/login_register";
     } catch (error) {
         console.error("Logout failed:", error);
     }
