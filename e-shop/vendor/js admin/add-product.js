@@ -1420,23 +1420,21 @@ async function check_posting_status() {
             document.getElementById("generateDescriptionAI").style.display = "block";
             document.getElementById("generateTagAI").style.display = "block";
         }
-        if (localStorage.getItem("firstProductAdded") == "second") {
 
-        } else  {
-            if (responseData.total_products < 1) {
-                swal({
-                    title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
-                    text: "Let's set up your shipping fees to get your shop ready for orders.",
-                    icon: "success",
-                    buttons: {
-                        confirm: "Start Setup",
-                    },
-                }).then(async (result) => {
-                    if (result) {
-                        window.location.href = "update-shipping-fees?new=true";
-                    }
-                });
-            }
+        if (responseData.total_products < 1) {
+            swal({
+                title: "Welcome to Payuee e-Shop, " + responseData.store_name + "!",
+                text: "Let's set up your shipping fees to get your shop ready for orders.",
+                icon: "success",
+                buttons: {
+                    confirm: "Start Setup",
+                },
+            }).then(async (result) => {
+                if (result) {
+                     localStorage.setItem("product", "one");
+                    window.location.href = "update-shipping-fees";
+                }
+            });
         }
 
         // Update the vendor name immediately if DOM is already loaded
