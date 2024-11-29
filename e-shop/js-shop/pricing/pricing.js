@@ -70,7 +70,7 @@ async function handlePaymentClick(event) {
 const customerBalance = await getUsersBalance();
 
    if (basicPlanId == chargeAmount) {
-      customerBalance == chargeAmount;
+      customerBalance = chargeAmount;
    }
     // const customerBalance = await getUsersBalance();
 
