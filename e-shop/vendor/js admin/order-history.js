@@ -239,6 +239,11 @@ function renderEmptyOrderHistory() {
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
 
+    // Clear existing content if needed or check if empty
+    if (!product || product.length === 0) {
+        renderEmptyOrderHistory();
+        return;
+    }
 
     // Create a new product card element
     const rowElement = document.createElement('div');
