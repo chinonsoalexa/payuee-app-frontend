@@ -243,7 +243,7 @@ function renderNoTransactions() {
             <h5>Exciting Opportunities Await You!</h5>
             <p>It looks like you haven't made any purchases yet. Don't worry, our vast range of vendors has everything you need!</p>
             <p>Explore products from various vendors and make your first purchase today. Start shopping and unlock the full potential of Payuee e-Shop!</p>
-            <p><a href="https://payuee.com/e-shop/home" class="btn btn-primary">Browse Products Now</a></p>
+            <p><a href="https://payuee.com/e-shop/shop-outfits" class="btn btn-primary">Browse Products Now</a></p>
         </div>
     `;
 
