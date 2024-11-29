@@ -74,7 +74,8 @@ async function check_auth_status() {
                 errorData.error === "No Authentication cookie found" ||
                 errorData.error === "Unauthorized attempt! JWT's not valid!" ||
                 errorData.error === "No Refresh cookie found"
-            )
+            ) {
+                logout();
             } else {
                 logout();
             }
