@@ -67,12 +67,11 @@ async function handlePaymentClick(event) {
     const checkoutButton = document.getElementById('paymentButton');
     checkoutButton.disabled = true;
 
-let customerBalance = await getUsersBalance();
+    let customerBalance = await getUsersBalance();
 
-   if (basicPlanId == chargeAmount) {
+   if (transactionCodeStatus == false) {
       customerBalance = chargeAmount;
    }
-    // const customerBalance = await getUsersBalance();
 
     if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
         hideModal('checkoutModal');
@@ -293,6 +292,7 @@ async function placeOrder() {
         plan_type: vendorPlan,
         auto_renew: isChecked,
         trans_code: String(TransactionCode),
+        status: transactionCodeStatus,
     };
 
     try {
