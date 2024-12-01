@@ -307,7 +307,7 @@ async function sendFunds() {
                 window.location.href = "https://payuee.com/successful.html"
                 return
             } else {
-                window.location.href = "https://payuee.com/successful.html"
+                window.location.href = "https://payuee.com/bank-successful.html"
                 return
             }
         } finally {
