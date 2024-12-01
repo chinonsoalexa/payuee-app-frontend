@@ -3,7 +3,7 @@
 
 <head>
    <script src="auth/auth-page.js" defer></script>
-<script src="auth-in/subscriptions/email-subscription.js"></script>
+<!-- <script src="auth-in/subscriptions/email-subscription.js"></script> -->
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -439,370 +439,36 @@ border: none;
                         done
                      </i>
                   </div>
-                  <h3 id="payment_condition">Getting Transaction Details...</h3>
-                  <p class="primary-text" id="payment_display_message">Processing Transaction Details...</p>
-               </div>
-               
-               <!-- airtime field -->
-               <div id="airtime-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mobile No</span>
-                        <span  id="recharged_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="service_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Network</span>
-                        <span id="airtime_type" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- data field -->
-               <div id="data-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="data_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="data_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="data_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="data_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="data_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mobile No</span>
-                        <span  id="data_recharged_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="data_service_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Network Plan</span>
-                        <span id="data_network_plan" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Bundle</span>
-                        <span id="data_bundle" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Saved Subscription</span>
-                        <span id="data_auto_renew" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="data_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- recharge pin field -->
-               <div id="rechage-pin-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="recharge_pin_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="recharge_pin_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="recharge_pin_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="recharge_pin_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="recharge_pin_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>No. of Pins</span>
-                        <span  id="recharge_pin_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Value</span>
-                        <span  id="recharge_pin_value"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="recharge_pin_service_name" class="textbo">Recharge Pin</span>
-                     </li>
-                     <li>
-                        <span>Network</span>
-                        <span id="recharge_pin_network_type" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Purchased Pin</span>
-                        <span id="recharge_pin_purchased_pin" class="textbo" href="#">View Pin</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="recharge_pin_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- educational payment field -->
-               <div id="educational-payments-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="education_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="education_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="education_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="education_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="education_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mobile No</span>
-                        <span  id="education_recharged_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="education_service_name" class="textbo">WAEC Pin</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="education_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- decoder field -->
-               <div id="decoder-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="decoder_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="decoder_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="decoder_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="decoder_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="decoder_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mobile No</span>
-                        <span  id="decoder_recharged_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="decoder_service_name" class="textbo">TV Subscription</span>
-                     </li>
-                     <li>
-                        <span>Operator</span>
-                        <span id="decoder_operator" class="textbo">DSTV</span>
-                     </li>
-                     <li>
-                        <span>Plan</span>
-                        <span id="decoder_plan" class="textbo">DStv Padi - ₦2,950</span>
-                     </li>
-                     <li>
-                        <span>Decoder Number</span>
-                        <span id="decoder_number" class="textbo">1234567890</span>
-                     </li>
-                     <li>
-                        <span>Saved Subscription</span>
-                        <span id="decoder_auto_renew" class="textbo">true</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="decoder_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- electricity field -->
-               <div id="electricity-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="electric_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="electric_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="electric_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="electric_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="electric_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mobile No</span>
-                        <span  id="electric_recharged_number"class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="electric_service_name" class="textbo">electric bill</span>
-                     </li>
-                     <li>
-                        <span>Region</span>
-                        <span id="electric_region" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Meter Number</span>
-                        <span id="electric_meter_number" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Meter Token</span>
-                        <span id="electric_meter_token" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Meter Units</span>
-                        <span id="electric_meter_units" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Saved Subscription</span>
-                        <span id="electric_auto_renew" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Payment Amount</span>
-                        <span id="electric_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
-               </div>
-
-               <!-- fund wallet field -->
-               <div id="fund-wallet-section" class="payment__success__body disabled">
-                  <ul>
-                     <li>
-                        <span>Transactions ID</span>
-                        <span id="fund_wallet_transaction_id" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Date</span>
-                        <span id="fund_wallet_transaction_date" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Mode of Payment</span>
-                        <span id="fund_wallet_transaction_method" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transaction Status</span>
-                        <span id="fund_wallet_transaction_status" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Customer Name</span>
-                        <span id="fund_wallet_users_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Service</span>
-                        <span id="fund_wallet_service_name" class="textbo">fund wallet</span>
-                     </li>
-                     <li>
-                        <span>Deposit Amount</span>
-                        <span id="fund_wallet_transaction_amount" class="textbo">₦ NA</span>
-                     </li>
-                  </ul>
+                  <h3 id="payment_condition">Transaction Successful</h3>
+                  <p class="primary-text" id="payment_display_message">Congratulations! Your Transaction is Successfully Processed!</p>
                </div>
 
                <!-- send funds field -->
                <div id="send-funds-section" class="payment__success__body disabled">
                   <ul>
-                     <li>
+                     <!-- <li>
                         <span>Transactions ID</span>
                         <span id="send_funds_transaction_id" class="textbo">NA</span>
-                     </li>
+                     </li> -->
                      <li>
                         <span>Date</span>
                         <span id="send_funds_transaction_date" class="textbo">NA</span>
                      </li>
                      <li>
                         <span>Mode of Transfer</span>
-                        <span id="send_funds_transaction_method" class="textbo">NA</span>
+                        <span id="send_funds_transaction_method" class="textbo">External Bank</span>
                      </li>
                      <li>
                         <span>Transaction Status</span>
-                        <span id="send_funds_transaction_status" class="textbo">NA</span>
+                        <span id="send_funds_transaction_status" class="textbo">Success</span>
                      </li>
                      <li>
                         <span>Sender's Name</span>
-                        <span id="send_funds_senders_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Receiver's Email</span>
-                        <span id="send_funds_receivers_email" class="textbo">NA</span>
+                        <span id="send_funds_senders_name" class="textbo">Payuee User</span>
                      </li>
                      <li>
                         <span>Service</span>
-                        <span id="send_funds_service_name" class="textbo">NA</span>
-                     </li>
-                     <li>
-                        <span>Transferred Amount</span>
-                        <span id="send_funds_transaction_amount" class="textbo">₦ NA</span>
+                        <span id="send_funds_service_name" class="textbo">Send Funds</span>
                      </li>
                   </ul>
                </div>
@@ -1062,7 +728,7 @@ border: none;
    </div><!-- /.row -->
  </footer><!-- /.footer-mobile container position-fixed d-md-none bottom-0 -->
 
-   <!-- <script src="auth-in/subscriptions/success.js"></script> -->
+   <script src="auth-in/subscriptions/bank-successful.js"></script>
    <!--Jquery 3 6 0 Min Js-->
    <script src="assets/js/jquery-3.6.0.min.js"></script>
    <!--Bootstrap bundle Js-->
