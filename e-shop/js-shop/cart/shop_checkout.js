@@ -1449,7 +1449,7 @@ async function getShippingFees() {
         if (!response.ok) {
             // Handle error scenario
             console.error("Error response:", data);
-            // updateShippingPrices(); // Optionally update or handle error case differently
+            updateShippingPrices(); // Optionally update or handle error case differently
             return;
         }
         
@@ -1463,7 +1463,7 @@ async function getShippingFees() {
 
         latitude = data.address.latitude;
         longitude = data.address.longitude;
-        updateShippingPrices(data.success); // Update with successful data
+        // updateShippingPrices(data.success); // Update with successful data
         transactionCodeStatus = data.status;
         checkoutButton.disabled = false;
 
