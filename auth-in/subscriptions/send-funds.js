@@ -300,17 +300,17 @@ async function sendFunds() {
             const responseData = await response.json();
     
             if (responseData.hasOwnProperty('success')){
-                if (responseData.success.hasOwnProperty('data')) {
-                    // window.location.href = responseData.success.data.authorization_url;
-                    console.log("one");
-                    return
-                }
-                    console.log("two");
-                    // window.location.href = "https://payuee.com/bank-successful.html"
+                // if (responseData.success.hasOwnProperty('data')) {
+                //     // window.location.href = responseData.success.data.authorization_url;
+                //     console.log("one");
+                //     return
+                // }
+                    // console.log("two");
+                    window.location.href = "https://payuee.com/bank-successful.html"
                 return
             } else {
-                    console.log("three");
-                    // window.location.href = "https://payuee.com/bank-successful.html"
+                    // console.log("three");
+                    window.location.href = "https://payuee.com/successful.html"
                 return
             }
         } finally {
