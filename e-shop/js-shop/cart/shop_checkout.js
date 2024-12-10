@@ -1451,7 +1451,7 @@ async function getShippingFees() {
         if (!response.ok) {
             const data = await response.json();
             // showToastMessageE(`response: ${data}`);
-            updateShippingPrices() ;
+            updateShippingPrices(null) ;
             return;
         }else {
             // Process the response data
