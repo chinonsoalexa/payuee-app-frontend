@@ -1352,13 +1352,15 @@ function calculateTotalWeightForVendor(eshop_user_id) {
 }
 
 function updateShippingPrices(vendorsShippingFees) {
-    console.log("updateShippingPrices called. Input:", vendorsShippingFees);
-
+    // Get reference to the tbody element where shipping fees will be displayed
     const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
     shippingCost = 0;
+    // Clear the current table body content
     shippingFeesTableBody.innerHTML = '';
 
+    // Check if there are any shipping fees data available
     if (!vendorsShippingFees || vendorsShippingFees.length === 0) {
+        // Display a message when no shipping fees are available
         const emptyRow = document.createElement('tr');
         emptyRow.innerHTML = `
             <td colspan="2" style="background-color: yellow; color: black; font-weight: bold;">
@@ -1367,18 +1369,23 @@ function updateShippingPrices(vendorsShippingFees) {
         `;
         shippingFeesTableBody.appendChild(emptyRow);
     } else {
-        vendorsShippingFees.forEach((fee, index) => {
+        // Loop through the vendors and append their shipping fees
+        vendorsShippingFees.forEach(fee => {
+            // Create a new table row element
             const shippingFeeRow = document.createElement('tr');
+
+            // Calculate distance between store and selected city in kilometers
             const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
             
-            let shippingFee;
             if (!fee.calculate_using_kg) {
                 shippingFee = distance * fee.shipping_fee_per_km;
             } else {
-                const totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
+                // console.log("calculating from here: ", fee, "this is the product net weight", calculateTotalWeightForVendor(fee.eshop_user_id));
+                let totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
                 shippingFee = distance * fee.shipping_fee_per_km * totalWeight;
             }
 
+            // Ensure the shipping fee is not lower or higher than the defined limits
             if (shippingFee < fee.shipping_fee_less) {
                 shippingFee = fee.shipping_fee_less;
             } else if (shippingFee > fee.shipping_fee_greater) {
@@ -1386,14 +1393,14 @@ function updateShippingPrices(vendorsShippingFees) {
             }
 
             shippingCost += shippingFee;
-
+            // Add the vendor name and shipping fee
             shippingFeeRow.innerHTML = `
               <td>${fee.store_name}</td>
               <td>${formatNumberToNaira(shippingFee)}</td>
             `;
-            shippingFeesTableBody.appendChild(shippingFeeRow);
 
-            console.log(`Rendered fee for ${fee.store_name}: ${shippingFee}`);
+            // Append the new row to the table body
+            shippingFeesTableBody.appendChild(shippingFeeRow);
         });
     }
     CalculateCartSubtotal();
@@ -1421,8 +1428,11 @@ function updateFormFields(formData) {
 }
 
 async function getShippingFees() {
+    // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
-    const requestBody = getUniqueVendorIds();
+
+    // Request body is just the array of IDs
+    const requestBody = getUniqueVendorIds();  // Directly send the array, not as an object
     const checkoutButton = document.getElementById('placeOrderButton');
     
     checkoutButton.disabled = true;
@@ -1431,38 +1441,40 @@ async function getShippingFees() {
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include',
-        body: JSON.stringify(requestBody),
+        credentials: 'include',  // Include cookies with the request
+        body: JSON.stringify(requestBody)  // Send array as JSON
     };
     
     try {
         const response = await fetch(apiUrl, requestOptions);
-        const data = await response.json();
         
         if (!response.ok) {
-            // Handle error scenario
-            console.error("Error response:", data);
-            updateShippingPrices(); // Optionally update or handle error case differently
+            const data = await response.json();
+            // showToastMessageE(`response: ${data}`);
+            updateShippingPrices() ;
             return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            shippingData = data.success;
+            usersSavedAddress = data.address;
+            if(usersSavedAddress.save_shipping_address) {
+                updateFormFields(usersSavedAddress);
+            }
+            latitude = data.address.latitude;
+            longitude = data.address.longitude;
+            updateShippingPrices(data.success);
+            transactionCodeStatus = data.status;
+            const checkoutButton = document.getElementById('placeOrderButton');
+    
+            checkoutButton.disabled = false;
         }
-        
-        // Handle success scenario
-        shippingData = data.success;
-        usersSavedAddress = data.address;
-
-        if (usersSavedAddress.save_shipping_address) {
-            updateFormFields(usersSavedAddress);
-        }
-
-        latitude = data.address.latitude;
-        longitude = data.address.longitude;
-        updateShippingPrices(data.success); // Update with successful data
-        transactionCodeStatus = data.status;
-        checkoutButton.disabled = false;
 
     } catch (error) {
-        console.error("Error fetching shipping fees:", error);
+        const checkoutButton = document.getElementById('placeOrderButton');
+    
         checkoutButton.disabled = true;
+        console.error('Error fetching shipping fees:', error);
     }
 }
 
