@@ -1428,11 +1428,8 @@ function updateFormFields(formData) {
 }
 
 async function getShippingFees() {
-    // Endpoint URL
     const apiUrl = "https://api.payuee.com/get-vendors-shipping-fee";
-
-    // Request body is just the array of IDs
-    const requestBody = getUniqueVendorIds();  // Directly send the array, not as an object
+    const requestBody = getUniqueVendorIds();
     const checkoutButton = document.getElementById('placeOrderButton');
     
     checkoutButton.disabled = true;
@@ -1441,40 +1438,38 @@ async function getShippingFees() {
         headers: {
             "Content-Type": "application/json",
         },
-        credentials: 'include',  // Include cookies with the request
-        body: JSON.stringify(requestBody)  // Send array as JSON
+        credentials: 'include',
+        body: JSON.stringify(requestBody),
     };
     
     try {
         const response = await fetch(apiUrl, requestOptions);
+        const data = await response.json();
         
         if (!response.ok) {
-            const data = await response.json();
-            // showToastMessageE(`response: ${data}`);
-            updateShippingPrices(null) ;
+            // Handle error scenario
+            console.error("Error response:", data);
+            updateShippingPrices(); // Optionally update or handle error case differently
             return;
-        }else {
-            // Process the response data
-            const data = await response.json();
-            shippingData = data.success;
-            usersSavedAddress = data.address;
-            if(usersSavedAddress.save_shipping_address) {
-                updateFormFields(usersSavedAddress);
-            }
-            latitude = data.address.latitude;
-            longitude = data.address.longitude;
-            updateShippingPrices(data.success);
-            transactionCodeStatus = data.status;
-            const checkoutButton = document.getElementById('placeOrderButton');
-    
-            checkoutButton.disabled = false;
+        }
+        
+        // Handle success scenario
+        shippingData = data.success;
+        usersSavedAddress = data.address;
+
+        if (usersSavedAddress.save_shipping_address) {
+            updateFormFields(usersSavedAddress);
         }
 
+        latitude = data.address.latitude;
+        longitude = data.address.longitude;
+        updateShippingPrices(data.success); // Update with successful data
+        transactionCodeStatus = data.status;
+        checkoutButton.disabled = false;
+
     } catch (error) {
-        const checkoutButton = document.getElementById('placeOrderButton');
-    
+        console.error("Error fetching shipping fees:", error);
         checkoutButton.disabled = true;
-        console.error('Error fetching shipping fees:', error);
     }
 }
 
