@@ -301,13 +301,16 @@ async function sendFunds() {
     
             if (responseData.hasOwnProperty('success')){
                 if (responseData.success.hasOwnProperty('data')) {
-                    window.location.href = responseData.success.data.authorization_url;
+                    // window.location.href = responseData.success.data.authorization_url;
+                    console.log("one");
                     return
                 }
-                window.location.href = "https://payuee.com/bank-successful.html"
+                    console.log("two");
+                    // window.location.href = "https://payuee.com/bank-successful.html"
                 return
             } else {
-                window.location.href = "https://payuee.com/bank-successful.html"
+                    console.log("three");
+                    // window.location.href = "https://payuee.com/bank-successful.html"
                 return
             }
         } finally {
