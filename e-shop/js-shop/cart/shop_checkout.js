@@ -1352,15 +1352,13 @@ function calculateTotalWeightForVendor(eshop_user_id) {
 }
 
 function updateShippingPrices(vendorsShippingFees) {
-    // Get reference to the tbody element where shipping fees will be displayed
+    console.log("updateShippingPrices called. Input:", vendorsShippingFees);
+
     const shippingFeesTableBody = document.getElementById('vendors_shipping_fees');
     shippingCost = 0;
-    // Clear the current table body content
     shippingFeesTableBody.innerHTML = '';
 
-    // Check if there are any shipping fees data available
     if (!vendorsShippingFees || vendorsShippingFees.length === 0) {
-        // Display a message when no shipping fees are available
         const emptyRow = document.createElement('tr');
         emptyRow.innerHTML = `
             <td colspan="2" style="background-color: yellow; color: black; font-weight: bold;">
@@ -1369,23 +1367,18 @@ function updateShippingPrices(vendorsShippingFees) {
         `;
         shippingFeesTableBody.appendChild(emptyRow);
     } else {
-        // Loop through the vendors and append their shipping fees
-        vendorsShippingFees.forEach(fee => {
-            // Create a new table row element
+        vendorsShippingFees.forEach((fee, index) => {
             const shippingFeeRow = document.createElement('tr');
-
-            // Calculate distance between store and selected city in kilometers
             const distance = calculateDistance(fee.store_latitude, fee.store_longitude, latitude, longitude);
             
+            let shippingFee;
             if (!fee.calculate_using_kg) {
                 shippingFee = distance * fee.shipping_fee_per_km;
             } else {
-                // console.log("calculating from here: ", fee, "this is the product net weight", calculateTotalWeightForVendor(fee.eshop_user_id));
-                let totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
+                const totalWeight = calculateTotalWeightForVendor(fee.eshop_user_id);
                 shippingFee = distance * fee.shipping_fee_per_km * totalWeight;
             }
 
-            // Ensure the shipping fee is not lower or higher than the defined limits
             if (shippingFee < fee.shipping_fee_less) {
                 shippingFee = fee.shipping_fee_less;
             } else if (shippingFee > fee.shipping_fee_greater) {
@@ -1393,14 +1386,14 @@ function updateShippingPrices(vendorsShippingFees) {
             }
 
             shippingCost += shippingFee;
-            // Add the vendor name and shipping fee
+
             shippingFeeRow.innerHTML = `
               <td>${fee.store_name}</td>
               <td>${formatNumberToNaira(shippingFee)}</td>
             `;
-
-            // Append the new row to the table body
             shippingFeesTableBody.appendChild(shippingFeeRow);
+
+            console.log(`Rendered fee for ${fee.store_name}: ${shippingFee}`);
         });
     }
     CalculateCartSubtotal();
