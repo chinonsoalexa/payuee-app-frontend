@@ -506,10 +506,10 @@ quantityInput.addEventListener('change', () => {
       "45 ->": "Greater than 45",
     };
   
-    // Split the size strings into arrays
-    const clothingSizeArray = clothingSizes.split(",");
-    const shoeSizeArray = shoeSizes.split(",");
-    
+    // Split the size strings into arrays and filter out any empty strings
+    const clothingSizeArray = clothingSizes.split(",").filter((size) => size.trim() !== "");
+    const shoeSizeArray = shoeSizes.split(",").filter((size) => size.trim() !== "");
+  
     // Combine both clothing and shoe sizes into one array
     const allSizes = [...clothingSizeArray, ...shoeSizeArray];
     
@@ -544,6 +544,7 @@ quantityInput.addEventListener('change', () => {
   
     return returnedData;
   }
+  
 
   function triggerShake() {
     const swatchList = document.querySelector(".swatch-list");

@@ -490,63 +490,64 @@ quantityInput.addEventListener('change', () => {
   }
 
   function renderSizes(clothingSizes, shoeSizes) {
-  // Check if both size strings are empty
-  if (clothingSizes === "" && shoeSizes === "") return "";
-
-  // Define labels for each size if needed
-  const sizeLabels = {
-    XS: "Extra Small",
-    S: "Small",
-    M: "Middle",
-    L: "Large",
-    XL: "Extra Large",
-    XXL: "Extra Extra Large",
-    "<- 20": "Less than 20",
-    "20-25": "20 to 25",
-    "25-30": "25 to 30",
-    "30-40": "30 to 40",
-    "40-45": "40 to 45",
-    "45 ->": "Greater than 45",
-  };
-
-  // Split the size strings into arrays
-  const clothingSizeArray = clothingSizes.split(",");
-  const shoeSizeArray = shoeSizes.split(",");
+    // Check if both size strings are empty
+    if (clothingSizes === "" && shoeSizes === "") return "";
   
-  // Combine both clothing and shoe sizes into one array
-  const allSizes = [...clothingSizeArray, ...shoeSizeArray];
+    // Define labels for each size if needed
+    const sizeLabels = {
+      XS: "Extra Small",
+      S: "Small",
+      M: "Middle",
+      L: "Large",
+      XL: "Extra Large",
+      XXL: "Extra Extra Large",
+      "<- 20": "Less than 20",
+      "20-25": "20 to 25",
+      "25-30": "25 to 30",
+      "30-40": "30 to 40",
+      "40-45": "40 to 45",
+      "45 ->": "Greater than 45",
+    };
   
-  // Initialize an empty string to store the HTML
-  let htmlOutput = "";
-
-  // Generate HTML for each size
-  allSizes.forEach((size, index) => {
-    const id = `swatch-${index + 1}`;
-    const label = sizeLabels[size] || size; // Use label from sizeLabels or fallback to size
-
-    // Append input and label elements to the HTML string, adding value for radio button
-    htmlOutput += `
-      <input type="radio" name="size" id="${id}" value="${size}">
-      <label class="swatch js-swatch" for="${id}" aria-label="${label}" 
-             data-bs-toggle="tooltip" data-bs-placement="top" title="${label}">
-        ${size}
-      </label>
-    `;
-  });
-
-  // Wrap the size options in a container div and return the complete HTML string
-  const returnedData = `
-    <div class="product-single__swatches">
-      <div class="product-swatch text-swatches">
-        <label>Sizes</label>
-        <div class="swatch-list">
-          ${htmlOutput}
+    // Split the size strings into arrays and filter out any empty strings
+    const clothingSizeArray = clothingSizes.split(",").filter((size) => size.trim() !== "");
+    const shoeSizeArray = shoeSizes.split(",").filter((size) => size.trim() !== "");
+  
+    // Combine both clothing and shoe sizes into one array
+    const allSizes = [...clothingSizeArray, ...shoeSizeArray];
+    
+    // Initialize an empty string to store the HTML
+    let htmlOutput = "";
+  
+    // Generate HTML for each size
+    allSizes.forEach((size, index) => {
+      const id = `swatch-${index + 1}`;
+      const label = sizeLabels[size] || size; // Use label from sizeLabels or fallback to size
+  
+      // Append input and label elements to the HTML string, adding value for radio button
+      htmlOutput += `
+        <input type="radio" name="size" id="${id}" value="${size}">
+        <label class="swatch js-swatch" for="${id}" aria-label="${label}" 
+               data-bs-toggle="tooltip" data-bs-placement="top" title="${label}">
+          ${size}
+        </label>
+      `;
+    });
+  
+    // Wrap the size options in a container div and return the complete HTML string
+    const returnedData = `
+      <div class="product-single__swatches">
+        <div class="product-swatch text-swatches">
+          <label>Sizes</label>
+          <div class="swatch-list">
+            ${htmlOutput}
+          </div>
         </div>
-      </div>
-    </div>`;
-
-  return returnedData;
-}
+      </div>`;
+  
+    return returnedData;
+  }
+  
 
 function triggerShake() {
   const swatchList = document.querySelector(".swatch-list");
