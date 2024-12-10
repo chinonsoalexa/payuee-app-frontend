@@ -1463,7 +1463,7 @@ async function getShippingFees() {
 
         latitude = data.address.latitude;
         longitude = data.address.longitude;
-        // updateShippingPrices(data.success); // Update with successful data
+        updateShippingPrices(data.success); // Update with successful data
         transactionCodeStatus = data.status;
         checkoutButton.disabled = false;
 
