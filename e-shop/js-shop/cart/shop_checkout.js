@@ -1449,7 +1449,7 @@ async function getShippingFees() {
         if (!response.ok) {
             // Handle error scenario
             console.error("Error response:", data);
-            updateShippingPrices(); // Optionally update or handle error case differently
+            // updateShippingPrices(); // Optionally update or handle error case differently
             return;
         }
         
