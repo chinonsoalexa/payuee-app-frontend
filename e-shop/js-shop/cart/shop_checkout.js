@@ -1542,7 +1542,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = 'page/signin-new.html'
+        window.location.href = 'v/login_register'
     } finally{
         // do nothing
     }
