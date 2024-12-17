@@ -1499,7 +1499,10 @@ async function getUsersBalance() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            const data = await response.json();
+            const errorData = await response.json();
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                logout();
+            }
             // showToastMessageE(`response: ${data}`);
             return;
         }else {
