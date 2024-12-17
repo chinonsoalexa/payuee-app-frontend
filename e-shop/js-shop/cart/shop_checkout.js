@@ -855,6 +855,7 @@ placeOrderButton.addEventListener("click", function(event) {
 
         let transactionCodeInput = document.getElementById('transactionCodeInput');
         transactionCodeInput.value = "";
+        paymentButton.removeEventListener('click', paymentButton);
         placeOrderButton.removeEventListener('click', paymentButton);
     });
     return;
