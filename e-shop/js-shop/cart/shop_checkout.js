@@ -1450,7 +1450,10 @@ async function getShippingFees() {
         const response = await fetch(apiUrl, requestOptions);
         
         if (!response.ok) {
-            const data = await response.json();
+            const errorData = await response.json();
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                logout();
+            }
             // showToastMessageE(`response: ${data}`);
             updateShippingPrices() ;
             return;
@@ -1509,4 +1512,35 @@ async function getUsersBalance() {
         console.error('Error fetching shipping fees:', error);
     }
     return userBalance;
+}
+
+async function logout() {
+    // also send a request to the logout api endpoint
+    const apiUrl = "https://api.payuee.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+            // alert('an error occurred. Please try again');
+                if (!response.ok) {
+        // alert('an error occurred. Please try again');
+        return;
+    }
+        return;
+      }
+        const data = await response.json();
+        localStorage.removeItem('auth')
+        window.location.href = 'page/signin-new.html'
+    } finally{
+        // do nothing
+    }
 }
