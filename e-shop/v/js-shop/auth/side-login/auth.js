@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function loadStates() {
     try {
         // Update the URL to the correct path of your JSON file
-        const response = await fetch('nigeria_states.json');
+        const response = await fetch('https://payuee.com/e-shop/v/nigeria_states.json');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -150,7 +150,7 @@ async function loadStates() {
 // Function to fetch and populate city data based on state_iso2
 async function loadCities(stateIso2) {
     try {
-        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
+        const response = await fetch('https://payuee.com/e-shop/v/nigeria_cities.json'); // Update with your actual cities JSON URL
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
