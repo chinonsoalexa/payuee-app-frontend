@@ -1019,6 +1019,7 @@ function renderProductDescription(product) {
         </div>
   `;
 
+  downloadProduct();
   // renderRecommendedProduct(product);
       // Shuffle products array before rendering
       // const shuffledProducts = shuffleArray(products);
@@ -1806,26 +1807,29 @@ var products = [
   },
 ];
 
-document.getElementById("download-icon").addEventListener("click", function () {
-  const productCard = document.getElementById("product-card");
-
-  // Temporarily make the card visible for rendering
-  productCard.style.opacity = "1";
-  productCard.style.pointerEvents = "auto";
-
-  // Convert the card to an image
-  domtoimage.toBlob(productCard)
-      .then(function (blob) {
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = "product.png";
-          link.click();
-
-          // Re-hide the card after capturing it
-          productCard.style.opacity = "0";
-          productCard.style.pointerEvents = "none";
-      })
-      .catch(function (error) {
-          console.error("Oops, something went wrong!", error);
-      });
-});
+function downloadProduct() {
+  document.getElementById("download-icon").addEventListener("click", function () {
+    console.log("i'm here...")
+    const productCard = document.getElementById("product-card");
+  
+    // Temporarily make the card visible for rendering
+    productCard.style.opacity = "1";
+    productCard.style.pointerEvents = "auto";
+  
+    // Convert the card to an image
+    domtoimage.toBlob(productCard)
+        .then(function (blob) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "product.png";
+            link.click();
+  
+            // Re-hide the card after capturing it
+            productCard.style.opacity = "0";
+            productCard.style.pointerEvents = "none";
+        })
+        .catch(function (error) {
+            console.error("Oops, something went wrong!", error);
+        });
+  });
+}
