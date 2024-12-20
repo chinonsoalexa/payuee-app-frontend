@@ -97,8 +97,11 @@ async function getProduct(productID) {
       renderProductDetails(responseData.success, responseData.related);
       categoryId = responseData.success.category;
 
+      const productImage = document.querySelector(".product-image");
+      // https://payuee.com/image/${url.url}
+      productImage.src = "https://payuee.com/image/" + responseData.success.url[0];
+
       document.getElementById("download-icon").addEventListener("click", function () {
-        console.log("i'm here...")
         const productCard = document.getElementById("product-card");
       
         // Temporarily make the card visible for rendering
