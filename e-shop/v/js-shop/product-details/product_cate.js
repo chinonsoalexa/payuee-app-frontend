@@ -98,8 +98,30 @@ async function getProduct(productID) {
       categoryId = responseData.success.category;
 
       const productImage = document.querySelector(".product-image");
-      // https://payuee.com/image/${url.url}
+      
       productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
+
+      const productNameElement = document.querySelector(".product-name");
+      productNameElement.textContent = responseData.success.title;
+
+      const productCategoryElement = document.querySelector(".category");
+      productCategoryElement.textContent = responseData.success.category;
+
+      const productNameDescription = document.querySelector(".product-description");
+      productNameDescription.textContent = truncateDescription(responseData.success.description);
+
+      const productNamePrice = document.querySelector(".price-container");
+      if (responseData.success.selling_price < responseData.success.initial_cost) {
+        productNamePrice.innerHTML = `
+          <span class="original-price">${responseData.success.initial_cost}</span>
+          <span class="discount-price">${responseData.success.selling_price}</span>
+        `;
+      } else {
+        productNamePrice.innerHTML = `
+        <p class="product-price">${responseData.success.initial_cost}</p>
+      `;
+      }
+
 
       document.getElementById("download-icon").addEventListener("click", function () {
         const productCard = document.getElementById("product-card");
@@ -128,6 +150,20 @@ async function getProduct(productID) {
 } finally {
 
   }
+}
+
+function truncateDescription(description) {
+  // Split the description into tokens (words)
+  const tokens = description.split(' ');
+
+  // Check if the description has more than 22 tokens
+  if (tokens.length > 22) {
+      // Get the first 22 tokens and add "..."
+      return tokens.slice(0, 22).join(' ') + '...';
+  }
+
+  // Return the description as is if it has 22 tokens or fewer
+  return description;
 }
 
 async function getNextProduct(productID) {
