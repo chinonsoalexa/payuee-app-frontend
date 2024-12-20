@@ -88,8 +88,10 @@ async function logout() {
 
         let fullUrl2 = window.location.href; // Get the current full URL
         let baseUrl = fullUrl2.split('?')[0].split('#')[0]; // Remove query and fragment parts
-        baseUrl = baseUrl.split('/').slice(0, 3).join('/') + '/'; // Get the base URL part
-
+        
+        // Adjust to get the base part, which includes the protocol, domain, and '/store/'
+        baseUrl = baseUrl.split('/').slice(0, 4).join('/') + '/'; 
+        
         console.log(baseUrl); // Outputs: "https://payuee.com/store/"
 
 
