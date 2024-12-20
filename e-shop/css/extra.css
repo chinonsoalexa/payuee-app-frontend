@@ -33,12 +33,12 @@ body {
 }
 
 .company-logo {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 10px;
   left: 10px;
-  border-radius: 50%;
+  border-radius: 5%;
 }
 
 .category {
