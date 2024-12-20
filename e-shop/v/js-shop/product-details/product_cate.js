@@ -134,8 +134,6 @@ async function getProduct(productID) {
         domtoimage.toBlob(productCard)
                   // Convert the card to an image with high quality settings
           domtoimage.toBlob(productCard, {
-            width: productCard.offsetWidth * 2,   // Increase the width to 2x for better resolution
-            height: productCard.offsetHeight * 2, // Increase the height to 2x for better resolution
             quality: 1.0                          // Set the quality to the highest (1.0)
           })
         .then(function (blob) {
