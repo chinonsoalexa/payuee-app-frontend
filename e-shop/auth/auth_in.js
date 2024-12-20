@@ -97,6 +97,7 @@ async function logout() {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/store/', '/store/v/');
             location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(newUrl)}`);
+            return;
         } else {
             // Redirect to the login/register page with the current URL as the redirectTo parameter
             location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
