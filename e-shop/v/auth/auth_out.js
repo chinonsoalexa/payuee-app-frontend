@@ -13,7 +13,7 @@ function get_auth_status() {
         let baseUrl = fullUrl2.split('?')[0].split('#')[0]; // Remove query and fragment parts
         
         // Adjust to get the base part, which includes the protocol, domain, and '/store/'
-        baseUrl = baseUrl.split('/').slice(0, 4).join('/') + '/'; 
+        baseUrl = baseUrl.split('/').slice(0, 5).join('/') + '/'; 
         
         console.log(baseUrl); // Outputs: "https://payuee.com/store/"
 
