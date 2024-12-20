@@ -1821,7 +1821,7 @@ function downloadProduct() {
         .then(function (blob) {
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "product.png";
+            link.download = "Payuee e-Shop Product.png";
             link.click();
   
             // Re-hide the card after capturing it
