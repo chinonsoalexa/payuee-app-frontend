@@ -385,7 +385,7 @@ function renderProducts(product, subscription, userId) {
     }
 
     if (subscription.user_store) {
-        url = "https://payuee.com/outfits/" + product.product_url_id;
+        url = "https://payuee.com/vendor/" + product.product_url_id;
     }
 
     var editProduct;
@@ -576,7 +576,7 @@ function renderProducts(product, subscription, userId) {
             if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
                 event.preventDefault();
                 event.stopPropagation(); // Stop the event from propagating further
-                window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
+                window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
                 return;
             }
             addToCart(product);
