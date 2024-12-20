@@ -708,15 +708,15 @@ function calculatePercentageOff(previousPrice, currentPrice) {
 }
 
 function formatNumber(value) {
-    if (value >= 1 _000_000_000) {
+    if (value >= 1_000_000_000) {
         // Handle billions
-        return (value / 1 _000_000_000).toFixed(1) + 'B';
-    } else if (value >= 1 _000_000) {
+        return (value / 1_000_000_000).toFixed(1) + 'B';
+    } else if (value >= 1_000_000) {
         // Handle millions
-        return (value / 1 _000_000).toFixed(1) + 'M';
-    } else if (value >= 1 _000) {
+        return (value / 1_000_000).toFixed(1) + 'M';
+    } else if (value >= 1_000) {
         // Handle thousands
-        return (value / 1 _000).toFixed(1) + 'k';
+        return (value / 1_000).toFixed(1) + 'k';
     } else {
         // Handle values less than a thousand
         return value.toString();
@@ -725,11 +725,11 @@ function formatNumber(value) {
 
 function formatNumberToNaira(number) {
     let formattedNumber;
-    if (number >= 1 _000_000_000) {
+    if (number >= 1_000_000_000) {
         formattedNumber = `₦${(number / 1_000_000_000).toFixed(1).replace('.0', '')}B`;
-    } else if (number >= 1 _000_000) {
+    } else if (number >= 1_000_000) {
         formattedNumber = `₦${(number / 1_000_000).toFixed(1).replace('.0', '')}M`;
-    } else if (number >= 1 _000) {
+    } else if (number >= 1_000) {
         formattedNumber = `₦${(number / 1_000).toFixed(1).replace('.0', '')}K`;
     } else {
         formattedNumber = `₦${number.toFixed(0)}`;
