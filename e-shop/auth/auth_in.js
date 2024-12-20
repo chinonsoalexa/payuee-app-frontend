@@ -100,7 +100,7 @@ async function logout() {
             return;
         } else {
             // Redirect to the login/register page with the current URL as the redirectTo parameter
-            location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
+            // location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
         }
 
     } catch (error) {
