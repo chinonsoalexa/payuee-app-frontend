@@ -27,7 +27,7 @@
         },
         {
           "source": "/vendor/v/:nameAndId",
-          "destination": "e-shop/v/product_vendor"
+          "destination": "e-shop/v/shop_vendor"
         },
         {
           "source": "/cars/:nameAndId",
