@@ -86,8 +86,21 @@ async function logout() {
         // Get the full URL of the current page
         const fullUrl = window.location.href;
 
-        // Redirect to the login/register page with the current URL as the redirectTo parameter
-        location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
+        let fullUrl2 = window.location.href; // Get the current full URL
+        let baseUrl = fullUrl2.split('?')[0].split('#')[0]; // Remove query and fragment parts
+        baseUrl = baseUrl.split('/').slice(0, 3).join('/') + '/'; // Get the base URL part
+
+        console.log(baseUrl); // Outputs: "https://payuee.com/store/"
+
+
+        if (baseUrl == "https://payuee.com/store/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/store/', '/store/v/');
+            location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(newUrl)}`);
+        } else {
+            // Redirect to the login/register page with the current URL as the redirectTo parameter
+            location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
+        }
 
     } catch (error) {
         console.error("Error during logout:", error);
