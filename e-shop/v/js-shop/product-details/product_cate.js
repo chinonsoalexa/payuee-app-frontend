@@ -99,7 +99,7 @@ async function getProduct(productID) {
 
       const productImage = document.querySelector(".product-image");
       // https://payuee.com/image/${url.url}
-      productImage.src = "https://payuee.com/image/" + responseData.success.url[0];
+      productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
 
       document.getElementById("download-icon").addEventListener("click", function () {
         const productCard = document.getElementById("product-card");
