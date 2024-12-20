@@ -20,11 +20,11 @@ var max_weight = 10;
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 16 }, (_, i) => i);
 
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', async function() {
     // Get URL parameters
     const url = window.location.pathname;
     const parts = url.split('-');
-    vendorId = parseInt(parts[parts.length - 1], 10);  // Convert to a number    
+    vendorId = parseInt(parts[parts.length - 1], 10); // Convert to a number    
     updateCartNumber();
     updateCartDrawer();
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pageNumber == null) {
         pageNumber = "1";
     }
-    
+
     await getProducts();
 
     var analyticsData = sessionStorage.getItem('store_visits');
@@ -79,11 +79,11 @@ async function getProducts() {
                 // displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+
+            } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 // logUserOutIfTokenIsExpired();
-            }else {
+            } else {
                 // displayErrorMessage();
             }
 
@@ -98,7 +98,7 @@ async function getProducts() {
         // Call the function with the default and main image paths
         loadMainImage(
             "/e-shop/images/shop/shop_banner6.png",
-            "https://payuee.com/image/"+responseData.vendor.shop_image
+            "https://payuee.com/image/" + responseData.vendor.shop_image
         );
 
         // updateProductsFromData(responseData.success);
@@ -139,12 +139,12 @@ async function getProducts() {
             `;
             sortingAlgo();
             // Attach event listener to search input
-            document.getElementById("searchField").addEventListener("input", async (event) => {
+            document.getElementById("searchField").addEventListener("input", async(event) => {
                 const searchQuery = event.target.value;
                 if (searchQuery.length > 1) {
                     await fetchProducts(searchQuery);
                 } else {
-                document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
+                    document.getElementById("productResults").innerHTML = ""; // Clear results when search query is too short
                 }
             });
         }
@@ -152,7 +152,7 @@ async function getProducts() {
         responseData.success.forEach((product) => {
             renderProducts(product, responseData.store, responseData.user_id);
         });
-        
+
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
@@ -164,8 +164,8 @@ async function getProducts() {
         // console.log(responseData);
         const newUrl = new URL(window.location.href);
         newUrl.searchParams.set('page', CurrentPageOnLoad);
-        window.history.pushState({path: newUrl.href}, '', newUrl.href);
-        
+        window.history.pushState({ path: newUrl.href }, '', newUrl.href);
+
         if (TotalPageOnLoad > 1) {
             document.getElementById('paginationDiv').classList.remove('disabled');
             document.getElementById('paginationDiv').disabled = false;
@@ -179,9 +179,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = updateLinkPro(CurrentPageOnLoad+1);
+        nextPageButtonI.href = updateLinkPro(CurrentPageOnLoad + 1);
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = updateLinkPro(CurrentPageOnLoad-1);
+        previousPageButtonI.href = updateLinkPro(CurrentPageOnLoad - 1);
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -255,14 +255,14 @@ async function getProducts() {
             document.getElementById('dotAfterPage').classList.add('disabled');
             document.getElementById('dotAfterPage').disabled = true;
         }
-        
+
         if (AllRecordsOnPageLoad > 8) {
             // let's remove the disable on the next page navigation button
             // Assuming some condition or event triggers the display change
             document.getElementById('paginationList').classList.remove('disabled');
             document.getElementById('paginationList').disabled = false;
-        } 
-} finally {
+        }
+    } finally {
 
     }
 }
@@ -270,32 +270,32 @@ async function getProducts() {
 function updateLink(urlIdToUpdate, pageNumber) {
     // Get the current URL
     const currentUrl = window.location.href;
-    
+
     // Match the store name and page number in the URL
     const urlParts = currentUrl.match(/\/store\/([^?]+)\?page=(\d+)/);
-    
-    
+
+
     const storeName = urlParts[1]; // Extracts the dynamic store name (e.g., "cointails-1")
     // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
-    
+
     // Generate the new URL
     urlIdToUpdate.href = `https://payuee.com/store/${storeName}?page=${pageNumber}`;
-  }
+}
 
-  function updateLinkPro(pageNumber) {
+function updateLinkPro(pageNumber) {
     // Get the current URL
     const currentUrl = window.location.href;
-    
+
     // Match the store name and page number in the URL
     const urlParts = currentUrl.match(/\/store\/([^?]+)\?page=(\d+)/);
-    
-    
+
+
     const storeName = urlParts[1]; // Extracts the dynamic store name (e.g., "cointails-1")
     // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
-    
+
     // Generate the new URL
     return `https://payuee.com/store/${storeName}?page=${pageNumber}`;
-  }
+}
 
 function deactivatePreviousButton() {
     var resendButton = document.getElementById('previousPage');
@@ -385,9 +385,9 @@ function renderProducts(product, subscription, userId) {
     }
 
     if (subscription.user_store) {
-        url = "https://payuee.com/vendor/" + product.product_url_id;
+        url = "https://payuee.com/outfits/" + product.product_url_id;
     }
-    
+
     var editProduct;
     if (subscription.user_store && product.reposted) {
         editProduct = `
@@ -439,8 +439,8 @@ function renderProducts(product, subscription, userId) {
                 </button>
             </div>
         `;
-    }    
-    
+    }
+
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
@@ -448,17 +448,17 @@ function renderProducts(product, subscription, userId) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Your Item';
-        buttonDisabled =  'disabled';
+        buttonDisabled = 'disabled';
     } else if (product.original_eshop_user_id == userId) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Your Item';
-        buttonDisabled =  'disabled';
+        buttonDisabled = 'disabled';
     } else if (subscription.active != true) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Temporarily Unavailable';
-        buttonDisabled =  'disabled';
+        buttonDisabled = 'disabled';
     } else {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = product.stock_remaining === 0;
@@ -532,7 +532,7 @@ function renderProducts(product, subscription, userId) {
     // Attach the 'Collaborate' button event listener to this specific product card
     const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
     if (collaborateButton) {
-        collaborateButton.addEventListener("click", async function () {
+        collaborateButton.addEventListener("click", async function() {
             await checkCollaborationEligibility(product.ID);
         });
     }
@@ -540,45 +540,45 @@ function renderProducts(product, subscription, userId) {
     function renderProductImages(imageUrls, title) {
         // Define a default image URL
         // const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
-      
+
         let imagesHtml = '';
         if (!imageUrls || imageUrls.length === 0) {
-          // Use the default image if no images are available
-          imagesHtml += `
+            // Use the default image if no images are available
+            imagesHtml += `
             <div class="swiper-slide">
               <a href="#" class="product-link1">
                 <img loading="lazy" src="../../e-shop/images/default_img.png" width="330" height="400" alt="${title}" class="pc__img product-img1">
               </a>
             </div>`;
         } else {
-          // Use the provided image URLs
-          imageUrls.forEach((url, num) => {
-            // Use a default image URL if any product image URL is missing or invalid
-            const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
-      
-            imagesHtml += `
+            // Use the provided image URLs
+            imageUrls.forEach((url, num) => {
+                // Use a default image URL if any product image URL is missing or invalid
+                const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+
+                imagesHtml += `
               <div class="swiper-slide">
                 <a href="${imageUrl}" class="product-link${num + 1}">
                   <img loading="lazy" src="${imageUrl}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
                 </a>
               </div>`;
-          });
+            });
         }
-      
+
         return imagesHtml; // Return the full HTML string
-      }      
+    }
 
     // Add event listener to the 'Add To Cart' button
     if (!isOutOfStock) {
         const addToCartButton = rowElement.querySelector('.pc__atc');
         addToCartButton.addEventListener('click', function(event) {
-                // Check if clothing or shoe size is empty and size is not selected
-                if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
-                    event.preventDefault();
-                    event.stopPropagation(); // Stop the event from propagating further
-                    window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
-                    return;
-                }
+            // Check if clothing or shoe size is empty and size is not selected
+            if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
+                event.preventDefault();
+                event.stopPropagation(); // Stop the event from propagating further
+                window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
+                return;
+            }
             addToCart(product);
             updateCartNumber();
             updateCartDrawer();
@@ -608,11 +608,11 @@ async function checkCollaborationEligibility(ID) {
                 // displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+
+            } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 // logUserOutIfTokenIsExpired();
-            }else {
+            } else {
                 checkRepostEligibility(false, errorData.error, null);
             }
 
@@ -622,7 +622,7 @@ async function checkCollaborationEligibility(ID) {
         const responseData = await response.json();
         // Check eligibility, passing `true` for eligible, or `false` with an error message
         checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
-} finally {
+    } finally {
 
     }
 }
@@ -634,34 +634,34 @@ function checkRepostEligibility(isEligible, errorMessage = null, collaborationUr
     const errorMessageEl = document.getElementById('errorMessage');
     const successAlert = document.getElementById('successAlert');
     const collaborateButton = document.getElementById('collaborateButton');
-  
+
     // Reset modal state
     errorAlert.classList.add('d-none');
     successAlert.classList.add('d-none');
     collaborateButton.classList.add('d-none');
     collaborateButton.removeAttribute('href'); // Clear previous URL if any
-  
+
     // Display eligibility messages
     if (isEligible) {
-      eligibilityMessage.textContent = "You are eligible to repost this product.";
-      successAlert.classList.remove('d-none');
-      collaborateButton.classList.remove('d-none');
-  
-      // Set the new collaboration URL if provided
-      if (collaborationUrl) {
-        collaborateButton.href = collaborationUrl;
-      }
+        eligibilityMessage.textContent = "You are eligible to repost this product.";
+        successAlert.classList.remove('d-none');
+        collaborateButton.classList.remove('d-none');
+
+        // Set the new collaboration URL if provided
+        if (collaborationUrl) {
+            collaborateButton.href = collaborationUrl;
+        }
     } else {
-      eligibilityMessage.textContent = "You are not eligible to repost this product.";
-      if (errorMessage) {
-        errorMessageEl.textContent = errorMessage;
-        errorAlert.classList.remove('d-none');
-      }
+        eligibilityMessage.textContent = "You are not eligible to repost this product.";
+        if (errorMessage) {
+            errorMessageEl.textContent = errorMessage;
+            errorAlert.classList.remove('d-none');
+        }
     }
-  
+
     // Show the modal
     new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
-  }
+}
 
 function loading() {
     // Render loading skeletons for each element in the loader array
@@ -708,15 +708,15 @@ function calculatePercentageOff(previousPrice, currentPrice) {
 }
 
 function formatNumber(value) {
-    if (value >= 1_000_000_000) {
+    if (value >= 1 _000_000_000) {
         // Handle billions
-        return (value / 1_000_000_000).toFixed(1) + 'B';
-    } else if (value >= 1_000_000) {
+        return (value / 1 _000_000_000).toFixed(1) + 'B';
+    } else if (value >= 1 _000_000) {
         // Handle millions
-        return (value / 1_000_000).toFixed(1) + 'M';
-    } else if (value >= 1_000) {
+        return (value / 1 _000_000).toFixed(1) + 'M';
+    } else if (value >= 1 _000) {
         // Handle thousands
-        return (value / 1_000).toFixed(1) + 'k';
+        return (value / 1 _000).toFixed(1) + 'k';
     } else {
         // Handle values less than a thousand
         return value.toString();
@@ -725,11 +725,11 @@ function formatNumber(value) {
 
 function formatNumberToNaira(number) {
     let formattedNumber;
-    if (number >= 1_000_000_000) {
+    if (number >= 1 _000_000_000) {
         formattedNumber = `₦${(number / 1_000_000_000).toFixed(1).replace('.0', '')}B`;
-    } else if (number >= 1_000_000) {
+    } else if (number >= 1 _000_000) {
         formattedNumber = `₦${(number / 1_000_000).toFixed(1).replace('.0', '')}M`;
-    } else if (number >= 1_000) {
+    } else if (number >= 1 _000) {
         formattedNumber = `₦${(number / 1_000).toFixed(1).replace('.0', '')}K`;
     } else {
         formattedNumber = `₦${number.toFixed(0)}`;
@@ -750,7 +750,7 @@ function addToCart(product) {
         cart[productIndex].quantity += 1;
     } else {
         // If product does not exist, add new product to cart
-        cart.push({ ...product, quantity: 1 });
+        cart.push({...product, quantity: 1 });
     }
 
     // Save updated cart to local storage
@@ -762,10 +762,10 @@ function addToCart(product) {
 function updateCartNumber() {
     // Get cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
+
     // Calculate the number of distinct products in the cart
     let numberOfProducts = cart.length;
-    
+
     // Update the cart number element
     document.getElementById('cartNumber').innerHTML = numberOfProducts;
     document.getElementById('cartNumber2').innerHTML = numberOfProducts;
@@ -779,7 +779,7 @@ function updateCartDrawer() {
 
     // Get reference to the cart drawer element
     const cartDrawer = document.getElementById('cartDrawer1');
-    
+
     // Clear the cart drawer
     cartDrawer.innerHTML = '';
 
@@ -807,7 +807,7 @@ function updateCartDrawer() {
         // Loop through each item in the cart
         cart.forEach(cartProduct => {
             let price;
-        
+
             if (!cartProduct.reposted) {
                 if (cartProduct.selling_price !== 0) {
                     price = `
@@ -898,7 +898,8 @@ function updateQuantity(productId, action, product_stock, value = 1) {
 
     if (productIndex !== -1) {
         // Update the quantity based on action
-        if (action === 'increase') {product_stock
+        if (action === 'increase') {
+            product_stock
             if (cart[productIndex].quantity == product_stock) {
                 // do nothing
             } else {
@@ -919,7 +920,7 @@ function updateQuantity(productId, action, product_stock, value = 1) {
                 product.totalPrice = product.initial_cost * product.quantity;
             }
         } else {
-          product.totalPrice = product.reposted_selling_price * product.quantity;
+            product.totalPrice = product.reposted_selling_price * product.quantity;
         }
 
         // Save the updated cart to local storage
@@ -980,70 +981,70 @@ function calculateCartSubtotal() {
 function sortingAlgo() {
     // Add event listener to the select element
     document.getElementById('sortingSelect').addEventListener('change', function() {
-        const selectedValue = this.value;  // Get the selected option value
+        const selectedValue = this.value; // Get the selected option value
         // console.log('Selected sorting option value:', selectedValue);
         sort_option = selectedValue;
         getProducts();
     });
-    
+
     // FILTER BY WEIGHT (KG) AND BY PRICE
     const selectors = {
         elementClass: '.price-range-slider',
         minElement: '.price-range__min',
         maxElement: '.price-range__max'
-      };
-      
-// Iterate over each slider element
-document.querySelectorAll(selectors.elementClass).forEach($se => {
-    const currency = $se.dataset.currency || '₦'; // Default currency is Naira
+    };
 
-    if ($se) {
-        // Initialize the slider using the Slider library
-        const priceRange = new Slider($se, {
-            tooltip_split: true,
-            formatter: function(value) {
-                // Format value based on currency type
-                return currency === "kg" ? `${value}kg` : `${currency}${value}`;
-            },
-        });
+    // Iterate over each slider element
+    document.querySelectorAll(selectors.elementClass).forEach($se => {
+        const currency = $se.dataset.currency || '₦'; // Default currency is Naira
 
-        // Event listener to get current min and max when slider stops moving
-        priceRange.on('slideStop', (value) => {
-            const [currentMin, currentMax] = value;  // Destructure min and max values
+        if ($se) {
+            // Initialize the slider using the Slider library
+            const priceRange = new Slider($se, {
+                tooltip_split: true,
+                formatter: function(value) {
+                    // Format value based on currency type
+                    return currency === "kg" ? `${value}kg` : `${currency}${value}`;
+                },
+            });
 
-            // Select min and max elements within the current slider's parent
-            const $minEl = $se.parentElement.querySelector(selectors.minElement);
-            const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
+            // Event listener to get current min and max when slider stops moving
+            priceRange.on('slideStop', (value) => {
+                const [currentMin, currentMax] = value; // Destructure min and max values
 
-            if (currency === "kg") {
-                // Update min and max values for weight in kg
-                $minEl.innerText = `${currentMin}kg`;
-                $maxEl.innerText = `${currentMax}kg`;
-                min_weight = currentMin;
-                max_weight = currentMax;
-            } else {
-                // Update min and max values for price in Naira
-                $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
-                $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
-                min_price = currentMin;
-                max_price = currentMax;
-            }
+                // Select min and max elements within the current slider's parent
+                const $minEl = $se.parentElement.querySelector(selectors.minElement);
+                const $maxEl = $se.parentElement.querySelector(selectors.maxElement);
 
-            // Optionally trigger an action with these values (e.g., filter products)
-            getProducts();
-        });
-    }
-});
-        
-    }
-    
+                if (currency === "kg") {
+                    // Update min and max values for weight in kg
+                    $minEl.innerText = `${currentMin}kg`;
+                    $maxEl.innerText = `${currentMax}kg`;
+                    min_weight = currentMin;
+                    max_weight = currentMax;
+                } else {
+                    // Update min and max values for price in Naira
+                    $minEl.innerText = `${formatNumberToNaira(currentMin)}`;
+                    $maxEl.innerText = `${formatNumberToNaira(currentMax)}`;
+                    min_price = currentMin;
+                    max_price = currentMax;
+                }
+
+                // Optionally trigger an action with these values (e.g., filter products)
+                getProducts();
+            });
+        }
+    });
+
+}
+
 // Shuffle function using Fisher-Yates algorithm
 function shuffleArray(array) {
-for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];  // Swap elements
-}
-return array;
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
 }
 
 // Function to render products in the list
@@ -1107,19 +1108,19 @@ function renderCategories(categories, elementId) {
     categoryList.innerHTML = ""; // Clear any existing content
 
     categories.forEach(category => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("me-3", "me-xl-4", "pe-1");
+        const listItem = document.createElement("li");
+        listItem.classList.add("me-3", "me-xl-4", "pe-1");
 
-      listItem.innerHTML = `
+        listItem.innerHTML = `
         <a href="#" class="menu-link menu-link_us-s text-white">${category}</a>
       `;
 
-      categoryList.appendChild(listItem);
+        categoryList.appendChild(listItem);
     });
-  }
+}
 
-  // Function to load the main image after the default image
-  function loadMainImage(defaultSrc, mainSrc) {
+// Function to load the main image after the default image
+function loadMainImage(defaultSrc, mainSrc) {
     const imageElement = document.getElementById("mainImage");
 
     // Set the default image initially
@@ -1131,11 +1132,11 @@ function renderCategories(categories, elementId) {
 
     // When the main image is fully loaded, replace the default image
     mainImageLoader.onload = function() {
-      imageElement.src = mainSrc;
+        imageElement.src = mainSrc;
     };
-  }
+}
 
-  async function fetchProducts(searchTerm) {
+async function fetchProducts(searchTerm) {
     const apiUrl = "https://api.payuee.com/vendor-product-search";
 
     const requestOptions = {
@@ -1161,11 +1162,11 @@ function renderCategories(categories, elementId) {
                 // displayErrorMessage();
             } else if (errorData.error === 'failed to get transaction history') {
                 // need to do a data of just null event 
-                
-            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+
+            } else if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
                 // logUserOutIfTokenIsExpired();
-            }else {
+            } else {
                 // displayErrorMessage();
             }
 
@@ -1174,12 +1175,12 @@ function renderCategories(categories, elementId) {
 
         const responseData = await response.json();
         renderProducts2(responseData.success);
-} finally {
+    } finally {
 
     }
 }
 
-  function extractValuesFromShopCategories(jsonString) {
+function extractValuesFromShopCategories(jsonString) {
     try {
         // Parse the JSON string into an array of objects
         const parsedArray = JSON.parse(jsonString);
