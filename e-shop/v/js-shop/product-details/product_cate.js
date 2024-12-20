@@ -132,19 +132,25 @@ async function getProduct(productID) {
       
         // Convert the card to an image
         domtoimage.toBlob(productCard)
-            .then(function (blob) {
-                const link = document.createElement("a");
-                link.href = URL.createObjectURL(blob);
-                link.download = "Payuee e-Shop Product.png";
-                link.click();
-      
-                // Re-hide the card after capturing it
-                productCard.style.opacity = "0";
-                productCard.style.pointerEvents = "none";
-            })
-            .catch(function (error) {
-                console.error("Oops, something went wrong!", error);
-            });
+                  // Convert the card to an image with high quality settings
+          domtoimage.toBlob(productCard, {
+            width: productCard.offsetWidth * 2,   // Increase the width to 2x for better resolution
+            height: productCard.offsetHeight * 2, // Increase the height to 2x for better resolution
+            quality: 1.0                          // Set the quality to the highest (1.0)
+          })
+        .then(function (blob) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Payuee e-Shop Product.png";
+            link.click();
+  
+            // Re-hide the card after capturing it
+            productCard.style.opacity = "0";
+            productCard.style.pointerEvents = "none";
+        })
+        .catch(function (error) {
+            console.error("Oops, something went wrong!", error);
+        });
       });
      
 } finally {
