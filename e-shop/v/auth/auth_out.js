@@ -18,7 +18,7 @@ function get_auth_status() {
         console.log(baseUrl); // Outputs: "https://payuee.com/store/"
 
 
-        if (baseUrl == "https://payuee.com/store/") {
+        if (baseUrl == "https://payuee.com/store/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/store/v/', '/store/');
             location.replace(newUrl);
