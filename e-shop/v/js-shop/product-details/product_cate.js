@@ -121,31 +121,36 @@ async function getProduct(productID) {
         <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
       `;
       }
-
+      
 
       document.getElementById("download-icon").addEventListener("click", function () {
         const productCard = document.getElementById("product-card");
-      
+    
         // Temporarily make the card visible for rendering
         productCard.style.opacity = "1";
         productCard.style.pointerEvents = "auto";
-      
-        // Convert the card to an image
-        domtoimage.toBlob(productCard)
-            .then(function (blob) {
-                const link = document.createElement("a");
-                link.href = URL.createObjectURL(blob);
-                link.download = "Payuee e-Shop Product.png";
-                link.click();
-      
-                // Re-hide the card after capturing it
-                productCard.style.opacity = "0";
-                productCard.style.pointerEvents = "none";
-            })
-            .catch(function (error) {
-                console.error("Oops, something went wrong!", error);
-            });
-      });
+    
+        // Convert the card to an image with high quality
+        domtoimage.toBlob(productCard, {
+            width: productCard.offsetWidth * 2,  // Double the size for higher resolution
+            height: productCard.offsetHeight * 2,  // Double the size for higher resolution
+            quality: 1.0  // Set the quality to maximum (0 to 1)
+        })
+        .then(function (blob) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Payuee e-Shop Product.png";
+            link.click();
+    
+            // Re-hide the card after capturing it
+            productCard.style.opacity = "0";
+            productCard.style.pointerEvents = "none";
+        })
+        .catch(function (error) {
+            console.error("Oops, something went wrong!", error);
+        });
+    });
+    
      
 } finally {
 
