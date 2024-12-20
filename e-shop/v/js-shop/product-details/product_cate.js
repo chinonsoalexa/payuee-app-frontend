@@ -331,9 +331,9 @@ function renderProductDetails(product, related) {
           </form>
           <div class="product-single__addtolinks">
             <share-button class="share-button">
-              <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
-                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
-                <span>Share</span>
+              <button id="download-icon" class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
+                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_download" /></svg>
+                <span>Download</span>
               </button>
               <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
                 <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>
@@ -1805,3 +1805,27 @@ var products = [
       // "product_url_id": "double-strength-tea-12"
   },
 ];
+
+document.getElementById("download-icon").addEventListener("click", function () {
+  const productCard = document.getElementById("product-card");
+
+  // Temporarily make the card visible for rendering
+  productCard.style.opacity = "1";
+  productCard.style.pointerEvents = "auto";
+
+  // Convert the card to an image
+  domtoimage.toBlob(productCard)
+      .then(function (blob) {
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "product.png";
+          link.click();
+
+          // Re-hide the card after capturing it
+          productCard.style.opacity = "0";
+          productCard.style.pointerEvents = "none";
+      })
+      .catch(function (error) {
+          console.error("Oops, something went wrong!", error);
+      });
+});
