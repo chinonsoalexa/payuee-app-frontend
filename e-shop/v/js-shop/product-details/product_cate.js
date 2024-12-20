@@ -113,12 +113,12 @@ async function getProduct(productID) {
       const productNamePrice = document.querySelector(".price-container");
       if (responseData.success.selling_price < responseData.success.initial_cost) {
         productNamePrice.innerHTML = `
-          <span class="original-price">${responseData.success.initial_cost}</span>
-          <span class="discount-price">${responseData.success.selling_price}</span>
+          <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
+          <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
         `;
       } else {
         productNamePrice.innerHTML = `
-        <p class="product-price">${responseData.success.initial_cost}</p>
+        <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
       `;
       }
 
