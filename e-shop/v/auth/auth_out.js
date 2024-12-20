@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to check if the user is authenticated and redirect if authenticated
 function get_auth_status() {
     if (localStorage.getItem('auth') === 'true') {
+        let fullUrl = window.location.href; // Get the current full URL
+        let fullUrl2 = window.location.href; // Get the current full URL
+        let baseUrl = fullUrl2.split('?')[0].split('#')[0]; // Remove query and fragment parts
+        
+        // Adjust to get the base part, which includes the protocol, domain, and '/store/'
+        baseUrl = baseUrl.split('/').slice(0, 4).join('/') + '/'; 
+        
+        console.log(baseUrl); // Outputs: "https://payuee.com/store/"
+
+
+        if (baseUrl == "https://payuee.com/store/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/store/v/', '/store/');
+            location.replace(newUrl);
+            return;
+        }
         // Redirect to authenticated home page if auth is true
         location.replace('https://payuee.com/e-shop/home');
     } else {
