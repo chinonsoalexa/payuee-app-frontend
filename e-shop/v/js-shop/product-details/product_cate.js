@@ -97,14 +97,14 @@ async function getProduct(productID) {
       renderProductDetails(responseData.success, responseData.related);
       categoryId = responseData.success.category;
 
-      downloadProduct();
+      downloadProduct(responseData);
      
 } finally {
 
   }
 }
 
-function downloadProduct() {
+function downloadProduct(responseData) {
 
   const productImage = document.querySelector(".product-image");
   
