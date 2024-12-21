@@ -140,11 +140,18 @@ function downloadProduct(responseData) {
     productCard.style.pointerEvents = "auto";
   
     // Convert the card to an image
-    domtoimage.toBlob(productCard)
-              // Convert the card to an image with high quality settings
-      domtoimage.toBlob(productCard, {
-        quality: 5                          // Set the quality to the highest (1.0)
-      })
+    const scale = 3; // Increase scale for higher resolution
+
+    // Convert the card to an image with high quality settings
+    domtoimage.toBlob(productCard, {
+        width: productCard.offsetWidth * scale,
+        height: productCard.offsetHeight * scale,
+        style: {
+            transform: `scale(${scale})`,   // Scale up the element visually
+            transformOrigin: "top left",   // Maintain correct positioning
+        },
+        quality: 1.0, // Set the quality to the highest (1.0)
+    })
     .then(function (blob) {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
