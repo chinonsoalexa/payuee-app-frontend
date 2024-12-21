@@ -119,14 +119,18 @@ async function getProducts() {
         
         // Clear specific elements by id name before updating
         document.getElementById('products-grid').innerHTML = '';
-        responseData.featured.forEach((product) => {
-            renderProducts(product);
-        });
+        if (responseData.featured != null) {
+            responseData.featured.forEach((product) => {
+                renderProducts(product);
+            });
+        }
 
         document.getElementById('products-grid2').innerHTML = '';
-        responseData.outfits.forEach((product) => {
-            renderProductDiscounts(product);
-        });
+        if (responseData.outfits != null) {
+            responseData.outfits.forEach((product) => {
+                renderProductDiscounts(product);
+            });
+        }
         
 } finally {
 
