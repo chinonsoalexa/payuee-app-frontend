@@ -123,6 +123,7 @@ function getSuccessMessage(transactionDetails) {
         data_auto_renew.textContent = transactionDetails.service.auto_renew;
         let dataBackLink = document.getElementById('backLink');
         dataBackLink.href = "data.html"; // Let's redirect back to transaction page
+        downloadReceipt("data-section");
         break;
     case "rechargePin":
         enableDiv('rechage-pin-section');
@@ -454,42 +455,81 @@ try {
     }
 }
 
-document.getElementById('download_receipt').addEventListener('click', function(event) {
-    event.preventDefault();
-    downloadReceipt();
-});
+// document.getElementById('download_receipt').addEventListener('click', function(event) {
+//     event.preventDefault();
+//     downloadReceipt();
+// });
 
-function downloadReceipt() {
-    // Create a new element to contain the content to be included in the PDF
-    var pdfContentElement = document.createElement('div');
+// function downloadReceipt() {
+//     // Create a new element to contain the content to be included in the PDF
+//     var pdfContentElement = document.createElement('div');
 
-    // Copy the content you want to include to the new element
-    var successReceiptElement = document.getElementById('successReceipt');
-    var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
-    pdfContentElement.appendChild(clonedSuccessReceipt);
+//     // Copy the content you want to include to the new element
+//     var successReceiptElement = document.getElementById('successReceipt');
+//     var clonedSuccessReceipt = successReceiptElement.cloneNode(true); // Clone with children
+//     pdfContentElement.appendChild(clonedSuccessReceipt);
 
-    // Optionally, you can remove specific elements you want to exclude
-    var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
-    elementsToExclude.forEach(function(element) {
-        element.remove();
+//     // Optionally, you can remove specific elements you want to exclude
+//     var elementsToExclude = pdfContentElement.querySelectorAll('.available__balance, .order__button, #footer-download-section');
+//     elementsToExclude.forEach(function(element) {
+//         element.remove();
+//     });
+
+//     // Create the company logo element dynamically
+//     var companyLogoElement = document.createElement('img');
+//     companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
+//     companyLogoElement.alt = 'Payuee';
+//     companyLogoElement.style.position = 'absolute';
+//     companyLogoElement.style.top = '50%'; // Force the logo to start from the top
+//     companyLogoElement.style.left = '50%';
+//     // companyLogoElement.style.transform = 'translateX(-50%)'; // Center the logo horizontally
+//     companyLogoElement.style.opacity = '0.5'; // Set opacity to 0.5 (50% transparency)
+//     pdfContentElement.appendChild(companyLogoElement); 
+
+//     var options = {
+//         filename: 'Payuee Receipt ' + transID+ '.pdf',
+//         image: { type: 'jpeg', quality: 0.98 },
+//     };  // Use default options
+
+//     // Generate the PDF using html2pdf library
+//     html2pdf().from(pdfContentElement).set(options).save();
+// }
+
+function downloadReceipt(receiptID) {
+    document.getElementById("download_receipt").addEventListener("click", function () {
+        const productCard = document.getElementById(receiptID);
+    
+        // Temporarily make the card visible for rendering
+        productCard.style.opacity = "1";
+        productCard.style.pointerEvents = "auto";
+    
+        const scale = 5; // High-resolution scaling factor
+
+        // Convert the card to an image
+        domtoimage.toBlob(productCard, {
+        // Convert the card to an image with high quality setting
+        width: productCard.offsetWidth * scale,
+        height: productCard.offsetHeight * scale,
+        style: {
+            transform: `scale(${scale})`,          // Scale the entire card
+            transformOrigin: "top left",          // Maintain proper origin
+            width: `${productCard.offsetWidth}px`, // Ensure proper dimensions
+            height: `${productCard.offsetHeight}px`,
+        },
+        quality: 1.0  // Set the quality to the highest (1.0)
+        })
+        .then(function (blob) {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Payuee e-Shop Product.png";
+            link.click();
+
+            // Re-hide the card after capturing it
+            productCard.style.opacity = "0";
+            productCard.style.pointerEvents = "none";
+        })
+        .catch(function (error) {
+            console.error("Oops, something went wrong!", error);
+        });
     });
-
-    // Create the company logo element dynamically
-    var companyLogoElement = document.createElement('img');
-    companyLogoElement.src = 'assets/img/logo/favicon2.png';  // Set the path or base64 data for your logo
-    companyLogoElement.alt = 'Payuee';
-    companyLogoElement.style.position = 'absolute';
-    companyLogoElement.style.top = '50%'; // Force the logo to start from the top
-    companyLogoElement.style.left = '50%';
-    // companyLogoElement.style.transform = 'translateX(-50%)'; // Center the logo horizontally
-    companyLogoElement.style.opacity = '0.5'; // Set opacity to 0.5 (50% transparency)
-    pdfContentElement.appendChild(companyLogoElement); 
-
-    var options = {
-        filename: 'Payuee Receipt ' + transID+ '.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-    };  // Use default options
-
-    // Generate the PDF using html2pdf library
-    html2pdf().from(pdfContentElement).set(options).save();
 }
