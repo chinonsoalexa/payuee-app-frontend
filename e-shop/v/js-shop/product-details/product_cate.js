@@ -97,64 +97,68 @@ async function getProduct(productID) {
       renderProductDetails(responseData.success, responseData.related);
       categoryId = responseData.success.category;
 
-      const productImage = document.querySelector(".product-image");
-      
-      productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
-
-      const productNameElement = document.querySelector(".product-name");
-      productNameElement.textContent = responseData.success.title;
-
-      const productCategoryElement = document.querySelector(".category");
-      productCategoryElement.textContent = responseData.success.category;
-
-      const productNameDescription = document.querySelector(".product-description");
-      productNameDescription.textContent = truncateDescription(responseData.success.description);
-
-      const productNamePrice = document.querySelector(".price-container");
-      if (responseData.success.selling_price < responseData.success.initial_cost) {
-        productNamePrice.innerHTML = `
-          <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
-          <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
-        `;
-      } else {
-        productNamePrice.innerHTML = `
-        <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
-      `;
-      }
-
-
-      document.getElementById("download-icon").addEventListener("click", function () {
-        const productCard = document.getElementById("product-card");
-      
-        // Temporarily make the card visible for rendering
-        productCard.style.opacity = "1";
-        productCard.style.pointerEvents = "auto";
-      
-        // Convert the card to an image
-        domtoimage.toBlob(productCard)
-                  // Convert the card to an image with high quality settings
-          domtoimage.toBlob(productCard, {
-            quality: 1.0                          // Set the quality to the highest (1.0)
-          })
-        .then(function (blob) {
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "Payuee e-Shop Product.png";
-            link.click();
-  
-            // Re-hide the card after capturing it
-            productCard.style.opacity = "0";
-            productCard.style.pointerEvents = "none";
-        })
-        .catch(function (error) {
-            console.error("Oops, something went wrong!", error);
-        });
-      });
+      downloadProduct();
      
 } finally {
 
   }
 }
+
+function downloadProduct() {
+
+  const productImage = document.querySelector(".product-image");
+  
+  productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
+
+  const productNameElement = document.querySelector(".product-name");
+  productNameElement.textContent = responseData.success.title;
+
+  const productCategoryElement = document.querySelector(".category");
+  productCategoryElement.textContent = responseData.success.category;
+
+  const productNameDescription = document.querySelector(".product-description");
+  productNameDescription.textContent = truncateDescription(responseData.success.description);
+
+  const productNamePrice = document.querySelector(".price-container");
+  if (responseData.success.selling_price < responseData.success.initial_cost) {
+    productNamePrice.innerHTML = `
+      <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
+      <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
+    `;
+  } else {
+    productNamePrice.innerHTML = `
+    <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
+  `;
+  }
+
+
+  document.getElementById("download-icon").addEventListener("click", function () {
+    const productCard = document.getElementById("product-card");
+  
+    // Temporarily make the card visible for rendering
+    productCard.style.opacity = "1";
+    productCard.style.pointerEvents = "auto";
+  
+    // Convert the card to an image
+    domtoimage.toBlob(productCard)
+              // Convert the card to an image with high quality settings
+      domtoimage.toBlob(productCard, {
+        quality: 1.0                          // Set the quality to the highest (1.0)
+      })
+    .then(function (blob) {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Payuee e-Shop Product.png";
+        link.click();
+
+        // Re-hide the card after capturing it
+        productCard.style.opacity = "0";
+        productCard.style.pointerEvents = "none";
+    })
+    .catch(function (error) {
+        console.error("Oops, something went wrong!", error);
+    });
+  });
 
 function truncateDescription(description) {
   // Split the description into tokens (words)
@@ -168,6 +172,8 @@ function truncateDescription(description) {
 
   // Return the description as is if it has 22 tokens or fewer
   return description;
+}
+
 }
 
 async function getNextProduct(productID) {
