@@ -75,6 +75,11 @@ async function getProducts(pageNumber) {
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         clearElementsByClass();
+            // Clear existing content if needed or check if empty
+        if (!responseData.success) {
+            renderEmptyOrderHistory();
+            return;
+        }
         responseData.success.forEach((product) => {
             // product.product_review_count = 6500;
             renderProducts(product);
@@ -238,12 +243,6 @@ function renderEmptyOrderHistory() {
 
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
-
-    // Clear existing content if needed or check if empty
-    if (!product || product.length === 0) {
-        renderEmptyOrderHistory();
-        return;
-    }
 
     // Create a new product card element
     const rowElement = document.createElement('div');
