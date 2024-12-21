@@ -139,11 +139,18 @@ function downloadProduct(responseData) {
     productCard.style.opacity = "1";
     productCard.style.pointerEvents = "auto";
   
+    const scale = 5; // High-resolution scaling factor
+
     // Convert the card to an image
-    domtoimage.toBlob(productCard)
-              // Convert the card to an image with high quality settings
-      domtoimage.toBlob(productCard, {
-        quality: 1.0                          // Set the quality to the highest (1.0)
+    domtoimage.toBlob(productCard, {
+      width: productCard.offsetWidth * scale,
+      height: productCard.offsetHeight * scale,
+      style: {
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+      },
+      // Convert the card to an image with high quality setting
+        quality: 1.0  // Set the quality to the highest (1.0)
       })
     .then(function (blob) {
         const link = document.createElement("a");
