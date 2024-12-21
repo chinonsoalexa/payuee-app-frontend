@@ -15,17 +15,25 @@ function initializeDomFeatures() {
     // Handle expiration notice
     const expirationNotice = document.getElementById("expirationNotice");
 
-    if (expirationNotice && daysRemaining > 0 && daysRemaining <= 7) {
-        expirationNotice.innerHTML = `
-            <p>Your subscription expires in <strong>${daysRemaining} days</strong>. Click here to renew now!</p>
-        `;
-        expirationNotice.classList.remove("hidden");
-        expirationNotice.classList.add("visible");
+    if (expirationNotice) {
+        if (daysRemaining > 0 && daysRemaining <= 7) {
+            expirationNotice.innerHTML = `
+                <p>Your subscription expires in <strong>${daysRemaining} days</strong>. Click here to renew now!</p>
+            `;
+            expirationNotice.classList.remove("hidden");
+            expirationNotice.classList.add("visible");
 
-        // Add click event to redirect
-        expirationNotice.addEventListener("click", function () {
-            redirectToRenewPage();
-        });
+            // Add click event to redirect
+            expirationNotice.addEventListener("click", function () {
+                redirectToRenewPage();
+            });
+        } else if (daysRemaining <= 0) {
+            expirationNotice.innerHTML = `
+                <p>Your subscription has <strong>fully expired</strong>. Please renew to continue using the service.</p>
+            `;
+            expirationNotice.classList.remove("hidden");
+            expirationNotice.classList.add("error"); // Assuming you have a CSS class for errors
+        }
     }
 
     // Add event listener to logout button
