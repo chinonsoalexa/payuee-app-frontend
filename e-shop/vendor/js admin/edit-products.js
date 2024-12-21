@@ -76,7 +76,7 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
             // If there are no products, show a message to encourage the user to post a product
-        if (responseData.success === nul) {
+        if (!responseData.success) {
             const noProductsMessage = document.createElement('div');
             noProductsMessage.classList.add('no-products-message');
             noProductsMessage.innerHTML = `
@@ -86,7 +86,7 @@ async function getProducts(pageNumber) {
             `;
             productBody.appendChild(noProductsMessage);
         }
-        
+
         responseData.success.forEach((product) => {
             product.product_review_count = 6500;
             renderProducts(product,);
