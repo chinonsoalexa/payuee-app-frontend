@@ -143,7 +143,7 @@ function downloadProduct(responseData) {
     domtoimage.toBlob(productCard)
               // Convert the card to an image with high quality settings
       domtoimage.toBlob(productCard, {
-        quality: 1.0                          // Set the quality to the highest (1.0)
+        quality: 5                          // Set the quality to the highest (1.0)
       })
     .then(function (blob) {
         const link = document.createElement("a");
