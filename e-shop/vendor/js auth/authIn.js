@@ -2,6 +2,7 @@
     try {
         // Run get_auth_status immediately when the script loads and get daysRemaining as a promise
         const daysRemaining = await get_auth_status();
+        console.log("this is the days remaining: " + daysRemaining);
 
         // Wait for the DOM to fully load before running DOM-dependent scripts
         document.addEventListener("DOMContentLoaded", function () {
