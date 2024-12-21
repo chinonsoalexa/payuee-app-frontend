@@ -145,7 +145,12 @@ function downloadProduct(responseData) {
     domtoimage.toBlob(productCard, {
       width: productCard.offsetWidth * scale,
       height: productCard.offsetHeight * scale,
-
+      style: {
+        transform: `scale(${scale})`,          // Scale the entire card
+        transformOrigin: "top left",          // Maintain proper origin
+        width: `${productCard.offsetWidth}px`, // Ensure proper dimensions
+        height: `${productCard.offsetHeight}px`,
+    },
       // Convert the card to an image with high quality setting
         quality: 1.0  // Set the quality to the highest (1.0)
       })
