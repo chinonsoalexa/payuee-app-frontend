@@ -96,10 +96,92 @@ async function getProduct(productID) {
       const responseData = await response.json();
       renderProductDetails(responseData.success, responseData.store);
       categoryId = responseData.success.category;
+      downloadProduct(responseData);
      
 } finally {
 
   }
+}
+
+function downloadProduct(responseData) {
+
+  const productImage = document.querySelector(".product-image");
+  
+  productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
+
+  const productNameElement = document.querySelector(".product-name");
+  productNameElement.textContent = responseData.success.title;
+
+  const productCategoryElement = document.querySelector(".category");
+  productCategoryElement.textContent = responseData.success.category;
+
+  const productNameDescription = document.querySelector(".product-description");
+  productNameDescription.textContent = truncateDescription(responseData.success.description);
+
+  const productNamePrice = document.querySelector(".price-container");
+  if (responseData.success.selling_price < responseData.success.initial_cost) {
+    productNamePrice.innerHTML = `
+      <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
+      <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
+    `;
+  } else {
+    productNamePrice.innerHTML = `
+    <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
+  `;
+  }
+
+
+  document.getElementById("download-icon").addEventListener("click", function () {
+    const productCard = document.getElementById("product-card");
+  
+    // Temporarily make the card visible for rendering
+    productCard.style.opacity = "1";
+    productCard.style.pointerEvents = "auto";
+  
+    const scale = 5; // High-resolution scaling factor
+
+    // Convert the card to an image
+    domtoimage.toBlob(productCard, {
+      // Convert the card to an image with high quality setting
+      width: productCard.offsetWidth * scale,
+      height: productCard.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale})`,          // Scale the entire card
+        transformOrigin: "top left",          // Maintain proper origin
+        width: `${productCard.offsetWidth}px`, // Ensure proper dimensions
+        height: `${productCard.offsetHeight}px`,
+      },
+      quality: 1.0  // Set the quality to the highest (1.0)
+    })
+    .then(function (blob) {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Payuee e-Shop Product.png";
+        link.click();
+
+        // Re-hide the card after capturing it
+        productCard.style.opacity = "0";
+        productCard.style.pointerEvents = "none";
+    })
+    .catch(function (error) {
+        console.error("Oops, something went wrong!", error);
+    });
+  });
+
+function truncateDescription(description) {
+  // Split the description into tokens (words)
+  const tokens = description.split(' ');
+
+  // Check if the description has more than 22 tokens
+  if (tokens.length > 22) {
+      // Get the first 22 tokens and add "..."
+      return tokens.slice(0, 22).join(' ') + '...';
+  }
+
+  // Return the description as is if it has 22 tokens or fewer
+  return description;
+}
+
 }
 
 async function getNextProduct(productID) {
@@ -327,25 +409,10 @@ function renderProductDetails(product, subscription) {
           <div class="product-single__addtolinks">
             <a id="collaborateButtonCheck" href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_edit" /></svg><span>Edit Product</span></a>
             <share-button class="share-button">
-              <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
-                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_sharing" /></svg>
-                <span>Share</span>
+              <button id="download-icon" class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
+                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_download" /></svg>
+                <span>Download</span>
               </button>
-              <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
-                <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>
-                <div id="Article-share-template__main" class="share-button__fallback flex items-center absolute top-full left-0 w-full px-2 py-4 bg-container shadow-theme border-t z-10">
-                  <div class="field grow mr-4">
-                    <label class="field__label sr-only" for="url">Link</label>
-                    <input type="text" class="field__input w-full" id="url" value="https://payuee-crystal.myshopify.com/blogs/news/go-to-wellness-tips-for-mental-health" placeholder="Link" onclick="this.select();" readonly="">
-                  </div>
-                  <button class="share-button__copy no-js-hidden">
-                    <svg class="icon icon-clipboard inline-block mr-1" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 11 13">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
-                    </svg>
-                    <span class="sr-only">Copy link</span>
-                  </button>
-                </div>
-              </details>
             </share-button>
             <script src="/e-shop/js-shop/product-details/js/details-disclosure.js" defer="defer"></script>
             <script src="/e-shop/js-shop/product-details/js/share.js" defer="defer"></script>
