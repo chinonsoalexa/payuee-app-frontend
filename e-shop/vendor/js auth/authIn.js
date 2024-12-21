@@ -12,7 +12,7 @@ let daysRemaining = 14;
         setTimeout(() => {
             initializeDomFeatures();
             console.log("Running...2");
-        }, 100); // Optional small delay for dynamically loaded content
+        }, 1000); // Optional small delay for dynamically loaded content
     });
 })();
 
