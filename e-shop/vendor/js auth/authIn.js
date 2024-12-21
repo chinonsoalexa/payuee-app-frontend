@@ -1,23 +1,89 @@
-let daysRemaining = 14;
-
 (async function () {
-    // Run get_auth_status immediately when the script loads
-    await get_auth_status();
+    try {
+        // Run get_auth_status immediately when the script loads and get daysRemaining as a promise
+        const daysRemaining = await get_auth_status();
 
-    // Wait for the DOM to fully load before running DOM-dependent scripts
-    document.addEventListener("DOMContentLoaded", function () {
-        feather.replace();
+        // Wait for the DOM to fully load before running DOM-dependent scripts
+        document.addEventListener("DOMContentLoaded", function () {
+            feather.replace();
 
-        // Ensure DOM elements exist before calling initializeDomFeatures
-        setTimeout(() => {
-            initializeDomFeatures();
-            console.log("Running...2");
-        }, 1000); // Optional small delay for dynamically loaded content
-    });
+            // Ensure initializeDomFeatures runs with the resolved daysRemaining
+            console.log("Data loaded, initializing DOM features...");
+            initializeDomFeatures(daysRemaining);
+        });
+    } catch (error) {
+        console.error("Error during initialization:", error);
+    }
 })();
 
-function initializeDomFeatures() {
-    console.log("running...")
+async function get_auth_status() {
+    if (localStorage.getItem("auth") !== "true") {
+        // Clear local storage and logout the user if session expired
+        logout();
+        localStorage.removeItem("auth");
+        window.location.href = "https://payuee.com/e-shop/v/login_register";
+        return Promise.reject("User not authenticated");
+    }
+
+    try {
+        return await check_auth_status();
+    } catch (error) {
+        console.error("Error in get_auth_status:", error);
+        throw error; // Pass the error up the chain
+    }
+}
+
+async function check_auth_status() {
+    const apiUrl = "https://api.payuee.com/vendor/auth-status";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "include", // Include cookies for authentication
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            handleAuthError(errorData.error);
+            return Promise.reject("Authentication error");
+        }
+
+        const responseData = await response.json();
+        const { store_details } = responseData;
+
+        console.log("Days remaining:", store_details.days_remaining);
+
+        // Set auth status and update local storage
+        localStorage.setItem("auth", "true");
+
+        // Return daysRemaining as a resolved value
+        return store_details.days_remaining;
+    } catch (error) {
+        console.error("Error during authentication status check:", error);
+        throw error; // Pass the error up the chain
+    }
+}
+
+function handleAuthError(error) {
+    if (error === "vendor not found") {
+        window.location.href = "https://payuee.com/e-shop/pricing";
+    } else if (
+        error === "No Authentication cookie found" ||
+        error === "Unauthorized attempt! JWT's not valid!" ||
+        error === "No Refresh cookie found"
+    ) {
+        logout();
+    } else {
+        logout();
+    }
+}
+
+function initializeDomFeatures(daysRemaining) {
+    console.log("Initializing DOM features...");
     // Handle expiration notice
     const expirationNotice = document.getElementById("expirationNotice");
 
@@ -57,76 +123,7 @@ function redirectToRenewPage() {
     window.location.href = renewalPageURL;
 }
 
-async function get_auth_status() {
-    if (localStorage.getItem("auth") !== "true") {
-        // Clear local storage and logout the user if session expired
-        logout();
-        localStorage.removeItem("auth");
-        window.location.href = "https://payuee.com/e-shop/v/login_register";
-        return;
-    }
-
-    await check_auth_status();
-}
-
-async function check_auth_status() {
-    const apiUrl = "https://api.payuee.com/vendor/auth-status";
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: "include", // Include cookies for authentication
-    };
-
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData.error == "vendor not found") { 
-                window.location.href = "https://payuee.com/e-shop/pricing";
-                return;
-            }
-            if (
-                errorData.error === "No Authentication cookie found" ||
-                errorData.error === "Unauthorized attempt! JWT's not valid!" ||
-                errorData.error === "No Refresh cookie found"
-            ) {
-                logout();
-            } else {
-                logout();
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        const { store_details, store_name, total_products } = responseData;
-
-        // Update global daysRemaining variable
-        daysRemaining = store_details.days_remaining;
-
-        // Set auth status and update local storage
-        localStorage.setItem("auth", "true");
-    } catch (error) {
-        console.error("Error during authentication status check:", error);
-        logout();
-    }
-}
-
-function updateVendorName(newName) {
-    const vendorName1Element = document.getElementById("vendorName1");
-    const vendorNameElement = document.getElementById("vendorName");
-    if (vendorNameElement) {
-        vendorNameElement.textContent = newName;
-    }
-    if (vendorName1Element) {
-        vendorName1Element.textContent = newName;
-    }
-}
-
 async function logout() {
-    // Send a request to the logout API endpoint
     const apiUrl = "https://api.payuee.com/log-out";
     const requestOptions = {
         method: "GET",
