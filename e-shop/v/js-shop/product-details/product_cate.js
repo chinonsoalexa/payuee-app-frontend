@@ -105,9 +105,10 @@ async function getProduct(productID) {
 }
 
 function downloadProduct(responseData) {
-
   const productImage = document.querySelector(".product-image");
-  
+  const productCard = document.getElementById("product-card");
+
+  // Update product details
   productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
 
   const productNameElement = document.querySelector(".product-name");
@@ -121,66 +122,63 @@ function downloadProduct(responseData) {
 
   const productNamePrice = document.querySelector(".price-container");
   if (responseData.success.selling_price < responseData.success.initial_cost) {
-    productNamePrice.innerHTML = `
-      <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
-      <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
-    `;
+      productNamePrice.innerHTML = `
+          <span class="original-price">${formatNumberToNaira(responseData.success.initial_cost)}</span>
+          <span class="discount-price">${formatNumberToNaira(responseData.success.selling_price)}</span>
+      `;
   } else {
-    productNamePrice.innerHTML = `
-    <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
-  `;
+      productNamePrice.innerHTML = `
+          <p class="product-price">${formatNumberToNaira(responseData.success.initial_cost)}</p>
+      `;
   }
 
+  // Wait for the image to load before capturing
+  productImage.onload = () => {
+      document.getElementById("download-icon").addEventListener("click", function () {
+          // Temporarily make the card visible for rendering
+          productCard.style.opacity = "1";
+          productCard.style.pointerEvents = "auto";
 
-  document.getElementById("download-icon").addEventListener("click", function () {
-    const productCard = document.getElementById("product-card");
-  
-    // Temporarily make the card visible for rendering
-    productCard.style.opacity = "1";
-    productCard.style.pointerEvents = "auto";
-  
-    // Convert the card to an image
-    const scale = 3; // Increase scale for higher resolution
+          const scale = 3; // High-resolution scaling factor
 
-    // Convert the card to an image with high quality settings
-    domtoimage.toBlob(productCard, {
-        width: productCard.offsetWidth * scale,
-        height: productCard.offsetHeight * scale,
-        style: {
-            transform: `scale(${scale})`,   // Scale up the element visually
-            transformOrigin: "top left",   // Maintain correct positioning
-        },
-        quality: 1.0, // Set the quality to the highest (1.0)
-    })
-    .then(function (blob) {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "Payuee e-Shop Product.png";
-        link.click();
+          // Convert the card to an image with high quality
+          domtoimage.toBlob(productCard, {
+              width: productCard.offsetWidth * scale,
+              height: productCard.offsetHeight * scale,
+              style: {
+                  transform: `scale(${scale})`,
+                  transformOrigin: "top left",
+              },
+              quality: 1.0, // Max quality
+          })
+          .then(function (blob) {
+              const link = document.createElement("a");
+              link.href = URL.createObjectURL(blob);
+              link.download = "Payuee e-Shop Product.png";
+              link.click();
 
-        // Re-hide the card after capturing it
-        productCard.style.opacity = "0";
-        productCard.style.pointerEvents = "none";
-    })
-    .catch(function (error) {
-        console.error("Oops, something went wrong!", error);
-    });
-  });
+              // Re-hide the card after capturing it
+              productCard.style.opacity = "0";
+              productCard.style.pointerEvents = "none";
+          })
+          .catch(function (error) {
+              console.error("Oops, something went wrong!", error);
+          });
+      });
+  };
 
-function truncateDescription(description) {
-  // Split the description into tokens (words)
-  const tokens = description.split(' ');
+  // Fallback if image loading fails
+  productImage.onerror = () => {
+      console.error("Image failed to load.");
+  };
 
-  // Check if the description has more than 22 tokens
-  if (tokens.length > 22) {
-      // Get the first 22 tokens and add "..."
-      return tokens.slice(0, 22).join(' ') + '...';
+  function truncateDescription(description) {
+      const tokens = description.split(' ');
+      if (tokens.length > 22) {
+          return tokens.slice(0, 22).join(' ') + '...';
+      }
+      return description;
   }
-
-  // Return the description as is if it has 22 tokens or fewer
-  return description;
-}
-
 }
 
 async function getNextProduct(productID) {
