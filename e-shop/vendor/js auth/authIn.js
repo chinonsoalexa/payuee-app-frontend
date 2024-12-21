@@ -7,9 +7,13 @@ let daysRemaining = 14;
     // Wait for the DOM to fully load before running DOM-dependent scripts
     document.addEventListener("DOMContentLoaded", function () {
         feather.replace();
-        initializeDomFeatures();
-        console.log("running...2")
-});
+
+        // Ensure DOM elements exist before calling initializeDomFeatures
+        setTimeout(() => {
+            initializeDomFeatures();
+            console.log("Running...2");
+        }, 100); // Optional small delay for dynamically loaded content
+    });
 })();
 
 function initializeDomFeatures() {
