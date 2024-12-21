@@ -5,13 +5,13 @@
         console.log("this is the days remaining: " + daysRemaining);
 
         // Wait for the DOM to fully load before running DOM-dependent scripts
-        document.addEventListener("DOMContentLoaded", function () {
+        // document.addEventListener("DOMContentLoaded", function () {
             feather.replace();
 
             // Ensure initializeDomFeatures runs with the resolved daysRemaining
             console.log("Data loaded, initializing DOM features...");
             initializeDomFeatures(daysRemaining); // Pass daysRemaining here
-        });
+        // });
     } catch (error) {
         console.error("Error during initialization:", error);
     }
