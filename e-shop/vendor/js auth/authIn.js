@@ -8,10 +8,12 @@ let daysRemaining = 14;
     document.addEventListener("DOMContentLoaded", function () {
         feather.replace();
         initializeDomFeatures();
-    });
+    console.log("running...2")
+});
 })();
 
 function initializeDomFeatures() {
+    console.log("running...")
     // Handle expiration notice
     const expirationNotice = document.getElementById("expirationNotice");
 
