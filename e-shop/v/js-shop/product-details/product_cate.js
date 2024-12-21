@@ -143,6 +143,7 @@ function downloadProduct(responseData) {
 
     // Convert the card to an image
     domtoimage.toBlob(productCard, {
+      // Convert the card to an image with high quality setting
       width: productCard.offsetWidth * scale,
       height: productCard.offsetHeight * scale,
       style: {
@@ -150,10 +151,9 @@ function downloadProduct(responseData) {
         transformOrigin: "top left",          // Maintain proper origin
         width: `${productCard.offsetWidth}px`, // Ensure proper dimensions
         height: `${productCard.offsetHeight}px`,
-    },
-      // Convert the card to an image with high quality setting
-        quality: 1.0  // Set the quality to the highest (1.0)
-      })
+      },
+      quality: 1.0  // Set the quality to the highest (1.0)
+    })
     .then(function (blob) {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
