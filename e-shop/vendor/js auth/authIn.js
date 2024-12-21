@@ -9,7 +9,7 @@
 
             // Ensure initializeDomFeatures runs with the resolved daysRemaining
             console.log("Data loaded, initializing DOM features...");
-            initializeDomFeatures(daysRemaining);
+            initializeDomFeatures(daysRemaining); // Pass daysRemaining here
         });
     } catch (error) {
         console.error("Error during initialization:", error);
