@@ -181,7 +181,7 @@ async function getStores() {
 
         // Check if shop address is empty and set location accordingly
         const location = store.shop_address ? `${store.shop_address}<br>${store.shop_state}, ${store.shop_city}` : `${store.shop_state}, ${store.shop_city}`;
-
+        store.open_days = 7
         rowElement.innerHTML = `
             <h5>${store.shop_name}</h5>
             <p>${store.shop_state}, ${store.shop_city}<br>${location}<br>Nigeria<br>${store.shop_phone}<br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
@@ -215,6 +215,7 @@ function renderStore(store) {
 
     // Check if shop address is empty and set location accordingly
     const location = store.shop_address ? `${store.shop_address}<br>${store.shop_state}, ${store.shop_city}` : `${store.shop_state}, ${store.shop_city}`;
+    store.open_days = 7
 
     rowElement.innerHTML = `
         <h5>${store.shop_name}</h5>
