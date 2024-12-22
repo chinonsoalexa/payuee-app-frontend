@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 })
 
-
 function renderSearch(results) {
     const resultsContainer = document.getElementById("searchResults");
     resultsContainer.innerHTML = ''; // Clear previous results
