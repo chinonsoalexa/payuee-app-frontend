@@ -253,8 +253,8 @@ function renderStores(data, products) {
         listItem.className = 'search-suggestion__item multi-select__item text-primary js-search-select js-multi-select';
 
         listItem.innerHTML = `
-            <span class="me-auto" onclick="redirectToShop('pauyee-vendor${store.eshop_user_id}')">${store.store_name}</span>
-            <span class="text-secondary" onclick="redirectToShop('pauyee-vendor${store.eshop_user_id}')">${getProductCountForVendor(store.eshop_user_id, products)}</span>
+            <span class="me-auto" onclick="redirectToShop('pauyee-vendor-${store.eshop_user_id}')">${store.store_name}</span>
+            <span class="text-secondary" onclick="redirectToShop('pauyee-vendor-${store.eshop_user_id}')">${getProductCountForVendor(store.eshop_user_id, products)}</span>
         `;
 
         storeList.appendChild(listItem);
