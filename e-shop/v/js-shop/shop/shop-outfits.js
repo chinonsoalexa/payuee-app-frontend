@@ -544,7 +544,7 @@ function renderProducts(product) {
                 if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
                     event.preventDefault();
                     event.stopPropagation(); // Stop the event from propagating further
-                    window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+                    window.location.href = `https://payuee.com/outfits/v/${product.product_url_id}`;
                     return;
                 }
             addToCart(product);

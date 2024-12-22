@@ -520,7 +520,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/jewelry/${product.product_url_id}`;
+        window.location.href = `https://payuee.com/jewelry/v/${product.product_url_id}`;
     });
 
     // Attach the 'Collaborate' button event listener to this specific product card
