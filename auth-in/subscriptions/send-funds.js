@@ -282,7 +282,7 @@ async function sendFunds() {
                 if  (errorData.error === 'a user with this email was not found') {
                     returnedErrorMessageDisplay('Sorry no user with ' + errorData.email + ' was found');
                 }else if  (errorData.error === 'insufficient funds') {
-                    returnedErrorMessageDisplay("Sorry you don't have up to " + errorData.amount + " in your account");
+                    returnedErrorMessageDisplay("Sorry you don't have up to " + payueeAmount + " in your account");
                 }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     returnedErrorMessageDisplay('This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === "you can't send funds to self") {
