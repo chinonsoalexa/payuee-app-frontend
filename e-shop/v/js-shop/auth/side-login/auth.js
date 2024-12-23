@@ -487,6 +487,7 @@ async function verifyEshop(Email, SentOTP) {
         }
 
         const responseData = await response.json();
+        showToastMessageS('Successfully registered');
         // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
@@ -498,8 +499,7 @@ async function verifyEshop(Email, SentOTP) {
         } else {
             window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
         }
-        showToastMessageS('Successfully registered');
-    } finally {
+} finally {
 
     }
 }
