@@ -335,11 +335,10 @@ function returnedErrorMessageDisplay(errorMessage) {
 }
 
 function returnedErrorMessageDisplay2(errorMessage) {
-    const installPopup = document.getElementById('error-popup');
-    const cancelButton = document.getElementById('cancel-btn2');
-    const returnedEmailID = document.getElementById('returnedEmailID');
+    const installPopup = document.getElementById('error-popup3');
+    const cancelButton = document.getElementById('cancel-btn3');
+    const returnedEmailID = document.getElementById('returnedEmailID3');
 
-    cancelButton.textContent = "Fund Wallet"; // Update button text
     returnedEmailID.textContent = errorMessage; // Display the error message
 
     installPopup.style.display = 'block'; // Show the popup
