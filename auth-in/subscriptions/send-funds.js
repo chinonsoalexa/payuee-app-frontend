@@ -282,7 +282,7 @@ async function sendFunds() {
                 if  (errorData.error === 'a user with this email was not found') {
                     returnedErrorMessageDisplay('Sorry no user with ' + errorData.email + ' was found');
                 }else if  (errorData.error === 'insufficient funds') {
-                    returnedErrorMessageDisplay("Sorry you don't have up to ₦" + payueeAmount + " in your account");
+                    returnedErrorMessageDisplay2("Sorry you don't have up to ₦" + payueeAmount + " in your account");
                 }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
                     returnedErrorMessageDisplay('This is an invalid email address. Please enter a valid email address.');
                 }else if  (errorData.error === "you can't send funds to self") {
@@ -331,6 +331,23 @@ function returnedErrorMessageDisplay(errorMessage) {
     // Cancel button click event
     cancelButton.addEventListener('click', () => {
       installPopup.style.display = 'none';
+    });
+}
+
+function returnedErrorMessageDisplay2(errorMessage) {
+    const installPopup = document.getElementById('error-popup');
+    const cancelButton = document.getElementById('cancel-btn2');
+    const returnedEmailID = document.getElementById('returnedEmailID');
+
+    cancelButton.value = "Fund Wallet"; // Update button text
+    returnedEmailID.textContent = errorMessage; // Display the error message
+
+    installPopup.style.display = 'block'; // Show the popup
+
+    // Cancel button click event
+    cancelButton.addEventListener('click', () => {
+        // Redirect to the Fund Wallet page
+        window.location.href = '/fund-wallet'; // Replace with the actual URL of the Fund Wallet page
     });
 }
 
