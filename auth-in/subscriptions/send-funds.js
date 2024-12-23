@@ -339,7 +339,7 @@ function returnedErrorMessageDisplay2(errorMessage) {
     const cancelButton = document.getElementById('cancel-btn2');
     const returnedEmailID = document.getElementById('returnedEmailID');
 
-    cancelButton.value = "Fund Wallet"; // Update button text
+    cancelButton.textContent = "Fund Wallet"; // Update button text
     returnedEmailID.textContent = errorMessage; // Display the error message
 
     installPopup.style.display = 'block'; // Show the popup
