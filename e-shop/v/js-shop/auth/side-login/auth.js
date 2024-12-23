@@ -396,8 +396,8 @@ async function registerEshop(email, password, name) {
         }
 
         const responseData = await response.json();
-        showToastMessageS('Please verify your email address');
         toggleOTP();
+        showToastMessageS('Please verify your email address');
         //  Send email verification email
 } finally {
 
@@ -538,3 +538,43 @@ function toggleOTP() {
         registerButton.classList.remove('d-none');
     }
 }
+
+// Function to toggle the OTP box and other registration fields
+function toggleOtpBox(showOtp) {
+    // Get all elements by their IDs
+    const otpDiv = document.getElementById('otpDiv');
+    const verifyButton = document.getElementById('verifyButton');
+    const registerButton = document.getElementById('registerButton');
+    
+    const nameDiv = document.getElementById('nameDiv');
+    const emailDiv = document.getElementById('emailDiv');
+    const stateDiv = document.getElementById('stateDiv');
+    const cityDiv = document.getElementById('cityDiv');
+    const passwordDiv = document.getElementById('passwordDiv');
+
+    if (showOtp) {
+      // Show OTP box and verify button
+      otpDiv.classList.remove('d-none');
+      verifyButton.classList.remove('d-none');
+      
+      // Hide registration fields and register button
+      registerButton.classList.add('d-none');
+      nameDiv.classList.add('d-none');
+      emailDiv.classList.add('d-none');
+      stateDiv.classList.add('d-none');
+      cityDiv.classList.add('d-none');
+      passwordDiv.classList.add('d-none');
+    } else {
+      // Hide OTP box and verify button
+      otpDiv.classList.add('d-none');
+      verifyButton.classList.add('d-none');
+
+      // Show registration fields and register button
+      registerButton.classList.remove('d-none');
+      nameDiv.classList.remove('d-none');
+      emailDiv.classList.remove('d-none');
+      stateDiv.classList.remove('d-none');
+      cityDiv.classList.remove('d-none');
+      passwordDiv.classList.remove('d-none');
+    }
+  }
