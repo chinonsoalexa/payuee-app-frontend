@@ -119,9 +119,9 @@ function validateAndSendFunds() {
         if (payueeAmount == "") {
             validated = false;
             showError('amountError', "Please enter an amount to transfer");
-        } else if (payueeAmount < 9) {
+        } else if (payueeAmount < 100) {
             validated = false;
-            showError('amountError', "Please minimum transfer amount is ₦10");
+            showError('amountError', "Please minimum transfer amount is ₦100");
         } else if (payueeAmount > 100000) {
             validated = false;
             showError('amountError', "Please maximum transfer amount is ₦100,000");
@@ -140,7 +140,7 @@ function validateAndSendFunds() {
         if (payueeAmount == "") {
             validated = false;
             showError('amountToTransferError', "Please enter an amount to transfer");
-        } else if (payueeAmount < 100) {
+        } else if (payueeAmount < 9) {
             validated = false;
             showError('amountToTransferError', "Please minimum transfer amount is ₦100");
         } else if (payueeAmount > 100000) {
