@@ -298,34 +298,56 @@ function getSuccessMessage(transactionDetails) {
         send_funds_transaction_status.textContent = transactionDetails.success.transaction_status;
         send_funds_receivers_email.textContent = transactionDetails.service.email_id;
         send_funds_senders_name.textContent = transactionDetails.success.user_name;
-        send_funds_service_name.textContent = "send funds";
+        send_funds_service_name.textContent = "Wallet Transfer";
         send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
         let sendFundsBackLink = document.getElementById('backLink');
         sendFundsBackLink.href = "send-funds.html"; // Let's redirect back to transaction page
     } else {
+        // Enable the section for sending bank funds
         enableDiv('send-bank-funds-section');
-        // send fund fields
-        let send_funds_transaction_id = document.getElementById('send_funds_transaction_id');
-        let send_funds_transaction_date = document.getElementById('send_funds_transaction_date');
-        let send_funds_transaction_method = document.getElementById('send_funds_transaction_method');
-        let send_funds_transaction_status = document.getElementById('send_funds_transaction_status');
-        let send_funds_receivers_email = document.getElementById('send_funds_receivers_email');
-        let send_funds_senders_name = document.getElementById('send_funds_senders_name');
-        let send_funds_service_name = document.getElementById('send_funds_service_name');
-        let send_funds_transaction_amount = document.getElementById('send_funds_transaction_amount');
-        // Access properties within the success object using dot notation
-        send_funds_transaction_id.textContent = transactionDetails.success.transaction_id;
-        // Parse the timestamp string
-        let sendFundsParsedTimestamp = new Date(transactionDetails.success.paid_at);
-        send_funds_transaction_date.textContent = sendFundsParsedTimestamp.toLocaleString(); // Adjust the format as needed
-        send_funds_transaction_method.textContent = transactionDetails.success.transaction_type;
-        send_funds_transaction_status.textContent = transactionDetails.success.transaction_status;
-        send_funds_receivers_email.textContent = transactionDetails.service.email_id;
-        send_funds_senders_name.textContent = transactionDetails.success.user_name;
-        send_funds_service_name.textContent = "send funds";
-        send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount);
+
+        // Fetch elements by their IDs
+        let bank_send_funds_transaction_id = document.getElementById('bank_send_funds_transaction_id');
+        let bank_send_funds_transaction_date = document.getElementById('bank_send_funds_transaction_date');
+        let bank_send_funds_transaction_method = document.getElementById('bank_send_funds_transaction_method');
+        let bank_send_funds_transaction_status = document.getElementById('bank_send_funds_transaction_status');
+        let bank_send_funds_receivers_email = document.getElementById('bank_send_funds_receivers_email');
+        let bank_send_funds_senders_name = document.getElementById('bank_send_funds_senders_name');
+        let bank_send_funds_service_name = document.getElementById('bank_send_funds_service_name');
+        let bank_send_funds_transaction_amount = document.getElementById('bank_send_funds_transaction_amount');
+        let bank_send_funds_bank_name = document.getElementById('bank_send_funds_bank_name');
+        let bank_send_funds_bank_code = document.getElementById('bank_send_funds_bank_code');
+        let bank_send_funds_account_number = document.getElementById('bank_send_funds_account_number');
+        let bank_send_funds_account_name = document.getElementById('bank_send_funds_account_name');
+        let bank_send_funds_description = document.getElementById('bank_send_funds_description');
+
+        // Access and populate the data
+        bank_send_funds_transaction_id.textContent = transactionDetails.success.ID || 'NA';
+
+        // Parse and format the timestamp
+        let sendFundsParsedTimestamp = new Date(transactionDetails.success.created_at);
+        bank_send_funds_transaction_date.textContent = sendFundsParsedTimestamp.toLocaleString(); // Adjust format if needed
+
+        // Populate additional fields with transaction data
+        bank_send_funds_transaction_method.textContent = transactionDetails.success.transaction_type || 'NA';
+        bank_send_funds_transaction_status.textContent = transactionDetails.success.transaction_status || 'NA';
+        bank_send_funds_receivers_email.textContent = transactionDetails.service.email_id || 'NA';
+        bank_send_funds_senders_name.textContent = transactionDetails.success.user_name || 'NA';
+        bank_send_funds_service_name.textContent = "send funds";
+        bank_send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount || 0);
+
+        // Populate bank details
+        bank_send_funds_bank_name.textContent = transactionDetails.service.bank_name || 'NA';
+        bank_send_funds_bank_code.textContent = transactionDetails.service.bank_code || 'NA';
+        bank_send_funds_account_number.textContent = transactionDetails.service.account_number || 'NA';
+        bank_send_funds_account_name.textContent = transactionDetails.service.account_name || 'NA';
+
+        // Populate description
+        bank_send_funds_description.textContent = transactionDetails.service.description || 'NA';
+
+        // Add a back link for navigation
         let sendFundsBackLink = document.getElementById('backLink');
-        sendFundsBackLink.href = "send-funds.html"; // Let's redirect back to transaction page
+        sendFundsBackLink.href = "send-funds.html"; // Redirect back to the transaction page
     }
     break;
 
