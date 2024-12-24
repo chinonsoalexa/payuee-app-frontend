@@ -333,7 +333,7 @@ function getSuccessMessage(transactionDetails) {
         bank_send_funds_transaction_status.textContent = transactionDetails.success.transaction_status || 'NA';
         bank_send_funds_receivers_email.textContent = transactionDetails.service.email_id || 'NA';
         bank_send_funds_senders_name.textContent = transactionDetails.success.user_name || 'NA';
-        bank_send_funds_service_name.textContent = "send funds";
+        bank_send_funds_service_name.textContent = "Bank Transfer";
         bank_send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount || 0);
 
         // Populate bank details
