@@ -305,8 +305,9 @@ async function sendFunds() {
                 //     console.log("one");
                 //     return
                 // }
-                    // console.log("two");
-                    window.location.href = "https://payuee.com/bank-successful.html"
+                // console.log("two");
+                // window.location.href = "https://payuee.com/bank-successful.html"
+                window.location.href = "https://payuee.com/successful.html"
                 return
             } else {
                     // console.log("three");
