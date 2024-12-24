@@ -228,7 +228,7 @@ function renderTransactionHistory(historyData) {
         if (historyData.transaction_status == 'success') {
             transactionStatus = 'assets/img/payment/g-check.png';
         } else if (historyData.transaction_status == 'pending') {
-            transactionStatus = 'assets/img/payment/g-worning.png';
+            transactionStatus = 'assets/img/payment/g-warning.png';
         } else if (historyData.transaction_status == 'failed') {
             transactionStatus = 'assets/img/payment/g-cross.png';
         }
