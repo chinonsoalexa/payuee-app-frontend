@@ -311,7 +311,7 @@ function getSuccessMessage(transactionDetails) {
         let bank_send_funds_transaction_date = document.getElementById('bank_send_funds_transaction_date');
         let bank_send_funds_transaction_method = document.getElementById('bank_send_funds_transaction_method');
         let bank_send_funds_transaction_status = document.getElementById('bank_send_funds_transaction_status');
-        let bank_send_funds_receivers_email = document.getElementById('bank_send_funds_receivers_email');
+        // let bank_send_funds_receivers_email = document.getElementById('bank_send_funds_receivers_email');
         let bank_send_funds_senders_name = document.getElementById('bank_send_funds_senders_name');
         let bank_send_funds_service_name = document.getElementById('bank_send_funds_service_name');
         let bank_send_funds_transaction_amount = document.getElementById('bank_send_funds_transaction_amount');
@@ -331,7 +331,7 @@ function getSuccessMessage(transactionDetails) {
         // Populate additional fields with transaction data
         bank_send_funds_transaction_method.textContent = transactionDetails.success.transaction_type || 'NA';
         bank_send_funds_transaction_status.textContent = transactionDetails.success.transaction_status || 'NA';
-        bank_send_funds_receivers_email.textContent = transactionDetails.service.email_id || 'NA';
+        // bank_send_funds_receivers_email.textContent = transactionDetails.service.email_id || 'NA';
         bank_send_funds_senders_name.textContent = transactionDetails.success.user_name || 'NA';
         bank_send_funds_service_name.textContent = "Bank Transfer";
         bank_send_funds_transaction_amount.textContent = formatNumberToNaira(transactionDetails.success.amount || 0);
