@@ -258,9 +258,9 @@ function renderTransactionHistory(historyData) {
         rowElement.addEventListener('click', function(event) {
             event.preventDefault();
             // Retrieve the ID of the clicked row
-            const rowId = event.target.closest('tr').id;
+            // const rowId = event.target.closest('tr').id;
             // Use the ID as needed
-            window.location.href = 'success-trans-id.html?id=' + rowId + '&page=' + CurrentPageOnLoad;
+            window.location.href = 'success-trans-id.html?id=' + historyData.ID + '&page=' + CurrentPageOnLoad;
         });
     });
 }
