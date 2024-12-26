@@ -236,6 +236,14 @@ function renderTransactionHistory(historyData) {
         // Create a new table row element
         const rowElement = document.createElement('tr');
         rowElement.id = historyData.transaction_id; // Set the ID of the row
+        
+        if (historyData.transaction_type == "paystack") {
+            historyData.service_type = "Bank Transfer"
+        } else if (historyData.transaction_type == "payuee") {
+            historyData.service_type = "Wallet Transfer"
+        } else if (historyData.service_type == "rechargePin") {
+            historyData.service_type = "Airtime Pin"
+        }
 
         // Create the HTML string with dynamic data using template literals
         rowElement.innerHTML = `
