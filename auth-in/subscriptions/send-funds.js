@@ -244,6 +244,10 @@ function showError(id, message, duration = 5000) {
     }, duration);
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function sendFunds() {
     if (validated) {
         deactivateButtonStyles();
@@ -298,7 +302,9 @@ async function sendFunds() {
             }
     
             const responseData = await response.json();
-    
+
+            await sleep(1000); // Sleep for 1 second (1000 milliseconds)
+            
             if (responseData.hasOwnProperty('success')){
                 // if (responseData.success.hasOwnProperty('data')) {
                 //     // window.location.href = responseData.success.data.authorization_url;
