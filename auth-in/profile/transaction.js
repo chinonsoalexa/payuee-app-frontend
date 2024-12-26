@@ -243,6 +243,7 @@ function renderTransactionHistory(historyData) {
             historyData.service_type = "Wallet Transfer"
         } else if (historyData.service_type == "rechargePin") {
             historyData.service_type = "Airtime Pin"
+            return
         }
 
         // Create the HTML string with dynamic data using template literals
