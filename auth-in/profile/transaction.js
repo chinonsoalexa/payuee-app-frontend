@@ -239,13 +239,10 @@ function renderTransactionHistory(historyData) {
         
         if (historyData.transaction_type == "paystack") {
             historyData.service_type = "Bank Transfer"
-            return
         } else if (historyData.transaction_type == "payuee") {
             historyData.service_type = "Wallet Transfer"
-            return
         } else if (historyData.service_type == "rechargePin") {
             historyData.service_type = "Airtime Pin"
-            return
         }
 
         // Create the HTML string with dynamic data using template literals
