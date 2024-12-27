@@ -106,9 +106,6 @@ function buy_recharge_pin(){
     if (amountInput === '' || parseInt(amountInput, 10) <= 0) {
         validated = false;
         showError('pin-error', 'Invalid No. of Pins.');
-    } else {
-        validated = true; // Ensure validation passes if input is correct
-        clearError('pin-error'); // Optional: clear any previous error messages
     }
     
     var amount = parseInt(amountInput, 10);
