@@ -99,15 +99,16 @@ document.getElementById('continue-buy-recharge-pin').addEventListener('click', a
 function buy_recharge_pin(){
     validated = true
 
-    // let's take all fields and validate
-    amountInput = document.getElementById("pin-number").value.replace(/[^0-9]/g, '');
-    // // Allow only positive numbers
-    // input.value = input.value.replace(/[^0-9]/g, '');
+    // Get the sanitized value of the input
+    let amountInput = document.getElementById("pin-number").value.replace(/[^0-9]/g, '');
 
     // Check if input is valid
-    if (input.value === '' || parseInt(amountInput, 10) <= 0) {
+    if (amountInput === '' || parseInt(amountInput, 10) <= 0) {
         validated = false;
         showError('pin-error', 'Invalid No. of Pins.');
+    } else {
+        validated = true; // Ensure validation passes if input is correct
+        clearError('pin-error'); // Optional: clear any previous error messages
     }
     
     var amount = parseInt(amountInput, 10);
