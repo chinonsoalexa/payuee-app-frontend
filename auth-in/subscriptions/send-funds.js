@@ -300,7 +300,7 @@ async function sendFunds() {
     
                 return;
             }
-    
+
             const responseData = await response.json();
 
             await sleep(1000); // Sleep for 1 second (1000 milliseconds)

@@ -100,7 +100,8 @@ function buy_recharge_pin(){
     validated = true
 
     // let's take all fields and validate
-    amountInput = document.getElementById("pin-number").value;
+    amountInput = document.getElementById("pin-number").value.replace(/[^0-9]/g, '');
+    
     var amount = parseInt(amountInput, 10);
     // var description = document.getElementById("description").value;
 
