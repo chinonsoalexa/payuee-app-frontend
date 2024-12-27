@@ -624,3 +624,34 @@ function clearError(id) {
         // errorElement.style.display = 'none'; // Hide the error message
     }
 }
+
+// Select the icon
+const twitterIcon = document.getElementById('twitterIcon');
+
+// Add a click event listener
+twitterIcon.addEventListener('click', function () {
+    // URL with 'include' parameter
+    const url = "https://api.payuee.com/creat-account";
+
+    // Perform a GET request using Fetch API
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include', // set credentials to include cookies
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json(); // Parse JSON response
+        })
+        .then(data => {
+            console.log('GET request successful:', data);
+            // Optional: Handle the returned data here
+        })
+        .catch(error => {
+            console.error('Error during GET request:', error);
+        });
+});
