@@ -101,6 +101,14 @@ function buy_recharge_pin(){
 
     // let's take all fields and validate
     amountInput = document.getElementById("pin-number").value.replace(/[^0-9]/g, '');
+    // // Allow only positive numbers
+    // input.value = input.value.replace(/[^0-9]/g, '');
+
+    // Check if input is valid
+    if (input.value === '' || parseInt(amountInput, 10) <= 0) {
+        validated = false;
+        showError('pin-error', 'Invalid No. of Pins.');
+    }
     
     var amount = parseInt(amountInput, 10);
     // var description = document.getElementById("description").value;
