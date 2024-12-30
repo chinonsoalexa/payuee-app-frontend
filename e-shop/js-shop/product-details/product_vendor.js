@@ -906,7 +906,7 @@ function calculateDeliveryRange(deliveryDays) {
   const rangeEndFormatted = deliveryRangeEnd.toLocaleDateString("en-US", options);
 
   // Return the formatted delivery range
-  return `${rangeStartFormatted}-${rangeEndFormatted}`;
+  return `${rangeStartFormatted} - ${rangeEndFormatted}`;
 }
 
 // Function to open modal with appropriate messages
