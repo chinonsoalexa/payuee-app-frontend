@@ -428,7 +428,7 @@ function renderProductDetails(product, related) {
               </div>
               <div class="meta-item">
                 <label>Delivery Day(s):</label>
-                <span>${product.estimated_delivery}</span>
+                <span>${calculateDeliveryRange(product.estimated_delivery)}</span>
               </div>
             </div>
             <!-- <div class="product-single__details">
@@ -771,6 +771,30 @@ quantityInput.addEventListener('change', () => {
 
   renderRecommendedProduct(related);
 
+}
+
+function calculateDeliveryRange(deliveryDays) {
+  // Get the current date and time
+  const currentDate = new Date();
+
+  // Calculate the percentage days for the range
+  const rangeStartOffset = Math.floor(deliveryDays * 0.7); // 70% of the delivery period
+  const rangeEndOffset = Math.ceil(deliveryDays * 0.8); // 80% of the delivery period
+
+  // Calculate start and end dates for delivery
+  const deliveryRangeStart = new Date(currentDate);
+  deliveryRangeStart.setDate(currentDate.getDate() + rangeStartOffset);
+
+  const deliveryRangeEnd = new Date(currentDate);
+  deliveryRangeEnd.setDate(currentDate.getDate() + rangeEndOffset);
+
+  // Format the dates to "Month Day"
+  const options = { month: "short", day: "numeric" };
+  const rangeStartFormatted = deliveryRangeStart.toLocaleDateString("en-US", options);
+  const rangeEndFormatted = deliveryRangeEnd.toLocaleDateString("en-US", options);
+
+  // Return the formatted delivery range
+  return `${rangeStartFormatted}-${rangeEndFormatted}`;
 }
 
 async function checkCollaborationEligibility(ID) {
