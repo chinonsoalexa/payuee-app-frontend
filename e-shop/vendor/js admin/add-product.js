@@ -1420,7 +1420,7 @@ async function check_posting_status() {
             document.getElementById("generateDescriptionAI").style.display = "block";
             document.getElementById("generateTagAI").style.display = "block";
         }
-        
+
         // if (localStorage.getItem("product") != "two") {
         //     if (responseData.total_products < 1) {
         //         swal({
@@ -1504,7 +1504,7 @@ const steps = [
         description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
         buttonText: "Set Shipping Fees",
         image: "shipping.png",
-        path: "/e-shop/vendor/update-shipping-fees",
+        path: "update-shipping-fees",
     },
     {
         name: "addProduct",
@@ -1512,7 +1512,7 @@ const steps = [
         description: "Showcase your products to millions of customers on Payuee e-Shop.",
         buttonText: "Add Product",
         image: "add-product.png",
-        path: "/e-shop/vendor/add-product",
+        path: "add-products",
     },
     {
         name: "customizeStore",
@@ -1520,7 +1520,7 @@ const steps = [
         description: "Add your store details, banner, and logo to stand out.",
         buttonText: "Customize Store",
         image: "customize-store.png",
-        path: "/e-shop/vendor/customize-store",
+        path: "update-store",
     },
     {
         name: "completed",
