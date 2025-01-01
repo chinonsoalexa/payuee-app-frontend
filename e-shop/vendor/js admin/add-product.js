@@ -1290,6 +1290,7 @@ async function generateAiDescription(TitleData) {
         toggleButtonState();
     }
 }
+
 // Function to toggle the disabled state and visibility of the button
 function toggleTagButtonState() {
     if (generateTagButton.disabled) {
