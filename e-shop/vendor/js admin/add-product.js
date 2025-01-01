@@ -1451,6 +1451,18 @@ async function check_posting_status() {
         //     })    
         // }
 
+        // Initialize the process
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedStep = localStorage.getItem("setupStep");
+            currentStepIndex = steps.findIndex(step => step.name === savedStep);
+
+            if (currentStepIndex === -1) currentStepIndex = 0;
+
+            if (responseData.total_products === 0 && savedStep !== "completed") {
+                showPopup();
+            }
+        });
+
         document.getElementById('startSetup').addEventListener('click', function(e) {
             e.preventDefault(); // Only prevent default if `href` is not set
             nextStep(responseData);
@@ -1558,7 +1570,6 @@ function showPopup() {
 
 // Handle the next step
 function nextStep(userData) {
-
     // Increment step
     currentStepIndex++;
     if (currentStepIndex < steps.length) {
@@ -1577,18 +1588,6 @@ function nextStep(userData) {
         document.getElementById("welcomePopup").classList.add("hidden");
     }
 }
-
-// Initialize the process
-document.addEventListener("DOMContentLoaded", () => {
-    const savedStep = localStorage.getItem("setupStep");
-    currentStepIndex = steps.findIndex(step => step.name === savedStep);
-
-    if (currentStepIndex === -1) currentStepIndex = 0;
-
-    if (userData.total_products === 0 && savedStep !== "completed") {
-        showPopup();
-    }
-});
 
 async function logout() {
     // also send a request to the logout api endpoint
