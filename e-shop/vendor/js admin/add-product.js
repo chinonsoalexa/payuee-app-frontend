@@ -281,6 +281,7 @@ async function postProduct() {
                 // Add event listener for the setup button
                 document.getElementById('startSetup').addEventListener('click', function (e) {
                     e.preventDefault();
+                    document.getElementById("welcomePopup").classList.add("hidden");
                     localStorage.removeItem('store-setup');
                     window.location.href = "update-store.html";
                 }); 
