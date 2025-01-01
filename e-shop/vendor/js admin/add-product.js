@@ -1424,20 +1424,20 @@ async function check_posting_status() {
         if (localStorage.getItem("product") != "two") {
             if (responseData.total_products < 1) {
                 // const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
-                const popup = document.querySelector(".popup");
-            
-                // Update popup content
-                popup.querySelector("h2").innerText = responseData.store_name + " Welcome to Payuee e-Shop!";
-                popup.querySelector("p").innerText = "Let's set up your shipping fees to get your shop ready for orders.";
-                popup.querySelector("img").src = "welcome.png";
+                // Update popup content by ID
+                document.getElementById("popupTitle").innerText = responseData.store_name + " Welcome to Payuee e-Shop!";
+                document.getElementById("popupDescription").innerText = "Let's set up your shipping fees to get your shop ready for orders.";
+                document.getElementById("popupImage").src = "welcome.png";
 
+                // Show the popup
                 document.getElementById("welcomePopup").classList.remove("hidden");
 
-                document.getElementById('startSetup').addEventListener('click', function(e) {
+                // Add event listener for the setup button
+                document.getElementById('startSetup').addEventListener('click', function (e) {
                     e.preventDefault();
                     localStorage.setItem("product", "one");
                     window.location.href = "update-shipping-fees";
-                })
+                });
             
                 // // Dynamically update the button's href attribute
                 // var setupLink = document.getElementById("setupLink");
