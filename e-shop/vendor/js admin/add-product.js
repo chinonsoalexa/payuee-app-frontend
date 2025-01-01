@@ -1421,39 +1421,52 @@ async function check_posting_status() {
             document.getElementById("generateTagAI").style.display = "block";
         }
 
-        // if (localStorage.getItem("product") != "two") {
-        //     if (responseData.total_products < 1) {
-        //         swal({
-        //             title: "Welcome to Payuee e-Shop, " + responseData.store_name,
-        //             text: "Let's set up your shipping fees to get your shop ready for orders.",
-        //             icon: "success",
-        //             buttons: {
-        //                 confirm: "Start Setup",
-        //             },
-        //         }).then(async (result) => {
-        //             localStorage.setItem("product", "one");
-        //             window.location.href = "update-shipping-fees";
-        //         });
-        //     }
-        // } else if (localStorage.getItem("product") == "two") {
-        //     swal({
-        //         title: "Let's add your first product!",
-        //         text: "Get started by entering a descriptive title for your product.",
-        //         icon: "success",
-        //         buttons: {
-        //             confirm: true,
-        //         },
-        //     }).then(() => {
-        //         // Focus the cursor on the title input after closing the alert
-        //         localStorage.removeItem('product');
-        //         document.getElementById("productTitle1").focus();
-        //     })    
-        // }
+        if (localStorage.getItem("product") != "two") {
+            if (responseData.total_products < 1) {
+                // const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
+                const popup = document.querySelector(".popup");
+                document.getElementById("welcomePopup").classList.remove("hidden");
+            
+                // Update popup content
+                popup.querySelector("h2").innerText = responseData.store_name + " Welcome to Payuee e-Shop!";
+                popup.querySelector("p").innerText = "Let's set up your shipping fees to get your shop ready for orders.";
+                popup.querySelector("img").src = "welcome.png";
 
-        document.getElementById('startSetup').addEventListener('click', function(e) {
-            e.preventDefault();
-            nextStep(responseData);
-        })
+                document.getElementById('startSetup').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.setItem("product", "one");
+                    window.location.href = "update-shipping-fees";
+                })
+            
+                // // Dynamically update the button's href attribute
+                // var setupLink = document.getElementById("setupLink");
+                // setupLink.setAttribute("href", step.path); // Update href dynamically
+                // swal({
+                //     title: "Welcome to Payuee e-Shop, " + responseData.store_name,
+                //     text: "Let's set up your shipping fees to get your shop ready for orders.",
+                //     icon: "success",
+                //     buttons: {
+                //         confirm: "Start Setup",
+                //     },
+                // }).then(async (result) => {
+                //     localStorage.setItem("product", "one");
+                //     window.location.href = "update-shipping-fees";
+                // });
+            }
+        } else if (localStorage.getItem("product") == "two") {
+            swal({
+                title: "Let's add your first product!",
+                text: "Get started by entering a descriptive title for your product.",
+                icon: "success",
+                buttons: {
+                    confirm: true,
+                },
+            }).then(() => {
+                // Focus the cursor on the title input after closing the alert
+                localStorage.removeItem('product');
+                document.getElementById("productTitle1").focus();
+            })    
+        }
 
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
@@ -1532,7 +1545,7 @@ const steps = [
     },
 ];
 
-let currentStepIndex = 0;
+// let currentStepIndex = 0;
 
 // Show popup for the current step
 function showPopup() {
@@ -1549,31 +1562,6 @@ function showPopup() {
     // Dynamically update the button's href attribute
     var setupLink = document.getElementById("setupLink");
     setupLink.setAttribute("href", step.path); // Update href dynamically
-}
-
-// Handle the next step
-function nextStep(userData) {
-    const step = steps[currentStepIndex];
-    if (step.name === "addProduct" && userData.total_products === 0) {
-        showToastMessageE("Please add at least one product to proceed.");
-        return;
-    }
-
-    currentStepIndex++;
-    if (currentStepIndex < steps.length) {
-        showPopup();
-    } else {
-        document.getElementById("welcomePopup").classList.add("hidden");
-    }
-
-    // Navigate to the next step path
-    const nextStep = steps[currentStepIndex];
-    if (nextStep) {
-        localStorage.setItem("setupStep", nextStep.name);
-        window.location.href = nextStep.path;
-    } else {
-        localStorage.removeItem("setupStep");
-    }
 }
 
 // Initialize the process
