@@ -282,6 +282,7 @@ async function postProduct() {
                 document.getElementById('startSetup').addEventListener('click', function (e) {
                     e.preventDefault();
                     localStorage.removeItem('store-setup');
+                    window.location.href = "update-store.html";
                 }); 
             }
         }
