@@ -485,8 +485,20 @@ async function setShippingFees() {
             showToastMessage("Shipping fees updated successfully.");
             // Redirect to the Add Product page
             if (localStorage.getItem("product") == "one") {
+            // Update popup content by ID
+            document.getElementById("popupTitle").innerText = "Add Your First Product";
+            document.getElementById("popupDescription").innerText = "Great job setting up your shipping fees! Now, let's showcase your first product to millions of customers on Payuee e-Shop.";
+            document.getElementById("popupImage").src = "shipping.png";
+
+            // Show the popup
+            document.getElementById("welcomePopup").classList.remove("hidden");
+
+            // Add event listener for the setup button
+            document.getElementById('startSetup').addEventListener('click', function (e) {
+                e.preventDefault();
                 localStorage.setItem('product', "two");
                 window.location.href = "add-products.html";
+            });
             };
         } else {
             const errorData = response; // Handle error if response is not ok
