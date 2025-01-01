@@ -1438,21 +1438,6 @@ async function check_posting_status() {
                     localStorage.setItem("product", "one");
                     window.location.href = "update-shipping-fees";
                 });
-            
-                // // Dynamically update the button's href attribute
-                // var setupLink = document.getElementById("setupLink");
-                // setupLink.setAttribute("href", step.path); // Update href dynamically
-                // swal({
-                //     title: "Welcome to Payuee e-Shop, " + responseData.store_name,
-                //     text: "Let's set up your shipping fees to get your shop ready for orders.",
-                //     icon: "success",
-                //     buttons: {
-                //         confirm: "Start Setup",
-                //     },
-                // }).then(async (result) => {
-                //     localStorage.setItem("product", "one");
-                //     window.location.href = "update-shipping-fees";
-                // });
             }
         } else if (localStorage.getItem("product") == "two") {
 
@@ -1460,6 +1445,7 @@ async function check_posting_status() {
             document.getElementById("popupTitle").innerText = "Let's add your first product!";
             document.getElementById("popupDescription").innerText = "Showcase your products to millions of customers on Payuee e-Shop.";
             document.getElementById("popupImage").src = "add-product.png";
+            document.getElementById('startSetup').textContent = 'Add Product';
 
             // Show the popup
             document.getElementById("welcomePopup").classList.remove("hidden");
@@ -1469,20 +1455,7 @@ async function check_posting_status() {
                 e.preventDefault();
                 localStorage.removeItem('product');
                 document.getElementById("productTitle1").focus();
-            });
-
-            // swal({
-            //     title: "Let's add your first product!",
-            //     text: "Get started by entering a descriptive title for your product.",
-            //     icon: "success",
-            //     buttons: {
-            //         confirm: true,
-            //     },
-            // }).then(() => {
-            //     // Focus the cursor on the title input after closing the alert
-            //     localStorage.removeItem('product');
-            //     document.getElementById("productTitle1").focus();
-            // })    
+            }); 
         }
 
         // Update the vendor name immediately if DOM is already loaded
