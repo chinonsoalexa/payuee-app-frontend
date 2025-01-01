@@ -1421,39 +1421,39 @@ async function check_posting_status() {
             document.getElementById("generateTagAI").style.display = "block";
         }
 
-        if (localStorage.getItem("product") != "two") {
-            if (responseData.total_products < 1) {
-                swal({
-                    title: "Welcome to Payuee e-Shop, " + responseData.store_name,
-                    text: "Let's set up your shipping fees to get your shop ready for orders.",
-                    icon: "success",
-                    buttons: {
-                        confirm: "Start Setup",
-                    },
-                }).then(async (result) => {
-                    localStorage.setItem("product", "one");
-                    window.location.href = "update-shipping-fees";
-                });
-            }
-        } else if (localStorage.getItem("product") == "two") {
-            swal({
-                title: "Let's add your first product!",
-                text: "Get started by entering a descriptive title for your product.",
-                icon: "success",
-                buttons: {
-                    confirm: true,
-                },
-            }).then(() => {
-                // Focus the cursor on the title input after closing the alert
-                localStorage.removeItem('product');
-                document.getElementById("productTitle1").focus();
-            })    
-        }
+        // if (localStorage.getItem("product") != "two") {
+        //     if (responseData.total_products < 1) {
+        //         swal({
+        //             title: "Welcome to Payuee e-Shop, " + responseData.store_name,
+        //             text: "Let's set up your shipping fees to get your shop ready for orders.",
+        //             icon: "success",
+        //             buttons: {
+        //                 confirm: "Start Setup",
+        //             },
+        //         }).then(async (result) => {
+        //             localStorage.setItem("product", "one");
+        //             window.location.href = "update-shipping-fees";
+        //         });
+        //     }
+        // } else if (localStorage.getItem("product") == "two") {
+        //     swal({
+        //         title: "Let's add your first product!",
+        //         text: "Get started by entering a descriptive title for your product.",
+        //         icon: "success",
+        //         buttons: {
+        //             confirm: true,
+        //         },
+        //     }).then(() => {
+        //         // Focus the cursor on the title input after closing the alert
+        //         localStorage.removeItem('product');
+        //         document.getElementById("productTitle1").focus();
+        //     })    
+        // }
 
-        // document.getElementById('startSetup').addEventListener('click', function(e) {
-        //     e.preventDefault();
-        //     nextStep(responseData);
-        // })
+        document.getElementById('startSetup').addEventListener('click', function(e) {
+            e.preventDefault();
+            nextStep(responseData);
+        })
 
         // Update the vendor name immediately if DOM is already loaded
         updateVendorName(responseData.store_name);
