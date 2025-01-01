@@ -1483,6 +1483,9 @@ async function check_posting_status() {
             }
         }
         localStorage.setItem('auth', 'true');
+    } catch (error) {
+        console.error("Error fetching auth status:", error);
+        showToastMessageE("An error occurred. Please try again.");
     } finally {
         
     }
