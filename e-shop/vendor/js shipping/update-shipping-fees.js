@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 function setupShippingFees1(e) {
     e.preventDefault();
     document.getElementById("welcomePopup").classList.add("hidden");
+    document.getElementById('validationCustom01').focus();
 }
 
 document.getElementById('validationCustom01').addEventListener('input', function(event) { 
