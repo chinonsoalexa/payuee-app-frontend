@@ -1556,7 +1556,7 @@ function showPopup() {
 function nextStep(userData) {
     const step = steps[currentStepIndex];
     if (step.name === "addProduct" && userData.total_products === 0) {
-        alert("Please add at least one product to proceed.");
+        showToastMessageE('Please add at least one product to proceed.');
         return;
     }
 
