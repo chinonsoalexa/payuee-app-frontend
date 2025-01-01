@@ -1290,7 +1290,6 @@ async function generateAiDescription(TitleData) {
         toggleButtonState();
     }
 }
-
 // Function to toggle the disabled state and visibility of the button
 function toggleTagButtonState() {
     if (generateTagButton.disabled) {
@@ -1451,20 +1450,8 @@ async function check_posting_status() {
         //     })    
         // }
 
-        // Initialize the process
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedStep = localStorage.getItem("setupStep");
-            currentStepIndex = steps.findIndex(step => step.name === savedStep);
-
-            if (currentStepIndex === -1) currentStepIndex = 0;
-
-            if (responseData.total_products === 0 && savedStep !== "completed") {
-                showPopup();
-            }
-        });
-
         document.getElementById('startSetup').addEventListener('click', function(e) {
-            e.preventDefault(); // Only prevent default if `href` is not set
+            e.preventDefault();
             nextStep(responseData);
         })
 
@@ -1493,9 +1480,6 @@ async function check_posting_status() {
             }
         }
         localStorage.setItem('auth', 'true');
-    } catch (error) {
-        console.error("Error fetching auth status:", error);
-        showToastMessageE("An error occurred. Please try again.");
     } finally {
         
     }
@@ -1565,29 +1549,44 @@ function showPopup() {
     // Dynamically update the button's href attribute
     var setupLink = document.getElementById("setupLink");
     setupLink.setAttribute("href", step.path); // Update href dynamically
-    console.log("this is the path: ", step.path);
 }
 
 // Handle the next step
 function nextStep(userData) {
-    // Increment step
+    const step = steps[currentStepIndex];
+    if (step.name === "addProduct" && userData.total_products === 0) {
+        alert("Please add at least one product to proceed.");
+        return;
+    }
+
     currentStepIndex++;
     if (currentStepIndex < steps.length) {
-        const nextStep = steps[currentStepIndex];
-        localStorage.setItem("setupStep", nextStep.name);
-
-        // Show updated popup
         showPopup();
-
-        // Redirect after showing the popup (optional delay)
-        setTimeout(() => {
-            window.location.href = nextStep.path;
-        }, 2000); // Redirect after 2 seconds
     } else {
-        localStorage.removeItem("setupStep");
         document.getElementById("welcomePopup").classList.add("hidden");
     }
+
+    // Navigate to the next step path
+    const nextStep = steps[currentStepIndex];
+    if (nextStep) {
+        localStorage.setItem("setupStep", nextStep.name);
+        window.location.href = nextStep.path;
+    } else {
+        localStorage.removeItem("setupStep");
+    }
 }
+
+// Initialize the process
+document.addEventListener("DOMContentLoaded", () => {
+    const savedStep = localStorage.getItem("setupStep");
+    currentStepIndex = steps.findIndex(step => step.name === savedStep);
+
+    if (currentStepIndex === -1) currentStepIndex = 0;
+
+    if (userData.total_products === 0 && savedStep !== "completed") {
+        showPopup();
+    }
+});
 
 async function logout() {
     // also send a request to the logout api endpoint
