@@ -1471,6 +1471,7 @@ async function check_posting_status() {
             // Add event listener for the setup button
             document.getElementById('startSetup').addEventListener('click', function (e) {
                 e.preventDefault();
+                document.getElementById("welcomePopup").classList.add("hidden");
                 localStorage.removeItem('product');
                 localStorage.setItem('store-setup', 'store-setup-1');
                 document.getElementById("productTitle1").focus();
