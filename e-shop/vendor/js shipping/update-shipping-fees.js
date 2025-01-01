@@ -17,7 +17,7 @@ var pricePerKM = 0;
 document.addEventListener('DOMContentLoaded', async function () {
     // Initialize and load states when the page is loaded
     // Get the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
+    // const urlParams = new URLSearchParams(window.location.search);
 
     if (localStorage.getItem("product") == "one") {
         // Update popup content by ID
