@@ -60,118 +60,197 @@
     display: none;
   }
   
-/* Visually hiding checkboxes */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-}
+  /* Visually hiding checkboxes */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+  }
 
-/* Base swatch button style */
-/* Base styles for the swatches */
-.swatch {
-  display: inline-block;
-  padding: 0.3rem 0.6rem; /* Smaller padding for better fit */
-  cursor: pointer;
-  border: 2px solid #ddd;
-  border-radius: 50px;
-  transition: background-color 0.2s;
-  font-size: 0.9rem;  /* Slightly smaller font size */
-}
-
-.swatch:hover {
-  background-color: #f1f1f1;
-}
-
-input[type="checkbox"]:checked + .swatch {
-  background-color: #5C61F2;
-  color: white;
-  border-color: #ddd;
-}
-
-input[type="checkbox"] {
-  display: none;
-}
-
-.swatch.js-swatch {
-  position: relative;
-}
-
-.swatch.js-swatch::after {
-  content: attr(aria-label);
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  color: #666;
-}
-
-/* Responsive adjustments */
-#outfitSizeSection .swatch,
-#shoeSizeSection .swatch {
-  padding: 0.4rem 0.8rem;  /* Adjust padding */
-  font-size: 0.9rem;        /* Adjust font size */
-}
-
-/* Swatch list spacing */
-#outfitSizeSection .swatch-list,
-#shoeSizeSection .swatch-list {
-  gap: 0.4rem;             /* Adjust gap between swatches */
-}
-
-/* Label Adjustments */
-#outfitSizeSection label,
-#shoeSizeSection label {
-  display: inline-block;
-  max-width: 100%;         /* Prevents stretching */
-  white-space: nowrap;     /* Prevents wrapping of text */
-}
-
-/* Mobile & tablet adjustments */
-@media (max-width: 768px) {
+  /* Base swatch button style */
+  /* Base styles for the swatches */
   .swatch {
-    padding: 0.3rem 0.6rem; /* Smaller padding */
-    font-size: 0.8rem;       /* Smaller font size */
+    display: inline-block;
+    padding: 0.3rem 0.6rem; /* Smaller padding for better fit */
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;  /* Slightly smaller font size */
   }
 
-  .swatch-list {
-    flex-wrap: wrap;         /* Stack items on small screens */
-    gap: 0.3rem;             /* Reduce gap for better spacing */
+  .swatch:hover {
+    background-color: #f1f1f1;
   }
 
+  input[type="checkbox"]:checked + .swatch {
+    background-color: #5C61F2;
+    color: white;
+    border-color: #ddd;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .swatch.js-swatch {
+    position: relative;
+  }
+
+  .swatch.js-swatch::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  /* Responsive adjustments */
   #outfitSizeSection .swatch,
   #shoeSizeSection .swatch {
-    padding: 0.3rem 0.6rem;  /* Smaller padding for mobile */
-    font-size: 0.8rem;       /* Adjust font size */
-  }
-}
-
-@media (max-width: 480px) {
-  .swatch {
-    padding: 0.2rem 0.5rem; /* Even smaller padding */
-    font-size: 0.75rem;      /* Smaller font size */
+    padding: 0.4rem 0.8rem;  /* Adjust padding */
+    font-size: 0.9rem;        /* Adjust font size */
   }
 
-  .swatch-list {
-    gap: 0.2rem;            /* Even smaller gap */
+  /* Swatch list spacing */
+  #outfitSizeSection .swatch-list,
+  #shoeSizeSection .swatch-list {
+    gap: 0.4rem;             /* Adjust gap between swatches */
   }
 
-  #outfitSizeSection .swatch,
-  #shoeSizeSection .swatch {
-    padding: 0.2rem 0.5rem;  /* Adjust padding further */
-    font-size: 0.75rem;      /* Further reduce font size */
+  /* Label Adjustments */
+  #outfitSizeSection label,
+  #shoeSizeSection label {
+    display: inline-block;
+    max-width: 100%;         /* Prevents stretching */
+    white-space: nowrap;     /* Prevents wrapping of text */
   }
-}
 
-#outfitSizeSection {
-  margin-bottom: 1rem;  /* Adds space below the entire section */
-}
+  /* Mobile & tablet adjustments */
+  @media (max-width: 768px) {
+    .swatch {
+      padding: 0.3rem 0.6rem; /* Smaller padding */
+      font-size: 0.8rem;       /* Smaller font size */
+    }
+
+    .swatch-list {
+      flex-wrap: wrap;         /* Stack items on small screens */
+      gap: 0.3rem;             /* Reduce gap for better spacing */
+    }
+
+    #outfitSizeSection .swatch,
+    #shoeSizeSection .swatch {
+      padding: 0.3rem 0.6rem;  /* Smaller padding for mobile */
+      font-size: 0.8rem;       /* Adjust font size */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .swatch {
+      padding: 0.2rem 0.5rem; /* Even smaller padding */
+      font-size: 0.75rem;      /* Smaller font size */
+    }
+
+    .swatch-list {
+      gap: 0.2rem;            /* Even smaller gap */
+    }
+
+    #outfitSizeSection .swatch,
+    #shoeSizeSection .swatch {
+      padding: 0.2rem 0.5rem;  /* Adjust padding further */
+      font-size: 0.75rem;      /* Further reduce font size */
+    }
+  }
+
+  #outfitSizeSection {
+    margin-bottom: 1rem;  /* Adds space below the entire section */
+  }
+
+  .popup-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 1000;
+  }
+
+  .popup {
+      background: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+  }
+
+  .popup img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+  }
+
+  .popup h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+  }
+
+  .popup p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 1rem;
+  }
+
+  .popup button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+  }
+
+  .popup button:hover {
+      background: #45a049;
+  }
+
+  .hidden {
+      display: none;
+  }
+
+  @media (max-width: 480px) {
+      .popup {
+          padding: 15px;
+      }
+
+      .popup h2 {
+          font-size: 1.25rem;
+      }
+
+      .popup p {
+          font-size: 0.9rem;
+      }
+
+      .popup button {
+          font-size: 0.9rem;
+          padding: 8px 16px;
+      }
+  }
 
   </style>
 </head>
@@ -3375,6 +3454,15 @@ input[type="checkbox"] {
           </div>
         </div>
       </footer>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="welcomePopup" class="hidden">
+    <div class="popup">
+        <img src="welcome.png" alt="Welcome">
+        <h2>Welcome to Payuee e-Shop!</h2>
+        <p>Let's set up your shipping fees to get your shop ready for orders.</p>
+        <button id="startSetup">Start Setup</button>
     </div>
   </div>
 
