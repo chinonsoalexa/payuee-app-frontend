@@ -1425,12 +1425,13 @@ async function check_posting_status() {
             if (responseData.total_products < 1) {
                 // const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
                 const popup = document.querySelector(".popup");
-                document.getElementById("welcomePopup").classList.remove("hidden");
             
                 // Update popup content
                 popup.querySelector("h2").innerText = responseData.store_name + " Welcome to Payuee e-Shop!";
                 popup.querySelector("p").innerText = "Let's set up your shipping fees to get your shop ready for orders.";
                 popup.querySelector("img").src = "welcome.png";
+
+                document.getElementById("welcomePopup").classList.remove("hidden");
 
                 document.getElementById('startSetup').addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1454,18 +1455,34 @@ async function check_posting_status() {
                 // });
             }
         } else if (localStorage.getItem("product") == "two") {
-            swal({
-                title: "Let's add your first product!",
-                text: "Get started by entering a descriptive title for your product.",
-                icon: "success",
-                buttons: {
-                    confirm: true,
-                },
-            }).then(() => {
-                // Focus the cursor on the title input after closing the alert
-                localStorage.removeItem('product');
-                document.getElementById("productTitle1").focus();
-            })    
+            // const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
+            const popup = document.querySelector(".popup");
+
+            // Update popup content
+            popup.querySelector("h2").innerText = "Let's add your first product!";
+            popup.querySelector("p").innerText = "Showcase your products to millions of customers on Payuee e-Shop.";
+            popup.querySelector("img").src = "add-product.png";
+            
+            document.getElementById("welcomePopup").classList.remove("hidden");
+
+            document.getElementById('startSetup').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.setItem("product", "one");
+                window.location.href = "update-shipping-fees";
+            })
+
+            // swal({
+            //     title: "Let's add your first product!",
+            //     text: "Get started by entering a descriptive title for your product.",
+            //     icon: "success",
+            //     buttons: {
+            //         confirm: true,
+            //     },
+            // }).then(() => {
+            //     // Focus the cursor on the title input after closing the alert
+            //     localStorage.removeItem('product');
+            //     document.getElementById("productTitle1").focus();
+            // })    
         }
 
         // Update the vendor name immediately if DOM is already loaded
@@ -1510,71 +1527,71 @@ function updateVendorName(newName) {
 }
 
 // Steps for the process
-const steps = [
-    {
-        name: "shippingFees",
-        title: "Set Your Shipping Fees",
-        description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
-        buttonText: "Set Shipping Fees",
-        image: "shipping.png",
-        path: "https://payuee.com/e-shop/vendor/update-shipping-fees",
-    },
-    {
-        name: "addProduct",
-        title: "Add Your First Product",
-        description: "Showcase your products to millions of customers on Payuee e-Shop.",
-        buttonText: "Add Product",
-        image: "add-product.png",
-        path: "https://payuee.com/e-shop/vendor/add-products",
-    },
-    {
-        name: "customizeStore",
-        title: "Customize Your Store",
-        description: "Add your store details, banner, and logo to stand out.",
-        buttonText: "Customize Store",
-        image: "customize-store.png",
-        path: "https://payuee.com/e-shop/vendor/update-store",
-    },
-    {
-        name: "completed",
-        title: "You're Ready to Go!",
-        description: "Setup complete! Start selling your products on Payuee e-Shop.",
-        buttonText: "Go to Dashboard",
-        image: "success.png",
-        path: "https://payuee.com/e-shop/vendor/dashboard",
-    },
-];
+// const steps = [
+//     {
+//         name: "shippingFees",
+//         title: "Set Your Shipping Fees",
+//         description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
+//         buttonText: "Set Shipping Fees",
+//         image: "shipping.png",
+//         path: "https://payuee.com/e-shop/vendor/update-shipping-fees",
+//     },
+//     {
+//         name: "addProduct",
+//         title: "Add Your First Product",
+//         description: "Showcase your products to millions of customers on Payuee e-Shop.",
+//         buttonText: "Add Product",
+//         image: "add-product.png",
+//         path: "https://payuee.com/e-shop/vendor/add-products",
+//     },
+//     {
+//         name: "customizeStore",
+//         title: "Customize Your Store",
+//         description: "Add your store details, banner, and logo to stand out.",
+//         buttonText: "Customize Store",
+//         image: "customize-store.png",
+//         path: "https://payuee.com/e-shop/vendor/update-store",
+//     },
+//     {
+//         name: "completed",
+//         title: "You're Ready to Go!",
+//         description: "Setup complete! Start selling your products on Payuee e-Shop.",
+//         buttonText: "Go to Dashboard",
+//         image: "success.png",
+//         path: "https://payuee.com/e-shop/vendor/dashboard",
+//     },
+// ];
 
 // let currentStepIndex = 0;
 
-// Show popup for the current step
-function showPopup() {
-    const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
-    const popup = document.querySelector(".popup");
-    document.getElementById("welcomePopup").classList.remove("hidden");
+// // Show popup for the current step
+// function showPopup() {
+//     const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
+//     const popup = document.querySelector(".popup");
+//     document.getElementById("welcomePopup").classList.remove("hidden");
 
-    // Update popup content
-    popup.querySelector("h2").innerText = step.title;
-    popup.querySelector("p").innerText = step.description;
-    popup.querySelector("button").innerText = step.buttonText;
-    popup.querySelector("img").src = step.image;
+//     // Update popup content
+//     popup.querySelector("h2").innerText = step.title;
+//     popup.querySelector("p").innerText = step.description;
+//     popup.querySelector("button").innerText = step.buttonText;
+//     popup.querySelector("img").src = step.image;
 
-    // Dynamically update the button's href attribute
-    var setupLink = document.getElementById("setupLink");
-    setupLink.setAttribute("href", step.path); // Update href dynamically
-}
+//     // Dynamically update the button's href attribute
+//     var setupLink = document.getElementById("setupLink");
+//     setupLink.setAttribute("href", step.path); // Update href dynamically
+// }
 
-// Initialize the process
-document.addEventListener("DOMContentLoaded", () => {
-    const savedStep = localStorage.getItem("setupStep");
-    currentStepIndex = steps.findIndex(step => step.name === savedStep);
+// // Initialize the process
+// document.addEventListener("DOMContentLoaded", () => {
+//     const savedStep = localStorage.getItem("setupStep");
+//     currentStepIndex = steps.findIndex(step => step.name === savedStep);
 
-    if (currentStepIndex === -1) currentStepIndex = 0;
+//     if (currentStepIndex === -1) currentStepIndex = 0;
 
-    if (userData.total_products === 0 && savedStep !== "completed") {
-        showPopup();
-    }
-});
+//     if (userData.total_products === 0 && savedStep !== "completed") {
+//         showPopup();
+//     }
+// });
 
 async function logout() {
     // also send a request to the logout api endpoint
