@@ -19,6 +19,26 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
 
+    if (localStorage.getItem("product") == "one") {
+        // Update popup content by ID
+        document.getElementById("popupTitle").innerText = "Get Started with Shipping Fees";
+        document.getElementById("popupDescription").innerText = "Set the foundation for smooth and hassle-free deliveries. Accurate shipping fees help ensure a great experience for your customers.";
+        document.getElementById("popupImage").src = "shipping.png";
+        document.getElementById("startSetup").textContent = "Continue=>";
+
+        // Show the popup
+        document.getElementById("welcomePopup").classList.remove("hidden");
+
+        // Add event listener for the setup button
+        document.getElementById('startSetup').addEventListener('click', function (e) {
+            e.preventDefault();
+            // Show the popup
+            document.getElementById("welcomePopup").classList.add("hidden");
+            // localStorage.setItem('product', "two");
+            // window.location.href = "add-products.html";
+        });
+    };
+
     getShippingFees();
     await loadStates1();
     await loadStates();
@@ -485,20 +505,20 @@ async function setShippingFees() {
             showToastMessage("Shipping fees updated successfully.");
             // Redirect to the Add Product page
             if (localStorage.getItem("product") == "one") {
-            // Update popup content by ID
-            document.getElementById("popupTitle").innerText = "Add Your First Product";
-            document.getElementById("popupDescription").innerText = "Great job setting up your shipping fees! Now, let's showcase your first product to millions of customers on Payuee e-Shop.";
-            document.getElementById("popupImage").src = "shipping.png";
+                // Update popup content by ID
+                document.getElementById("popupTitle").innerText = "Add Your First Product";
+                document.getElementById("popupDescription").innerText = "Great job setting up your shipping fees! Now, let's showcase your first product to millions of customers on Payuee e-Shop.";
+                document.getElementById("popupImage").src = "shipping.png";
 
-            // Show the popup
-            document.getElementById("welcomePopup").classList.remove("hidden");
+                // Show the popup
+                document.getElementById("welcomePopup").classList.remove("hidden");
 
-            // Add event listener for the setup button
-            document.getElementById('startSetup').addEventListener('click', function (e) {
-                e.preventDefault();
-                localStorage.setItem('product', "two");
-                window.location.href = "add-products.html";
-            });
+                // Add event listener for the setup button
+                document.getElementById('startSetup').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.setItem('product', "two");
+                    window.location.href = "add-products.html";
+                });
             };
         } else {
             const errorData = response; // Handle error if response is not ok
