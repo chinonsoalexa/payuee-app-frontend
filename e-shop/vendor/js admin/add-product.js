@@ -1549,6 +1549,7 @@ function showPopup() {
     // Dynamically update the button's href attribute
     var setupLink = document.getElementById("setupLink");
     setupLink.setAttribute("href", step.path); // Update href dynamically
+    console.log("this is the path: ", step.path);
 }
 
 // Handle the next step
