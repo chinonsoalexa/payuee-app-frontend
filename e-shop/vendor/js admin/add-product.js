@@ -1536,16 +1536,19 @@ let currentStepIndex = 0;
 
 // Show popup for the current step
 function showPopup() {
-    const step = steps[currentStepIndex];
+    const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
     const popup = document.querySelector(".popup");
     document.getElementById("welcomePopup").classList.remove("hidden");
+
+    // Update popup content
     popup.querySelector("h2").innerText = step.title;
     popup.querySelector("p").innerText = step.description;
     popup.querySelector("button").innerText = step.buttonText;
     popup.querySelector("img").src = step.image;
+
+    // Dynamically update the button's href attribute
     var setupLink = document.getElementById("setupLink");
-    setupLink.href = step.path; // Update the href dynamically
-    // setupLink.click(); // Simulate a click on the link
+    setupLink.setAttribute("href", step.path); // Update href dynamically
 }
 
 // Handle the next step
