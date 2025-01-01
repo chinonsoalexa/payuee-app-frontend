@@ -1455,21 +1455,21 @@ async function check_posting_status() {
                 // });
             }
         } else if (localStorage.getItem("product") == "two") {
-            // const step = steps[currentStepIndex]; // Assume `steps` and `currentStepIndex` are predefined
-            const popup = document.querySelector(".popup");
 
-            // Update popup content
-            popup.querySelector("h2").innerText = "Let's add your first product!";
-            popup.querySelector("p").innerText = "Showcase your products to millions of customers on Payuee e-Shop.";
-            popup.querySelector("img").src = "add-product.png";
-            
+            // Update popup content by ID
+            document.getElementById("popupTitle").innerText = "Let's add your first product!";
+            document.getElementById("popupDescription").innerText = "Showcase your products to millions of customers on Payuee e-Shop.";
+            document.getElementById("popupImage").src = "add-product.png";
+
+            // Show the popup
             document.getElementById("welcomePopup").classList.remove("hidden");
 
-            document.getElementById('startSetup').addEventListener('click', function(e) {
+            // Add event listener for the setup button
+            document.getElementById('startSetup').addEventListener('click', function (e) {
                 e.preventDefault();
-                localStorage.setItem("product", "one");
-                window.location.href = "update-shipping-fees";
-            })
+                localStorage.removeItem('product');
+                document.getElementById("productTitle1").focus();
+            });
 
             // swal({
             //     title: "Let's add your first product!",
