@@ -127,7 +127,7 @@ const steps = [
         description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
         buttonText: "Set Shipping Fees",
         image: "shipping.png",
-        path: "update-shipping-fees",
+        path: "https://payuee.com/e-shop/vendor/update-shipping-fees",
     },
     {
         name: "addProduct",
@@ -135,7 +135,7 @@ const steps = [
         description: "Showcase your products to millions of customers on Payuee e-Shop.",
         buttonText: "Add Product",
         image: "add-product.png",
-        path: "add-products",
+        path: "https://payuee.com/e-shop/vendor/add-products",
     },
     {
         name: "customizeStore",
@@ -143,7 +143,7 @@ const steps = [
         description: "Add your store details, banner, and logo to stand out.",
         buttonText: "Customize Store",
         image: "customize-store.png",
-        path: "update-store",
+        path: "https://payuee.com/e-shop/vendor/update-store",
     },
     {
         name: "completed",
@@ -151,7 +151,7 @@ const steps = [
         description: "Setup complete! Start selling your products on Payuee e-Shop.",
         buttonText: "Go to Dashboard",
         image: "success.png",
-        path: "/e-shop/vendor/dashboard",
+        path: "https://payuee.com/e-shop/vendor/dashboard",
     },
 ];
 
