@@ -1543,7 +1543,7 @@ function showPopup() {
     popup.querySelector("p").innerText = step.description;
     popup.querySelector("button").innerText = step.buttonText;
     popup.querySelector("img").src = step.image;
-    const setupLink = document.getElementById("setupLink");
+    var setupLink = document.getElementById("setupLink");
     setupLink.href = step.path; // Update the href dynamically
     // setupLink.click(); // Simulate a click on the link
 }
