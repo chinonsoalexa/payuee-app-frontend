@@ -119,6 +119,80 @@ function initializeDomFeatures(daysRemaining) {
     }
 }
 
+// Steps for the process
+const steps = [
+    {
+        name: "shippingFees",
+        title: "Set Your Shipping Fees",
+        description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
+        buttonText: "Set Shipping Fees",
+        image: "shipping.png",
+        path: "update-shipping-fees",
+    },
+    {
+        name: "addProduct",
+        title: "Add Your First Product",
+        description: "Showcase your products to millions of customers on Payuee e-Shop.",
+        buttonText: "Add Product",
+        image: "add-product.png",
+        path: "add-products",
+    },
+    {
+        name: "customizeStore",
+        title: "Customize Your Store",
+        description: "Add your store details, banner, and logo to stand out.",
+        buttonText: "Customize Store",
+        image: "customize-store.png",
+        path: "update-store",
+    },
+    {
+        name: "completed",
+        title: "You're Ready to Go!",
+        description: "Setup complete! Start selling your products on Payuee e-Shop.",
+        buttonText: "Go to Dashboard",
+        image: "success.png",
+        path: "/e-shop/vendor/dashboard",
+    },
+];
+
+let currentStepIndex = 0;
+
+// Show popup for the current step
+function showPopup() {
+    const step = steps[currentStepIndex];
+    const popup = document.querySelector(".popup");
+    document.getElementById("welcomePopup").classList.remove("hidden");
+    popup.querySelector("h2").innerText = step.title;
+    popup.querySelector("p").innerText = step.description;
+    popup.querySelector("button").innerText = step.buttonText;
+    popup.querySelector("img").src = step.image;
+}
+
+// Handle the next step
+function nextStep(userData) {
+    const step = steps[currentStepIndex];
+    if (step.name === "addProduct" && userData.total_products === 0) {
+        alert("Please add at least one product to proceed.");
+        return;
+    }
+
+    currentStepIndex++;
+    if (currentStepIndex < steps.length) {
+        showPopup();
+    } else {
+        document.getElementById("welcomePopup").classList.add("hidden");
+    }
+
+    // Navigate to the next step path
+    const nextStep = steps[currentStepIndex];
+    if (nextStep) {
+        localStorage.setItem("setupStep", nextStep.name);
+        window.location.href = nextStep.path;
+    } else {
+        localStorage.removeItem("setupStep");
+    }
+}
+
 function redirectToRenewPage() {
     const renewalPageURL = "https://payuee.com/e-shop/pricing"; // Replace with your actual renewal page URL
     window.location.href = renewalPageURL;

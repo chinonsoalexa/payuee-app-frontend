@@ -1452,7 +1452,7 @@ async function check_posting_status() {
 
         document.getElementById('startSetup').addEventListener('click', function(e) {
             e.preventDefault();
-            nextStep(responseData.total_products);
+            nextStep(responseData);
         })
 
         // Update the vendor name immediately if DOM is already loaded
