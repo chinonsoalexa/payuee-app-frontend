@@ -1554,6 +1554,16 @@ function showPopup() {
 
 // Handle the next step
 function nextStep(userData) {
+    const savedStep = localStorage.getItem("setupStep");
+    currentStepIndex = steps.findIndex(step => step.name === savedStep);
+
+    if (currentStepIndex === -1) currentStepIndex = 0;
+
+    if (userData.total_products === 0 && savedStep !== "completed") {
+        showPopup();
+        return;
+    }
+
     const step = steps[currentStepIndex];
     if (step.name === "addProduct" && userData.total_products === 0) {
         showToastMessageE('Please add at least one product to proceed.');
@@ -1578,16 +1588,16 @@ function nextStep(userData) {
 }
 
 // Initialize the process
-document.addEventListener("DOMContentLoaded", () => {
-    const savedStep = localStorage.getItem("setupStep");
-    currentStepIndex = steps.findIndex(step => step.name === savedStep);
+// document.addEventListener("DOMContentLoaded", () => {
+//     const savedStep = localStorage.getItem("setupStep");
+//     currentStepIndex = steps.findIndex(step => step.name === savedStep);
 
-    if (currentStepIndex === -1) currentStepIndex = 0;
+//     if (currentStepIndex === -1) currentStepIndex = 0;
 
-    if (userData.total_products === 0 && savedStep !== "completed") {
-        showPopup();
-    }
-});
+//     if (userData.total_products === 0 && savedStep !== "completed") {
+//         showPopup();
+//     }
+// });
 
 async function logout() {
     // also send a request to the logout api endpoint
