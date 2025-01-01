@@ -1452,8 +1452,10 @@ async function check_posting_status() {
         // }
 
         document.getElementById('startSetup').addEventListener('click', function(e) {
-            e.preventDefault();
-            nextStep(responseData);
+            if (!this.href) {
+                e.preventDefault(); // Only prevent default if `href` is not set
+                nextStep(responseData);
+            }
         })
 
         // Update the vendor name immediately if DOM is already loaded
@@ -1561,30 +1563,26 @@ function nextStep(userData) {
     if (currentStepIndex === -1) currentStepIndex = 0;
 
     if (userData.total_products === 0 && savedStep !== "completed") {
-        showPopup();
+        showPopup(); // Show the popup for the first step
         return;
     }
 
-    const step = steps[currentStepIndex];
-    if (step.name === "addProduct" && userData.total_products === 0) {
-        showToastMessageE('Please add at least one product to proceed.');
-        return;
-    }
-
+    // Increment step
     currentStepIndex++;
     if (currentStepIndex < steps.length) {
-        showPopup();
-    } else {
-        document.getElementById("welcomePopup").classList.add("hidden");
-    }
-
-    // Navigate to the next step path
-    const nextStep = steps[currentStepIndex];
-    if (nextStep) {
+        const nextStep = steps[currentStepIndex];
         localStorage.setItem("setupStep", nextStep.name);
-        window.location.href = nextStep.path;
+
+        // Show updated popup
+        showPopup();
+
+        // Redirect after showing the popup (optional delay)
+        setTimeout(() => {
+            window.location.href = nextStep.path;
+        }, 2000); // Redirect after 2 seconds
     } else {
         localStorage.removeItem("setupStep");
+        document.getElementById("welcomePopup").classList.add("hidden");
     }
 }
 
