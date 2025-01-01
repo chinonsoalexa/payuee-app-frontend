@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById("popupTitle").innerText = "Get Started with Shipping Fees";
         document.getElementById("popupDescription").innerText = "Set the foundation for smooth and hassle-free deliveries. Accurate shipping fees help ensure a great experience for your customers.";
         document.getElementById("popupImage").src = "shipping.png";
-        document.getElementById("startSetup").textContent = "Continue=>";
+        document.getElementById("startSetup").textContent = "Continue";
 
         // Show the popup
         document.getElementById("welcomePopup").classList.remove("hidden");
