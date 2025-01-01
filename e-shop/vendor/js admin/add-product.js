@@ -1452,10 +1452,8 @@ async function check_posting_status() {
         // }
 
         document.getElementById('startSetup').addEventListener('click', function(e) {
-            if (!this.href) {
-                e.preventDefault(); // Only prevent default if `href` is not set
-                nextStep(responseData);
-            }
+            e.preventDefault(); // Only prevent default if `href` is not set
+            nextStep(responseData);
         })
 
         // Update the vendor name immediately if DOM is already loaded
@@ -1560,15 +1558,6 @@ function showPopup() {
 
 // Handle the next step
 function nextStep(userData) {
-    const savedStep = localStorage.getItem("setupStep");
-    currentStepIndex = steps.findIndex(step => step.name === savedStep);
-
-    if (currentStepIndex === -1) currentStepIndex = 0;
-
-    if (userData.total_products === 0 && savedStep !== "completed") {
-        showPopup(); // Show the popup for the first step
-        return;
-    }
 
     // Increment step
     currentStepIndex++;
@@ -1590,16 +1579,16 @@ function nextStep(userData) {
 }
 
 // Initialize the process
-// document.addEventListener("DOMContentLoaded", () => {
-//     const savedStep = localStorage.getItem("setupStep");
-//     currentStepIndex = steps.findIndex(step => step.name === savedStep);
+document.addEventListener("DOMContentLoaded", () => {
+    const savedStep = localStorage.getItem("setupStep");
+    currentStepIndex = steps.findIndex(step => step.name === savedStep);
 
-//     if (currentStepIndex === -1) currentStepIndex = 0;
+    if (currentStepIndex === -1) currentStepIndex = 0;
 
-//     if (userData.total_products === 0 && savedStep !== "completed") {
-//         showPopup();
-//     }
-// });
+    if (userData.total_products === 0 && savedStep !== "completed") {
+        showPopup();
+    }
+});
 
 async function logout() {
     // also send a request to the logout api endpoint
