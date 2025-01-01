@@ -29,20 +29,23 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Show the popup
         document.getElementById("welcomePopup").classList.remove("hidden");
 
-        // Add event listener for the setup button
-        document.getElementById('startSetup').addEventListener('click', function (e) {
-            e.preventDefault();
-            // Show the popup
-            document.getElementById("welcomePopup").classList.add("hidden");
-            // localStorage.setItem('product', "two");
-            // window.location.href = "add-products.html";
-        });
+        // Reference the button
+        const startSetupButton = document.getElementById('startSetup');
+
+        // Add and Remove event listener for the setup button
+        // startSetupButton.removeEventListener('click', setupShippingFees1);
+        startSetupButton.addEventListener('click', setupShippingFees1);
     };
 
     getShippingFees();
     await loadStates1();
     await loadStates();
 });
+
+function setupShippingFees1(e) {
+    e.preventDefault();
+    document.getElementById("welcomePopup").classList.add("hidden");
+}
 
 document.getElementById('validationCustom01').addEventListener('input', function(event) { 
     const shippingFeePerKm = event.target.value
@@ -513,12 +516,12 @@ async function setShippingFees() {
                 // Show the popup
                 document.getElementById("welcomePopup").classList.remove("hidden");
 
-                // Add event listener for the setup button
-                document.getElementById('startSetup').addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.setItem('product', "two");
-                    window.location.href = "add-products.html";
-                });
+                // Reference the button
+                const startSetupButton = document.getElementById('startSetup');
+
+                // Add and Remove event listener for the setup button
+                startSetupButton.removeEventListener('click', setupShippingFees1);
+                startSetupButton.addEventListener('click', setupShippingFees2);
             };
         } else {
             const errorData = response; // Handle error if response is not ok
@@ -530,6 +533,12 @@ async function setShippingFees() {
     .catch((error) => {
         console.error('Error:', error);
     });
+}
+
+function setupShippingFees2(e) {
+    e.preventDefault();
+    localStorage.setItem('product', "two");
+    window.location.href = "add-products.html";
 }
 
 async function getShippingFees() {
