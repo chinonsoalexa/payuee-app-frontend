@@ -1545,7 +1545,7 @@ function showPopup() {
     popup.querySelector("img").src = step.image;
     const setupLink = document.getElementById("setupLink");
     setupLink.href = step.path; // Update the href dynamically
-    setupLink.click(); // Simulate a click on the link
+    // setupLink.click(); // Simulate a click on the link
 }
 
 // Handle the next step
