@@ -1420,6 +1420,7 @@ async function check_posting_status() {
             document.getElementById("generateDescriptionAI").style.display = "block";
             document.getElementById("generateTagAI").style.display = "block";
         }
+        
         // if (localStorage.getItem("product") != "two") {
         //     if (responseData.total_products < 1) {
         //         swal({
