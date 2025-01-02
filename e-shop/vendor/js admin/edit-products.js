@@ -76,7 +76,7 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
             // If there are no products, show a message to encourage the user to post a product
-        if (!responseData.success) {
+        if (Array.isArray(responseData.success) && responseData.success.length === 0) {
             const noProductsMessage = document.createElement('div');
             noProductsMessage.classList.add('no-products-message');
             noProductsMessage.innerHTML = `
@@ -85,12 +85,12 @@ async function getProducts(pageNumber) {
                 <a href="add-product.html" class="btn btn-primary">Post Your First Product</a>
             `;
             productBody.appendChild(noProductsMessage);
+        } else {
+            responseData.success.forEach((product) => {
+                product.product_review_count = 6500;
+                renderProducts(product,);
+            });
         }
-
-        responseData.success.forEach((product) => {
-            product.product_review_count = 6500;
-            renderProducts(product,);
-        });
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
