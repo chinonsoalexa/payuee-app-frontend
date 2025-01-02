@@ -296,15 +296,6 @@ function storeSeo(storeData) {
     ogUrl.setAttribute('content', window.location.href);
     head.appendChild(ogUrl);
 
-    // Dynamically add the image to the page
-    // const body = document.body;
-    // const bannerImage = document.createElement('img');
-    // bannerImage.src = "https://payuee.com/image/" + storeData.shop_image;
-    // bannerImage.alt = storeData.shop_name + "'s Store Banner";
-    // bannerImage.classList.add('store-banner');
-    // body.insertBefore(bannerImage, body.firstChild); // Add image at the top of the body
-
-    console.log('SEO meta tags and banner image added successfully');
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
