@@ -243,7 +243,7 @@ function fillForm(storeData) {
 
     const shareStoreBtn = document.getElementById("shareStoreBtn");
     shareStoreBtn.addEventListener('click', function () {
-        const userShopUrl = `https://payuee.com/store/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
+        const userShopUrl = `https://payuee.com/store/v/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out ${storeData.shop_name} on Payuee e-Shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
