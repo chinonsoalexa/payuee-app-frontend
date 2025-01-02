@@ -255,7 +255,6 @@ function renderEmptyOrderHistory() {
             navigator.share({
                 title: 'Check Out My Payuee Shop!',
                 text: shareContent,
-                url: userShopUrl,
             }).catch((error) => console.error('Error sharing:', error));
         } else {
             // Fallback for browsers without Web Share API
