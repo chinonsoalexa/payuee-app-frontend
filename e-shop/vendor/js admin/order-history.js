@@ -78,7 +78,7 @@ async function getProducts(pageNumber) {
             // Clear existing content if needed or check if empty
         if (Array.isArray(responseData.success) && responseData.success.length === 0) {
             console.log("array empty");
-            renderEmptyOrderHistory();
+            renderEmptyOrderHistory(responseData.store);
             // return;
         } else {
             console.log("array not empty");
@@ -222,7 +222,7 @@ function getProductStatus(product) {
     return productStatus;
 }
 
-function renderEmptyOrderHistory() {
+function renderEmptyOrderHistory(store) {
     const productBody = document.getElementById('order-grid');
     
     // Clear the existing content
@@ -245,7 +245,7 @@ function renderEmptyOrderHistory() {
     // Add event listener for the share button
     const shareButton = document.getElementById('shareStoreButton');
     shareButton.addEventListener('click', function () {
-        const userShopUrl = "https://payuee.com/e-shop/vendor/your-shop"; // Replace with dynamic URL for user's shop
+        const userShopUrl = "https://payuee.com/e-shop/vendor/store"; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out my Payuee shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
