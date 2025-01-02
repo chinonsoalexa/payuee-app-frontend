@@ -299,8 +299,8 @@ function storeSeo(storeData) {
     // Dynamically add the image to the page
     const body = document.body;
     const bannerImage = document.createElement('img');
-    bannerImage.src = data.imageUrl;
-    bannerImage.alt = "Vendor's Store Banner";
+    bannerImage.src = "https://payuee.com/image/" + storeData.shop_image;
+    bannerImage.alt = storeData.shop_name + "'s Store Banner";
     bannerImage.classList.add('store-banner');
     body.insertBefore(bannerImage, body.firstChild); // Add image at the top of the body
 
