@@ -77,6 +77,7 @@ async function getProducts(pageNumber) {
         clearElementsByClass();
             // If there are no products, show a message to encourage the user to post a product
         if (Array.isArray(responseData.success) && responseData.success.length === 0) {
+            console.log("array empty");
             const noProductsMessage = document.createElement('div');
             noProductsMessage.classList.add('no-products-message');
             noProductsMessage.innerHTML = `
@@ -86,6 +87,7 @@ async function getProducts(pageNumber) {
             `;
             productBody.appendChild(noProductsMessage);
         } else {
+            console.log("array not empty");
             responseData.success.forEach((product) => {
                 product.product_review_count = 6500;
                 renderProducts(product,);

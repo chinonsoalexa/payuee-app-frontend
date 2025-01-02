@@ -77,9 +77,11 @@ async function getProducts(pageNumber) {
         clearElementsByClass();
             // Clear existing content if needed or check if empty
         if (Array.isArray(responseData.success) && responseData.success.length === 0) {
+            console.log("array empty");
             renderEmptyOrderHistory();
             // return;
         } else {
+            console.log("array not empty");
             responseData.success.forEach((product) => {
                 // product.product_review_count = 6500;
                 renderProducts(product);
