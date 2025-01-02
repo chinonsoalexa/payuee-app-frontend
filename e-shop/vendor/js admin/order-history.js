@@ -232,12 +232,10 @@ function renderEmptyOrderHistory() {
     const emptyMessage = document.createElement('div');
     emptyMessage.classList.add('empty-order-message');
     emptyMessage.innerHTML = `
-        <div class="alert alert-info text-center">
             <h5>Your store is waiting for its first order!</h5>
             <p>Why not refer buyers to your store and let them discover your amazing products?</p>
             <p>Invite buyers to visit your store and place their first order today!</p>
             <p><a href="/refer-buyers" class="btn btn-primary">Refer Buyers to Your Store</a></p>
-        </div>
     `;
 
     // Append the message to the container
