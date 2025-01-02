@@ -85,6 +85,7 @@ async function getProducts(pageNumber) {
             const noProductsMessage = document.createElement('div');
             noProductsMessage.classList.add('no-products-message');
             noProductsMessage.innerHTML = `
+                <img src="customize-store.png" alt="Welcome to Your Store" style="width: 100%; max-width: 300px; margin-bottom: 20px;">
                 <h5>No products available yet.</h5>
                 <p>It looks like you haven't listed any products in your store. To get started, let's post your first product!</p>
                 <a href="add-product.html" class="btn btn-primary">Post Your First Product</a>
