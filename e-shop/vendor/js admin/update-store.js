@@ -240,6 +240,8 @@ function fillForm(storeData) {
     visitStoreBtn.addEventListener("click", function() {
         window.location.href = "https://payuee.com/store/" + storeData.store_unique_url;
     });
+
+    
 }
 
 const phoneInput = document.getElementById("companyPhone");
