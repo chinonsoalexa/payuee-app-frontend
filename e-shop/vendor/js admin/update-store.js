@@ -241,7 +241,24 @@ function fillForm(storeData) {
         window.location.href = "https://payuee.com/store/" + storeData.store_unique_url;
     });
 
-    
+    const shareStoreBtn = document.getElementById("shareStoreBtn");
+    shareStoreBtn.addEventListener('click', function () {
+        const userShopUrl = `https://payuee.com/store/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
+        const shareContent = `
+            Check out my Payuee shop! Discover amazing products and place your orders here: ${userShopUrl}
+        `;
+
+        if (navigator.share) {
+            // Use Web Share API if available
+            navigator.share({
+                title: 'Check Out My Payuee Shop!',
+                text: shareContent,
+            }).catch((error) => console.error('Error sharing:', error));
+        } else {
+            // Fallback for browsers without Web Share API
+            alert(`Share this link with your friends: ${userShopUrl}`);
+        }
+    });
 }
 
 const phoneInput = document.getElementById("companyPhone");
