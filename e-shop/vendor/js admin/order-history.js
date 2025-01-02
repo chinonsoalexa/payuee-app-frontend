@@ -76,14 +76,15 @@ async function getProducts(pageNumber) {
         // Clear specific elements by class name before updating
         clearElementsByClass();
             // Clear existing content if needed or check if empty
-        if (!responseData.success) {
+        if (Array.isArray(responseData.success) && responseData.success.length === 0) {
             renderEmptyOrderHistory();
             return;
+        } else {
+            responseData.success.forEach((product) => {
+                // product.product_review_count = 6500;
+                renderProducts(product);
+            });
         }
-        responseData.success.forEach((product) => {
-            // product.product_review_count = 6500;
-            renderProducts(product);
-        });
         
         NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
