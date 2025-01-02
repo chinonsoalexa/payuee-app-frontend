@@ -232,15 +232,36 @@ function renderEmptyOrderHistory() {
     const emptyMessage = document.createElement('div');
     emptyMessage.classList.add('empty-order-message');
     emptyMessage.innerHTML = `
-            <img src="shipping.png" alt="Welcome to Your Store" style="width: 100%; max-width: 300px; margin-bottom: 20px;">
-            <h5>Your store is waiting for its first order!</h5>
-            <p>Why not refer buyers to your store and let them discover your amazing products?</p>
-            <p>Invite buyers to visit your store and place their first order today!</p>
-            <p><a href="/refer-buyers" class="btn btn-primary">Refer Buyers to Your Store</a></p>
+        <img src="shipping.png" alt="Welcome to Your Store" style="width: 100%; max-width: 300px; margin-bottom: 20px;">
+        <h5>Your store is waiting for its first order!</h5>
+        <p>Why not refer buyers to your store and let them discover your amazing products?</p>
+        <p>Invite buyers to visit your store and place their first order today!</p>
+        <button id="shareStoreButton" class="btn btn-primary">Share Your Store</button>
     `;
 
     // Append the message to the container
     productBody.appendChild(emptyMessage);
+
+    // Add event listener for the share button
+    const shareButton = document.getElementById('shareStoreButton');
+    shareButton.addEventListener('click', function () {
+        const userShopUrl = "https://payuee.com/e-shop/vendor/your-shop"; // Replace with dynamic URL for user's shop
+        const shareContent = `
+            Check out my Payuee shop! Discover amazing products and place your orders here: ${userShopUrl}
+        `;
+
+        if (navigator.share) {
+            // Use Web Share API if available
+            navigator.share({
+                title: 'Check Out My Payuee Shop!',
+                text: shareContent,
+                url: userShopUrl,
+            }).catch((error) => console.error('Error sharing:', error));
+        } else {
+            // Fallback for browsers without Web Share API
+            alert(`Share this link with your friends: ${userShopUrl}`);
+        }
+    });
 }
 
 function renderProducts(product) {
