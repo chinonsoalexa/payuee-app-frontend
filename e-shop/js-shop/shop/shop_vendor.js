@@ -101,6 +101,8 @@ async function getProducts() {
             "https://payuee.com/image/" + responseData.vendor.shop_image
         );
 
+        storeSeo(responseData.vendor);
+
         // updateProductsFromData(responseData.success);
         // Clear specific elements by class name before updating
         document.getElementById('products-grid').innerHTML = '';
@@ -265,6 +267,44 @@ async function getProducts() {
     } finally {
 
     }
+}
+
+function storeSeo(storeData) {
+    // Update the meta tags for SEO
+    const head = document.head;
+
+    const ogImage = document.createElement('meta');
+    ogImage.setAttribute('property', 'og:image');
+    ogImage.setAttribute('content', "https://payuee.com/image/" + storeData.shop_image);
+    head.appendChild(ogImage);
+
+    const ogTitle = document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.setAttribute('content', storeData.shop_name + "'s Store | Payuee e-Shop");
+    head.appendChild(ogTitle);
+
+    const ogDescription = document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.setAttribute(
+      'content',
+      `Visit ${storeData.shop_name} on Payuee e-Shop to explore amazing products!`
+    );
+    head.appendChild(ogDescription);
+
+    const ogUrl = document.createElement('meta');
+    ogUrl.setAttribute('property', 'og:url');
+    ogUrl.setAttribute('content', window.location.href);
+    head.appendChild(ogUrl);
+
+    // Dynamically add the image to the page
+    const body = document.body;
+    const bannerImage = document.createElement('img');
+    bannerImage.src = data.imageUrl;
+    bannerImage.alt = "Vendor's Store Banner";
+    bannerImage.classList.add('store-banner');
+    body.insertBefore(bannerImage, body.firstChild); // Add image at the top of the body
+
+    console.log('SEO meta tags and banner image added successfully');
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
