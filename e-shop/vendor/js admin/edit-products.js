@@ -88,7 +88,7 @@ async function getProducts(pageNumber) {
                 <img src="customize-store.png" alt="Welcome to Your Store" style="width: 100%; max-width: 300px; margin-bottom: 20px;">
                 <h5>No products available yet.</h5>
                 <p>It looks like you haven't listed any products in your store. To get started, let's post your first product!</p>
-                <a href="add-product.html" class="btn btn-primary">Post Your First Product</a>
+                <a href="add-products.html" class="btn btn-primary">Post Your First Product</a>
             `;
             productBody.appendChild(noProductsMessage);
         } else {
