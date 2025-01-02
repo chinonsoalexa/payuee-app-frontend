@@ -245,13 +245,13 @@ function fillForm(storeData) {
     shareStoreBtn.addEventListener('click', function () {
         const userShopUrl = `https://payuee.com/store/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
         const shareContent = `
-            Check out my Payuee shop! Discover amazing products and place your orders here: ${userShopUrl}
+            Check out ${storeData.shop_name} on Payuee e-Shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
 
         if (navigator.share) {
             // Use Web Share API if available
             navigator.share({
-                title: 'Check Out My Payuee Shop!',
+                title: `Check Out ${storeData.shop_name} On Payuee e-Shop!`,
                 text: shareContent,
             }).catch((error) => console.error('Error sharing:', error));
         } else {
