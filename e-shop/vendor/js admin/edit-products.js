@@ -78,6 +78,10 @@ async function getProducts(pageNumber) {
             // If there are no products, show a message to encourage the user to post a product
         if (Array.isArray(responseData.success) && responseData.success.length === 0) {
             console.log("array empty");
+            const productBody = document.getElementById('order-grid');
+    
+            // Clear the existing content
+            productBody.innerHTML = '';
             const noProductsMessage = document.createElement('div');
             noProductsMessage.classList.add('no-products-message');
             noProductsMessage.innerHTML = `
