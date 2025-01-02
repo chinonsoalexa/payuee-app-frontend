@@ -1435,11 +1435,11 @@ async function check_posting_status() {
 
         const responseData = await response.json(); // Parse response JSON
         // Only update if we already have the vendor name from the API response
-        if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
-            // Display the buttons
-            document.getElementById("generateDescriptionAI").style.display = "block";
-            document.getElementById("generateTagAI").style.display = "block";
-        }
+        // if (responseData.store_details.subscription_type == "premium" && responseData.store_details.active) {
+        //     // Display the buttons
+        //     document.getElementById("generateDescriptionAI").style.display = "block";
+        //     document.getElementById("generateTagAI").style.display = "block";
+        // }
 
         if (localStorage.getItem("product") != "two") {
             if (responseData.total_products < 1) {
