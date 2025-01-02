@@ -245,7 +245,7 @@ function renderEmptyOrderHistory(store) {
     // Add event listener for the share button
     const shareButton = document.getElementById('shareStoreButton');
     shareButton.addEventListener('click', function () {
-        const userShopUrl = "https://payuee.com/e-shop/vendor/store"; // Replace with dynamic URL for user's shop
+        const userShopUrl = `https://payuee.com/store/${store}`; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out my Payuee shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
