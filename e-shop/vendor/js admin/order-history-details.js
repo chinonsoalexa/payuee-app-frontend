@@ -157,7 +157,7 @@ async function getProducts(OrderId) {
                 event.preventDefault();
                 
                 if (this.textContent === "Assign Shipping") {
-                    // Perform the action for 'Ship' button
+                    // Perform the action for 'Assign Shipping' button
                     updateOrderStatus(responseData.success.ID, 'shipped');
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
@@ -219,7 +219,7 @@ function renderProducts(product) {
 }
 
 async function updateOrderStatus(orderID, orderStatus) {
-    const apiUrl = "https://api.payuee.com/update-dorng-status";
+    const apiUrl = "https://api.payuee.com/update-vendor-status";
 
     // Construct the request body
     const requestBody = {
