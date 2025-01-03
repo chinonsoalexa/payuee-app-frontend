@@ -1132,6 +1132,24 @@ function renderRecommendedProduct(products) {
     rowElement.classList.add('swiper-slide', 'product-card'); 
     // rowElement.id = product.ID;
 
+    let urll = ""
+
+    if (product.category == "outfits") {
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
+    } else if (product.category == "jewelry") {
+        urll = "https://payuee.com/jewelry/v/" + product.product_url_id;
+    } else if (product.category == "kids-accessories") {
+        urll = "https://payuee.com/kids/v/" + product.product_url_id;
+    } else if (product.category == "cars-car-parts") {
+        urll = "https://payuee.com/cars/v/" + product.product_url_id;
+    } else if (product.category == "tools") {
+        urll = "https://payuee.com/tools/v/" + product.product_url_id;
+    } else if (product.category == "gadgets") {
+        urll = "https://payuee.com/gadgets/v/" + product.product_url_id;
+    } else if (product.category == "others") {
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
+    }
+    
     // Determine if the button should be disabled and what text to display
     const isOutOfStock = product.stock_remaining === 0;
     // const isOutOfStock = 7 === 0;
@@ -1142,14 +1160,14 @@ function renderRecommendedProduct(products) {
     <div class="pc__img-wrapper">
         <a href="https://payuee.com/outfits/${product.product_url_id}">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="urll && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
                 class="pc__img" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="urll && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 

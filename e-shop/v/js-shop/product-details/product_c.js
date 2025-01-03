@@ -1194,14 +1194,14 @@ function renderRecommendedProduct(products) {
     <div class="pc__img-wrapper">
         <a href="${urll}">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="urll && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
                 class="pc__img" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="urll && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
