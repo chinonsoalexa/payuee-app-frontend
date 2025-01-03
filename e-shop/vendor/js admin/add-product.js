@@ -885,9 +885,9 @@ function extractFormData() {
     //     discountType = discountRadio.value;
     // } else {
         if (initialCost == sellingPrice) {
-            discountType = "fixed-price";
+            discountType = "fixed-price";  // If prices are the same, it's a fixed price
         } else {
-            discountType = "percentage-based";
+            discountType = "percentage-based";  // Otherwise, it's percentage-based discount
         }
     }
 
