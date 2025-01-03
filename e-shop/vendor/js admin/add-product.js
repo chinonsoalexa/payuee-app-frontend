@@ -165,6 +165,24 @@ submitButton.addEventListener('click', async function (event) {
     });
 });
 
+// Function to reset the selected sizes for clothing and shoes
+function resetSelectedSizes() {
+    // Clear the selectedSizes object for both categories
+    selectedSizes.clothing = '';
+    selectedSizes.shoes = '';
+
+    // Uncheck all size checkboxes for clothing and shoes
+    document.querySelectorAll('#outfitSizeSection input[name="size"]').forEach(input => {
+        input.checked = false;
+    });
+    document.querySelectorAll('#shoeSizeSection input[name="size"]').forEach(input => {
+        input.checked = false;
+    });
+
+    // Optional: Log the reset for debugging
+    // console.log('Selected sizes have been reset:', selectedSizes);
+}
+
 // Function to update selected sizes for clothing or shoes
 function updateSelectedSizes(e, category) {
     const value = e.target.value;
@@ -1133,6 +1151,8 @@ function clearFields() {
     editor.innerText = "";
 
     removeAllUploadedImages();
+
+    resetSelectedSizes();
 
     // Clear Initial Cost
     let initialCostInput = document.getElementById('initialCost');
