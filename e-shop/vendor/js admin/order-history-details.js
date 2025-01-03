@@ -158,7 +158,7 @@ async function getProducts(OrderId) {
                 
                 if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Assign Shipping' button
-                    updateOrderStatus(responseData.success.ID, 'shipped');
+                    // updateOrderStatus(responseData.success.ID, 'shipped');
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
                     updateOrderStatus(responseData.success.ID, 'cancelled');
