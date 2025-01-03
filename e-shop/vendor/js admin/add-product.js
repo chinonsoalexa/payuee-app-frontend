@@ -890,6 +890,35 @@ function extractFormData() {
     };
 }
 
+function extractFormData() {
+    const form = document.querySelector('.price-wrapper');
+
+    initialCost = parseFloat(form.querySelector('#initialCost').value);
+    sellingPrice = parseFloat(form.querySelector('#sellingPrice').value);
+    currency = form.querySelector('select').value;
+    productStock = parseInt(form.querySelector('#productStock1').value, 10);
+
+    // Check if a radio button is selected before accessing its value
+    const discountRadio = document.querySelector('input[name="productDiscountType"]:checked');
+    if (discountRadio) {
+        discountType = discountRadio.value;
+    } else {
+        if (initialCost == sellingPrice) {
+            discountType = "fixed-price";
+        } else {
+            discountType = "percentage-based";
+        }
+    }
+
+    return {
+        initialCost,
+        sellingPrice,
+        currency,
+        productStock,
+        discountType
+    };
+}
+
 function validateFields() {
     let isValid = true;
 
