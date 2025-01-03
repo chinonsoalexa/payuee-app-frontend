@@ -260,7 +260,7 @@ async function postProduct() {
         } else {
             
             const result = await response.json();
-            showToastMessageS("Product posted successfully")
+            showToastMessageS("Product uploaded successfully")
 
             clearFields();
             // Enable the button again after the operation
