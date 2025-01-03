@@ -207,6 +207,7 @@ function updateSelectedSizes(e, category) {
 // }
 
 async function postProduct() {
+    showToastMessageS("Uploading product...")
     // Create a new FormData object
     const formData = new FormData();
     calculateOverallQuality();
