@@ -882,8 +882,8 @@ function extractFormData() {
     // Check if a radio button is selected before accessing its value
     const discountRadio = document.querySelector('input[name="productDiscountType"]:checked');
     if (discountRadio) {
-        discountType = discountRadio.value;
-    } else {
+    //     discountType = discountRadio.value;
+    // } else {
         if (initialCost == sellingPrice) {
             discountType = "fixed-price";
         } else {
