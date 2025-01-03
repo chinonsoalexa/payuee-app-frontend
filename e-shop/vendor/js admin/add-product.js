@@ -298,6 +298,24 @@ async function postProduct() {
     }
 }
 
+// Function to remove all images from Dropzone and the imageArray
+function removeAllUploadedImages() {
+    // Access the Dropzone instance (multiFileUploadA)
+    const dropzoneInstance = Dropzone.forElement("#multiFileUploadA");
+
+    // Loop through each file in the Dropzone queue
+    dropzoneInstance.files.forEach(function (file) {
+        // Remove the file from the Dropzone UI
+        dropzoneInstance.removeFile(file);
+
+        // Remove the file from the imageArray
+        const index = imageArray.indexOf(file);
+        if (index > -1) {
+            imageArray.splice(index, 1);
+        }
+    });
+}
+
 // Initialize space to upload images
 function initializeDropzone() {
     // Initialize Dropzone
@@ -1113,6 +1131,8 @@ function clearFields() {
     // Clear Description
     let editor = document.getElementById('editor2');
     editor.innerText = "";
+
+    removeAllUploadedImages();
 
     // Clear Initial Cost
     let initialCostInput = document.getElementById('initialCost');
