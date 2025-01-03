@@ -131,15 +131,18 @@ async function getProducts(OrderId) {
                 `;
                 break;
             case 'cancelled':
+                // content = `
+                //     <td class="text-end" colspan="5"><a class="deactivated btn btn-secondary cart-btn-transform" href="#">Cancelled</a></td>
+                //     <td><a class="btn btn-success cart-btn-transform" href="#">Ship</a></td>
+                // `;
                 content = `
-                    <td class="text-end" colspan="5"><a class="deactivated btn btn-secondary cart-btn-transform" href="#">Cancelled</a></td>
-                    <td><a class="btn btn-success cart-btn-transform" href="#">Ship</a></td>
+                   
                 `;
                 break;
             default:
                 content = `
                     <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform" href="#">Cancel</a></td>
-                    <td><a class="btn btn-success cart-btn-transform" href="#">Ship</a></td>
+                    <td><a class="btn btn-success cart-btn-transform" href="#">Assign Shipping</a></td>
                 `;
                 break;
         }
