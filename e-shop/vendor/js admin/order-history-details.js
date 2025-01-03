@@ -136,7 +136,7 @@ async function getProducts(OrderId) {
                 //     <td><a class="btn btn-success cart-btn-transform" href="#">Ship</a></td>
                 // `;
                 content = `
-                   
+                    <td class="text-end" colspan="5"><a class="deactivated btn btn-secondary cart-btn-transform" href="#">Cancelled</a></td>
                 `;
                 break;
             default:
@@ -156,7 +156,7 @@ async function getProducts(OrderId) {
             button.addEventListener('click', async function(event) {
                 event.preventDefault();
                 
-                if (this.textContent === "Ship") {
+                if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Ship' button
                     updateOrderStatus(responseData.success.ID, 'shipped');
                 } else if (this.textContent === "Cancel") {
