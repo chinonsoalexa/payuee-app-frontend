@@ -871,25 +871,6 @@ function getFormData() {
     return formData;
 }
 
-// function to get product discount status
-function extractFormData() {
-    const form = document.querySelector('.price-wrapper');
-
-    initialCost = parseFloat(form.querySelector('#initialCost').value);
-    sellingPrice = parseFloat(form.querySelector('#sellingPrice').value);
-    currency = form.querySelector('select').value;
-    productStock = parseInt(form.querySelector('#productStock1').value, 10);
-    discountType = document.querySelector('input[name="productDiscountType"]:checked').value;
-
-    return {
-        initialCost,
-        sellingPrice,
-        currency,
-        productStock,
-        discountType
-    };
-}
-
 function extractFormData() {
     const form = document.querySelector('.price-wrapper');
 
