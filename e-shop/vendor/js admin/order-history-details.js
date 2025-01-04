@@ -272,7 +272,6 @@ async function getAvailableVendorsByEail(query) {
                 vendorDiv.addEventListener("click", function () {
                   selectedVendorInput.value = vendor;
                   searchResults.innerHTML = "";
-                //   closePopup();
                 });
                 searchResults.appendChild(vendorDiv);
             });
