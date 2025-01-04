@@ -190,9 +190,9 @@ function shippingPopupAssignment() {
     ];
 
     // Show Popup
-    function showPopup() {
+    // function showPopup() {
       popup.classList.remove("hidden");
-    }
+    // }
 
     // Close Popup
     function closePopup() {
