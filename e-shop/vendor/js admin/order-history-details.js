@@ -207,9 +207,11 @@ function shippingPopupAssignment() {
       const query = searchBar.value.toLowerCase();
       searchResults.innerHTML = "";
       if (query) {
+
         const filteredVendors = vendors.filter(vendor =>
           vendor.name.toLowerCase().includes(query)
         );
+
         filteredVendors.forEach(vendor => {
           const vendorDiv = document.createElement("div");
           vendorDiv.textContent = vendor.name;
@@ -226,6 +228,7 @@ function shippingPopupAssignment() {
     addVendorButton.addEventListener("click", function () {
       const selectedVendor = selectedVendorInput.value;
       if (selectedVendor) {
+        closePopup();
         alert(`${selectedVendor} has been granted access.`);
         closePopup();
       } else {
@@ -235,6 +238,36 @@ function shippingPopupAssignment() {
 
     // Close Popup Button
     closePopupButton.addEventListener("click", closePopup);
+}
+
+async function getAvailableVendorsByEail(query) {
+    // Endpoint URL
+    const apiUrl = "https://api.payuee.com/search-vendors/" + query;
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',  // Include cookies with the request
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+            const data = await response.json();
+            // showToastMessageE(`response: ${data}`);
+            return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+            renderSearch2(data.success);
+        }
+
+    } catch (error) {
+        console.error('Error fetching search details: ', error);
+    }
 }
 
 // Add download functionality to the button
