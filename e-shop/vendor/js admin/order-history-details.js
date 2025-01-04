@@ -159,6 +159,8 @@ async function getProducts(OrderId) {
                 if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Assign Shipping' button
                     // updateOrderStatus(responseData.success.ID, 'shipped');
+                    shippingPopupAssignment();
+                    showPopup();
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
@@ -169,6 +171,70 @@ async function getProducts(OrderId) {
 } finally {
 
     }
+}
+
+function shippingPopupAssignment() {
+    const popup = document.getElementById("vendorAccessPopup");
+    const searchBar = document.getElementById("vendorSearchBar");
+    const searchResults = document.getElementById("searchResults");
+    const selectedVendorInput = document.getElementById("selectedVendorInput");
+    const addVendorButton = document.getElementById("addVendorButton");
+    const closePopupButton = document.getElementById("closePopupButton");
+
+    // Mock vendor data
+    const vendors = [
+      { id: 1, name: "Vendor One" },
+      { id: 2, name: "Vendor Two" },
+      { id: 3, name: "Vendor Three" },
+      { id: 4, name: "Vendor Four" },
+    ];
+
+    // Show Popup
+    function showPopup() {
+      popup.classList.remove("hidden");
+    }
+
+    // Close Popup
+    function closePopup() {
+      popup.classList.add("hidden");
+      selectedVendorInput.value = "";
+      searchResults.innerHTML = "";
+      searchBar.value = "";
+    }
+
+    // Search Vendors
+    searchBar.addEventListener("input", function () {
+      const query = searchBar.value.toLowerCase();
+      searchResults.innerHTML = "";
+      if (query) {
+        const filteredVendors = vendors.filter(vendor =>
+          vendor.name.toLowerCase().includes(query)
+        );
+        filteredVendors.forEach(vendor => {
+          const vendorDiv = document.createElement("div");
+          vendorDiv.textContent = vendor.name;
+          vendorDiv.dataset.id = vendor.id;
+          vendorDiv.addEventListener("click", function () {
+            selectedVendorInput.value = vendor.name;
+          });
+          searchResults.appendChild(vendorDiv);
+        });
+      }
+    });
+
+    // Add Vendor Button
+    addVendorButton.addEventListener("click", function () {
+      const selectedVendor = selectedVendorInput.value;
+      if (selectedVendor) {
+        alert(`${selectedVendor} has been granted access.`);
+        closePopup();
+      } else {
+        alert("Please select a vendor before adding.");
+      }
+    });
+
+    // Close Popup Button
+    closePopupButton.addEventListener("click", closePopup);
 }
 
 // Add download functionality to the button
