@@ -271,6 +271,7 @@ async function getAvailableVendorsByEail(query) {
                 // vendorDiv.dataset.id = vendor.id;
                 vendorDiv.addEventListener("click", function () {
                   selectedVendorInput.value = vendor;
+                  searchResults.innerHTML = "";
                 //   closePopup();
                 });
                 searchResults.appendChild(vendorDiv);
