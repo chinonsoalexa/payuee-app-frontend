@@ -262,12 +262,12 @@ async function getAvailableVendorsByEail(query) {
         }else {
             // Process the response data
             const data = await response.json();
-            filteredVendors.forEach(vendor => {
+            data.success.forEach(vendor => {
                 const vendorDiv = document.createElement("div");
-                vendorDiv.textContent = vendor.name;
-                vendorDiv.dataset.id = vendor.id;
+                vendorDiv.textContent = vendor;
+                // vendorDiv.dataset.id = vendor.id;
                 vendorDiv.addEventListener("click", function () {
-                  selectedVendorInput.value = vendor.name;
+                  selectedVendorInput.value = vendor;
                 //   closePopup();
                 });
                 searchResults.appendChild(vendorDiv);
