@@ -208,20 +208,20 @@ function shippingPopupAssignment() {
       searchResults.innerHTML = "";
       if (query) {
 
-        const filteredVendors = vendors.filter(vendor =>
-          vendor.name.toLowerCase().includes(query)
-        );
-
-        filteredVendors.forEach(vendor => {
-          const vendorDiv = document.createElement("div");
-          vendorDiv.textContent = vendor.name;
-          vendorDiv.dataset.id = vendor.id;
-          vendorDiv.addEventListener("click", function () {
-            selectedVendorInput.value = vendor.name;
-            closePopup();
-          });
-          searchResults.appendChild(vendorDiv);
-        });
+        // const filteredVendors = vendors.filter(vendor =>
+        //   vendor.name.toLowerCase().includes(query)
+        // );
+        getAvailableVendorsByEail(query);
+        // filteredVendors.forEach(vendor => {
+        //   const vendorDiv = document.createElement("div");
+        //   vendorDiv.textContent = vendor.name;
+        //   vendorDiv.dataset.id = vendor.id;
+        //   vendorDiv.addEventListener("click", function () {
+        //     selectedVendorInput.value = vendor.name;
+        //     closePopup();
+        //   });
+        //   searchResults.appendChild(vendorDiv);
+        // });
       }
     });
 
@@ -262,7 +262,16 @@ async function getAvailableVendorsByEail(query) {
         }else {
             // Process the response data
             const data = await response.json();
-            renderSearch2(data.success);
+            filteredVendors.forEach(vendor => {
+                const vendorDiv = document.createElement("div");
+                vendorDiv.textContent = vendor.name;
+                vendorDiv.dataset.id = vendor.id;
+                vendorDiv.addEventListener("click", function () {
+                  selectedVendorInput.value = vendor.name;
+                //   closePopup();
+                });
+                searchResults.appendChild(vendorDiv);
+            });
         }
 
     } catch (error) {
