@@ -160,7 +160,7 @@ async function getProducts(OrderId) {
                     // Perform the action for 'Assign Shipping' button
                     // updateOrderStatus(responseData.success.ID, 'shipped');
                     shippingPopupAssignment();
-                    showPopup();
+                    // showPopup();
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
