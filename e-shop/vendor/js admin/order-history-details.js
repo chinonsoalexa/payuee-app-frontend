@@ -247,6 +247,7 @@ async function getAvailableVendorsByEail(query) {
 
             // Process the response data
             const data = await response.json();
+            searchResults.innerHTML = "";
             data.success.forEach(vendor => {
                 const vendorDiv = document.createElement("div");
                 vendorDiv.textContent = vendor.shop_email;
