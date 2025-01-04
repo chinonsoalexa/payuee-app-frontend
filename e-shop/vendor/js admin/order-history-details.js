@@ -218,6 +218,7 @@ function shippingPopupAssignment() {
           vendorDiv.dataset.id = vendor.id;
           vendorDiv.addEventListener("click", function () {
             selectedVendorInput.value = vendor.name;
+            closePopup();
           });
           searchResults.appendChild(vendorDiv);
         });
@@ -228,7 +229,6 @@ function shippingPopupAssignment() {
     addVendorButton.addEventListener("click", function () {
       const selectedVendor = selectedVendorInput.value;
       if (selectedVendor) {
-        closePopup();
         alert(`${selectedVendor} has been granted access.`);
         closePopup();
       } else {
