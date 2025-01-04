@@ -267,10 +267,10 @@ async function getAvailableVendorsByEail(query) {
             const data = await response.json();
             data.success.forEach(vendor => {
                 const vendorDiv = document.createElement("div");
-                vendorDiv.textContent = vendor;
-                // vendorDiv.dataset.id = vendor.id;
+                vendorDiv.textContent = vendor.shop_email;
+                vendorDiv.dataset.id = vendor.user_id;
                 vendorDiv.addEventListener("click", function () {
-                  selectedVendorInput.value = vendor;
+                  selectedVendorInput.value = vendor.shop_email;
                   searchResults.innerHTML = "";
                 });
                 searchResults.appendChild(vendorDiv);
