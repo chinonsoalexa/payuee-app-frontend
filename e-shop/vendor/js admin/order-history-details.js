@@ -229,7 +229,7 @@ function shippingPopupAssignment() {
         alert(`${selectedVendor} has been granted access.`);
         closePopup();
       } else {
-        alert("Please select a vendor before adding.");
+        // alert("Please select a vendor before adding.");
       }
     });
 
