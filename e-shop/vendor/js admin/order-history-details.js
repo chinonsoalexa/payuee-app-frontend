@@ -260,6 +260,9 @@ async function getAvailableVendorsByEail(query) {
             // showToastMessageE(`response: ${data}`);
             return;
         }else {
+            const searchResults = document.getElementById("searchResults");
+            const selectedVendorInput = document.getElementById("selectedVendorInput");
+
             // Process the response data
             const data = await response.json();
             data.success.forEach(vendor => {
