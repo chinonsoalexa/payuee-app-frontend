@@ -159,7 +159,7 @@ async function getProducts(OrderId) {
                 if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Assign Shipping' button
                     // updateOrderStatus(responseData.success.ID, 'shipped');
-                    shippingPopupAssignment();
+                    shippingPopupAssignment(responseData.success.ID);
                     // showPopup();
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
@@ -173,21 +173,13 @@ async function getProducts(OrderId) {
     }
 }
 
-function shippingPopupAssignment() {
+function shippingPopupAssignment(orderID) {
     const popup = document.getElementById("vendorAccessPopup");
     const searchBar = document.getElementById("vendorSearchBar");
     const searchResults = document.getElementById("searchResults");
     const selectedVendorInput = document.getElementById("selectedVendorInput");
     const addVendorButton = document.getElementById("addVendorButton");
     const closePopupButton = document.getElementById("closePopupButton");
-
-    // Mock vendor data
-    const vendors = [
-      { id: 1, name: "Vendor One" },
-      { id: 2, name: "Vendor Two" },
-      { id: 3, name: "Vendor Three" },
-      { id: 4, name: "Vendor Four" },
-    ];
 
     // Show Popup
     // function showPopup() {
@@ -207,28 +199,18 @@ function shippingPopupAssignment() {
       const query = searchBar.value.toLowerCase();
       searchResults.innerHTML = "";
       if (query) {
-
-        // const filteredVendors = vendors.filter(vendor =>
-        //   vendor.name.toLowerCase().includes(query)
-        // );
+        // search all vendor by email
         getAvailableVendorsByEail(query);
-        // filteredVendors.forEach(vendor => {
-        //   const vendorDiv = document.createElement("div");
-        //   vendorDiv.textContent = vendor.name;
-        //   vendorDiv.dataset.id = vendor.id;
-        //   vendorDiv.addEventListener("click", function () {
-        //     selectedVendorInput.value = vendor.name;
-        //     closePopup();
-        //   });
-        //   searchResults.appendChild(vendorDiv);
-        // });
       }
     });
 
     // Add Vendor Button
     addVendorButton.addEventListener("click", function () {
       const selectedVendor = selectedVendorInput.value;
+      const retrievedVendorDiv = document.querySelector("[data-id]"); // Replace with specific selector if needed
       if (selectedVendor) {
+        const vendorId = retrievedVendorDiv.dataset.id;
+        updateShippersOrderStatus(orderID, vendorId);
         alert(`${selectedVendor} has been granted access.`);
         closePopup();
       } else {
@@ -270,6 +252,7 @@ async function getAvailableVendorsByEail(query) {
                 vendorDiv.textContent = vendor.shop_email;
                 vendorDiv.dataset.id = vendor.user_id;
                 vendorDiv.addEventListener("click", function () {
+                    // shippingResponse
                   selectedVendorInput.value = vendor.shop_email;
                   searchResults.innerHTML = "";
                 });
@@ -279,6 +262,59 @@ async function getAvailableVendorsByEail(query) {
 
     } catch (error) {
         console.error('Error fetching search details: ', error);
+    }
+}
+
+async function updateShippersOrderStatus(orderID, vendorID) {
+    const apiUrl = "https://api.payuee.com/update-vendor-shipper";
+
+    // Construct the request body
+    const requestBody = {
+        order_id: orderID,
+        vendor_id: vendorID,
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+        body: JSON.stringify(requestBody)
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if (errorData.error === 'failed to get transaction history') {
+                // need to do a data of just null event 
+                
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                logout();
+            }else {
+                // displayErrorMessage();
+            }
+
+            return;
+        }
+
+        const responseData = await response.json();
+        Swal.fire({
+            position: "center-end",
+            icon: "success",
+            title: responseData.success,
+            showConfirmButton: !1,
+            timer: 2000
+        })
+} finally {
+
     }
 }
 
@@ -426,7 +462,6 @@ function formatNumberToNaira(number) {
     return formattedNumber;
 }
 
-
 function logout() {
     // also send a request to the logout api endpoint
     const apiUrl = "https://api.payuee.com/log-out";
@@ -445,37 +480,6 @@ try {
         // const data = response.json();
         localStorage.removeItem('auth')
         window.location.href = 'indexs.html'
-    } finally{
-        // do nothing
-    }
-}
-
-async function logout() {
-    // also send a request to the logout api endpoint
-    const apiUrl = "https://api.payuee.com/log-out";
-
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    credentials: 'include', // set credentials to include cookies
-    };
-    
-try {
-    const response = await fetch(apiUrl, requestOptions);
-    
-    if (!response.ok) {
-            // alert('an error occurred. Please try again');
-        if (!response.ok) {
-            showToastMessageE("an error occurred. Please try again")
-            return;
-        }
-        return;
-      }
-        const data = await response.json();
-        localStorage.removeItem('auth')
-        window.location.href = '../shop.html'
     } finally{
         // do nothing
     }
