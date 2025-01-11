@@ -204,19 +204,24 @@ function shippingPopupAssignment(orderID) {
       }
     });
 
-    // Add Vendor Button
     addVendorButton.addEventListener("click", function () {
-      const selectedVendor = selectedVendorInput.value;
-      const retrievedVendorDiv = document.querySelector("[data-id]"); // Replace with specific selector if needed
-      if (selectedVendor) {
-        const vendorId = retrievedVendorDiv.dataset.id;
-        updateShippersOrderStatus(orderID, vendorId);
-        alert(`${selectedVendor} has been granted access.`);
-        closePopup();
-      } else {
-        // alert("Please select a vendor before adding.");
-      }
-    });
+        const selectedVendor = selectedVendorInput.value;
+        const retrievedVendorDiv = document.querySelector("[data-id]"); // Replace with specific selector if needed
+      
+        if (retrievedVendorDiv) {
+          const vendorId = retrievedVendorDiv.dataset.id;
+      
+          if (selectedVendor) {
+            updateShippersOrderStatus(orderID, vendorId);
+            closePopup();
+          } else {
+            alert("Please select a vendor before adding.");
+          }
+        } else {
+          alert("Vendor selection is missing or invalid. Please try again.");
+        }
+      });
+      
 
     // Close Popup Button
     closePopupButton.addEventListener("click", closePopup);
