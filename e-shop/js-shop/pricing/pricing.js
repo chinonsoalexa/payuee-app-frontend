@@ -245,7 +245,7 @@ async function getSubscriptionDetails() {
             const premiumButton = document.getElementById("premiumPlan");
 
             // Reset button text for all plans to "Purchase"
-            basicButton.innerText = "Purchase";
+            basicButton.innerText = "Get Started Now";
             businessButton.innerText = "Purchase";
             premiumButton.innerText = "Purchase";
 
