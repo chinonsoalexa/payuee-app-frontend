@@ -1,5 +1,5 @@
 var transactionCodeStatus = false;
-const basicPlanId = 1500; // ID for Basic Plan
+const basicPlanId = 0.00; // ID for Basic Plan
 var chargeAmount = 0;
 var vendorPlan = '';
 var TransactionCode = '';
@@ -18,7 +18,7 @@ function handlePlanSelection(event, amount) {
 }
 
 // Add event listeners for each plan button only once
-document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 1500));
+document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 0.00));
 document.getElementById('businessPlan').addEventListener('click', (event) => handlePlanSelection(event, 7500));
 document.getElementById('premiumPlan').addEventListener('click', (event) => handlePlanSelection(event, 15500));
 
