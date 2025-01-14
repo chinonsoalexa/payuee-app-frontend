@@ -444,7 +444,7 @@ function renderProducts(product) {
             <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
             <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
             `;
-            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
+            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-${calculatePercentageOff(product.initial_cost, product.selling_price)+"%"}</div>`;
         } else {
             price = `
             <div class="product-card__price d-flex">
@@ -574,7 +574,7 @@ function renderProductDiscounts(product) {
                 <span class="money price-old">${formatNumberToNaira(product.initial_cost)}</span>
                 <span class="money price text-secondary">${formatNumberToNaira(product.selling_price)}</span>
             `;
-            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-${calculatePercentageOff(product.initial_cost, product.selling_price)}</div>`;
+            percentage = `<div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-${calculatePercentageOff(product.initial_cost, product.selling_price)+"%"}</div>`;
         } else {
             price = `
                 <div class="product-card__price d-flex">
