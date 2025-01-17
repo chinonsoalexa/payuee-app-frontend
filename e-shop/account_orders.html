@@ -1985,6 +1985,39 @@
   </div>
 </div>
 
+<!-- Wrong Transaction PIN Modal -->
+<div class="modal fade custom-modal" id="wrongPinModal" tabindex="-1" aria-labelledby="wrongPinModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+    <div class="modal-content custom-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title d-flex align-items-center">
+          <img src="images/logo.png" alt="Payuee e-Pay Logo" class="custom-logo">
+          Payuee e-Pay - Incorrect Transaction PIN
+        </h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body custom-modal-body text-center">
+        <i class="bi bi-x-circle-fill" style="font-size: 3rem; color: red;"></i>
+        <h5 class="mt-3">Incorrect Transaction PIN!</h5>
+        <p class="mt-2">The transaction PIN you entered is incorrect. Please try again.</p>
+        <div class="d-grid mt-4">
+          <button type="button" class="custom-button" data-bs-dismiss="modal">Try Again</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer justify-content-center">
+        <p class="text-muted small text-center">
+          Forgot your PIN? <a href="#" class="custom-link">Reset PIN</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="toast" class="toast">
     <div class="toast-content">
         <span id="toast-message"></span>

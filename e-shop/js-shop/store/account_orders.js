@@ -428,12 +428,18 @@ function renderProducts(product) {
                     .then(async response => {
                         if (!response.ok) {
                             const errorData = await response.json();
-                            hideModal('transactionModal');
-                            showModal('disputeFailedModal');
-            
+
+                            if (errorData.error === 'wrong transaction code') {
+                                // 
+                                hideModal('transactionModal');
+                                showModal('wrongPinModal');
+                                return;
+                            }
                             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                                 logout();
                             }
+                            hideModal('transactionModal');
+                            showModal('disputeFailedModal');
                             return;
                         }
             
