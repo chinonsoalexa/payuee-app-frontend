@@ -436,7 +436,9 @@ function renderProducts(product) {
                                 return;
                             }
                             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                                hideModal('transactionModal');
                                 logout();
+                                return;
                             }
                             hideModal('transactionModal');
                             showModal('disputeFailedModal');
