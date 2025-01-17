@@ -284,7 +284,7 @@ async function placeOrder() {
     const checkbox = document.getElementById('autoRenewCheckbox');
     const isChecked = checkbox.checked;
 
-    if (chargeAmount == 1500) {
+    if (chargeAmount == 0) {
         vendorPlan = "basic";
     } else if (chargeAmount == 7500) {
         vendorPlan = "business";
