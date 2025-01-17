@@ -1275,6 +1275,10 @@ async function placeOrder() {
                 showToastMessageE(data.error2);
                 return
             }
+            if (data.error == "wrong transaction code") {
+                showToastMessageE("wrong transaction code");
+                return
+            }
             showToastMessageE("an error occurred while placing order");
             return;
         }
