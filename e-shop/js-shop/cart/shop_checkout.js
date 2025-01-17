@@ -1279,6 +1279,7 @@ async function placeOrder() {
                 showToastMessageE("wrong transaction code");
                 return
             }
+            
             showToastMessageE("an error occurred while placing order");
             return;
         }
