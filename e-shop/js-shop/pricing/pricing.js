@@ -74,11 +74,12 @@ async function handlePaymentClick(event) {
       console.log(customerBalance);
       console.log(transactionCodeStatus);
       customerBalance = chargeAmount;
-      console.log(customerBalance);
    }
 
     if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
-        hideModal('checkoutModal');
+      console.log(customerBalance);
+      console.log(chargeAmount);
+      hideModal('checkoutModal');
         checkoutButton.disabled = false;
         document.getElementById('transactionCodeInput').value = "";
         setTimeout(() => {
