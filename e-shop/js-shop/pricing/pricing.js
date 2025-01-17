@@ -71,6 +71,8 @@ async function handlePaymentClick(event) {
 
    if (transactionCodeStatus == false) {
       console.log("here");
+      console.log(customerBalance);
+      console.log(transactionCodeStatus);
       customerBalance = chargeAmount;
    }
 
