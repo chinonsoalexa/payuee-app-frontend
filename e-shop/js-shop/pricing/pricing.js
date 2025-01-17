@@ -70,6 +70,7 @@ async function handlePaymentClick(event) {
     let customerBalance = await getUsersBalance();
 
    if (transactionCodeStatus == false) {
+        console.log("here");
       customerBalance = chargeAmount;
    }
 
