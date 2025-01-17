@@ -76,7 +76,7 @@ async function handlePaymentClick(event) {
       customerBalance = chargeAmount;
    }
 
-    if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
+    if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 0) {
       console.log(customerBalance);
       console.log(chargeAmount);
       hideModal('checkoutModal');
