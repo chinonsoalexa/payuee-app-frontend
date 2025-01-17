@@ -18,7 +18,7 @@ function handlePlanSelection(event, amount) {
 }
 
 // Add event listeners for each plan button only once
-document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 0.00));
+document.getElementById('basicPlan').addEventListener('click', (event) => handlePlanSelection(event, 0));
 document.getElementById('businessPlan').addEventListener('click', (event) => handlePlanSelection(event, 7500));
 document.getElementById('premiumPlan').addEventListener('click', (event) => handlePlanSelection(event, 15500));
 
