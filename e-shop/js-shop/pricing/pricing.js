@@ -74,6 +74,7 @@ async function handlePaymentClick(event) {
       console.log(customerBalance);
       console.log(transactionCodeStatus);
       customerBalance = chargeAmount;
+      console.log(customerBalance);
    }
 
     if (customerBalance === null || customerBalance < chargeAmount || customerBalance < 1) {
