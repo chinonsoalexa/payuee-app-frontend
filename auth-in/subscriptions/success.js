@@ -47,7 +47,7 @@ function getSuccessMessage(transactionDetails) {
 
     let availableBalanceString = transactionDetails.balance;
     
-    if (transactionDetails.success.transaction_status === "success" || !transactionDetails.success.transaction_status) {
+    if (transactionDetails.success.transaction_status === "success" || transactionDetails.success.transaction_status) {
         // let's change to payment unsuccessful
         payment_condition.textContent = 'Transaction Successful'
 
