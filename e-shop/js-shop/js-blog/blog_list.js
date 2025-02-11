@@ -8,7 +8,7 @@ var ThreeAfterPageOnLoad;
 var AllRecordsOnPageLoad;
 
 // Initialize loader array with 8 elements (e.g., with null values)
-const loader = Array.from({ length: 4 }, (_, i) => i);
+const loader = Array.from({ length: 2 }, (_, i) => i);
 
 function loading() {
     // Render loading skeletons for each element in the loader array
