@@ -29,10 +29,10 @@ async function updateBlogContent(BlogID) {
   blogID = BlogID;
     try {
         // Make the API request to get blog data
-        const response = await fetch(`https://api.payuee.com/get-blog/${BlogID}`); // Replace with your actual API endpoint
+        const response = await fetch(`https://api.payuee.com/get-faq/${BlogID}`); // Replace with your actual API endpoint
 
         if (!response.ok) {
-            throw new Error(`Error fetching blog data: ${response.statusText}`);
+            throw new Error(`Error fetching faq data: ${response.statusText}`);
         }
 
         // Parse the response data
@@ -226,7 +226,7 @@ function addNewUserComment() {
         add_email: isSubscribedToMailingList,
     };
 
-      const apiUrl = "https://api.payuee.com/blog-comment";
+      const apiUrl = "https://api.payuee.com/faq-comment";
   
       const requestOptions = {
           method: "POST",
@@ -423,7 +423,7 @@ function showMore() {
       // console.log("adding click event to link if true");
       pageNumber += 1
       // Perform the action you want on click
-      const apiUrl = `https://api.payuee.com/get-blog-comment/${pageNumber}/${blogID}`;
+      const apiUrl = `https://api.payuee.com/get-faq-comment/${pageNumber}/${blogID}`;
   
       const requestOptions = {
           method: "GET",

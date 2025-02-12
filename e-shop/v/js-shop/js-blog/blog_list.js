@@ -108,7 +108,7 @@ function renderBlogs(blog) {
 }
 
 async function getProducts(pageNumber) {
-    const apiUrl = "https://api.payuee.com/get-blog-posts/" + pageNumber;
+    const apiUrl = "https://api.payuee.com/get-faq-posts/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
