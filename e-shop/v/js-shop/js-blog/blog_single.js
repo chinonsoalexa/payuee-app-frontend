@@ -29,7 +29,7 @@ async function updateBlogContent(BlogID) {
   blogID = BlogID;
     try {
         // Make the API request to get blog data
-        const response = await fetch(`https://api.payuee.com/get-blog/${BlogID}`); // Replace with your actual API endpoint
+        const response = await fetch(`https://api.payuee.com/get-faq/${BlogID}`); // Replace with your actual API endpoint
 
         if (!response.ok) {
             throw new Error(`Error fetching blog data: ${response.statusText}`);
