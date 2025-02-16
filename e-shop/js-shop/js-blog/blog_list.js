@@ -62,11 +62,11 @@ function renderBlogs(blog) {
               <span class="blog-list__item-meta__date">${createdAtDate.toLocaleDateString()}</span>
             </div>
             <div class="blog-list__item-title">
-              <a href="https://payuee.com/blog_single?BlogID=${blog.ID}">${blog.title}</a>
+              <a href="https://payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}">${blog.title}</a>
             </div>
             <div class="blog-list__item-content">
               <p>${createBlogPreview(blog.description1)}</p>
-              <a href="https://payuee.com/blog_single?BlogID=${blog.ID}" class="readmore-link">Continue Reading</a>
+              <a href="https://payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}" class="readmore-link">Continue Reading</a>
             </div>
           </div>
     `;
@@ -179,9 +179,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/blog_single?BlogID=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/blog_single?BlogID=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -294,7 +294,7 @@ resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/blog_single?BlogID=${pageNumber}`;
+        urlIdToUpdate.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${pageNumber}`;
 }
 
 // Function to extract plain text from HTML content
