@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async function() {
+// document.addEventListener('DOMContentLoaded', async function() {
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -28,5 +28,4 @@ document.addEventListener('DOMContentLoaded', async function() {
             method: 'GET'
         });
     }
-    console.log("here");
-});
+// });
