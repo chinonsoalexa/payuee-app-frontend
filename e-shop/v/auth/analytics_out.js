@@ -16,8 +16,6 @@
         mediaLocation = "others";
     }
 
-    await getProducts();
-
     var analyticsData = sessionStorage.getItem('site_visits_from_socials');
 
     if (analyticsData === null) {
