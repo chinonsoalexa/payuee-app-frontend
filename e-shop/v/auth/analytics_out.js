@@ -28,4 +28,5 @@ document.addEventListener('DOMContentLoaded', async function() {
             method: 'GET'
         });
     }
+    console.log("here");
 });
