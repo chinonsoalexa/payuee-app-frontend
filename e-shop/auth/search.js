@@ -95,6 +95,13 @@ function renderSearch(results) {
                 </a>
             `;
 
+            // Add click event listener to track product clicks
+            resultItem.addEventListener("click", () => {
+                fetch(`https://api.payuee.com/product-click/${item.title}/${item.product_url_id}`, {
+                    method: "GET"
+                });
+            });
+
             resultsContainer.appendChild(resultItem);
         });
     } else {
@@ -138,6 +145,13 @@ function renderSearch2(results) {
                     ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="search-result__image-small">` : ''}
                 </a>
             `;
+
+            // Add click event listener to track product clicks
+            resultItem.addEventListener("click", () => {
+                fetch(`https://api.payuee.com/product-click/${item.title}/${item.product_url_id}`, {
+                    method: "GET"
+                });
+            });
 
             resultsContainer.appendChild(resultItem);
         });
