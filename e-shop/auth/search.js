@@ -98,7 +98,8 @@ function renderSearch(results) {
             // Add click event listener to track product clicks
             resultItem.addEventListener("click", () => {
                 fetch(`https://api.payuee.com/product-click/${item.title}/${item.product_url_id}`, {
-                    method: "GET"
+                    method: "GET",
+                    credentials: 'include' // Ensures cookies and authentication are sent
                 });
             });
 
@@ -149,7 +150,8 @@ function renderSearch2(results) {
             // Add click event listener to track product clicks
             resultItem.addEventListener("click", () => {
                 fetch(`https://api.payuee.com/product-click/${item.title}/${item.product_url_id}`, {
-                    method: "GET"
+                    method: "GET",
+                    credentials: 'include' // Ensures cookies and authentication are sent
                 });
             });
 
