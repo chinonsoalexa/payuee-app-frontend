@@ -524,6 +524,32 @@ function renderProducts(product, subscription) {
             updateCartDrawer();
         });
     }
+
+    if (subscription.active !== true) {
+        // Prevent all link clicks
+        document.body.addEventListener("click", function (event) {
+            const target = event.target.closest("a"); // Get the closest <a> element
+            if (target && target.href) {
+                event.preventDefault();
+                alert("Contact Vendor: Store Inactive.");
+            }
+        });
+
+        // Prevent programmatic redirects
+        const originalAssign = window.location.assign;
+        const originalReplace = window.location.replace;
+        Object.defineProperty(window.location, "href", {
+            set: function () {
+                alert("Contact Vendor: Store Inactive.");
+            }
+        });
+        window.location.assign = function () {
+            alert("Contact Vendor: Store Inactive.");
+        };
+        window.location.replace = function () {
+            alert("Contact Vendor: Store Inactive.");
+        };
+    }
 }
 
 function loading() {
