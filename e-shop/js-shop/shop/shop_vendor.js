@@ -623,6 +623,32 @@ function renderProducts(product, subscription, userId) {
             updateCartDrawer();
         });
     }
+
+    if (subscription.active !== true) {
+        // Prevent all link clicks
+        document.body.addEventListener("click", function (event) {
+            const target = event.target.closest("a"); // Get the closest <a> element
+            if (target && target.href) {
+                event.preventDefault();
+                showToastMessageS("Contact Vendor: Store Inactive.");
+            }
+        });
+
+        // Prevent programmatic redirects
+        const originalAssign = window.location.assign;
+        const originalReplace = window.location.replace;
+        Object.defineProperty(window.location, "href", {
+            set: function () {
+                showToastMessageS("Contact Vendor: Store Inactive.");
+            }
+        });
+        window.location.assign = function () {
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        };
+        window.location.replace = function () {
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        };
+    }
 }
 
 async function checkCollaborationEligibility(ID) {
