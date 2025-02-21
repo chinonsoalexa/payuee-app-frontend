@@ -531,7 +531,7 @@ function renderProducts(product, subscription) {
             const target = event.target.closest("a"); // Get the closest <a> element
             if (target && target.href) {
                 event.preventDefault();
-                alert("Contact Vendor: Store Inactive.");
+                showToastMessageS("Contact Vendor: Store Inactive.");
             }
         });
 
@@ -540,16 +540,24 @@ function renderProducts(product, subscription) {
         const originalReplace = window.location.replace;
         Object.defineProperty(window.location, "href", {
             set: function () {
-                alert("Contact Vendor: Store Inactive.");
+                showToastMessageS("Contact Vendor: Store Inactive.");
             }
         });
         window.location.assign = function () {
-            alert("Contact Vendor: Store Inactive.");
+            showToastMessageS("Contact Vendor: Store Inactive.");
         };
         window.location.replace = function () {
-            alert("Contact Vendor: Store Inactive.");
+            showToastMessageS("Contact Vendor: Store Inactive.");
         };
     }
+}
+
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
 }
 
 function loading() {
