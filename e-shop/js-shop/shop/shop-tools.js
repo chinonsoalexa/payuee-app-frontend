@@ -498,6 +498,14 @@ function renderProducts(product) {
         </div>
     `;
 
+    // Add click event listener to track product clicks
+    rowElement.addEventListener("click", () => {
+        fetch(`https://api.payuee.com/product-click/${encodeURIComponent(product.title)}/${encodeURIComponent(product.product_url_id)}/${encodeURIComponent(product.category)}/${encodeURIComponent(product.selling_price)}`, {
+            method: "GET",
+            credentials: 'include' // Ensures cookies and authentication are sent
+        });
+    });
+
     // Append the new element to the container
     productBody.appendChild(rowElement);
 
