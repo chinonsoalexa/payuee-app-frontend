@@ -488,7 +488,7 @@ function renderProducts(product, subscription, userId) {
     } else if (subscription.active != true) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
-        buttonText = 'Temporarily Unavailable';
+        buttonText = 'Unavailable';
         buttonDisabled = 'disabled';
     } else {
         // Determine if the button should be disabled and what text to display
