@@ -615,6 +615,13 @@ function renderProducts(product, subscription, userId) {
             event.preventDefault();
             showToastMessageS("Contact Vendor: Store Inactive.");
         });
+
+        // Add event listener to the image wrapper
+        const titleWrapper = rowElement.querySelector('.pc__title');
+        titleWrapper.addEventListener('click', function(event) {
+            event.preventDefault();
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        });
     }
 
     function renderProductImages(imageUrls, title) {
