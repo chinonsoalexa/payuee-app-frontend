@@ -400,19 +400,22 @@ function renderProducts(product, subscription) {
             });
         });
     
-        // Prevent navigation changes without showing a browser popup
-        function blockNavigation(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            showToastMessageS("Contact Vendor: Store Inactive.");
-        }
+        // Allow users to go back, but prevent forward navigation
+        const blockForwardNavigation = () => {
+            history.pushState(null, "", location.href);
+        };
     
-        // Stop all attempts to change window location
-        window.addEventListener("popstate", blockNavigation);
-        window.addEventListener("pushstate", blockNavigation);
-        window.addEventListener("replaceState", blockNavigation);
+        // Add initial pushState to create a point for "Back" to work
+        history.pushState(null, "", location.href);
     
-        // Override pushState and replaceState to block redirection
+        window.addEventListener("popstate", function() {
+            // If user tries to go forward, push them back
+            if (history.state === null) {
+                blockForwardNavigation();
+            }
+        });
+    
+        // Override pushState and replaceState to stop forward navigation
         const originalPushState = history.pushState;
         const originalReplaceState = history.replaceState;
     
@@ -423,9 +426,6 @@ function renderProducts(product, subscription) {
         history.replaceState = function () {
             showToastMessageS("Contact Vendor: Store Inactive.");
         };
-    
-        // Remove beforeunload listener to prevent browser popups
-        window.removeEventListener("beforeunload", function() {});
     }
     
     
