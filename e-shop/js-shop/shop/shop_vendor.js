@@ -419,6 +419,17 @@ function renderProducts(product, subscription, userId) {
         url = "https://payuee.com/vendor/" + product.product_url_id;
     }
 
+    if (!subscription.active) {
+        rowElement.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', function(event) {
+                url = "";
+                event.preventDefault();
+                event.stopPropagation();
+                showToastMessageS("Contact Vendor: Store Inactive.");
+            });
+        });
+    }    
+    
     var editProduct;
     if (subscription.user_store && product.reposted) {
         editProduct = `
@@ -622,32 +633,6 @@ function renderProducts(product, subscription, userId) {
             updateCartNumber();
             updateCartDrawer();
         });
-    }
-
-    if (subscription.active !== true) {
-        // Prevent all link clicks
-        document.body.addEventListener("click", function (event) {
-            const target = event.target.closest("a"); // Get the closest <a> element
-            if (target && target.href) {
-                event.preventDefault();
-                showToastMessageS("Contact Vendor: Store Inactive.");
-            }
-        });
-
-        // Prevent programmatic redirects
-        const originalAssign = window.location.assign;
-        const originalReplace = window.location.replace;
-        Object.defineProperty(window.location, "href", {
-            set: function () {
-                showToastMessageS("Contact Vendor: Store Inactive.");
-            }
-        });
-        window.location.assign = function () {
-            showToastMessageS("Contact Vendor: Store Inactive.");
-        };
-        window.location.replace = function () {
-            showToastMessageS("Contact Vendor: Store Inactive.");
-        };
     }
 }
 
