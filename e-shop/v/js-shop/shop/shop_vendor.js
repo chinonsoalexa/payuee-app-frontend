@@ -389,15 +389,29 @@ function renderProducts(product, subscription) {
     }
 
     if (!subscription.active) {
-        rowElement.querySelectorAll('a, button').forEach(el => {
+        rowElement.querySelectorAll('a, button, form, [onclick]').forEach(el => {
+            el.removeAttribute("href"); // Prevent navigation
+            el.removeAttribute("onclick"); // Remove inline click handlers
             el.addEventListener('click', function(event) {
-                url = "";
                 event.preventDefault();
                 event.stopPropagation();
                 showToastMessageS("Contact Vendor: Store Inactive.");
             });
         });
-    }    
+    
+        // Block all navigation attempts
+        window.addEventListener('beforeunload', function(event) {
+            event.preventDefault();
+            event.returnValue = "";
+        });
+    
+        // Intercept window location changes
+        history.pushState(null, "", location.href);
+        window.addEventListener("popstate", function() {
+            history.pushState(null, "", location.href);
+        });
+    }
+    
     
     var editProduct;
         editProduct = `
