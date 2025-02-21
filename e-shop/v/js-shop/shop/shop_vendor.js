@@ -390,8 +390,9 @@ function renderProducts(product, subscription) {
 
     if (!subscription.active) {
         rowElement.querySelectorAll('a, button, form, [onclick]').forEach(el => {
-            el.removeAttribute("href"); // Prevent navigation
+            el.removeAttribute("href"); // Remove link redirections
             el.removeAttribute("onclick"); // Remove inline click handlers
+    
             el.addEventListener('click', function(event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -399,17 +400,32 @@ function renderProducts(product, subscription) {
             });
         });
     
-        // Block all navigation attempts
-        window.addEventListener('beforeunload', function(event) {
+        // Prevent navigation changes without showing a browser popup
+        function blockNavigation(event) {
             event.preventDefault();
-            event.returnValue = "";
-        });
+            event.stopPropagation();
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        }
     
-        // Intercept window location changes
-        history.pushState(null, "", location.href);
-        window.addEventListener("popstate", function() {
-            history.pushState(null, "", location.href);
-        });
+        // Stop all attempts to change window location
+        window.addEventListener("popstate", blockNavigation);
+        window.addEventListener("pushstate", blockNavigation);
+        window.addEventListener("replaceState", blockNavigation);
+    
+        // Override pushState and replaceState to block redirection
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+    
+        history.pushState = function () {
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        };
+    
+        history.replaceState = function () {
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        };
+    
+        // Remove beforeunload listener to prevent browser popups
+        window.removeEventListener("beforeunload", function() {});
     }
     
     
