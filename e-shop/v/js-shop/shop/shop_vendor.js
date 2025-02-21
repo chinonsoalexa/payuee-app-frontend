@@ -386,8 +386,12 @@ function renderProducts(product, subscription) {
 
     if (subscription.user_store) {
         url = "https://payuee.com/vendor/v/" + product.product_url_id;
-    }  
-    
+    }
+
+    if (!subscription.active) {
+        url = "";
+    }
+
     var editProduct;
         editProduct = `
            <a href="${url}" class="pc__btn-wl-wrapper">
@@ -408,88 +412,70 @@ function renderProducts(product, subscription) {
         isOutOfStock = true;
         buttonText = 'Unavailable';
         buttonDisabled =  'disabled';
-
-        // Create the HTML string with dynamic data using template literals
-        rowElement.innerHTML = `
-            <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                    <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
-                        <div class="swiper-wrapper">
-                            ${renderProductImages(product.product_image, product.title)}
-                        </div>
-                        <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
-                        <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
-                    </div>
-                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-                </div>
-                <div class="pc__info position-relative">
-                    <p class="pc__category">${product.category}</p>
-                    <h6 class="pc__title"><a href="">${product.title}</a></h6>
-                    ${price}
-                    <div class="product-card__review d-flex align-items-center">
-                        <div class="reviews-group d-flex">
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        </div>
-                        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
-                    </div>
-                    ${editProduct}
-                </div>
-                ${percentage}
-                <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                    <div class="pc-labels__left">
-                        <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
-                    </div>
-                </div>
-            </div>
-        `;
     } else {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = product.stock_remaining === 0;
         buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
         buttonDisabled = isOutOfStock ? 'disabled' : '';
+    }
 
-            // Create the HTML string with dynamic data using template literals
-        rowElement.innerHTML = `
-            <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                    <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
-                        <div class="swiper-wrapper">
-                            ${renderProductImages(product.product_image, product.title)}
-                        </div>
-                        <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
-                        <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
+    // Create the HTML string with dynamic data using template literals
+    rowElement.innerHTML = `
+        <div class="product-card mb-3 mb-md-4 mb-xxl-5">
+            <div class="pc__img-wrapper">
+                <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
+                    <div class="swiper-wrapper">
+                        ${renderProductImages(product.product_image, product.title)}
                     </div>
-                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+                    <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
+                    <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
                 </div>
-                <div class="pc__info position-relative">
-                    <p class="pc__category">${product.category}</p>
-                    <h6 class="pc__title"><a href="${url}">${product.title}</a></h6>
-                    ${price}
-                    <div class="product-card__review d-flex align-items-center">
-                        <div class="reviews-group d-flex">
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        </div>
-                        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
+                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+            </div>
+            <div class="pc__info position-relative">
+                <p class="pc__category">${product.category}</p>
+                <h6 class="pc__title"><a href="${url}">${product.title}</a></h6>
+                ${price}
+                <div class="product-card__review d-flex align-items-center">
+                    <div class="reviews-group d-flex">
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
                     </div>
-                    ${editProduct}
+                    <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                 </div>
-                ${percentage}
-                <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                    <div class="pc-labels__left">
-                        <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
-                    </div>
+                ${editProduct}
+            </div>
+            ${percentage}
+            <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+                <div class="pc-labels__left">
+                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
                 </div>
             </div>
-        `;
+        </div>
+    `;
 
+    // Append the new element to the container
+    productBody.appendChild(rowElement);
+
+    // Reinitialize the SwiperSlideshow after adding the product
+    if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
+        new PayueeSections.SwiperSlideshow()._initSliders();
+    }
+
+    // If there are more complex product media types, reinitialize them as well
+    if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
+        new PayueeSections.ProductSingleMedia()._initProductMedia();
+    }
+
+    // Reinitialize Aside
+    if (typeof PayueeElements.Aside === 'function') {
+        new PayueeElements.Aside();
+    }
+
+    if (subscription.active) {
         // Add event listener to the image wrapper
         const imgWrapper = rowElement.querySelector('.swiper-wrapper');
         imgWrapper.addEventListener('click', function(event) {
@@ -513,24 +499,6 @@ function renderProducts(product, subscription) {
                 updateCartDrawer();
             });
         }
-    }
-
-    // Append the new element to the container
-    productBody.appendChild(rowElement);
-
-    // Reinitialize the SwiperSlideshow after adding the product
-    if (typeof PayueeSections.SwiperSlideshow !== 'undefined') {
-        new PayueeSections.SwiperSlideshow()._initSliders();
-    }
-
-    // If there are more complex product media types, reinitialize them as well
-    if (typeof PayueeSections.ProductSingleMedia !== 'undefined') {
-        new PayueeSections.ProductSingleMedia()._initProductMedia();
-    }
-
-    // Reinitialize Aside
-    if (typeof PayueeElements.Aside === 'function') {
-        new PayueeElements.Aside();
     }
 
     function renderProductImages(imageUrls, title) {

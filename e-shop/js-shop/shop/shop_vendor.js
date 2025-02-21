@@ -442,6 +442,9 @@ function renderProducts(product, subscription, userId) {
             </a>
         `;
     } else if (product.original_eshop_user_id == userId) {
+        if (!subscription.active) {
+            url = "";
+        }
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
             <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
@@ -452,6 +455,9 @@ function renderProducts(product, subscription, userId) {
         </a>
     `;
     } else if (!product.repost || !subscription.active) {
+        if (!subscription.active) {
+            url = "";
+        }
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
             <button onclick="window.location.href=this.parentElement.href" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Edit Item">
@@ -462,6 +468,9 @@ function renderProducts(product, subscription, userId) {
         </a>
     `;
     } else {
+        if (!subscription.active) {
+            url = "";
+        }
         editProduct = `
             <div class="pc__btn-wl-wrapper">
                 <button id="collaborateButtonCheck" class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Collaborate With Vendor">
@@ -486,7 +495,7 @@ function renderProducts(product, subscription, userId) {
         isOutOfStock = true;
         buttonText = 'Your Item';
         buttonDisabled = 'disabled';
-    } else if (subscription.active != true) {
+    } else if (!subscription.active) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Unavailable';
@@ -496,6 +505,11 @@ function renderProducts(product, subscription, userId) {
         isOutOfStock = product.stock_remaining === 0;
         buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
         buttonDisabled = isOutOfStock ? 'disabled' : '';
+    }
+
+    // removea all active links for expired shops
+    if (!subscription.active) {
+        url = "";
     }
 
     // Create the HTML string with dynamic data using template literals
@@ -562,19 +576,38 @@ function renderProducts(product, subscription, userId) {
         new PayueeElements.Aside();
     }
 
-    // Add event listener to the image wrapper
-    const imgWrapper = rowElement.querySelector('.swiper-wrapper');
-    imgWrapper.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = `${url}`;
-    });
-
-    // Attach the 'Collaborate' button event listener to this specific product card
-    const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
-    if (collaborateButton) {
-        collaborateButton.addEventListener("click", async function() {
-            await checkCollaborationEligibility(product.ID);
+    if (subscription.active) {
+        // Add event listener to the image wrapper
+        const imgWrapper = rowElement.querySelector('.swiper-wrapper');
+        imgWrapper.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = `${url}`;
         });
+
+        // Attach the 'Collaborate' button event listener to this specific product card
+        const collaborateButton = rowElement.querySelector("#collaborateButtonCheck");
+        if (collaborateButton) {
+            collaborateButton.addEventListener("click", async function() {
+                await checkCollaborationEligibility(product.ID);
+            });
+        }
+
+        // Add event listener to the 'Add To Cart' button
+        if (!isOutOfStock) {
+            const addToCartButton = rowElement.querySelector('.pc__atc');
+            addToCartButton.addEventListener('click', function(event) {
+                // Check if clothing or shoe size is empty and size is not selected
+                if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
+                    event.preventDefault();
+                    event.stopPropagation(); // Stop the event from propagating further
+                    window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+                    return;
+                }
+                addToCart(product);
+                updateCartNumber();
+                updateCartDrawer();
+            });
+        }
     }
 
     function renderProductImages(imageUrls, title) {
@@ -606,23 +639,6 @@ function renderProducts(product, subscription, userId) {
         }
 
         return imagesHtml; // Return the full HTML string
-    }
-
-    // Add event listener to the 'Add To Cart' button
-    if (!isOutOfStock) {
-        const addToCartButton = rowElement.querySelector('.pc__atc');
-        addToCartButton.addEventListener('click', function(event) {
-            // Check if clothing or shoe size is empty and size is not selected
-            if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
-                event.preventDefault();
-                event.stopPropagation(); // Stop the event from propagating further
-                window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
-                return;
-            }
-            addToCart(product);
-            updateCartNumber();
-            updateCartDrawer();
-        });
     }
 }
 
