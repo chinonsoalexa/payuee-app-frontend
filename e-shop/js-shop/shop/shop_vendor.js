@@ -419,45 +419,45 @@ function renderProducts(product, subscription, userId) {
         url = "https://payuee.com/vendor/" + product.product_url_id;
     }
 
-    if (!subscription.active) {
-        rowElement.querySelectorAll('a, button, form, [onclick]').forEach(el => {
-            el.removeAttribute("href"); // Remove link redirections
-            el.removeAttribute("onclick"); // Remove inline click handlers
+    // if (!subscription.active) {
+    //     rowElement.querySelectorAll('a, button, form, [onclick]').forEach(el => {
+    //         el.removeAttribute("href"); // Remove link redirections
+    //         el.removeAttribute("onclick"); // Remove inline click handlers
     
-            el.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-                showToastMessageS("Contact Vendor: Store Inactive.");
-            });
-        });
+    //         el.addEventListener('click', function(event) {
+    //             event.preventDefault();
+    //             event.stopPropagation();
+    //             showToastMessageS("Contact Vendor: Store Inactive.");
+    //         });
+    //     });
     
-        // Allow users to go back, but prevent forward navigation
-        const blockForwardNavigation = () => {
-            history.pushState(null, "", location.href);
-        };
+    //     // Allow users to go back, but prevent forward navigation
+    //     const blockForwardNavigation = () => {
+    //         history.pushState(null, "", location.href);
+    //     };
     
-        // Add initial pushState to create a point for "Back" to work
-        history.pushState(null, "", location.href);
+    //     // Add initial pushState to create a point for "Back" to work
+    //     history.pushState(null, "", location.href);
     
-        window.addEventListener("popstate", function() {
-            // If user tries to go forward, push them back
-            if (history.state === null) {
-                blockForwardNavigation();
-            }
-        });
+    //     window.addEventListener("popstate", function() {
+    //         // If user tries to go forward, push them back
+    //         if (history.state === null) {
+    //             blockForwardNavigation();
+    //         }
+    //     });
     
-        // Override pushState and replaceState to stop forward navigation
-        const originalPushState = history.pushState;
-        const originalReplaceState = history.replaceState;
+    //     // Override pushState and replaceState to stop forward navigation
+    //     const originalPushState = history.pushState;
+    //     const originalReplaceState = history.replaceState;
     
-        history.pushState = function () {
-            showToastMessageS("Contact Vendor: Store Inactive.");
-        };
+    //     history.pushState = function () {
+    //         showToastMessageS("Contact Vendor: Store Inactive.");
+    //     };
     
-        history.replaceState = function () {
-            showToastMessageS("Contact Vendor: Store Inactive.");
-        };
-    }
+    //     history.replaceState = function () {
+    //         showToastMessageS("Contact Vendor: Store Inactive.");
+    //     };
+    // }
     
 
     var editProduct;
