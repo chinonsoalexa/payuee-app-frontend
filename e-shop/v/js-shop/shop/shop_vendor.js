@@ -389,7 +389,7 @@ function renderProducts(product, subscription) {
     }
 
     if (!subscription.active) {
-        url = "";
+        url = "#";
     }
 
     var editProduct;
@@ -499,6 +499,13 @@ function renderProducts(product, subscription) {
                 updateCartDrawer();
             });
         }
+    } else {
+        // Add event listener to the image wrapper
+        const imgWrapper = rowElement.querySelector('.swiper-wrapper');
+        imgWrapper.addEventListener('click', function(event) {
+            event.preventDefault();
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        });
     }
 
     function renderProductImages(imageUrls, title) {

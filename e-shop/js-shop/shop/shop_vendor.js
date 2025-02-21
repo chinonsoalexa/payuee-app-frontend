@@ -443,7 +443,7 @@ function renderProducts(product, subscription, userId) {
         `;
     } else if (product.original_eshop_user_id == userId) {
         if (!subscription.active) {
-            url = "";
+            url = "#";
         }
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
@@ -456,7 +456,7 @@ function renderProducts(product, subscription, userId) {
     `;
     } else if (!product.repost || !subscription.active) {
         if (!subscription.active) {
-            url = "";
+            url = "#";
         }
         editProduct = `
         <a href="${url}" class="pc__btn-wl-wrapper">
@@ -469,7 +469,7 @@ function renderProducts(product, subscription, userId) {
     `;
     } else {
         if (!subscription.active) {
-            url = "";
+            url = "#";
         }
         editProduct = `
             <div class="pc__btn-wl-wrapper">
@@ -509,7 +509,7 @@ function renderProducts(product, subscription, userId) {
 
     // removea all active links for expired shops
     if (!subscription.active) {
-        url = "";
+        url = "#";
     }
 
     // Create the HTML string with dynamic data using template literals
@@ -608,6 +608,13 @@ function renderProducts(product, subscription, userId) {
                 updateCartDrawer();
             });
         }
+    } else {
+        // Add event listener to the image wrapper
+        const imgWrapper = rowElement.querySelector('.swiper-wrapper');
+        imgWrapper.addEventListener('click', function(event) {
+            event.preventDefault();
+            showToastMessageS("Contact Vendor: Store Inactive.");
+        });
     }
 
     function renderProductImages(imageUrls, title) {
@@ -752,6 +759,14 @@ function renderLoading() {
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
+}
+
+// show toast success
+function showToastMessageS(message) {
+    document.getElementById('toastMessage2').textContent = message;
+    const toastElement = document.getElementById('liveToast3'); // Get the toast element
+    const toast = new bootstrap.Toast(toastElement); // Initialize the toast
+    toast.show(); // Show the toast
 }
 
 function calculatePercentageOff(previousPrice, currentPrice) {
