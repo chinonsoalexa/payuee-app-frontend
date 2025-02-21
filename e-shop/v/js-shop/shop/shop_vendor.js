@@ -386,47 +386,7 @@ function renderProducts(product, subscription) {
 
     if (subscription.user_store) {
         url = "https://payuee.com/vendor/v/" + product.product_url_id;
-    }
-
-    // if (!subscription.active) {
-    //     rowElement.querySelectorAll('a, button, form, [onclick]').forEach(el => {
-    //         el.removeAttribute("href"); // Remove link redirections
-    //         el.removeAttribute("onclick"); // Remove inline click handlers
-    
-    //         el.addEventListener('click', function(event) {
-    //             event.preventDefault();
-    //             event.stopPropagation();
-    //             showToastMessageS("Contact Vendor: Store Inactive.");
-    //         });
-    //     });
-    
-    //     // Allow users to go back, but prevent forward navigation
-    //     const blockForwardNavigation = () => {
-    //         history.pushState(null, "", location.href);
-    //     };
-    
-    //     // Add initial pushState to create a point for "Back" to work
-    //     history.pushState(null, "", location.href);
-    
-    //     window.addEventListener("popstate", function() {
-    //         // If user tries to go forward, push them back
-    //         if (history.state === null) {
-    //             blockForwardNavigation();
-    //         }
-    //     });
-    
-    //     // Override pushState and replaceState to stop forward navigation
-    //     const originalPushState = history.pushState;
-    //     const originalReplaceState = history.replaceState;
-    
-    //     history.pushState = function () {
-    //         showToastMessageS("Contact Vendor: Store Inactive.");
-    //     };
-    
-    //     history.replaceState = function () {
-    //         showToastMessageS("Contact Vendor: Store Inactive.");
-    //     };
-    // }    
+    }  
     
     var editProduct;
         editProduct = `
@@ -442,55 +402,118 @@ function renderProducts(product, subscription) {
     let isOutOfStock;
     let buttonText;
     let buttonDisabled;
+
     if (!subscription.active) {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = true;
         buttonText = 'Unavailable';
         buttonDisabled =  'disabled';
+
+        // Create the HTML string with dynamic data using template literals
+        rowElement.innerHTML = `
+            <div class="product-card mb-3 mb-md-4 mb-xxl-5">
+                <div class="pc__img-wrapper">
+                    <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
+                        <div class="swiper-wrapper">
+                            ${renderProductImages(product.product_image, product.title)}
+                        </div>
+                        <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
+                        <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
+                    </div>
+                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
+                </div>
+                <div class="pc__info position-relative">
+                    <p class="pc__category">${product.category}</p>
+                    <h6 class="pc__title"><a href="">${product.title}</a></h6>
+                    ${price}
+                    <div class="product-card__review d-flex align-items-center">
+                        <div class="reviews-group d-flex">
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        </div>
+                        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
+                    </div>
+                    ${editProduct}
+                </div>
+                ${percentage}
+                <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+                    <div class="pc-labels__left">
+                        <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
+                    </div>
+                </div>
+            </div>
+        `;
     } else {
         // Determine if the button should be disabled and what text to display
         isOutOfStock = product.stock_remaining === 0;
         buttonText = isOutOfStock ? 'Out of Stock' : 'Add To Cart';
         buttonDisabled = isOutOfStock ? 'disabled' : '';
-    }
 
-    // Create the HTML string with dynamic data using template literals
-    rowElement.innerHTML = `
-        <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-            <div class="pc__img-wrapper">
-                <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
-                    <div class="swiper-wrapper">
-                        ${renderProductImages(product.product_image, product.title)}
+            // Create the HTML string with dynamic data using template literals
+        rowElement.innerHTML = `
+            <div class="product-card mb-3 mb-md-4 mb-xxl-5">
+                <div class="pc__img-wrapper">
+                    <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
+                        <div class="swiper-wrapper">
+                            ${renderProductImages(product.product_image, product.title)}
+                        </div>
+                        <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
+                        <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
                     </div>
-                    <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
-                    <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
+                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
                 </div>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart" ${buttonDisabled}>${buttonText}</button>
-            </div>
-            <div class="pc__info position-relative">
-                <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="${url}">${product.title}</a></h6>
-                ${price}
-                <div class="product-card__review d-flex align-items-center">
-                    <div class="reviews-group d-flex">
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                <div class="pc__info position-relative">
+                    <p class="pc__category">${product.category}</p>
+                    <h6 class="pc__title"><a href="${url}">${product.title}</a></h6>
+                    ${price}
+                    <div class="product-card__review d-flex align-items-center">
+                        <div class="reviews-group d-flex">
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                            <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
+                        </div>
+                        <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
                     </div>
-                    <span class="reviews-note text-lowercase text-secondary ms-1">${formatNumber(product.product_review_count)} reviews</span>
+                    ${editProduct}
                 </div>
-                ${editProduct}
-            </div>
-            ${percentage}
-            <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
-                <div class="pc-labels__left">
-                    <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
+                ${percentage}
+                <div class="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+                    <div class="pc-labels__left">
+                        <span class="pc-label pc-label_new d-block bg-white">${product.net_weight}kg</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+
+        // Add event listener to the image wrapper
+        const imgWrapper = rowElement.querySelector('.swiper-wrapper');
+        imgWrapper.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = `${url}`;
+        });
+
+        // Add event listener to the 'Add To Cart' button
+        if (!isOutOfStock) {
+            const addToCartButton = rowElement.querySelector('.pc__atc');
+            addToCartButton.addEventListener('click', function(event) {
+                    // Check if clothing or shoe size is empty and size is not selected
+                    if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
+                        event.preventDefault();
+                        event.stopPropagation(); // Stop the event from propagating further
+                        window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
+                        return;
+                    }
+                addToCart(product);
+                updateCartNumber();
+                updateCartDrawer();
+            });
+        }
+    }
 
     // Append the new element to the container
     productBody.appendChild(rowElement);
@@ -509,13 +532,6 @@ function renderProducts(product, subscription) {
     if (typeof PayueeElements.Aside === 'function') {
         new PayueeElements.Aside();
     }
-
-    // Add event listener to the image wrapper
-    const imgWrapper = rowElement.querySelector('.swiper-wrapper');
-    imgWrapper.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = `${url}`;
-    });
 
     function renderProductImages(imageUrls, title) {
         // Define a default image URL
@@ -547,23 +563,6 @@ function renderProducts(product, subscription) {
       
         return imagesHtml; // Return the full HTML string
       }      
-
-    // Add event listener to the 'Add To Cart' button
-    if (!isOutOfStock) {
-        const addToCartButton = rowElement.querySelector('.pc__atc');
-        addToCartButton.addEventListener('click', function(event) {
-                // Check if clothing or shoe size is empty and size is not selected
-                if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
-                    event.preventDefault();
-                    event.stopPropagation(); // Stop the event from propagating further
-                    window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
-                    return;
-                }
-            addToCart(product);
-            updateCartNumber();
-            updateCartDrawer();
-        });
-    }
 }
 
 // show toast success
