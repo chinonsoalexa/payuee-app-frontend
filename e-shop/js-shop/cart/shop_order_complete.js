@@ -37,7 +37,7 @@ async function updateOrderInfo(orderId) {
   
       if (!response.ok) {
         const data = await response.json();
-        if (data.error === "sorry you can only track order related to your order history") {
+        if (data.error === "sorry you can only track orders related to your order history") {
           const errorMessage = document.getElementById('errorMessage');
           errorMessage.classList.remove('hiddenn'); // Show the error message
           errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
