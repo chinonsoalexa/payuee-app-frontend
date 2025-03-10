@@ -190,7 +190,7 @@ async function getStores() {
 
         rowElement.innerHTML = `
         <h5>${store.shop_name}</h5>
-        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days} days a week</p>
+        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days === 0 ? 5 : store.open_days} days a week</p>
         <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
     `;
         storeBody.appendChild(rowElement);
@@ -230,8 +230,9 @@ function renderStore(store) {
 
     rowElement.innerHTML = `
         <h5>${store.shop_name}</h5>
-        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days} days a week</p>
+        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days === 0 ? 5 : store.open_days} days a week</p>
         <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
     `;
+
     storeBody.appendChild(rowElement);
 }
