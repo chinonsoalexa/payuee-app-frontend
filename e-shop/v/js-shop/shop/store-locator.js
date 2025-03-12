@@ -222,8 +222,8 @@ function renderStores(stores, responseData) {
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
     if (AllRecordsOnPageLoad > 6) {
         // let's disable the next page navigation button
-        document.getElementById('paginationList').classList.remove('disabled');
-        document.getElementById('paginationList').disabled = false;
+        document.getElementById('paginationDiv').classList.remove('disabled');
+        document.getElementById('paginationDiv').disabled = false;
     }
 
     if (CurrentPageOnLoad <= 1) {
