@@ -217,7 +217,7 @@ function renderStores(stores, responseData) {
         return;
     }
 
-    NextPageOnLoad = responseData.pagination.NextPage;
+        NextPageOnLoad = responseData.pagination.NextPage;
         PreviousPageOnLoad = responseData.pagination.PreviousPage;
         CurrentPageOnLoad = responseData.pagination.CurrentPage;
         TotalPageOnLoad = responseData.pagination.TotalPages;
@@ -243,9 +243,9 @@ function renderStores(stores, responseData) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/store-locator?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/store_location?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/store-locator?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/store_location?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -382,4 +382,8 @@ function deactivateCurrentButton() {
 
     var resendButton = document.getElementById('currentPage');
     resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function updateLink(urlIdToUpdate, pageNumber) {
+    urlIdToUpdate.href = `https://payuee.com/e-shop/store_location?page=${pageNumber}`;
 }
