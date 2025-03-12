@@ -228,8 +228,8 @@ function renderStores(stores, responseData) {
 
     if (AllRecordsOnPageLoad > 10) {
         // let's disable the next page navigation button
-        // document.getElementById('paginationDiv').classList.remove('disabled');
-        // document.getElementById('paginationDiv').disabled = false;
+        document.getElementById('paginationDiv').classList.remove('disabled');
+        document.getElementById('paginationDiv').disabled = false;
     }
 
     if (CurrentPageOnLoad <= 1) {
