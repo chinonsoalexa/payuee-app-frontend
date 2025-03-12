@@ -215,6 +215,7 @@ function renderStores(stores, responseData) {
     TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
+    
     if (AllRecordsOnPageLoad > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationList').classList.remove('disabled');
