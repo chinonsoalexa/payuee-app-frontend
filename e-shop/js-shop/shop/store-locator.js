@@ -226,11 +226,11 @@ function renderStores(stores, responseData) {
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
 
-    if (AllRecordsOnPageLoad > 10) {
-        // let's disable the next page navigation button
-        document.getElementById('paginationDiv').classList.remove('disabled');
-        document.getElementById('paginationDiv').disabled = false;
-    }
+    // if (AllRecordsOnPageLoad > 10) {
+    //     // let's disable the next page navigation button
+    //     document.getElementById('paginationDiv').classList.remove('disabled');
+    //     document.getElementById('paginationDiv').disabled = false;
+    // }
 
     if (CurrentPageOnLoad <= 1) {
         deactivatePreviousButton();
