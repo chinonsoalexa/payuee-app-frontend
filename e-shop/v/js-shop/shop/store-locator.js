@@ -1,3 +1,12 @@
+var NextPageOnLoad;
+var PreviousPageOnLoad;
+var CurrentPageOnLoad;
+var TotalPageOnLoad;
+var TwoBeforePageOnLoad;
+var TwoAfterPageOnLoad;
+var ThreeAfterPageOnLoad;
+var AllRecordsOnPageLoad;
+
 document.addEventListener('DOMContentLoaded', async function () {
     const params = new URLSearchParams(window.location.search);
 
@@ -115,7 +124,8 @@ async function getStores() {
         }
   
         const responseData = await response.json();
-        renderStores(responseData.success, responseData);
+        // renderStores(responseData.success, responseData);
+        renderStores(responseData?.success || [], responseData);
        
   } finally {
   
@@ -220,7 +230,7 @@ function renderStores(stores, responseData) {
     TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
     ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
     AllRecordsOnPageLoad = responseData.pagination.AllRecords;
-    
+
     if (AllRecordsOnPageLoad > 6) {
         // let's disable the next page navigation button
         document.getElementById('paginationDiv').classList.remove('disabled');
