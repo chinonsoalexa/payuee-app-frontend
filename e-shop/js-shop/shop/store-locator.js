@@ -335,3 +335,32 @@ function renderStore(store) {
     `;
     storeBody.appendChild(rowElement);
 }
+
+function deactivatePreviousButton() {
+    var resendButton = document.getElementById('previousPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateBeforeButton() {
+    var resendButton = document.getElementById('beforePage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateNextButton() {
+    var resendButton = document.getElementById('nextPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateCurrentButton() {
+    var dotButtonBefore = document.getElementById('dotBeforePage');
+    dotButtonBefore.classList.add('deactivated'); // Add a class to the button
+
+    var dotButtonAfter = document.getElementById('dotAfterPage');
+    dotButtonAfter.classList.add('deactivated'); // Add a class to the button
+
+    var resendButton = document.getElementById('currentPage');
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}

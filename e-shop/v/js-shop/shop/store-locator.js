@@ -70,6 +70,18 @@ async function getStore(id) {
   }
 
 async function getStores() {
+    // Get the current URL
+    const currentUrl = new URL(window.location.href);
+
+    // Extract parameters using URLSearchParams
+    const params = new URLSearchParams(currentUrl.search);
+
+    // Get individual parameter values
+    let pageNumber = params.get("page");
+    if (pageNumber == null) {
+        pageNumber = "1";
+    }
+
     const apiUrl = "https://api.payuee.com/open/get-stores";
   
     const requestOptions = {
@@ -333,4 +345,33 @@ function renderStore(store) {
     `;
 
     storeBody.appendChild(rowElement);
+}
+
+function deactivatePreviousButton() {
+    var resendButton = document.getElementById('previousPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateBeforeButton() {
+    var resendButton = document.getElementById('beforePage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateNextButton() {
+    var resendButton = document.getElementById('nextPage');
+    // resendButton.className = '';
+    resendButton.classList.add('deactivated'); // Add a class to the button
+}
+
+function deactivateCurrentButton() {
+    var dotButtonBefore = document.getElementById('dotBeforePage');
+    dotButtonBefore.classList.add('deactivated'); // Add a class to the button
+
+    var dotButtonAfter = document.getElementById('dotAfterPage');
+    dotButtonAfter.classList.add('deactivated'); // Add a class to the button
+
+    var resendButton = document.getElementById('currentPage');
+    resendButton.classList.add('deactivated'); // Add a class to the button
 }
