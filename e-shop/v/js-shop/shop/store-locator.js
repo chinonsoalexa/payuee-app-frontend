@@ -103,7 +103,7 @@ async function getStores() {
         }
   
         const responseData = await response.json();
-        renderStores(responseData.success);
+        renderStores(responseData.success, responseData.pagination);
        
   } finally {
   
@@ -149,14 +149,14 @@ async function getStores() {
         }
   
         const responseData = await response.json();
-        renderStores(responseData.success);
+        renderStores(responseData.success, null);
        
   } finally {
   
     }
   }
   
-  function renderStores(stores) {
+  function renderStores(stores, responseData) {
     const storeBody = document.getElementById('availableStores');
     
     // Clear any existing content
@@ -195,6 +195,104 @@ async function getStores() {
     `;
         storeBody.appendChild(rowElement);
     });
+
+    if (responseData == null) {
+        return;
+    }
+
+    NextPageOnLoad = responseData.pagination.NextPage;
+    PreviousPageOnLoad = responseData.pagination.PreviousPage;
+    CurrentPageOnLoad = responseData.pagination.CurrentPage;
+    TotalPageOnLoad = responseData.pagination.TotalPages;
+    TwoBeforePageOnLoad = responseData.pagination.TwoBefore;
+    TwoAfterPageOnLoad = responseData.pagination.TwoAfter;
+    ThreeAfterPageOnLoad = responseData.pagination.ThreeAfter;
+    AllRecordsOnPageLoad = responseData.pagination.AllRecords;
+    if (AllRecordsOnPageLoad > 6) {
+        // let's disable the next page navigation button
+        document.getElementById('paginationList').classList.remove('disabled');
+        document.getElementById('paginationList').disabled = false;
+    }
+
+    if (CurrentPageOnLoad <= 1) {
+        deactivatePreviousButton();
+        deactivateBeforeButton();
+    } else if (CurrentPageOnLoad >= responseData.pagination.TotalPages) {
+        deactivateNextButton();
+    }
+
+    if (CurrentPageOnLoad < 4) {
+        // let's disable the next page navigation button
+        document.getElementById('constantBeforePage').classList.add('disabled');
+        document.getElementById('constantBeforePage').disabled = true;
+    }
+
+    if (CurrentPageOnLoad < 5) {
+        // let's disable the next page navigation button
+        document.getElementById('dotBeforePage').classList.add('disabled');
+        document.getElementById('dotBeforePage').disabled = true;
+    }
+
+    if (CurrentPageOnLoad > 2) {
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("twoBeforePage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = TwoBeforePageOnLoad;
+    } else {
+        // let's disable the next page navigation button
+        document.getElementById('twoBeforePage').classList.add('disabled');
+        document.getElementById('twoBeforePage').disabled = true;
+    }
+
+    // let's update the pagination with the next page
+    var currentPageElement = document.getElementById("beforePage");
+    var currentPageAnchor = currentPageElement.querySelector("a");
+    currentPageAnchor.textContent = PreviousPageOnLoad;
+
+    // let's update the pagination with the current page
+    var currentPageElement = document.getElementById("currentPage");
+    var currentPageAnchor = currentPageElement.querySelector("a");
+    currentPageAnchor.textContent = CurrentPageOnLoad;
+    deactivateCurrentButton();
+
+    if (CurrentPageOnLoad >= TotalPageOnLoad) {
+        // let's disable the next page navigation button
+        document.getElementById('afterPage').classList.add('disabled');
+        document.getElementById('afterPage').disabled = true;
+    } else {
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("afterPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = NextPageOnLoad;
+    }
+
+    if (TwoAfterPageOnLoad < TotalPageOnLoad) {
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("twoAfterPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = TwoAfterPageOnLoad;
+    } else {
+        // let's disable the next page navigation button
+        document.getElementById('twoAfterPage').classList.add('disabled');
+        document.getElementById('twoAfterPage').disabled = true;
+    }
+
+    if (TwoAfterPageOnLoad > TotalPageOnLoad) {
+        // let's disable the next page navigation button
+        document.getElementById('constantAfterPage').classList.add('disabled');
+        document.getElementById('constantAfterPage').disabled = true;
+    } else {
+        // let's update the pagination with the next page
+        var currentPageElement = document.getElementById("constantAfterPage");
+        var currentPageAnchor = currentPageElement.querySelector("a");
+        currentPageAnchor.textContent = TotalPageOnLoad;
+    }
+
+    if (ThreeAfterPageOnLoad > TotalPageOnLoad) {
+        // let's disable the next page navigation button
+        document.getElementById('dotAfterPage').classList.add('disabled');
+        document.getElementById('dotAfterPage').disabled = true;
+    }
 }
 
 function renderStore(store) {
