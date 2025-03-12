@@ -115,7 +115,7 @@ async function getStores() {
         }
   
         const responseData = await response.json();
-        renderStores(responseData.success, responseData.pagination);
+        renderStores(responseData.success, responseData);
        
   } finally {
   
@@ -168,7 +168,7 @@ async function getStores() {
     }
   }
   
-  function renderStores(stores, responseData) {
+function renderStores(stores, responseData) {
     const storeBody = document.getElementById('availableStores');
     
     // Clear any existing content
