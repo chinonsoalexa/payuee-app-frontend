@@ -19,6 +19,28 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageNumber = "1";
     }
     
+    if($("#newsletterPopup").length > 0)
+        $("#newsletterPopup").modal("show");
+
+        $('.btn-video-player').each(function() {
+        $(this).on("click", function() {
+            if ($(this).hasClass("playing")) {
+            $(this).removeClass("playing");
+            $($(this).data("video")).get(0).pause();
+            } else {
+            $(this).addClass("playing");
+            $($(this).data("video")).get(0).play();
+            }
+        });
+
+        const btn_player = $(this);
+
+        $($(this).data("video")).on("ended", function() {
+            $(btn_player).removeClass("playing");
+            this.currentTime = 0;
+        });
+    });
+        
     // loading();
     await getProducts();
 

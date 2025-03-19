@@ -2084,24 +2084,35 @@
     </div><!-- /.modal-dialog modal-fullscreen -->
   </div><!-- /.sitemap position-fixed w-100 -->
 
-  <div id="vendorSignupPopup" class="popup-overlay" style="display: none;">
-    <div class="popup-content">
-        <button class="close-btn" onclick="closePopup()">&times;</button>
-        <div class="popup-header">
-            <h2>Get Paid to Sell & Repost!</h2>
-        </div>
-        <div class="popup-body">
-            <p>Join Payuee e-Shop as a vendor and start earning today. Post your products or repost others’ to make extra cash!</p>
-            <ul>
+  <!-- Newsletter Popup -->
+  <div class="modal fade" id="newsletterPopup" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog newsletter-popup modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row p-0 m-0">
+          <div class="col-md-6 p-0 d-none d-md-block">
+            <div class="newsletter-popup__bg h-100 w-100">
+              <p></p>
+              <img loading="lazy" src="images/sign-up-image.png" class="h-100 w-100 object-fit-cover d-block" alt="Start Selling on Payuee e-Shop">
+            </div>
+          </div>
+          <div class="col-md-6 p-0 d-flex align-items-center">
+            <div class="block-newsletter w-100 text-start">
+              <h3 class="block__title">Start Selling on Payuee e-Shop</h3>
+              <ul class="list-unstyled text-start">
                 <li>✔ Earn money every time you post your product.</li>
                 <li>✔ Get paid when you repost trending products.</li>
                 <li>✔ No upfront fees. Start selling instantly!</li>
-            </ul>
-            <a href="e-shop/v/pricing.html" class="signup-btn">Get Started Now</a>
+              </ul>
+              <a href="e-shop/v/pricing.html" class="btn btn-primary mt-3">Get Started Now</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
+  </div><!-- /.newsletter-popup -->
 
+    
   <!-- Go To Top -->
   <div id="scrollTop" class="visually-hidden end-0"></div>
 
@@ -2125,20 +2136,6 @@
   <!-- Home js file -->
   <script src="e-shop/v/js-shop/home/home.js"></script>
   <script src="e-shop/vendor/js/notify/custom-notify.js"></script>
-
-</style>
-
-<script>
-function closePopup() {
-    document.getElementById("vendorSignupPopup").style.display = "none";
-}
-
-// Auto-show popup after delay
-setTimeout(() => {
-    document.getElementById("vendorSignupPopup").style.display = "flex";
-}, 10000); // Show after 10 seconds
-
-</script>
 
 
 </body>
