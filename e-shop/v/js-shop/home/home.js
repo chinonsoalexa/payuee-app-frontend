@@ -220,7 +220,7 @@ function updateCartNumber() {
     // Update the cart number element
     document.getElementById('cartNumber').innerHTML = numberOfProducts;
     document.getElementById('cartNumber2').innerHTML = numberOfProducts;
-    document.getElementById('cartNumber3').innerHTML = numberOfProducts;
+    // document.getElementById('cartNumber3').innerHTML = numberOfProducts;
     document.getElementById('cartNumber4').innerHTML = numberOfProducts;
 }
 
