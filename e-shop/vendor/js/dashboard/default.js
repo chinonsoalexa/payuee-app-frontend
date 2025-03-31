@@ -39,11 +39,11 @@ function startTime() {
       left: 0,
       bottom: 3,
       blur: 2,
-      color: DorngAdminConfig.primary,
+      color: PayueeAdminConfig.primary,
       opacity: 0.2,
     },
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
   fill: {
     type: "gradient",
     gradient: {
@@ -81,7 +81,7 @@ function startTime() {
         discrete: [{
             seriesIndex: 0,
             dataPointIndex: 6,
-            fillColor: DorngAdminConfig.primary,
+            fillColor: PayueeAdminConfig.primary,
             strokeColor: "#fff",
             size: 6,
             shape: "circle"
@@ -157,7 +157,7 @@ function startTime() {
   },
   fill: {
     opacity: 1,
-    colors: [DorngAdminConfig.secondary, '#F2F5FA']
+    colors: [PayueeAdminConfig.secondary, '#F2F5FA']
   },
   legend: {
     show: false
@@ -197,14 +197,14 @@ chart.render();
       columnWidth: '50px'
     }
   },
-  colors: [ '#bebebe' , DorngAdminConfig.primary],
+  colors: [ '#bebebe' , PayueeAdminConfig.primary],
   dropShadow: {
     enabled: true,
     top: 5,
     left: 6,
     bottom: 5,
     blur: 2,
-    color: DorngAdminConfig.primary,
+    color: PayueeAdminConfig.primary,
     opacity: 0.5,
   },
   fill: {

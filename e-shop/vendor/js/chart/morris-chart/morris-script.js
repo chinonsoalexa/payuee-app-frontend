@@ -31,7 +31,7 @@
         xkey: "x",
         ykeys: ["y", "z"],
         labels: ["Y", "Z"],
-        lineColors: [DorngAdminConfig.secondary, DorngAdminConfig.primary],
+        lineColors: [PayueeAdminConfig.secondary, PayueeAdminConfig.primary],
       }),
         Morris.Line({
           element: "morris-line-chart",
@@ -74,7 +74,7 @@
           ],
           xkey: "y",
           ykeys: ["a", "b"],
-          lineColors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+          lineColors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
           labels: ["Series A", "Series B"],
         }),
         Morris.Bar({
@@ -108,8 +108,8 @@
           xkey: "x",
           ykeys: ["y", "z", "a"],
           barColors: [
-            DorngAdminConfig.primary,
-            DorngAdminConfig.secondary,
+            PayueeAdminConfig.primary,
+            PayueeAdminConfig.secondary,
             "#51bb25",
           ],
           labels: ["Y", "Z", "A"],
@@ -157,7 +157,7 @@
           xkey: "x",
           ykeys: ["y"],
           labels: ["Y"],
-          barColors: [DorngAdminConfig.primary],
+          barColors: [PayueeAdminConfig.primary],
         }),
         $(function () {
           var b = [
@@ -195,7 +195,7 @@
           Morris.Bar({
             element: "x-lable-morris-chart",
             data: b,
-            barColors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+            barColors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
             xkey: "period",
             ykeys: ["licensed", "sorned"],
             labels: ["Licensed", "SORN"],
@@ -215,7 +215,7 @@
             ykeys: ["y"],
             labels: ["sin(x)"],
             parseTime: !1,
-            lineColors: [DorngAdminConfig.primary],
+            lineColors: [PayueeAdminConfig.primary],
             hoverCallback: function (a, b, c, d) {
               return c.replace("sin(x)", "1.5 + 1.5 sin(" + d.x + ")");
             },
@@ -280,7 +280,7 @@
             element: "x-Labels-Diagonally-morris-chart",
             data: b,
             xkey: "period",
-            lineColors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+            lineColors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
             ykeys: ["licensed", "sorned"],
             labels: ["Licensed", "SORN"],
             xLabelAngle: 60,
@@ -310,8 +310,8 @@
             backgroundColor: "rgba(68, 102, 242, 0.5)",
             labelColor: "#999999",
             colors: [
-              DorngAdminConfig.primary,
-              DorngAdminConfig.secondary,
+              PayueeAdminConfig.primary,
+              PayueeAdminConfig.secondary,
               "#f8d62b",
               "#51bb25",
               "rgba(248, 214, 43, 1)",
@@ -346,7 +346,7 @@
               ymin: -1,
               ymax: 1,
               hideHover: !0,
-              lineColors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+              lineColors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
             }),
             h = function () {
               e++, g.setData(f(5 * e)), $(".reloadStatus").text(e + " reloads");
@@ -410,13 +410,13 @@
             ykeys: ["y", "z", "a"],
             labels: ["A", "Y", "Z"],
             barColors: [
-              DorngAdminConfig.primary,
-              DorngAdminConfig.secondary,
+              PayueeAdminConfig.primary,
+              PayueeAdminConfig.secondary,
               "#51bb25",
               "#f8d62b",
               "#a927f9",
-              DorngAdminConfig.secondary,
-              DorngAdminConfig.primary,
+              PayueeAdminConfig.secondary,
+              PayueeAdminConfig.primary,
             ],
             stacked: !0,
           });

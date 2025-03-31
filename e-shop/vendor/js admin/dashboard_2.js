@@ -238,7 +238,7 @@ var options = {
   },
   fill: {
     opacity: 1,
-    colors: [DorngAdminConfig.primary, '#dedffc']
+    colors: [PayueeAdminConfig.primary, '#dedffc']
   },
   legend: {
     show: false

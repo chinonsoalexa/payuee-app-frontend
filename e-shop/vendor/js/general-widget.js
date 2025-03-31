@@ -52,8 +52,8 @@
 // //       },
 // //     },
 // //     colors: [
-// //       DorngAdminConfig.primary,
-// //       DorngAdminConfig.primary,
+// //       PayueeAdminConfig.primary,
+// //       PayueeAdminConfig.primary,
 // //       "#F2F3F7",
 // //       "#F2F3F7",
 // //     ],
@@ -1057,7 +1057,7 @@
 // //         },
 // //     },          
 // //   },
-// //   colors:[ DorngAdminConfig.primary, '#DC3545' , '#F3F3F3', DorngAdminConfig.secondary],
+// //   colors:[ PayueeAdminConfig.primary, '#DC3545' , '#F3F3F3', PayueeAdminConfig.secondary],
 // // };
 // // var chart1 = new ApexCharts(document.querySelector("#Categories-chart-1"), options1);
 // // chart1.render();
@@ -1083,11 +1083,11 @@
 //     left: 0,
 //     bottom: 3,
 //     blur: 2,
-//     color: DorngAdminConfig.primary,
+//     color: PayueeAdminConfig.primary,
 //     opacity: 0.2,
 //   },
 // },
-// colors: [DorngAdminConfig.primary],
+// colors: [PayueeAdminConfig.primary],
 // fill: {
 //   type: "gradient",
 //   gradient: {
@@ -1152,14 +1152,14 @@
 //     columnWidth: '100px'
 //   }
 // },
-// colors: [ '#bebebe' , DorngAdminConfig.primary],
+// colors: [ '#bebebe' , PayueeAdminConfig.primary],
 // dropShadow: {
 //   enabled: true,
 //   top: 5,
 //   left: 6,
 //   bottom: 5,
 //   blur: 2,
-//   color: DorngAdminConfig.primary,
+//   color: PayueeAdminConfig.primary,
 //   opacity: 0.5,
 // },
 // fill: {
@@ -1240,11 +1240,11 @@
 //     left: 0,
 //     bottom: 3,
 //     blur: 2,
-//     color: DorngAdminConfig.primary,
+//     color: PayueeAdminConfig.primary,
 //     opacity: 0.2,
 //   },
 // },
-// colors: [DorngAdminConfig.primary],
+// colors: [PayueeAdminConfig.primary],
 // fill: {
 //   type: "gradient",
 //   gradient: {
@@ -1282,7 +1282,7 @@
 //       discrete: [{
 //           seriesIndex: 0,
 //           dataPointIndex: 3,
-//           fillColor: DorngAdminConfig.primary,
+//           fillColor: PayueeAdminConfig.primary,
 //           strokeColor: "#fff",
 //           size: 6,
 //           shape: "circle"
@@ -1324,7 +1324,7 @@
 //       },
 //   },
 
-//   colors: [DorngAdminConfig.primary],
+//   colors: [PayueeAdminConfig.primary],
 //   stroke: {
 //       width: 3,
 //       curve: 'smooth'
@@ -1345,40 +1345,40 @@
 //     discrete: [{
 //       seriesIndex: 0,
 //       dataPointIndex: 0,
-//       fillColor: DorngAdminConfig.primary,
-//       strokeColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 4,
 //       shape: "circle"
 //     },
 //     {
 //       seriesIndex: 0,
 //       dataPointIndex: 1,
-//       fillColor: DorngAdminConfig.primary,
-//       strokeColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 4,
 //       shape: "circle"
 //     },
 //     {
 //       seriesIndex: 0,
 //       dataPointIndex: 2,
-//       fillColor: DorngAdminConfig.primary,
-//       strokeColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 4,
 //       shape: "circle"
 //     },
 //     {
 //       seriesIndex: 0,
 //       dataPointIndex: 3,
-//       fillColor: DorngAdminConfig.primary,
-//       strokeColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 4,
 //       shape: "circle"
 //     },
 //     {
 //       seriesIndex: 0,
 //       dataPointIndex: 4,
-//       fillColor: DorngAdminConfig.primary,
-//       strokeColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 4,
 //       shape: "circle"
 //     },
@@ -1386,7 +1386,7 @@
 //       seriesIndex: 0,
 //       dataPointIndex: 5,
 //       fillColor: "#fff",
-//       strokeColor: DorngAdminConfig.primary,
+//       strokeColor: PayueeAdminConfig.primary,
 //       size: 5,
 //       shape: "circle"
 //     },
@@ -1492,7 +1492,7 @@
 //     left: 0,
 //     bottom: 3,
 //     blur: 2,
-//     color: DorngAdminConfig.primary,
+//     color: PayueeAdminConfig.primary,
 //     opacity: 0.2,
 //   },
 // },
@@ -1536,7 +1536,7 @@
 //     discrete: [{
 //       seriesIndex: 0,
 //       dataPointIndex: 12,
-//       fillColor: DorngAdminConfig.primary,
+//       fillColor: PayueeAdminConfig.primary,
 //       strokeColor:'#fff',
 //       size: 5,
 //       shape: "circle"
@@ -1589,7 +1589,7 @@
 //         show: false
 //     },
 //   },
-//   colors: ['#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', DorngAdminConfig.primary, '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd' , '#d6e5fd' , '#d6e5fd' , '#d6e5fd' , '#d6e5fd'],
+//   colors: ['#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', PayueeAdminConfig.primary, '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd', '#d6e5fd' , '#d6e5fd' , '#d6e5fd' , '#d6e5fd' , '#d6e5fd'],
 // };
 // var chartasalessummary = new ApexCharts(
 //   document.querySelector("#online-chart-1"),
@@ -1618,11 +1618,11 @@
 //     left: 0,
 //     bottom: 3,
 //     blur: 2,
-//     color: DorngAdminConfig.secondary,
+//     color: PayueeAdminConfig.secondary,
 //     opacity: 0.2,
 //   },
 // },
-// colors: [DorngAdminConfig.secondary],
+// colors: [PayueeAdminConfig.secondary],
 // fill: {
 //   type: "gradient",
 //   gradient: {
@@ -1660,7 +1660,7 @@
 //     discrete: [{
 //       seriesIndex: 0,
 //       dataPointIndex: 12,
-//       fillColor: DorngAdminConfig.secondary,
+//       fillColor: PayueeAdminConfig.secondary,
 //       strokeColor:'#fff',
 //       size: 5,
 //       shape: "circle"
@@ -1757,7 +1757,7 @@ var options1 = {
     show: false,
   },
   fill: {
-    colors: [ DorngAdminConfig.primary , DorngAdminConfig.secondary],
+    colors: [ PayueeAdminConfig.primary , PayueeAdminConfig.secondary],
     type: "gradient",
     gradient: {
       shadeIntensity: 1,
@@ -1766,7 +1766,7 @@ var options1 = {
       stops: [0, 90, 100]
     },
   },
-  colors:[ DorngAdminConfig.primary , DorngAdminConfig.secondary],
+  colors:[ PayueeAdminConfig.primary , PayueeAdminConfig.secondary],
   tooltip: {
       custom: function ({ series, seriesIndex, dataPointIndex,}) {
         return '<div class="apex-tooltip p-2">' + '<span>' + '<span class="bg-primary">' + '</span>' + 'Visitors' + '<h3>' + '$'+ series[seriesIndex][dataPointIndex] + '<h3/>'  + '</span>' + '</div>';
@@ -1801,11 +1801,11 @@ var options = {
     left: 0,
     bottom: 3,
     blur: 2,
-    color: DorngAdminConfig.primary,
+    color: PayueeAdminConfig.primary,
     opacity: 0.2,
   },
 },
-colors: [DorngAdminConfig.primary],
+colors: [PayueeAdminConfig.primary],
 fill: {
   type: "gradient",
   gradient: {
@@ -1843,7 +1843,7 @@ grid: {
       discrete: [{
           seriesIndex: 0,
           dataPointIndex: 6,
-          fillColor: DorngAdminConfig.primary,
+          fillColor: PayueeAdminConfig.primary,
           strokeColor: "#fff",
           size: 6,
           shape: "circle"
@@ -1931,7 +1931,7 @@ yaxis: {
 },
 fill: {
   opacity: 1,
-  colors: [DorngAdminConfig.secondary, '#F2F5FA']
+  colors: [PayueeAdminConfig.secondary, '#F2F5FA']
 },
 legend: {
   show: false
@@ -1968,7 +1968,7 @@ stroke: {
   curve: 'straight',
   width: 3,
 },
-colors:[ DorngAdminConfig.primary ],
+colors:[ PayueeAdminConfig.primary ],
 fill: {
   type: "gradient",
   gradient: {
@@ -2085,7 +2085,7 @@ yaxis: {
 },
 fill: {
   opacity: 1,
-  colors: [DorngAdminConfig.primary, '#dedffc']
+  colors: [PayueeAdminConfig.primary, '#dedffc']
 },
 legend: {
   show: false
@@ -2119,11 +2119,11 @@ var options = {
     left: 0,
     bottom: 3,
     blur: 2,
-    color: DorngAdminConfig.secondary,
+    color: PayueeAdminConfig.secondary,
     opacity: 0.2,
   },
 },
-colors: [DorngAdminConfig.secondary],
+colors: [PayueeAdminConfig.secondary],
 fill: {
   type: "gradient",
   gradient: {
@@ -2298,7 +2298,7 @@ var options3 = {
       },
     },
   },
-  colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#51bb25"],
+  colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#51bb25"],
 };
 var chart3 = new ApexCharts(document.querySelector("#report-chart"), options3);
 chart3.render();
@@ -2335,13 +2335,13 @@ var options = {
     curve: "straight",
     dashArray: [0, 6],
   },
-  colors: [ DorngAdminConfig.secondary , DorngAdminConfig.primary ],
+  colors: [ PayueeAdminConfig.secondary , PayueeAdminConfig.primary ],
   markers: {
     discrete: [{
       seriesIndex: 0,
       dataPointIndex: 0,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2349,7 +2349,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 1,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2357,7 +2357,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 2,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2365,7 +2365,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 3,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2373,7 +2373,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 4,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2381,7 +2381,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 5,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2389,7 +2389,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 6,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -2433,7 +2433,7 @@ var options = {
     },
   },
   fill: {
-    colors: [ DorngAdminConfig.secondary , DorngAdminConfig.primary ],
+    colors: [ PayueeAdminConfig.secondary , PayueeAdminConfig.primary ],
     type: ["gradient", "gradient"],
     gradient: {
       shade: "light",

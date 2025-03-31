@@ -17,7 +17,7 @@ var options = {
         show: false,
       },
     },
-    colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+    colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
     plotOptions: {
       bar: {
         columnWidth: "80%",
@@ -120,7 +120,7 @@ var options3 = {
       show: false,
     },
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
   fill: {
     type: "gradient",
     gradient: {
@@ -273,7 +273,7 @@ var options = {
   theme: {
       palette: "palette2",
   },
-  colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#61AE41"],
+  colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#61AE41"],
   tooltip: {
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
           var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
@@ -316,13 +316,13 @@ var options = {
     curve: "straight",
     dashArray: [0, 6],
   },
-  colors: [ DorngAdminConfig.secondary , DorngAdminConfig.primary ],
+  colors: [ PayueeAdminConfig.secondary , PayueeAdminConfig.primary ],
   markers: {
     discrete: [{
       seriesIndex: 0,
       dataPointIndex: 0,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -330,7 +330,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 1,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -338,7 +338,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 2,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -346,7 +346,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 3,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -354,7 +354,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 4,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -362,7 +362,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 5,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -370,7 +370,7 @@ var options = {
       seriesIndex: 0,
       dataPointIndex: 6,
       fillColor: "#fff",
-      strokeColor: DorngAdminConfig.secondary,
+      strokeColor: PayueeAdminConfig.secondary,
       size: 5,
       shape: "circle"
     },
@@ -414,7 +414,7 @@ var options = {
     },
   },
   fill: {
-    colors: [ DorngAdminConfig.secondary , DorngAdminConfig.primary ],
+    colors: [ PayueeAdminConfig.secondary , PayueeAdminConfig.primary ],
     type: ["gradient", "gradient"],
     gradient: {
       shade: "light",
@@ -509,15 +509,15 @@ function lessonCommonOption(data) {
 }
 const lesson1 = {
   color: [
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
-    DorngAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.primary,
     "#ced0fb",
     "#ced0fb",
     "#ced0fb",
@@ -534,13 +534,13 @@ if (lessonactivechart1) {
 }
 const lesson2 = {
   color: [
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
-    DorngAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
     "#ffe0d1",
     "#ffe0d1",
     "#ffe0d1",

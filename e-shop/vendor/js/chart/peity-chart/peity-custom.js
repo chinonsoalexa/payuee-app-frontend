@@ -21,14 +21,14 @@
   $("span.pie").peity("pie");
 
   $(".bar-colours-1").peity("bar", {
-    fill: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#51bb25"],
+    fill: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#51bb25"],
     width: "100",
     height: "82",
   });
 
   $(".bar-colours-2").peity("bar", {
     fill: function (value) {
-      return value > 0 ? DorngAdminConfig.primary : DorngAdminConfig.secondary;
+      return value > 0 ? PayueeAdminConfig.primary : PayueeAdminConfig.secondary;
     },
     width: "100",
     height: "82",
@@ -45,8 +45,8 @@
 
   $(".pie-colours-1").peity("pie", {
     fill: [
-      DorngAdminConfig.primary,
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.primary,
+      PayueeAdminConfig.secondary,
       "#51bb25",
       "#f8d62b",
     ],

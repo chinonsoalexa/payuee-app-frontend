@@ -52,7 +52,7 @@
     grid: {
       borderWidth: 0,
     },
-    colors: [DorngAdminConfig.primary],
+    colors: [PayueeAdminConfig.primary],
   });
   function update() {
     plot.setData([getRandomData()]);
@@ -63,7 +63,7 @@
 
   if ($("#flot-categories").length > 0) {
     var a = {
-      color: DorngAdminConfig.primary,
+      color: PayueeAdminConfig.primary,
       data: [
         ["Jan", 25],
         ["Feb", 8],
@@ -112,7 +112,7 @@
         {
           data: a,
           label: "Pressure",
-          color: DorngAdminConfig.primary,
+          color: PayueeAdminConfig.primary,
         },
       ],
       d = [
@@ -201,7 +201,7 @@
   if ($("#flot-basic-chart").length > 0) {
     for (var a = [], b = 0; b < 14; b += 0.5) a.push([b, Math.sin(b)]);
     var c = {
-        color: DorngAdminConfig.secondary,
+        color: PayueeAdminConfig.secondary,
         data: [
           [0, 3],
           [4, 8],
@@ -210,7 +210,7 @@
         ],
       },
       d = {
-        color: DorngAdminConfig.primary,
+        color: PayueeAdminConfig.primary,
         data: [[0, 12], [7, 0], null, [0, 2.5], [12, 10.5]],
       };
     $.plot("#flot-basic-chart", [a, c, d], {
@@ -286,7 +286,7 @@
         grid: {
           borderWidth: 0,
         },
-        colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+        colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
       }),
       k = function () {
         j.setData([c(), e()]), j.draw(), setTimeout(k, f);
@@ -506,11 +506,11 @@ $(function () {
           borderWidth: 0,
         },
         colors: [
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.primary,
           "#f8d62b",
           "#a927f9",
           "#51bb25",
-          DorngAdminConfig.secondary,
+          PayueeAdminConfig.secondary,
           "#dc3545",
           "#f8d62b",
         ],
@@ -553,11 +553,11 @@ $(function () {
     i = !1,
     j = [
       {
-        color: DorngAdminConfig.secondary,
+        color: PayueeAdminConfig.secondary,
         data: b,
       },
       {
-        color: DorngAdminConfig.primary,
+        color: PayueeAdminConfig.primary,
         data: d,
       },
       {
@@ -716,13 +716,13 @@ $(function () {
       },
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#default-pie-legend-flot-chart", data, {
@@ -735,13 +735,13 @@ $(function () {
       show: false,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#hidden-label-radius-flot-chart", data, {
@@ -760,13 +760,13 @@ $(function () {
       show: false,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#default-pie-flot-chart-hover", data, {
@@ -780,13 +780,13 @@ $(function () {
       clickable: true,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#custom-label1pie", data, {
@@ -807,13 +807,13 @@ $(function () {
       show: false,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#label-radius-flot-chart", data, {
@@ -834,13 +834,13 @@ $(function () {
       show: false,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#title-pie-flot-chart", data, {
@@ -866,13 +866,13 @@ $(function () {
       show: false,
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
   $.plot("#dount-hole-flot-chart", data, {
@@ -883,13 +883,13 @@ $(function () {
       },
     },
     colors: [
-      DorngAdminConfig.primary,
+      PayueeAdminConfig.primary,
       "#51bb25",
       "#f8d62b",
       "#a927f9",
       "#dc3545",
       "#6c757d",
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.secondary,
     ],
   });
 });

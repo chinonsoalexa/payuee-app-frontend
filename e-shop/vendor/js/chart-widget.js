@@ -21,11 +21,11 @@
       left: 0,
       bottom: 3,
       blur: 2,
-      color: DorngAdminConfig.primary,
+      color: PayueeAdminConfig.primary,
       opacity: 0.2,
     },
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
   fill: {
     type: "gradient",
     gradient: {
@@ -63,7 +63,7 @@
       discrete: [{
         seriesIndex: 0,
         dataPointIndex: 12,
-        fillColor: DorngAdminConfig.primary,
+        fillColor: PayueeAdminConfig.primary,
         strokeColor:'#fff',
         size: 5,
         shape: "circle"
@@ -134,11 +134,11 @@
       left: 0,
       bottom: 3,
       blur: 2,
-      color: DorngAdminConfig.secondary,
+      color: PayueeAdminConfig.secondary,
       opacity: 0.2,
     },
   },
-  colors: [DorngAdminConfig.secondary],
+  colors: [PayueeAdminConfig.secondary],
   fill: {
     type: "gradient",
     gradient: {
@@ -176,7 +176,7 @@
         discrete: [{
             seriesIndex: 0,
             dataPointIndex: 3,
-            fillColor: DorngAdminConfig.secondary,
+            fillColor: PayueeAdminConfig.secondary,
             strokeColor: "#fff",
             size: 6,
             shape: "circle"
@@ -247,7 +247,7 @@
         },
       },
     },
-    colors: [DorngAdminConfig.secondary, "#51bb25", DorngAdminConfig.primary],
+    colors: [PayueeAdminConfig.secondary, "#51bb25", PayueeAdminConfig.primary],
     fill: {
       type: "gradient",
       gradient: {
@@ -308,7 +308,7 @@
       },
     ],
     fill: {
-      colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+      colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
       type: "gradient",
       gradient: {
         shade: "light",
@@ -331,7 +331,7 @@
         bottom: 10,
       },
     },
-    colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+    colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
     labels: [
       "Jan",
       "Feb",
@@ -430,7 +430,7 @@
     fill: {
       opacity: 0.2,
     },
-    colors: [DorngAdminConfig.primary],
+    colors: [PayueeAdminConfig.primary],
     series: [
       {
         data: [70, 60, 82, 80, 60, 90, 70, 120, 50, 60, 0],
@@ -507,7 +507,7 @@
     fill: {
       opacity: 0.2,
     },
-    colors: [DorngAdminConfig.primary],
+    colors: [PayueeAdminConfig.primary],
     series: [
       {
         data: [
@@ -593,13 +593,13 @@
         {
           x: new Date("15 Nov 2017").getTime(),
           strokeDashArray: 0,
-          borderColor: DorngAdminConfig.primary,
+          borderColor: PayueeAdminConfig.primary,
           label: {
-            borderColor: DorngAdminConfig.primary,
+            borderColor: PayueeAdminConfig.primary,
             offsetY: 20,
             style: {
               color: "#fff",
-              background: DorngAdminConfig.primary,
+              background: PayueeAdminConfig.primary,
             },
             text: "Anno Test",
           },
@@ -644,7 +644,7 @@
         fontWeight: 500,
       },
     },
-    colors: [DorngAdminConfig.secondary],
+    colors: [PayueeAdminConfig.secondary],
     labels: series.monthDataSeries1.dates,
     xaxis: {
       type: "datetime",
@@ -682,7 +682,7 @@
         stops: [0, 100],
       },
     },
-    colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+    colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
     chart: {
       height: 300,
       type: "radar",
@@ -791,8 +791,8 @@
       },
     },
     colors: [
-      DorngAdminConfig.primary,
-      DorngAdminConfig.secondary,
+      PayueeAdminConfig.primary,
+      PayueeAdminConfig.secondary,
       "#51bb25",
       "#544fff",
     ],
@@ -1306,7 +1306,7 @@
       },
     },
     fill: {
-      colors: [DorngAdminConfig.primary],
+      colors: [PayueeAdminConfig.primary],
       type: "gradient",
       gradient: {
         shade: "light",
@@ -1420,7 +1420,7 @@
     fill: {
       opacity: 0.9,
     },
-    colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+    colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
     markers: {
       size: 0,
       hover: {
@@ -1533,14 +1533,14 @@
       columnWidth: '100px'
     }
   },
-  colors: [ '#bebebe' , DorngAdminConfig.primary],
+  colors: [ '#bebebe' , PayueeAdminConfig.primary],
   dropShadow: {
     enabled: true,
     top: 5,
     left: 6,
     bottom: 5,
     blur: 2,
-    color: DorngAdminConfig.primary,
+    color: PayueeAdminConfig.primary,
     opacity: 0.5,
   },
   fill: {
@@ -1694,14 +1694,14 @@
     legend: {
         show: false,
     },
-      colors: [DorngAdminConfig.primary, '#EAEAEA'],
+      colors: [PayueeAdminConfig.primary, '#EAEAEA'],
     fill: {
       type: ['gradient', 'solid', 'gradient'],
       gradient: {
         shade: 'light',
         type: "vertical",
         shadeIntensity: 1,
-        gradientToColors: [ DorngAdminConfig.primary, '#fff5f7', DorngAdminConfig.primary ],
+        gradientToColors: [ PayueeAdminConfig.primary, '#fff5f7', PayueeAdminConfig.primary ],
         inverseColors: true,
         opacityFrom: 0.4,
         opacityTo: 0,

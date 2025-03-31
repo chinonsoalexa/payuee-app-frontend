@@ -1488,7 +1488,7 @@ var options = {
   legend: {
     horizontalAlign: "left",
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
 };
 
 var chart = new ApexCharts(document.querySelector("#basic-apex"), options);
@@ -1538,7 +1538,7 @@ var options1 = {
       format: "dd/MM/yy HH:mm",
     },
   },
-  colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+  colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
 };
 
 var chart1 = new ApexCharts(document.querySelector("#area-spaline"), options1);
@@ -1581,7 +1581,7 @@ var options2 = {
       "Germany",
     ],
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
 };
 
 var chart2 = new ApexCharts(document.querySelector("#basic-bar"), options2);
@@ -1644,7 +1644,7 @@ var options3 = {
       },
     },
   },
-  colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#51bb25"],
+  colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#51bb25"],
 };
 
 var chart3 = new ApexCharts(document.querySelector("#column-chart"), options3);
@@ -1734,8 +1734,8 @@ var options = {
     width: 0,
   },
   colors: [
-    DorngAdminConfig.primary,
-    DorngAdminConfig.secondary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.secondary,
     "#51bb25",
     "#f8d62b",
   ],
@@ -1757,8 +1757,8 @@ var options4 = {
   plotOptions: {
     candlestick: {
       colors: {
-        upward: DorngAdminConfig.primary,
-        downward: DorngAdminConfig.secondary,
+        upward: PayueeAdminConfig.primary,
+        downward: PayueeAdminConfig.secondary,
       },
     },
   },
@@ -2065,7 +2065,7 @@ var options5 = {
       sizeOffset: 4,
     },
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
 };
 
 var chart5 = new ApexCharts(document.querySelector("#stepline"), options5);
@@ -2193,7 +2193,7 @@ var options6 = {
   xaxis: {
     type: "datetime",
   },
-  colors: [DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.primary],
 };
 
 var chart6 = new ApexCharts(
@@ -2289,7 +2289,7 @@ var options7 = {
       useSeriesColors: true,
     },
   },
-  colors: [DorngAdminConfig.secondary, "#51bb25", DorngAdminConfig.primary],
+  colors: [PayueeAdminConfig.secondary, "#51bb25", PayueeAdminConfig.primary],
 };
 
 var chart7 = new ApexCharts(document.querySelector("#mixedchart"), options7);
@@ -2318,8 +2318,8 @@ var options8 = {
     },
   ],
   colors: [
-    DorngAdminConfig.primary,
-    DorngAdminConfig.secondary,
+    PayueeAdminConfig.primary,
+    PayueeAdminConfig.secondary,
     "#51bb25",
     "#a927f9",
     "#f8d62b",
@@ -2350,7 +2350,7 @@ var options9 = {
       },
     },
   ],
-  colors: ["#dc3545", "#f8d62b", DorngAdminConfig.primary, "#51bb25", "#a927f9"],
+  colors: ["#dc3545", "#f8d62b", PayueeAdminConfig.primary, "#51bb25", "#a927f9"],
 };
 
 var chart9 = new ApexCharts(document.querySelector("#donutchart"), options9);
@@ -2481,10 +2481,10 @@ var options11 = {
     },
   ],
   colors: [
-    DorngAdminConfig.secondary,
+    PayueeAdminConfig.secondary,
     "#51bb25",
     "#f8d62b",
-    DorngAdminConfig.primary,
+    PayueeAdminConfig.primary,
   ],
 };
 

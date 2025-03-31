@@ -45,17 +45,17 @@
       {
         label: "My First dataset",
         fillColor: "rgba(92, 97, 242, 0.4)",
-        strokeColor: DorngAdminConfig.primary,
+        strokeColor: PayueeAdminConfig.primary,
         highlightFill: "rgba(92, 97, 242, 0.6)",
-        highlightStroke: DorngAdminConfig.primary,
+        highlightStroke: PayueeAdminConfig.primary,
         data: [35, 59, 80, 81, 56, 55, 40],
       },
       {
         label: "My Second dataset",
         fillColor: "rgba(255, 151, 102, 0.4)",
-        strokeColor: DorngAdminConfig.secondary,
+        strokeColor: PayueeAdminConfig.secondary,
         highlightFill: "rgba(255, 151, 102, 0.6)",
-        highlightStroke: DorngAdminConfig.secondary,
+        highlightStroke: PayueeAdminConfig.secondary,
         data: [28, 48, 40, 19, 86, 27, 90],
       },
     ],
@@ -77,8 +77,8 @@
   var polarData = [
     {
       value: 300,
-      color: DorngAdminConfig.primary,
-      highlight: DorngAdminConfig.primary,
+      color: PayueeAdminConfig.primary,
+      highlight: PayueeAdminConfig.primary,
       label: "Yellow",
     },
     {
@@ -101,8 +101,8 @@
     },
     {
       value: 120,
-      color: DorngAdminConfig.secondary,
-      highlight: DorngAdminConfig.secondary,
+      color: PayueeAdminConfig.secondary,
+      highlight: PayueeAdminConfig.secondary,
       label: "Dark Grey",
     },
   ];
@@ -131,8 +131,8 @@
       {
         label: "My First dataset",
         fillColor: "rgba(92, 97, 242, 0.3)",
-        strokeColor: DorngAdminConfig.primary,
-        pointColor: DorngAdminConfig.primary,
+        strokeColor: PayueeAdminConfig.primary,
+        pointColor: PayueeAdminConfig.primary,
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "#000",
@@ -141,11 +141,11 @@
       {
         label: "My Second dataset",
         fillColor: "rgba(255, 151, 102, 0.3)",
-        strokeColor: DorngAdminConfig.secondary,
-        pointColor: DorngAdminConfig.secondary,
+        strokeColor: PayueeAdminConfig.secondary,
+        pointColor: PayueeAdminConfig.secondary,
         pointStrokeColor: "#fff",
         pointHighlightFill: "#000",
-        pointHighlightStroke: DorngAdminConfig.secondary,
+        pointHighlightStroke: PayueeAdminConfig.secondary,
         data: [28, 48, 40, 19, 86, 27, 90],
       },
     ],
@@ -176,10 +176,10 @@
       {
         label: "My First dataset",
         fillColor: "rgba(92, 97, 242, 0.4)",
-        strokeColor: DorngAdminConfig.primary,
-        pointColor: DorngAdminConfig.primary,
-        pointStrokeColor: DorngAdminConfig.primary,
-        pointHighlightFill: DorngAdminConfig.primary,
+        strokeColor: PayueeAdminConfig.primary,
+        pointColor: PayueeAdminConfig.primary,
+        pointStrokeColor: PayueeAdminConfig.primary,
+        pointHighlightFill: PayueeAdminConfig.primary,
         pointHighlightStroke: "rgba(92, 97, 242, 0.4)",
         data: [12, 3, 5, 18, 7],
       },
@@ -241,14 +241,14 @@
   var doughnutData = [
     {
       value: 300,
-      color: DorngAdminConfig.primary,
-      highlight: DorngAdminConfig.primary,
+      color: PayueeAdminConfig.primary,
+      highlight: PayueeAdminConfig.primary,
       label: "Primary",
     },
     {
       value: 50,
-      color: DorngAdminConfig.secondary,
-      highlight: DorngAdminConfig.secondary,
+      color: PayueeAdminConfig.secondary,
+      highlight: PayueeAdminConfig.secondary,
       label: "Secondary",
     },
     {
@@ -286,14 +286,14 @@
       },
       {
         fillColor: "rgba(255, 151, 102, 0.2)",
-        strokeColor: DorngAdminConfig.secondary,
-        pointColor: DorngAdminConfig.secondary,
+        strokeColor: PayueeAdminConfig.secondary,
+        pointColor: PayueeAdminConfig.secondary,
         data: [20, 40, 10, 20, 40, 30, 40, 10, 20],
       },
       {
         fillColor: "rgba(92, 97, 242, 0.2)",
-        strokeColor: DorngAdminConfig.primary,
-        pointColor: DorngAdminConfig.primary,
+        strokeColor: PayueeAdminConfig.primary,
+        pointColor: PayueeAdminConfig.primary,
         data: [60, 10, 40, 30, 80, 30, 20, 90, 0],
       },
     ],

@@ -24,8 +24,8 @@
           height: 400,
           width: "100%",
           colors: [
-            DorngAdminConfig.primary,
-            DorngAdminConfig.secondary,
+            PayueeAdminConfig.primary,
+            PayueeAdminConfig.secondary,
             "#51bb25",
           ],
         },
@@ -52,8 +52,8 @@
           height: 400,
           width: "100%",
           colors: [
-            DorngAdminConfig.primary,
-            DorngAdminConfig.secondary,
+            PayueeAdminConfig.primary,
+            PayueeAdminConfig.secondary,
             "#51bb25",
           ],
         },
@@ -77,8 +77,8 @@
           "#f8d62b",
           "#51bb25",
           "#a927f9",
-          DorngAdminConfig.secondary,
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.secondary,
+          PayueeAdminConfig.primary,
         ],
       };
       var chart = new google.visualization.PieChart(
@@ -104,8 +104,8 @@
           "#f8d62b",
           "#a927f9",
           "#51bb25",
-          DorngAdminConfig.secondary,
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.secondary,
+          PayueeAdminConfig.primary,
         ],
       };
       var chart = new google.visualization.PieChart(
@@ -131,8 +131,8 @@
           "#f8d62b",
           "#a927f9",
           "#51bb25",
-          DorngAdminConfig.secondary,
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.secondary,
+          PayueeAdminConfig.primary,
         ],
       };
       var chart = new google.visualization.PieChart(
@@ -180,26 +180,26 @@
         },
         colors: [
           "#dc3545",
-          DorngAdminConfig.primary,
-          DorngAdminConfig.secondary,
+          PayueeAdminConfig.primary,
+          PayueeAdminConfig.secondary,
           "#51bb25",
           "#a927f9",
           "#f8d62b",
           "#dc3545",
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.primary,
           "#f8d62b",
           "#51bb25",
-          DorngAdminConfig.primary,
-          DorngAdminConfig.secondary,
+          PayueeAdminConfig.primary,
+          PayueeAdminConfig.secondary,
           "#51bb25",
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.primary,
           "#a927f9",
           "#f8d62b",
-          DorngAdminConfig.primary,
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.primary,
+          PayueeAdminConfig.primary,
           "#a927f9",
-          DorngAdminConfig.secondary,
-          DorngAdminConfig.primary,
+          PayueeAdminConfig.secondary,
+          PayueeAdminConfig.primary,
           "#51bb25",
         ],
       };
@@ -233,7 +233,7 @@
           title: "Box Office Earnings in First Two Weeks of Opening",
           subtitle: "in millions of dollars (USD)",
         },
-        colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#51bb25"],
+        colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#51bb25"],
         height: 500,
         width: "100%",
       };
@@ -266,8 +266,8 @@
         height: 500,
         width: "100%",
         colors: [
-          DorngAdminConfig.primary,
-          DorngAdminConfig.secondary,
+          PayueeAdminConfig.primary,
+          PayueeAdminConfig.secondary,
           "#51bb25",
           "#a927f9",
           "#f8d62b",
@@ -292,7 +292,7 @@
         vAxis: { minValue: 0 },
         width: "100%",
         height: 400,
-        colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary],
+        colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary],
       };
       var chart = new google.visualization.AreaChart(
         document.getElementById("area-chart1")
@@ -314,8 +314,8 @@
         width: "100%",
         height: 400,
         colors: [
-          DorngAdminConfig.primary,
-          DorngAdminConfig.secondary,
+          PayueeAdminConfig.primary,
+          PayueeAdminConfig.secondary,
           "#51bb25",
           "#f8d62b",
         ],
@@ -453,8 +453,8 @@
 
         palette: [
           {
-            color: DorngAdminConfig.primary,
-            dark: DorngAdminConfig.secondary,
+            color: PayueeAdminConfig.primary,
+            dark: PayueeAdminConfig.secondary,
             light: "#047afb",
           },
         ],

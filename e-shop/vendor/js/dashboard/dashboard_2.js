@@ -62,7 +62,7 @@ var options = {
   },
   fill: {
     opacity: 1,
-    colors: [DorngAdminConfig.primary, '#dedffc']
+    colors: [PayueeAdminConfig.primary, '#dedffc']
   },
   legend: {
     show: false
@@ -96,11 +96,11 @@ var options = {
       left: 0,
       bottom: 3,
       blur: 2,
-      color: DorngAdminConfig.secondary,
+      color: PayueeAdminConfig.secondary,
       opacity: 0.2,
     },
   },
-  colors: [DorngAdminConfig.secondary],
+  colors: [PayueeAdminConfig.secondary],
   fill: {
     type: "gradient",
     gradient: {
@@ -314,7 +314,7 @@ var options1 = {
     show: false,
   },
   fill: {
-    colors: [ DorngAdminConfig.primary , DorngAdminConfig.secondary],
+    colors: [ PayueeAdminConfig.primary , PayueeAdminConfig.secondary],
     type: "gradient",
     gradient: {
       shadeIntensity: 1,
@@ -323,7 +323,7 @@ var options1 = {
       stops: [0, 90, 100]
     },
   },
-  colors:[ DorngAdminConfig.primary , DorngAdminConfig.secondary],
+  colors:[ PayueeAdminConfig.primary , PayueeAdminConfig.secondary],
   tooltip: {
       custom: function ({ series, seriesIndex, dataPointIndex,}) {
         return '<div class="apex-tooltip p-2">' + '<span>' + '<span class="bg-primary">' + '</span>' + 'Visitors' + '<h3>'+ series[seriesIndex][dataPointIndex] + '<h3/>'  + '</span>' + '</div>';
@@ -378,7 +378,7 @@ grid: {
     bottom: -120
   }
 },
-colors: [ DorngAdminConfig.primary , DorngAdminConfig.secondary , "#61AE41"],
+colors: [ PayueeAdminConfig.primary , PayueeAdminConfig.secondary , "#61AE41"],
 responsive: [
   {
     breakpoint: 1800,
@@ -437,7 +437,7 @@ stroke: {
   curve: 'straight',
   width: 3,
 },
-colors:[ DorngAdminConfig.primary ],
+colors:[ PayueeAdminConfig.primary ],
 fill: {
   type: "gradient",
   gradient: {
@@ -554,7 +554,7 @@ var options3 = {
       },
     },
   },
-  colors: [DorngAdminConfig.primary, DorngAdminConfig.secondary, "#51bb25"],
+  colors: [PayueeAdminConfig.primary, PayueeAdminConfig.secondary, "#51bb25"],
 };
 var chart3 = new ApexCharts(document.querySelector("#report-chart"), options3);
 chart3.render();
