@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
   // Get the URL parameters
   const urlParams = new URLSearchParams(window.location.search);
-  navigator.vibrate([200, 100, 200]);
+  navigator.vibrate(300); // Vibrate for 300ms
 
   // Retrieve the value of 'OrderID'
   const orderId = urlParams.get('OrderID');
@@ -53,7 +53,7 @@ async function onScanSuccess(decodedText, decodedResult) {
 // Function called when there's a scanning error (e.g., QR code not found)
 function onScanFailure(error) {
   // console.warn(`QR Code scan error: ${error}`);
-  navigator.vibrate([200, 100, 200]);
+  navigator.vibrate(300); // Vibrate for 300ms
 }
 
 // Initialize the QR Code scanner, but don't start immediately
@@ -85,7 +85,7 @@ document.getElementById("startScan").addEventListener("click", () => {
       document.getElementById('orderTrackingDetails').classList.add('hiddenn');
       document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
       console.error("Camera access denied or unavailable:", error);
-      navigator.vibrate([200, 100, 200]);
+      navigator.vibrate(300); // Vibrate for 300ms
     });
 });
 
@@ -136,7 +136,7 @@ async function updateOrderInfo(orderId) {
         errorMessage.textContent = "Sorry, you can only track orders associated with your order history.";
         document.getElementById('orderTrackingDetails').classList.add('hiddenn');
         document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
-        navigator.vibrate([200, 100, 200]);
+        navigator.vibrate(300); // Vibrate for 300ms
         return; // Stop further execution if there's an error
       } else if (data.error === "failed to get order history") {
           const errorMessage = document.getElementById('errorMessage');
@@ -144,7 +144,7 @@ async function updateOrderInfo(orderId) {
           errorMessage.textContent = "Wrong or invalid order detail";
           document.getElementById('orderTrackingDetails').classList.add('hiddenn');
           document.getElementById('getOrderTrackingDetails').classList.remove('hiddenn');
-          navigator.vibrate([200, 100, 200]);
+          navigator.vibrate(300); // Vibrate for 300ms
           return; // Stop further execution if there's an error
       }
       throw new Error('Failed to fetch order data.');
