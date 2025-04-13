@@ -799,8 +799,7 @@ async function onScanSuccess(decodedText, decodedResult) {
   
   // Function called when there's a scanning error (e.g., QR code not found)
   function onScanFailure(error) {
-    // console.warn(`QR Code scan error: ${error}`);
-    navigator.vibrate(300); // Vibrate for 300ms
+    console.warn(`QR Code scan error: ${error}`);
   }
   
   // Initialize the QR Code scanner, but don't start immediately
@@ -852,7 +851,7 @@ async function onScanSuccess(decodedText, decodedResult) {
         verificationStatus.classList.remove('hidden');
         verificationStatus.style.color = 'red';
         verificationStatus.textContent = errorData.error || "An unknown error occurred";
-        navigator.vibrate(300); // Vibrate for 300ms
+  
         if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
           // handle specific error cases if needed
         } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
@@ -890,7 +889,6 @@ async function onScanSuccess(decodedText, decodedResult) {
         })
         .catch((error) => {
             showToast("Camera access denied or unavailable");
-            navigator.vibrate(300); // Vibrate for 300ms
             // console.error("Camera access denied or unavailable:", error);
         });
   }
