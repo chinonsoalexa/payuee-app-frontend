@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
   // Get the URL parameters
   const urlParams = new URLSearchParams(window.location.search);
+  navigator.vibrate([200, 100, 200]);
 
   // Retrieve the value of 'OrderID'
   const orderId = urlParams.get('OrderID');
