@@ -91,7 +91,7 @@ async function getStores() {
         pageNumber = "1";
     }
 
-    const apiUrl = "https://api.payuee.com/open/get-stores" + pageNumber;
+    const apiUrl = "https://api.payuee.com/open/get-stores/" + pageNumber;
   
     const requestOptions = {
         method: "GET",
