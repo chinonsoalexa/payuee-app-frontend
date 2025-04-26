@@ -445,19 +445,19 @@ function renderProducts(product) {
     let urll = ""
 
     if (product.category == "outfits") {
-        urll = "https://payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        urll = "https://payuee.com/jewelry/" + product.product_url_id;
+        urll = "https://payuee.com/jewelry/v/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        urll = "https://payuee.com/kids/" + product.product_url_id;
+        urll = "https://payuee.com/kids/v/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        urll = "https://payuee.com/cars/" + product.product_url_id;
+        urll = "https://payuee.com/cars/v/" + product.product_url_id;
     } else if (product.category == "tools") {
-        urll = "https://payuee.com/tools/" + product.product_url_id;
+        urll = "https://payuee.com/tools/v/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        urll = "https://payuee.com/gadgets/" + product.product_url_id;
+        urll = "https://payuee.com/gadgets/v/" + product.product_url_id;
     } else if (product.category == "others") {
-        urll = "https://payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
     }
 
     if (!product.reposted) {
@@ -575,19 +575,19 @@ function renderProductDiscounts(product) {
     let price, percentage, urll = "";
 
     if (product.category == "outfits") {
-        urll = "https://payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        urll = "https://payuee.com/jewelry/" + product.product_url_id;
+        urll = "https://payuee.com/jewelry/v/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        urll = "https://payuee.com/kids/" + product.product_url_id;
+        urll = "https://payuee.com/kids/v/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        urll = "https://payuee.com/cars/" + product.product_url_id;
+        urll = "https://payuee.com/cars/v/" + product.product_url_id;
     } else if (product.category == "tools") {
-        urll = "https://payuee.com/tools/" + product.product_url_id;
+        urll = "https://payuee.com/tools/v/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        urll = "https://payuee.com/gadgets/" + product.product_url_id;
+        urll = "https://payuee.com/gadgets/v/" + product.product_url_id;
     } else if (product.category == "others") {
-        urll = "https://payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
     }
 
     if (!product.reposted) {
