@@ -399,3 +399,45 @@ function formatNumber(value) {
         return value.toString();
     }
 }
+
+// document.addEventListener('DOMContentLoaded', async function() {
+// (function () {
+//     const bar = document.createElement('div');
+//     bar.id = 'payueeCountdownBar';
+//     bar.style.cssText = 'background:#fef3c7;color:#92400e;text-align:center;padding:12px 20px;font-family:\'Segoe UI\',sans-serif;border-bottom:2px solid #fbbf24;z-index:9999;';
+    
+//     bar.innerHTML = `
+//       <div style="font-size:18px;font-weight:bold;margin-bottom:6px;">🎉 Treasure Hunt Begins In:</div>
+//       <div id="payueeCountdownTimer" style="font-size:24px;font-weight:bold;letter-spacing:1px;">Loading...</div>
+//     `;
+
+//     const targetDate = new Date("June 8, 2025 00:00:00").getTime();
+
+//     function updateCountdown() {
+//       const now = new Date().getTime();
+//       const distance = targetDate - now;
+//       const timer = bar.querySelector("#payueeCountdownTimer");
+
+//       if (distance <= 0) {
+//         timer.innerHTML = "🎯 It’s time!";
+//         return;
+//       }
+
+//       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+//       timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+//     }
+
+//     updateCountdown();
+//     setInterval(updateCountdown, 1000);
+
+//     // Inject the countdown bar after <header>
+//     const header = document.querySelector('header');
+//     if (header && header.parentNode) {
+//       header.parentNode.insertBefore(bar, header.nextSibling);
+//     }
+//   })();
+// });

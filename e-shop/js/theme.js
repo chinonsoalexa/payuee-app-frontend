@@ -1482,3 +1482,108 @@ window.addEventListener('load', () => {
 
   }
 });
+
+// payuee hunt count down
+(function () {
+  if (sessionStorage.getItem('payueeBarClosed')) return; // Don't show if user closed it
+
+  const bar = document.createElement('div');
+  bar.id = 'payueeCountdownBar';
+  bar.style.cssText = `
+    background: rgba(254, 243, 199, 0.6);
+    color: #92400e;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #fcd34d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 34px;
+    z-index: 9999;
+    pointer-events: none;
+  `;
+
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `display: flex; flex: 1; overflow: hidden;`;
+
+  const track = document.createElement('div');
+  track.style.cssText = `
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-loop 25s linear infinite;
+  `;
+
+  function createCountdownSpan(id) {
+    const span = document.createElement('span');
+    span.innerHTML = `🎯 Treasure Hunt Begins In: <span id="${id}" style="font-weight: bold; margin-right: 50px;">Loading...</span>`;
+    return span;
+  }
+
+  for (let i = 1; i <= 6; i++) {
+    const span = createCountdownSpan(`payueeCountdown${i}`);
+    track.appendChild(span);
+  }
+
+  wrapper.appendChild(track);
+
+  const closeBtn = document.createElement('span');
+  closeBtn.innerHTML = '❌';
+  closeBtn.style.cssText = `
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 10px;
+    pointer-events: auto;
+    z-index: 10000;
+    background: rgba(254, 243, 199, 0.8);
+  `;
+  closeBtn.onclick = () => {
+    sessionStorage.setItem('payueeBarClosed', '1');
+    bar.remove();
+  };
+
+  bar.appendChild(wrapper);
+  bar.appendChild(closeBtn);
+
+  const targetDate = new Date("June 8, 2025 00:00:00").getTime();
+
+  function updateCountdowns() {
+    const now = new Date().getTime();
+    const dist = targetDate - now;
+
+    let text;
+    if (dist <= 0) {
+      text = "It's Time!";
+    } else {
+      const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+      const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((dist % (1000 * 60)) / 1000);
+      text = `${d}d ${h}h ${m}m ${s}s`;
+    }
+
+    for (let i = 1; i <= 6; i++) {
+      const el = document.getElementById(`payueeCountdown${i}`);
+      if (el) el.innerText = text;
+    }
+  }
+
+  document.body.prepend(bar);
+
+  const styleTag = document.createElement('style');
+  styleTag.innerHTML = `
+    @keyframes scroll-loop {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+  `;
+  document.head.appendChild(styleTag);
+
+  setTimeout(() => {
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+  }, 100);
+})();
