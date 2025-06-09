@@ -629,7 +629,6 @@ function formatNumberToNaira(number) {
     return formattedNumber;
 }
 
-
 // Function to add a product to the cart
 function addToCart(product) {
     // Get cart from local storage or initialize if not found

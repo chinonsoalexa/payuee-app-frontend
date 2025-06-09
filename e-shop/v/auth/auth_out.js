@@ -15,7 +15,7 @@ function get_auth_status() {
         // Adjust to get the base part, which includes the protocol, domain, and '/store/'
         baseUrl = baseUrl.split('/').slice(0, 5).join('/') + '/'; 
         
-        console.log(baseUrl); // Outputs: "https://payuee.com/store/"
+        // console.log(baseUrl); // Outputs: "https://payuee.com/store/"
 
 
         if (baseUrl == "https://payuee.com/store/v/") {
@@ -23,7 +23,43 @@ function get_auth_status() {
             let newUrl = fullUrl.replace('/store/v/', '/store/');
             location.replace(newUrl);
             return;
-        }
+        } else if (baseUrl == "https://payuee.com/gadgets/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/gadgets/v/', '/gadgets/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/kids/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/kids/v/', '/kids/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/jewelry/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/jewelry/v/', '/jewelry/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/cars/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/cars/v/', '/cars/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/vendor/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/vendor/v/', '/vendor/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/tools/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/tools/v/', '/tools/');
+            location.replace(newUrl);
+            return;
+        } else if (baseUrl == "https://payuee.com/outfits/v/") {
+            // Replace '/store/' with '/store/v/' to update the URL
+            let newUrl = fullUrl.replace('/outfits/v/', '/outfits/');
+            location.replace(newUrl);
+            return;
+        } 
+
         // Redirect to authenticated home page if auth is true
         location.replace('https://payuee.com/e-shop/home');
     } else {
