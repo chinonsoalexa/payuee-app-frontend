@@ -401,6 +401,7 @@ function formatNumber(value) {
 }
 
 // document.addEventListener('DOMContentLoaded', async function() {
+
 // (function () {
 //     const bar = document.createElement('div');
 //     bar.id = 'payueeCountdownBar';
@@ -441,3 +442,34 @@ function formatNumber(value) {
 //     }
 //   })();
 // });
+
+(function () {
+  const originalSetItem = localStorage.setItem;
+
+  localStorage.setItem = function (key, value) {
+    if (key === 'guest_cart' || key === 'cart') {
+      try {
+        handleCartUpdate(JSON.parse(value));
+      } catch (e) {
+        console.warn('Failed to parse cart in setItem override:', e);
+      }
+    }
+    return originalSetItem.apply(this, arguments);
+  };
+
+  window.addEventListener('storage', function (event) {
+    if (event.key === 'guest_cart' || event.key === 'cart') {
+      try {
+        const updatedCart = JSON.parse(event.newValue);
+        handleCartUpdate(updatedCart);
+      } catch (e) {
+        console.warn('Error parsing cart from storage event:', e);
+      }
+    }
+  });
+
+  function handleCartUpdate(cart) {
+    console.log('Cart updated:', cart);
+    // Optional: syncCartToServer(cart);
+  }
+})();

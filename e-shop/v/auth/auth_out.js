@@ -418,17 +418,18 @@ function formatNumber(value) {
   const originalSetItem = localStorage.setItem;
 
   localStorage.setItem = function (key, value) {
-    if (key === 'guest_cart') {
-      handleCartUpdate(JSON.parse(value));
-    }
-    if (key === 'cart') {
-      handleCartUpdate(JSON.parse(value));
+    if (key === 'guest_cart' || key === 'cart') {
+      try {
+        handleCartUpdate(JSON.parse(value));
+      } catch (e) {
+        console.warn('Failed to parse cart in setItem override:', e);
+      }
     }
     return originalSetItem.apply(this, arguments);
   };
 
   window.addEventListener('storage', function (event) {
-    if (event.key === 'guest_cart') {
+    if (event.key === 'guest_cart' || event.key === 'cart') {
       try {
         const updatedCart = JSON.parse(event.newValue);
         handleCartUpdate(updatedCart);
@@ -436,13 +437,10 @@ function formatNumber(value) {
         console.warn('Error parsing cart from storage event:', e);
       }
     }
-    if (key === 'cart') {
-      handleCartUpdate(JSON.parse(value));
-    }
   });
 
   function handleCartUpdate(cart) {
     console.log('Cart updated:', cart);
-    // syncCartToServer(cart); // Optional: Your server sync logic
+    // Optional: syncCartToServer(cart);
   }
 })();
