@@ -446,30 +446,112 @@ function formatNumber(value) {
 (function () {
   const originalSetItem = localStorage.setItem;
 
+  // Load the last snapshot of cart from 'cart_copy'
+  let previousCart = getCartFromStorage('cart_copy');
+
   localStorage.setItem = function (key, value) {
-    if (key === 'guest_cart' || key === 'cart') {
+    if (key === 'cart') {
       try {
-        handleCartUpdate(JSON.parse(value));
+        const newCart = JSON.parse(value);
+        syncChanges(previousCart, newCart);
+        localStorage.setItem('cart_copy', JSON.stringify(newCart)); // Save snapshot
+        previousCart = newCart;
+        handleCartUpdate(newCart);
       } catch (e) {
-        console.warn('Failed to parse cart in setItem override:', e);
+        console.warn('Failed to parse cart in setItem:', e);
       }
     }
+
     return originalSetItem.apply(this, arguments);
   };
 
   window.addEventListener('storage', function (event) {
-    if (event.key === 'guest_cart' || event.key === 'cart') {
+    if (event.key === 'cart') {
       try {
-        const updatedCart = JSON.parse(event.newValue);
-        handleCartUpdate(updatedCart);
+        const newCart = JSON.parse(event.newValue);
+        syncChanges(previousCart, newCart);
+        localStorage.setItem('cart_copy', JSON.stringify(newCart));
+        previousCart = newCart;
+        handleCartUpdate(newCart);
       } catch (e) {
         console.warn('Error parsing cart from storage event:', e);
       }
     }
   });
 
+  function getCartFromStorage(key) {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function syncChanges(oldCart, newCart) {
+    const added = newCart.filter(newItem =>
+      !oldCart.some(oldItem => oldItem.product_id === newItem.product_id)
+    );
+
+    const removed = oldCart.filter(oldItem =>
+      !newCart.some(newItem => newItem.product_id === oldItem.product_id)
+    );
+
+    const updated = newCart.filter(newItem => {
+      const match = oldCart.find(oldItem => oldItem.product_id === newItem.product_id);
+      return match && match.quantity !== newItem.quantity;
+    });
+
+    // 🔼 Add
+    added.forEach(item => syncAdd(item));
+
+    // 🔽 Remove
+    removed.forEach(item => syncRemove(item.product_id));
+
+    // 🔄 Update
+    updated.forEach(item => syncUpdate(item.product_id, item.quantity, item.eshop_user_id));
+  }
+
+  function syncAdd(item) {
+    console.log('Add to server:', item);
+    const body = {
+        product_id: item.product_id,
+        eshop_user_id: item.eshop_user_id,
+        quantity: item.quantity,
+    };
+
+    fetch('https://api.payuee.com/creat-and-add-cart-item', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  }
+
+  function syncRemove(productId) {
+    console.log('Remove from server:', productId);
+    fetch(`https://api.payuee.com/delete-cart-item/${productId}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+  }
+
+  function syncUpdate(productId, quantity) {
+    const body = {
+        product_id: item.product_id,
+        eshop_user_id: item.eshop_user_id,
+        quantity: item.quantity,
+    };
+    console.log('Update quantity on server:', productId, quantity);
+    fetch(`https://api.payuee.com/creat-and-add-cart-item/${productId}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ body }),
+    });
+  }
+
   function handleCartUpdate(cart) {
-    console.log('Cart updated in:', cart);
-    // Optional: syncCartToServer(cart);
+    console.log('Cart synced:', cart);
+    // Optional UI update
   }
 })();
