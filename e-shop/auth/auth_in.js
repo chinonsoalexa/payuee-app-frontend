@@ -547,7 +547,7 @@ function formatNumber(value) {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ body }),
+      body: JSON.stringify(body),
     });
   }
 
