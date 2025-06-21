@@ -414,33 +414,31 @@ function formatNumber(value) {
     }
 }
 
+// now there is a one i wnat to create for guest users i want to always snapshop "cart" using "cart_guest" for unauthenticated users then only on login would i add all the cart if any exist then i wuld update it in the server:
 (function () {
-  const originalSetItem = localStorage.setItem;
-
+  const originalSetItem = localStorage.setItem
+  
   localStorage.setItem = function (key, value) {
-    if (key === 'guest_cart' || key === 'cart') {
+    if (key === 'cart') {
       try {
-        handleCartUpdate(JSON.parse(value));
+        const newCart = JSON.parse(value);
+        originalSetItem.call(this, 'cart_guest', JSON.stringify(newCart)); // prevent recursion
       } catch (e) {
-        console.warn('Failed to parse cart in setItem override:', e);
+        console.warn('Failed to parse cart in setItem:', e);
       }
     }
+
     return originalSetItem.apply(this, arguments);
   };
 
   window.addEventListener('storage', function (event) {
-    if (event.key === 'guest_cart' || event.key === 'cart') {
+    if (event.key === 'cart') {
       try {
-        const updatedCart = JSON.parse(event.newValue);
-        handleCartUpdate(updatedCart);
+        const newCart = JSON.parse(event.newValue);
+        originalSetItem.call(this, 'cart_guest', JSON.stringify(newCart)); // also prevent recursion
       } catch (e) {
         console.warn('Error parsing cart from storage event:', e);
       }
     }
   });
-
-  function handleCartUpdate(cart) {
-    console.log('Cart updated out:', cart);
-    // Optional: syncCartToServer(cart);
-  }
 })();

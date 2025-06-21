@@ -336,7 +336,10 @@ async function loginEshop(email, password) {
 
         const responseData = await response.json();
         showToastMessageS('Login successful');
-            
+        
+        // sync cart with server
+        syncGuestCartToServer();
+        
         // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
@@ -351,6 +354,48 @@ async function loginEshop(email, password) {
 } finally {
 
     }
+}
+
+function syncGuestCartToServer() {
+  const guestCart = getCartFromStorage('cart_guest');
+
+  if (!guestCart || guestCart.length === 0) {
+    console.log('No guest cart to sync.');
+    return;
+  }
+
+  guestCart.forEach(item => {
+    const body = {
+      product_id: item.product_id,
+      eshop_user_id: item.eshop_user_id,
+      quantity: item.quantity,
+    };
+
+    fetch('https://api.payuee.com/creat-and-add-cart-item', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Failed to sync item: ${item.product_id}`);
+      return res.json();
+    })
+    .then(data => console.log('Synced:', data))
+    .catch(err => console.error(err));
+  });
+
+  // Optionally remove cart_guest after syncing
+  localStorage.removeItem('cart_guest');
+}
+
+// Helper to safely parse localStorage
+function getCartFromStorage(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    return [];
+  }
 }
 
 async function registerEshop(email, password, name) {

@@ -535,13 +535,14 @@ function formatNumber(value) {
     });
   }
 
-  function syncUpdate(productId, quantity) {
+  function syncUpdate(productId, quantity, eshop_user_id) {
     const body = {
-        product_id: item.product_id,
-        eshop_user_id: item.eshop_user_id,
-        quantity: item.quantity,
+        product_id: productId,
+        eshop_user_id: eshop_user_id,
+        quantity: quantity,
     };
-    console.log('Update quantity on server:', productId, quantity);
+    
+    // console.log('Update quantity on server:', productId, quantity);
     fetch(`https://api.payuee.com/creat-and-add-cart-item/${productId}`, {
       method: 'POST',
       credentials: 'include',
@@ -551,7 +552,7 @@ function formatNumber(value) {
   }
 
   function handleCartUpdate(cart) {
-    console.log('Cart synced:', cart);
+    // console.log('Cart synced:', cart);
     // Optional UI update
   }
 })();
