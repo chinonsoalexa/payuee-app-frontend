@@ -505,10 +505,10 @@ function formatNumber(value) {
     added.forEach(item => syncAdd(item));
 
     // 🔽 Remove
-    removed.forEach(item => syncRemove(item.product_id));
+    removed.forEach(item => syncRemove(item.ID));
 
     // 🔄 Update
-    updated.forEach(item => syncUpdate(item.product_id, item.quantity, item.eshop_user_id));
+    updated.forEach(item => syncUpdate(item.ID, item.quantity, item.eshop_user_id));
   }
 
   function syncAdd(item) {
