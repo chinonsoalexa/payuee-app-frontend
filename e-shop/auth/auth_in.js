@@ -469,7 +469,7 @@ function formatNumber(value) {
   });
 
   function handleCartUpdate(cart) {
-    console.log('Cart updated:', cart);
+    console.log('Cart updated in:', cart);
     // Optional: syncCartToServer(cart);
   }
 })();

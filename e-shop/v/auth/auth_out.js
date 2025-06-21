@@ -440,7 +440,7 @@ function formatNumber(value) {
   });
 
   function handleCartUpdate(cart) {
-    console.log('Cart updated:', cart);
+    console.log('Cart updated out:', cart);
     // Optional: syncCartToServer(cart);
   }
 })();
