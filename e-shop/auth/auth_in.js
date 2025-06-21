@@ -541,9 +541,9 @@ function formatNumber(value) {
         eshop_user_id: eshop_user_id,
         quantity: quantity,
     };
-    
+
     // console.log('Update quantity on server:', productId, quantity);
-    fetch(`https://api.payuee.com/creat-and-add-cart-item/${productId}`, {
+    fetch(`https://api.payuee.com/creat-and-add-cart-item`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
