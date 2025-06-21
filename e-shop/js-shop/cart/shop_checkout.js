@@ -333,9 +333,46 @@ function renderCheckoutProducts(cart) {
     CalculateCartSubtotal();
 }
 
-function updateCartDrawer() {
+async function getUpdatedCart() {
+        // Endpoint URL
+    const apiUrl = "https://api.payuee.com/get-cart-items";
+
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',  // Include cookies with the request
+    };
+    
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                logout();
+            }
+            // showToastMessageE(`response: ${data}`);
+            return;
+        }else {
+            // Process the response data
+            const data = await response.json();
+
+            return data.success;
+        }
+
+    } catch (error) {
+        console.error('Error fetching shipping fees:', error);
+    }
+}
+
+async function updateCartDrawer() {
+
+    let cart = await getUpdatedCart();
     // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Get reference to the cart drawer element
     const cartDrawer = document.getElementById('cartDrawer1');
