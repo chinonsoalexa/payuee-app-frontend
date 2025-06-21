@@ -512,9 +512,9 @@ function formatNumber(value) {
   }
 
   function syncAdd(item) {
-    console.log('Add to server:', item);
+    // console.log('Add to server:', item);
     const body = {
-        product_id: item.product_id,
+        product_id: item.ID,
         eshop_user_id: item.eshop_user_id,
         quantity: item.quantity,
     };
@@ -528,7 +528,7 @@ function formatNumber(value) {
   }
 
   function syncRemove(productId) {
-    console.log('Remove from server:', productId);
+    // console.log('Remove from server:', productId);
     fetch(`https://api.payuee.com/delete-cart-item/${productId}`, {
       method: 'GET',
       credentials: 'include',
