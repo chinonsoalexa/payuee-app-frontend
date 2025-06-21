@@ -4,6 +4,8 @@ var citySelected;
 var totalCharge;
 var htmlContent;
 
+var cart;
+
 var returnedOrderID;
 
 var customerName;
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     updateCartNumber();
     updateCartDrawer();
-    renderCheckoutProducts();
+    // renderCheckoutProducts();
     // const paymentModalElement = document.getElementById('checkoutModal');
     // const paymentModal = new bootstrap.Modal(paymentModalElement);
     // paymentModal.show();    // Show the modal programmatically
@@ -247,7 +249,6 @@ function formatNumberToNaira(number) {
     return formattedNumber;
 }
 
-
 // Function to update the cart number displayed on the page
 function updateCartNumber() {
     // Get cart from local storage
@@ -263,9 +264,9 @@ function updateCartNumber() {
     document.getElementById('cartNumber4').innerHTML = numberOfProducts;
 }
 
-function renderCheckoutProducts() {
+function renderCheckoutProducts(cart) {
     // Get cart from local storage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Get reference to the cart drawer element
     const detailsCheckoutProducts = document.getElementById('detailsCheckoutProducts');
@@ -443,7 +444,7 @@ function updateCartDrawer() {
         });
     }
     CalculateCartSubtotal();
-    renderCheckoutProducts();
+    renderCheckoutProducts(cart);
 }
 
 function updateQuantity(productId, action, stock_remaining, value = 1) {
@@ -1473,7 +1474,9 @@ async function getShippingFees() {
             latitude = data.address.latitude;
             longitude = data.address.longitude;
             updateShippingPrices(data.success);
+            renderCheckoutProducts(data.cart);
             transactionCodeStatus = data.status;
+            cart = data.cart;
             const checkoutButton = document.getElementById('placeOrderButton');
     
             checkoutButton.disabled = false;
