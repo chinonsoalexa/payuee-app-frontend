@@ -413,3 +413,30 @@ function formatNumber(value) {
         return value.toString();
     }
 }
+
+(function () {
+  const originalSetItem = localStorage.setItem;
+
+  localStorage.setItem = function (key, value) {
+    if (key === 'guest_cart') {
+      handleCartUpdate(JSON.parse(value));
+    }
+    return originalSetItem.apply(this, arguments);
+  };
+
+  window.addEventListener('storage', function (event) {
+    if (event.key === 'guest_cart') {
+      try {
+        const updatedCart = JSON.parse(event.newValue);
+        handleCartUpdate(updatedCart);
+      } catch (e) {
+        console.warn('Error parsing cart from storage event:', e);
+      }
+    }
+  });
+
+  function handleCartUpdate(cart) {
+    console.log('Cart updated:', cart);
+    // syncCartToServer(cart); // Optional: Your server sync logic
+  }
+})();
