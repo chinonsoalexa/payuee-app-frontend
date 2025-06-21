@@ -421,6 +421,9 @@ function formatNumber(value) {
     if (key === 'guest_cart') {
       handleCartUpdate(JSON.parse(value));
     }
+    if (key === 'cart') {
+      handleCartUpdate(JSON.parse(value));
+    }
     return originalSetItem.apply(this, arguments);
   };
 
@@ -432,6 +435,9 @@ function formatNumber(value) {
       } catch (e) {
         console.warn('Error parsing cart from storage event:', e);
       }
+    }
+    if (key === 'cart') {
+      handleCartUpdate(JSON.parse(value));
     }
   });
 
