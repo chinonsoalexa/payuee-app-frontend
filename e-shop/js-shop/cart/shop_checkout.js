@@ -322,7 +322,7 @@ function renderCheckoutProducts(cart) {
                 <td>
                 ${cartProduct.title}
                       </td>
-                      ${price}
+                ${price}
             `;
 
             // Append the new cart item to the cart drawer
@@ -370,9 +370,9 @@ async function getUpdatedCart() {
 
 async function updateCartDrawer() {
 
-    let cart = await getUpdatedCart();
     // Get cart from local storage
     // let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = await getUpdatedCart();
 
     // Get reference to the cart drawer element
     const cartDrawer = document.getElementById('cartDrawer1');
