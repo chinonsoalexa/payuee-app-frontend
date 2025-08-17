@@ -92,17 +92,17 @@ async function logout() {
         // Adjust to get the base part, which includes the protocol, domain, and '/store/'
         baseUrl = baseUrl.split('/').slice(0, 4).join('/') + '/'; 
         
-        // console.log(baseUrl); // Outputs: "https://payuee.com/store/"
+        // console.log(baseUrl); // Outputs: "https://app.payuee.com/store/"
 
 
-        if (baseUrl == "https://payuee.com/store/") {
+        if (baseUrl == "https://app.payuee.com/store/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/store/', '/store/v/');
             location.replace(newUrl);
             return;
         } else {
             // Redirect to the login/register page with the current URL as the redirectTo parameter
-            location.replace(`https://payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
+            location.replace(`https://app.payuee.com/e-shop/v/login_register?redirectTo=${encodeURIComponent(fullUrl)}`);
         }
 
     } catch (error) {
@@ -180,7 +180,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>

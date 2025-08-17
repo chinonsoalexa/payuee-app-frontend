@@ -116,7 +116,7 @@ async function getProducts(OrderId) {
             document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
             document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
-            document.getElementById('qr-code-image').src = "https://payuee.com/image/" +responseData.success.qr_code_image;
+            document.getElementById('qr-code-image').src = "https://app.payuee.com/image/" +responseData.success.qr_code_image;
         }
 
         let orderStatusId = document.getElementById('orderStatusId');
@@ -355,9 +355,9 @@ function renderProducts(product) {
     }
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="img-fluid img-40" src="${"https://payuee.com/image/"+product.first_image_url}" alt="${product.title}"></td>
+        <td><img class="img-fluid img-40" src="${"https://app.payuee.com/image/"+product.first_image_url}" alt="${product.title}"></td>
         <td>
-        <div class="product-name"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
+        <div class="product-name"><a href="https://app.payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
         </td>
         <td>${formatNumberToNaira(price)}</td>
         <td>

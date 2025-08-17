@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('redirectTo', currentUrl);
 
         // Redirect to the reset transaction PIN page
-        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
+        window.location.href = 'https://app.payuee.com/e-shop/v/reset_trans_pin';
     });
 });
 
@@ -145,9 +145,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -268,7 +268,7 @@ function renderProducts(product) {
         <img 
         id="image${product.ID}" 
         class="align-self-center img-fluid img-60" 
-        src="https://payuee.com/image/${product.product_orders[0].first_image_url}" 
+        src="https://app.payuee.com/image/${product.product_orders[0].first_image_url}" 
         alt="${product.title}" 
         onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
     </td>
@@ -569,7 +569,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="https://payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://app.payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>${product.net_weight}kg</td>
@@ -652,7 +652,7 @@ function renderOrderedProducts(products) {
 }
   
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/e-shop/account_orders?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/e-shop/account_orders?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {

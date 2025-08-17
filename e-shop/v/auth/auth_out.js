@@ -15,45 +15,45 @@ function get_auth_status() {
         // Adjust to get the base part, which includes the protocol, domain, and '/store/'
         baseUrl = baseUrl.split('/').slice(0, 5).join('/') + '/'; 
         
-        // console.log(baseUrl); // Outputs: "https://payuee.com/store/"
+        // console.log(baseUrl); // Outputs: "https://app.payuee.com/store/"
 
 
-        if (baseUrl == "https://payuee.com/store/v/") {
+        if (baseUrl == "https://app.payuee.com/store/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/store/v/', '/store/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/gadgets/v/") {
+        } else if (baseUrl == "https://app.payuee.com/gadgets/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/gadgets/v/', '/gadgets/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/kids/v/") {
+        } else if (baseUrl == "https://app.payuee.com/kids/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/kids/v/', '/kids/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/jewelry/v/") {
+        } else if (baseUrl == "https://app.payuee.com/jewelry/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/jewelry/v/', '/jewelry/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/cars/v/") {
+        } else if (baseUrl == "https://app.payuee.com/cars/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/cars/v/', '/cars/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/vendor/v/") {
+        } else if (baseUrl == "https://app.payuee.com/vendor/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/vendor/v/', '/vendor/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/tools/v/") {
+        } else if (baseUrl == "https://app.payuee.com/tools/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/tools/v/', '/tools/');
             location.replace(newUrl);
             return;
-        } else if (baseUrl == "https://payuee.com/outfits/v/") {
+        } else if (baseUrl == "https://app.payuee.com/outfits/v/") {
             // Replace '/store/' with '/store/v/' to update the URL
             let newUrl = fullUrl.replace('/outfits/v/', '/outfits/');
             location.replace(newUrl);
@@ -61,7 +61,7 @@ function get_auth_status() {
         } 
 
         // Redirect to authenticated home page if auth is true
-        location.replace('https://payuee.com/e-shop/home');
+        location.replace('https://app.payuee.com/e-shop/home');
     } else {
         // Check authentication status with the server if not authenticated
         check_auth_status();
@@ -91,7 +91,7 @@ async function check_auth_status() {
 
         // Store auth status on success and redirect to authenticated home page
         localStorage.setItem('auth', 'true');
-        location.replace('https://payuee.com/e-shop/home');
+        location.replace('https://app.payuee.com/e-shop/home');
 
     } catch (error) {
         console.error("Error checking authentication status:", error);
@@ -194,7 +194,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>

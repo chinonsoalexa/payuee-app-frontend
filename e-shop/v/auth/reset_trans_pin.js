@@ -165,7 +165,7 @@ async function confirmEmailOtp(user, confirmPassword, token) {
                 // Remove `redirectTo` from local storage after using it
                 localStorage.removeItem('redirectTo');
                 // Fallback to the home page if `redirectTo` is empty
-                window.location.href = 'https://payuee.com/e-shop/home';
+                window.location.href = 'https://app.payuee.com/e-shop/home';
             }
         }, 2000); // Adjust the delay time in milliseconds as needed
 

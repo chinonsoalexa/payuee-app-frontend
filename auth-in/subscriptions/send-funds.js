@@ -312,12 +312,12 @@ async function sendFunds() {
                 //     return
                 // }
                 // console.log("two");
-                // window.location.href = "https://payuee.com/bank-successful.html"
-                window.location.href = "https://payuee.com/successful.html"
+                // window.location.href = "https://app.payuee.com/bank-successful.html"
+                window.location.href = "https://app.payuee.com/successful.html"
                 return
             } else {
                     // console.log("three");
-                    window.location.href = "https://payuee.com/successful.html"
+                    window.location.href = "https://app.payuee.com/successful.html"
                 return
             }
         } finally {

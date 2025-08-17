@@ -337,7 +337,7 @@ async function loginEshop(email, password) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 
@@ -531,7 +531,7 @@ async function verifyEshop(Email, SentOTP) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 

@@ -86,7 +86,7 @@ async function handlePaymentClick(event) {
             showModal('insufficientBalanceModal');
             const fundWalletButton = document.getElementById('fundWalletButton');
             fundWalletButton.addEventListener('click', () => {
-                window.location.href = 'https://payuee.com/fund-wallet';
+                window.location.href = 'https://app.payuee.com/fund-wallet';
             });
         }, 300);
     } else {

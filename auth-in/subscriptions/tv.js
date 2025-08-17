@@ -148,7 +148,7 @@ document.getElementById('continue-sub-decoder').addEventListener('click', async 
                 // console.log('here 1')
                 if (responseData.success == 'data successfully bought') {
                     // console.log('here 2')
-                    window.location.href = "https://payuee.com/successful.html"
+                    window.location.href = "https://app.payuee.com/successful.html"
                     return
                 } else {
                 // console.log('here 3')

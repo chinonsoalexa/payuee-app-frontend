@@ -152,7 +152,7 @@ async function confirmEmailOtp(user, confirmPassword, token) {
 
         // Redirect after 3 seconds (3000 milliseconds)
         setTimeout(function() {
-            window.location.href = 'https://payuee.com/e-shop/v/login_register';
+            window.location.href = 'https://app.payuee.com/e-shop/v/login_register';
         }, 3000); // Adjust the delay time in milliseconds as needed
 
     } finally {

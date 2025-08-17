@@ -98,7 +98,7 @@ async function getProducts() {
         // Call the function with the default and main image paths
         loadMainImage(
             "/e-shop/images/shop/shop_banner6.png",
-            "https://payuee.com/image/"+responseData.vendor.shop_image
+            "https://app.payuee.com/image/"+responseData.vendor.shop_image
         );
 
         // updateProductsFromData(responseData.success);
@@ -279,7 +279,7 @@ function updateLink(urlIdToUpdate, pageNumber) {
     // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
     
     // Generate the new URL
-    urlIdToUpdate.href = `https://payuee.com/store/${storeName}?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/store/${storeName}?page=${pageNumber}`;
   }
 
   function updateLinkPro(pageNumber) {
@@ -294,7 +294,7 @@ function updateLink(urlIdToUpdate, pageNumber) {
     // const currentPage = parseInt(urlParts[2], 10); // Extracts current page number as an integer
     
     // Generate the new URL
-    return `https://payuee.com/store/${storeName}?page=${pageNumber}`;
+    return `https://app.payuee.com/store/${storeName}?page=${pageNumber}`;
   }
 
 function deactivatePreviousButton() {
@@ -369,23 +369,23 @@ function renderProducts(product, subscription) {
 
     let url = ""
     if (product.category == "outfits") {
-        url = "https://payuee.com/outfits/v/" + product.product_url_id;
+        url = "https://app.payuee.com/outfits/v/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        url = "https://payuee.com/jewelry/v/" + product.product_url_id;
+        url = "https://app.payuee.com/jewelry/v/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        url = "https://payuee.com/kids/v/" + product.product_url_id;
+        url = "https://app.payuee.com/kids/v/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        url = "https://payuee.com/cars/v/" + product.product_url_id;
+        url = "https://app.payuee.com/cars/v/" + product.product_url_id;
     } else if (product.category == "tools") {
-        url = "https://payuee.com/tools/v/" + product.product_url_id;
+        url = "https://app.payuee.com/tools/v/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        url = "https://payuee.com/gadgets/v/" + product.product_url_id;
+        url = "https://app.payuee.com/gadgets/v/" + product.product_url_id;
     } else if (product.category == "others") {
-        url = "https://payuee.com/outfits/v/" + product.product_url_id;
+        url = "https://app.payuee.com/outfits/v/" + product.product_url_id;
     }
 
     if (subscription.user_store) {
-        url = "https://payuee.com/vendor/v/" + product.product_url_id;
+        url = "https://app.payuee.com/vendor/v/" + product.product_url_id;
     }
 
     if (!subscription.active) {
@@ -491,7 +491,7 @@ function renderProducts(product, subscription) {
                     if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
                         event.preventDefault();
                         event.stopPropagation(); // Stop the event from propagating further
-                        window.location.href = `https://payuee.com/vendor/${product.product_url_id}`;
+                        window.location.href = `https://app.payuee.com/vendor/${product.product_url_id}`;
                         return;
                     }
                 addToCart(product);
@@ -517,7 +517,7 @@ function renderProducts(product, subscription) {
 
     function renderProductImages(imageUrls, title) {
         // Define a default image URL
-        // const defaultImageUrl = 'https://payuee.com/e-shop/images/product_not_available.jpg';
+        // const defaultImageUrl = 'https://app.payuee.com/e-shop/images/product_not_available.jpg';
       
         let imagesHtml = '';
         if (!imageUrls || imageUrls.length === 0) {
@@ -532,7 +532,7 @@ function renderProducts(product, subscription) {
           // Use the provided image URLs
           imageUrls.forEach((url, num) => {
             // Use a default image URL if any product image URL is missing or invalid
-            const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+            const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
       
             imagesHtml += `
               <div class="swiper-slide">
@@ -681,7 +681,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -958,19 +958,19 @@ function renderProducts2(products) {
     products.forEach(product => {
         let url = "";
         if (product.category === "outfits") {
-            url = "https://payuee.com/outfits/v/" + product.product_url_id;
+            url = "https://app.payuee.com/outfits/v/" + product.product_url_id;
         } else if (product.category === "jewelry") {
-            url = "https://payuee.com/jewelry/v/" + product.product_url_id;
+            url = "https://app.payuee.com/jewelry/v/" + product.product_url_id;
         } else if (product.category === "kids-accessories") {
-            url = "https://payuee.com/kids/v/" + product.product_url_id;
+            url = "https://app.payuee.com/kids/v/" + product.product_url_id;
         } else if (product.category === "cars-car-parts") {
-            url = "https://payuee.com/cars/v/" + product.product_url_id;
+            url = "https://app.payuee.com/cars/v/" + product.product_url_id;
         } else if (product.category === "tools") {
-            url = "https://payuee.com/tools/v/" + product.product_url_id;
+            url = "https://app.payuee.com/tools/v/" + product.product_url_id;
         } else if (product.category === "gadgets") {
-            url = "https://payuee.com/gadgets/v/" + product.product_url_id;
+            url = "https://app.payuee.com/gadgets/v/" + product.product_url_id;
         } else if (product.category === "others") {
-            url = "https://payuee.com/outfits/v/" + product.product_url_id;
+            url = "https://app.payuee.com/outfits/v/" + product.product_url_id;
         }
 
         const productItem = document.createElement("li");
@@ -979,7 +979,7 @@ function renderProducts2(products) {
         productItem.innerHTML = `
           <div class="d-flex align-items-center">
             <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center w-100">
-                <img src="https://payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
+                <img src="https://app.payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
                 <div class="text-content">
                     <span class="text-secondary">Title: ${product.title}</span><br>
                     <span>Qty: ${product.stock_remaining}</span>

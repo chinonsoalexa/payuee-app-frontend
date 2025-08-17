@@ -125,9 +125,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/vendor/edit-products?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -232,25 +232,25 @@ function renderProducts(product) {
 
     let url = ""
     if (product.category == "outfits") {
-        url = "https://payuee.com/outfits/" + product.product_url_id;
+        url = "https://app.payuee.com/outfits/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        url = "https://payuee.com/jewelry/" + product.product_url_id;
+        url = "https://app.payuee.com/jewelry/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        url = "https://payuee.com/kids/" + product.product_url_id;
+        url = "https://app.payuee.com/kids/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        url = "https://payuee.com/cars/" + product.product_url_id;
+        url = "https://app.payuee.com/cars/" + product.product_url_id;
     } else if (product.category == "tools") {
-        url = "https://payuee.com/tools/" + product.product_url_id;
+        url = "https://app.payuee.com/tools/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        url = "https://payuee.com/gadgets/" + product.product_url_id;
+        url = "https://app.payuee.com/gadgets/" + product.product_url_id;
     } else if (product.category == "others") {
-        url = "https://payuee.com/outfits/" + product.product_url_id;
+        url = "https://app.payuee.com/outfits/" + product.product_url_id;
     }
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_image[0].url}" alt="${product.title}">
+            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://app.payuee.com/image/"+product.product_image[0].url}" alt="${product.title}">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
                 <h6><a href="${url}">${product.title}</a></h6>
@@ -278,7 +278,7 @@ function renderProducts(product) {
         if (!product.reposted) {
             window.location.href = 'edit-product-details.html?ProductID=' + product.ID;
         } else {    
-            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
+            window.location.href = `https://app.payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
         }
     });
 
@@ -317,7 +317,7 @@ function renderProducts(product) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/e-shop/vendor/edit-products?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/e-shop/vendor/edit-products?page=${pageNumber}`;
 }
 
 async function deleteProduct(productID) {

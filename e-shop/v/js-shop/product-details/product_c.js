@@ -107,7 +107,7 @@ function downloadProduct(responseData) {
 
   const productImage = document.querySelector(".product-image");
   
-  productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
+  productImage.src = "https://app.payuee.com/image/" + responseData.success.product_image[0].url;
 
   const productNameElement = document.querySelector(".product-name");
   productNameElement.textContent = responseData.success.title;
@@ -654,7 +654,7 @@ function triggerShake() {
   
     let imagesHtml = '';
     imageUrls.forEach((url) => {
-      const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+      const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
   
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
@@ -925,7 +925,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://app.payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -1169,19 +1169,19 @@ function renderRecommendedProduct(products) {
     let urll = ""
 
     if (product.category == "outfits") {
-        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/outfits/v/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        urll = "https://payuee.com/jewelry/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/jewelry/v/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        urll = "https://payuee.com/kids/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/kids/v/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        urll = "https://payuee.com/cars/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/cars/v/" + product.product_url_id;
     } else if (product.category == "tools") {
-        urll = "https://payuee.com/tools/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/tools/v/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        urll = "https://payuee.com/gadgets/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/gadgets/v/" + product.product_url_id;
     } else if (product.category == "others") {
-        urll = "https://payuee.com/outfits/v/" + product.product_url_id;
+        urll = "https://app.payuee.com/outfits/v/" + product.product_url_id;
     }
 
     // Determine if the button should be disabled and what text to display
@@ -1194,14 +1194,14 @@ function renderRecommendedProduct(products) {
     <div class="pc__img-wrapper">
         <a href="${urll}">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="https://app.payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
                 class="pc__img" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
             <img loading="lazy" 
-                src="https://payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="https://app.payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
@@ -1496,7 +1496,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -1538,7 +1538,7 @@ function updateCartDrawer() {
           cartItem.innerHTML = `
               <div class="position-relative">
                 <img loading="lazy" class="cart-drawer-item__img" 
-                src="${cartProduct.Image1 ? "https://payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
+                src="${cartProduct.Image1 ? "https://app.payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
                 alt="${cartProduct.title}" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
 

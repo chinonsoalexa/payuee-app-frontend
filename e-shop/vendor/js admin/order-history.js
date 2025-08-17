@@ -114,9 +114,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/vendor/order-history?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -245,7 +245,7 @@ function renderEmptyOrderHistory(store, name) {
     // Add event listener for the share button
     const shareButton = document.getElementById('shareStoreButton');
     shareButton.addEventListener('click', function () {
-        const userShopUrl = `https://payuee.com/store/v/${store}`; // Replace with dynamic URL for user's shop
+        const userShopUrl = `https://app.payuee.com/store/v/${store}`; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out ${name} on Payuee e-Shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
@@ -289,7 +289,7 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.product_orders[0].title}" onerror="this.src='https://via.placeholder.com/60';">
+            <div class="d-flex"><img class="align-self-center img-fluid img-60" src="${"https://app.payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.product_orders[0].title}" onerror="this.src='https://via.placeholder.com/60';">
             <div class="flex-grow-1 ms-3">
                 <div class="product-name">
                 <h6><a href="order-history-details.html?OrderId=${product.ID}">${product.product_orders[0].title}...</a></h6>
@@ -313,7 +313,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.align-self-center');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/e-shop/vendor/order-history/${product.product_url_id}`;
+        window.location.href = `https://app.payuee.com/e-shop/vendor/order-history/${product.product_url_id}`;
     });
 
     // Add event listener to the 'Add To Cart' button
@@ -328,7 +328,7 @@ function renderProducts(product) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/e-shop/vendor/order-history?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/e-shop/vendor/order-history?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {

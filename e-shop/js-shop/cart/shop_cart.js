@@ -24,7 +24,7 @@ function updateMainCart() {
         <tr>
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="https://payuee.com/e-shop/images/product_not_available.jpg" width="120" height="120" alt="">
+                    <img loading="lazy" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>
@@ -201,7 +201,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>

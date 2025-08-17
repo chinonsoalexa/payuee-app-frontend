@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('redirectTo', currentUrl);
 
         // Redirect to the reset transaction PIN page
-        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
+        window.location.href = 'https://app.payuee.com/e-shop/v/reset_trans_pin';
     });
 });
 
@@ -426,7 +426,7 @@ async function updateCartDrawer() {
             cartItem.innerHTML = `
                 <div class="position-relative">
                   <img loading="lazy" class="cart-drawer-item__img" 
-     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://app.payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
      alt="${cartProduct.title}" 
      onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
 
@@ -829,7 +829,7 @@ placeOrderButton.addEventListener("click", function(event) {
                 const fundWalletButton = document.getElementById('fundWalletButton');
                 fundWalletButton.addEventListener('click', function () {
                     // Logic to fund the wallet goes here
-                    window.location.href = 'https://payuee.com/fund-wallet';
+                    window.location.href = 'https://app.payuee.com/fund-wallet';
                 });
             checkoutButton.disabled = false;
             return;
@@ -877,7 +877,7 @@ placeOrderButton.addEventListener("click", function(event) {
                     // Add the click event listener
                     element.addEventListener("click", () => {
                         // Redirect to the URL with the OrderID as a query parameter
-                        window.location.href = `https://payuee.com/e-shop/shop_order_complete?OrderID=${result.order[0]}`;
+                        window.location.href = `https://app.payuee.com/e-shop/shop_order_complete?OrderID=${result.order[0]}`;
                     });
                     return;
                 } else {

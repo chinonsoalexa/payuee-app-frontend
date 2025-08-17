@@ -40,7 +40,7 @@ async function updateBlogContent(BlogID) {
         
         const blogDataRender = document.getElementById('blogDataRender');
         blogDataRender.innerHTML = '';
-        updateShareUrls(blogData.success.title, 'https://payuee.com/image'+blogData.success.Image1);
+        updateShareUrls(blogData.success.title, 'https://app.payuee.com/image'+blogData.success.Image1);
         // Check if data was received
         if (!blogData) {
             console.error("No data received for the given BlogID");
@@ -73,7 +73,7 @@ async function updateBlogContent(BlogID) {
         rowElement.innerHTML = `
         <p>
           <!-- first image rendering -->
-          <img id="firstImage" loading="lazy" class="w-100 h-auto d-block" src="${"https://payuee.com/image/" + blogData.success.Image1}" width="1410" height="550" alt="${blogData.success.title}">
+          <img id="firstImage" loading="lazy" class="w-100 h-auto d-block" src="${"https://app.payuee.com/image/" + blogData.success.Image1}" width="1410" height="550" alt="${blogData.success.title}">
         </p>
 
         <div id="firstDescription" class="mw-930">
@@ -84,10 +84,10 @@ async function updateBlogContent(BlogID) {
         <div class="container mw-1170">
           <div class="row">
             <div class="col-md-6">
-              <p><img  id="secondImage"  loading="lazy" class="w-100 h-auto d-block" src="${"https://payuee.com/image/" + blogData.success.Image2}" width="570" height="697" alt="${blogData.success.title}"></p>
+              <p><img  id="secondImage"  loading="lazy" class="w-100 h-auto d-block" src="${"https://app.payuee.com/image/" + blogData.success.Image2}" width="570" height="697" alt="${blogData.success.title}"></p>
             </div>
             <div class="col-md-6">
-              <p><img  id="thirdImage" loading="lazy" class="w-100 h-auto d-block" src="${"https://payuee.com/image/" + blogData.success.Image3}" width="570" height="697" alt="${blogData.success.title}"></p>
+              <p><img  id="thirdImage" loading="lazy" class="w-100 h-auto d-block" src="${"https://app.payuee.com/image/" + blogData.success.Image3}" width="570" height="697" alt="${blogData.success.title}"></p>
             </div>
           </div>
         </div>

@@ -227,7 +227,7 @@ function fillForm(storeData) {
         const imageContainer = document.getElementById('imageContainer');
         imageContainer.innerHTML = ''; // Clear any previous images
         const imgElement = document.createElement('img');
-        imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
+        imgElement.src = `https://app.payuee.com/image/${storeData.shop_image}`;
         imgElement.alt = storeData.shop_name;
         imgElement.style.maxWidth = "100%"; // Style as needed
         imageContainer.appendChild(imgElement);
@@ -238,12 +238,12 @@ function fillForm(storeData) {
     const visitStoreBtn = document.getElementById("visitStoreBtn");
     // Add an onclick event to redirect to the store URL
     visitStoreBtn.addEventListener("click", function() {
-        window.location.href = "https://payuee.com/store/" + storeData.store_unique_url;
+        window.location.href = "https://app.payuee.com/store/" + storeData.store_unique_url;
     });
 
     const shareStoreBtn = document.getElementById("shareStoreBtn");
     shareStoreBtn.addEventListener('click', function () {
-        const userShopUrl = `https://payuee.com/store/v/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
+        const userShopUrl = `https://app.payuee.com/store/v/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out ${storeData.shop_name} on Payuee e-Shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;

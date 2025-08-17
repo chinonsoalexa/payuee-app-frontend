@@ -22,7 +22,7 @@ async function get_auth_status() {
         // Clear local storage and logout the user if session expired
         logout();
         localStorage.removeItem("auth");
-        window.location.href = "https://payuee.com/e-shop/v/login_register";
+        window.location.href = "https://app.payuee.com/e-shop/v/login_register";
         return Promise.reject("User not authenticated");
     }
 
@@ -71,7 +71,7 @@ async function check_auth_status() {
 
 function handleAuthError(error) {
     if (error === "vendor not found") {
-        window.location.href = "https://payuee.com/e-shop/pricing";
+        window.location.href = "https://app.payuee.com/e-shop/pricing";
     } else if (
         error === "No Authentication cookie found" ||
         error === "Unauthorized attempt! JWT's not valid!" ||
@@ -127,7 +127,7 @@ const steps = [
         description: "Ensure a smooth checkout process for your customers by setting accurate shipping fees.",
         buttonText: "Set Shipping Fees",
         image: "shipping.png",
-        path: "https://payuee.com/e-shop/vendor/update-shipping-fees",
+        path: "https://app.payuee.com/e-shop/vendor/update-shipping-fees",
     },
     {
         name: "addProduct",
@@ -135,7 +135,7 @@ const steps = [
         description: "Showcase your products to millions of customers on Payuee e-Shop.",
         buttonText: "Add Product",
         image: "add-product.png",
-        path: "https://payuee.com/e-shop/vendor/add-products",
+        path: "https://app.payuee.com/e-shop/vendor/add-products",
     },
     {
         name: "customizeStore",
@@ -143,7 +143,7 @@ const steps = [
         description: "Add your store details, banner, and logo to stand out.",
         buttonText: "Customize Store",
         image: "customize-store.png",
-        path: "https://payuee.com/e-shop/vendor/update-store",
+        path: "https://app.payuee.com/e-shop/vendor/update-store",
     },
     {
         name: "completed",
@@ -151,7 +151,7 @@ const steps = [
         description: "Setup complete! Start selling your products on Payuee e-Shop.",
         buttonText: "Go to Dashboard",
         image: "success.png",
-        path: "https://payuee.com/e-shop/vendor/dashboard",
+        path: "https://app.payuee.com/e-shop/vendor/dashboard",
     },
 ];
 
@@ -200,7 +200,7 @@ function nextStep(userData) {
 }
 
 function redirectToRenewPage() {
-    const renewalPageURL = "https://payuee.com/e-shop/pricing"; // Replace with your actual renewal page URL
+    const renewalPageURL = "https://app.payuee.com/e-shop/pricing"; // Replace with your actual renewal page URL
     window.location.href = renewalPageURL;
 }
 
@@ -223,7 +223,7 @@ async function logout() {
         }
 
         localStorage.removeItem("auth");
-        window.location.href = "https://payuee.com/e-shop/v/login_register";
+        window.location.href = "https://app.payuee.com/e-shop/v/login_register";
     } catch (error) {
         console.error("Logout failed:", error);
     }

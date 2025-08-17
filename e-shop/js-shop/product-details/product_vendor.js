@@ -107,7 +107,7 @@ function downloadProduct(responseData) {
 
   const productImage = document.querySelector(".product-image");
   
-  productImage.src = "https://payuee.com/image/" + responseData.success.product_image[0].url;
+  productImage.src = "https://app.payuee.com/image/" + responseData.success.product_image[0].url;
 
   const productNameElement = document.querySelector(".product-name");
   productNameElement.textContent = responseData.success.title;
@@ -631,7 +631,7 @@ quantityInput.addEventListener('change', () => {
     let imagesHtml = '';
     imageUrls.forEach((url) => {
       // Determine the image URL (fallback to default image if missing)
-      const imageUrl = url.url ? `https://payuee.com/image/${url.url}` : defaultImageUrl;
+      const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
   
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
@@ -654,7 +654,7 @@ quantityInput.addEventListener('change', () => {
     let imagesHtml = '';
     imageUrls.forEach((url) => {
       imagesHtml += `
-      <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="https://payuee.com/image/${url.url}" width="104" height="104" alt="${title}"></div>`;
+      <div class="swiper-slide product-single__image-item"><img loading="lazy" class="h-auto" src="https://app.payuee.com/image/${url.url}" width="104" height="104" alt="${title}"></div>`;
     });
     return imagesHtml; // Return the full HTML string
   }
@@ -736,9 +736,9 @@ quantityInput.addEventListener('change', () => {
     if (collaborateButton) {
         collaborateButton.addEventListener("click", async function () {
           if (subscription.user_store && product.reposted) {
-            window.location.href = `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
+            window.location.href = `https://app.payuee.com/e-shop/vendor/product-collaboration?ProductID=${product.ID}&edit=true`;
           } else if (subscription.user_store) {
-            window.location.href = `https://payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}`;
+            window.location.href = `https://app.payuee.com/e-shop/vendor/edit-product-details?ProductID=${product.ID}`;
           } else {
             checkRepostEligibility(false, "sorry you cannot edit this product", null);
           }          
@@ -963,7 +963,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://app.payuee.com/image/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -1395,7 +1395,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -1431,7 +1431,7 @@ function updateCartDrawer() {
           cartItem.innerHTML = `
               <div class="position-relative">
                 <img loading="lazy" class="cart-drawer-item__img" 
-     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://app.payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
      alt="${cartProduct.title}" 
      onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
 

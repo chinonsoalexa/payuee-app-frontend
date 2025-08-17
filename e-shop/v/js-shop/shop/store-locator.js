@@ -190,7 +190,7 @@ function renderStores(stores, responseData) {
         noStoresMessage.classList.add('store-location__search-result__item');
         noStoresMessage.innerHTML = `
             <h5>No available stores found</h5>
-            <a href="https://payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
+            <a href="https://app.payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
         `;
         storeBody.appendChild(noStoresMessage);
         return;
@@ -248,9 +248,9 @@ function renderStores(stores, responseData) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -338,7 +338,7 @@ function renderStore(store) {
         noStoresMessage.classList.add('store-location__search-result__item');
         noStoresMessage.innerHTML = `
             <h5>No available stores found</h5>
-            <a href="https://payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
+            <a href="https://app.payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
         `;
         storeBody.appendChild(noStoresMessage);
         return;
@@ -396,5 +396,5 @@ function deactivateCurrentButton() {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/e-shop/v/store_location?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/e-shop/v/store_location?page=${pageNumber}`;
 }

@@ -108,7 +108,7 @@ async function getProducts() {
                     <img src="../../e-shop/images/become_vendor.png" alt="Become a Vendor" class="no-products-image" />
                     <h2 class="no-products-title">Be the First Vendor in Your Area (Outfits)!</h2>
                     <p class="no-products-text">Start showcasing your amazing products today and reach thousands of potential customers in your locality.</p>
-                    <a href="https://payuee.com/e-shop/pricing" class="btn btn-primary btn-lg mt-3">Become a Vendor Now</a>
+                    <a href="https://app.payuee.com/e-shop/pricing" class="btn btn-primary btn-lg mt-3">Become a Vendor Now</a>
                 </div>
             `;
     
@@ -151,9 +151,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/shop-outfits?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -284,7 +284,7 @@ function renderStores(data, products) {
 }
 
 function redirectToShop(storeId) {
-    const url = `https://payuee.com/store/${storeId}`; // Customize the URL as needed
+    const url = `https://app.payuee.com/store/${storeId}`; // Customize the URL as needed
     window.location.href = url;
   }
 
@@ -356,7 +356,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://app.payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -475,7 +475,7 @@ function renderProducts(product) {
             </div>
             <div class="pc__info position-relative">
                 <p class="pc__category">${product.category}</p>
-                <h6 class="pc__title"><a href="https://payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
+                <h6 class="pc__title"><a href="https://app.payuee.com/outfits/${product.product_url_id}">${product.title}</a></h6>
                 ${price}
                 <div class="product-card__review d-flex align-items-center">
                     <div class="reviews-group d-flex">
@@ -528,7 +528,7 @@ function renderProducts(product) {
     const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     imgWrapper.addEventListener('click', function(event) {
         event.preventDefault();
-        window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+        window.location.href = `https://app.payuee.com/outfits/${product.product_url_id}`;
     });
 
     // Attach the 'Collaborate' button event listener to this specific product card
@@ -554,8 +554,8 @@ function renderProducts(product) {
             imageUrls.forEach((url, num) => {
                 imagesHtml += `
                     <div class="swiper-slide">
-                        <a href="https://payuee.com/outfits/${url.url}" class="product-link${num + 1}">
-                            <img loading="lazy" src="https://payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                        <a href="https://app.payuee.com/outfits/${url.url}" class="product-link${num + 1}">
+                            <img loading="lazy" src="https://app.payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
                         </a>
                     </div>`;
             });
@@ -572,7 +572,7 @@ function renderProducts(product) {
                 if (product.clothing_sizes !== "" && product.shoes_sizes !== "") {
                     event.preventDefault();
                     event.stopPropagation(); // Stop the event from propagating further
-                    window.location.href = `https://payuee.com/outfits/${product.product_url_id}`;
+                    window.location.href = `https://app.payuee.com/outfits/${product.product_url_id}`;
                     return;
                 }
             addToCart(product);
@@ -617,7 +617,7 @@ async function checkCollaborationEligibility(ID) {
 
         const responseData = await response.json();
         // Check eligibility, passing `true` for eligible, or `false` with an error message
-        checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
+        checkRepostEligibility(responseData.collaborate, null, `https://app.payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
 } finally {
 
     }
@@ -785,7 +785,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>

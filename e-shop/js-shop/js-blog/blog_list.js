@@ -54,7 +54,7 @@ function renderBlogs(blog) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="blog-list__item-image">
-            <img loading="lazy" class="h-auto" src="https://payuee.com/image/${blog.Image1}" width="680" height="493" alt="${blog.title}">
+            <img loading="lazy" class="h-auto" src="https://app.payuee.com/image/${blog.Image1}" width="680" height="493" alt="${blog.title}">
           </div>
           <div class="blog-list__item-detail">
             <div class="blog-list__item-meta">
@@ -62,11 +62,11 @@ function renderBlogs(blog) {
               <span class="blog-list__item-meta__date">${createdAtDate.toLocaleDateString()}</span>
             </div>
             <div class="blog-list__item-title">
-              <a href="https://payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}">${blog.title}</a>
+              <a href="https://app.payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}">${blog.title}</a>
             </div>
             <div class="blog-list__item-content">
               <p>${createBlogPreview(blog.description1)}</p>
-              <a href="https://payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}" class="readmore-link">Continue Reading</a>
+              <a href="https://app.payuee.com/e-shop/v/blog_single?BlogID=${blog.ID}" class="readmore-link">Continue Reading</a>
             </div>
           </div>
     `;
@@ -93,7 +93,7 @@ function renderBlogs(blog) {
     // const imgWrapper = rowElement.querySelector('.swiper-wrapper');
     // imgWrapper.addEventListener('click', function(event) {
     //     event.preventDefault();
-    //     window.location.href = `https://payuee.com/shop/${product.product_url_id}`;
+    //     window.location.href = `https://app.payuee.com/shop/${product.product_url_id}`;
     // });
 
     // // Add event listener to the 'Add To Cart' button
@@ -179,9 +179,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/v/blog_single?BlogID=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -294,7 +294,7 @@ resendButton.classList.add('deactivated'); // Add a class to the button
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://payuee.com/e-shop/v/blog_single?BlogID=${pageNumber}`;
+        urlIdToUpdate.href = `https://app.payuee.com/e-shop/v/blog_single?BlogID=${pageNumber}`;
 }
 
 // Function to extract plain text from HTML content
@@ -379,7 +379,7 @@ function updateCartNumber() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -421,7 +421,7 @@ function updateCartNumber() {
             cartItem.innerHTML = `
                 <div class="position-relative">
                   <img loading="lazy" class="cart-drawer-item__img" 
-                  src="${cartProduct.Image1 ? "https://payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
+                  src="${cartProduct.Image1 ? "https://app.payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
                   alt="${cartProduct.title}" 
                   onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
   

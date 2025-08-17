@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('redirectTo', currentUrl);
 
         // Redirect to the reset transaction PIN page
-        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
+        window.location.href = 'https://app.payuee.com/e-shop/v/reset_trans_pin';
     });
 });
 
@@ -141,9 +141,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/store-transactions?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://payuee.com/store-transactions?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/store-transactions?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -243,7 +243,7 @@ function renderNoTransactions() {
             <h5>Exciting Opportunities Await You!</h5>
             <p>It looks like you haven't made any purchases yet. Don't worry, our vast range of vendors has everything you need!</p>
             <p>Explore products from various vendors and make your first purchase today. Start shopping and unlock the full potential of Payuee e-Shop!</p>
-            <p><a href="https://payuee.com/e-shop/shop-outfits" class="btn btn-primary">Browse Products Now</a></p>
+            <p><a href="https://app.payuee.com/e-shop/shop-outfits" class="btn btn-primary">Browse Products Now</a></p>
         </div>
     `;
 
@@ -295,7 +295,7 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
+            <div class="d-flex"><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://app.payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
                 <div class="flex-grow-1 ms-3">
                     <div id="title${product.ID}" class="product-name">
                     <h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6>
@@ -602,7 +602,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="https://payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://app.payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>${product.net_weight}kg</td>
@@ -685,7 +685,7 @@ function renderOrderedProducts(products) {
 }
   
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://payuee.com/store-transactions?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://app.payuee.com/store-transactions?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {

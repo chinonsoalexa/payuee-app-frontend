@@ -50,7 +50,7 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
                 window.location.href = responseData.success.data.authorization_url;
                 return;
             } else {
-                window.location.href = "https://payuee.com/successful.html";
+                window.location.href = "https://app.payuee.com/successful.html";
                 return;
             }
         } finally {

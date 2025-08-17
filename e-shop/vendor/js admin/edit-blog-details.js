@@ -144,7 +144,7 @@ async function updateBlog() {
 
 document.getElementById('previewBlogPost').addEventListener('click', function(event) {
     event.preventDefault();
-    window.open('https://payuee.com/blog_single?BlogID=' + blogIdToUpdate, '_blank');
+    window.open('https://app.payuee.com/blog_single?BlogID=' + blogIdToUpdate, '_blank');
 })
 
 async function getProduct(productID) {

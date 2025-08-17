@@ -68,24 +68,24 @@ function renderSearch(results) {
 
             // Check if there's an image to display
             const imageUrl = item.product_image?.[0]?.url
-                ? `https://payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
+                ? `https://app.payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
                 : '';
 
                 let url = ""
                 if (item.category == "outfits") {
-                    url = "https://payuee.com/outfits/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/outfits/v/" + item.product_url_id;
                 } else if (item.category == "jewelry") {
-                    url = "https://payuee.com/jewelry/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/jewelry/v/" + item.product_url_id;
                 } else if (item.category == "kids-accessories") {
-                    url = "https://payuee.com/kids/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/kids/v/" + item.product_url_id;
                 } else if (item.category == "cars-car-parts") {
-                    url = "https://payuee.com/cars/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/cars/v/" + item.product_url_id;
                 } else if (item.category == "tools") {
-                    url = "https://payuee.com/tools/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/tools/v/" + item.product_url_id;
                 } else if (item.category == "gadgets") {
-                    url = "https://payuee.com/gadgets/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/gadgets/v/" + item.product_url_id;
                 } else if (item.category == "others") {
-                    url = "https://payuee.com/outfits/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/outfits/v/" + item.product_url_id;
                 }
             resultItem.innerHTML = `
                 <a href="${url}" class="menu-link d-flex align-items-center justify-content-between">
@@ -112,24 +112,24 @@ function renderSearch2(results) {
 
             // Check if there's an image to display
             const imageUrl = item.product_image?.[0]?.url
-                ? `https://payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
+                ? `https://app.payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
                 : '';
 
                 let url = ""
                 if (item.category == "outfits") {
-                    url = "https://payuee.com/outfits/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/outfits/v/" + item.product_url_id;
                 } else if (item.category == "jewelry") {
-                    url = "https://payuee.com/jewelry/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/jewelry/v/" + item.product_url_id;
                 } else if (item.category == "kids-accessories") {
-                    url = "https://payuee.com/kids/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/kids/v/" + item.product_url_id;
                 } else if (item.category == "cars-car-parts") {
-                    url = "https://payuee.com/cars/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/cars/v/" + item.product_url_id;
                 } else if (item.category == "tools") {
-                    url = "https://payuee.com/tools/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/tools/v/" + item.product_url_id;
                 } else if (item.category == "gadgets") {
-                    url = "https://payuee.com/gadgets/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/gadgets/v/" + item.product_url_id;
                 } else if (item.category == "others") {
-                    url = "https://payuee.com/outfits/v/" + item.product_url_id;
+                    url = "https://app.payuee.com/outfits/v/" + item.product_url_id;
                 }
             resultItem.innerHTML = `
                 <a  href="${url}" class="menu-link d-flex align-items-center justify-content-between">

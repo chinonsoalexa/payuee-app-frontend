@@ -1302,7 +1302,7 @@ async function generateAiDescription(TitleData) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/v/login_register');
+                window.location.replace('https://app.payuee.com/e-shop/v/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
@@ -1414,14 +1414,14 @@ async function generateAiTag(TitleData, productDescription) {
 
             if (errorData.error === 'wrong plan detected') {
                 // need to do a data of just null event 
-                window.location.replace('https://payuee.com/e-shop/v/login_register');
+                window.location.replace('https://app.payuee.com/e-shop/v/login_register');
                 // displayErrorMessage();
             } else if (errorData.error === 'AI Description Generation Timed Out') {
                 // need to do a data of just null event 
                 showToastMessageE('AI Description Generation Timed Out');
             } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 // let's log user out the users session has expired
-                window.location.replace('https://payuee.com/e-shop/v/login_register');
+                window.location.replace('https://app.payuee.com/e-shop/v/login_register');
                 logout();
             }else {
                 // displayErrorMessage();
@@ -1547,7 +1547,7 @@ async function check_posting_status() {
                 // Add an event listener for the click event
                 upgradeButton.addEventListener("click", function() {
                     // Redirect to a different page (change the URL as needed)
-                    window.location.href = "https://payuee.com/e-shop/pricing.html";  // Replace with your desired URL
+                    window.location.href = "https://app.payuee.com/e-shop/pricing.html";  // Replace with your desired URL
                 });
             } else {
                 // Subscription is still active, show Update button
@@ -1597,7 +1597,7 @@ try {
       }
         const data = await response.json();
         localStorage.removeItem('auth')
-        window.location.href = "https://payuee.com/e-shop/v/login_register";
+        window.location.href = "https://app.payuee.com/e-shop/v/login_register";
     } finally{
         // do nothing
     }

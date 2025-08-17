@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function loadStates() {
     try {
         // Update the URL to the correct path of your JSON file
-        const response = await fetch('https://payuee.com/e-shop/v/nigeria_states.json');
+        const response = await fetch('https://app.payuee.com/e-shop/v/nigeria_states.json');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -150,7 +150,7 @@ async function loadStates() {
 // Function to fetch and populate city data based on state_iso2
 async function loadCities(stateIso2) {
     try {
-        const response = await fetch('https://payuee.com/e-shop/v/nigeria_cities.json'); // Update with your actual cities JSON URL
+        const response = await fetch('https://app.payuee.com/e-shop/v/nigeria_cities.json'); // Update with your actual cities JSON URL
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -349,7 +349,7 @@ async function loginEshop(email, password) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 
@@ -542,7 +542,7 @@ async function verifyEshop(Email, SentOTP) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 
