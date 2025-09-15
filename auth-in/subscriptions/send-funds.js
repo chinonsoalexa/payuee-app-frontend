@@ -22,6 +22,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('cancel-btn2').addEventListener('click', hideErrorPopup);
 });
 
+const accountNumber = document.getElementById("AccountNumber");
+
+accountNumber.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 10);
+
+    e.target.value = value;
+});
+
+const amountToTransfer = document.getElementById("AmountToTransfer");
+
+amountToTransfer.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    e.target.value = value;
+});
+
 function handleSendMoneyClick(event) {
     event.preventDefault();
     validateAndSendFunds();
