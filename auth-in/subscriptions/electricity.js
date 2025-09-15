@@ -21,9 +21,9 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
     enableElectricityDiv();
 })
 
-const meterNumber = document.getElementById("meter-number");
+const meterNumber12 = document.getElementById("meter-number");
 
-meterNumber.addEventListener("input", (e) => {
+meterNumber12.addEventListener("input", (e) => {
     let value = e.target.value;
 
     // Remove all non-digits
@@ -35,9 +35,9 @@ meterNumber.addEventListener("input", (e) => {
     e.target.value = value;
 });
 
-const phoneNumber = document.getElementById("phone-number");
+const phoneNumber12 = document.getElementById("phone-number");
 
-phoneNumber.addEventListener("input", (e) => {
+phoneNumber12.addEventListener("input", (e) => {
     let value = e.target.value;
 
     // Remove all non-digits
@@ -49,9 +49,9 @@ phoneNumber.addEventListener("input", (e) => {
     e.target.value = value;
 });
 
-const billAmount = document.getElementById("bill-amount");
+const billAmount12 = document.getElementById("bill-amount");
 
-billAmount.addEventListener("input", (e) => {
+billAmount12.addEventListener("input", (e) => {
     let value = e.target.value;
 
     // Remove all non-digits
