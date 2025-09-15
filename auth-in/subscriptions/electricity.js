@@ -21,6 +21,45 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
     enableElectricityDiv();
 })
 
+const meterNumber = document.getElementById("meter-number");
+
+meterNumber.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 10);
+
+    e.target.value = value;
+});
+
+const phoneNumber = document.getElementById("phone-number");
+
+phoneNumber.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 10);
+
+    e.target.value = value;
+});
+
+const billAmount = document.getElementById("bill-amount");
+
+billAmount.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    e.target.value = value;
+});
+
 document.getElementById('continue-sub-electricity').addEventListener('click', async function(event) {
     event.preventDefault();
 
