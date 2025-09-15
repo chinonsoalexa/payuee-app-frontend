@@ -60,6 +60,17 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
     validated = true;
 });
 
+const billAmountInput = document.getElementById("billAmountInput");
+
+billAmountInput.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    e.target.value = value;
+});
+
 // Get the radio buttons by name
 const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
 
