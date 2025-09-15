@@ -540,35 +540,38 @@ function getCartFromStorage(key) {
   }
 }
 
-// Start loading state for a button
+// Start loading state
 function startLoading(buttonId) {
-    const btn = document.getElementById(buttonId);
-    if (!btn) return;
+  const btn = document.getElementById(buttonId);
+  if (!btn) return;
 
-    btn.disabled = true;
+  btn.disabled = true;
+
+  // Only save once
+  if (!btn.dataset.originalText) {
     btn.dataset.originalText = btn.innerHTML;
-    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Loading...`;
+  }
+
+  btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Loading...`;
 }
 
-// Stop loading state for a button
+// Stop loading state
 function stopLoading(buttonId, isError = false) {
-    const btn = document.getElementById(buttonId);
-    if (!btn) return;
+  const btn = document.getElementById(buttonId);
+  if (!btn) return;
 
-    btn.disabled = false;
+  btn.disabled = false;
 
-    if (btn.dataset.originalText) {
-        btn.innerHTML = btn.dataset.originalText;
-    }
+  if (btn.dataset.originalText) {
+    btn.innerHTML = btn.dataset.originalText;
+  }
 
-    // If error, add shake + red flash
-    if (isError) {
-        btn.classList.add("btn-error-shake");
-        setTimeout(() => {
-            btn.classList.remove("btn-error-shake");
-        }, 600); // reset after animation
-    }
+  if (isError) {
+    btn.classList.add("btn-error-shake");
+    setTimeout(() => btn.classList.remove("btn-error-shake"), 600);
+  }
 }
+
 
 async function registerEshop(email, password, name) {
     startLoading("registerButton1"); // 🚀 Start loading
