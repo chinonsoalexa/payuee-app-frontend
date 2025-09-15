@@ -78,6 +78,34 @@ document.getElementById('back-to-tv').addEventListener('click', function(event) 
     enableTvDiv()
 })
 
+const decoderNumber12 = document.getElementById("decoder-number");
+
+decoderNumber12.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 10);
+
+    e.target.value = value;
+});
+
+const phoneNumber12 = document.getElementById("mobile-number");
+
+phoneNumber12.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 11);
+
+    e.target.value = value;
+});
+
 document.getElementById('continue-sub-decoder').addEventListener('click', async function(event) {
     event.preventDefault();
 
