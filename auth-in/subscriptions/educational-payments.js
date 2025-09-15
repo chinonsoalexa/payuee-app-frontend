@@ -18,6 +18,20 @@ document.getElementById('back-to-data').addEventListener('click', function(event
     enableEducationDiv()
 })
 
+const phoneNumber12 = document.getElementById("phone-number");
+
+phoneNumber12.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 11);
+
+    e.target.value = value;
+});
+
 document.getElementById('continue-buy-pin').addEventListener('click', async function(event) {
     event.preventDefault();
 
