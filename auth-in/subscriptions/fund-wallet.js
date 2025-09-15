@@ -60,9 +60,9 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
     validated = true;
 });
 
-const billAmountInput = document.getElementById("billAmountInput");
+const billAmountInput12 = document.getElementById("billAmountInput");
 
-billAmountInput.addEventListener("input", (e) => {
+billAmountInput12.addEventListener("input", (e) => {
     let value = e.target.value;
 
     // Remove all non-digits
