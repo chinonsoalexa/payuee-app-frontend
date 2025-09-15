@@ -30,7 +30,7 @@ meterNumber.addEventListener("input", (e) => {
     value = value.replace(/\D/g, "");
 
     // Limit to 11 digits max
-    value = value.slice(0, 10);
+    value = value.slice(0, 11);
 
     e.target.value = value;
 });
@@ -44,7 +44,7 @@ phoneNumber.addEventListener("input", (e) => {
     value = value.replace(/\D/g, "");
 
     // Limit to 11 digits max
-    value = value.slice(0, 10);
+    value = value.slice(0, 11);
 
     e.target.value = value;
 });
