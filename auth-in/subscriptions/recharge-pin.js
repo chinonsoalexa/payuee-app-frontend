@@ -18,6 +18,20 @@ document.getElementById('back-to-airtime').addEventListener('click', function(ev
     enableCardPinDiv();
 })
 
+const pinNumber = document.getElementById("pin-number");
+
+pinNumber.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 11);
+
+    e.target.value = value;
+});
+
 document.getElementById('continue-buy-recharge-pin').addEventListener('click', async function(event) {
     event.preventDefault();
 
