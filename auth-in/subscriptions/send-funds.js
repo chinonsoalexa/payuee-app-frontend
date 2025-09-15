@@ -47,6 +47,17 @@ amountToTransfer.addEventListener("input", (e) => {
     e.target.value = value;
 });
 
+const amountToTransferPayuee = document.getElementById("payueeAmount");
+
+amountToTransferPayuee.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    e.target.value = value;
+});
+
 function handleSendMoneyClick(event) {
     event.preventDefault();
     validateAndSendFunds();
