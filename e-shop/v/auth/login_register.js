@@ -4,14 +4,123 @@ var citySelected;
 var latitude = 0.0;
 var longitude = 0.0;
 
+// document.addEventListener('DOMContentLoaded', async function () {
+//     const loginButton = document.getElementById('loginButton'); // Target the login button
+//     const loginForm = document.forms['login-form'];
+
+//     const registerButton1 = document.getElementById('registerButton1'); // Target the register button
+//     const registerForm = document.forms['register-form'];
+
+//     const verifyButton1 = document.getElementById('verifyButton1'); // Target the verify button
+//     const verifyForm = document.forms['register-form'];
+
+//     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
+//     document.querySelector('.js-show-register').addEventListener('click', function(e) {
+//         e.preventDefault();
+//         const registerTab = new bootstrap.Tab(document.getElementById('register-tab'));
+//         registerTab.show();
+//     });
+
+//     await loadStates();
+
+//     // ✅ Now add once
+//     loginButton.addEventListener('click', loginButtonClickHandler);
+
+//     // Handle register button click
+//     const registerButton1ClickHandler = function (event) {
+//         event.preventDefault();
+//         event.stopPropagation();
+        
+//         const registerData = {
+//             FirstName: registerForm.register_username.value.trim(),
+//             email: registerForm.register_email.value.trim(),
+//             password: registerForm.register_password.value.trim(),
+//         };
+    
+//         if (!registerData.FirstName || !registerData.email || !registerData.password) {
+//             showToastMessageE('Please fill in all fields.');
+//             return;
+//         }
+    
+//         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (!emailPattern.test(registerData.email)) {
+//             showToastMessageE('Please enter a valid email address.');
+//             return;
+//         }
+    
+//         if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
+//             showToastMessageE('Please select your state & city');
+//             return;
+//         }
+    
+//         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+//         if (!passwordPattern.test(registerData.password)) {
+//             showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
+//             return;
+//         }
+
+//         registerEshop(registerData.email, registerData.password, registerData.FirstName);
+//     };
+
+//     // Remove previous listener (if any) and add the event listener
+//     registerButton1.removeEventListener('click', registerButton1ClickHandler);
+//     registerButton1.addEventListener('click', registerButton1ClickHandler);
+
+//     // Handle verify button click
+//     const verifyButton1ClickHandler = function (event) {
+//         event.preventDefault();
+        
+//         const verifyData = {
+//             Email: verifyForm.register_email.value.trim(),
+//             SentOTP: verifyForm.register_otp.value.trim(),
+//         };
+    
+//         const otpPattern = /^\d{6,}$/;
+//         if (!otpPattern.test(verifyData.SentOTP)) {
+//             showToastMessageE('Invalid OTP');
+//             return;
+//         }
+    
+//         verifyEshop(verifyData.Email, verifyData.SentOTP);
+//     };
+
+//     // Remove previous listener (if any) and add the event listener
+//     verifyButton1.removeEventListener('click', verifyButton1ClickHandler);
+//     verifyButton1.addEventListener('click', verifyButton1ClickHandler);
+// });
+
+// function loginButtonClickHandler(event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+
+//     const loginForm = document.forms['login-form'];
+//     const loginData = {
+//         email: loginForm.login_email.value.trim(),
+//         password: loginForm.login_password.value.trim(),
+//     };
+
+//     if (!loginData.email || !loginData.password) {
+//         showToastMessageE('Please fill in both email and password fields.');
+//         return;
+//     }
+
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (!emailPattern.test(loginData.email)) {
+//         showToastMessageE('Please enter a valid email address.');
+//         return;
+//     }
+
+//     loginEshop(loginData.email, loginData.password);
+// }
+
 document.addEventListener('DOMContentLoaded', async function () {
-    const loginButton = document.getElementById('loginButton'); // Target the login button
+    const loginButton = document.getElementById('loginButton');
     const loginForm = document.forms['login-form'];
 
-    const registerButton1 = document.getElementById('registerButton1'); // Target the register button
+    const registerButton1 = document.getElementById('registerButton1');
     const registerForm = document.forms['register-form'];
 
-    const verifyButton1 = document.getElementById('verifyButton1'); // Target the verify button
+    const verifyButton1 = document.getElementById('verifyButton1');
     const verifyForm = document.forms['register-form'];
 
     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
@@ -23,241 +132,280 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await loadStates();
 
-    // Handle login button click
-    const loginButtonClickHandler = function (event) {
+    // ================= LOGIN =================
+    let loginInProgress = false;
+    async function loginButtonClickHandler(event) {
         event.preventDefault();
         event.stopPropagation();
-        const loginData = {
-            email: loginForm.login_email.value.trim(),
-            password: loginForm.login_password.value.trim(),
-        };
 
-        if (!loginData.email || !loginData.password) {
-            showToastMessageE('Please fill in both email and password fields.');
-            return;
+        if (loginInProgress) return; // ⛔ prevent multiple clicks
+        loginInProgress = true;
+        loginButton.disabled = true;
+
+        try {
+            const loginData = {
+                email: loginForm.login_email.value.trim(),
+                password: loginForm.login_password.value.trim(),
+            };
+
+            if (!loginData.email || !loginData.password) {
+                showToastMessageE('Please fill in both email and password fields.');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(loginData.email)) {
+                showToastMessageE('Please enter a valid email address.');
+                return;
+            }
+
+            await loginEshop(loginData.email, loginData.password);
+        } finally {
+            loginInProgress = false;
+            loginButton.disabled = false;
         }
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(loginData.email)) {
-            showToastMessageE('Please enter a valid email address.');
-            return;
-        }
-
-        loginEshop(loginForm.login_email.value.trim(), loginForm.login_password.value.trim());
-    };
-
-    // Remove previous listener (if any) and add the event listener
-    loginButton.removeEventListener('click', loginButtonClickHandler);
+    }
     loginButton.addEventListener('click', loginButtonClickHandler);
 
-    // Handle register button click
-    const registerButton1ClickHandler = function (event) {
+    // ================= REGISTER =================
+    let registerInProgress = false;
+    async function registerButton1ClickHandler(event) {
         event.preventDefault();
         event.stopPropagation();
-        
-        const registerData = {
-            FirstName: registerForm.register_username.value.trim(),
-            email: registerForm.register_email.value.trim(),
-            password: registerForm.register_password.value.trim(),
-        };
-    
-        if (!registerData.FirstName || !registerData.email || !registerData.password) {
-            showToastMessageE('Please fill in all fields.');
-            return;
-        }
-    
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(registerData.email)) {
-            showToastMessageE('Please enter a valid email address.');
-            return;
-        }
-    
-        if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
-            showToastMessageE('Please select your state & city');
-            return;
-        }
-    
-        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-        if (!passwordPattern.test(registerData.password)) {
-            showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
-            return;
-        }
 
-        registerEshop(registerData.email, registerData.password, registerData.FirstName);
-    };
+        if (registerInProgress) return;
+        registerInProgress = true;
+        registerButton1.disabled = true;
 
-    // Remove previous listener (if any) and add the event listener
-    registerButton1.removeEventListener('click', registerButton1ClickHandler);
+        try {
+            const registerData = {
+                FirstName: registerForm.register_username.value.trim(),
+                email: registerForm.register_email.value.trim(),
+                password: registerForm.register_password.value.trim(),
+            };
+
+            if (!registerData.FirstName || !registerData.email || !registerData.password) {
+                showToastMessageE('Please fill in all fields.');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(registerData.email)) {
+                showToastMessageE('Please enter a valid email address.');
+                return;
+            }
+
+            if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
+                showToastMessageE('Please select your state & city');
+                return;
+            }
+
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+            if (!passwordPattern.test(registerData.password)) {
+                showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
+                return;
+            }
+
+            await registerEshop(registerData.email, registerData.password, registerData.FirstName);
+        } finally {
+            registerInProgress = false;
+            registerButton1.disabled = false;
+        }
+    }
     registerButton1.addEventListener('click', registerButton1ClickHandler);
 
-    // Handle verify button click
-    const verifyButton1ClickHandler = function (event) {
+    // ================= VERIFY =================
+    let verifyInProgress = false;
+    async function verifyButton1ClickHandler(event) {
         event.preventDefault();
-        
-        const verifyData = {
-            Email: verifyForm.register_email.value.trim(),
-            SentOTP: verifyForm.register_otp.value.trim(),
-        };
-    
-        const otpPattern = /^\d{6,}$/;
-        if (!otpPattern.test(verifyData.SentOTP)) {
-            showToastMessageE('Invalid OTP');
-            return;
-        }
-    
-        verifyEshop(verifyData.Email, verifyData.SentOTP);
-    };
 
-    // Remove previous listener (if any) and add the event listener
-    verifyButton1.removeEventListener('click', verifyButton1ClickHandler);
+        if (verifyInProgress) return;
+        verifyInProgress = true;
+        verifyButton1.disabled = true;
+
+        try {
+            const verifyData = {
+                Email: verifyForm.register_email.value.trim(),
+                SentOTP: verifyForm.register_otp.value.trim(),
+            };
+
+            const otpPattern = /^\d{6,}$/;
+            if (!otpPattern.test(verifyData.SentOTP)) {
+                showToastMessageE('Invalid OTP');
+                return;
+            }
+
+            await verifyEshop(verifyData.Email, verifyData.SentOTP);
+        } finally {
+            verifyInProgress = false;
+            verifyButton1.disabled = false;
+        }
+    }
     verifyButton1.addEventListener('click', verifyButton1ClickHandler);
 });
 
+let nigeriaData = [];
 
-// Function to fetch and populate state data
+// Load states from JSON
 async function loadStates() {
     try {
-        // Update the URL to the correct path of your JSON file
-        const response = await fetch('nigeria_states.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const states = await response.json();
-        
-        renderStates(states);
-        const searchInput = document.getElementById('stateSearchInput');
-        searchInput.addEventListener('input', function () {
+        const response = await fetch("nigeria_state.json");
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        nigeriaData = await response.json();
+        renderStates(nigeriaData);
+
+        // Hook state search input
+        const searchInput = document.getElementById("stateSearchInput");
+        searchInput.addEventListener("input", function () {
             const searchTerm = searchInput.value;
-            filterStates(searchTerm, states);
+            filterStates(searchTerm, nigeriaData);
         });
 
     } catch (error) {
-        console.error('Error fetching state data:', error);
+        console.error("Error loading states:", error);
     }
 }
 
-// Function to fetch and populate city data based on state_iso2
-async function loadCities(stateIso2) {
-    try {
-        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const cities = await response.json();
-        
-        // Filter cities by state_iso2
-        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+// Load cities (LGAs + wards) for a selected state
+async function loadCities(stateName) {
+    const stateData = nigeriaData.find(s => s.state === stateName);
+    if (stateData && stateData.lgas) {
+        renderCities(stateData.lgas, stateName);
 
-        // Sort cities alphabetically by name
-        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
-
-        renderCities(filteredCities);
-
-        const searchInput = document.getElementById('citySearchInput');
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value;
-            filterCities(searchTerm, filteredCities);
+        // Hook city search input
+        const citySearchInput = document.getElementById("citySearchInput");
+        citySearchInput.addEventListener("input", function () {
+            const searchTerm = citySearchInput.value;
+            filterCities(searchTerm, stateData.lgas, stateName);
         });
 
-    } catch (error) {
-        console.error('Error fetching city data:', error);
+    } else {
+        renderCities([], stateName);
     }
 }
 
+// Render states into the <ul id="state-list">
 function renderStates(states) {
-    const stateList = document.getElementById('state-list');
-    stateList.innerHTML = ''; // Clear existing items
+    const stateList = document.getElementById("state-list");
+    stateList.innerHTML = "";
 
     if (states.length === 0) {
-        // No states found
-        const noResultsItem = document.createElement('li');
-        noResultsItem.textContent = 'No states found';
-        noResultsItem.classList.add('search-suggestion__item');
-        stateList.appendChild(noResultsItem);
-    } else {
-        // Render the states
-        states.forEach(state => {
-            const listItem = document.createElement('li');
-            listItem.textContent = state.name;
-            listItem.id = state.id;
-            listItem.classList.add('search-suggestion__item', 'js-search-select');
-            listItem.dataset.iso2 = state.iso2; // Store ISO2 code in data attribute
-            listItem.dataset.state = state.name; // Store State in data attribute
-            stateList.appendChild(listItem); // Append list item to the list
-        });
+        const li = document.createElement("li");
+        li.textContent = "No states found";
+        li.classList.add("search-suggestion__item");
+        stateList.appendChild(li);
+        return;
     }
 
-    // Add click event listener to each list item
-    stateList.addEventListener('click', async function (event) {
-        if (event.target.classList.contains('js-search-select')) {
-            const selectedState = event.target.textContent;
-            const isoCode = event.target.dataset.iso2;
-            customerState = event.target.dataset.state;
-            document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
-            document.getElementById('city-dropdown').value = ''; // Reset the city input value
-            // CalculateCartSubtotal() 
-            // console.log(`Selected State: ${selectedState}, ISO Code: ${isoCode}`);
-            stateSelected = selectedState;
-            citySelected = '';
-            toggleClassById("formeStateList", "js-content_visible");
-            await loadCities(isoCode);
-        }
+    states.forEach(state => {
+        const li = document.createElement("li");
+        li.textContent = state.state;
+        li.classList.add("search-suggestion__item", "js-search-select");
+        li.dataset.state = state.state;
+        stateList.appendChild(li);
     });
+
+    // Add click event
+    stateList.onclick = function (event) {
+        if (event.target.classList.contains("js-search-select")) {
+            stateSelected = event.target.dataset.state; // ✅ update correct global
+            document.getElementById("search-dropdown").value = stateSelected;
+            document.getElementById("city-dropdown").value = ""; // reset city
+            toggleClassById("formeStateList", "js-content_visible");
+            loadCities(stateSelected);
+        }
+    };
+
 }
 
-// Function to render cities to the DOM
-function renderCities(cities) {
-    const cityList = document.getElementById('city-list');
-    cityList.innerHTML = ''; // Clear existing items
+// Render cities into the <ul id="city-list">
+function renderCities(cities, stateName) {
+    const cityList = document.getElementById("city-list");
+    cityList.innerHTML = "";
 
     if (cities.length === 0) {
-        const noResultsItem = document.createElement('li');
-        noResultsItem.textContent = 'No cities found';
-        noResultsItem.classList.add('search-suggestion__item');
-        cityList.appendChild(noResultsItem);
-    } else {
-        cities.forEach(city => {
-            const listItem = document.createElement('li');
-            listItem.textContent = city.name;
-            listItem.classList.add('search-suggestion__item', 'js-search-select');
-            listItem.dataset.cityName = city.name; // Store city name in data attribute
-            listItem.dataset.latitude = city.latitude; // Store latitude in data attribute
-            listItem.dataset.longitude = city.longitude; // Store longitude in data attribute
-            cityList.appendChild(listItem);
-        });
+        const li = document.createElement("li");
+        li.textContent = "No cities found";
+        li.classList.add("search-suggestion__item");
+        cityList.appendChild(li);
+        return;
     }
 
-    // Add click event listener to each city list item
-    cityList.addEventListener('click', function (event) {
-        if (event.target.classList.contains('js-search-select')) {
-            const selectedCity = event.target.dataset.cityName;
+    cities.forEach(city => {
+        if (!city.wards) return;
+        city.wards.forEach(ward => {
+            const fullName = `${city.name} - ${ward.name}`; // ✅ combined text
+            const li = document.createElement("li");
+            li.textContent = fullName;
+            li.classList.add("search-suggestion__item", "js-search-select");
+
+            // Store both city + ward for later
+            li.dataset.city = city.name;
+            li.dataset.ward = ward.name;
+            li.dataset.fullName = fullName; // ✅ use this for display/search
+            li.dataset.latitude = ward.latitude;
+            li.dataset.longitude = ward.longitude;
+            cityList.appendChild(li);
+        });
+    });
+
+    // Add click event
+    cityList.onclick = function (event) {
+        if (event.target.classList.contains("js-search-select")) {
+            const fullName = event.target.dataset.fullName;
+
+            citySelected = fullName; // ✅ save City - Ward format
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
 
-            // Update the input value and other elements
-            document.getElementById('city-dropdown').value = selectedCity;
-            citySelected = selectedCity;
+            // Show "City - Ward" in the dropdown input
+            document.getElementById("city-dropdown").value = fullName;
 
-            // CalculateCartSubtotal();
-            // Perform additional actions if needed, such as toggling visibility
             toggleClassById("formeCityList", "js-content_visible");
         }
-    });
+    };
 }
 
 function filterStates(term, states) {
-    const filtered = states.filter(state => 
-        state.name.toLowerCase().includes(term.toLowerCase())
+    const filtered = states.filter(s =>
+        s.state.toLowerCase().includes(term.toLowerCase())
     );
     renderStates(filtered);
 }
 
-function filterCities(term, cities) {
-    const filtered = cities.filter(state => 
-        state.name.toLowerCase().includes(term.toLowerCase())
-    );
-    renderCities(filtered);
+function filterCities(term, cities, stateName) {
+    const filtered = [];
+
+    cities.forEach(city => {
+        if (!city.wards) return;
+
+        const matchedWards = city.wards.filter(ward => {
+            const fullName = `${city.name} - ${ward.name}`.toLowerCase();
+            return fullName.includes(term.toLowerCase()); // ✅ match "city - ward"
+        });
+
+        if (matchedWards.length > 0) {
+            filtered.push({ ...city, wards: matchedWards });
+        }
+    });
+
+    renderCities(filtered, stateName);
 }
+
+// function filterStates(term, states) {
+//     const filtered = states.filter(state => 
+//         state.name.toLowerCase().includes(term.toLowerCase())
+//     );
+//     renderStates(filtered);
+// }
+
+// function filterCities(term, cities) {
+//     const filtered = cities.filter(state => 
+//         state.name.toLowerCase().includes(term.toLowerCase())
+//     );
+//     renderCities(filtered);
+// }
 
 // Show success toast
 function showToastMessageS(message) {
@@ -289,6 +437,8 @@ function toggleClassById(elementId, className) {
 }
 
 async function loginEshop(email, password) {
+    startLoading("loginButton"); // 🚀 Start loading
+
     const apiUrl = "https://api.payuee.com/sign-in";
 
     const requestOptions = {
@@ -311,20 +461,24 @@ async function loginEshop(email, password) {
 
             if (errorData.error === 'Your account has been suspended. Please contact support for more details.') {
                 // need to do a data of just null event 
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Your account has been suspended. Please contact support for more details.');
                 // displayErrorMessage();
             } else if (errorData.error === 'Invalid email or password') {
                 // need to do a data of just null event 
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Invalid email or password');
             } else {
                 // displayErrorMessage();
             }
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
 
             return;
         }
 
         const responseData = await response.json();
         showToastMessageS('Login successful');
+        stopLoading("loginButton"); // ✅ Always stop loading
         
         syncGuestCartToServer();
         
@@ -337,7 +491,7 @@ async function loginEshop(email, password) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 
@@ -386,7 +540,38 @@ function getCartFromStorage(key) {
   }
 }
 
+// Start loading state for a button
+function startLoading(buttonId) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+
+    btn.disabled = true;
+    btn.dataset.originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Loading...`;
+}
+
+// Stop loading state for a button
+function stopLoading(buttonId, isError = false) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+
+    btn.disabled = false;
+
+    if (btn.dataset.originalText) {
+        btn.innerHTML = btn.dataset.originalText;
+    }
+
+    // If error, add shake + red flash
+    if (isError) {
+        btn.classList.add("btn-error-shake");
+        setTimeout(() => {
+            btn.classList.remove("btn-error-shake");
+        }, 600); // reset after animation
+    }
+}
+
 async function registerEshop(email, password, name) {
+    startLoading("registerButton1"); // 🚀 Start loading
     const apiUrl = "https://api.payuee.com/app/sign-up";
 
     const requestOptions = {
@@ -414,6 +599,7 @@ async function registerEshop(email, password, name) {
 
             if (errorData.error === 'User already exist, please verify your email ID') {
                 // need to do a data of just null event 
+                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
                 showToastMessageS('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
@@ -421,8 +607,10 @@ async function registerEshop(email, password, name) {
                 return;
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
+                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
                 showToastMessageE('user already exist, please login');
             } else {
+                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
                 showToastMessageE('Error signing you up. Please try again');
             }
 
@@ -430,6 +618,7 @@ async function registerEshop(email, password, name) {
         }
 
         const responseData = await response.json();
+        stopLoading("registerButton1"); // ✅ Always stop loading
         showToastMessageS('Please verify your email address');
         toggleOTP();
         //  Send email verification email
@@ -531,7 +720,7 @@ async function verifyEshop(Email, SentOTP) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 
