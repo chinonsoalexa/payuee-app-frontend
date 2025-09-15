@@ -13,6 +13,20 @@ document.getElementById('airtime-button').addEventListener('click', function(eve
         buy_airtime()
 })
 
+const phoneInput = document.getElementById("phone-number");
+
+phoneInput.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 11);
+
+    e.target.value = value;
+});
+
 document.getElementById('back-to-airtime').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
