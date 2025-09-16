@@ -320,7 +320,7 @@ async function sendFunds() {
                 const errorData = await response.json();
     
                 if  (errorData.error === 'a user with this email was not found') {
-                    returnedErrorMessageDisplay('Sorry no user with ' + errorData.email + ' was found');
+                    returnedErrorMessageDisplay('Sorry no user with ' + payueeEmailId + ' was found');
                 }else if  (errorData.error === 'insufficient funds') {
                     returnedErrorMessageDisplay2("Sorry you don't have up to ₦" + payueeAmount + " in your account");
                 }else if  (errorData.error === 'This email is invalid because it uses illegal characters. Please enter a valid email') {
