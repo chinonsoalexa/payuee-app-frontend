@@ -113,6 +113,21 @@ var longitude = 0.0;
 //     loginEshop(loginData.email, loginData.password);
 // }
 
+
+const phoneInput = document.getElementById("customerPhoneRegisterInput");
+
+phoneInput.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 11);
+
+    e.target.value = value;
+});
+
 document.addEventListener('DOMContentLoaded', async function () {
     const loginButton = document.getElementById('loginButton');
     const loginForm = document.forms['login-form'];
@@ -181,10 +196,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             const registerData = {
                 FirstName: registerForm.register_username.value.trim(),
                 email: registerForm.register_email.value.trim(),
+                phone: registerForm.register_phone.value.trim(),
                 password: registerForm.register_password.value.trim(),
             };
 
-            if (!registerData.FirstName || !registerData.email || !registerData.password) {
+            if (!registerData.FirstName || !registerData.email || !registerData.password || !registerData.phone) {
                 showToastMessageE('Please fill in all fields.');
                 return;
             }
@@ -206,7 +222,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return;
             }
 
-            await registerEshop(registerData.email, registerData.password, registerData.FirstName);
+            await registerEshop(registerData.email, registerData.phone, registerData.password, registerData.FirstName);
         } finally {
             registerInProgress = false;
             registerButton1.disabled = false;
@@ -573,7 +589,7 @@ function stopLoading(buttonId, isError = false) {
 }
 
 
-async function registerEshop(email, password, name) {
+async function registerEshop(email, phone, password, name) {
     startLoading("registerButton1"); // 🚀 Start loading
     const apiUrl = "https://api.payuee.com/app/sign-up";
 
@@ -586,6 +602,7 @@ async function registerEshop(email, password, name) {
         body: JSON.stringify({
             FirstName: name,
             email: email,
+            phone_number: phone.toString(),
             password: password,
             state: stateSelected,
             city: citySelected,
@@ -735,6 +752,7 @@ function toggleOTP() {
     const otpDiv = document.getElementById('otpDiv');
     const nameDiv = document.getElementById('nameDiv');
     const emailDiv = document.getElementById('emailDiv');
+    const phoneDiv = document.getElementById('phoneDiv');
     const stateDiv = document.getElementById('stateDiv');
     const cityDiv = document.getElementById('cityDiv');
     const passwordDiv = document.getElementById('passwordDiv');
@@ -749,6 +767,7 @@ function toggleOTP() {
         registerButton1.classList.add('d-none');
         nameDiv.classList.add('d-none');
         emailDiv.classList.add('d-none');
+        phoneDiv.classList.add('d-none');
         stateDiv.classList.add('d-none');
         cityDiv.classList.add('d-none');
         passwordDiv.classList.add('d-none');
@@ -758,6 +777,7 @@ function toggleOTP() {
         verifyButton1.classList.add('d-none');
         nameDiv.classList.remove('d-none');
         emailDiv.classList.remove('d-none');
+        phoneDiv.classList.remove('d-none');
         stateDiv.classList.remove('d-none');
         cityDiv.classList.remove('d-none');
         passwordDiv.classList.remove('d-none');
