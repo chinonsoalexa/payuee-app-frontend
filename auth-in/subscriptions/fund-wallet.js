@@ -2,6 +2,68 @@ var billAmount;
 var validated = true;
 var transCharge = 0;
 
+document.addEventListener('DOMContentLoaded', async function () {
+    const apiUrl = "https://api.payuee.com/account-details";
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // set credentials to include cookies
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+
+            // console.log(errorData);
+
+            if (errorData.error === 'failed to get user from request') {
+                // need to do a data of just null event 
+                // displayErrorMessage();
+            } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
+                // let's log user out the users session has expired
+                // logUserOutIfTokenIsExpired();
+            }else {
+            }
+            return;
+        }
+
+        responseData = await response.json();
+
+        // Assume responseData is your parsed JSON
+        const accounts = responseData.success;
+
+        if (accounts.length > 0) {
+            const firstAccount = accounts[0]; // first one
+            const lastAccount = accounts[accounts.length - 1]; // last one
+
+            // Update fund_payuee3 with the first account
+            updateBankDetails(
+                "fund_payuee3",
+                firstAccount.BankName,
+                firstAccount.AccountName,
+                firstAccount.AccountNumber
+            );
+
+            // Update fund_payuee4 with the last account
+            updateBankDetails(
+                "fund_payuee4",
+                lastAccount.BankName,
+                lastAccount.AccountName,
+                lastAccount.AccountNumber
+            );
+        }
+        setPayueeDivState(false);
+        
+    } finally {
+        await loadStates1();
+    }
+});
+
 document.getElementById('fund_wallet').addEventListener('click', async function(event) {
     event.preventDefault();
 
@@ -50,7 +112,7 @@ document.getElementById('fund_wallet').addEventListener('click', async function(
                 window.location.href = responseData.success.data.authorization_url;
                 return;
             } else {
-                window.location.href = "https://app.payuee.com/successful.html";
+                window.location.href = "https://payuee.com/successful.html";
                 return;
             }
         } finally {
@@ -77,13 +139,26 @@ const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]')
 // Add an event listener to each radio button
 radioButtons.forEach(button => {
     button.addEventListener('change', function() {
-        if (this.id === "transfer") {
-            enablePaystackDiv();
+        if (this.id === "payuee") {
+            setPayueeDivState(false);
+            setPaystackDivState(true);
         } else if (this.id === "paystack") { 
-            disablePaystackDiv();
+            setPayueeDivState(true);
+            setPaystackDivState(false);
         }
     });
 });
+
+function updateBankDetails(elementId, bankName, accountName, accountNumber) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    element.innerHTML = `
+        <p>${bankName}</p>
+        <p>${accountName}</p>
+        <p>${accountNumber}</p>
+    `;
+}
 
 // Function to disable the div and its content
 function disablePaystackDiv() {
@@ -97,12 +172,29 @@ function enablePaystackDiv() {
     setPaystackDivState(true);
 }
 
-function setPaystackDivState(disabled) {
-    ['fund_payuee1', 'fund_payuee2', 'fund_payuee3', 'fund_payuee4'].forEach(id => {
+function setPayueeDivState(disabled) {
+    ['fund_payuee1', 'fund_payuee3', 'fund_payuee4'].forEach(id => {
         const element = document.getElementById(id);
         element.classList.toggle('disabled', disabled);
         element.disabled = disabled;
     });
+}
+
+function setPaystackDivState(disabled) {
+    // For real buttons/inputs
+    ['fund_paystack1', 'fund_paystack2', 'fund_paystack3'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.toggle('disabled', disabled);
+            element.disabled = disabled; // only works on <button>/<input>
+        }
+    });
+
+    // For your <a> tag with "disabledd" class
+    const fund_wallet = document.getElementById("fund_wallet");
+    if (fund_wallet) {
+        fund_wallet.classList.toggle('disabledd', disabled);
+    }
 }
 
 // Function to remove onclick and on hover styles

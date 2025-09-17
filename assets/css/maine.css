@@ -791,6 +791,12 @@ input:focus {
     display: none;
   }
 
+  a.disabledd {
+    pointer-events: none; /* prevents clicks */
+    opacity: 0.5;        /* greys it out */
+    cursor: not-allowed;
+  }
+
   .footer__section {
     overflow: hidden;
   }
