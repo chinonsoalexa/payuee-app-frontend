@@ -27,6 +27,20 @@ phoneInput.addEventListener("input", (e) => {
     e.target.value = value;
 });
 
+const amountInput = document.getElementById("amount-input");
+
+amountInput.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove all non-digits
+    value = value.replace(/\D/g, "");
+
+    // Limit to 11 digits max
+    value = value.slice(0, 4);
+
+    e.target.value = value;
+});
+
 document.getElementById('back-to-airtime').addEventListener('click', function(event) {
     // Prevent the default behavior (in this case, the redirect)
     event.preventDefault();
