@@ -845,7 +845,7 @@ function checkRepostEligibility(isEligible, errorMessage = null, collaborationUr
 
     // Click to open form
     fabBtn.addEventListener("click", () => {
-        window.open("https://payuee.com/e-shop/vendor/add-products", "_blank");
+        window.open("https://payuee.com/e-shop/v/login_register?redirectTo=https://payuee.com/e-shop/pricing.html", "_blank");
     });
 
     // Hover → same as auto
