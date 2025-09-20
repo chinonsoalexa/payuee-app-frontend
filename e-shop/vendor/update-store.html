@@ -161,6 +161,41 @@
   } */
 
 
+.js-hidden-content {
+  display: none;
+}
+.js-content_visible .js-hidden-content {
+  display: block;
+}
+.search-suggestion li {
+  cursor: pointer;
+  padding: 6px 10px;
+}
+.search-suggestion li:hover {
+  background: #f1f1f1;
+}
+
+
+.filters-container {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.search-suggestion li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.search-suggestion li:hover {
+  background-color: #f5f5f5;
+}
+
+
   </style>
 </head>
 
@@ -393,7 +428,7 @@
                         <input id="storeName" class="form-control" id="validationCustom01" type="text" placeholder="Store Name..."
                           required="">
                         <div class="valid-feedback">Looks good!</div>
-                        <p class="f-light">Note: Changing the store name will automatically update its unique URL to match the new name.</p>
+                        <p class="f-light">Note: Changing the store name will automatically update its unique URL to match the new name, but all previous url would still redirect to your store.</p>
                       </div>
 
                       <div class="mb-3">
@@ -411,7 +446,7 @@
                         <p class="f-light">This is where you enter your company's email address</p>
                       </div>
 
-                      <!-- blog category -->
+                      <!-- Store description category -->
                       <div class="mb-3">
                         <div class="col-form-label">Store Categories:
                           <div class="col-sm-6">
@@ -457,6 +492,72 @@
 
                       </div>
 
+                      <div class="mb-3">
+                        <label for="openDays">Open Days in a Week:</label>
+                        <select id="openDays" class="form-control" required>
+                          <option value="">Select number of open days</option>
+                          <option value="1">1 Day</option>
+                          <option value="2">2 Days</option>
+                          <option value="3">3 Days</option>
+                          <option value="4">4 Days</option>
+                          <option value="5">5 Days</option>
+                          <option value="6">6 Days</option>
+                          <option value="7">7 Days</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                        <p class="f-light">Note: Choose the number of days your store is open per week (max: 7).</p>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="storeAddress">Store Address:</label>
+                        <input id="storeAddress" class="form-control" type="text" placeholder="Store Address..."
+                          required="">
+                        <div class="valid-feedback">Looks good!</div>
+                        <p class="f-light">Note: Please enter you store address with street/road number e.g No. 13 example street/road</p>
+                      </div>
+
+                      <div id="stateDiv" class="col-md-12">
+                        <div class="search-field my-3">
+                          <div class="form-label-fixed hover-container" id="formeStateList">
+                            <label for="search-dropdown" class="form-label">States / Region*</label>
+                            <div class="js-hover__open" id="statesInput">
+                              <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a State...">
+                            </div>
+                            <div class="filters-container js-hidden-content mt-2">
+                              <div class="search-field__input-wrapper">
+                                <input id="stateSearchInput" type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
+                              </div>
+                              <ul class="search-suggestion list-unstyled" id="state-list">
+                                <!-- this is where states would be rendered -->
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="pb-3"></div>
+
+                      <div id="cityDiv" class="col-md-12">
+                        <div class="search-field my-3">
+                            <div class="form-label-fixed hover-container" id="formeCityList">
+                                <label for="city-dropdown" class="form-label">Town / City*</label>
+                                <div class="js-hover__open" id="citiesInput">
+                                    <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="city-dropdown" name="search-keyword" readonly placeholder="Choose a City...">
+                                </div>
+                                <div class="filters-container js-hidden-content mt-2">
+                                    <div class="search-field__input-wrapper">
+                                        <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" id="citySearchInput" placeholder="Search">
+                                    </div>
+                                    <ul class="search-suggestion list-unstyled" id="city-list">
+                                        <!-- This is where cities would be rendered -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="pb-3"></div>
+
                     </div>
                   </form>
                   <div class="product-upload">
@@ -476,7 +577,10 @@
                   </div>
                   <div class="mb-3"></div>
                   <div class="btn-showcase text-end">
-                    <button id="postButton" class="btn btn-primary" type="submit">Update</button>
+                    <button id="postButton" class="btn btn-primary" type="submit">
+                      <span class="btn-text">Update</span>
+                      <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                    </button>
                     <input class="btn btn-light" type="reset" value="Visit Store" id="visitStoreBtn">
                     <input class="btn btn-secondary" type="reset" value="Share Store" id="shareStoreBtn">
                   </div>

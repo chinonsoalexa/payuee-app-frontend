@@ -1,60 +1,120 @@
 var imageArray = [];
 var storeName = "";
+var ShopAddress = "";
+var ShopState = "";
+var ShopCity = "";
+var OpenDays = "";
 var companyPhone = "";
 var companyEmail = "";
 var storeDescription = "";
 var selectedCategories = "";
 
+let originalStoreData = {};
+var stateIsoCode;
+var stateSelected;
+var citySelected;
+var latitude = 0.0;
+var longitude = 0.0;
+
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', async function () {
-    console.log('DOM fully loaded and parsed.');
+    // console.log('DOM fully loaded and parsed.');
 
     // Populate form fields on load
     await fetchDataAndFillForm();
-    console.log('Data fetched and form populated.');
+    // console.log('Data fetched and form populated.');
+    await loadStates();
+
+
+    // Open state dropdown on click
+    document.getElementById("statesInput").addEventListener("click", () => {
+        toggleClassById("formeStateList", "js-content_visible");
+    });
+
+    // Open city dropdown on click
+    document.getElementById("citiesInput").addEventListener("click", () => {
+        toggleClassById("formeCityList", "js-content_visible");
+    });
 
     const form = document.getElementById('postButton');
     
     form.addEventListener('click', async function (event) {
-        console.log('Post button clicked.');
+        // console.log('Post button clicked.');
         event.preventDefault();
 
         // Get the store name
         const storeNameInput = document.getElementById('storeName');
         storeName = storeNameInput.value.trim();
-        console.log('Store Name:', storeName);
+        // console.log('Store Name:', storeName);
 
         // Get the company phone
         const companyPhoneInput = document.getElementById('companyPhone');
         companyPhone = companyPhoneInput.value.trim();
-        console.log('Company Phone:', companyPhone);
+        // console.log('Company Phone:', companyPhone);
 
         // Get the company email
         const companyEmailInput = document.getElementById('companyEmail');
         companyEmail = companyEmailInput.value.trim();
-        console.log('Company Email:', companyEmail);
+        // console.log('Company Email:', companyEmail);
+
+        const openDaysSelect = document.getElementById("openDays");
+        OpenDays = openDaysSelect.value;
+
+        // Get the company email
+        const storeAddress = document.getElementById('storeAddress');
+        ShopAddress = storeAddress.value.trim();
 
         // Get the tags (categories)
         const selectedCategoriesInput = document.querySelector('input[name="basic-tags"]');
         selectedCategories = selectedCategoriesInput.value;
-        console.log('Company Category:', selectedCategories);
+        // console.log('Company Category:', selectedCategories);
 
         // Get the store description
         const qlEditor = document.querySelectorAll('.ql-editor');
         const descriptionEditor = qlEditor[0];
         storeDescription = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
-        console.log('Store Description:', storeDescription);
+        // console.log('Store Description:', storeDescription);
 
         // Validate form before submitting
         if (validateForm()) {
-            console.log('Form is valid, proceeding to update store.');
+            // console.log('Form is valid, proceeding to update store.');
+            if (!hasChanges()) {
+                // console.log("No changes detected. Skipping update request.");
+                showToastMessageE("No changes were made.");
+                return;
+            }
             await updateStore();
         } else {
             console.log('Form validation failed.');
         }
     });
-
 });
+
+function startLoading(buttonId, loadingText = "Loading...") {
+  const button = document.getElementById(buttonId);
+  const text = button.querySelector(".btn-text");
+  const spinner = button.querySelector(".spinner-border");
+
+  // Save original text if not saved already
+  if (!button.dataset.originalText) {
+    button.dataset.originalText = text.innerText;
+  }
+
+  text.innerText = loadingText;
+  spinner.classList.remove("d-none");
+  button.disabled = true;
+}
+
+function stopLoading(buttonId) {
+  const button = document.getElementById(buttonId);
+  const text = button.querySelector(".btn-text");
+  const spinner = button.querySelector(".spinner-border");
+
+  // Restore original text
+  text.innerText = button.dataset.originalText || "Update";
+  spinner.classList.add("d-none");
+  button.disabled = false;
+}
 
 const input = document.querySelector('#tags');
 const tagify = new Tagify(input, {
@@ -77,6 +137,7 @@ tagify.on('add', () => {
     }
 });
 
+const openDaysSelect = document.getElementById("openDays");
 
 // Function to validate the form
 function validateForm() {
@@ -101,6 +162,26 @@ function validateForm() {
     // Check if at least one description is provided
     if (!storeDescription) {
         showToastMessageE("Store description is required.");
+        return false;
+    }
+
+    if (!OpenDays) {
+        showToastMessageE("Open Days is required.");
+        return false;
+    }
+
+    if (!ShopAddress) {
+        showToastMessageE("Shop Address is required.");
+        return false;
+    }
+
+    if (!stateSelected) {
+        showToastMessageE("Shop State is required.");
+        return false;
+    }
+
+    if (!citySelected) {
+        showToastMessageE("Shop City is required.");
         return false;
     }
 
@@ -139,11 +220,16 @@ function getOnlyNumbers(text) {
 }
 
 async function updateStore() {
+    startLoading("postButton", "Updating...");
     // Create a new FormData object
     const formData = new FormData();
 
     // Append text fields to the FormData object
     formData.append("StoreName", storeName);
+    formData.append("ShopAddress", ShopAddress);
+    formData.append("ShopState", stateSelected);
+    formData.append("ShopCity", citySelected);
+    formData.append("OpenDays", OpenDays);
     formData.append("ShopEmail", companyEmail);
     formData.append("ShopPhone", getOnlyNumbers(companyPhone));
     formData.append("StoreDescription", storeDescription);
@@ -168,10 +254,12 @@ async function updateStore() {
             if  (response.error === 'No Authentication cookie found' || response.error === "Unauthorized attempt! JWT's not valid!" || response.error === "No Refresh cookie found") {
                 logout();
             }
+            stopLoading("postButton");
             showToastMessageE("An error occurred while updating the store.");
             return;
         }
         const result = await response.json();
+        stopLoading("postButton");
         showToastMessageS("Store updated successfully");
         fillForm(result.success);
     } catch (error) {
@@ -207,6 +295,20 @@ async function fetchDataAndFillForm() {
 
 function fillForm(storeData) {
 
+    // Save the original data for later comparison
+  originalStoreData = {
+    shop_name: storeData.shop_name || '',
+    shop_phone: storeData.shop_phone || '',
+    shop_email: storeData.shop_email || '',
+    shop_categories: storeData.shop_categories || '',
+    shop_description: storeData.shop_description || '',
+    open_days: storeData.open_days || '',
+    shop_address: storeData.shop_address || '',
+    shop_state: storeData.shop_state || '',
+    shop_city: storeData.shop_city || ''
+  };
+
+
   // Populate form fields with fetched data
   document.getElementById('storeName').value = storeData.shop_name || '';
   document.getElementById('companyPhone').value = storeData.shop_phone || '';
@@ -227,7 +329,7 @@ function fillForm(storeData) {
         const imageContainer = document.getElementById('imageContainer');
         imageContainer.innerHTML = ''; // Clear any previous images
         const imgElement = document.createElement('img');
-        imgElement.src = `https://app.payuee.com/image/${storeData.shop_image}`;
+        imgElement.src = `https://payuee.com/image/${storeData.shop_image}`;
         imgElement.alt = storeData.shop_name;
         imgElement.style.maxWidth = "100%"; // Style as needed
         imageContainer.appendChild(imgElement);
@@ -238,12 +340,12 @@ function fillForm(storeData) {
     const visitStoreBtn = document.getElementById("visitStoreBtn");
     // Add an onclick event to redirect to the store URL
     visitStoreBtn.addEventListener("click", function() {
-        window.location.href = "https://app.payuee.com/store/" + storeData.store_unique_url;
+        window.location.href = "https://payuee.com/store/" + storeData.store_unique_url;
     });
 
     const shareStoreBtn = document.getElementById("shareStoreBtn");
     shareStoreBtn.addEventListener('click', function () {
-        const userShopUrl = `https://app.payuee.com/store/v/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
+        const userShopUrl = `https://payuee.com/store/v/${storeData.store_unique_url}`; // Replace with dynamic URL for user's shop
         const shareContent = `
             Check out ${storeData.shop_name} on Payuee e-Shop! Discover amazing products and place your orders here: ${userShopUrl}
         `;
@@ -259,6 +361,53 @@ function fillForm(storeData) {
             alert(`Share this link with your friends: ${userShopUrl}`);
         }
     });
+
+
+    // ✅ Populate Open Days
+    if (storeData.open_days) {
+        document.getElementById("openDays").value = storeData.open_days;
+    }
+
+    // ✅ Populate Address
+    if (storeData.shop_address) {
+        document.getElementById("storeAddress").value = storeData.shop_address;
+    }
+
+    // ✅ Populate State
+    if (storeData.shop_state) {
+        stateSelected = storeData.shop_state; // ✅ update global
+        document.getElementById("search-dropdown").value = storeData.shop_state;
+    }
+
+    // ✅ Populate City
+    if (storeData.shop_city) {
+        citySelected = storeData.shop_city; // ✅ update global
+        document.getElementById("city-dropdown").value = storeData.shop_city;
+    }
+}
+
+function getCurrentFormData() {
+  const qlEditor = document.querySelector('.ql-editor');
+
+  return {
+    shop_name: document.getElementById('storeName').value.trim(),
+    shop_phone: document.getElementById('companyPhone').value.trim(),
+    shop_email: document.getElementById('companyEmail').value.trim(),
+    shop_categories: document.getElementById('tags').value.trim(),
+    shop_description: qlEditor ? qlEditor.innerHTML.trim() : '',
+    open_days: document.getElementById("openDays").value,
+    shop_address: document.getElementById("storeAddress").value.trim(),
+    shop_state: document.getElementById("search-dropdown").value.trim(),
+    shop_city: document.getElementById("city-dropdown").value.trim()
+  };
+}
+
+function hasChanges() {
+  const currentData = getCurrentFormData();
+
+  return Object.keys(originalStoreData).some(
+    key => originalStoreData[key] != currentData[key]
+  );
 }
 
 const phoneInput = document.getElementById("companyPhone");
@@ -383,5 +532,167 @@ try {
         window.location.href = '../shop.html'
     } finally{
         // do nothing
+    }
+}
+
+let nigeriaData = [];
+
+// Load states from JSON
+async function loadStates() {
+    try {
+        const response = await fetch("nigeria_state.json");
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        nigeriaData = await response.json();
+        renderStates(nigeriaData);
+
+        // Hook state search input
+        const searchInput = document.getElementById("stateSearchInput");
+        searchInput.addEventListener("input", function () {
+            const searchTerm = searchInput.value;
+            filterStates(searchTerm, nigeriaData);
+        });
+
+    } catch (error) {
+        console.error("Error loading states:", error);
+    }
+}
+
+// Load cities (LGAs + wards) for a selected state
+async function loadCities(stateName) {
+    const stateData = nigeriaData.find(s => s.state === stateName);
+    if (stateData && stateData.lgas) {
+        renderCities(stateData.lgas, stateName);
+
+        // Hook city search input
+        const citySearchInput = document.getElementById("citySearchInput");
+        citySearchInput.addEventListener("input", function () {
+            const searchTerm = citySearchInput.value;
+            filterCities(searchTerm, stateData.lgas, stateName);
+        });
+
+    } else {
+        renderCities([], stateName);
+    }
+}
+
+// Render states into the <ul id="state-list">
+function renderStates(states) {
+    const stateList = document.getElementById("state-list");
+    stateList.innerHTML = "";
+
+    if (states.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No states found";
+        li.classList.add("search-suggestion__item");
+        stateList.appendChild(li);
+        return;
+    }
+
+    states.forEach(state => {
+        const li = document.createElement("li");
+        li.textContent = state.state;
+        li.classList.add("search-suggestion__item", "js-search-select");
+        li.dataset.state = state.state;
+        stateList.appendChild(li);
+    });
+
+    // Add click event
+    stateList.onclick = function (event) {
+        if (event.target.classList.contains("js-search-select")) {
+            stateSelected = event.target.dataset.state; // ✅ update correct global
+            document.getElementById("search-dropdown").value = stateSelected;
+            document.getElementById("city-dropdown").value = ""; // reset city
+            toggleClassById("formeStateList", "js-content_visible");
+            loadCities(stateSelected);
+        }
+    };
+
+}
+
+// Render cities into the <ul id="city-list">
+function renderCities(cities, stateName) {
+    const cityList = document.getElementById("city-list");
+    cityList.innerHTML = "";
+
+    if (cities.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No cities found";
+        li.classList.add("search-suggestion__item");
+        cityList.appendChild(li);
+        return;
+    }
+
+    cities.forEach(city => {
+        if (!city.wards) return;
+        city.wards.forEach(ward => {
+            const fullName = `${city.name} - ${ward.name}`; // ✅ combined text
+            const li = document.createElement("li");
+            li.textContent = fullName;
+            li.classList.add("search-suggestion__item", "js-search-select");
+
+            // Store both city + ward for later
+            li.dataset.city = city.name;
+            li.dataset.ward = ward.name;
+            li.dataset.fullName = fullName; // ✅ use this for display/search
+            li.dataset.latitude = ward.latitude;
+            li.dataset.longitude = ward.longitude;
+            cityList.appendChild(li);
+        });
+    });
+
+    // Add click event
+    cityList.onclick = function (event) {
+        if (event.target.classList.contains("js-search-select")) {
+            const fullName = event.target.dataset.fullName;
+
+            citySelected = fullName; // ✅ save City - Ward format
+            latitude = parseFloat(event.target.dataset.latitude);
+            longitude = parseFloat(event.target.dataset.longitude);
+
+            // Show "City - Ward" in the dropdown input
+            document.getElementById("city-dropdown").value = fullName;
+
+            toggleClassById("formeCityList", "js-content_visible");
+        }
+    };
+}
+
+function filterStates(term, states) {
+    const filtered = states.filter(s =>
+        s.state.toLowerCase().includes(term.toLowerCase())
+    );
+    renderStates(filtered);
+}
+
+function filterCities(term, cities, stateName) {
+    const filtered = [];
+
+    cities.forEach(city => {
+        if (!city.wards) return;
+
+        const matchedWards = city.wards.filter(ward => {
+            const fullName = `${city.name} - ${ward.name}`.toLowerCase();
+            return fullName.includes(term.toLowerCase()); // ✅ match "city - ward"
+        });
+
+        if (matchedWards.length > 0) {
+            filtered.push({ ...city, wards: matchedWards });
+        }
+    });
+
+    renderCities(filtered, stateName);
+}
+
+function toggleClassById(elementId, className) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        if (element.classList.contains(className)) {
+            // If the class exists, remove it
+            element.classList.remove(className);
+        } else {
+            // If the class does not exist, add it
+            element.classList.add(className);
+        }
     }
 }
