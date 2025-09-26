@@ -120,7 +120,7 @@ function buy_data(){
 //     const prefixes = {
 //         'MTN': ['mtn_sme', 'mtn_gifting', 'mtn_cg'],
 //         'GLO': ['glo_data'],
-//         'AIRTEL': ['airtel_cg'],
+//         'AIRTEL': ['airtel_gifting'],
 //         '9MOBILE': ['etisalat_data']
 //     };
 
@@ -351,8 +351,8 @@ async function getSelectedPlan(dataValue) {
             //     servicePlanID = 'mtn_cg'
             //     break;
             case '4':
-                await requestPlan('airtel_cg', "Airtel CG");
-                servicePlanID = 'airtel_cg'
+                await requestPlan('airtel_gifting', "Airtel Gift");
+                servicePlanID = 'airtel_gifting'
                 break;
             case '8':
             await requestPlan('airtel_sme', "Airtel SME");
