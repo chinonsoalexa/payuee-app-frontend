@@ -26,6 +26,11 @@ let selectedSizes = {
     shoes: ''
   };
 
+
+const el = document.getElementById('repostCheck');
+
+el.style.cssText = 'display:block !important; position:relative !important; opacity:1 !important; visibility:visible !important; width:18px !important; height:18px !important; -webkit-appearance:checkbox !important; appearance:checkbox !important; transform:none !important; clip:auto !important; pointer-events:auto !important; z-index:9999 !important; background:white !important; border:2px solid #000 !important;';
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Get the current URL
     const currentUrl = new URL(window.location.href);

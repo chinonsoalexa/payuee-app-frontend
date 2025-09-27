@@ -351,7 +351,7 @@ async function getSelectedPlan(dataValue) {
             //     servicePlanID = 'mtn_cg'
             //     break;
             case '4':
-                await requestPlan('airtel_gifting', "Airtel Gift");
+                await requestPlan('airtel_gifting', "Airtel CG");
                 servicePlanID = 'airtel_gifting'
                 break;
             case '8':
