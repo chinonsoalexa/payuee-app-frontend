@@ -96,9 +96,9 @@ radioButtons.forEach(button => {
         BankCode = "";
         Bank = "";
         if (this.id === "payuee") {
-            disableTransferDiv();
-        } else if (this.id === "paystack") {
             enableTransferDiv();
+        } else if (this.id === "paystack") {
+            disableTransferDiv();
         }
     });
 });
