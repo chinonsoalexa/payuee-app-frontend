@@ -11,11 +11,11 @@ var pageNumber;
 var vendorId;
 
 var sort_option = 7;
-var min_price = 2500;
-var max_price = 35000;
-var max_distance = 10;
-var min_weight = 1;
-var max_weight = 10;
+var min_price = 0;
+var max_price = 100000;
+var max_distance = 100;
+var min_weight = 0;
+var max_weight = 50; 
 
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 16 }, (_, i) => i);
