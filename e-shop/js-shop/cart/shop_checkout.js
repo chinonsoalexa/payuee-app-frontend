@@ -4,6 +4,9 @@ var citySelected;
 var totalCharge;
 var htmlContent;
 
+let nigeriaData = [];
+var citiesS = [];
+
 var cart;
 
 var returnedOrderID;
@@ -73,58 +76,43 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('redirectTo', currentUrl);
 
         // Redirect to the reset transaction PIN page
-        window.location.href = 'https://app.payuee.com/e-shop/v/reset_trans_pin';
+        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
     });
 });
 
 // Function to fetch and populate state data
 async function loadStates() {
-    try {
-        // Update the URL to the correct path of your JSON file
-        const response = await fetch('nigeria_states.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const states = await response.json();
-        
-        renderStates(states);
-        const searchInput = document.getElementById('stateSearchInput');
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value;
-            filterStates(searchTerm, states);
-        });
+    
+    // Load the JSON file
+    fetch("nigeria_state.json")
+        .then(response => response.json())
+        .then(data => {
+            nigeriaData = data;
+            renderStates(nigeriaData);
+        })
+        .catch(err => console.error("Error loading JSON:", err));
 
-    } catch (error) {
-        console.error('Error fetching state data:', error);
-    }
+    const searchInput = document.getElementById('stateSearchInput');
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value;
+        filterStates(searchTerm, nigeriaData);
+    });
 }
 
 // Function to fetch and populate city data based on state_iso2
-async function loadCities(stateIso2) {
-    try {
-        const response = await fetch('nigeria_cities.json'); // Update with your actual cities JSON URL
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const cities = await response.json();
-        
-        // Filter cities by state_iso2
-        const filteredCities = cities.filter(city => city.state_iso2 === stateIso2);
+async function loadCities(stateName) {
+    const stateData = nigeriaData.find(s => s.state === stateName);
 
-        // Sort cities alphabetically by name
-        filteredCities.sort((a, b) => a.name.localeCompare(b.name));
-
-        renderCities(filteredCities);
-
-        const searchInput = document.getElementById('citySearchInput');
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value;
-            filterCities(searchTerm, filteredCities);
-        });
-
-    } catch (error) {
-        console.error('Error fetching city data:', error);
+    if (stateData && stateData.lgas) {
+        citiesS = stateData.lgas;
+        renderCities(stateData.lgas, stateName);
     }
+
+    const searchInput = document.getElementById('citySearchInput');
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value;
+        filterCities(searchTerm, citiesS);
+    });
 }
 
 function renderStates(states) {
@@ -141,11 +129,9 @@ function renderStates(states) {
         // Render the states
         states.forEach(state => {
             const listItem = document.createElement('li');
-            listItem.textContent = state.name;
-            listItem.id = state.id;
+            listItem.textContent = state.state;
             listItem.classList.add('search-suggestion__item', 'js-search-select');
-            listItem.dataset.iso2 = state.iso2; // Store ISO2 code in data attribute
-            listItem.dataset.state = state.name; // Store State in data attribute
+            listItem.dataset.state = state.state; // Store State in data attribute
             stateList.appendChild(listItem); // Append list item to the list
         });
     }
@@ -154,7 +140,6 @@ function renderStates(states) {
     stateList.addEventListener('click', async function (event) {
         if (event.target.classList.contains('js-search-select')) {
             const selectedState = event.target.textContent;
-            const isoCode = event.target.dataset.iso2;
             customerState = event.target.dataset.state;
             document.getElementById('search-dropdown').value = selectedState; // Set the value of the input
             document.getElementById('city-dropdown').value = ''; // Reset the city input value
@@ -163,14 +148,20 @@ function renderStates(states) {
             stateSelected = selectedState;
             citySelected = '';
             toggleClassById("formeStateList", "js-content_visible");
-            await loadCities(isoCode);
+            document.getElementById("formeCityList").style.display = "block";
+            loadCities(customerState);
         }
     });
 }
 
 // Function to render cities to the DOM
-function renderCities(cities) {
+function renderCities(cities, selectedCityName = null) {
     const cityList = document.getElementById('city-list');
+    if (!cityList) {
+        // console.error('City select element not found');
+        return;
+    }
+
     cityList.innerHTML = ''; // Clear existing items
 
     if (cities.length === 0) {
@@ -180,20 +171,34 @@ function renderCities(cities) {
         cityList.appendChild(noResultsItem);
     } else {
         cities.forEach(city => {
+            if (!city.wards) return; // Skip if no wards
+        city.wards.forEach(ward => {
             const listItem = document.createElement('li');
-            listItem.textContent = city.name;
+
+            // Display text (you can customize what shows to the user)
+            listItem.textContent = `${city.name} - ${ward.name}`;
+
+            // Add classes
             listItem.classList.add('search-suggestion__item', 'js-search-select');
-            listItem.dataset.cityName = city.name; // Store city name in data attribute
-            listItem.dataset.latitude = city.latitude; // Store latitude in data attribute
-            listItem.dataset.longitude = city.longitude; // Store longitude in data attribute
+
+            // Store data attributes
+            listItem.dataset.state = selectedCityName;
+            listItem.dataset.city = `${city.name} - ${ward.name}`;;
+            listItem.dataset.lga = city.name;
+            listItem.dataset.ward = ward.name;
+            listItem.dataset.latitude = ward.latitude;
+            listItem.dataset.longitude = ward.longitude;
+
+            // Append to the list
             cityList.appendChild(listItem);
+        });
         });
     }
 
     // Add click event listener to each city list item
     cityList.addEventListener('click', function (event) {
         if (event.target.classList.contains('js-search-select')) {
-            const selectedCity = event.target.dataset.cityName;
+            const selectedCity = event.target.dataset.city;
             latitude = parseFloat(event.target.dataset.latitude);
             longitude = parseFloat(event.target.dataset.longitude);
             updateShippingPrices(shippingData);
@@ -209,16 +214,37 @@ function renderCities(cities) {
 }
 
 function filterStates(term, states) {
-    const filtered = states.filter(state => 
-        state.name.toLowerCase().includes(term.toLowerCase())
+    const filtered = states.filter(state =>
+        state.state.toLowerCase().includes(term.toLowerCase())
     );
     renderStates(filtered);
 }
 
 function filterCities(term, cities) {
-    const filtered = cities.filter(state => 
-        state.name.toLowerCase().includes(term.toLowerCase())
-    );
+    const filtered = [];
+
+    cities.forEach(city => {
+        if (city.wards) {
+            // Build a list of matching wards for this city
+            const matchingWards = city.wards.filter(ward => {
+                const combined = `${city.name} - ${ward.name}`.toLowerCase();
+                return combined.includes(term.toLowerCase());
+            });
+
+            // If the city itself matches OR at least one combined city-ward matches
+            if (
+                city.name.toLowerCase().includes(term.toLowerCase()) ||
+                matchingWards.length > 0
+            ) {
+                // Keep only the matched wards (so results are tighter)
+                filtered.push({
+                    ...city,
+                    wards: matchingWards.length > 0 ? matchingWards : city.wards
+                });
+            }
+        }
+    });
+
     renderCities(filtered);
 }
 
@@ -426,7 +452,7 @@ async function updateCartDrawer() {
             cartItem.innerHTML = `
                 <div class="position-relative">
                   <img loading="lazy" class="cart-drawer-item__img" 
-     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://app.payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+     src="${cartProduct.product_image && cartProduct.product_image[0] && cartProduct.product_image[0].url ? "https://payuee.com/image/" + cartProduct.product_image[0].url : '../../e-shop/images/default_img.png'}" 
      alt="${cartProduct.title}" 
      onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
 
@@ -829,7 +855,7 @@ placeOrderButton.addEventListener("click", function(event) {
                 const fundWalletButton = document.getElementById('fundWalletButton');
                 fundWalletButton.addEventListener('click', function () {
                     // Logic to fund the wallet goes here
-                    window.location.href = 'https://app.payuee.com/fund-wallet';
+                    window.location.href = 'https://payuee.com/fund-wallet';
                 });
             checkoutButton.disabled = false;
             return;
@@ -877,7 +903,7 @@ placeOrderButton.addEventListener("click", function(event) {
                     // Add the click event listener
                     element.addEventListener("click", () => {
                         // Redirect to the URL with the OrderID as a query parameter
-                        window.location.href = `https://app.payuee.com/e-shop/shop_order_complete?OrderID=${result.order[0]}`;
+                        window.location.href = `https://payuee.com/e-shop/shop_order_complete?OrderID=${result.order[0]}`;
                     });
                     return;
                 } else {
