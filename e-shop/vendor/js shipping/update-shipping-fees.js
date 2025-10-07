@@ -477,6 +477,7 @@ function showToastMessageE(message) {
 }
 
 async function setShippingFees() {
+    const updateButton = document.getElementById("updateShippingFeesButton");
     const shippingGreaterThan = document.getElementById("validationCustom021").value
     const shippingLessThan = document.getElementById("validationCustom031").value
     // Get the selected radio button using querySelector
@@ -494,6 +495,13 @@ async function setShippingFees() {
         calculate_using_kg: stringToBool(selectedRadio),
     };
 
+    // Disable button and show loading text
+    updateButton.disabled = true;
+    updateButton.innerHTML = `
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Updating...
+    `;
+
     // Send POST request using Fetch API
     fetch('https://api.payuee.com/vendor/set-shipping-fee', {
         method: 'POST',
@@ -507,6 +515,9 @@ async function setShippingFees() {
     .then(response => {
         if (response.success) {  // Check for a successful response
             showToastMessage("Shipping fees updated successfully.");
+            // Re-enable button and restore text
+            updateButton.disabled = false;
+            updateButton.textContent = "Update";
             // Redirect to the Add Product page
             if (localStorage.getItem("product") == "one") {
                 // Update popup content by ID
@@ -526,6 +537,9 @@ async function setShippingFees() {
             };
         } else {
             const errorData = response; // Handle error if response is not ok
+             // Re-enable button and restore text
+            updateButton.disabled = false;
+            updateButton.textContent = "Update";
             if (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
                 logout();
             }
