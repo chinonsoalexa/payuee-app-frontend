@@ -624,7 +624,7 @@ try {
     
     if (!response.ok) {
             // alert('an error occurred. Please try again');
-                if (!response.ok) {
+        if (!response.ok) {
         alert('an error occurred. Please try again');
         return;
     }

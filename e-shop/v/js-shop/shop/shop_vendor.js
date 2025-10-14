@@ -773,8 +773,17 @@ function updateCartDrawer() {
             // Add event listener for remove button
             removeButton.addEventListener('click', (event) => {
                 event.preventDefault();
+                syncRemove(cartProduct.ID);
                 removeFromCart(cartProduct.ID);
             });
+
+            function syncRemove(productId) {
+                // console.log('Remove from server:', productId);
+                fetch(`https://api.payuee.com/delete-cart-item/${productId}`, {
+                method: 'GET',
+                credentials: 'include',
+                });
+            }
         });
     }
     calculateCartSubtotal();
