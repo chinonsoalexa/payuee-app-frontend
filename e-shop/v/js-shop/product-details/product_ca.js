@@ -1261,41 +1261,62 @@ function calculatePercentageOff(previousPrice, currentPrice) {
 }
 
 function updateQuantity(productId, action, stock_remaining, value = 1) {
-  // Get cart from local storage
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Get cart from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Find the product in the cart
-  const productIndex = cart.findIndex(item => item.ID === productId);
+    // Find the product in the cart
+    const productIndex = cart.findIndex(item => item.ID === productId);
 
-  if (productIndex !== -1) {
-      // Update the quantity based on action
-      if (action === 'increase') {stock_remaining
-        if (cart[productIndex].quantity >= stock_remaining) {
-              // do nothing
+    if (productIndex !== -1) {
+        // Update the quantity based on action
+        if (action === 'increase') {stock_remaining
+            if (cart[productIndex].quantity == stock_remaining) {
+                // do nothing
+            } else {
+                cart[productIndex].quantity++;
+            }
+        } else if (action === 'reduce') {
+            cart[productIndex].quantity = cart[productIndex].quantity > 1 ? cart[productIndex].quantity - 1 : 1;
+        } else if (action === 'set') {
+            cart[productIndex].quantity = value > 0 ? value : 1;
+        }
+
+        // Re-calculate the product price based on the quantity
+        const product = cart[productIndex];
+        if (!product.reposted) {
+          if (product.selling_price !== 0) {
+              product.totalPrice = product.selling_price * product.quantity;
           } else {
-              cart[productIndex].quantity++;
+              product.totalPrice = product.initial_cost * product.quantity;
           }
-      } else if (action === 'reduce') {
-          cart[productIndex].quantity = cart[productIndex].quantity > 1 ? cart[productIndex].quantity - 1 : 1;
-      } else if (action === 'set') {
-          cart[productIndex].quantity = value > 0 ? value : 1;
-      }
-
-      // Re-calculate the product price based on the quantity
-      const product = cart[productIndex];
-      if (product.selling_price !== 0) {
-          product.totalPrice = product.selling_price * product.quantity;
       } else {
-          product.totalPrice = product.price * product.quantity;
+        product.totalPrice = product.reposted_selling_price * product.quantity;
       }
 
-      // Save the updated cart to local storage
-      localStorage.setItem('cart', JSON.stringify(cart));
+        // Save the updated cart to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        syncUpdate(productId, cart[productIndex].quantity, product.eshop_user_id);
+        // Re-render the cart drawer
+        updateMainCart();
+        updateCartDrawer();
+        calculateCartSubtotal();
+    }
+}
 
-      // Re-render the cart drawer
-      calculateCartSubtotal();
-      updateCartDrawer();
-  }
+function syncUpdate(productId, quantity, eshop_user_id) {
+  const body = {
+      product_id: productId,
+      eshop_user_id: eshop_user_id,
+      quantity: quantity,
+  };
+
+  // console.log('Update quantity on server:', productId, quantity);
+  fetch(`https://api.payuee.com/creat-and-add-cart-item`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 function renderLoadingDetails() {

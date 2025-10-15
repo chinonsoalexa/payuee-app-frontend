@@ -352,7 +352,7 @@ function updateCartDrawer() {
     calculateCartSubtotal();
 }
 
-function updateQuantity(productId, action, product_stock, value = 1) {
+function updateQuantity(productId, action, stock_remaining, value = 1) {
     // Get cart from local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -361,8 +361,8 @@ function updateQuantity(productId, action, product_stock, value = 1) {
 
     if (productIndex !== -1) {
         // Update the quantity based on action
-        if (action === 'increase') {product_stock
-            if (cart[productIndex].quantity == product_stock) {
+        if (action === 'increase') {stock_remaining
+            if (cart[productIndex].quantity == stock_remaining) {
                 // do nothing
             } else {
                 cart[productIndex].quantity++;
@@ -376,22 +376,39 @@ function updateQuantity(productId, action, product_stock, value = 1) {
         // Re-calculate the product price based on the quantity
         const product = cart[productIndex];
         if (!product.reposted) {
-            if (product.selling_price !== 0) {
-                product.totalPrice = product.selling_price * product.quantity;
-            } else {
-                product.totalPrice = product.initial_cost * product.quantity;
-            }
-        } else {
-          product.totalPrice = product.reposted_selling_price * product.quantity;
-        }
+          if (product.selling_price !== 0) {
+              product.totalPrice = product.selling_price * product.quantity;
+          } else {
+              product.totalPrice = product.initial_cost * product.quantity;
+          }
+      } else {
+        product.totalPrice = product.reposted_selling_price * product.quantity;
+      }
 
         // Save the updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
-
+        syncUpdate(productId, cart[productIndex].quantity, product.eshop_user_id);
         // Re-render the cart drawer
-        calculateCartSubtotal();
+        updateMainCart();
         updateCartDrawer();
+        calculateCartSubtotal();
     }
+}
+
+function syncUpdate(productId, quantity, eshop_user_id) {
+  const body = {
+      product_id: productId,
+      eshop_user_id: eshop_user_id,
+      quantity: quantity,
+  };
+
+  // console.log('Update quantity on server:', productId, quantity);
+  fetch(`https://api.payuee.com/creat-and-add-cart-item`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 // Function to remove a product from the cart
