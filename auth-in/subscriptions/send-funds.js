@@ -584,7 +584,7 @@ try {
 
         // const data = response.json();
         localStorage.removeItem('auth')
-        window.location.href = '../indexs.html'
+        window.location.href = '../pay.html'
     } finally{
         // do nothing
     }

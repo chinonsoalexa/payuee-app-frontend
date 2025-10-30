@@ -8,7 +8,7 @@
 
 // const FILES_TO_CACHE = [
 //     '/',
-//     '/indexs.html',
+//     '/pay.html',
 //     '/manifest.json',
 //     '/index-in.html',
 //     '/data.html', 
