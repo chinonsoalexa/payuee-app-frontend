@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             referralNum.textContent = 0;
         }
         document.getElementById('toggle-balance-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
-        // document.getElementById('toggle-points-main').textContent = formatNumberToNaira(responseData.success.AccountBalance);
+        document.getElementById('toggle-points-main').textContent = formatNumberToNaira(responseData.success.PointBalance);
         document.getElementById('toggle-email-main').textContent = responseData.success.Email;
         ReferralCode = responseData.success.ReferralCode;
         // if (responseData.success.PhoneNumberActivated == true) {
