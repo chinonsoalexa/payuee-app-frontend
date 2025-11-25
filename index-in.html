@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="assets/css/datepickerboot.css">
    <!--main css-->
       <link rel="stylesheet" href="assets/css/main.css">
+      <link rel="stylesheet" href="assets/css/spin-game.css">
    <link rel="manifest" href="manifest.json">
 
    <!-- popup css -->
@@ -446,7 +447,7 @@ button {
                                     You Earn
                                  </a>
                               </h5>
-                              <p>Refer your friends and earn up to ₦50 for each referral.</p>
+                              <p>Refer your friends and earn up to #20 Points for each referral.</p>
                            </div>
                         </div> 
                      </div>
@@ -976,6 +977,70 @@ button {
 
    <!-- Jquery 3 6 0 Min Js -->
    
+      <!-- DAILY SPIN POPUP -->
+   <div id="dailySpinModal" class="spin-modal">
+   
+   <!-- CLOSE BUTTON -->
+   <button id="closeSpinModal" class="close-btn">✖</button>
+   <button id="openSpinModal" class="open-btn"></button>
+
+   <div class="container2">
+      <div id="pointer"></div>
+      <canvas id="wheel" width="350" height="350"></canvas>
+
+      <button id="spinBtn">SPIN</button>
+      <button id="stopBtn">STOP</button>
+      <button id="buySpinBtn">Purchase Spin</button>
+
+      <div id="fingerGuide">
+         <span>Click on "STOP"</span>👇
+      </div>
+
+      <!-- 🔽 ADD IT RIGHT HERE 🔽 -->
+      <div id="pointsNote" style="
+         text-align: center;
+         margin-top: 10px;
+         font-size: 14px;
+         color: #444;
+         font-weight: bold;
+      ">
+         🧠 NOTE: Points can be used to buy DATA, AIRTIME & ELECTRICITY BILL 🔌📶💡
+      </div>
+
+      <div id="winnerPopup">
+         <div id="winnerContent">
+         <span id="winnerText"></span>
+         <span id="winnerPrize">100 Points</span>
+         </div>
+      </div>
+
+      <canvas id="confettiCanvas"></canvas>
+   </div>
+
+   <!-- CLAIM POPUP FOR DATA -->
+   <div id="claimPopup">
+      <h2>You Won Data! 🚀</h2>
+      <p id="claimPrize"></p>
+
+      <input type="text" id="phoneInput" placeholder="Enter Phone Number"><br><br>
+
+      <select id="networkSelect">
+         <option value="">Select Network</option>
+         <option value="mtn_sme">MTN</option>
+         <option value="artel gifting">Airtel</option>
+         <option value="glo_data">Glo</option>
+         <option value="etisalat data">9mobile</option>
+      </select><br><br>
+
+      <button id="claimBtn">Claim Data</button>
+   </div>
+   </div>
+   
+   <!-- WINNER NOTIFICATION AREA -->
+   <div id="liveNotifications"></div>
+   
+   <!-- confetti js code -->
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
    
    <script src="assets/js/jquery-3.6.0.min.js"></script>
    <!--Bootstrap bundle Js-->
@@ -1002,6 +1067,8 @@ button {
    <script src="auth-in/popUps/index2.js"></script>
    <!-- fow progressive web app -->
    <script src="auth-in/index-in.js"></script>
+      <!-- spin game js code -->
+   <script src="auth-in/spin-game.js"></script>
    <!-- whatsapp icon -->
    <script src="page-scroll-js/social.js"></script>
 </body>

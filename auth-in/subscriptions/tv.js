@@ -43,7 +43,7 @@ var dstv = [
     { value: 'dstv43', text: 'DStv Compact Plus + French Plus - ₦45,500', price: 45500 },
     { value: 'complus-frenchtouch', text: 'DStv Compact Plus + French Touch - ₦30,800', price: 30800 },
     { value: 'dstv45', text: 'DStv Compact Plus – Extra View - ₦30,000', price: 30000 },
-    { value: 'complus-french-extraview', text: 'DStv Compact Plus + FrenchPlus + Extra View - ₦50,500', price: 50500 },
+    { value: 'complus-french-extraview', text: 'DStv Compact Plus + FrenchPlus + Extra View - #20 Points,500', price: 50500 },
     { value: 'dstv47', text: 'DStv Compact + French Plus - ₦36,200', price: 36200 },
     { value: 'dstv48', text: 'DStv Compact Plus + Asia + ExtraView - ₦42,400', price: 42400 },
     { value: 'dstv61', text: 'DStv Premium + Asia + Extra View - ₦54,400', price: 54400 },
