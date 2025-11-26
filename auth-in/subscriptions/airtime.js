@@ -18,10 +18,24 @@ const phoneInput = document.getElementById("phone-number");
 phoneInput.addEventListener("input", (e) => {
     let value = e.target.value;
 
-    // Remove all non-digits
+    // Remove all spaces
+    value = value.replace(/\s+/g, "");
+
+    // Remove all non-digit characters EXCEPT + at start
+    value = value.replace(/[^\d+]/g, "");
+
+    // Handle +234 or 234 prefix changes
+    if (value.startsWith("+234")) {
+        value = "0" + value.slice(4);  // Remove +234 and start with 0
+    } 
+    else if (value.startsWith("234")) {
+        value = "0" + value.slice(3);  // Remove 234 and start with 0
+    }
+
+    // Keep only digits (final clean)
     value = value.replace(/\D/g, "");
 
-    // Limit to 11 digits max
+    // Limit to 11 digits (Nigerian format)
     value = value.slice(0, 11);
 
     e.target.value = value;

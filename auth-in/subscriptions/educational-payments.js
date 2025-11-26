@@ -23,10 +23,16 @@ const phoneNumber12 = document.getElementById("phone-number");
 phoneNumber12.addEventListener("input", (e) => {
     let value = e.target.value;
 
-    // Remove all non-digits
+    // Remove all spaces
+    value = value.replace(/\s+/g, "");
+
+    // Remove all non-digit characters EXCEPT + at start
+    value = value.replace(/[^\d+]/g, "");
+
+    // Keep only digits (final clean)
     value = value.replace(/\D/g, "");
 
-    // Limit to 11 digits max
+    // Limit to 11 digits (Nigerian format)
     value = value.slice(0, 11);
 
     e.target.value = value;
