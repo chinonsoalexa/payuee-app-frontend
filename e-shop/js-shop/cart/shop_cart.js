@@ -24,7 +24,7 @@ function updateMainCart() {
         <tr>
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" width="120" height="120" alt="">
+                    <img loading="lazy" src="https://payuee.com/e-shop/images/product_not_available.jpg" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>
@@ -210,7 +210,7 @@ function updateCartDrawer() {
       emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
       emptyMessage.innerHTML = `
       <div class="position-relative">
-        <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
+        <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
       </div>
       <div class="cart-drawer-item__info flex-grow-1">
         <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -347,13 +347,28 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
 
         // Save the updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
-
+        syncUpdate(productId, cart[productIndex].quantity, product.eshop_user_id);
         // Re-render the cart drawer
-        updateMainCart();
         updateCartDrawer();
-        calculateCartSubtotal();
         updateMainCart();
+        calculateCartSubtotal();
     }
+}
+
+function syncUpdate(productId, quantity, eshop_user_id) {
+  const body = {
+      product_id: productId,
+      eshop_user_id: eshop_user_id,
+      quantity: quantity,
+  };
+
+  // console.log('Update quantity on server:', productId, quantity);
+  fetch(`https://api.payuee.com/creat-and-add-cart-item`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 // Function to remove a product from the cart

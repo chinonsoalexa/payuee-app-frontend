@@ -342,7 +342,6 @@ function updateQuantity(productId, action, stock_remaining, value = 1) {
         localStorage.setItem('cart', JSON.stringify(cart));
         syncUpdate(productId, cart[productIndex].quantity, product.eshop_user_id);
         // Re-render the cart drawer
-        updateMainCart();
         updateCartDrawer();
         calculateCartSubtotal();
     }
