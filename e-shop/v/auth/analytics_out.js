@@ -27,3 +27,21 @@
         });
     }
 // });
+
+function loadGoogleAnalytics(measurementId) {
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () {
+    window.dataLayer.push(arguments);
+  };
+
+  gtag("js", new Date());
+  gtag("config", measurementId);
+}
+
+// Call it
+loadGoogleAnalytics("G-3QEYDV3845");
