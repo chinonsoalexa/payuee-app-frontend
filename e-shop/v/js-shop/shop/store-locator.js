@@ -190,7 +190,7 @@ function renderStores(stores, responseData) {
         noStoresMessage.classList.add('store-location__search-result__item');
         noStoresMessage.innerHTML = `
             <h5>No available stores found</h5>
-            <a href="https://app.payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
+            <a href="https://app.payuee.com/e-shop/v/shop-outfits?page=1">Back to Shop</a>
         `;
         storeBody.appendChild(noStoresMessage);
         return;
@@ -338,7 +338,7 @@ function renderStore(store) {
         noStoresMessage.classList.add('store-location__search-result__item');
         noStoresMessage.innerHTML = `
             <h5>No available stores found</h5>
-            <a href="https://app.payuee.com/e-shop/shop-outfits?page=1">Back to Shop</a>
+            <a href="https://app.payuee.com/e-shop/v/shop-outfits?page=1">Back to Shop</a>
         `;
         storeBody.appendChild(noStoresMessage);
         return;

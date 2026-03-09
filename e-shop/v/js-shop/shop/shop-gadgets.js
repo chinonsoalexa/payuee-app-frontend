@@ -148,9 +148,9 @@ async function getProducts() {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://app.payuee.com/e-shop/shop-gadgets?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://app.payuee.com/e-shop/v/shop-gadgets?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://app.payuee.com/e-shop/shop-gadgets?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://app.payuee.com/e-shop/v/shop-gadgets?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -353,7 +353,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://app.payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://app.payuee.com/e-shop/v/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {

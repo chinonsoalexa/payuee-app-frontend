@@ -353,7 +353,7 @@ function getProductCountForVendor(eshop_user_id, products) {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-        urlIdToUpdate.href = `https://app.payuee.com/e-shop/shop-outfits?page=${pageNumber}`;
+        urlIdToUpdate.href = `https://app.payuee.com/e-shop/v/shop-outfits?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
