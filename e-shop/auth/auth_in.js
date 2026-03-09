@@ -581,3 +581,101 @@ function formatNumber(value) {
     // Optional UI update
   }
 })();
+
+
+
+
+// Network status handling
+// Network status handling
+// Network status handling
+// Network status handling
+
+(function () {
+  let banner = null;
+
+  function removeBanner() {
+    if (banner) {
+      banner.remove();
+      banner = null;
+    }
+  }
+
+  function showBanner({ message, bgColor, textColor, duration = 5000 }) {
+	removeBanner();
+
+	banner = document.createElement("div");
+	banner.textContent = message;
+
+	Object.assign(banner.style, {
+		position: "fixed",
+		bottom: "20px",
+		left: "50%",
+		transform: "translateX(-50%)",
+		padding: "10px 16px",
+		backgroundColor: bgColor,
+		color: textColor,
+		borderRadius: "999px",
+		fontSize: "14px",
+		fontWeight: "500",
+		boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+		cursor: "pointer",
+		zIndex: "9999",
+		transition: "opacity 0.3s ease"
+	});
+
+	banner.addEventListener("click", removeBanner);
+	document.body.appendChild(banner);
+
+	// Auto-remove after duration
+	// setTimeout(removeBanner, duration);
+	}
+
+  // Offline event
+  window.addEventListener("offline", () => {
+    showBanner({
+      message: "⚠️ Network unavailable.",
+      bgColor: "#FFF3CD",
+      textColor: "#664D03"
+    });
+  });
+
+  // Online event
+  window.addEventListener("online", () => {
+    playRestoreSound();
+    showBanner({
+      message: "✅ Network restored.",
+      bgColor: "#D1E7DD",
+      textColor: "#0F5132"
+    });
+  });
+
+  // Show banner immediately if page loads offline
+  if (!navigator.onLine) {
+    showBanner({
+      message: "⚠️ Network unavailable.",
+      bgColor: "#FFF3CD",
+      textColor: "#664D03"
+    });
+  }
+})();
+
+// Sound for network restore
+function playRestoreSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.value = 880; // chime tone
+    gain.gain.value = 0.08;
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.15);
+  } catch {
+    // silently fail if audio blocked
+  }
+}
