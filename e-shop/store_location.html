@@ -42,6 +42,170 @@
    display: none !important;
 }
 
+.state {
+    font-weight: 700; /* or 700 for stronger bold */
+}
+
+.store-card {
+    margin-bottom: 20px;
+}
+
+.store-card-inner {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+}
+
+.store-card-inner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.store-image {
+    flex: 1;
+    min-width: 100px;
+    max-width: 180px;
+    height: 140px;
+    overflow: hidden; /* THIS enables cropping */
+}
+
+.store-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* THIS ensures center crop */
+    display: block;
+}
+
+.store-info {
+    flex: 1;           /* allow it to grow */
+    min-width: 180px;  /* don’t get too squeezed */
+    max-width: 320px;  /* don’t stretch too wide */
+    padding: 10px;
+}
+
+.store-info h5 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.location {
+    font-size: 13px;
+    color: #777;
+}
+
+.meta {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.visit-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #000;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.visit-btn:hover {
+    background: #333;
+}
+
+.store-location__search-result {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.store-location {
+    width: 100%;
+}
+
+/* small tablets */
+@media (min-width: 600px) {
+    .store-location__search-result {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* tablets / small laptops */
+@media (min-width: 900px) {
+    .store-location__search-result {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* desktops */
+@media (min-width: 1200px) {
+    .store-location__search-result {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.store-card {
+    width: 100%;
+}
+
+/* shimmer animation */
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.skeleton-box,
+.skeleton-line,
+.skeleton-btn {
+    background: linear-gradient(
+        90deg,
+        #eeeeee 25%,
+        #dddddd 37%,
+        #eeeeee 63%
+    );
+    background-size: 400px 100%;
+    animation: shimmer 1.2s infinite linear;
+    border-radius: 6px;
+}
+
+/* image placeholder */
+.skeleton-box {
+    height: 140px;
+    min-width: 100px;
+    max-width: 180px;
+}
+
+/* text placeholders */
+.skeleton-line {
+    height: 12px;
+    margin-bottom: 10px;
+}
+
+.skeleton-line.title {
+    height: 16px;
+    width: 70%;
+}
+
+.skeleton-line.small {
+    width: 90%;
+}
+
+/* button placeholder */
+.skeleton-btn {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.store-card {
+    transition: opacity 0.3s ease;
+}
   </style>
 </head>
 
@@ -483,37 +647,35 @@
       <div class="row">
         <div class="col-lg-4">
           <form action="#" method="GET">
-            <div class="store-location__search">
+            <div class="store-location__search mb-4">
               <input id="storeSearchInput" class="store-location__search-input" type="text" name="search-keyword" placeholder="Enter store name or email">
               <button class="btn-icon store-location__search-btn" type="submit">
                 <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_search" /></svg>
               </button>
             </div>
-
-            <div id="availableStores" class="store-location__search-result">
-              <div class="store-location__search-result__item">
-                <h5>Loading Stores</h5>
-              </div>
-            </div>
-              <div id="paginationDiv" class="card-body disabled">
-                <nav id="paginationList" aria-label="Page navigation example">
-                  <ul class="pagination pagination-dark pagin-border-dark gap-2">
-                    <li class="page-item"><a id="previousPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only"></span></a></li>
-                    <li class="page-item"><a id="constantBeforePage" class="page-link rounded-circle" href="javascript:void(0)">1</a></li>
-                    <li class="page-item"><a id="dotBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="twoBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="beforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="currentPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="afterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="twoAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="dotAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="constantAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
-                    <li class="page-item"><a id="nextPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true"></span><span class="sr-only"></span>»</a></li>
-                  </ul>
-                </nav>
-            </div>
-            </div>
           </form>
+        </div>
+        <div id="availableStores" class="store-location__search-result">
+          <div class="store-location__search-result__item">
+            <!-- this is where stores are rendered -->
+          </div>
+        </div>
+        <div id="paginationDiv" class="card-body disabled">
+            <nav id="paginationList" aria-label="Page navigation example">
+              <ul class="pagination pagination-dark pagin-border-dark gap-2">
+                <li class="page-item"><a id="previousPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only"></span></a></li>
+                <li class="page-item"><a id="constantBeforePage" class="page-link rounded-circle" href="javascript:void(0)">1</a></li>
+                <li class="page-item"><a id="dotBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="twoBeforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="beforePage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="currentPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="afterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="twoAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="dotAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="constantAfterPage" class="page-link rounded-circle" href="javascript:void(0)">...</a></li>
+                <li class="page-item"><a id="nextPage" class="page-link rounded-circle" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true"></span><span class="sr-only"></span>»</a></li>
+              </ul>
+            </nav>
         </div>
       </div>
     </section>
