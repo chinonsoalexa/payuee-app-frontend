@@ -1,0 +1,3858 @@
+{
+    "responseCode": 0,
+    "responseCategoryCode": null,
+    "message": null,
+    "referenceNumber": "77e727c2-8692-41c8-9b36-be6c8f802e74",
+    "banks": [
+        {
+            "name": "Jaiz Bank",
+            "uuid": "9241BB32-AF86-4221-8994-1ABF8DD83B97",
+            "interInstitutionCode": "000006",
+            "sortCode": "301",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Coronation",
+            "uuid": "25B18A3B-F03D-4822-8A57-B8191CFCE9F8",
+            "interInstitutionCode": "060001",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NPF MicroFinance Bank",
+            "uuid": "90B1DC0C-883E-40F2-9176-28BA1301FF1E",
+            "interInstitutionCode": "70001",
+            "sortCode": "50629",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Covenant",
+            "uuid": "80926683-BC47-470A-B4F2-74D0214678E6",
+            "interInstitutionCode": "70006",
+            "sortCode": "070006",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "JubileeLife",
+            "uuid": "901742A1-F174-4245-B328-452C85300782",
+            "interInstitutionCode": "090003",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Parralex Microfinance Bank",
+            "uuid": "3E814CCE-6BD6-4A73-AFFE-F30850C686BF",
+            "interInstitutionCode": "090004",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Trustbond",
+            "uuid": "49B5EDB2-4403-4383-9323-D922787589C3",
+            "interInstitutionCode": "090005",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SafeTrust",
+            "uuid": "456F642A-220E-4651-8D18-E73E5ECF400F",
+            "interInstitutionCode": "090006",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TeasyMobile",
+            "uuid": "3BEED39F-00FB-4F92-90AD-F22050934EAD",
+            "interInstitutionCode": "100010",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FortisMobile",
+            "uuid": "45A92CE8-3F52-4ABF-9340-417E96FE97B4",
+            "interInstitutionCode": "100016",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MoneyBox",
+            "uuid": "28DA6D00-91B9-423F-86C8-29CDCA397C00",
+            "interInstitutionCode": "100020",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TagPay",
+            "uuid": "9DB28B83-E3B0-4537-8B4D-FB0575079E58",
+            "interInstitutionCode": "100023",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FSDH",
+            "uuid": "FE7F7150-116E-4AF2-A4CC-098EA51737CF",
+            "interInstitutionCode": "400001",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NIP Virtual Bank",
+            "uuid": "6A32EB09-55E5-4116-B1EB-5822F1A5633C",
+            "interInstitutionCode": "999999",
+            "sortCode": "999999",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Safetrust Mortgage Bank Limited ",
+            "uuid": "A5CB2E6A-0FB3-41CC-B5EB-50F59791FD06",
+            "interInstitutionCode": "090006",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Suntrust Bank",
+            "uuid": "480AC6D4-34F2-41B8-A805-ECADA568254F",
+            "interInstitutionCode": "000022",
+            "sortCode": null,
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Keystone Bank",
+            "uuid": "A1882172-7C26-45A2-B329-5AB38EAE61C6",
+            "interInstitutionCode": "000002",
+            "sortCode": "082",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Citi Bank",
+            "uuid": "6390A475-2260-4F25-AE09-E915346D79CC",
+            "interInstitutionCode": "000009",
+            "sortCode": "023",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "First Inland Bank",
+            "uuid": "9113FAB7-F59C-4559-AA81-06056C681889",
+            "interInstitutionCode": "",
+            "sortCode": "50310",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Providus Bank ",
+            "uuid": "824d4b53-2752-49bb-b84a-20b69bb897ef",
+            "interInstitutionCode": "000023",
+            "sortCode": "101",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Page MFBank",
+            "uuid": "91d49431-4588-4c09-bc1a-003ebca9bdae",
+            "interInstitutionCode": "070008",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FBN Morgages Limited",
+            "uuid": "0f24ee0b-45bc-4178-ab56-86b12410ee54",
+            "interInstitutionCode": "090107",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Imperial Homes Mortgage Bank",
+            "uuid": "ba62cc4b-8a08-4c4a-9686-569b93486de0",
+            "interInstitutionCode": "100024",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Carbon Microfinance Bank",
+            "uuid": "039438d4-3f42-4d62-ac53-73b699b3b282",
+            "interInstitutionCode": "100026",
+            "sortCode": "51315",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Intellifin",
+            "uuid": "16a75f97-64f6-4ba7-b5de-76e76189290a",
+            "interInstitutionCode": "100027",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ASOSavings",
+            "uuid": "2FAA5549-F43B-498B-9CC2-677E45CFDB84",
+            "interInstitutionCode": "090001",
+            "sortCode": "401",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Rand Merchant Bank",
+            "uuid": "0aa79cfd-81db-4aa2-b6e0-a12ac60f1282",
+            "interInstitutionCode": "000024",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FBN merchant Bank",
+            "uuid": "2c3e96d7-b5cc-42e8-beae-2b202bfcbae7",
+            "interInstitutionCode": "060002",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Omoluabi Mortgage Bank Plc",
+            "uuid": "66782fe8-7054-4db0-b882-04faef3917e5",
+            "interInstitutionCode": "070007",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GATEWAY MORTGAGE BANK",
+            "uuid": "64d927aa-b31a-4661-9438-87b9e3c46e06",
+            "interInstitutionCode": "070009",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ABBEY MORTGAGE BANK",
+            "uuid": "f100a1b9-f100-4a94-b6bd-0a96544d824b",
+            "interInstitutionCode": "070010",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Refuge Mortgage Bank",
+            "uuid": "59509f68-db22-4ec6-9874-2034ada6798a",
+            "interInstitutionCode": "070011",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LBIC Mortgage Bank",
+            "uuid": "d55e5c6a-ae2b-43a9-ba6b-e89e90b41ba8",
+            "interInstitutionCode": "070012",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PLATINUM MORTGAGE BANK",
+            "uuid": "5493d7c3-851c-4a16-92c3-d1ca5c2b5036",
+            "interInstitutionCode": "070013",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "First Generation Mortgage Bank",
+            "uuid": "ea7a8219-61f9-4fbd-aabf-3b64e6b51304",
+            "interInstitutionCode": "70014",
+            "sortCode": "50310",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ekondo MFB",
+            "uuid": "a7fe9be4-6237-46ae-945b-84c2c91fccc1",
+            "interInstitutionCode": "090097",
+            "sortCode": "50264",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "VFD MFB",
+            "uuid": "3395f506-b84a-4767-be90-91a62b9ad75d",
+            "interInstitutionCode": "090110",
+            "sortCode": "51161",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FinaTrust Microfinance Bank",
+            "uuid": "f730cf1d-e300-406e-b7a8-403f63997df7",
+            "interInstitutionCode": "090111",
+            "sortCode": "50303",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Seed Capital Microfinance Bank",
+            "uuid": "bea3766b-ea25-4b4a-8032-2de27729de05",
+            "interInstitutionCode": "090112",
+            "sortCode": "50784",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EMPIRE MFB",
+            "uuid": "e8d47b47-23f0-49cb-8b13-eecba26422be",
+            "interInstitutionCode": "090114",
+            "sortCode": "51140",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TCF",
+            "uuid": "355f6dbe-9f79-4258-b7aa-83d6797097bd",
+            "interInstitutionCode": "090115",
+            "sortCode": "51211",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AMML MFB",
+            "uuid": "5e34f43f-e699-4215-830a-55ecf7c97a20",
+            "interInstitutionCode": "090116",
+            "sortCode": "51047",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Boctrust Microfinance Bank",
+            "uuid": "b7ae10a9-4988-4958-9994-a9b15b4cd978",
+            "interInstitutionCode": "090117",
+            "sortCode": "51213",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IBILE Microfinance Bank",
+            "uuid": "a1c101a0-0ad6-45ab-a205-ec567cce2b2d",
+            "interInstitutionCode": "090118",
+            "sortCode": "51244",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OHAFIA MFB",
+            "uuid": "8979e4a8-fc42-44ed-9ecd-26dc3ab72c7b",
+            "interInstitutionCode": "090119",
+            "sortCode": "50666",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WETLAND MFB",
+            "uuid": "0ba432ef-8caf-400e-8591-2099a5867a08",
+            "interInstitutionCode": "090120",
+            "sortCode": "50905",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HASAL MFB",
+            "uuid": "6cc20390-0d05-4824-a0de-c5ebccf0ef28",
+            "interInstitutionCode": "090121",
+            "sortCode": "50383",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GOWANS MFB",
+            "uuid": "7e44f6fd-4504-4846-aa8d-f65a08b70459",
+            "interInstitutionCode": "090122",
+            "sortCode": "51137",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Verite Microfinance Bank",
+            "uuid": "ea494b74-5cd7-4387-95ea-baaeaa52542b",
+            "interInstitutionCode": "090123",
+            "sortCode": "51118",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "XSLNCE Microfinance Bank",
+            "uuid": "7b203e7c-f9b8-43a3-8ce0-44ba53c7de29",
+            "interInstitutionCode": "090124",
+            "sortCode": "51215",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "REGENT MFB",
+            "uuid": "bbb08ca6-59c6-43e6-98e4-fe74346af67f",
+            "interInstitutionCode": "090125",
+            "sortCode": "51147",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FidFund MFB",
+            "uuid": "26bfd675-672e-446c-81f1-f98b4fe98e36",
+            "interInstitutionCode": "090126",
+            "sortCode": "50301",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BC Kash MFB",
+            "uuid": "ab409268-9583-4d9b-ae9c-cf69f2248c1f",
+            "interInstitutionCode": "090127",
+            "sortCode": "51212",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ndiorah MFB",
+            "uuid": "6da9b7de-b2ec-4416-ab73-4985d6502d9e",
+            "interInstitutionCode": "090128",
+            "sortCode": "50602",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MONEYTRUST MFB",
+            "uuid": "da74a563-7a85-4255-8c1f-50f9bf294cc1",
+            "interInstitutionCode": "090129",
+            "sortCode": "51230",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CONSUMER  MFB",
+            "uuid": "7a635019-4d2b-4769-a3e8-8c43f96460f0",
+            "interInstitutionCode": "090130",
+            "sortCode": "50910",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ALLWORKERS MFB",
+            "uuid": "904d2811-3795-4df8-8b68-2799a42d9288",
+            "interInstitutionCode": "090131",
+            "sortCode": "50059",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RICHWAY MFB",
+            "uuid": "fadd0c9d-3fe2-4bcc-add3-fb12ae3493bb",
+            "interInstitutionCode": "090132",
+            "sortCode": "51240",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AL-BARKAH MFB",
+            "uuid": "5a95e434-747a-432f-b1ed-a74fbcd95f46",
+            "interInstitutionCode": "090133",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ACCION MFB",
+            "uuid": "e3036b1e-8ccf-4bf7-bd11-82e7c5a5e99e",
+            "interInstitutionCode": "090134",
+            "sortCode": "50009",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Personal Trust Microfinance Bank",
+            "uuid": "11fdfa1e-60f3-4a4c-a1a4-49f118b1fa33",
+            "interInstitutionCode": "090135",
+            "sortCode": "51146",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Baobab Microfinance Bank",
+            "uuid": "beeadd77-3f5a-4141-a553-af0684ee3517",
+            "interInstitutionCode": "090136",
+            "sortCode": "090136",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Pecan Trust Microfinance Bank",
+            "uuid": "3996c3f2-3c71-45e1-bdb6-e47f1c87352f",
+            "interInstitutionCode": "090137",
+            "sortCode": "51226",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Royal Exchange Microfinance Bank",
+            "uuid": "f9a36091-7488-4741-90c4-d9ea9a063bbf",
+            "interInstitutionCode": "090138",
+            "sortCode": "50768",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Visa Microfinance Bank NIBSS F.I.",
+            "uuid": "68c0c296-52d1-4a6f-b8be-f36cef531f8d",
+            "interInstitutionCode": "090139",
+            "sortCode": "50900",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Sagamu Microfinance Bank",
+            "uuid": "f869e6c9-36cb-40d2-8682-b5bb4a3226e2",
+            "interInstitutionCode": "090140",
+            "sortCode": "50776",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Chikum Microfinance Bank",
+            "uuid": "e7fd5b2d-dd1f-4c92-8954-f5961db76191",
+            "interInstitutionCode": "090141",
+            "sortCode": "50177",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Yes MFB",
+            "uuid": "ade7685f-228a-4747-85a5-dd44f15978f7",
+            "interInstitutionCode": "090142",
+            "sortCode": "51234",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "APEKS Microfinance Bank",
+            "uuid": "577af8f7-79e7-4838-b750-d1a8356b3c4c",
+            "interInstitutionCode": "090143",
+            "sortCode": "50079",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MONEYFIELD MICROFINA",
+            "uuid": "fced39b8-94a7-42bd-ba38-042f12dfaf35",
+            "interInstitutionCode": "090144",
+            "sortCode": "51000",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Full range MFB",
+            "uuid": "8c86bae9-eb25-439f-94f1-130813cfb494",
+            "interInstitutionCode": "090145",
+            "sortCode": "51255",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Trident Microfinance Bank",
+            "uuid": "03bb3623-ee55-4471-9197-d57260dea490",
+            "interInstitutionCode": "090146",
+            "sortCode": "51239",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IRL Microfinance Bank",
+            "uuid": "b3aa88a4-0a78-4c00-8b3c-905281a0d2b0",
+            "interInstitutionCode": "090149",
+            "sortCode": "51246",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KongaPay",
+            "uuid": "39fd1149-dec4-40b3-8fcf-2a294df9476a",
+            "interInstitutionCode": "100025",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AG MORTGAGE BANK PLC",
+            "uuid": "5b15862a-c92a-4fef-800b-c1b3bdf73155",
+            "interInstitutionCode": "100028",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nova Bank",
+            "uuid": "5dff42d3-6aaa-4ece-8586-100109b2243d",
+            "interInstitutionCode": "060003",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Brent Mortgage Bank",
+            "uuid": "7de07e82-5167-4e6e-ae87-7ae3eb8eef11",
+            "interInstitutionCode": "070015",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Infinity trust  Mortgage Bank",
+            "uuid": "377cbc66-e5c0-4a54-a277-79850c0b0ac1",
+            "interInstitutionCode": "70016",
+            "sortCode": "50457",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Haggai Mortgage Bank",
+            "uuid": "5a90b5fa-6505-40ac-91c6-5afb11527ecb",
+            "interInstitutionCode": "070017",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Hackman Microfinance Bank",
+            "uuid": "361df54d-056f-4583-83a8-b981e37fbca4",
+            "interInstitutionCode": "090147",
+            "sortCode": "51251",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Bowen MFB",
+            "uuid": "3aec6bc9-5281-4dc6-90cf-1e75c502be7a",
+            "interInstitutionCode": "090148",
+            "sortCode": "50931",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Virtue MFB",
+            "uuid": "6fcaa2b8-f9ab-4cde-8bf0-c5323a9a5e5e",
+            "interInstitutionCode": "090150",
+            "sortCode": "51258",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Mutual Trust Microfinance Bank",
+            "uuid": "008d834d-882e-4a85-852f-1aedf0220907",
+            "interInstitutionCode": "090151",
+            "sortCode": "50093",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nargata MFB",
+            "uuid": "66807176-fce4-4557-8612-ba244cf401f8",
+            "interInstitutionCode": "090152",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FFS Microfinance Bank",
+            "uuid": "72fa4796-46bc-44db-946d-5abd6054ec91",
+            "interInstitutionCode": "090153",
+            "sortCode": "51110",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CEMCS MFB",
+            "uuid": "789e6c22-54a1-4ba9-900a-794169443ac3",
+            "interInstitutionCode": "090154",
+            "sortCode": "50823",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Lafayette Microfinance Bank",
+            "uuid": "088a970b-8606-44ca-b0c3-122617177ff3",
+            "interInstitutionCode": "090155",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "e-BARCs MFB",
+            "uuid": "30099322-14ac-45a0-aa8e-3d931bc4842a",
+            "interInstitutionCode": "090156",
+            "sortCode": "50247",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Infinity MFB",
+            "uuid": "ea88c3da-7b7f-4b0f-b90d-6907b6fca2fa",
+            "interInstitutionCode": "090157",
+            "sortCode": "50457",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FUTO MFB",
+            "uuid": "df9d5f8a-2dfd-49ac-b361-9f7e61843cae",
+            "interInstitutionCode": "090158",
+            "sortCode": "50327",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Credit Afrique MFB",
+            "uuid": "14ab1eae-4027-412e-a682-0f85fd11ed6d",
+            "interInstitutionCode": "090159",
+            "sortCode": "50196",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Addosser MFBB",
+            "uuid": "91fd0017-b734-4980-b3a3-0f5a8b8bf7c4",
+            "interInstitutionCode": "090160",
+            "sortCode": "50021",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Okpoga MFB",
+            "uuid": "0e1dc47d-8795-405f-bbce-484e69c5079c",
+            "interInstitutionCode": "090161",
+            "sortCode": "50681",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Stanford MFB",
+            "uuid": "956aad45-cbc0-423a-91c9-ed60a91274a2",
+            "interInstitutionCode": "090162",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "First Multiple MFB",
+            "uuid": "2c2c5e2b-a682-4725-9f03-81c3e9074983",
+            "interInstitutionCode": "090163",
+            "sortCode": "50310",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "First Royal Microfinance Bank",
+            "uuid": "54884333-6dbb-4a9d-97c0-6b0c0a1e437c",
+            "interInstitutionCode": "090164",
+            "sortCode": "50310",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Petra Microfinance Bank",
+            "uuid": "2b9323bc-64e1-4b7a-b02b-274650a53fc4",
+            "interInstitutionCode": "090165",
+            "sortCode": "50746",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Eso-E Microfinance Bank",
+            "uuid": "a0253d7d-9f0e-4763-a9e3-50df1f5d2f58",
+            "interInstitutionCode": "090166",
+            "sortCode": "50280",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Daylight Microfinance Bank",
+            "uuid": "7ca037aa-e591-404e-b739-6072450139ee",
+            "interInstitutionCode": "090167",
+            "sortCode": "51173",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Gashua Microfinance Bank",
+            "uuid": "cd4c9e6e-db56-4dec-8d2b-ad26067e428c",
+            "interInstitutionCode": "090168",
+            "sortCode": "50339",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Alphakapital MFB",
+            "uuid": "6b4e6bd6-27b2-4bf9-93a5-89f509a385f6",
+            "interInstitutionCode": "090169",
+            "sortCode": "51222",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Rahama MFB",
+            "uuid": "2cd06d0b-f62d-4a9b-a862-c8eded448c31",
+            "interInstitutionCode": "090170",
+            "sortCode": "51272",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Mainstreet MFB",
+            "uuid": "b34e793c-3db9-4610-bb6d-1e2f79941277",
+            "interInstitutionCode": "090171",
+            "sortCode": "50027",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Astrapolis MFB",
+            "uuid": "13950435-c393-4ab6-97ef-546aeb21238c",
+            "interInstitutionCode": "090172",
+            "sortCode": "50094",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Reliance MFB",
+            "uuid": "565bb2e9-442c-4504-8138-fd2d5957058e",
+            "interInstitutionCode": "090173",
+            "sortCode": "51221",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Malachy MFB",
+            "uuid": "3e5a894e-4602-4012-8c66-2b4d5eb35e33",
+            "interInstitutionCode": "090174",
+            "sortCode": "51236",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Bosak MFB",
+            "uuid": "0153a326-4855-4fb5-af82-8ed937c695ed",
+            "interInstitutionCode": "090176",
+            "sortCode": "50145",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Lapo MFB",
+            "uuid": "852c1f5f-7a8f-4a3b-ae2b-1d0de6d6be98",
+            "interInstitutionCode": "090177",
+            "sortCode": "50547",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GreenBank MFB",
+            "uuid": "27167e4f-e149-4707-92cf-c8b26a54a99f",
+            "interInstitutionCode": "090178",
+            "sortCode": "50363",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FAST MFB",
+            "uuid": "bc40e87b-6b5f-4c29-aae3-b04a017603b1",
+            "interInstitutionCode": "090179",
+            "sortCode": "51259",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Amju MFB",
+            "uuid": "5a11ade2-4732-41f9-9529-931a919216cd",
+            "interInstitutionCode": "090180",
+            "sortCode": "50926",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Baines Credit MFB",
+            "uuid": "d5d8f5b4-6cfe-4abb-8c05-32e10c35a4ee",
+            "interInstitutionCode": "090188",
+            "sortCode": "51229",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Esan MFB",
+            "uuid": "78ed6195-298f-4c78-b3fe-10664edba8b4",
+            "interInstitutionCode": "090189",
+            "sortCode": "50279",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Mutual Benefits MFB",
+            "uuid": "915b0d13-7024-424a-b1d9-3638a4e73e18",
+            "interInstitutionCode": "090190",
+            "sortCode": "50093",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KCMB MFB",
+            "uuid": "9c9a8550-dbf9-4b24-aed1-9e07be5c749a",
+            "interInstitutionCode": "090191",
+            "sortCode": "50529",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Unical MFB",
+            "uuid": "804e0f63-476d-4561-b2d3-3d339b4a9c95",
+            "interInstitutionCode": "090193",
+            "sortCode": "50871",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FCMB Easy Account",
+            "uuid": "d9c89b23-c983-4dfa-b6cf-fb27def0033b",
+            "interInstitutionCode": "100031",
+            "sortCode": "51241",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Contec Global",
+            "uuid": "d59fd62e-cf54-4842-961b-e909336dbf47",
+            "interInstitutionCode": "100032",
+            "sortCode": "100032",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Kuda Microfinance Bank",
+            "uuid": "51348B90-FAED-414F-A447-77204C6BEA19",
+            "interInstitutionCode": "090267",
+            "sortCode": "50211",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Palmpay",
+            "uuid": "D9968110-78FE-4235-8DA4-56CC83CEC4EE",
+            "interInstitutionCode": "100033",
+            "sortCode": "100033",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TITAN TRUST BANK",
+            "uuid": "1f5a927c-7d92-426d-92cd-eaa14076af3b",
+            "interInstitutionCode": "000025",
+            "sortCode": null,
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Taj Bank",
+            "uuid": "f04784a4-9c58-46de-aef1-ca3675878373",
+            "interInstitutionCode": "000026",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Globus Bank",
+            "uuid": "96e5f565-8d1b-43f4-9b8b-50639fb6cd70",
+            "interInstitutionCode": "000027",
+            "sortCode": null,
+            "directDebitEnabled": true
+        },
+        {
+            "name": "MayFresh Mortgage Bank",
+            "uuid": "e1638e2e-efbf-4536-90e4-2b4bf18ae931",
+            "interInstitutionCode": "070019",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NIRSAL National microfinance bank",
+            "uuid": "67da08d4-ba53-4b79-af37-a16a2dc84999",
+            "interInstitutionCode": "090194",
+            "sortCode": "51304",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Grooming Microfinance bank",
+            "uuid": "54e17114-8cbf-4574-8171-09e8d957709f",
+            "interInstitutionCode": "090195",
+            "sortCode": "090155",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Pennywise Microfinance bank",
+            "uuid": "1cb66e12-b337-42e8-89e4-dee8faff4a3e",
+            "interInstitutionCode": "090196",
+            "sortCode": "51139",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ABU Microfinance bank",
+            "uuid": "4d4f2191-c963-4434-9b8c-7278edb6f9d1",
+            "interInstitutionCode": "090197",
+            "sortCode": "50036",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Renmoney Microfinance Bank",
+            "uuid": "28c53262-3808-4325-bb44-5e643f9a5658",
+            "interInstitutionCode": "090198",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Advans La Fayette",
+            "uuid": "AD7ADA15-8BA4-497E-8F2F-EEC37B2B0FD2",
+            "interInstitutionCode": "090155",
+            "sortCode": "51051",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FINCA MICROFINANCE",
+            "uuid": "C4B52A1B-8E0E-47FF-B790-BA807C835F7B",
+            "interInstitutionCode": "090155",
+            "sortCode": "51128",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Corestep Microfinance Bank",
+            "uuid": "2FFAEF22-F052-4BEC-B444-37D2FFC19E8E",
+            "interInstitutionCode": "090365",
+            "sortCode": "50204",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Lotus Bank",
+            "uuid": "a16403c5-b9b2-4bc6-b4cb-c2ad540ac907",
+            "interInstitutionCode": "000029",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Parallex Bank",
+            "uuid": "e9b734c0-6290-42f1-ab5e-93b45744bdfe",
+            "interInstitutionCode": "000030",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Standard MFB",
+            "uuid": "a2c6f92b-a7a0-4488-9dfc-ce777bb333e8",
+            "interInstitutionCode": "090182",
+            "sortCode": "50806",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Midland MFB",
+            "uuid": "12c764ce-ca70-4114-934b-650afc45232f",
+            "interInstitutionCode": "090192",
+            "sortCode": "51061",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NEWDAWN MICROFINANCE BANK",
+            "uuid": "dfd6f76c-dfc0-45c6-8e56-df8f34b1930f",
+            "interInstitutionCode": "090205",
+            "sortCode": "51291",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UNN MFB",
+            "uuid": "86e6a25f-7091-4909-83ef-174b0c43bbf7",
+            "interInstitutionCode": "090251",
+            "sortCode": "50881",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IMO MICROFINANCE BANK",
+            "uuid": "dfe32a14-04f5-48a8-88ca-19b0a3ca4003",
+            "interInstitutionCode": "090258",
+            "sortCode": "50966",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ALEKUN MICROFINANCE BANK",
+            "uuid": "17c68ed3-7c5c-45c8-944b-7fab32c41909",
+            "interInstitutionCode": "090259",
+            "sortCode": "50056",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ABOVE ONLY MICROFINANCE BANK",
+            "uuid": "7bd9910b-78b4-4a0d-bb60-e1e7caadd3b5",
+            "interInstitutionCode": "090260",
+            "sortCode": "51204",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "QUICKFUND MICROFINANCE BANK",
+            "uuid": "e92b34fd-c29c-47a0-bf83-859b62897b08",
+            "interInstitutionCode": "090261",
+            "sortCode": "51293",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "STELLAS MICROFINANCE BANK",
+            "uuid": "60b3fb41-dae7-47c4-a68b-9eddaaa1d8df",
+            "interInstitutionCode": "090262",
+            "sortCode": "51253",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NAVY MICROFINANCE BANK",
+            "uuid": "be965f55-85b8-4ac5-ae5b-3a3b4f0687ad",
+            "interInstitutionCode": "090263",
+            "sortCode": "51142",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AUCHI MICROFINANCE BANK",
+            "uuid": "d59d6119-1b45-45df-b914-3130e5493aae",
+            "interInstitutionCode": "090264",
+            "sortCode": "50097",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LOVONUS MICROFINANCE BANK",
+            "uuid": "8ad7a04d-193c-4d78-b0d0-550fe57fa229",
+            "interInstitutionCode": "090265",
+            "sortCode": "50923",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UNIBEN MICROFINANCE BANK",
+            "uuid": "6a35b5b5-3b54-467c-96d2-91daddab6176",
+            "interInstitutionCode": "090266",
+            "sortCode": "51271",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ADEYEMI COLLEGE STAFF MICROFINANCE BANK",
+            "uuid": "584c876d-1f1d-4f8d-95ce-3b5478c37cbc",
+            "interInstitutionCode": "090268",
+            "sortCode": "51274",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GREENVILLE MICROFINANCE BANK",
+            "uuid": "c9395b89-bba1-4780-88c7-00c7a9baa724",
+            "interInstitutionCode": "090269",
+            "sortCode": "51277",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AB MICROFINANCE BANK",
+            "uuid": "9dd7a28f-acb1-44f3-b92d-a1805570984d",
+            "interInstitutionCode": "090270",
+            "sortCode": "50002",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LAVENDER MICROFINANCE BANK",
+            "uuid": "e1ec3156-3f96-45a1-874e-34d2a9381af7",
+            "interInstitutionCode": "090271",
+            "sortCode": "50538",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OLABISI ONABANJO UNIVERSITY MICROFINANCE BANK",
+            "uuid": "d2c67fa4-dd7c-4fee-be26-2618e9827c84",
+            "interInstitutionCode": "090272",
+            "sortCode": "50689",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PRESTIGE MICROFINANCE BANK",
+            "uuid": "9acf9c41-5c80-45b9-96c7-099d49d870e9",
+            "interInstitutionCode": "090274",
+            "sortCode": "51281",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TRUSTFUND MICROFINANCE BANK NIBSS F.I.",
+            "uuid": "2bb34ae3-3b01-44be-a97b-9bf3d001d003",
+            "interInstitutionCode": "090276",
+            "sortCode": "50837",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IKIRE MFB",
+            "uuid": "6193234d-f839-4f7b-a361-92734a33baeb",
+            "interInstitutionCode": "090279",
+            "sortCode": "50435",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MEGAPRAISE MICROFINANCE BANK",
+            "uuid": "1f00baed-084d-4876-aa0f-809a0d643f82",
+            "interInstitutionCode": "090280",
+            "sortCode": "51060",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SafeHaven Microfinance Bank",
+            "uuid": "6faf757f-4ea2-4fc3-9b32-2f1cf71c0bda",
+            "interInstitutionCode": "090286",
+            "sortCode": "51113",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EAGLE FLIGHT MFB",
+            "uuid": "75a85ce7-ad08-4dd4-8ea6-298ee6842370",
+            "interInstitutionCode": "090294",
+            "sortCode": "50244",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OMIYE MFB",
+            "uuid": "f7cd3883-5974-405a-b13c-11274291bb42",
+            "interInstitutionCode": "090295",
+            "sortCode": "50700",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KONTAGORA MFB",
+            "uuid": "22a7436a-9787-4642-bde6-c8cced1679b8",
+            "interInstitutionCode": "090299",
+            "sortCode": "50522",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Sunbeam Microfinance Bank",
+            "uuid": "5be30a9b-7abd-4879-8467-f7fbfb015d78",
+            "interInstitutionCode": "090302",
+            "sortCode": "50810",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SPARKLE MICROFINANCE BANK",
+            "uuid": "cb4239f3-1af3-40d5-a4d1-1f6a54a62af7",
+            "interInstitutionCode": "090325",
+            "sortCode": "51310",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EYOWO MICROFINANCE BANK",
+            "uuid": "aaf32ab1-e4b7-4347-b1ac-136b47e0207f",
+            "interInstitutionCode": "090328",
+            "sortCode": "50126",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NEPTUNE MICROFINANCE BANK",
+            "uuid": "44e42fbd-69de-4f83-876b-e64050828dd1",
+            "interInstitutionCode": "090329",
+            "sortCode": "51306",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UniUyo Microfinance Bank",
+            "uuid": "06d28190-e290-49eb-906a-59e01f7c60ad",
+            "interInstitutionCode": "090338",
+            "sortCode": "50880",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "unilorin Microfinance Bank",
+            "uuid": "fdddb7d8-87ae-4921-a3c6-82a7decfcd68",
+            "interInstitutionCode": "090341",
+            "sortCode": "50874",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CASHCONNECT   MICROFINANCE BANK",
+            "uuid": "d9fe2533-e3ba-49f5-a738-1526ec8be18d",
+            "interInstitutionCode": "090360",
+            "sortCode": "090360",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MOLUSI MICROFINANCE BANK NIBSS F.I.",
+            "uuid": "c0ea2444-9dad-430e-a271-54e62fb7d732",
+            "interInstitutionCode": "090362",
+            "sortCode": "50583",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Firmus MICROFINANCE BANK",
+            "uuid": "d9b08ac4-7ba8-4420-b2a4-bc8be1c71fb6",
+            "interInstitutionCode": "090366",
+            "sortCode": "51314",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SEEDVEST MICROFINANCE BANK",
+            "uuid": "66f8ff5b-7347-48e7-b14f-088a1bfe15b4",
+            "interInstitutionCode": "090369",
+            "sortCode": "50787",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Parkway MF Bank",
+            "uuid": "7f607062-a39f-4df5-9022-0683c7a7587f",
+            "interInstitutionCode": "090390",
+            "sortCode": "50741",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Amac Microfinance Bank",
+            "uuid": "3533b826-d3a5-4824-9fc4-baa970397498",
+            "interInstitutionCode": "090394",
+            "sortCode": "51302",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Oscotech MFB",
+            "uuid": "6cda7493-fdd0-4054-88c6-a7d6e433ad0b",
+            "interInstitutionCode": "090396",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nwannegadi MFB",
+            "uuid": "48a58472-8f21-4274-9223-843e87e4151e",
+            "interInstitutionCode": "090399",
+            "sortCode": "50638",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Finca Microfinance Bank",
+            "uuid": "ddb7443c-67a4-4461-90fc-b979a7684b9d",
+            "interInstitutionCode": "090400",
+            "sortCode": "51128",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Peace Microfinance Bank",
+            "uuid": "ebaef3e0-9b4a-469e-a01d-1a5b31aea956",
+            "interInstitutionCode": "090402",
+            "sortCode": "50743",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Moniepoint MFB",
+            "uuid": "b04537e7-c8c3-4cff-95a5-36b498d21710",
+            "interInstitutionCode": "090405",
+            "sortCode": "50515",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FCMB MFB",
+            "uuid": "abc1d120-9329-4f17-b17d-833831f0db75",
+            "interInstitutionCode": "090409",
+            "sortCode": "51241",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Preeminent Microfinance Bank",
+            "uuid": "9a302345-fe42-4ec7-a4da-c6706e52aed8",
+            "interInstitutionCode": "090412",
+            "sortCode": "51309",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Benysta Microfinance Bank",
+            "uuid": "7e45b82f-5a56-4ff0-84e1-c3dcde78fb5b",
+            "interInstitutionCode": "090413",
+            "sortCode": "51267",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Calabar Microfinance Bank",
+            "uuid": "f662bffa-f4ea-4c36-b3ba-3aadb414d7df",
+            "interInstitutionCode": "090415",
+            "sortCode": "50158",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Chibueze Microfinance Bank",
+            "uuid": "3ac2a3c4-dea2-46ff-ba61-233daa0d0349",
+            "interInstitutionCode": "090416",
+            "sortCode": "50174",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WinView Bank",
+            "uuid": "dbea5ff1-3fa5-4b49-8847-130fe7ca7008",
+            "interInstitutionCode": "090419",
+            "sortCode": "51053",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Letshego  Microfinance Bank",
+            "uuid": "26d0b8a8-85b7-4a46-b6f6-4a1a856a139e",
+            "interInstitutionCode": "090420",
+            "sortCode": "50296",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Abucoop  Microfinance Bank",
+            "uuid": "333ad3bf-a3f5-4120-aff1-7ed3a3590e81",
+            "interInstitutionCode": "090424",
+            "sortCode": "50989",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EBSU MICROFINANCE Bank",
+            "uuid": "ba56310d-4915-4335-b5fd-05448ccfef95",
+            "interInstitutionCode": "090427",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CrossRiver  Microfinance Bank",
+            "uuid": "4caa56e3-698c-4e21-8494-bb6e526b7f39",
+            "interInstitutionCode": "090429",
+            "sortCode": "50158",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RIGO Microfinance Bank",
+            "uuid": "b674423d-9910-403f-8824-3866f87424c1",
+            "interInstitutionCode": "090433",
+            "sortCode": "51286",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Links  Microfinance Bank",
+            "uuid": "220e8853-c6af-43d4-a959-784986e4fdea",
+            "interInstitutionCode": "090435",
+            "sortCode": "50549",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Spectrum Microfinance Bank",
+            "uuid": "b22cc07d-924e-4979-9677-f686a12ef024",
+            "interInstitutionCode": "090436",
+            "sortCode": "50756",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IBETO  Microfinance Bank",
+            "uuid": "737d3efb-4aa3-40c1-be60-1a41ca34f670",
+            "interInstitutionCode": "090439",
+            "sortCode": "50399",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Support MF Bank",
+            "uuid": "a7cc6dc4-1833-4af2-8d76-575b719518d6",
+            "interInstitutionCode": "090446",
+            "sortCode": "50812",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Uzondu MF Bank",
+            "uuid": "0f20dee5-3a18-450f-97cc-cd257ab31623",
+            "interInstitutionCode": "090453",
+            "sortCode": "50894",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nice Microfinance Bank",
+            "uuid": "f99754fb-8141-414d-b2f2-303350792130",
+            "interInstitutionCode": "090459",
+            "sortCode": "50618",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Monarch Microfinance Bank",
+            "uuid": "bca4ebe3-71d6-4f43-93bd-5df1db3dc1ba",
+            "interInstitutionCode": "090462",
+            "sortCode": "50948",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OLUCHUKWU Microfinance Bank",
+            "uuid": "a312da20-6873-4d25-a5ea-062c69cde240",
+            "interInstitutionCode": "090471",
+            "sortCode": "50697",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Safegate Microfinance Bank",
+            "uuid": "d0306115-69a3-449e-9bf6-d9a8a61acf2a",
+            "interInstitutionCode": "090485",
+            "sortCode": "50919",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "9 payment service Bank",
+            "uuid": "62feddc8-96c2-46f5-87f6-d7316fed79df",
+            "interInstitutionCode": "120001",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HopePSB",
+            "uuid": "5006472b-08be-45c3-a671-dcd56efb82b5",
+            "interInstitutionCode": "120002",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "VTNetworks",
+            "uuid": "41ad5a3b-ec32-440c-b878-ca63f01e80da",
+            "interInstitutionCode": "100012",
+            "sortCode": "320",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GoMoney Bank",
+            "uuid": "2FC3C702-EDA6-4A24-BD1A-AC634843EB18",
+            "interInstitutionCode": "100022",
+            "sortCode": "100022",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Momo Payment Service Bank",
+            "uuid": "872FA73A-D8F5-4716-9306-F887A7B3BC1C",
+            "interInstitutionCode": "120003",
+            "sortCode": "120003",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SmartCash PSB",
+            "uuid": "F7D3AC9F-87DF-459B-84C4-CC8514EB66AD",
+            "interInstitutionCode": "120004",
+            "sortCode": "120004",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Hedonmark",
+            "uuid": "56d6c6cd-0425-4536-ad4e-752f584d6c19",
+            "interInstitutionCode": "100017",
+            "sortCode": "324",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TITAN-PAYSTACK Microfinance",
+            "uuid": "0BAF3C03-E904-4488-B25A-E3CFF1ED34F3",
+            "interInstitutionCode": "100039",
+            "sortCode": "100039",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Prospa Capital Microfinance Bank",
+            "uuid": "26342435-1DCC-4DDA-8034-4602490EF733",
+            "interInstitutionCode": "090495",
+            "sortCode": "090495",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Branch Int Financial Services",
+            "uuid": "4E6D13A8-0101-4750-8868-A5F3585F5F8A",
+            "interInstitutionCode": "050006",
+            "sortCode": "050006",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "eNaira",
+            "uuid": "229A2EAA-2AAA-4579-9639-123E0F96783B",
+            "interInstitutionCode": "000033",
+            "sortCode": "000033",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WAYA MICRO FINANCE",
+            "uuid": "9F4A45DC-2395-4FE0-AF62-54106D5F7635",
+            "interInstitutionCode": "090590",
+            "sortCode": "090590",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Aspire Microfinance Bank",
+            "uuid": "8C6BDCE5-B290-431F-B5A1-A51915D34053",
+            "interInstitutionCode": "090544",
+            "sortCode": "090544",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nomba financial services Limit",
+            "uuid": "53E7E6A7-90D1-4412-B845-09ACC3EFF10A",
+            "interInstitutionCode": "110028",
+            "sortCode": "110028",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Hope PSB",
+            "uuid": "3584D2DB-CB84-451E-9047-B65B82199332",
+            "interInstitutionCode": "120002",
+            "sortCode": "120002",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Titan-Paystack",
+            "uuid": "3584D2DB-CB84-451E-9047-C65B82199332",
+            "interInstitutionCode": "100039",
+            "sortCode": "100039",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SOURCE MICROFINANCE BANK",
+            "uuid": "B5C07EE3-5BBD-4358-B6E4-3ABEEAE30567",
+            "interInstitutionCode": "090641",
+            "sortCode": "090641",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nombank Microfinance Bank",
+            "uuid": "63DCD56E-9901-4F24-9004-ED31119328D7",
+            "interInstitutionCode": "090645",
+            "sortCode": "090645",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BANKLY Microfinance Bank",
+            "uuid": "399C1355-EAAD-4612-8F89-2F9313C2C7C1",
+            "interInstitutionCode": "090529",
+            "sortCode": "090529",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SIGNATURE BANK",
+            "uuid": "051B397F-0BC3-4AB2-A632-6B13662C9E76",
+            "interInstitutionCode": "000034",
+            "sortCode": "000034",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Optimus Bank",
+            "uuid": "2cf8389e-90af-46ef-a370-58491e19a894",
+            "interInstitutionCode": "000036",
+            "sortCode": "000036",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FAIRMONEY MICROFINANCE BANK LT",
+            "uuid": "3584D2DB-CB84-451E-9047-D65B82199332",
+            "interInstitutionCode": "090551",
+            "sortCode": "090551",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GOMBE MICROFINANCE BANK LIMITE",
+            "uuid": "610194C8-E84E-436C-B8D2-4FD20F443B04",
+            "interInstitutionCode": "090586",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SUNTOP MICROFINANCE BANK LIMIT",
+            "uuid": "96DEB36C-47F0-4E93-8258-CC4F4BFABB85",
+            "interInstitutionCode": "090644",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "XPRESS WALLET",
+            "uuid": "F441C250-7689-48BC-853E-88FC3AF7A639",
+            "interInstitutionCode": "100040",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OKENGWE MICROFINANCE BANK",
+            "uuid": "19F541FD-C986-4CB1-B81B-BA047EA403E0",
+            "interInstitutionCode": "090646",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UMUCHUKWU MICROFINANCE BANK",
+            "uuid": "05775519-0CB4-4D01-9CDD-CB3276CC989E",
+            "interInstitutionCode": "090652",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CANAAN MICROFINANCE BANK",
+            "uuid": "B6EE4F47-C1AD-4BC4-9CB7-8364742232EE",
+            "interInstitutionCode": "090647",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LEADCITY MICROFINANCE BANK",
+            "uuid": "8EA9FA06-0DED-4745-80C5-177116E86670",
+            "interInstitutionCode": "090650",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NEXIM BANK",
+            "uuid": "D18D1437-7DAE-4D6A-B8D5-1FCA841E0DF5",
+            "interInstitutionCode": "030001",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ODOAKPU MICROFINANCE BANK",
+            "uuid": "44ACD9F9-782E-4E85-8D24-B91D40DE1535",
+            "interInstitutionCode": "090654",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BUNKURE MICROFINANCE BANK",
+            "uuid": "7D8F71F6-40AF-4EB7-9851-84FEE0FA68D4",
+            "interInstitutionCode": "090655",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PYRAMID MICROFINANCE BANK",
+            "uuid": "77115B68-D10D-4D38-818B-DBBB662DECEA",
+            "interInstitutionCode": "090657",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KAYVEE MICROFINANCE BANK",
+            "uuid": "203F8AF5-C6AC-421D-9054-D4A986C30A3D",
+            "interInstitutionCode": "090554",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NSUK MICROFINANCE BANK",
+            "uuid": "A88D0DC3-8525-42E3-806C-C1496A5BED3B",
+            "interInstitutionCode": "090491",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GREENACRES MICROFINANCE BANK",
+            "uuid": "85A6392E-FBA1-43C9-BDAB-62C851D5B2E8",
+            "interInstitutionCode": "090599",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DELTA TRUST MORTGAGE BANK",
+            "uuid": "DAD4CC78-CCE8-4D8B-8B87-9D9825774E9B",
+            "interInstitutionCode": "070023",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SHALOM MICROFINANCE BANK",
+            "uuid": "12931FE5-A7F5-44CD-9820-E7A246EFEB7F",
+            "interInstitutionCode": "090502",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MICHAEL OKPARA UNIAGRIC MICROF",
+            "uuid": "FA257E14-496B-4934-8756-0DDB3D37F5F3",
+            "interInstitutionCode": "090659",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "REX Microfinance Ban",
+            "uuid": "C33EA67E-337F-4A5C-A655-9B2302CAEE95",
+            "interInstitutionCode": "090499",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BERACHAH MICROFINANCE BANK",
+            "uuid": "21E1280F-119D-4D1B-AEB6-F73397044473",
+            "interInstitutionCode": "090618",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ALTERNATIVE BANK",
+            "uuid": "E48B27F5-8B19-46B7-B920-1A3AC1839884",
+            "interInstitutionCode": "000037",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "VALE FINANCE",
+            "uuid": "4BFC0FB5-08F8-4F4F-8224-9B7AA7864B35",
+            "interInstitutionCode": "050020",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OCTOPUS MICROFINANCE BANK",
+            "uuid": "F7F2747C-C5A4-4EAA-9FF5-11F47D9C4C84",
+            "interInstitutionCode": "090576",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KC MICROFINANCE BANK",
+            "uuid": "4AE88C20-8495-45EB-BD44-5CEFC5D2E18B",
+            "interInstitutionCode": "090549",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ABSU MICROFINANCE BANK",
+            "uuid": "BB29A423-00B9-4708-AC8B-A894E24E971E",
+            "interInstitutionCode": "090640",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CASHRITE MICROFINANCE BANK",
+            "uuid": "01F3C305-529F-4CA7-B210-15A798808550",
+            "interInstitutionCode": "090649",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MICROBIZ MICROFINANCE BANK",
+            "uuid": "F0D7FDBF-E1D3-42BD-83BB-1D49BFD1C1BB",
+            "interInstitutionCode": "090587",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "COUNTY FINANCE",
+            "uuid": "06DB072A-CDD2-458D-AD75-7C11B5E81486",
+            "interInstitutionCode": "050001",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PREMIUMTRUST BANK",
+            "uuid": "7D04F752-FDA6-4D81-B33C-C073EA5BA730",
+            "interInstitutionCode": "000031",
+            "sortCode": null,
+            "directDebitEnabled": true
+        },
+        {
+            "name": "CITYCODE MORTGAGE BANK",
+            "uuid": "16217463-335E-4125-AC43-459FB78523BE",
+            "interInstitutionCode": "070027",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GOOD SHEPHERD MICROFINANCE",
+            "uuid": "04722C8F-80F3-4FB3-9801-5FED42B129A7",
+            "interInstitutionCode": "090664",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FORESIGHT MICROFINANCE BANK",
+            "uuid": "559601DF-3FFB-473A-8576-165C835BCBE3",
+            "interInstitutionCode": "090521",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GRANTS MICROFINANCE BANK",
+            "uuid": "6201DE80-B24C-4752-A192-B3E737880A6D",
+            "interInstitutionCode": "090335",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "78 FINANCE COMPANY",
+            "uuid": "16BA1B1E-A159-4307-85B4-88A2DA889DB6",
+            "interInstitutionCode": "110072",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IMSU MICROFINANCE BANK",
+            "uuid": "03D12CDF-EABD-49BD-A617-8395EBB023F3",
+            "interInstitutionCode": "090670",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ROCKSHIELD MICROFINANCE BANK",
+            "uuid": "BF4735CD-685C-4E0D-AD52-B45530724E54",
+            "interInstitutionCode": "090547",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FEWCHORE FINANCE",
+            "uuid": "FC78CC6C-A2ED-4B3D-8E43-65F7A1A883AF",
+            "interInstitutionCode": "050003",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Kolomoni Microfinance Bank",
+            "uuid": "1A383E65-2168-4F0F-BBD4-F37EE248EFE1",
+            "interInstitutionCode": "090480",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LOMA MICROFINANCE BANK",
+            "uuid": "99ED3341-E479-4A85-AF98-DB5E805CB976",
+            "interInstitutionCode": "090620",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CRUST MICROFINANCE BANK",
+            "uuid": "3BBAB6D9-DD39-4E87-A193-43C2B8C1DF93",
+            "interInstitutionCode": "090560",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BUILD MICROFINANCE BANK",
+            "uuid": "92AA0173-7208-4627-B264-BE7EDB1691BF",
+            "interInstitutionCode": "090613",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UMUCHINEMERE PROCREDIT MFB",
+            "uuid": "F23BA195-1BD1-4B09-B642-8245CE5D893E",
+            "interInstitutionCode": "090514",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FIRST APPLE",
+            "uuid": "469A5C88-87F6-4F65-A537-793ECB725928",
+            "interInstitutionCode": "110004",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "3line Card management",
+            "uuid": "2F278146-8533-4D1D-971E-6F37B01C5C88",
+            "interInstitutionCode": "110005",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BUNDI MICROFINANCE BANK",
+            "uuid": "C685AE40-0551-4E05-8C49-4199114FF389",
+            "interInstitutionCode": "090661",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NIGERIAN PRISONS MFB",
+            "uuid": "E72A325F-42A2-4F9F-A8AA-A74DDB551F0C",
+            "interInstitutionCode": "090505",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GWONG MICROFINANCE BANK",
+            "uuid": "75895BF6-CEF7-495D-8A27-E883E939EB4F",
+            "interInstitutionCode": "090661",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "REVELATION MICROFINANCE BANK",
+            "uuid": "5912739C-C32E-4A86-BCF8-B3C00AA5ACDC",
+            "interInstitutionCode": "090666",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KADUPE MICROFINANCE BANK",
+            "uuid": "2D97D9C4-119F-40B4-B841-1BE8E2E6B9E1",
+            "interInstitutionCode": "090669",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OTUO MICROFINANCE BANK",
+            "uuid": "7BB6E052-1A45-4E17-9FB0-CB7CA31838CC",
+            "interInstitutionCode": "090542",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ORAUKWU MICROFINANCE BANK",
+            "uuid": "191E49BE-2115-46D8-B246-AD23CB6E8DBA",
+            "interInstitutionCode": "090492",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AWESOME MICROFINANCE BANK",
+            "uuid": "480329CC-2C55-4FD7-A368-0C847A29286E",
+            "interInstitutionCode": "090662",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NDDC MICROFINANCE BANK",
+            "uuid": "87686B05-3DB6-4C8A-AF63-FAE73E546D0F",
+            "interInstitutionCode": "090679",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AVUENEGBE MICROFINANCE BANK",
+            "uuid": "46A24C47-B4D3-407E-BD71-58F4678C43E4",
+            "interInstitutionCode": "090478",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TRIVES FINANCE",
+            "uuid": "4403E19B-4204-4914-A51B-6D3ABAC67E24",
+            "interInstitutionCode": "050023",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EXCEL MICROFINANCE BANK",
+            "uuid": "BD4C4D03-0935-4353-8B1F-D64E5746FE45",
+            "interInstitutionCode": "090678",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Poder finance",
+            "uuid": "270557FB-697A-4DB4-ABF0-538DD8E4B637",
+            "interInstitutionCode": "050021",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PATHFINDER MICROFINANCE BANK",
+            "uuid": "0E9EC13E-FFAF-4F78-9E65-4DFE25BA1458",
+            "interInstitutionCode": "090680",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RANDALPHA MICROFINANCE BANK",
+            "uuid": "274D4B28-E600-411F-9C45-69B129667551",
+            "interInstitutionCode": "090496",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KAYI MICROFINANCE BANK",
+            "uuid": "3763E45E-D317-4D40-8EEE-46EA562792CF",
+            "interInstitutionCode": "090667",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BETHEL MICROFINANCE BANK",
+            "uuid": "16DCC1C8-4A15-4703-AD68-386248492DED",
+            "interInstitutionCode": "090683",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BAM MICROFINANCE BANK",
+            "uuid": "72032E89-E0D8-447F-AA77-4103F44196F5",
+            "interInstitutionCode": "090651",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IKOYI ILE MFB",
+            "uuid": "7498681D-2D9B-4912-A85A-6A30950BD8F4",
+            "interInstitutionCode": "090681",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BUYPOWER MICROFINANCE BANK",
+            "uuid": "71AFC971-D61D-4CC7-A541-A7068CC61311",
+            "interInstitutionCode": "090682",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Moremonee Microfinance Bank Limited",
+            "uuid": "3C281C84-FF74-4B3B-A82B-3869055E5D3C",
+            "interInstitutionCode": "090685",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NET MICROFINANCE BANK",
+            "uuid": "4B6310A1-F84B-451A-AB03-C22CC6DC2B77",
+            "interInstitutionCode": "090675",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MUTUAL ALLIANCE MORTGAGE",
+            "uuid": "EF53870F-9F1D-4803-B225-48461C2E1911",
+            "interInstitutionCode": "070028",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GOSIFECHUKWU MICROFINANCE",
+            "uuid": "65190F3C-64B2-414D-996B-EF5BBE3496FC",
+            "interInstitutionCode": "090687",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ARCPAY MFB",
+            "uuid": "84B15DC3-55AF-40B8-BA8D-21C1C460432D",
+            "interInstitutionCode": "090689",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "9JAPAY MICROFINANCE",
+            "uuid": "04A79036-8381-4621-8D81-7227F52C4A59",
+            "interInstitutionCode": "090629",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RSU MICROFINANCE",
+            "uuid": "BF356B40-8D8B-4DBF-AECB-C2953129030D",
+            "interInstitutionCode": "090535",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BELLBANK MICROFINANC",
+            "uuid": "A7FAE95D-AE5E-4980-87C3-507A1415B9C7",
+            "interInstitutionCode": "090672",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OK MICROFINANCE",
+            "uuid": "CF09D2F6-78BC-4549-A985-2E3ABFD70F9A",
+            "interInstitutionCode": "090567",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PRUDENT MICROFINANCE BANK",
+            "uuid": "08c26941-ae02-4bfd-8f53-68720e0921f2",
+            "interInstitutionCode": "090690",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "URE MICROFINANCE BANK",
+            "uuid": "4508a623-1ad0-43ef-8564-1fe39c646986",
+            "interInstitutionCode": "090619",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CSD MICROFINANCE BANK",
+            "uuid": "b6d392dd-3527-41d6-8227-b4e2ef65826c",
+            "interInstitutionCode": "090686",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Earnwell MICROFINANCE BANK",
+            "uuid": "aac399f8-4a31-42b4-9e8c-f6832238f276",
+            "interInstitutionCode": "090674",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EJINDU MICROFINANCE BANK",
+            "uuid": "8a8c5c56-f83e-4658-9720-f15e399b8207",
+            "interInstitutionCode": "090694",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NUGGETS MICROFINANCE BANK",
+            "uuid": "57569dc7-7a5e-4ed9-adf0-858e3e3fff85",
+            "interInstitutionCode": "090676",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "POLYIBADAN MICROFINANCE BANK",
+            "uuid": "dfb8b53c-f63c-4bdb-85f2-a2ad1ce2cded",
+            "interInstitutionCode": "090534",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WESLEY MICROFINANCE BANK",
+            "uuid": "f6d224b0-061c-4ca3-b57d-526836395713",
+            "interInstitutionCode": "090999",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WRA MICROFINANCE BANK",
+            "uuid": "658d138c-8750-4ce3-a4f0-9c5edad6c317",
+            "interInstitutionCode": "090631",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GARUN MALLAM MICROFINANCE BANK",
+            "uuid": "25b9ae43-1813-41c0-a203-51cf29fbbc6c",
+            "interInstitutionCode": "090691",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BOKKOS MICROFINANCE BANK",
+            "uuid": "3ed6f7e0-4e00-4ff8-98d9-99199e5e5b8e",
+            "interInstitutionCode": "090703",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DAL MICROFINANCE BANK",
+            "uuid": "8b5b9939-231c-4b92-9e2d-01e0f8efb676",
+            "interInstitutionCode": "090596",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GDL FINANCE",
+            "uuid": "cd489475-239a-464a-88b0-0dec478af455",
+            "interInstitutionCode": "050026",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OLIVE MICROFINANCE BANK",
+            "uuid": "3be6e927-d486-4fd9-a8a6-ae1883b804cc",
+            "interInstitutionCode": "090696",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DOT MICROFINANCE BANK",
+            "uuid": "08b570c5-6d8a-4847-9b77-cabe946cfa41",
+            "interInstitutionCode": "090470",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Beststar MICROFINANCE BANK",
+            "uuid": "d12afd1e-6bf8-4f97-a1e0-30cb57f16118",
+            "interInstitutionCode": "090615",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HALO MICROFINANCE BANK",
+            "uuid": "7cfd0349-ce3f-4ad3-be16-03e45d5c8df8",
+            "interInstitutionCode": "090539",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AELLA MICROFINANCE BANK",
+            "uuid": "14757d8b-1814-480d-b251-affafa148698",
+            "interInstitutionCode": "090614",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MKOBO MICROFINANCE BANK",
+            "uuid": "a288402d-2443-47cc-b2dc-c58d75ab5eb6",
+            "interInstitutionCode": "090455",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SIMPLIFY SYNERGY",
+            "uuid": "52aaf18f-2f22-4c92-87ad-7f6cb5d5f97d",
+            "interInstitutionCode": "110034",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ILISAN MICROFINANCE BANK",
+            "uuid": "832ee31f-a656-4615-9130-632de2255cd7",
+            "interInstitutionCode": "090037",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OMAK MICROFINANCE BANK",
+            "uuid": "d4b4db45-28cf-4744-a272-c04cf38a8f5c",
+            "interInstitutionCode": "090700",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MINT-FINEX MICROFINANCE BANK",
+            "uuid": "bac0119e-5a16-46c1-bc35-1d693488b3c0",
+            "interInstitutionCode": "090281",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AKU MICROFINANCE BANK",
+            "uuid": "f53cc09c-6b83-465d-bafb-5659cb5e89bb",
+            "interInstitutionCode": "090531",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ADA MICROFINANCE BANK",
+            "uuid": "acd3a2ce-7554-4f12-861a-6e6d090e5635",
+            "interInstitutionCode": "090483",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AKALABO MICROFINANCE BANK",
+            "uuid": "ea2741e0-f875-4a94-b749-13f7ff16c142",
+            "interInstitutionCode": "090698",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "COOPFUND MICROFINANCE BANK",
+            "uuid": "d98c3d8a-0749-462a-8416-103bb131f443",
+            "interInstitutionCode": "090717",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DAILY TRUST MICROFINANCE BANK",
+            "uuid": "d47bf90a-e7d1-4c21-b07b-74a1a17bcd38",
+            "interInstitutionCode": "090705",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EMAAR MICROFINANCE BANK",
+            "uuid": "a331af78-2cca-4711-995f-801517af6f26",
+            "interInstitutionCode": "090712",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FOCUS MICROFINANCE BANK",
+            "uuid": "9b95751d-a7cd-4e10-b66d-672b69d1c2a8",
+            "interInstitutionCode": "090709",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ILE-OLUJI MICROFINANCE BANK",
+            "uuid": "3d66ddd4-e8dc-4ca8-8adb-3d36eff64983",
+            "interInstitutionCode": "090710",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ISUA MICROFINANCE BANK",
+            "uuid": "d9a83e23-ff0a-4bcf-badb-4a9f8258fd6a",
+            "interInstitutionCode": "090701",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OSOMHE MICROFINANCE BANK",
+            "uuid": "91a3c632-48f1-4cc4-8abd-9068ce69128c",
+            "interInstitutionCode": "090715",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SABI MICROFINANCE BANK",
+            "uuid": "0F94D78A-DF2B-42BF-9AFD-B59BFB7FAF87",
+            "interInstitutionCode": "090531",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SINCERE MICROFINANCE BANK",
+            "uuid": "1EA6ACDA-512F-492C-B8B1-E924B00DFD75",
+            "interInstitutionCode": "090531",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "JIGAWA SAVINGS AND LOANS MICRO",
+            "uuid": "4112E4ED-193B-46AA-8C15-0548DAF2D572",
+            "interInstitutionCode": "070029",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BABCOCK MICROFINANCE BANK",
+            "uuid": "8fe0390e-3c0e-438a-9fd1-157fb307ad88",
+            "interInstitutionCode": "090729",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BANKIT MICROFINANCE BANK",
+            "uuid": "78ce60b2-f2c7-4bc6-b47e-b1391bb992b3",
+            "interInstitutionCode": "090275",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IBBU MICROFINANCE BANK",
+            "uuid": "401dc918-7d8d-4976-9e98-655ddc89d241",
+            "interInstitutionCode": "90697",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IHIALA MICROFINANCE BANK",
+            "uuid": "7BA210E0-8033-4426-8954-C60E9A890BF1",
+            "interInstitutionCode": "090725",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DESTINY MICROFINANCE BANK",
+            "uuid": "F5460ED8-6FB3-4091-AF0D-62AC59161F0D",
+            "interInstitutionCode": "090723",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TOFA MICROFINANCE BANK",
+            "uuid": "52EFBE84-67BE-41AF-A6CE-3A06C4C1B2B8",
+            "interInstitutionCode": "090714",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "THE MILLENNIUM MICROFINANCE BANK",
+            "uuid": "8D662D92-2728-43DA-9B24-FD051B3BA597",
+            "interInstitutionCode": "090711",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EMMAR MICROFINANCE BANK",
+            "uuid": "7C5DACE1-4154-4710-8D6E-AD5A98555804",
+            "interInstitutionCode": "090712",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ZITRA MICROFINANCE BANK",
+            "uuid": "EEEC0814-2F71-4810-9BD1-B2543F4A1A7E",
+            "interInstitutionCode": "090718",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ZEDVANCE FINANCE LIMITED",
+            "uuid": "FC8D2227-C2D5-4588-BD1E-3849847D419E",
+            "interInstitutionCode": "050019",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KATAGUM MICROFINANCE BANK",
+            "uuid": "29DCCBD1-5C5D-4868-8B98-EC0FBE4E4BE9",
+            "interInstitutionCode": "090684",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LEVITE MICROFINANCE BANK",
+            "uuid": "4977A4A4-E803-4680-B555-222CC5776612",
+            "interInstitutionCode": "090731",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NOVUS MICROFINANCE BANK",
+            "uuid": "68AEA405-CA55-41F0-8F96-8C66A0597531",
+            "interInstitutionCode": "090734",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NAF MICROFINANCE BANK",
+            "uuid": "7FBD094B-5EDE-4807-8682-ED45BBD8D6F6",
+            "interInstitutionCode": "090740",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MOUA MICROFINANCE BANK",
+            "uuid": "6BE95A86-2EC8-4760-BF58-B9606C5277A8",
+            "interInstitutionCode": "090659",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ANIOMA MICROFINANCE BANK",
+            "uuid": "30E558D1-CD4C-4D6C-A93E-CD30EBC2B3BA",
+            "interInstitutionCode": "90751",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DW MICROFINANCE BANK",
+            "uuid": "7B7FE03D-4019-4E11-A97A-5730102EE2AB",
+            "interInstitutionCode": "090721",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OGBERURU MICROFINANCE BANK",
+            "uuid": "1192374D-FDDF-4287-AAEB-70B0689CF392",
+            "interInstitutionCode": "090738",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WESTON-CHARIS MICROFINANCE BANK",
+            "uuid": "D638EAA4-37A4-4C99-951E-FF462F7E8BF0",
+            "interInstitutionCode": "090741",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NOMASE MICROFINANCE BANK",
+            "uuid": "2DFA5BE3-001B-4625-A03C-530C004DDA8C",
+            "interInstitutionCode": "090736",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OGIGE MICROFINANCE BANK",
+            "uuid": "A465101D-6C1C-408A-9384-0917409164D9",
+            "interInstitutionCode": "090739",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "APEX TRUST MICROFINANCE BANK",
+            "uuid": "104913B0-06C3-4FB5-951F-5E1DDB36513D",
+            "interInstitutionCode": "090737",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MAESTRO MICROFINANCE BANK",
+            "uuid": "1DD58291-79D7-4805-B492-2A0314CA809",
+            "interInstitutionCode": "090746",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DIGITVANT MICROFINANCE BANK",
+            "uuid": "1FFF05CA-BB2D-45D3-96D1-8BDE91E18876",
+            "interInstitutionCode": "090745",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ZEFA MICROFINANCE BANK",
+            "uuid": "582FDF3C-117A-49C4-A842-3BA82161236A",
+            "interInstitutionCode": "090747",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BOLD MICROFINANCE BANK",
+            "uuid": "27CD327B-BF80-4BD9-B70E-8A65FEB70A17",
+            "interInstitutionCode": "090753",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OSANTA MICROFINANCE BANK",
+            "uuid": "E25B7BE5-3B37-46A0-839B-73E635BB3B77",
+            "interInstitutionCode": "090750",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "POINTONE MICROFINANCE BANK",
+            "uuid": "DC65718E-F4B8-4F0B-8CCB-9BDD62D54F7F",
+            "interInstitutionCode": "090754",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AKSU MICROFINANCE BANK",
+            "uuid": "7FFC8CA8-7C00-494B-B330-F62A10D91937",
+            "interInstitutionCode": "090756",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OKO MICROFINANCE BANK",
+            "uuid": "61969C96-0E61-462D-A42F-E4EEFF15EDF4",
+            "interInstitutionCode": "090348",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OBELEDU MICROFINANCE BANK",
+            "uuid": "AC07E3BC-1A11-41CF-A9AB-9F0EE6EFC2DF",
+            "interInstitutionCode": "090755",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UBJ MICROFINANCE BANK",
+            "uuid": "FDCF1023-AFAC-4C52-9E83-1ADF00FB4740",
+            "interInstitutionCode": "090762",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OKWO-OHA MICROFINANCE BANK",
+            "uuid": "C91B69AF-60A5-4AAA-B5AC-C3FCEA05CADF",
+            "interInstitutionCode": "090752",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UVUOMA MICROFINANCE BANK",
+            "uuid": "AB238CFB-B5D2-4E8F-A3E7-775D3B07A9EE",
+            "interInstitutionCode": "090765",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MAAL MICROFINANCE BANK",
+            "uuid": "2587F7C8-C575-42F9-BB5A-5EB0336F4BDC",
+            "interInstitutionCode": "090764",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ADVANCLY MICROFINANCE BANK",
+            "uuid": "DDCE59E3-1272-469B-BC30-0B7AF2DC08A2",
+            "interInstitutionCode": "090759",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RETRUST MICROFINANCE BANK",
+            "uuid": "07E73315-2150-4404-B166-99EE2E7C63A4",
+            "interInstitutionCode": "090766",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SWIFT TRUST MICROFINANCE BANK",
+            "uuid": "DC865DF6-97E8-4A77-AE60-1EEB4A456147",
+            "interInstitutionCode": "090757",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HILLPOST MICROFINANCE BANK",
+            "uuid": "23213531-665F-4B0D-9BD8-E90192CA9F91",
+            "interInstitutionCode": "090761",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AMPLE MICROFINANCE BANK",
+            "uuid": "35b8d28c-67dc-424f-99fd-397e07888ef3",
+            "interInstitutionCode": "090770",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OURPASS MICROFINANCE BANK",
+            "uuid": "db491b39-953e-4897-bc40-ca564954629b",
+            "interInstitutionCode": "090767",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UMUNNACHI MICROFINANCE BANK",
+            "uuid": "94f0cdd2-c1e1-4983-b61e-6e5b573d9ecf",
+            "interInstitutionCode": "090510",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RUN MICROFINANCE BANK",
+            "uuid": "9002360e-b7b7-4a5e-b74a-65e693450841",
+            "interInstitutionCode": "090771",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PETTYSAVE MICROFINANCE BANK",
+            "uuid": "4f19c352-9b30-46be-8116-b2d2df69b46a",
+            "interInstitutionCode": "090768",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BLOOMS MICROFINANCE BANK",
+            "uuid": "c5ec266c-7666-4c31-a19d-e4a082fd23a3",
+            "interInstitutionCode": "090743",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Soroman Microfinance Bank",
+            "uuid": "f4199ad2-a199-47a8-b089-d03193564b7a",
+            "interInstitutionCode": "090769",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CAPRICORN DIGITAL",
+            "uuid": "651367f1-d718-4001-ae87-ed3000117aaa",
+            "interInstitutionCode": "110023",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BWAY MICROFINANCE BANK",
+            "uuid": "11528EED-6991-4066-9375-0C8E72E30AFF",
+            "interInstitutionCode": "90774",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ALPHA MORGAN BANK",
+            "uuid": "8D72756B-33AA-4D88-8932-118AAEE6D147",
+            "interInstitutionCode": "000041",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MINT MICROFINANCE BANK",
+            "uuid": "CFB91B42-B157-412B-901E-6C02B73539AD",
+            "interInstitutionCode": "90763",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NORTHQUEST FINANCE",
+            "uuid": "DE617A31-7059-40ED-8B90-6C8A886C55DB",
+            "interInstitutionCode": "50030",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MODEL MICROFINANCE BANK",
+            "uuid": "AC14009F-C363-4AB9-A9A7-B4B5A2DE24B8",
+            "interInstitutionCode": "90775",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PocketApp",
+            "uuid": "E7A78F54-9F47-4F84-8813-AC17A425F9A2",
+            "interInstitutionCode": "100042",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IGBO-UKWU MICROFINANCE BANK",
+            "uuid": "D4393C8B-EFEB-4BE4-850B-85ABAD673B51",
+            "interInstitutionCode": "090803",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LIGHTWAY MICROFINANCE BANK",
+            "uuid": "1516576E-3D81-47B3-B23E-2239E255ABDD",
+            "interInstitutionCode": "90807",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ULTRAVIOLET MICROFINANCE BANK",
+            "uuid": "76D26A10-F2EB-43BD-9341-027239EB20A6",
+            "interInstitutionCode": "090781",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "LIQUIDCREST MICROFINANCE BANK",
+            "uuid": "62F0EDDE-CB04-4230-A49A-F86DC87C7370",
+            "interInstitutionCode": "090780",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PRODIGY MICROFINANCE BANK",
+            "uuid": "1C6B4DC8-01AA-4A8D-A9C7-586C91B99063",
+            "interInstitutionCode": "90784",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SPRINGFIELD MICROFINANCE BANK",
+            "uuid": "CCCA3430-A01C-4EA1-A2C1-9ADB9191755E",
+            "interInstitutionCode": "90806",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TENN MICROFINANCE BANK",
+            "uuid": "84D563A8-16AB-410A-91D1-7F1EDB82E92E",
+            "interInstitutionCode": "090716",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Gadol Finance MICROFINANCE BANK",
+            "uuid": "5D7BFBCA-185C-4029-89D0-54B42E01EB90",
+            "interInstitutionCode": "50033",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Kaizen MICROFINANCE BANK",
+            "uuid": "C4F306A4-9E5F-452B-A5DF-B2CE66C94728",
+            "interInstitutionCode": "90800",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UNIABUJA MICROFINANCE BANK",
+            "uuid": "81DB5102-D1E7-4831-A66F-93DC4D75268D",
+            "interInstitutionCode": "090778",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BANKEASY MICROFINANCE BANK",
+            "uuid": "3DB35892-351C-496C-A579-ED9880064447",
+            "interInstitutionCode": "090789",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Evib Finance MICROFINANCE BANK",
+            "uuid": "A146D0C4-8A81-4577-B4DD-3AA139FDECBE",
+            "interInstitutionCode": "50034",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ikere MICROFINANCE BANK",
+            "uuid": "5F6E5827-9DF7-4678-B591-24D29245C20B",
+            "interInstitutionCode": "090799",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Wallet MICROFINANCE BANK",
+            "uuid": "629BB5D4-712C-4DD7-A326-9E4025224DD0",
+            "interInstitutionCode": "090805",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Barnawa MICROFINANCE BANK",
+            "uuid": "F3B3A0C0-E815-49F0-9D19-6E37F1386A7E",
+            "interInstitutionCode": "90783",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Umunri MICROFINANCE BANK",
+            "uuid": "C86B58AE-1981-4B94-9C33-23A8569575FC",
+            "interInstitutionCode": "090808",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ultimate Microfinance Bank",
+            "uuid": "84F467AF-003F-4D3F-A61F-814E7442D6DF",
+            "interInstitutionCode": "090776",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Habaripay Microfinance Bank",
+            "uuid": "F9F11E04-FEA1-4C86-8EA2-9C3CFEC46966",
+            "interInstitutionCode": "110059",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Uga Microfinance Bank",
+            "uuid": "A2A6A1D0-F1AF-4EC0-B6D8-5D4389FB298E",
+            "interInstitutionCode": "090782",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nexton Microfinance Bank",
+            "uuid": "DC58DD9E-E0FE-4597-975A-099365F0C4AE",
+            "interInstitutionCode": "090818",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SPRING SKY FINANCE",
+            "uuid": "B7354249-57E8-4456-B5AC-580D9CCDD8B4",
+            "interInstitutionCode": "50036",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Obollo Microfinance Bank",
+            "uuid": "76CA0CE6-931D-4ECF-8984-3222C69ECC4E",
+            "interInstitutionCode": "090810",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Toprate Microfinance Bank",
+            "uuid": "11646BE0-6B93-4D36-B4B4-9EBEEF0B4306",
+            "interInstitutionCode": "090801",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ARM MICROFINANCE BANK",
+            "uuid": "AA4DF705-D8CE-44D2-99F0-AF6AAFB5D44B",
+            "interInstitutionCode": "090816",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Sciart Finance",
+            "uuid": "44B62BDE-8000-4B2F-9E92-9E4794690E6C",
+            "interInstitutionCode": "50024",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Auchi Poly  MICROFINANCE BANK",
+            "uuid": "97AB1BE1-5CCC-4DB8-875B-E51A931EA4C5",
+            "interInstitutionCode": "090817",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Umuoji MICROFINANCE BANK",
+            "uuid": "9AF4D4A7-38FB-412E-A316-AF46B62B0868",
+            "interInstitutionCode": "90814",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CRYSTAL FINANCE COMPANY LIMITED",
+            "uuid": "972EF631-8BC1-49A6-B877-88DD24280168",
+            "interInstitutionCode": "050029",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Evib Finance",
+            "uuid": "9B84B90A-BF9D-4DE6-B65C-22E85A1A5765",
+            "interInstitutionCode": "050034",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Gadol Finance",
+            "uuid": "D42B7FFC-2992-486E-8D8E-DC442EB98AD2",
+            "interInstitutionCode": "050033",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ours MICROFINANCE BANK",
+            "uuid": "3B3B2E84-40DF-4FC0-874C-3BE170D8B260",
+            "interInstitutionCode": "090346",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PocketApp",
+            "uuid": "91813913-B8B5-44EF-9167-362D0CD86ADC",
+            "interInstitutionCode": "100042",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GOLDMAN MICROFINANCE BANK",
+            "uuid": "5DFDEB9E-13F6-4B93-96C1-CEEF340B2738",
+            "interInstitutionCode": "90574",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Fortress MICROFINANCE BANK",
+            "uuid": "76F3F84E-5F20-444F-A3F5-D75110C0CEFF",
+            "interInstitutionCode": "90486",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Whitecrust Finance",
+            "uuid": "2DA033FE-674E-47B4-BFC9-4B4B548DDEB1",
+            "interInstitutionCode": "050035",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Dillon MFB",
+            "uuid": "2CB93ABF-6A9D-47A8-9FEB-7206F08A3CF5",
+            "interInstitutionCode": "090828",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Bowman MFB",
+            "uuid": "FB7174B9-DF39-4CD0-9779-369381207A36",
+            "interInstitutionCode": "090804",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Charis MFB",
+            "uuid": "CEE1953E-EE56-4467-AA6A-EB353129EEE9",
+            "interInstitutionCode": "090815",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Tatum Bank",
+            "uuid": "9792493A-E8F5-4EE2-8ABF-9F9F44520659",
+            "interInstitutionCode": "000042",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Moneytronics MFB",
+            "uuid": "EADACF11-FA88-4889-8A39-5DAD0441EC53",
+            "interInstitutionCode": "090692",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Eastman MFB",
+            "uuid": "21C408BC-1C41-4116-9096-92F52D9A0376",
+            "interInstitutionCode": "090707",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Mega MFB",
+            "uuid": "175893AD-7F48-4FDF-A56E-91F2A7FAB136",
+            "interInstitutionCode": "090824",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Adamawa Mortgage Bank",
+            "uuid": "4A544F03-58AC-4BAE-A68B-A873308D39F9",
+            "interInstitutionCode": "070030",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Victory MFB",
+            "uuid": "977DAD72-CE73-4558-ABA6-6DB924710D2B",
+            "interInstitutionCode": "090813",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ukpor MFB",
+            "uuid": "74D26D7C-7200-41C0-889F-60A5AF4244FB",
+            "interInstitutionCode": "090820",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Boost MFB",
+            "uuid": "D7D01D49-497D-4A8C-AC24-26975F17729B",
+            "interInstitutionCode": "090819",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "First Marina Trust Finance",
+            "uuid": "95693302-376D-4C59-B370-48CD8089CC82",
+            "interInstitutionCode": "050022",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Summit Bank",
+            "uuid": "399CEF4B-2B29-4D3B-8EFB-879695D99ECB",
+            "interInstitutionCode": "080003",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Bank of Agriculture",
+            "uuid": "9024FC19-E1E0-43C0-A72A-CBFFFEE5A05C",
+            "interInstitutionCode": "090367",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "5TT MFB",
+            "uuid": "5AFCDB24-AB6A-4B4E-A049-48348000D7C2",
+            "interInstitutionCode": "090832",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Flexi MFB",
+            "uuid": "C9666038-6F81-4A44-9522-2E1263F0DE41",
+            "interInstitutionCode": "090835",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "First Ally MFB",
+            "uuid": "1CF698D0-BA55-48CE-A9AF-F9CD07C458C5",
+            "interInstitutionCode": "090135",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Old Shoreham MFB",
+            "uuid": "ED33A6F3-2C50-4DC3-80E5-140AB2A36F3A",
+            "interInstitutionCode": "090410",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "78 Finance Company Limited",
+            "uuid": "421DCDA7-8163-47FE-9717-8AF0C755A45B",
+            "interInstitutionCode": "110072",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GARKI MFB",
+            "uuid": "17143E0D-CEB5-40B6-B207-C9ADC4879665",
+            "interInstitutionCode": "090484",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BOBBLE MFB",
+            "uuid": "A592EDD8-3B24-4612-A253-9268C6981744",
+            "interInstitutionCode": "090617",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DASH MFB",
+            "uuid": "79161B16-701A-40AB-A5D9-E01BF494CAD1",
+            "interInstitutionCode": "090845",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WAILA MFB",
+            "uuid": "8DBA4B13-F64C-4563-963F-D7AC328423B1",
+            "interInstitutionCode": "090829",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PACT MFB",
+            "uuid": "280CF4C3-CB85-4F48-B27A-A9F883F1C4C8",
+            "interInstitutionCode": "090846",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CASA MFB",
+            "uuid": "126C214F-0742-4108-9A2E-0B9689E997AF",
+            "interInstitutionCode": "090840",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MADOBI MFB",
+            "uuid": "8C88EDA8-35EB-4284-AA7F-E7A4E4FAA807",
+            "interInstitutionCode": "090605",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "TELLERONE FI MFB",
+            "uuid": "43B3CA16-A178-4E65-94E3-3C9CFA6D6807",
+            "interInstitutionCode": "090788",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "COOL MFB",
+            "uuid": "2FC76785-9C30-4A66-B932-0C5C95B72D89",
+            "interInstitutionCode": "090842",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "INEBA GOGO MFB",
+            "uuid": "47CD56BE-D467-4AFF-802D-8111CA145A91",
+            "interInstitutionCode": "090838",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HAYAT TRUST MFB",
+            "uuid": "1ECDE433-134B-4C9C-8345-E22C2D53036F",
+            "interInstitutionCode": "090777",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IKORODU DIVISION MFB",
+            "uuid": "8FE9F0A3-ACF7-4115-8D8D-C40226AFB301",
+            "interInstitutionCode": "090844",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ASCENSIA FINANCE COMPANY LIMITED",
+            "uuid": "0323C687-F710-4D56-BA99-46A8D05B144D",
+            "interInstitutionCode": "050040",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GRIFFIN FINANCE LIMITED",
+            "uuid": "44CD1C4A-E451-4564-BBA7-6E227CEA867B",
+            "interInstitutionCode": "050041",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KEBBI STATE HOME SAVINGS AND LOANS LIMITED",
+            "uuid": "59D45166-F0A9-41F8-B750-0B92F7C5D14F",
+            "interInstitutionCode": "070031",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "QUICK MFB",
+            "uuid": "734FF649-534B-4FD7-BF8C-AB4F937A892F",
+            "interInstitutionCode": "090850",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SHANONO MFB",
+            "uuid": "FCC12863-4026-42A5-8879-E66963566EB5",
+            "interInstitutionCode": "090748",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BKD NEW MFB",
+            "uuid": "91DBB1CC-59EB-4F50-87EF-B77673100FDA",
+            "interInstitutionCode": "090722",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "STABLE MFB",
+            "uuid": "FCCAAB70-DD6B-4D14-9628-21E9C335A136",
+            "interInstitutionCode": "090833",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PAYREP MFB",
+            "uuid": "98CECAD7-7B3F-40BA-9CC3-A7CF7849410E",
+            "interInstitutionCode": "090823",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ISI-UZO MFB",
+            "uuid": "54485CA1-C981-4EB1-ABC3-2D907557983A",
+            "interInstitutionCode": "090849",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MAHFUZ MFB",
+            "uuid": "1DB0A790-C5D1-4647-A5EA-D1F611B0D5EF",
+            "interInstitutionCode": "090825",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PATHFINDER MFB",
+            "uuid": "82BF5275-CAA2-44D8-9DEE-EEF13547927D",
+            "interInstitutionCode": "090680",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KKU MFB",
+            "uuid": "E7713F04-DBDB-42B9-8ABC-EF4912A43C01",
+            "interInstitutionCode": "090606",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CEDRUS MFB",
+            "uuid": "462F15BD-3B4A-411B-ABF9-CCDB61CB81D2",
+            "interInstitutionCode": "090851",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AVVIC MFB",
+            "uuid": "FA79103B-D7C3-4FA4-A1E2-660E533C2D86",
+            "interInstitutionCode": "090853",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OLOMU APERAN MFB",
+            "uuid": "B75D3C33-C2E0-46A5-913F-195F3FB26748",
+            "interInstitutionCode": "090852",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BAIGE MFB",
+            "uuid": "B92962F1-F257-448C-B3C8-9F1E8816DE94",
+            "interInstitutionCode": "090862",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PENTECOST MFB",
+            "uuid": "0B17E0B6-EA3D-4A64-931C-F1FD2526A7BD",
+            "interInstitutionCode": "090861",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SPRINGVILLE MFB",
+            "uuid": "CB794514-F277-4862-8F4F-19BA2D791D73",
+            "interInstitutionCode": "090786",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "IBOM MORTGAGE BANK",
+            "uuid": "66FDE827-C648-4CBD-A43D-4F4AB408C7B5",
+            "interInstitutionCode": "070025",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KOINS MFB",
+            "uuid": "2B83E647-D946-4123-94A0-3915EAFE547A",
+            "interInstitutionCode": "090839",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ASPIRE MORTGAGE BANK",
+            "uuid": "8FF97546-21E5-45C4-80A8-A1F2D65424F2",
+            "interInstitutionCode": "070033",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Indulge Microfinance Bank",
+            "uuid": "C1AB207D-98FD-40D9-83C8-21D526818232",
+            "interInstitutionCode": "090772",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Patrickgold MFB",
+            "uuid": "7328F21B-9534-4DD8-9337-7116289994E8",
+            "interInstitutionCode": "090317",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FACTORING AND SUPPLY CHAIN FINANCE LIMITED",
+            "uuid": "730C9BE2-C60F-447C-9790-1318D1BC21CE",
+            "interInstitutionCode": "050042",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FIT MFB",
+            "uuid": "2EED4D37-226A-4E41-9988-D515637B36BF",
+            "interInstitutionCode": "090856",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CASHA MFB",
+            "uuid": "1D6DA07D-DB81-4CA0-BB8A-81854C0BD12D",
+            "interInstitutionCode": "090848",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NOVEL MFB",
+            "uuid": "99EE83EE-67CE-45EB-B44F-9FBA35A44CD1",
+            "interInstitutionCode": "090863",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BANK78 MFB",
+            "uuid": "A9D49258-0494-4DED-8A8B-693E37A37623",
+            "interInstitutionCode": "090866",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KOBOWEB MFB",
+            "uuid": "DBC46BB9-9690-4138-B38C-487A8C75307D",
+            "interInstitutionCode": "090865",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MAXITRUST MFB",
+            "uuid": "943FD9C4-3CA8-44A4-832A-AA40137E2E4F",
+            "interInstitutionCode": "090843",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ILUTITUN-OSORO MFB",
+            "uuid": "7D4B54B9-DE4D-4C15-817A-63445DE44538",
+            "interInstitutionCode": "090834",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CEVIANT FINANCE LIMIED",
+            "uuid": "7BB3E4A3-A17B-4869-8061-DE8C596CB2D6",
+            "interInstitutionCode": "050043",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GRANULE MFB",
+            "uuid": "75A6A8F8-12A2-4CF9-968B-746F8D342722",
+            "interInstitutionCode": "090857",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MAYDEN MFB",
+            "uuid": "A6AFBAD4-42DB-4AB7-8B13-FE588D1D2B58",
+            "interInstitutionCode": "090854",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SOSA MFB",
+            "uuid": "EC0F4256-17A6-42D8-8A2C-FF18E74E0A87",
+            "interInstitutionCode": "090836",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NSUKKA MFB",
+            "uuid": "A02FE2B0-0FEF-4595-A82E-1A3BAE15F093",
+            "interInstitutionCode": "090356",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Citizen Trust Microfinance Bank",
+            "uuid": "62E89944-1B79-4E5F-BFBD-A6BE75483D83",
+            "interInstitutionCode": "090343",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Palmcoast Microfinance Bank",
+            "uuid": "66814074-D537-4055-9A1B-EB382FDED1F0",
+            "interInstitutionCode": "090497",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MEMENTO MFB",
+            "uuid": "5DD6813B-322E-4F37-8575-7F2A89A37EC9",
+            "interInstitutionCode": "090867",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FIRST LOWLAND MFB",
+            "uuid": "81E54126-50EA-4B93-9DD8-E5442C701AC7",
+            "interInstitutionCode": "090868",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MIA MFB",
+            "uuid": "20209BA3-6385-4D26-AEBA-07C541904184",
+            "interInstitutionCode": "090859",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "EQUATOR MFB",
+            "uuid": "6DE664A6-D07E-4888-82E8-3B24226F3629",
+            "interInstitutionCode": "090872",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BLOC MFB",
+            "uuid": "1A40A5BF-73CE-4740-961D-B1CF88B978E2",
+            "interInstitutionCode": "090977",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DABTIKIR MFB",
+            "uuid": "08F85C79-862B-4096-91BB-81488D7D3F1E",
+            "interInstitutionCode": "090802",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "HAMADA MFB",
+            "uuid": "FBFF0ADF-572D-42B2-8102-B2FB0D4ED38F",
+            "interInstitutionCode": "090980",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "RIMIN GADO MFB",
+            "uuid": "FD34AEF9-7BE6-4880-A00C-19008A3E89A7",
+            "interInstitutionCode": "090713",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SYCAMORE MFB",
+            "uuid": "50A1A0F6-051F-4ECD-8CA3-C4FBF6D02886",
+            "interInstitutionCode": "090827",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DEW MFB",
+            "uuid": "24BDC1C2-F2DE-4BEF-90AB-14B4D57C8052",
+            "interInstitutionCode": "090978",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OBA MFB",
+            "uuid": "69570A18-4CE7-4C14-A81B-0857D760A878",
+            "interInstitutionCode": "090981",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ZAIN MFB",
+            "uuid": "12F476FC-4027-42FF-9BF0-B72E7A1869E0",
+            "interInstitutionCode": "090976",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "MOVASCO-OP MFB",
+            "uuid": "81142971-81BB-45F9-A637-DB280399A1B8",
+            "interInstitutionCode": "090979",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AMAANAH FINANCE",
+            "uuid": "8D6A407C-86CE-4DC1-80B9-BBEEF1235987",
+            "interInstitutionCode": "050045",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PALMERA MFB",
+            "uuid": "1F29AB05-4CD7-4935-AC47-31DCAF0E52ED",
+            "interInstitutionCode": "090653",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OKPE MFB",
+            "uuid": "C0265E17-FBF6-48AE-B949-034F16BFE26D",
+            "interInstitutionCode": "090855",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GIANT STRIDE MFB",
+            "uuid": "F5E2C20E-D80E-4235-94AC-DE20216A505E",
+            "interInstitutionCode": "090475",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "STRAIT SAHARA MFB",
+            "uuid": "73904B4E-DFFC-44D5-91BA-C2B0B4D5924C",
+            "interInstitutionCode": "090985",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ETHICA MFB",
+            "uuid": "9D0439A3-BD75-4C29-B7C5-3BFDB99031B4",
+            "interInstitutionCode": "090982",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NRI MFB",
+            "uuid": "E0AFE8F2-A59D-49A8-A920-3F203096D373",
+            "interInstitutionCode": "090984",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "WE MFB",
+            "uuid": "BCDB3107-8272-4046-9DA1-6B24DCD57BAA",
+            "interInstitutionCode": "090989",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "UFORO MFB",
+            "uuid": "A10029D6-CFBD-44EE-8F25-59BFCB418A86",
+            "interInstitutionCode": "090869",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PLUG MFB",
+            "uuid": "F6F60942-0ECD-475F-8EAC-06C30F97C76E",
+            "interInstitutionCode": "090858",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PLATINUM MFB",
+            "uuid": "60044CBF-AA91-4062-8459-7C4D02B0F001",
+            "interInstitutionCode": "090993",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DAYSPRING MFB",
+            "uuid": "0C892FF3-22A7-499C-BD29-DC317FF0AE1C",
+            "interInstitutionCode": "090873",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "NOLT FINANCE",
+            "uuid": "39EE0184-A131-4DDD-8650-FD484FC51B19",
+            "interInstitutionCode": "050037",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "SOFRITRUST MFB",
+            "uuid": "C47A13BE-FD1A-4356-B2FF-BDC89255BF57",
+            "interInstitutionCode": "090435",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ROYAL EXCELLENT MFB",
+            "uuid": "758AFF29-7B0D-449C-A200-9275C40CA5CD",
+            "interInstitutionCode": "090990",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "AMS FINANCE",
+            "uuid": "E0074B55-09BA-4FEB-87F2-373F562266E0",
+            "interInstitutionCode": "050048",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "P-UP MFB",
+            "uuid": "A1810756-7EC9-40D0-9D85-C23D74EE7D95",
+            "interInstitutionCode": "090992",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "PAYSTACK MFB",
+            "uuid": "3A9A96DC-C412-4DDF-ADDA-6E6DF1D956AD",
+            "interInstitutionCode": "090986",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "KOLISA MFB",
+            "uuid": "CE9C3057-8ABC-4902-A8BB-5A05959FAB32",
+            "interInstitutionCode": "090830",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "BOBBLE MFB",
+            "uuid": "C7D596FB-20C7-4DD6-B1B3-E25C7A51DADC",
+            "interInstitutionCode": "090617",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "OKADA MFB",
+            "uuid": "8D4C7C29-8278-4757-8966-542FC91D7572",
+            "interInstitutionCode": "090996",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "INNOVATIVE MFB",
+            "uuid": "E1499D68-157A-48F1-8A35-ED457FC85102",
+            "interInstitutionCode": "090115",
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Access Bank",
+            "uuid": "40090E2F-7446-4217-9345-7BBAB7043C4C",
+            "interInstitutionCode": "000014",
+            "sortCode": "044",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "FCMB",
+            "uuid": "757E1F82-C5C1-4883-B891-C888293F2F00",
+            "interInstitutionCode": "000003",
+            "sortCode": "214",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "United Bank for Africa",
+            "uuid": "C5A55AC4-86F8-4EAA-A979-56B47989BD0F",
+            "interInstitutionCode": "000004",
+            "sortCode": "033",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "First Bank of Nigeria",
+            "uuid": "8B9CCA8B-F092-4704-82FD-B82D2B9A1993",
+            "interInstitutionCode": "000016",
+            "sortCode": "011",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "GT Bank",
+            "uuid": "3E94C4BC-6F9A-442F-8F1A-8214478D5D86",
+            "interInstitutionCode": "000013",
+            "sortCode": "058",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Zenith Bank",
+            "uuid": "6B8787D1-1EA9-49EC-9673-BDCA6354BF9D",
+            "interInstitutionCode": "000015",
+            "sortCode": "057",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Ecobank Bank",
+            "uuid": "4E78C667-CEB5-4813-A941-1E7916934FAD",
+            "interInstitutionCode": "000010",
+            "sortCode": "050",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Fidelity Bank",
+            "uuid": "D4A98615-56E6-4724-92BC-3FA0A0D2B85C",
+            "interInstitutionCode": "000007",
+            "sortCode": "070",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Sterling Bank",
+            "uuid": "F175FCD4-16FE-4A89-A86D-82C0783ABFD",
+            "interInstitutionCode": "000001",
+            "sortCode": "232",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Polaris Bank",
+            "uuid": "7605D2D1-A4BD-42AC-A3D4-7B3EDAD3A42C",
+            "interInstitutionCode": "000008",
+            "sortCode": "076",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "StanbicIBTC Bank",
+            "uuid": "1648430E-DB0A-498C-AD4B-0F5560B1106E",
+            "interInstitutionCode": "000012",
+            "sortCode": "221",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "StandardChartered",
+            "uuid": "DCAE53D8-D943-4DD6-82F8-160F187EEA76",
+            "interInstitutionCode": "000021",
+            "sortCode": "068",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Union Bank",
+            "uuid": "A15762D4-29B4-4635-BEEC-A89D95DEC8A7",
+            "interInstitutionCode": "000018",
+            "sortCode": "032",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Wema Bank",
+            "uuid": "49B81CAC-E075-4D65-8AE0-8F921402D88C",
+            "interInstitutionCode": "000017",
+            "sortCode": "035",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Unity Bank",
+            "uuid": "0DD51F22-0AFC-43B2-B871-45E7D6444C71",
+            "interInstitutionCode": "000011",
+            "sortCode": "215",
+            "directDebitEnabled": true
+        },
+        {
+            "name": "Eartholeum",
+            "uuid": "23DE207B-A86D-4955-8B7A-6CD944FA33C9",
+            "interInstitutionCode": "100021",
+            "sortCode": "302",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "ChamsMobile",
+            "uuid": "76472141-848D-4147-ADEB-108136EFF1D2",
+            "interInstitutionCode": "100015",
+            "sortCode": "303",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Opay",
+            "uuid": "30AE3B3E-F20D-431F-959B-DDC9CEEE79A5",
+            "interInstitutionCode": "100004",
+            "sortCode": "305",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "eTranzact",
+            "uuid": "1BFC3E39-8462-44F3-A52A-05A39000AD4C",
+            "interInstitutionCode": "100006",
+            "sortCode": "306",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Parkway-ReadyCash",
+            "uuid": "7DDF773E-22EA-4628-B8CB-E91EF7F6649B",
+            "interInstitutionCode": "100003",
+            "sortCode": "311",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Mkudi",
+            "uuid": "2345A4B7-160A-44E3-91DD-A80F076471E1",
+            "interInstitutionCode": "100011",
+            "sortCode": "313",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "FETS",
+            "uuid": "DFFF5A26-0E96-4A13-B56F-6A3D84B7F6B2",
+            "interInstitutionCode": "100001",
+            "sortCode": "314",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Vista MICROFINANCE BANK",
+            "uuid": "C5D7876F-1EC1-4F2A-A1EF-99B723E4AF97",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Ours  MICROFINANCE BANK",
+            "uuid": "7F984687-DA5D-4CAF-B693-C68EBCE44E52",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "CRYSTAL MICROFINANCE BANK",
+            "uuid": "0E2DE33C-F53C-430F-B018-280E60EBBFD7",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Bold  MICROFINANCE BANK",
+            "uuid": "39CD9783-E033-45D4-AB6F-FF00C1DAF27D",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "GTMobile",
+            "uuid": "DFA1F306-207B-46CD-A953-3C1046871157",
+            "interInstitutionCode": null,
+            "sortCode": "315",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Nigeria Inter-Bank Settlement System",
+            "uuid": "8CD0D574-9D7E-4421-B43D-733B9FF566DE",
+            "interInstitutionCode": null,
+            "sortCode": "039",
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Omoluabi",
+            "uuid": "80FCBCB5-A83E-4D76-9209-4D40BDBF4697",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "DSC Microfinance Bank",
+            "uuid": "D5511EC9-DCEF-4D74-9AF4-6A698DF22523",
+            "interInstitutionCode": null,
+            "sortCode": null,
+            "directDebitEnabled": false
+        },
+        {
+            "name": "Paga",
+            "uuid": "AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA",
+            "interInstitutionCode": "100002",
+            "sortCode": "327",
+            "directDebitEnabled": false
+        }
+    ]
+}
