@@ -219,3 +219,63 @@ function displayTrackingInfo(status) {
   }
 
 }
+
+
+// js button code:
+ const fabContainer = document.getElementById("fabOrders");
+    const fabBtn = document.getElementById("viewOrdersBtn");
+
+    let autoInterval;
+    let holdTimeout;
+
+    // Show + shake
+    function triggerEffect() {
+      if (fabContainer.classList.contains("hidden")) return; // Don't run if hidden
+      fabContainer.classList.add("show-label");
+      shakeButton();
+
+      setTimeout(() => {
+        fabContainer.classList.remove("show-label");
+      }, 3000);
+    }
+
+    function shakeButton() {
+      fabBtn.classList.add("shake");
+      setTimeout(() => fabBtn.classList.remove("shake"), 600);
+    }
+
+    // Auto-run every 15s
+    function startAuto() {
+      autoInterval = setInterval(triggerEffect, 15000);
+    }
+
+    function stopAuto() {
+      clearInterval(autoInterval);
+    }
+
+    // Initial trigger
+    setTimeout(triggerEffect, 2000);
+    startAuto();
+
+    // Click to open form
+    fabBtn.addEventListener("click", () => {
+        window.open("https://payuee.com/e-shop/account_orders", "_blank");
+    });
+
+    // Hover → same as auto
+    fabContainer.addEventListener("mouseenter", () => {
+      triggerEffect();
+    });
+
+    // Mobile hold (long press to dismiss)
+    fabBtn.addEventListener("touchstart", () => {
+      holdTimeout = setTimeout(() => {
+        fabContainer.classList.add("hidden"); // Disappear completely
+        stopAuto(); // Stop animations
+        console.log("FAB dismissed by long hold");
+      }, 5000); // hold 5s to hide
+    });
+
+    fabBtn.addEventListener("touchend", () => {
+      clearTimeout(holdTimeout);
+    });

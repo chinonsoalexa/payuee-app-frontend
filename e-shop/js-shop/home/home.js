@@ -131,6 +131,27 @@ async function getProducts() {
                 renderProductDiscounts(product);
             });
         }
+
+
+        const fabVendor = document.getElementById("fabContainer");
+
+        if (responseData.is_vendor === "vendor not found") {
+            fabVendor.querySelector(".fab-label").innerText = "Become a Vendor";
+
+            fabVendor.onclick = () => {
+                window.location.href = "https://payuee.com/e-shop/pricing";
+            };
+
+            fabVendor.style.display = "flex"; // or "block"
+        } else {
+            fabVendor.querySelector(".fab-label").innerText = "Add Product";
+
+            fabVendor.onclick = () => {
+                window.open("https://payuee.com/e-shop/vendor/add-products", "_blank");
+            };
+
+            fabVendor.style.display = "flex";
+        }
         
 } finally {
 
@@ -219,7 +240,7 @@ function updateCartDrawer() {
         emptyMessage.classList.add('cart-drawer-item', 'd-flex', 'position-relative');
         emptyMessage.innerHTML = `
         <div class="position-relative">
-          <img loading="lazy" class="cart-drawer-item__img" src="https://app.payuee.com/e-shop/images/product_not_available.jpg" alt="">
+          <img loading="lazy" class="cart-drawer-item__img" src="https://payuee.com/e-shop/images/product_not_available.jpg" alt="">
         </div>
         <div class="cart-drawer-item__info flex-grow-1">
           <h6 class="cart-drawer-item__title fw-normal">No Product Added Yet</h6>
@@ -448,19 +469,19 @@ function renderProducts(product) {
     let urll = ""
 
     if (product.category == "outfits") {
-        urll = "https://app.payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        urll = "https://app.payuee.com/jewelry/" + product.product_url_id;
+        urll = "https://payuee.com/jewelry/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        urll = "https://app.payuee.com/kids/" + product.product_url_id;
+        urll = "https://payuee.com/kids/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        urll = "https://app.payuee.com/cars/" + product.product_url_id;
+        urll = "https://payuee.com/cars/" + product.product_url_id;
     } else if (product.category == "tools") {
-        urll = "https://app.payuee.com/tools/" + product.product_url_id;
+        urll = "https://payuee.com/tools/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        urll = "https://app.payuee.com/gadgets/" + product.product_url_id;
+        urll = "https://payuee.com/gadgets/" + product.product_url_id;
     } else if (product.category == "others") {
-        urll = "https://app.payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
     }
 
     if (!product.reposted) {
@@ -515,7 +536,7 @@ function renderProducts(product) {
     rowElement.innerHTML = `
             <div class="product-card product-card_style3 mb-3 mb-md-4 mb-xxl-5">
               <div class="pc__img-wrapper">
-                <a href="product1_simple.html">
+                <a href="product1_simple">
                   ${renderProductImages(product.product_image, product.title)}
                 </a>
                 ${percentage}
@@ -557,7 +578,7 @@ function renderProducts(product) {
     function renderProductImages(imageUrls, title) {
         const defaultImageUrl = "../../e-shop/images/default_img.png";
         const productImageUrl = imageUrls && imageUrls.length > 0
-            ? `https://app.payuee.com/image/${imageUrls[0].url}`
+            ? `https://payuee.com/image/${imageUrls[0].url}`
             : defaultImageUrl;
     
         return `
@@ -586,19 +607,19 @@ function renderProductDiscounts(product) {
     let price, percentage, urll = "";
 
     if (product.category == "outfits") {
-        urll = "https://app.payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
     } else if (product.category == "jewelry") {
-        urll = "https://app.payuee.com/jewelry/" + product.product_url_id;
+        urll = "https://payuee.com/jewelry/" + product.product_url_id;
     } else if (product.category == "kids-accessories") {
-        urll = "https://app.payuee.com/kids/" + product.product_url_id;
+        urll = "https://payuee.com/kids/" + product.product_url_id;
     } else if (product.category == "cars-car-parts") {
-        urll = "https://app.payuee.com/cars/" + product.product_url_id;
+        urll = "https://payuee.com/cars/" + product.product_url_id;
     } else if (product.category == "tools") {
-        urll = "https://app.payuee.com/tools/" + product.product_url_id;
+        urll = "https://payuee.com/tools/" + product.product_url_id;
     } else if (product.category == "gadgets") {
-        urll = "https://app.payuee.com/gadgets/" + product.product_url_id;
+        urll = "https://payuee.com/gadgets/" + product.product_url_id;
     } else if (product.category == "others") {
-        urll = "https://app.payuee.com/outfits/" + product.product_url_id;
+        urll = "https://payuee.com/outfits/" + product.product_url_id;
     }
 
     if (!product.reposted) {
@@ -725,11 +746,11 @@ function reinitializeSwiper(id) {
 function renderProductImages2(imageUrls, title, urll) {
     const defaultImageUrl = "../../e-shop/images/default_img.png";
     const productImageUrl = imageUrls && imageUrls.length > 0
-        ? `https://app.payuee.com/image/${imageUrls[0].url}`
+        ? `https://payuee.com/image/${imageUrls[0].url}`
         : defaultImageUrl;
 
     const productImageUrl2 = imageUrls && imageUrls.length > 0
-        ? `https://app.payuee.com/image/${imageUrls[0].url}`
+        ? `https://payuee.com/image/${imageUrls[0].url}`
         : defaultImageUrl;
 
     return `
@@ -775,7 +796,7 @@ async function checkCollaborationEligibility(ID) {
 
         const responseData = await response.json();
         // Check eligibility, passing `true` for eligible, or `false` with an error message
-        checkRepostEligibility(responseData.collaborate, null, `https://app.payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
+        checkRepostEligibility(responseData.collaborate, null, `https://payuee.com/e-shop/vendor/product-collaboration?ProductID=${ID}`);
 } finally {
 
     }
@@ -826,60 +847,57 @@ function checkRepostEligibility(isEligible, errorMessage = null, collaborationUr
     new bootstrap.Modal(document.getElementById('repostEligibilityModal')).show();
   }
 
-     const fabContainer = document.getElementById("fabContainer");
-    const fabBtn = document.getElementById("addProductBtn");
+//   js button code:
 
-    let autoInterval;
-    let holdTimeout;
+const fabContainer = document.getElementById("fabContainer");
+const fabBtn = document.getElementById("addProductBtn");
 
-    // Show + shake
-    function triggerEffect() {
-      if (fabContainer.classList.contains("hidden")) return; // Don't run if hidden
-      fabContainer.classList.add("show-label");
-      shakeButton();
+let autoInterval;
+let holdTimeout;
 
-      setTimeout(() => {
-        fabContainer.classList.remove("show-label");
-      }, 3000);
-    }
+// Show + shake
+function triggerEffect() {
+    if (fabContainer.classList.contains("hidden")) return; // Don't run if hidden
+    fabContainer.classList.add("show-label");
+    shakeButton();
 
-    function shakeButton() {
-      fabBtn.classList.add("shake");
-      setTimeout(() => fabBtn.classList.remove("shake"), 600);
-    }
+    setTimeout(() => {
+    fabContainer.classList.remove("show-label");
+    }, 3000);
+}
 
-    // Auto-run every 15s
-    function startAuto() {
-      autoInterval = setInterval(triggerEffect, 15000);
-    }
+function shakeButton() {
+    fabBtn.classList.add("shake");
+    setTimeout(() => fabBtn.classList.remove("shake"), 600);
+}
 
-    function stopAuto() {
-      clearInterval(autoInterval);
-    }
+// Auto-run every 15s
+function startAuto() {
+    autoInterval = setInterval(triggerEffect, 15000);
+}
 
-    // Initial trigger
-    setTimeout(triggerEffect, 2000);
-    startAuto();
+function stopAuto() {
+    clearInterval(autoInterval);
+}
 
-    // Click to open form
-    fabBtn.addEventListener("click", () => {
-        window.open("https://payuee.com/e-shop/vendor/add-products", "_blank");
-    });
+// Initial trigger
+setTimeout(triggerEffect, 2000);
+startAuto();
 
-    // Hover → same as auto
-    fabContainer.addEventListener("mouseenter", () => {
-      triggerEffect();
-    });
+// Hover → same as auto
+fabContainer.addEventListener("mouseenter", () => {
+    triggerEffect();
+});
 
-    // Mobile hold (long press to dismiss)
-    fabBtn.addEventListener("touchstart", () => {
-      holdTimeout = setTimeout(() => {
-        fabContainer.classList.add("hidden"); // Disappear completely
-        stopAuto(); // Stop animations
-        console.log("FAB dismissed by long hold");
-      }, 5000); // hold 5s to hide
-    });
+// Mobile hold (long press to dismiss)
+fabBtn.addEventListener("touchstart", () => {
+    holdTimeout = setTimeout(() => {
+    fabContainer.classList.add("hidden"); // Disappear completely
+    stopAuto(); // Stop animations
+    console.log("FAB dismissed by long hold");
+    }, 5000); // hold 5s to hide
+});
 
-    fabBtn.addEventListener("touchend", () => {
-      clearTimeout(holdTimeout);
-    });
+fabBtn.addEventListener("touchend", () => {
+    clearTimeout(holdTimeout);
+});

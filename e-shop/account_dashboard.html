@@ -28,6 +28,86 @@
   <!-- Document Title -->
   <title>My Account | Payuee e-Shop</title>
 
+    <style>
+
+/* button style effects */
+    .fab-container {
+      position: fixed;
+      bottom: 60px;
+      right: 55px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .fab-container.hidden {
+      opacity: 0;
+      transform: scale(0.5);
+      pointer-events: none;
+    }
+
+    .fab-label {
+      background: #1da1f2;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .fab {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #1da1f2;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .fab:hover {
+      background-color: #0d8ddb;
+      transform: scale(1.05);
+    }
+
+    .fab svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .fab-container.show-label .fab-label,
+    .fab-container:hover .fab-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-15deg); }
+      40% { transform: rotate(15deg); }
+      60% { transform: rotate(-10deg); }
+      80% { transform: rotate(10deg); }
+    }
+
+    .shake {
+      animation: shake 0.6s ease-in-out;
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -1084,6 +1164,20 @@
       </div>
     </div><!-- /.modal-dialog -->
   </div><!-- /.quickview position-fixed -->
+
+  <!-- Vendor Dashboard FAB -->
+  <div class="fab-container" id="fabVendor" style="display: none;">
+    <span class="fab-label">Vendor Dashboard</span>
+    <button class="fab" id="vendorDashboardBtn" title="Vendor Dashboard">
+      <svg viewBox="0 0 24 24">
+        <!-- shop / store icon -->
+        <path d="M3 10h18M5 10l1-6h12l1 6M6 10v10h12V10" 
+              fill="none" stroke="white" stroke-width="2" 
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 14h6v6H9z" fill="none" stroke="white" stroke-width="2"/>
+      </svg>
+    </button>
+  </div>
 
   <!-- Go To Top -->
   <div id="scrollTop" class="visually-hidden end-0"></div>

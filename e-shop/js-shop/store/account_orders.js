@@ -64,7 +64,7 @@ let pageNumber;
         localStorage.setItem('redirectTo', currentUrl);
 
         // Redirect to the reset transaction PIN page
-        window.location.href = 'https://app.payuee.com/e-shop/v/reset_trans_pin';
+        window.location.href = 'https://payuee.com/e-shop/v/reset_trans_pin';
     });
 });
 
@@ -142,9 +142,9 @@ async function getProducts(pageNumber) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://app.payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://app.payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/account_orders?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -271,7 +271,7 @@ function renderProducts(product) {
         <img 
         id="image${product.ID}" 
         class="align-self-center img-fluid img-60" 
-        src="https://app.payuee.com/image/${product.product_orders[0].first_image_url}" 
+        src="https://payuee.com/image/${product.product_orders[0].first_image_url}" 
         alt="${product.title}" 
         onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
     </td>
@@ -580,7 +580,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="https://app.payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>${product.net_weight}kg</td>
@@ -663,7 +663,7 @@ function renderOrderedProducts(products) {
 }
   
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://app.payuee.com/e-shop/account_orders?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://payuee.com/e-shop/account_orders?page=${pageNumber}`;
 }
 
 function deactivatePreviousButton() {
@@ -892,3 +892,64 @@ async function onScanSuccess(decodedText, decodedResult) {
             // console.error("Camera access denied or unavailable:", error);
         });
   }
+
+
+
+// js button code:
+ const fabContainer = document.getElementById("fabContainer");
+    const fabBtn = document.getElementById("scanProductBtn");
+
+    let autoInterval;
+    let holdTimeout;
+
+    // Show + shake
+    function triggerEffect() {
+      if (fabContainer.classList.contains("hidden")) return; // Don't run if hidden
+      fabContainer.classList.add("show-label");
+      shakeButton();
+
+      setTimeout(() => {
+        fabContainer.classList.remove("show-label");
+      }, 3000);
+    }
+
+    function shakeButton() {
+      fabBtn.classList.add("shake");
+      setTimeout(() => fabBtn.classList.remove("shake"), 600);
+    }
+
+    // Auto-run every 15s
+    function startAuto() {
+      autoInterval = setInterval(triggerEffect, 15000);
+    }
+
+    function stopAuto() {
+      clearInterval(autoInterval);
+    }
+
+    // Initial trigger
+    setTimeout(triggerEffect, 2000);
+    startAuto();
+
+    // Click to open form
+    fabBtn.addEventListener("click", () => {
+        window.open("https://payuee.com/e-shop/shop_order_tracking", "_blank");
+    });
+
+    // Hover → same as auto
+    fabContainer.addEventListener("mouseenter", () => {
+      triggerEffect();
+    });
+
+    // Mobile hold (long press to dismiss)
+    fabBtn.addEventListener("touchstart", () => {
+      holdTimeout = setTimeout(() => {
+        fabContainer.classList.add("hidden"); // Disappear completely
+        stopAuto(); // Stop animations
+        console.log("FAB dismissed by long hold");
+      }, 5000); // hold 5s to hide
+    });
+
+    fabBtn.addEventListener("touchend", () => {
+      clearTimeout(holdTimeout);
+    });
