@@ -79,6 +79,7 @@ async function getStore(id) {
   }
 
 async function getStores() {
+    renderStoreSkeleton(10);
     // Get the current URL
     const currentUrl = new URL(window.location.href);
 
@@ -133,6 +134,7 @@ async function getStores() {
   }
 
   async function searchStores(query) {
+    renderStoreSkeleton(10);
     const apiUrl = "https://api.payuee.com/search-stores";
 
     const requestBody = {
@@ -190,31 +192,56 @@ function renderStores(stores, responseData) {
         noStoresMessage.classList.add('store-location__search-result__item');
         noStoresMessage.innerHTML = `
             <h5>No available stores found</h5>
-            <a href="https://app.payuee.com/e-shop/v/shop-outfits?page=1">Back to Shop</a>
+            <a href="https://payuee.com/e-shop/v/shop-outfits?page=1">Back to Shop</a>
         `;
         storeBody.appendChild(noStoresMessage);
         return;
     }
 
     // Render store cards if stores exist
+    const DEFAULT_STORE_IMAGE = "https://payuee.com/e-shop/images/shop/shop_banner6.png";
+    const BASE_IMAGE_URL = "https://payuee.com/image/"; // adjust if needed
+
     stores.forEach(store => {
+
+        const imageUrl = store.shop_image
+            ? BASE_IMAGE_URL + store.shop_image
+            : DEFAULT_STORE_IMAGE;
+
+        const openDays = store.open_days === 0 ? 5 : store.open_days;
+
         const rowElement = document.createElement('div');
-        rowElement.classList.add('store-location__search-result__item');
-
-        // Check if shop address is empty and set location accordingly
-        // const location = store.shop_address ? `${store.shop_address}<br>${store.shop_state}, ${store.shop_city}` : `${store.shop_state}, ${store.shop_city}`;
-
-        // rowElement.innerHTML = `
-        //     <h5>${store.shop_name}</h5>
-        //     <p>${store.shop_state}, ${store.shop_city}<br>${location}<br>Nigeria<br>${store.shop_phone}<br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
-        //     <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
-        // `;
+        rowElement.classList.add('store-card');
 
         rowElement.innerHTML = `
-        <h5>${store.shop_name}</h5>
-        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days === 0 ? 5 : store.open_days} days a week</p>
-        <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
-    `;
+            <div class="store-card-inner">
+                
+                <!-- Store Image -->
+                <div class="store-image">
+                    <img src="${imageUrl}" alt="${store.shop_name}"
+                        onerror="this.src='${DEFAULT_STORE_IMAGE}'">
+                </div>
+
+                <!-- Store Info -->
+                <div class="store-info">
+                    <h5>${store.shop_name}</h5>
+
+                    <p class="location">
+                        <span class="state">📍 ${store.shop_state}</span>, ${store.shop_city}
+                    </p>
+
+                    <p class="meta">
+                        🛍 ${store.total_product} products <br>
+                        📅 Open ${openDays} days/week
+                    </p>
+
+                    <a class="visit-btn" href="/store/v/${store.store_unique_url}">
+                        Visit Store →
+                    </a>
+                </div>
+            </div>
+        `;
+
         storeBody.appendChild(rowElement);
     });
 
@@ -248,9 +275,9 @@ function renderStores(stores, responseData) {
         }
 
         let nextPageButtonI = document.getElementById('nextPage');
-        nextPageButtonI.href = `https://app.payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad+1}`;
+        nextPageButtonI.href = `https://payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad+1}`;
         let previousPageButtonI = document.getElementById('previousPage');
-        previousPageButtonI.href = `https://app.payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad-1}`;
+        previousPageButtonI.href = `https://payuee.com/e-shop/v/store_location?page=${CurrentPageOnLoad-1}`;
 
         if (CurrentPageOnLoad < 4) {
             // let's disable the next page navigation button
@@ -326,44 +353,31 @@ function renderStores(stores, responseData) {
         }
 }
 
-function renderStore(store) {
+function renderStoreSkeleton(count = 6) {
     const storeBody = document.getElementById('availableStores');
-    
-    // Clear any existing content
     storeBody.innerHTML = "";
 
-    // Check if stores array is empty or null
-    if (!store) {
-        const noStoresMessage = document.createElement('div');
-        noStoresMessage.classList.add('store-location__search-result__item');
-        noStoresMessage.innerHTML = `
-            <h5>No available stores found</h5>
-            <a href="https://app.payuee.com/e-shop/v/shop-outfits?page=1">Back to Shop</a>
+    for (let i = 0; i < count; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.classList.add('store-card');
+
+        skeleton.innerHTML = `
+            <div class="store-card-inner skeleton-card">
+                
+                <div class="store-image skeleton-box"></div>
+
+                <div class="store-info">
+                    <div class="skeleton-line title"></div>
+                    <div class="skeleton-line small"></div>
+                    <div class="skeleton-line small"></div>
+                    <div class="skeleton-btn"></div>
+                </div>
+
+            </div>
         `;
-        storeBody.appendChild(noStoresMessage);
-        return;
+
+        storeBody.appendChild(skeleton);
     }
-
-    // Render store cards if stores exist
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('store-location__search-result__item');
-
-    // Check if shop address is empty and set location accordingly
-    // const location = store.shop_address ? `${store.shop_address}<br>${store.shop_state}, ${store.shop_city}` : `${store.shop_state}, ${store.shop_city}`;
-
-    // rowElement.innerHTML = `
-    //     <h5>${store.shop_name}</h5>
-    //     <p>${store.shop_state}, ${store.shop_city}<br>${location}<br>Nigeria<br>${store.shop_phone}<br>${store.shop_email}<br>Open, ${store.open_days} days a week</p>
-    //     <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
-    // `;
-
-    rowElement.innerHTML = `
-        <h5>${store.shop_name}</h5>
-        <p>${store.shop_state}, ${store.shop_city}<br>Nigeria<br>Open, ${store.open_days === 0 ? 5 : store.open_days} days a week</p>
-        <a id="store_selector_${store.userID}" href="/store/v/${store.store_unique_url}">Visit Store</a>
-    `;
-
-    storeBody.appendChild(rowElement);
 }
 
 function deactivatePreviousButton() {
@@ -396,5 +410,5 @@ function deactivateCurrentButton() {
 }
 
 function updateLink(urlIdToUpdate, pageNumber) {
-    urlIdToUpdate.href = `https://app.payuee.com/e-shop/v/store_location?page=${pageNumber}`;
+    urlIdToUpdate.href = `https://payuee.com/e-shop/v/store_location?page=${pageNumber}`;
 }
