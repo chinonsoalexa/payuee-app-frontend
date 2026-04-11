@@ -108,19 +108,6 @@ async function getStores() {
         if (!response.ok) {
             const errorData = await response.json();
 
-            // if (errorData.error === 'failed to get user from request') {
-            //     // need to do a data of just null event 
-            //     // displayErrorMessage();
-            // } else if (errorData.error === 'failed to get transaction history') {
-            //     // need to do a data of just null event 
-
-            // } else if  (errorData.error === 'No Authentication cookie found' || errorData.error === "Unauthorized attempt! JWT's not valid!" || errorData.error === "No Refresh cookie found") {
-            //     // let's log user out the users session has expired
-            //     logout();
-            // }else {
-            //     // displayErrorMessage();
-            // }
-
             return;
         }
 
@@ -128,6 +115,25 @@ async function getStores() {
         // renderStores(responseData.success, responseData);
         renderStores(responseData?.success || [], responseData);
 
+        const fabVendor = document.getElementById("fabContainer");
+
+        if (responseData.is_vendor === "vendor not found") {
+            fabVendor.querySelector(".fab-label").innerText = "Create Your Store";
+
+            fabVendor.onclick = () => {
+                window.location.href = "https://payuee.com/e-shop/pricing";
+            };
+
+            fabVendor.style.display = "flex"; // or "block"
+        } else {
+            fabVendor.querySelector(".fab-label").innerText = "Add Product";
+
+            fabVendor.onclick = () => {
+                window.open("https://payuee.com/e-shop/vendor/add-products", "_blank");
+            };
+
+            fabVendor.style.display = "flex";
+        }
     } finally {
 
     }
@@ -408,3 +414,4 @@ function deactivateCurrentButton() {
 function updateLink(urlIdToUpdate, pageNumber) {
     urlIdToUpdate.href = `https://payuee.com/e-shop/store_location?page=${pageNumber}`;
 }
+
