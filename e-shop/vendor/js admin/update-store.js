@@ -229,6 +229,8 @@ async function updateStore() {
     formData.append("ShopAddress", ShopAddress);
     formData.append("ShopState", stateSelected);
     formData.append("ShopCity", citySelected);
+    formData.append("Latitude", latitude);
+    formData.append("Longitude", longitude);
     formData.append("OpenDays", OpenDays);
     formData.append("ShopEmail", companyEmail);
     formData.append("ShopPhone", getOnlyNumbers(companyPhone));
