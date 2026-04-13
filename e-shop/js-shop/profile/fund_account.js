@@ -135,6 +135,14 @@ submitPhoneBtn.addEventListener("click", async () => {
       const accounts = data.success;
       const balance = isNaN(Number(data.wallet_balance)) ? 0 : Number(data.wallet_balance);
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const isFromTransaction = urlParams.get("trans");
+      const redirectUrl = urlParams.get("redirect");
+
+      if (isFromTransaction === "on_transaction" && redirectUrl) {
+          window.location.href = redirectUrl;
+      }
+
       document.getElementById("wallet_balance").textContent =
         new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
 
