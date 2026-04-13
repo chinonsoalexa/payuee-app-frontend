@@ -139,9 +139,21 @@ submitPhoneBtn.addEventListener("click", async () => {
       const isFromTransaction = urlParams.get("trans");
       const redirectUrl = urlParams.get("redirect");
 
-      if (isFromTransaction === "on_transaction" && redirectUrl) {
-          window.location.href = redirectUrl;
-      }
+      // Check if user came from same site
+      const hasReferrer = document.referrer && document.referrer.includes(window.location.origin);
+
+       if (isFromTransaction === "on_transaction") {
+          if (hasReferrer) {
+              // ✅ User came from your site → safe to go back
+              window.history.back();
+          } else if (redirectUrl) {
+              // ✅ No history (e.g. opened in new tab) → use redirect param
+              window.location.href = redirectUrl;
+          } else {
+              // ✅ Final fallback
+              window.location.href = "https://payuee.com/e-shop/shop_checkout";
+          }
+      } 
 
       document.getElementById("wallet_balance").textContent =
         new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
