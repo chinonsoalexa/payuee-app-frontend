@@ -41,7 +41,7 @@ async function onScanSuccess(decodedText, decodedResult) {
   // reader.classList.add('hiddenn');
   // stopScan.classList.add('hiddenn');
 
-  html5QrcodeScanner.clear().then(() => {
+  payueeV1QrcodeScanner.clear().then(() => {
     console.log("Scanner stopped.");
   }).catch((error) => {
       console.error("Error stopping scanner:", error);
@@ -55,7 +55,7 @@ function onScanFailure(error) {
 }
 
 // Initialize the QR Code scanner, but don't start immediately
-const html5QrcodeScanner = new Html5QrcodeScanner(
+const payueeV1QrcodeScanner = new PayueeV1QrcodeScanner(
   "reader", 
   {
     fps: 10,            // Frames per second for scanning
@@ -74,7 +74,7 @@ document.getElementById("startScan").addEventListener("click", () => {
 
   navigator.mediaDevices.getUserMedia({ video: true })
     .then((stream) => {
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+      payueeV1QrcodeScanner.render(onScanSuccess, onScanFailure);
     })
     .catch((error) => {
       const errorMessage = document.getElementById('errorMessage');

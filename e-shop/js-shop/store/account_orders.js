@@ -226,7 +226,7 @@ async function getProducts(pageNumber) {
 document.getElementById("closePaymentModal").addEventListener("click", function (event) {
     event.preventDefault();
     hideModal('checkoutModal');
-    html5QrcodeScanner.clear();
+    payueeV1QrcodeScanner.clear();
 });
 
 function renderProducts(product) {
@@ -788,7 +788,7 @@ async function onScanSuccess(decodedText, decodedResult) {
 
     await scannedQrCodeVerification(decodedText);
 
-    html5QrcodeScanner.clear().then(() => {
+    payueeV1QrcodeScanner.clear().then(() => {
         isScanning = false; // Reset flag after stopping scanner
         // console.log("Scanner stopped.");
     }).catch((error) => {
@@ -797,103 +797,101 @@ async function onScanSuccess(decodedText, decodedResult) {
     });
 }
   
-  // Function called when there's a scanning error (e.g., QR code not found)
-  function onScanFailure(error) {
-    console.warn(`QR Code scan error: ${error}`);
-  }
-  
-  // Initialize the QR Code scanner, but don't start immediately
-  const html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    {
-      fps: 10,            // Frames per second for scanning
-      qrbox: { width: 250, height: 250 } // Define scan area size
-    }
-  );
-  
+// Function called when there's a scanning error (e.g., QR code not found)
+function onScanFailure(error) {
+console.warn(`QR Code scan error: ${error}`);
+}
+
+// Initialize the QR Code scanner, but don't start immediately
+const payueeV1QrcodeScanner = new PayueeV1QrcodeScanner(
+"reader", 
+{
+    fps: 10,            // Frames per second for scanning
+    qrbox: { width: 250, height: 250 } // Define scan area size
+}
+);
+
 //   let productCode;
 
-  function getProductId(id) {
-    productCode = id;
-    document.getElementById("startScan").addEventListener("click", () => {
-        startProductScan(id);
-    });
-  }
-  
-  async function scannedQrCodeVerification(code) {
-    const apiUrl = "https://api.payuee.com/scan-user-order";
-    const requestBody = { order_id: +code };
-  
-    if (+code !== +productCode) {
-        reader.classList.add('hidden');
-        verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'red';
-        verificationStatus.textContent = "Wrong QR Code Scanned";
-        return;
-      }
-      
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: 'include',
-      body: JSON.stringify(requestBody)
-    };
-  
-    try {
-      const response = await fetch(apiUrl, requestOptions);
-  
-      const reader = document.getElementById('reader');
-      const verificationStatus = document.getElementById('verificationStatus');
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        reader.classList.add('hidden');
-        verificationStatus.classList.remove('hidden');
-        verificationStatus.style.color = 'red';
-        verificationStatus.textContent = errorData.error || "An unknown error occurred";
-  
-        if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
-          // handle specific error cases if needed
-        } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
-          logout(); // Assume logout() function exists
-        }
-        return;
-      }
-  
-      const responseData = await response.json();
-      reader.classList.add('hidden');
-      verificationStatus.classList.remove('hidden');
-      verificationStatus.style.color = 'green';
-      verificationStatus.textContent = responseData.success;
-  
-      // Show transaction and payment sections
-      document.getElementById('transactionCodeSection').classList.remove('hidden');
-      document.getElementById('paymentButtonDiv').classList.remove('hidden');
-      document.getElementById('qrCodeDiv').classList.add('hidden');
-    } finally {
-      productCode = ""; // Reset code after verification
+function getProductId(id) {
+productCode = id;
+document.getElementById("startScan").addEventListener("click", () => {
+    startProductScan(id);
+});
+}
+
+async function scannedQrCodeVerification(code) {
+const apiUrl = "https://api.payuee.com/scan-user-order";
+const requestBody = { order_id: +code };
+
+if (+code !== +productCode) {
+    reader.classList.add('hidden');
+    verificationStatus.classList.remove('hidden');
+    verificationStatus.style.color = 'red';
+    verificationStatus.textContent = "Wrong QR Code Scanned";
+    return;
     }
-  }
-  
-  function startProductScan(id) {
-    productCode = id;
+    
+const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: 'include',
+    body: JSON.stringify(requestBody)
+};
+
+try {
+    const response = await fetch(apiUrl, requestOptions);
+
+    const reader = document.getElementById('reader');
     const verificationStatus = document.getElementById('verificationStatus');
-      const reader = document.getElementById('reader');
-      verificationStatus.classList.add('hidden');
-      reader.classList.remove('hidden');
-  
-      // Start the QR scanner
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-          html5QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure html5QrcodeScanner is initialized
-        })
-        .catch((error) => {
-            showToast("Camera access denied or unavailable");
-            // console.error("Camera access denied or unavailable:", error);
-        });
-  }
 
+    if (!response.ok) {
+    const errorData = await response.json();
+    reader.classList.add('hidden');
+    verificationStatus.classList.remove('hidden');
+    verificationStatus.style.color = 'red';
+    verificationStatus.textContent = errorData.error || "An unknown error occurred";
 
+    if (errorData.error === 'failed to get user from request' || errorData.error === 'failed to get transaction history') {
+        // handle specific error cases if needed
+    } else if (["No Authentication cookie found", "Unauthorized attempt! JWT's not valid!", "No Refresh cookie found"].includes(errorData.error)) {
+        logout(); // Assume logout() function exists
+    }
+    return;
+    }
+
+    const responseData = await response.json();
+    reader.classList.add('hidden');
+    verificationStatus.classList.remove('hidden');
+    verificationStatus.style.color = 'green';
+    verificationStatus.textContent = responseData.success;
+
+    // Show transaction and payment sections
+    document.getElementById('transactionCodeSection').classList.remove('hidden');
+    document.getElementById('paymentButtonDiv').classList.remove('hidden');
+    document.getElementById('qrCodeDiv').classList.add('hidden');
+} finally {
+    productCode = ""; // Reset code after verification
+}
+}
+
+function startProductScan(id) {
+productCode = id;
+const verificationStatus = document.getElementById('verificationStatus');
+    const reader = document.getElementById('reader');
+    verificationStatus.classList.add('hidden');
+    reader.classList.remove('hidden');
+
+    // Start the QR scanner
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then((stream) => {
+        payueeV1QrcodeScanner.render(onScanSuccess, onScanFailure); // Make sure payueeV1QrcodeScanner is initialized
+    })
+    .catch((error) => {
+        showToast("Camera access denied or unavailable");
+        // console.error("Camera access denied or unavailable:", error);
+    });
+}
 
 // js button code:
  const fabContainer = document.getElementById("fabContainer");
