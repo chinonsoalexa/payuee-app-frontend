@@ -186,6 +186,11 @@ function switchUI(state, options = {}) {
         if (otpInput) otpInput.disabled = true;
         if (newPinInput) newPinInput.disabled = true;
         if (resetBtn) resetBtn.disabled = true;
+
+        if (confirmBtn) {
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = "Sending OTP...";
+        }
     }
 
     // SUCCESS
