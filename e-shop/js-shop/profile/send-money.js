@@ -553,46 +553,82 @@ function validateAndSendFunds() {
 /**
  * 5. API CALLS
  */
+
+let hasAutoResentOTP = false; // prevent infinite resend loop
+
 async function sendFunds(amount, recipient) {
-    const currentFlow = flowState; // snapshot BEFORE UI change
+    const currentFlow = flowState;
+
+    deactivateButtonStyles();
+    const sendBtn = document.getElementById('sendMoney');
+    if (sendBtn) sendBtn.disabled = true;
 
     switchUI("PROCESSING");
 
+    let pin = "";
+    let otp = "";
+
+    // =========================
+    // HANDLE FLOW INPUTS
+    // =========================
+    if (currentFlow === "PIN") {
+        pin = document.getElementById("transactionPinInput").value.trim();
+
+        if (pin.length !== 4) {
+            switchUI("ERROR", { message: "Enter a valid 4-digit PIN" });
+            return;
+        }
+    }
+
+    if (currentFlow === "OTP_REQUIRED") {
+        pin = pincode;
+        otp = SentOTP;
+
+        if (!otp || otp.length !== 6) {
+            switchUI("ERROR", { message: "Enter a valid 6-digit OTP" });
+            return;
+        }
+    }
+
+    if (currentFlow === "RESET_PIN") {
+        pin = newPinInput.value.trim();
+        otp = otpInput.value.trim();
+
+        if (otp.length !== 6 || pin.length !== 4) {
+            switchUI("ERROR", { message: "Invalid OTP or PIN" });
+            return;
+        }
+
+        SentOTP = otp;
+    }
+
+    // =========================
+    // BUILD PAYLOAD
+    // =========================
     const payload = {
         ServiceID: "sendFunds",
         BankType: sendFundsToStatus === "payuee" ? "payuee" : "paga",
-        EmailID: sendFundsToStatus === "payuee" ? document.getElementById("payueeEmailId").value.trim() : "",
+        EmailID: sendFundsToStatus === "payuee"
+            ? document.getElementById("payueeEmailId").value.trim()
+            : "",
         Amount: parseFloat(amount),
-        AccountNumber: sendFundsToStatus === "paga" ? document.getElementById("AccountNumber").value : "",
+        AccountNumber: sendFundsToStatus === "paga"
+            ? document.getElementById("AccountNumber").value
+            : "",
         BankCode: BankCode,
         BankUuid: BankUuid,
         Currency: Currency,
         TranCharge: 0,
         AccountName: BankAccountName,
         Description: "",
+        Pin: pin
     };
 
-    const pin = document.getElementById("transactionPinInput").value.trim();
-
-    if (pin.length !== 4) {
-        switchUI("ERROR", { message: "Enter a valid 4-digit PIN" });
-        return;
-    }
-
-    // CONDITIONAL PAYLOAD PROPERTIES BASED ON FLOW STATE
-    if (currentFlow === "PIN") {
-        payload.Pin = pin;
-    }
-
-    if (currentFlow === "OTP_REQUIRED") {
-        payload.Pin = pincode;
-        payload.SentOTP = SentOTP;
+    if (currentFlow === "OTP_REQUIRED" || currentFlow === "RESET_PIN") {
+        payload.SentOTP = otp;
     }
 
     if (currentFlow === "RESET_PIN") {
-        payload.Pin = newPinInput.value.trim();
-        payload.SentOTP = otpInput.value.trim();
-        newPinInput.style.display = "block";
         payload.Action = "reset_pin";
     }
 
@@ -606,66 +642,104 @@ async function sendFunds(amount, recipient) {
 
         const data = await response.json();
 
+        // =========================
+        // HANDLE HTTP ERROR
+        // =========================
         if (!response.ok) {
-            const msg = data.error || "";
+            const msg = (data.error || "").toLowerCase();
 
-            if (msg === "No Authentication cookie found" || msg === "Unauthorized attempt! JWT's not valid!" 
-                || msg === "No Refresh cookie found"
-                || msg === "account suspended due to too many invalid PIN attempts. please contact support to resolve this issue"
+            // Auth issues
+            if (
+                msg.includes("no authentication") ||
+                msg.includes("unauthorized") ||
+                msg.includes("refresh cookie") ||
+                msg.includes("account suspended")
             ) {
-                // let's log user out the users session has expired
                 logUserOutIfTokenIsExpired();
-            }
-
-            // CASE 1: OTP REQUIRED
-            if (msg.toLowerCase().includes("otp")) {
-                switchUI("OTP_REQUIRED");
-                await requestPinResetOtp();
                 return;
             }
 
-            // NORMAL ERROR
-            switchUI("ERROR", { message: msg || "Transaction failed" });
+            // OTP REQUIRED → SAFE AUTO RESEND
+            if (msg.includes("otp")) {
+                switchUI("OTP_REQUIRED");
+
+                if (!hasAutoResentOTP) {
+                    hasAutoResentOTP = true;
+                    await requestPinResetOtp();
+                }
+
+                return;
+            }
+
+            switchUI("ERROR", { message: data.error || "Transaction failed" });
             return;
         }
 
-        if (data.success === "transfer limit reached. please verify with OTP to continue making transfers"
-            || data.success === "OTP verification required for transfers above 100. please verify with OTP to continue"
-            || data.success === "for transfers above 5 million, require OTP or manual review"
+        // =========================
+        // HANDLE SUCCESS RESPONSES
+        // =========================
+        const successMsg = (data.success || "").toLowerCase();
+
+        if (
+            successMsg.includes("otp required") ||
+            successMsg.includes("verify with otp")
         ) {
             switchUI("OTP_REQUIRED");
-            await requestPinResetOtp();
+
+            if (!hasAutoResentOTP) {
+                hasAutoResentOTP = true;
+                await requestPinResetOtp();
+            }
+
+            return;
         }
 
-        // CASE 2: PIN RESET SUCCESS (your backend mistake)
-        if ((data.success + "").toLowerCase().includes("pin reset successful")) {
+        // PIN RESET SUCCESS
+        if (successMsg.includes("pin reset successful")) {
             pinStatus = true;
+            hasAutoResentOTP = false; // reset flag
+
             switchUI("SUCCESS_FULL", { message: data.success });
+
+            loadWalletBalance();
+
             setTimeout(() => {
                 switchUI("PIN", {
                     amount: amount,
                     recipient: BankAccountName
                 });
-            }, 3000);
-            return;
-        } else {
-            const balanceEl = document.getElementById("wallet_balance");
-            const rawBalance = data.success !== undefined ? data.success : 0;
-            const balance = Number(rawBalance);
+            }, 2500);
 
-            if (balanceEl) {
-                balanceEl.textContent = new Intl.NumberFormat('en-NG', {
-                    style: 'currency',
-                    currency: 'NGN',
-                    minimumFractionDigits: 2
-                }).format(balance);
-            }
-            // ✅ SUCCESS LOGIC
-            switchUI("SUCCESS", { amount, recipient: BankAccountName, message: `₦${amount} sent successfully!` });
+            return;
         }
 
+        // =========================
+        // NORMAL SUCCESS
+        // =========================
+        hasAutoResentOTP = false; // reset flag
+
+        const balanceEl = document.getElementById("wallet_balance");
+
+        if (balanceEl && data.success !== undefined) {
+            const balance = Number(data.success);
+
+            balanceEl.textContent = new Intl.NumberFormat('en-NG', {
+                style: 'currency',
+                currency: 'NGN',
+                minimumFractionDigits: 2
+            }).format(balance);
+        }
+
+        switchUI("SUCCESS", {
+            amount,
+            recipient: BankAccountName,
+            message: `₦${amount} sent successfully!`
+        });
+
     } catch (error) {
-        switchUI("ERROR", { message: error });
+        switchUI("ERROR", {
+            message: error.message || "Network error"
+        });
     } finally {
         reactivateButtonStyles();
     }
