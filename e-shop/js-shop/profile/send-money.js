@@ -263,7 +263,6 @@ function setupEventListeners() {
         e.preventDefault();
         if (!pinStatus) {
             // send an otp to the user to set a transaction pin and then show a modal to enter the otp and the new transaction pin and then update the transaction pin and then allow the user to continue with the transfer
-            switchUI("SENDING_OTP");
             await requestPinResetOtp();
             return;
         }
@@ -640,6 +639,7 @@ async function sendFunds(amount, recipient) {
 
         // CASE 2: PIN RESET SUCCESS (your backend mistake)
         if ((data.success + "").toLowerCase().includes("pin reset successful")) {
+            pinStatus = true;
             switchUI("SUCCESS_FULL", { message: data.success });
             setTimeout(() => {
                 switchUI("PIN", {
@@ -742,6 +742,7 @@ function deactivateButtonStyles() {
 function reactivateButtonStyles() {
     var resendButton = document.getElementById('sendMoney');
     resendButton.classList.remove('deactivated');
+    resendButton.disabled = false;
 }
 
 // Function to search for banks by name
