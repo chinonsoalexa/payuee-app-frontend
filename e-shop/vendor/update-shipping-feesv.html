@@ -2,7 +2,7 @@
 <html lang="en">
   
 <head>
-    <!-- <script src="js auth/authIn.js"></script> -->
+    <script src="js auth/authIn.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,11 @@
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <title>Payuee - Vendor's Shipping Fees</title>
     <!-- Google font-->
-    <!-- <link rel="preconnect" href="../../../fonts.googleapis.com/pay">
-    <link rel="preconnect" href="../../../fonts.gstatic.com/pay" crossorigin="">
+    <!-- <link rel="preconnect" href="../../../fonts.googleapis.com/pay.html">
+    <link rel="preconnect" href="../../../fonts.gstatic.com/pay.html" crossorigin="">
     <link href="../../../fonts.googleapis.com/css2a0cf.css?family=Lexend:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link href="../../../fonts.googleapis.com/css8807.css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="css/vendors/icofont.css">
     <!-- Themify icon-->
@@ -39,9 +39,6 @@
     <link rel="stylesheet" type="text/css" href="css/vendors/dropzone.css">
   <!-- <link rel="stylesheet" type="text/css" href="css/vendors/sweetalert2.css"> -->
   
-  <!-- button animation links -->
-  <link rel="stylesheet" type="text/css" href="css/vendors/animation.css">
-
   <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="css/vendors/bootstrap.css">
@@ -131,100 +128,11 @@
       }
   }
 
-    .method-item {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      background: #9195b8;
-      cursor: grab;
-    }
-    .method-item.dragging {
-      background: #e3f2fd;
-      opacity: 0.8;
-    }
-
-      .info-wrapper {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    margin-left: 6px;
-    font-size: 14px;
-    color: #0077cc;
-  }
-
-  /* Tooltip box */
-  .tooltip-text {
-    visibility: hidden;
-    opacity: 0;
-    width: 220px;
-    background-color: #333;
-    color: #fff;
-    text-align: left;
-    border-radius: 6px;
-    padding: 8px 10px;
-    position: absolute;
-    z-index: 10;
-    bottom: 125%; /* position above the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    transition: opacity 0.3s;
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  /* Tooltip arrow */
-  .tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%; /* bottom of tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
-  }
-
-  /* Show tooltip on hover */
-  .info-wrapper:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-  }
 
   #updateShippingFeesButton:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  .skeleton {
-    background: linear-gradient(90deg, #e0e0e0 25%, #f8f8f8 50%, #e0e0e0 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: 8px;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  .form-check-input {
-    width: 3rem;
-    height: 1.5rem;
-    cursor: pointer;
-  }
-
-  .section-box {
-    padding: 15px;
-    border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    margin-bottom: 15px;
-  }
-
-  #previewSection {
-    transition: all 0.3s ease;
-  }
+  opacity: 0.7;
+  cursor: not-allowed;
+}
     </style>
 </head>
 
@@ -247,7 +155,7 @@
       <div class="page-header">
         <div class="header-wrapper row m-0">
           <div class="header-logo-wrapper col-auto p-0">
-            <div class="logo-wrapper"><a href="indexs"><img class="img-fluid for-light" src="images/logo/logo-1.png" alt=""><img class="img-fluid for-dark" src="images/logo/logo.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a></div>
+            <div class="logo-wrapper"><a href="indexs.html"><img class="img-fluid for-light" src="images/logo/logo-1.png" alt=""><img class="img-fluid for-dark" src="images/logo/logo.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a></div>
             <div class="toggle-sidebar">
               <svg class="sidebar-toggle"> 
                 <use href="#stroke-animation"></use>
@@ -272,7 +180,7 @@
               </li>
               <li class="onhover-dropdown">
                 <div class="notification-box">
-                    <a href="order-history">
+                    <a href="order-history.html">
                       <svg>
                     <use href="#fill-Bell"></use>
                     </a>
@@ -287,7 +195,7 @@
               </li>
               <li class="cart-nav onhover-dropdown">
                 <div class="cart-box">
-                  <a href="edit-products">
+                  <a href="edit-products.html">
                     <svg>
                         <use href="#fill-Buy"></use>
                     </svg>
@@ -324,68 +232,68 @@
         <!-- Page Sidebar Start-->
         <div class="sidebar-wrapper" data-layout="fill-svg">
           <div>
-            <div class="logo-wrapper"><a href="indexs"><img class="img-fluid" src="images/logo/logo.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a>
+            <div class="logo-wrapper"><a href="indexs.html"><img class="img-fluid" src="images/logo/logo.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a>
               <div class="toggle-sidebar">
                 <svg class="sidebar-toggle"> 
                   <use href="#toggle-icon"></use>
                 </svg>
               </div>
             </div>
-            <div class="logo-icon-wrapper"><a href="indexs"><img class="img-fluid" src="images/logo/logo-icon.png" style="width: 50px; height: auto;"  alt="Payuee e-Pay" style="width: 50px; height: auto;"></a></div>
+            <div class="logo-icon-wrapper"><a href="indexs.html"><img class="img-fluid" src="images/logo/logo-icon.png" style="width: 50px; height: auto;"  alt="Payuee e-Pay" style="width: 50px; height: auto;"></a></div>
             <nav class="sidebar-main">
               <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
               <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
                   <li class="back-btn">
-                    <a href="index"><img class="img-fluid" src="images/logo/logo-icon.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a>
+                    <a href="index.html"><img class="img-fluid" src="images/logo/logo-icon.png" alt="Payuee e-Pay" style="width: 50px; height: auto;"></a>
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="dashboard">
+                    <a class="sidebar-link sidebar-title link-nav" href="dashboard.html">
                       <i data-feather="home"></i><span>Dashboard</span>
                     </a>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="add-products">
+                    <a class="sidebar-link sidebar-title link-nav" href="add-products.html">
                       <i data-feather="plus-square"></i><span>Add Product</span>
                     </a>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="edit-products">
+                    <a class="sidebar-link sidebar-title link-nav" href="edit-products.html">
                       <i data-feather="edit"></i><span>View Product</span>
                     </a>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="order-history">
+                    <a class="sidebar-link sidebar-title link-nav" href="order-history.html">
                       <i data-feather="file-text"></i><span>Order History</span>
                     </a>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="update-store">
-                      <i data-feather="shopping-bag"></i><span>View Store</span>
+                    <a class="sidebar-link sidebar-title link-nav" href="update-store.html">
+                      <i data-feather="shopping-bag"></i><span>Edit Store</span>
                     </a>
                   </li>
             
                   <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="update-shipping-feesv">
+                    <a class="sidebar-link sidebar-title link-nav" href="update-shipping-fees.html">
                       <i data-feather="truck"></i><span>Shipping Fees</span>
                     </a>
                   </li>
             
                   <!-- New e-Shop Navigation Option -->
                     <li class="sidebar-list">
-                      <a class="sidebar-link sidebar-title link-nav" href="../home">
+                      <a class="sidebar-link sidebar-title link-nav" href="../home.html">
                             <i data-feather="shopping-cart"></i><span>e-Shop</span>
                         </a>
                     </li>
         
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="faq">
+                        <a class="sidebar-link sidebar-title link-nav" href="faq.html">
                             <i data-feather="help-circle"></i><span>FAQ</span>
                         </a>
                     </li>
@@ -405,7 +313,7 @@
                 </div>
                 <div class="col-sm-6 pe-0">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="dashboard">                                        
+                    <li class="breadcrumb-item"><a href="dashboard.html">                                        
                         <svg class="stroke-icon">
                           <use href="#stroke-home"></use>
                         </svg></a></li>
@@ -458,495 +366,128 @@
 
                   <div id="toast-container" class="position-fixed top-0 end-0 p-3"></div> <!-- Toast container -->
 
-                  <div class="card-body add-post">
-                  <form class="row needs-validation mb-3" novalidate="">
-                    <!-- Shipping Setup Mode -->
-                    <div class="mb-4">
-                      <label class="form-label"><strong>Choose Shipping Setup:</strong></label>
-                      <select id="shippingSetupMode" class="form-control">
-                        <option value="logistics">🚚 Use Payuee Logistics Company</option>
-                        <option value="custom">⚙️ Set Up My Own Payuee Logistics Rules</option>
-                      </select>
-                    </div>
-
-                    <div class="mb-3 d-flex align-items-center justify-content-between">
-                      <label class="form-label mb-0 me-3">
-                        <strong>Active Setup Mode:</strong>
-                      </label>
-
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="activeSetupToggle">
-                        <label class="form-check-label" for="activeSetupToggle" id="activeSetupLabel">
-                          Payuee Logistics
-                        </label>
-                      </div>
-                    </div>
-
-                    <!-- Logistics Companies Section -->
-                    <div id="logisticsFields" class="custom-fields">
-
-                      <!-- Test Inputs -->
-                      <div class="mb-4 border rounded p-3 bg-light">
-                        <h6 class="mb-3">Test Order Inputs 🧪</h6>
-                        <div class="row g-2 align-items-end">
-                          
-                          <!-- Test inputs -->
-                          <div class="mb-3">
-                            <label><strong class="text-info">Vendor State:</strong></label>
-                            <select id="testVendorState" class="form-select w-auto d-inline-block">
-                              <option value="Abia">Abia</option>
-                              <option value="Adamawa">Adamawa</option>
-                              <option value="Akwa Ibom">Akwa Ibom</option>
-                              <option value="Anambra">Anambra</option>
-                              <option value="Bauchi">Bauchi</option>
-                              <option value="Bayelsa">Bayelsa</option>
-                              <option value="Benue">Benue</option>
-                              <option value="Borno">Borno</option>
-                              <option value="Cross River">Cross River</option>
-                              <option value="Delta">Delta</option>
-                              <option value="Ebonyi">Ebonyi</option>
-                              <option value="Edo">Edo</option>
-                              <option value="Ekiti">Ekiti</option>
-                              <option value="Enugu">Enugu</option>
-                              <option value="Federal Capital Territory">FCT</option>
-                              <option value="Gombe">Gombe</option>
-                              <option value="Imo">Imo</option>
-                              <option value="Jigawa">Jigawa</option>
-                              <option value="Kaduna">Kaduna</option>
-                              <option value="Kano">Kano</option>
-                              <option value="Katsina">Katsina</option>
-                              <option value="Kebbi">Kebbi</option>
-                              <option value="Kogi">Kogi</option>
-                              <option value="Kwara">Kwara</option>
-                              <option value="Lagos">Lagos</option>
-                              <option value="Nasarawa">Nasarawa</option>
-                              <option value="Niger">Niger</option>
-                              <option value="Ogun">Ogun</option>
-                              <option value="Ondo">Ondo</option>
-                              <option value="Osun">Osun</option>
-                              <option value="Oyo">Oyo</option>
-                              <option value="Plateau">Plateau</option>
-                              <option value="Rivers" selected>Rivers</option>
-                              <option value="Sokoto">Sokoto</option>
-                              <option value="Taraba">Taraba</option>
-                              <option value="Yobe">Yobe</option>
-                              <option value="Zamfara">Zamfara</option>
-                            </select>
-                          </div>
-
-                          <div class="col-sm-3">
-                            <label class="form-label text-info">Order Value (₦)</label>
-                            <input type="number" class="form-control" id="testOrderValue2" placeholder="e.g. 15000">
-                          </div>
-                          <div class="col-sm-3">
-                            <label class="form-label text-info">Weight (Kg)</label>
-                            <input type="number" class="form-control" id="testWeight2" placeholder="e.g. 5">
-                          </div>
-                          <div class="col-sm-3">
-                            <label class="form-label text-info">Quantity</label>
-                            <input type="number" class="form-control" id="testQuantity2" placeholder="e.g. 3">
-                          </div>
-                          <div class="col-sm-3 text-info">
-                            <button type="button" class="btn btn-outline-primary w-100" id="generateRandomTest">Generate Random 🔄</button>
-                          </div>
-                        </div>
-                      </div>
-                                          
-                      <div class="mb-3">
-                        <label class="form-label">Available Logistics Companies</label>
-                      </div>
-
-                      <!-- All Companies Estimated Pricing Overview -->
-                      <div id="companyPricing" class="border rounded mb-4 p-3 bg-light">
-                        <h6 class="mb-3">Estimated Pricing Overview:</h6>
-                        <ul id="pricingList" class="list-unstyled">Loading...</ul>
-                      </div>
-
-                      <div id="buttonDivShippingFees" class="btn-showcase text-end">
-                        <button id="updateShippingFeesButton2" class="btn btn-primary" type="submit">Update</button>
-                      </div>
-
-                    </div>
-                  </form>
-                   
+                  
+                  <div class="card-header pb-0">
+                    <h4>Shipping Fees Calculation</h4>
                   </div>
+                  <div class="card-body add-post">
+                    <form class="row needs-validation" novalidate="">
+                      <div class="col-sm-12">
 
-                  <!-- Your Existing Custom Shipping Rules Section -->
-                  <div id="customSetupFields" class="custom-fields d-none">
-                    <div class="card-header pb-0">
-                      <h4>Shipping Fees Calculation</h4>
-                    </div>
-                    <div class="card-body add-post">
-                      <form class="row needs-validation" novalidate="">
-
-                        <!-- Shipping Customization Type -->
-                        <div class="mb-4">
-                          <label class="form-label"><strong>Choose Shipping Fee Type:</strong></label>
-                          <select id="shippingType" class="form-control">
-                            <!-- <option value="">-- Select Shipping Type --</option> -->
-                            <option value="distance">Distance-Based (per Km)</option>
-                            <option value="weight">Weight-Based</option>
-                            <option value="flat">Flat Rate</option>
-                            <option value="free">Free Shipping</option>
-                            <option value="custom">Advanced Custom Rules</option>
-                          </select>
-                        </div>
-
-                        <div class="col-sm-12">
-                          <!-- Weight-Based Pattern -->
-                          <div id="weightFields" class="custom-fields d-none">
-                            <p><strong>Set Tiered Shipping Rates by Weight:</strong></p>
-                            <div id="weightContainer">
-                              <div class="tier-row input-group mb-2">
-                                <!-- Min KG -->
-                                <input class="form-control" type="number" placeholder="Min (kg)">
-                                <span class="input-group-text">–</span>
-                                <!-- Max KG -->
-                                <input class="form-control" type="number" placeholder="Max (kg)">
-                                <!-- Fee -->
-                                <input class="form-control" type="number" placeholder="Fee (₦)">
-                                <!-- Remove button -->
-                                <button type="button" class="btn btn-danger btn-sm remove-btn">&minus;</button>
-                              </div>
-                            </div>
-                            <small id="weightLimitMsg" class="text-danger d-none">
-                              You can only create up to 30 weight tiers.
-                            </small>
-                            <button type="button" class="btn btn-sm btn-light mb-3" onclick="addWeightTier()">+ Add Another Tier</button>
-                            <!-- State Selector -->
-                            <div class="mb-3">
-                              <label>Select States:</label>
-                              <select id="state-selectMain4" multiple class="js-example-placeholder-multiple form-control">
-                                <option disabled value="0">Loading States...</option>
-                                <!-- States will be injected dynamically -->
-                              </select>
-                              <button id="selectAllStatesBtn4" type="button" class="btn btn-sm btn-outline-primary mt-2">
-                                Select All States
-                              </button>
-                            </div>
-                          </div>
-
-                          <!-- Flat Rate Pattern -->
-                          <div id="flatFields" class="custom-fields d-none">
-                            <div class="mb-3">
-                              <label>Flat Rate Fee (₦):</label>
-                              <input class="form-control" type="number" placeholder="e.g. 1500">
-                            </div>
-
-                            <!-- State Selector -->
-                            <div class="mb-3">
-                              <label>Select States:</label>
-                              <select id="state-selectMain" multiple class="js-example-placeholder-multiple form-control">
-                                <option disabled value="0">Loading States...</option>
-                                <!-- States will be injected dynamically -->
-                              </select>
-                              <button id="selectAllStatesBtn" type="button" class="btn btn-sm btn-outline-primary mt-2">
-                                Select All States
-                              </button>
-                            </div>
-                          </div>
-
-                          <!-- Free Shipping Pattern -->
-                          <div id="freeFields" class="custom-fields d-none">
-                            <p class="text-success"><strong>All orders will have FREE Shipping 🚚</strong></p>
-                            <div class="mb-3">
-                              <label>Optional Minimum Order for Free Shipping (₦):</label>
-                              <input class="form-control" type="number" placeholder="e.g. 50000">
-                            </div>
-                            <!-- State Selector -->
-                            <div class="mb-3">
-                              <label>Select States:</label>
-                              <select id="state-selectMain3" multiple class="js-example-placeholder-multiple form-control">
-                                <option disabled value="0">Loading States...</option>
-                                <!-- States will be injected dynamically -->
-                              </select>
-                              <button id="selectAllStatesBtn3" type="button" class="btn btn-sm btn-outline-primary mt-2">
-                                Select All States
-                              </button>
-                            </div>
-                          </div>
-
-                          <!-- Advanced Rules -->
-                          <div id="customFields" class="custom-fields d-none">
-                            <p><strong>Advanced Rules (Condition Builder):</strong></p>
-                            <div id="rulesContainer">
-                              <div class="rule-row input-group mb-2">
-                                <!-- Condition Dropdown -->
-                                <select class="form-select condition-select" style="max-width: 150px;">
-                                  <option value="distance">Distance</option>
-                                  <option value="weight">Weight</option>
-                                  <option value="price">Price</option>
-                                  <option value="quantity">Quantity</option>
-                                </select>
-
-                                <!-- Comparison Operator -->
-                                <select class="form-select" style="max-width: 120px;">
-                                  <option value="<">&lt;</option>
-                                  <option value="<=">&lt;=</option>
-                                  <option value="=">=</option>
-                                  <option value=">">&gt;</option>
-                                  <option value=">=">&gt;=</option>
-                                </select>
-
-                                <!-- Input Value -->
-                                <input type="number" class="form-control" placeholder="Value">
-
-                                <!-- Unit Text (auto updates based on dropdown) -->
-                                <span class="input-group-text unit-label">Km</span>
-
-                                <!-- Fee -->
-                                <input type="number" class="form-control" placeholder="Fee (₦)">
-
-                                <!-- Remove Button -->
-                                <button type="button" class="btn btn-danger btn-sm remove-btn">&minus;</button>
-                              </div>
-                            </div>
-                            <small id="rulesLimitMsg" class="text-danger d-none">
-                              You can only create up to 200 advanced rules.
-                            </small>
-                            <button id="addRuleBtn" type="button" class="btn btn-sm btn-light mb-3">+ Add Another Rule</button>
-
-                            <!-- State Selector -->
-                            <div class="mb-3">
-                              <label>Select States:</label>
-                              <select id="state-selectMain5" multiple class="js-example-placeholder-multiple form-control">
-                                <option disabled value="0">Loading States...</option>
-                                <!-- States will be injected dynamically -->
-                              </select>
-                              <button id="selectAllStatesBtn5" type="button" class="btn btn-sm btn-outline-primary mt-2">
-                                Select All States
-                              </button>
-                            </div>
-                          </div>
-
-                          <!-- Distance Based by KM -->
-                          <div id="distanceFields" class="custom-fields">
-
-                            <!-- Shipping Fees -->
-                            <div class="mb-3">
-                              <label for="validationCustom01">Shippin Fee per Km:</label>
-                              <input class="form-control" id="validationCustom01" type="number" placeholder="Fee per Km e.g ₦20" required="">
-                              <div class="valid-feedback">Looks good!</div>
-                            </div>
-
-                            <div class="mb-3">
-                              <label for="validationCustom021">Max Shipping Fee:</label>
-                              <input class="form-control" id="validationCustom021" type="number" placeholder="Max Fee e.g ₦30,000" required="">
-                              <div class="valid-feedback">Looks good!</div>
-                            </div>
-
-                            <div class="mb-3">
-                              <label for="validationCustom031">Min Shipping Fee:</label>
-                              <input class="form-control" id="validationCustom031" type="number" placeholder="Min Fee e.g ₦2,500" required="">
-                              <div class="valid-feedback">Looks good!</div>
-                            </div>
-
-                            <!-- State Selector -->
-                            <div class="mb-3">
-                              <label>Select States:</label>
-                              <select id="state-selectMain2" multiple class="js-example-placeholder-multiple form-control">
-                                <option disabled value="0">Loading States...</option>
-                                <!-- States will be injected dynamically -->
-                              </select>
-                              <button id="selectAllStatesBtn2" type="button" class="btn btn-sm btn-outline-primary mt-2">
-                                Select All States
-                              </button>
-                            </div>
-
-                            <div class="col-12">
-                              <div class="card">
-                                <div class="card-header card-no-border pb-0">
-                                  <h4>Calculate Shipping Fees Based on Product <code>Weight (Net Weight)</code><span class="info-wrapper">
-                                      ℹ️
-                                      <span class="tooltip-text">
-                                  <span>Select this option if you want to charge customers by calculating shipping fees using the Net Weight of the product. The final shipping cost will be determined by the product's weight in combination with the delivery distance.</span>
-                                    </span></h4>
-                                </div>
-                                <div class="card-body btn-group-showcase">
-                                  <div class="row">
-                                      <div class="col-xl-4 col-md-6 col-sm-12">
-                                          <div class="btn-group" data-bs-toggle="buttons">
-                                              <!-- Option 1: Yes -->
-                                              <label class="btn btn-primary">
-                                                  <input type="radio" id="radio7" name="shipping" value="true"> Yes
-                                              </label>
-                                              <!-- Option 2: No -->
-                                                <label class="btn btn-primary active">
-                                                    <input type="radio" id="radio8" name="shipping" value="false" checked> No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </div>                        
-                              </div>
-                            </div>
-                          </div>
-
-                            <div class="mb-3">
-                          </div>
-
-                            <h3 class="mb-3">Select Your Available Shipping Methods</h3>
-                            <div class="mb-3">
-                              <label><input type="checkbox" value="flat_rate" class="method-check"> Flat Rate</label><br>
-                              <label><input type="checkbox" value="weight_based" class="method-check"> Weight Based</label><br>
-                              <label><input type="checkbox" value="distance_based" class="method-check"> Distance Based</label><br>
-                              <label><input type="checkbox" value="free_shipping" class="method-check"> Free Shipping</label><br>
-                              <label><input type="checkbox" value="advanced_rules" class="method-check"> Advanced Rules</label>
-                            </div>
-
-                            <div id="activeMethodsWrapper" style="display:none;">
-                              <h3 class="mb-3">
-                                Active Methods (Drag to Reorder)
-                                <span class="info-wrapper">
-                                  ℹ️
-                                  <span class="tooltip-text">
-                                    Drag and drop the shipping methods below to set their order of priority.  
-                                    The method at the top will be treated as the default option, and this order will be used when calculating which shipping pattern comes first.
-                                  </span>
-                                </span>
-                              </h3>
-                              <div id="activeMethods" class="mb-4"></div>
-                            </div>
-
-                          <div class="mb-3">
-                            <button type="button" class="btn btn-outline-primary" onclick="togglePreview()" id="previewToggleBtn">
-                              🧪 Try Delivery Fee Preview
-                            </button>
-                          </div>
-
-                        <div id="previewSection" style="display: none;">
-                          <div class="mb-4 p-3" style="background:#f8f9fa; border-radius:10px;">
-                            <h4 style="margin-bottom:5px;">📦 Test Your Delivery Fees</h4>
-                            <p style="margin:0; font-size:14px; color:#555;">
-                              This is a safe preview tool. Nothing here will affect your real store.
-                              Use it to see what your customer will see before saving your delivery settings.
-                            </p>
-                          </div>
-
-                          <!-- SHOP LOCATION  -->
-                          <!-- state -->
-                          <div class="mb-3">
-                            <h5>🏪 Your Shop Location (Where you are sending from)</h5>
-                            <p style="font-size:13px; color:#777;">Select where your store is located.</p>
-                          </div>
-                          <div class="mb-3">
-                            <div class="col-form-label">Select State:
-                                <select id="state-select1" class="js-example-placeholder-multiple col-sm-12">
-                                    <option selected="" value="0">Loading States...</option>
-                                    <!-- where the states would be rendered -->
-                                </select>
-                            </div>
-                          </div>
-
-                          <!-- city -->
-                          <div class="mb-3">
-                            <div class="col-form-label">Select City:
-                                <select id="city-select1" class="js-example-placeholder-multiple col-sm-12">
-                                    <option selected="" value="0">Choose City</option>
-                                    <!-- where the city would be rendered -->
-                                </select>
-                            </div>
-                          </div>
-
-                          <div class="mb-3 mt-4">
-                            <h5>📍 Customer Location (Where the order is going)</h5>
-                            <p style="font-size:13px; color:#777;">Choose where your customer is receiving the order.</p>
-                          </div>
-
-                          <!-- state -->
-                          <div class="mb-3">
-                            <div class="col-form-label">Select State:
-                                <select id="state-select" class="js-example-placeholder-multiple col-sm-12">
-                                    <option selected="" value="0">Loading States...</option>
-                                    <!-- where the states would be rendered -->
-                                </select>
-                            </div>
-                          </div>
-
-                          <!-- city -->
-                          <div class="mb-3">
-                            <div class="col-form-label">Select City:
-                                <select id="city-select" class="js-example-placeholder-multiple col-sm-12">
-                                    <option selected="" value="0">Choose City</option>
-                                    <!-- where the city would be rendered -->
-                                </select>
-                            </div>
-                          </div>
-
-                          <!-- Buyer Input Simulation -->
-                            <hr>
-                            <div class="mb-3 p-3" style="background:#fff4e5; border-radius:10px;">
-                              <h5 style="margin-bottom:5px;">🧪 Try a Sample Order</h5>
-                              <p style="font-size:13px; color:#777; margin:0;">
-                                Enter example values to see how delivery fees will be calculated.
-                              </p>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-md-4 mb-2">
-                                <label class="form-label">Order Amount (₦)</label>
-                                <input type="number" class="form-control" id="testOrderValue" placeholder="e.g. 15000">
-                              </div>
-                              <div class="col-md-4 mb-2">
-                                <label class="form-label">Package Weight (Kg)</label>
-                                <input type="number" class="form-control" id="testWeight" placeholder="e.g. 5">
-                              </div>
-                              <div class="col-md-4 mb-4">
-                                <label class="form-label">Number of Items</label>
-                                <input type="number" class="form-control" id="testQuantity" placeholder="e.g. 3">
-                              </div>
-                            </div>
-
-                          <!-- Shipping Fees Result -->
-                          <div class="mb-3 mt-3">
-                            <label><strong>📊 What Your Customer Will Pay</strong></label>
-
-                            <input class="form-control mb-3" id="validationCustom03"
-                              type="text"
-                              placeholder="Delivery fee will appear here..."
-                              readonly>
-
-                            <textarea 
-                              class="form-control" 
-                              id="validationCustom02"
-                              placeholder="Details like distance and breakdown will show here..."
-                              readonly 
-                              rows="2"
-                              style="resize: vertical;">
-                            </textarea>
-                          </div>
-
-                          <p style="font-size:12px; color:#999;">
-                            💡 Tip: Try different states to see how distance affects delivery price.
-                          </p>
-                        </div>
-
-                        
-                        </div>
-                      </form>
-                      <div class="d-flex justify-content-end align-items-center gap-3 btn-showcase">
-                        <button id="updateShippingFeesButton" class="order">
-                          <span class="default">Save Shipping Rules</span>
-                          <span class="success">Save Shipping Rules
-                            <svg viewBox="0 0 12 10">
-                              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                            </svg>
-                          </span>
-                          <div class="box"></div>
-                          <div class="truck">
-                            <div class="back"></div>
-                            <div class="front">
-                              <div class="window"></div>
-                            </div>
-                            <div class="light top"></div>
-                            <div class="light bottom"></div>
-                          </div>
-                          <div class="lines"></div>
-                        </button>
-
-                        <input class="btn btn-light" type="button" value="Visit Tutorials"
-                          onclick="window.location.href='https://youtu.be/xobjsehjN_g?si=9qSTxQQCR7kGA9LM';">
+                      <!-- Shipping Fees -->
+                      <div class="mb-3">
+                        <label for="validationCustom01">Shippin Fee per Km:</label>
+                        <input class="form-control" id="validationCustom01" type="number" placeholder="Fee per Km e.g ₦10" required="">
+                        <div class="valid-feedback">Looks good!</div>
                       </div>
+
+                      <div class="mb-3">
+                        <label for="validationCustom021">Max Shipping Fee:</label>
+                        <input class="form-control" id="validationCustom021" type="number" placeholder="Max Fee e.g ₦10,000" required="">
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="validationCustom031">Min Shipping Fee:</label>
+                        <input class="form-control" id="validationCustom031" type="number" placeholder="Min Fee e.g ₦2,500" required="">
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
+                      <div class="mb-3">
+                      </div>
+
+                      <div class="card-header pb-0">
+                        <h4>Set Store Location</h4>
+                      </div>
+
+                      <div class="mb-3">
+                      </div>
+
+                      <!-- SHOP LOCATION  -->
+                      <!-- state -->
+                      <div class="mb-3">
+                        <div class="col-form-label">Select State:
+                            <select id="state-select1" class="js-example-placeholder-multiple col-sm-12">
+                                <option selected="" value="0">Choose State</option>
+                                <!-- where the states would be rendered -->
+                            </select>
+                        </div>
+                      </div>
+
+                      <!-- city -->
+                      <div class="mb-3">
+                        <div class="col-form-label">Select City:
+                            <select id="city-select1" class="js-example-placeholder-multiple col-sm-12">
+                                <option selected="" value="0">Choose City</option>
+                                <!-- where the city would be rendered -->
+                            </select>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-header card-no-border pb-0">
+                            <h4>Calculate Shipping Fees Based on Product <code>Weight (Net Weight)</code></h4>
+                            <span>Select this option if you want to charge customers by calculating shipping fees using the Net Weight of the product. The final shipping cost will be determined by the product's weight in combination with the delivery distance.</span>
+                          </div>
+                          <div class="card-body btn-group-showcase">
+                            <div class="row">
+                                <div class="col-xl-4 col-md-6 col-sm-12">
+                                    <div class="btn-group" data-bs-toggle="buttons">
+                                        <!-- Option 1: Yes -->
+                                        <label class="btn btn-primary">
+                                            <input type="radio" id="radio7" name="shipping" value="true"> Yes
+                                        </label>
+                                        <!-- Option 2: No -->
+                                          <label class="btn btn-primary active">
+                                              <input type="radio" id="radio8" name="shipping" value="false" checked> No
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>                        
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <h4>See How Your Shipping Fees Will Appear to Buyers by State & City</h4>
+                      </div>
+
+                      <!-- state -->
+                      <div class="mb-3">
+                        <div class="col-form-label">Select State:
+                            <select id="state-select" class="js-example-placeholder-multiple col-sm-12">
+                                <option selected="" value="0">Choose State</option>
+                                <!-- where the states would be rendered -->
+                            </select>
+                        </div>
+                      </div>
+
+                      <!-- city -->
+                      <div class="mb-3">
+                        <div class="col-form-label">Select City:
+                            <select id="city-select" class="js-example-placeholder-multiple col-sm-12">
+                                <option selected="" value="0">Choose City</option>
+                                <!-- where the city would be rendered -->
+                            </select>
+                        </div>
+                      </div>
+
+                      <!-- Shipping Fees Result -->
+                      <div class="mb-3">
+                        <label for="validationCustom03">Shipping Fees By State & City:</label>
+                        <input class="form-control" id="validationCustom03" type="text" placeholder="Shipping Fees Charge..." required="" readonly>
+                        <label for="validationCustom03">...</label>
+                        <input class="form-control" id="validationCustom02" type="text" placeholder="Shipping Distance..." required="" readonly>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+
+                      
+                      </div>
+                    </form>
+                    <div class="btn-showcase text-end">
+                      <button id="updateShippingFeesButton" class="btn btn-primary" type="submit">Update</button>
+                      <input class="btn btn-light" type="button" value="Visit Tutorials" onclick="window.location.href='https://youtu.be/xobjsehjN_g?si=9qSTxQQCR7kGA9LM';">
                     </div>
                   </div>
                 </div>
@@ -955,7 +496,6 @@
           </div>
           <!-- Container-fluid Ends-->
         </div>
-
         <svg fill="none">
           <!-- header icon -->
           <symbol id="header-cart" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
@@ -3474,7 +3014,11 @@
                 <p class="mb-0">Copyright 2024 © Payuee theme by Payuee.</p>
               </div>
               <div class="col-md-6 p-0">
-                
+                <p class="heart mb-0">Hand crafted &amp; made with
+                  <svg class="footer-icon">
+                    <use href="#heart"></use>
+                  </svg>
+                </p>
               </div>
             </div>
           </div>
@@ -3517,8 +3061,8 @@
     <script src="js/select2/select2-custom.js"></script>
     <script src="js/email-app.js"></script>
     <script src="js/form-validation-custom.js"></script>
-    <script src="js/editors/quill.js"></script>
-    <script src="js/custom-add-product.js"></script>
+  <script src="js/editors/quill.js"></script>
+  <script src="js/custom-add-product.js"></script>
     <!-- Plugins JS Ends-->
      <!-- Toast file -->
     <script src="js/notify/custom-notify.js"></script>
@@ -3526,14 +3070,14 @@
     <script src="js/script.js"></script>
     <script src="js/theme-customizer/customizer.js"></script>
     <!-- Plugin used-->
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
     <!-- sweet alert -->
     <!-- <script src="js/sweet-alert/sweetalert.min.js"></script> -->
 
     <!-- this is to send emails or post -->
     <script src="js shipping/update-shipping-fees.js"></script>
   
-   </body>
+  </body>
 
 </html>
 
