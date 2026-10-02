@@ -201,7 +201,7 @@ function renderStores(stores, responseData) {
     }
 
     const DEFAULT_STORE_IMAGE = "https://payuee.com/e-shop/images/shop/shop_banner6.png";
-    const BASE_IMAGE_URL = "https://payuee.com/image/"; // adjust if needed
+    const BASE_IMAGE_URL = "https://img.payuee.com/"; // adjust if needed
 
     stores.forEach(store => {
 
