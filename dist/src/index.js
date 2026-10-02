@@ -47,8 +47,8 @@ export default {
 
     // /outfits/v/:path*
     // -> https://api.payuee.com/open/single_product/:path*
-    if (path.startsWith("/outfits/v/")) {
-      const productPath = path.substring("/outfits/v/".length);
+    if (path.startsWith("/outfitss/v/")) {
+      const productPath = path.substring("/outfitss/v/".length);
 
       return fetch(
         `https://api.payuee.com/open/single_product/${productPath}${url.search}`
