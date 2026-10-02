@@ -1,5 +1,5 @@
 name = "payuee-frontend"
-main = "src/index.js"
+main = "dist/src/index.js"
 compatibility_date = "2026-10-02"
 
 [assets]
