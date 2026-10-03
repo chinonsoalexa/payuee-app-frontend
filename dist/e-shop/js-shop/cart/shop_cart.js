@@ -62,32 +62,32 @@ function updateMainCart() {
             if (!cartProduct.reposted) {
                 if (cartProduct.selling_price !== 0) {
                     subTotal = `
-                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira((cartProduct.selling_price * cartProduct.quantity)  / 100)}</span>
                     `;
                 } else {
                     subTotal = `
-                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira((cartProduct.initial_cost * cartProduct.quantity)  / 100)}</span>
                     `;
                 }
             } else {
               subTotal = `
-                      <span class="shopping-cart__subtotal">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
+                      <span class="shopping-cart__subtotal">${formatNumberToNaira((cartProduct.reposted_selling_price * cartProduct.quantity)  / 100)}</span>
               `;
             }
 
             if (!cartProduct.reposted) {
                 if (cartProduct.selling_price !== 0) {
                     singlePrice = `
-                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
+                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost  / 100)}</span>
                     `;
                 } else {
                     singlePrice = `
-                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost)}</span>
+                      <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.initial_cost  / 100)}</span>
                     `;
                 }
             } else {
                 singlePrice = `
-                  <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.reposted_selling_price)}</span>
+                  <span class="shopping-cart__product-price">${formatNumberToNaira(cartProduct.reposted_selling_price  / 100)}</span>
                 `;
             }
 
@@ -231,16 +231,16 @@ function updateCartDrawer() {
           if (!cartProduct.reposted) {
               if (cartProduct.selling_price !== 0) {
                   price = `
-                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.selling_price * cartProduct.quantity)}</span>
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira((cartProduct.selling_price * cartProduct.quantity)) / 100}</span>
                   `;
               } else {
                   price = `
-                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.initial_cost * cartProduct.quantity)}</span>
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira((cartProduct.initial_cost * cartProduct.quantity)) / 100}</span>
                   `;
               }
           } else {
               price = `
-                  <span class="cart-drawer-item__price money price">${formatNumberToNaira(cartProduct.reposted_selling_price * cartProduct.quantity)}</span>
+                  <span class="cart-drawer-item__price money price">${formatNumberToNaira((cartProduct.reposted_selling_price * cartProduct.quantity)) / 100}</span>
               `;
           }
 
