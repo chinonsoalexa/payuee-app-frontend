@@ -389,7 +389,7 @@ function deactivateCurrentButton() {
         
 //         slideDiv += `
 //             <a href="https://app.payuee.com/car/${productURL}" class="product-link${index + 1}">
-//                 <img loading="lazy" src="https://img.payuee.com/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
+//                 <img loading="lazy" src="https://app.payuee.com/image/${image.url}" width="330" height="400" alt="${productTitle}" class="pc__img product-img${index + 1}">
 //             </a>
 //         `;
 //     });
@@ -540,8 +540,8 @@ function renderProducts(product) {
             imageUrls.forEach((url, num) => {
                 imagesHtml += `
                     <div class="swiper-slide">
-                        <a href="https://img.payuee.com/${url.url}" class="product-link${num + 1}">
-                            <img loading="lazy" src="https://img.payuee.com/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
+                        <a href="https://app.payuee.com/image/${url.url}" class="product-link${num + 1}">
+                            <img loading="lazy" src="https://app.payuee.com/image/${url.url}" width="330" height="400" alt="${title}" class="pc__img product-img${num + 1}">
                         </a>
                     </div>`;
             });

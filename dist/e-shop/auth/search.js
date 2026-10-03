@@ -69,7 +69,7 @@ function renderSearch(results) {
 
             // Check if there's an image to display
             const imageUrl = item.product_image?.[0]?.url
-                ? `https://img.payuee.com/${encodeURIComponent(item.product_image[0].url)}`
+                ? `https://app.payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
                 : '';
 
                 let url = ""
@@ -121,7 +121,7 @@ function renderSearch2(results) {
 
             // Check if there's an image to display
             const imageUrl = item.product_image?.[0]?.url
-                ? `https://img.payuee.com/${encodeURIComponent(item.product_image[0].url)}`
+                ? `https://app.payuee.com/image/${encodeURIComponent(item.product_image[0].url)}`
                 : '';
 
                 let url = ""

@@ -268,7 +268,7 @@ function renderProducts(product) {
         <img 
         id="image${product.ID}" 
         class="align-self-center img-fluid img-60" 
-        src="https://img.payuee.com/${product.product_orders[0].first_image_url}" 
+        src="https://app.payuee.com/image/${product.product_orders[0].first_image_url}" 
         alt="${product.title}" 
         onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
     </td>
@@ -569,7 +569,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="https://img.payuee.com/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://app.payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>${product.net_weight}kg</td>
