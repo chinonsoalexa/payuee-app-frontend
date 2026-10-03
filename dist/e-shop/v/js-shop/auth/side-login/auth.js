@@ -125,11 +125,43 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 });
 
+// Start loading state
+function startLoading(buttonId) {
+  const btn = document.getElementById(buttonId);
+  if (!btn) return;
+
+  btn.disabled = true;
+
+  // Only save once
+  if (!btn.dataset.originalText) {
+    btn.dataset.originalText = btn.innerHTML;
+  }
+
+  btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Loading...`;
+}
+
+// Stop loading state
+function stopLoading(buttonId, isError = false) {
+  const btn = document.getElementById(buttonId);
+  if (!btn) return;
+
+  btn.disabled = false;
+
+  if (btn.dataset.originalText) {
+    btn.innerHTML = btn.dataset.originalText;
+  }
+
+  if (isError) {
+    btn.classList.add("btn-error-shake");
+    setTimeout(() => btn.classList.remove("btn-error-shake"), 600);
+  }
+}
+
 // Function to fetch and populate state data
 async function loadStates() {
     try {
         // Update the URL to the correct path of your JSON file
-        const response = await fetch('https://app.payuee.com/e-shop/v/nigeria_states.json');
+        const response = await fetch('https://payuee.com/e-shop/v/nigeria_states.json');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -150,7 +182,7 @@ async function loadStates() {
 // Function to fetch and populate city data based on state_iso2
 async function loadCities(stateIso2) {
     try {
-        const response = await fetch('https://app.payuee.com/e-shop/v/nigeria_cities.json'); // Update with your actual cities JSON URL
+        const response = await fetch('https://payuee.com/e-shop/v/nigeria_cities.json'); // Update with your actual cities JSON URL
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -300,6 +332,8 @@ function toggleClassById(elementId, className) {
 }
 
 async function loginEshop(email, password) {
+    startLoading("loginButton"); // 🚀 Start loading
+
     const apiUrl = "https://api.payuee.com/sign-in";
 
     const requestOptions = {
@@ -321,13 +355,17 @@ async function loginEshop(email, password) {
             const errorData = await response.json();
 
             if (errorData.error === 'Your account has been suspended. Please contact support for more details.') {
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 // need to do a data of just null event 
                 showToastMessageE('Your account has been suspended. Please contact support for more details.');
                 // displayErrorMessage();
             } else if (errorData.error === 'Invalid email or password') {
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 // need to do a data of just null event 
                 showToastMessageE('Invalid email or password');
             } else {
+                stopLoading("loginButton", true); // ❌ error -> shake + flash red
+                showToastMessageE(errorData.error || 'Error logging in. Please try again');
                 // displayErrorMessage();
             }
 
@@ -335,6 +373,7 @@ async function loginEshop(email, password) {
         }
 
         const responseData = await response.json();
+        stopLoading("loginButton");
         showToastMessageS('Login successful');
         
         // sync cart with server
@@ -349,9 +388,10 @@ async function loginEshop(email, password) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
+        stopLoading("loginButton");
 
     }
 }
@@ -399,6 +439,8 @@ function getCartFromStorage(key) {
 }
 
 async function registerEshop(email, password, name) {
+    startLoading("registerButton"); // 🚀 Start loading
+
     const apiUrl = "https://api.payuee.com/app/sign-up";
 
     const requestOptions = {
@@ -426,14 +468,17 @@ async function registerEshop(email, password, name) {
 
             if (errorData.error === 'User already exist, please verify your email ID') {
                 // need to do a data of just null event 
+                stopLoading("registerButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Please check your email to verify your email ID');
                 //  send user email verification notification
                 resendOtpEmail(email);
                 toggleOTP();
             } else if (errorData.error === 'User already exist, please login') {
                 // need to do a data of just null event 
+                stopLoading("registerButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('user already exist, please login');
             } else {
+                stopLoading("registerButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Error signing you up. Please try again');
             }
 
@@ -441,11 +486,12 @@ async function registerEshop(email, password, name) {
         }
 
         const responseData = await response.json();
+        stopLoading("registerButton");
         toggleOTP();
         showToastMessageS('Please verify your email address');
         //  Send email verification email
 } finally {
-
+        stopLoading("registerButton");
     }
 }
 
@@ -542,7 +588,7 @@ async function verifyEshop(Email, SentOTP) {
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://app.payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
         }
 } finally {
 

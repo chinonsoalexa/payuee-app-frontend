@@ -108,3 +108,24 @@ body {
 #download-btn:hover {
   background-color: #2980b9;
 }
+
+.toast-img img {
+    width: 30px; /* Adjust width as needed */
+    height: 30px; /* Adjust height as needed */
+    object-fit: cover; /* Ensures the image fills the space without distortion */
+}
+
+.filters-container {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto;
+}
+
+/* Shake animation for error feedback in login and registration buttons */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
