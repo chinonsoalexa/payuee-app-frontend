@@ -98,7 +98,7 @@ function updateMainCart() {
             cartItem.innerHTML = `
                 <td>
                   <div class="shopping-cart__product-item">
-                    <img loading="lazy" src="${"/image/" + cartProduct.product_image[0].url}" width="120" height="120" alt="">
+                    <img loading="lazy" src="${"https://img.payuee.com/" + cartProduct.product_image[0].url}" width="120" height="120" alt="">
                   </div>
                 </td>
                 <td>
@@ -253,7 +253,7 @@ function updateCartDrawer() {
               <div class="position-relative">
                 <img loading="lazy" class="cart-drawer-item__img" 
      src="${(cartProduct.product_image && cartProduct.product_image[0]?.url) 
-             ? "/image/" + cartProduct.product_image[0].url 
+             ? "https://img.payuee.com/" + cartProduct.product_image[0].url 
              : '../../e-shop/images/default_img.png'}" 
      alt="${cartProduct.title}" 
      onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
