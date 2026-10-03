@@ -295,7 +295,7 @@ function renderProducts(product) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="prooduct-details-box">                                 
-            <div class="d-flex"><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://app.payuee.com/image/"+product.product_orders[0].first_image_url}" alt="${product.title}">
+            <div class="d-flex"><img id="image${product.ID}" class="align-self-center img-fluid img-60" src="${"https://img.payuee.com/"+product.product_orders[0].first_image_url}" alt="${product.title}">
                 <div class="flex-grow-1 ms-3">
                     <div id="title${product.ID}" class="product-name">
                     <h6><a href="#" id="${product.ID}">${product.product_orders[0].title}</a></h6>
@@ -602,7 +602,7 @@ function renderOrderedProducts(products) {
       // Create a new row for each product
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><img src="https://app.payuee.com/image/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
+        <td><img src="https://img.payuee.com/${product.first_image_url}" alt="${product.title}" class="custom-product-image"></td>
         <td>${product.title}</td>
         <td>${product.quantity}</td>
         <td>${product.net_weight}kg</td>

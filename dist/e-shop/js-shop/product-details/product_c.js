@@ -107,7 +107,7 @@ function downloadProduct(responseData) {
 
   const productImage = document.querySelector(".product-image");
   
-  productImage.src = "https://app.payuee.com/image/" + responseData.success.product_image[0].url;
+  productImage.src = "https://img.payuee.com/" + responseData.success.product_image[0].url;
 
   const productNameElement = document.querySelector(".product-name");
   productNameElement.textContent = responseData.success.title;
@@ -637,7 +637,7 @@ quantityInput.addEventListener('change', () => {
   
     let imagesHtml = '';
     imageUrls.forEach((url) => {
-      const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
+      const imageUrl = url.url ? `https://img.payuee.com/${url.url}` : defaultImageUrl;
   
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
@@ -662,7 +662,7 @@ quantityInput.addEventListener('change', () => {
     
     let imagesHtml = '';
     imageUrls.forEach((url) => {
-      const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
+      const imageUrl = url.url ? `https://img.payuee.com/${url.url}` : defaultImageUrl;
       imagesHtml += `
         <div class="swiper-slide product-single__image-item">
           <img loading="lazy" class="h-auto" src="${imageUrl}" width="104" height="104" alt="${title}">
@@ -1010,7 +1010,7 @@ function renderUseGuide(product) {
       <div class="modal-body">
         <div class="size-guide__wrapper">
           <div class="size-guide__image">
-            <img loading="lazy" src="${"https://app.payuee.com/image/"+product.Image1}" alt="Product Image">
+            <img loading="lazy" src="${"https://img.payuee.com/"+product.Image1}" alt="Product Image">
           </div>
           <div class="size-guide__detail">
             <h5>Dosage</h5>
@@ -1279,14 +1279,14 @@ function renderRecommendedProduct(products) {
     <div class="pc__img-wrapper">
         <a href="${urll}">
             <img loading="lazy" 
-                src="https://app.payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="https://img.payuee.com/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
                 class="pc__img" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
             <img loading="lazy" 
-                src="https://app.payuee.com/image/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
+                src="https://img.payuee.com/${product.product_image && product.product_image.length > 0 ? product.product_image[0].url : '../../e-shop/images/default_img.png'}" 
                 width="330" 
                 height="400" 
                 alt="${product.title}" 
@@ -1623,7 +1623,7 @@ function updateCartDrawer() {
           cartItem.innerHTML = `
               <div class="position-relative">
                 <img loading="lazy" class="cart-drawer-item__img" 
-                src="${cartProduct.Image1 ? "https://app.payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
+                src="${cartProduct.Image1 ? "https://img.payuee.com/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
                 alt="${cartProduct.title}" 
                 onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
 

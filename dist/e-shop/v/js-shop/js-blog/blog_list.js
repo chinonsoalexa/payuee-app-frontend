@@ -54,7 +54,7 @@ function renderBlogs(blog) {
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
         <div class="blog-list__item-image">
-            <img loading="lazy" class="h-auto" src="https://app.payuee.com/image/${blog.Image1}" width="680" height="493" alt="${blog.title}">
+            <img loading="lazy" class="h-auto" src="https://img.payuee.com/${blog.Image1}" width="680" height="493" alt="${blog.title}">
           </div>
           <div class="blog-list__item-detail">
             <div class="blog-list__item-meta">
@@ -421,7 +421,7 @@ function updateCartNumber() {
             cartItem.innerHTML = `
                 <div class="position-relative">
                   <img loading="lazy" class="cart-drawer-item__img" 
-                  src="${cartProduct.Image1 ? "https://app.payuee.com/image/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
+                  src="${cartProduct.Image1 ? "https://img.payuee.com/" + cartProduct.Image1 : '../../e-shop/images/default_img.png'}" 
                   alt="${cartProduct.title}" 
                   onerror="this.onerror=null; this.src='../../e-shop/images/default_img.png';">
   

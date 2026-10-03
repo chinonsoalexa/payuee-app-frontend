@@ -571,7 +571,7 @@ function renderProducts(product) {
     function renderProductImages(imageUrls, title) {
         const defaultImageUrl = "../../e-shop/images/default_img.png";
         const productImageUrl = imageUrls && imageUrls.length > 0
-            ? `https://app.payuee.com/image/${imageUrls[0].url}`
+            ? `https://img.payuee.com/${imageUrls[0].url}`
             : defaultImageUrl;
     
         return `
@@ -731,11 +731,11 @@ function reinitializeSwiper(id) {
 function renderProductImages2(imageUrls, title, urll) {
     const defaultImageUrl = "../../e-shop/images/default_img.png";
     const productImageUrl = imageUrls && imageUrls.length > 0
-        ? `https://app.payuee.com/image/${imageUrls[0].url}`
+        ? `https://img.payuee.com/${imageUrls[0].url}`
         : defaultImageUrl;
 
     const productImageUrl2 = imageUrls && imageUrls.length > 0
-        ? `https://app.payuee.com/image/${imageUrls[0].url}`
+        ? `https://img.payuee.com/${imageUrls[0].url}`
         : defaultImageUrl;
 
     return `

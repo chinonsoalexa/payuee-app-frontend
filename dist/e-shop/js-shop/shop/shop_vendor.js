@@ -98,7 +98,7 @@ async function getProducts() {
         // Call the function with the default and main image paths
         loadMainImage(
             "/e-shop/images/shop/shop_banner6.png",
-            "https://app.payuee.com/image/" + responseData.vendor.shop_image
+            "https://img.payuee.com/" + responseData.vendor.shop_image
         );
 
         storeSeo(responseData.vendor);
@@ -275,7 +275,7 @@ function storeSeo(storeData) {
 
     const ogImage = document.createElement('meta');
     ogImage.setAttribute('property', 'og:image');
-    ogImage.setAttribute('content', "https://app.payuee.com/image/" + storeData.shop_image);
+    ogImage.setAttribute('content', "https://img.payuee.com/" + storeData.shop_image);
     head.appendChild(ogImage);
 
     const ogTitle = document.createElement('meta');
@@ -643,7 +643,7 @@ function renderProducts(product, subscription, userId) {
             // Use the provided image URLs
             imageUrls.forEach((url, num) => {
                 // Use a default image URL if any product image URL is missing or invalid
-                const imageUrl = url.url ? `https://app.payuee.com/image/${url.url}` : defaultImageUrl;
+                const imageUrl = url.url ? `https://img.payuee.com/${url.url}` : defaultImageUrl;
 
                 imagesHtml += `
               <div class="swiper-slide">
@@ -1178,7 +1178,7 @@ function renderProducts2(products) {
         productItem.innerHTML = `
           <div class="d-flex align-items-center">
             <a href="${url}" class="text-decoration-none text-dark d-flex align-items-center w-100">
-                <img src="https://app.payuee.com/image/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
+                <img src="https://img.payuee.com/${product.product_image[0].url}" alt="${product.title}" class="product-image me-3" width="50" height="50">
                 <div class="text-content">
                     <span class="text-secondary">Title: ${product.title}</span><br>
                     <span>Qty: ${product.stock_remaining}</span>
