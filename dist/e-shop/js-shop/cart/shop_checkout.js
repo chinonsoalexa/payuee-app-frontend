@@ -306,7 +306,7 @@ function getItemTotal(item) {
     else if (Number.isFinite(initial)) unit = initial;
     else if (Number.isFinite(selling)) unit = selling;
 
-    return (unit * qty) / 100;  // convert kobo to naira
+    return (unit * qty);  // convert kobo to naira
 }
 
 function renderCheckoutProducts(cartArg) {
