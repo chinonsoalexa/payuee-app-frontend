@@ -272,7 +272,7 @@ async function getAvailableVendorsByEail(query) {
 }
 
 async function updateShippersOrderStatus(orderID, vendorID) {
-    const apiUrl = "https://api.payuee.com/update-vendor-shipper";
+    const apiUrl = "https://api.payuee.com/vendor/update-vendor-shipper";
 
     // Construct the request body
     const requestBody = {
@@ -373,7 +373,7 @@ function renderProducts(product) {
 }
 
 async function updateOrderStatus(orderID, orderStatus) {
-    const apiUrl = "https://api.payuee.com/update-vendor-status";
+    const apiUrl = "https://api.payuee.com/vendor/update-vendor-status";
 
     // Construct the request body
     const requestBody = {
