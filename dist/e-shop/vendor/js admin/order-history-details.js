@@ -207,7 +207,7 @@ function RenderProductDetails(responseData) {
         // Convert hours to 12-hour format
         hours = hours % 12 || 12; // Converts 0 (midnight) to 12
 
-        const status = getCancellationStatus(responseData.success.order_history);
+        const status = getCancellationStatus(responseData.success);
 
         let orderType = "";
 
