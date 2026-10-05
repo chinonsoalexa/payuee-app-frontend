@@ -533,7 +533,7 @@ async function updateShippersOrderStatus(orderID, vendorID) {
     // Construct the request body
     const requestBody = {
         order_id: orderID,
-        vendor_id: vendorID,
+        vendor_id: +vendorID,
     };
 
     const requestOptions = {
