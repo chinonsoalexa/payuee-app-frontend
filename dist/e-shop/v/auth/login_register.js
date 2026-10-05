@@ -1,150 +1,48 @@
-var stateIsoCode;
 var stateSelected;
 var citySelected;
+var lgaSelected;
+var wardSelected;
 var latitude = 0.0;
 var longitude = 0.0;
 
-// document.addEventListener('DOMContentLoaded', async function () {
-//     const loginButton = document.getElementById('loginButton'); // Target the login button
-//     const loginForm = document.forms['login-form'];
+// ===== Location data (single detailed JSON: state -> lgas -> wards) =====
+// Adjust this URL to wherever the detailed file is hosted
+const NIGERIA_DATA_URL = 'https://payuee.com/e-shop/v/nigeria_state.json';
+const MAX_RENDERED_CITIES = 300; // keeps the dropdown fast for big states (search narrows it down)
 
-//     const registerButton1 = document.getElementById('registerButton1'); // Target the register button
-//     const registerForm = document.forms['register-form'];
+let nigeriaData = [];   // full dataset
+let currentLgas = [];   // LGAs (with wards) of the selected state
 
-//     const verifyButton1 = document.getElementById('verifyButton1'); // Target the verify button
-//     const verifyForm = document.forms['register-form'];
+const byId = (id) => document.getElementById(id);
 
-//     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
-//     document.querySelector('.js-show-register').addEventListener('click', function(e) {
-//         e.preventDefault();
-//         const registerTab = new bootstrap.Tab(document.getElementById('register-tab'));
-//         registerTab.show();
-//     });
-
-//     await loadStates();
-
-//     // ✅ Now add once
-//     loginButton.addEventListener('click', loginButtonClickHandler);
-
-//     // Handle register button click
-//     const registerButton1ClickHandler = function (event) {
-//         event.preventDefault();
-//         event.stopPropagation();
-        
-//         const registerData = {
-//             FirstName: registerForm.register_username.value.trim(),
-//             email: registerForm.register_email.value.trim(),
-//             password: registerForm.register_password.value.trim(),
-//         };
-    
-//         if (!registerData.FirstName || !registerData.email || !registerData.password) {
-//             showToastMessageE('Please fill in all fields.');
-//             return;
-//         }
-    
-//         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//         if (!emailPattern.test(registerData.email)) {
-//             showToastMessageE('Please enter a valid email address.');
-//             return;
-//         }
-    
-//         if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
-//             showToastMessageE('Please select your state & city');
-//             return;
-//         }
-    
-//         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-//         if (!passwordPattern.test(registerData.password)) {
-//             showToastMessageE('Password must be at least 8 characters long and include at least one letter and one number.');
-//             return;
-//         }
-
-//         registerEshop(registerData.email, registerData.password, registerData.FirstName);
-//     };
-
-//     // Remove previous listener (if any) and add the event listener
-//     registerButton1.removeEventListener('click', registerButton1ClickHandler);
-//     registerButton1.addEventListener('click', registerButton1ClickHandler);
-
-//     // Handle verify button click
-//     const verifyButton1ClickHandler = function (event) {
-//         event.preventDefault();
-        
-//         const verifyData = {
-//             Email: verifyForm.register_email.value.trim(),
-//             SentOTP: verifyForm.register_otp.value.trim(),
-//         };
-    
-//         const otpPattern = /^\d{6,}$/;
-//         if (!otpPattern.test(verifyData.SentOTP)) {
-//             showToastMessageE('Invalid OTP');
-//             return;
-//         }
-    
-//         verifyEshop(verifyData.Email, verifyData.SentOTP);
-//     };
-
-//     // Remove previous listener (if any) and add the event listener
-//     verifyButton1.removeEventListener('click', verifyButton1ClickHandler);
-//     verifyButton1.addEventListener('click', verifyButton1ClickHandler);
-// });
-
-// function loginButtonClickHandler(event) {
-//     event.preventDefault();
-//     event.stopPropagation();
-
-//     const loginForm = document.forms['login-form'];
-//     const loginData = {
-//         email: loginForm.login_email.value.trim(),
-//         password: loginForm.login_password.value.trim(),
-//     };
-
-//     if (!loginData.email || !loginData.password) {
-//         showToastMessageE('Please fill in both email and password fields.');
-//         return;
-//     }
-
-//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     if (!emailPattern.test(loginData.email)) {
-//         showToastMessageE('Please enter a valid email address.');
-//         return;
-//     }
-
-//     loginEshop(loginData.email, loginData.password);
-// }
-
-
-const phoneInput = document.getElementById("customerPhoneRegisterInput");
-
-phoneInput.addEventListener("input", (e) => {
-    let value = e.target.value;
-
-    // Remove all non-digits
-    value = value.replace(/\D/g, "");
-
-    // Limit to 11 digits max
-    value = value.slice(0, 11);
-
-    e.target.value = value;
-});
+const phoneInput = byId("customerPhoneRegisterInput");
+if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+        // digits only, max 11
+        e.target.value = e.target.value.replace(/\D/g, "").slice(0, 11);
+    });
+}
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const loginButton = document.getElementById('loginButton');
+    const loginButtonn = byId('loginButtonn');
     const loginForm = document.forms['login-form'];
 
-    const registerButton1 = document.getElementById('registerButton1');
+    const registerButton1 = byId('registerButton1');
     const registerForm = document.forms['register-form'];
 
-    const verifyButton1 = document.getElementById('verifyButton1');
+    const verifyButton1 = byId('verifyButton1');
     const verifyForm = document.forms['register-form'];
 
     // Ensure that when "Create Account" is clicked, it shows the "Register" tab.
-    document.querySelector('.js-show-register').addEventListener('click', function(e) {
+    document.querySelector('.js-show-register').addEventListener('click', function (e) {
         e.preventDefault();
-        const registerTab = new bootstrap.Tab(document.getElementById('register-tab'));
+        const registerTab = new bootstrap.Tab(byId('register-tab'));
         registerTab.show();
     });
 
+    setCityVisibility(false); // city stays hidden until a state is chosen
+
+    setupLocationPickers(); // attach listeners ONCE
     await loadStates();
 
     // ================= LOGIN =================
@@ -153,9 +51,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         event.preventDefault();
         event.stopPropagation();
 
-        if (loginInProgress) return; // ⛔ prevent multiple clicks
+        if (loginInProgress) return;
         loginInProgress = true;
-        loginButton.disabled = true;
+        loginButtonn.disabled = true;
 
         try {
             const loginData = {
@@ -177,10 +75,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             await loginEshop(loginData.email, loginData.password);
         } finally {
             loginInProgress = false;
-            loginButton.disabled = false;
+            loginButtonn.disabled = false;
         }
     }
-    loginButton.addEventListener('click', loginButtonClickHandler);
+    loginButtonn.addEventListener('click', loginButtonClickHandler);
 
     // ================= REGISTER =================
     let registerInProgress = false;
@@ -211,7 +109,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return;
             }
 
-            if (typeof latitude === 'undefined' || latitude <= 0 || typeof longitude === 'undefined' || longitude <= 0) {
+            if (!stateSelected || !citySelected ||
+                !Number.isFinite(latitude) || !Number.isFinite(longitude) ||
+                latitude <= 0 || longitude <= 0) {
                 showToastMessageE('Please select your state & city');
                 return;
             }
@@ -260,213 +160,214 @@ document.addEventListener('DOMContentLoaded', async function () {
     verifyButton1.addEventListener('click', verifyButton1ClickHandler);
 });
 
-let nigeriaData = [];
+/* ---------- States / cities (single JSON: state -> lgas -> wards) ---------- */
 
-// Load states from JSON
 async function loadStates() {
     try {
-        const response = await fetch("nigeria_state.json");
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
+        const response = await fetch(NIGERIA_DATA_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         nigeriaData = await response.json();
         renderStates(nigeriaData);
-
-        // Hook state search input
-        const searchInput = document.getElementById("stateSearchInput");
-        searchInput.addEventListener("input", function () {
-            const searchTerm = searchInput.value;
-            filterStates(searchTerm, nigeriaData);
-        });
-
-    } catch (error) {
-        console.error("Error loading states:", error);
+    } catch (err) {
+        console.error('Error loading location data:', err);
     }
 }
 
-// Load cities (LGAs + wards) for a selected state
-async function loadCities(stateName) {
+function loadCities(stateName) {
     const stateData = nigeriaData.find(s => s.state === stateName);
-    if (stateData && stateData.lgas) {
-        renderCities(stateData.lgas, stateName);
+    currentLgas = (stateData && stateData.lgas) ? stateData.lgas : [];
+    renderCities(currentLgas, stateName);
+}
 
-        // Hook city search input
-        const citySearchInput = document.getElementById("citySearchInput");
-        citySearchInput.addEventListener("input", function () {
-            const searchTerm = citySearchInput.value;
-            filterCities(searchTerm, stateData.lgas, stateName);
+// Attach all click/search listeners once (render functions are called many times,
+// so adding listeners inside them would stack duplicates)
+function setupLocationPickers() {
+    const stateList = byId('state-list');
+    const cityList = byId('city-list');
+    const stateSearch = byId('stateSearchInput');
+    const citySearch = byId('citySearchInput');
+
+    if (stateSearch) {
+        stateSearch.addEventListener('input', () => filterStates(stateSearch.value, nigeriaData));
+    }
+    if (citySearch) {
+        citySearch.addEventListener('input', () => filterCities(citySearch.value, currentLgas));
+    }
+
+    if (stateList) {
+        stateList.addEventListener('click', function (event) {
+            const item = event.target.closest('.js-search-select');
+            if (!item || !item.dataset.state) return;
+
+            const selectedState = item.dataset.state;
+            stateSelected = selectedState;
+
+            // Reset everything city-related
+            citySelected = '';
+            lgaSelected = '';
+            wardSelected = '';
+            latitude = 0.0;
+            longitude = 0.0;
+
+            byId('search-dropdown').value = selectedState;
+            byId('city-dropdown').value = '';
+            if (citySearch) citySearch.value = '';
+
+            toggleClassById("formeStateList", "js-content_visible");
+            setCityVisibility(true);
+            loadCities(selectedState);
         });
+    }
 
-    } else {
-        renderCities([], stateName);
+    if (cityList) {
+        cityList.addEventListener('click', function (event) {
+            const item = event.target.closest('.js-search-select');
+            if (!item || !item.dataset.city) return;
+
+            citySelected = item.dataset.city;      // "LGA - Ward"
+            lgaSelected = item.dataset.lga;
+            wardSelected = item.dataset.ward;
+            latitude = parseFloat(item.dataset.latitude);
+            longitude = parseFloat(item.dataset.longitude);
+
+            byId('city-dropdown').value = citySelected;
+            toggleClassById("formeCityList", "js-content_visible");
+        });
     }
 }
 
-// Render states into the <ul id="state-list">
 function renderStates(states) {
-    const stateList = document.getElementById("state-list");
-    stateList.innerHTML = "";
+    const stateList = byId('state-list');
+    if (!stateList) return;
+    stateList.innerHTML = '';
 
     if (states.length === 0) {
-        const li = document.createElement("li");
-        li.textContent = "No states found";
-        li.classList.add("search-suggestion__item");
+        const li = document.createElement('li');
+        li.textContent = 'No states found';
+        li.classList.add('search-suggestion__item');
         stateList.appendChild(li);
         return;
     }
 
     states.forEach(state => {
-        const li = document.createElement("li");
+        const li = document.createElement('li');
         li.textContent = state.state;
-        li.classList.add("search-suggestion__item", "js-search-select");
+        li.classList.add('search-suggestion__item', 'js-search-select');
         li.dataset.state = state.state;
         stateList.appendChild(li);
     });
-
-    // Add click event
-    stateList.onclick = function (event) {
-        if (event.target.classList.contains("js-search-select")) {
-            stateSelected = event.target.dataset.state; // ✅ update correct global
-            document.getElementById("search-dropdown").value = stateSelected;
-            document.getElementById("city-dropdown").value = ""; // reset city
-            toggleClassById("formeStateList", "js-content_visible");
-            loadCities(stateSelected);
-        }
-    };
-
 }
 
-// Render cities into the <ul id="city-list">
 function renderCities(cities, stateName) {
-    const cityList = document.getElementById("city-list");
-    cityList.innerHTML = "";
+    const cityList = byId('city-list');
+    if (!cityList) return;
+    cityList.innerHTML = '';
 
-    if (cities.length === 0) {
-        const li = document.createElement("li");
-        li.textContent = "No cities found";
-        li.classList.add("search-suggestion__item");
+    let count = 0;
+    let truncated = false;
+
+    outer:
+    for (const city of cities) {
+        if (!city.wards) continue;
+        for (const ward of city.wards) {
+            if (count >= MAX_RENDERED_CITIES) { truncated = true; break outer; }
+
+            const li = document.createElement('li');
+            const label = `${city.name} - ${ward.name}`;
+            li.textContent = label;
+            li.classList.add('search-suggestion__item', 'js-search-select');
+            li.dataset.state = stateName || stateSelected;
+            li.dataset.city = label;
+            li.dataset.lga = city.name;
+            li.dataset.ward = ward.name;
+            li.dataset.latitude = ward.latitude;
+            li.dataset.longitude = ward.longitude;
+            cityList.appendChild(li);
+            count++;
+        }
+    }
+
+    if (count === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'No cities found';
+        li.classList.add('search-suggestion__item');
         cityList.appendChild(li);
         return;
     }
 
-    cities.forEach(city => {
-        if (!city.wards) return;
-        city.wards.forEach(ward => {
-            const fullName = `${city.name} - ${ward.name}`; // ✅ combined text
-            const li = document.createElement("li");
-            li.textContent = fullName;
-            li.classList.add("search-suggestion__item", "js-search-select");
-
-            // Store both city + ward for later
-            li.dataset.city = city.name;
-            li.dataset.ward = ward.name;
-            li.dataset.fullName = fullName; // ✅ use this for display/search
-            li.dataset.latitude = ward.latitude;
-            li.dataset.longitude = ward.longitude;
-            cityList.appendChild(li);
-        });
-    });
-
-    // Add click event
-    cityList.onclick = function (event) {
-        if (event.target.classList.contains("js-search-select")) {
-            const fullName = event.target.dataset.fullName;
-
-            citySelected = fullName; // ✅ save City - Ward format
-            latitude = parseFloat(event.target.dataset.latitude);
-            longitude = parseFloat(event.target.dataset.longitude);
-
-            // Show "City - Ward" in the dropdown input
-            document.getElementById("city-dropdown").value = fullName;
-
-            toggleClassById("formeCityList", "js-content_visible");
-        }
-    };
+    if (truncated) {
+        const li = document.createElement('li');
+        li.textContent = 'Keep typing to narrow down results...';
+        li.classList.add('search-suggestion__item');
+        cityList.appendChild(li);
+    }
 }
 
 function filterStates(term, states) {
-    const filtered = states.filter(s =>
-        s.state.toLowerCase().includes(term.toLowerCase())
-    );
-    renderStates(filtered);
+    const t = term.toLowerCase();
+    renderStates(states.filter(s => s.state.toLowerCase().includes(t)));
 }
 
-function filterCities(term, cities, stateName) {
+function filterCities(term, cities) {
+    const t = term.toLowerCase();
     const filtered = [];
 
     cities.forEach(city => {
         if (!city.wards) return;
-
-        const matchedWards = city.wards.filter(ward => {
-            const fullName = `${city.name} - ${ward.name}`.toLowerCase();
-            return fullName.includes(term.toLowerCase()); // ✅ match "city - ward"
-        });
-
-        if (matchedWards.length > 0) {
-            filtered.push({ ...city, wards: matchedWards });
+        const matchingWards = city.wards.filter(ward =>
+            `${city.name} - ${ward.name}`.toLowerCase().includes(t)
+        );
+        if (city.name.toLowerCase().includes(t) || matchingWards.length > 0) {
+            filtered.push({
+                ...city,
+                wards: matchingWards.length > 0 ? matchingWards : city.wards
+            });
         }
     });
 
-    renderCities(filtered, stateName);
+    renderCities(filtered, stateSelected);
 }
 
-// function filterStates(term, states) {
-//     const filtered = states.filter(state => 
-//         state.name.toLowerCase().includes(term.toLowerCase())
-//     );
-//     renderStates(filtered);
-// }
+/* ---------- Toasts / helpers ---------- */
 
-// function filterCities(term, cities) {
-//     const filtered = cities.filter(state => 
-//         state.name.toLowerCase().includes(term.toLowerCase())
-//     );
-//     renderCities(filtered);
-// }
-
-// Show success toast
 function showToastMessageS(message) {
-    document.getElementById('toastMessage2').textContent = message;
-    const toastElement = document.getElementById('liveToast3');
-    const toast = new bootstrap.Toast(toastElement);
+    byId('toastMessage2').textContent = message;
+    const toast = new bootstrap.Toast(byId('liveToast3'));
     toast.show();
 }
 
-// Show error toast
 function showToastMessageE(message) {
-    document.getElementById('toastError').textContent = message;
-    const toastElement = document.getElementById('liveToast1');
-    const toast = new bootstrap.Toast(toastElement);
+    byId('toastError').textContent = message;
+    const toast = new bootstrap.Toast(byId('liveToast1'));
     toast.show();
+}
+
+function setCityVisibility(show) {
+    const cityDiv = byId('cityDiv');
+    if (cityDiv) cityDiv.classList.toggle('d-none', !show);
 }
 
 function toggleClassById(elementId, className) {
-    const element = document.getElementById(elementId);
+    const element = byId(elementId);
     if (element) {
-        if (element.classList.contains(className)) {
-            // If the class exists, remove it
-            element.classList.remove(className);
-        } else {
-            // If the class does not exist, add it
-            element.classList.add(className);
-        }
+        element.classList.toggle(className);
     }
 }
 
+/* ---------- Auth API calls ---------- */
+
 async function loginEshop(email, password) {
-    startLoading("loginButton"); // 🚀 Start loading
+    startLoading("loginButtonn");
 
     const apiUrl = "https://api.payuee.com/sign-in";
 
     const requestOptions = {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify({
-            email: email,
-            password: password,
-        })
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify({ email: email, password: password })
     };
 
     try {
@@ -476,40 +377,30 @@ async function loginEshop(email, password) {
             const errorData = await response.json();
 
             if (errorData.error === 'Your account has been suspended. Please contact support for more details.') {
-                // need to do a data of just null event 
-                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Your account has been suspended. Please contact support for more details.');
-                // displayErrorMessage();
             } else if (errorData.error === 'Invalid email or password') {
-                // need to do a data of just null event 
-                stopLoading("loginButton", true); // ❌ error -> shake + flash red
                 showToastMessageE('Invalid email or password');
-            } else {
-                // displayErrorMessage();
             }
-                stopLoading("loginButton", true); // ❌ error -> shake + flash red
-
+            stopLoading("loginButtonn", true);
             return;
         }
 
         const responseData = await response.json();
         showToastMessageS('Login successful');
-        stopLoading("loginButton"); // ✅ Always stop loading
-        
+        stopLoading("loginButtonn");
+
         syncGuestCartToServer();
-        
-        // Check if `redirectTo` exists in the URL
+
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
         localStorage.setItem('auth', 'true');
 
-        // Redirect to `redirectTo` if it exists, else go to a default page
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home';
         }
-} finally {
+    } finally {
 
     }
 }
@@ -543,11 +434,9 @@ function syncGuestCartToServer() {
     .catch(err => console.error(err));
   });
 
-  // Optionally remove cart_guest after syncing
   localStorage.removeItem('cart_guest');
 }
 
-// Helper to safely parse localStorage
 function getCartFromStorage(key) {
   try {
     return JSON.parse(localStorage.getItem(key)) || [];
@@ -556,14 +445,12 @@ function getCartFromStorage(key) {
   }
 }
 
-// Start loading state
 function startLoading(buttonId) {
-  const btn = document.getElementById(buttonId);
+  const btn = byId(buttonId);
   if (!btn) return;
 
   btn.disabled = true;
 
-  // Only save once
   if (!btn.dataset.originalText) {
     btn.dataset.originalText = btn.innerHTML;
   }
@@ -571,9 +458,8 @@ function startLoading(buttonId) {
   btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Loading...`;
 }
 
-// Stop loading state
 function stopLoading(buttonId, isError = false) {
-  const btn = document.getElementById(buttonId);
+  const btn = byId(buttonId);
   if (!btn) return;
 
   btn.disabled = false;
@@ -588,25 +474,24 @@ function stopLoading(buttonId, isError = false) {
   }
 }
 
-
 async function registerEshop(email, phone, password, name) {
-    startLoading("registerButton1"); // 🚀 Start loading
+    startLoading("registerButton1");
     const apiUrl = "https://api.payuee.com/app/sign-up";
 
     const requestOptions = {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({
             FirstName: name,
             email: email,
             phone_number: phone.toString(),
             password: password,
             state: stateSelected,
-            city: citySelected,
-            latitude: latitude,
+            city: citySelected,      // "LGA - Ward"
+            // lga: lgaSelected,     // uncomment if your backend accepts them
+            // ward: wardSelected,
+            latitude: latitude,      // now ward-level coordinates
             longitude: longitude,
         })
     };
@@ -618,32 +503,29 @@ async function registerEshop(email, phone, password, name) {
             const errorData = await response.json();
 
             if (errorData.error === 'User already exist, please verify your email ID') {
-                // need to do a data of just null event 
-                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
+                stopLoading("registerButton1", true);
                 showToastMessageS('Please check your email to verify your email ID');
-                //  send user email verification notification
                 resendOtpEmail(email);
                 toggleOTP();
                 return;
             } else if (errorData.error === 'User already exist, please login') {
-                // need to do a data of just null event 
-                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
+                stopLoading("registerButton1", true);
                 showToastMessageE('user already exist, please login');
             } else {
-                stopLoading("registerButton1", true); // ❌ error -> shake + flash red
+                stopLoading("registerButton1", true);
                 showToastMessageE('Error signing you up. Please try again');
             }
+            stopLoading("registerButton1");
 
             return;
         }
 
         const responseData = await response.json();
-        stopLoading("registerButton1"); // ✅ Always stop loading
+        stopLoading("registerButton1");
         showToastMessageS('Please verify your email address');
         toggleOTP();
-        //  Send email verification email
-} finally {
-
+    } finally {
+        stopLoading("registerButton1");
     }
 }
 
@@ -652,13 +534,9 @@ async function resendOtpEmail(email) {
 
     const requestOptions = {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify({
-            Email: email,
-        })
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify({ Email: email })
     };
 
     try {
@@ -668,10 +546,8 @@ async function resendOtpEmail(email) {
             const errorData = await response.json();
 
             if (errorData.error === 'user not found in the db') {
-                //  send user email verification notification
                 showToastMessageE('User not found');
             } else if (errorData.error === 'email verification failed') {
-                // need to do a data of just null event 
                 showToastMessageE('Email verification failed');
             } else {
                 showToastMessageE('Error signing you up. Please try again');
@@ -682,7 +558,7 @@ async function resendOtpEmail(email) {
 
         const responseData = await response.json();
         showToastMessageS(responseData.success);
-} finally {
+    } finally {
 
     }
 }
@@ -692,14 +568,9 @@ async function verifyEshop(Email, SentOTP) {
 
     const requestOptions = {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include', // set credentials to include cookies
-        body: JSON.stringify({
-            Email: Email,
-            SentOTP: SentOTP,
-        })
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify({ Email: Email, SentOTP: SentOTP })
     };
 
     try {
@@ -709,18 +580,13 @@ async function verifyEshop(Email, SentOTP) {
             const errorData = await response.json();
 
             if (errorData.error === 'email limit check exceeded') {
-                // need to do a data of just null event 
                 showToastMessageE('email limit check exceeded check email for new OTP');
-                //  send user email verification notification
                 resendOtpEmail(Email);
             } else if (errorData.error === 'error getting otp by email for limit check') {
-                // need to do a data of just null event 
                 showToastMessageE('error verifying otp email');
             } else if (errorData.error === 'Wrong OTP') {
-                // need to do a data of just null event 
                 showToastMessageE('wrong OTP code');
-            }  else if (errorData.error === 'Verification Code Expired') {
-                // need to do a data of just null event 
+            } else if (errorData.error === 'Verification Code Expired') {
                 showToastMessageE('Verification code expired');
             } else {
                 showToastMessageE('Error verifying OTP. Please try again');
@@ -731,37 +597,32 @@ async function verifyEshop(Email, SentOTP) {
 
         const responseData = await response.json();
         showToastMessageS('Successfully registered');
-        // Check if `redirectTo` exists in the URL
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTo = urlParams.get('redirectTo');
         localStorage.setItem('auth', 'true');
 
-        // Redirect to `redirectTo` if it exists, else go to a default page
         if (redirectTo) {
             window.location.href = redirectTo;
         } else {
-            window.location.href = 'https://payuee.com/e-shop/home'; // Replace with your default page
+            window.location.href = 'https://payuee.com/e-shop/home';
         }
-} finally {
+    } finally {
 
     }
 }
 
 function toggleOTP() {
-    // Get the OTP div and other form divs by their IDs
-    const otpDiv = document.getElementById('otpDiv');
-    const nameDiv = document.getElementById('nameDiv');
-    const emailDiv = document.getElementById('emailDiv');
-    const phoneDiv = document.getElementById('phoneDiv');
-    const stateDiv = document.getElementById('stateDiv');
-    const cityDiv = document.getElementById('cityDiv');
-    const passwordDiv = document.getElementById('passwordDiv');
-    const registerButton1 = document.getElementById('registerButton1');
-    const verifyButton1 = document.getElementById('verifyButton1');
+    const otpDiv = byId('otpDiv');
+    const nameDiv = byId('nameDiv');
+    const emailDiv = byId('emailDiv');
+    const phoneDiv = byId('phoneDiv');
+    const stateDiv = byId('stateDiv');
+    const cityDiv = byId('cityDiv');
+    const passwordDiv = byId('passwordDiv');
+    const registerButton1 = byId('registerButton1');
+    const verifyButton1 = byId('verifyButton1');
 
-    // Check if OTP div has the d-none class
     if (otpDiv.classList.contains('d-none')) {
-        // Show OTP div and hide others
         otpDiv.classList.remove('d-none');
         verifyButton1.classList.remove('d-none');
         registerButton1.classList.add('d-none');
@@ -772,7 +633,6 @@ function toggleOTP() {
         cityDiv.classList.add('d-none');
         passwordDiv.classList.add('d-none');
     } else {
-        // Hide OTP div and show all other fields
         otpDiv.classList.add('d-none');
         verifyButton1.classList.add('d-none');
         nameDiv.classList.remove('d-none');
