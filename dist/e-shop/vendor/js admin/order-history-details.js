@@ -77,6 +77,106 @@ async function getProducts(OrderId) {
     }
 }
 
+function getCancellationStatus(product) {
+    const orderCreatedAt = new Date(product.CreatedAt);
+    const expectedDeliveryAt = new Date(product.delivery_time);
+
+    // TERMINAL STATES
+    if (product.order_status === "failed" || product.order_status === "payment_failed") {
+        return {
+            status: "failed",
+            percentage: 0,
+            text: "Stop: Resolve Issue",
+            color: "gray",
+            bg: "#f0f0f0",
+            terminal: true
+        };
+    }
+
+    if (product.order_status === "cancelled") {
+        return {
+            status: "cancelled",
+            percentage: 0,
+            text: "Stopped: Cancelled",
+            color: "#6c757d",
+            bg: "#e9ecef",
+            terminal: true
+        };
+    }
+
+    if (product.order_status === "shipped") {
+        return {
+            status: "delivered",
+            percentage: 100,
+            text: "Delivered (100%)",
+            color: "green",
+            bg: "#e6f9ec",
+            terminal: true
+        };
+    }
+
+    if (isNaN(orderCreatedAt) || isNaN(expectedDeliveryAt)) {
+        return {
+            status: "unknown",
+            percentage: 0,
+            text: "Invalid Data",
+            color: "gray",
+            bg: "#eee"
+        };
+    }
+
+    const totalTime = expectedDeliveryAt - orderCreatedAt;
+    const elapsedTime = new Date() - orderCreatedAt;
+
+    const percentage = Math.min((elapsedTime / totalTime) * 100, 100);
+    const percentText = percentage.toFixed(1);
+
+    let status = "";
+    let text = "";
+    let color = "";
+    let bg = "";
+
+    if (percentage <= 30) {
+        status = "cancelable";
+        color = "red";
+        bg = "#fdeaea";
+        text = `Hold: Cancel Window (${percentText}%)`;
+    } 
+    else if (percentage <= 50) {
+        status = "shipping_start";
+        color = "orange";
+        bg = "#fff3e0";
+        text = `Start Shipping (${percentText}%)`;
+    } 
+    else if (percentage <= 75) {
+        status = "in_transit";
+        color = "orange";
+        bg = "#fff3e0";
+        text = `In Transit (${percentText}%)`;
+    } 
+    else if (percentage < 100) {
+        status = "almost_delivered";
+        color = "#ff6a00";
+        bg = "#ffe6d5";
+        text = `Final Delivery (${percentText}%)`;
+    } 
+    else {
+        status = "delivered";
+        color = "green";
+        bg = "#e6f9ec";
+        text = `Confirm Delivery (${percentText}%)`;
+    }
+
+    return {
+        status,
+        percentage: percentText,
+        text,
+        color,
+        bg,
+        terminal: false
+    };
+}
+
 function RenderProductDetails(responseData) {
         // Clear specific elements by class name before updating
         clearElementsByClass("loading-class-remover");
