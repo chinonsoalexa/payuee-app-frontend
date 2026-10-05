@@ -308,6 +308,17 @@ function RenderProductDetails(responseData) {
                 }
             });
         });
+
+        document.getElementById("map-container").innerHTML = `
+        <iframe
+            width="100%"
+            height="450"
+            style="border:0; border-radius:12px;"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps?q=${responseData.success.latitude},${responseData.success.longitude}&z=16&output=embed">
+        </iframe>
+    `;
 }
 
 function shippingPopupAssignment(orderID) {
