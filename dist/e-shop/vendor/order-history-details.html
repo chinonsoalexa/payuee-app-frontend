@@ -3058,28 +3058,55 @@
 
     <!-- Popup Modal -->
     <div id="vendorAccessPopup" class="popup-overlay hidden">
-      <div class="popup-content">
-        <h3>Grant Vendor Access for Shipping</h3>
-        <input 
-          id="vendorSearchBar" 
-          type="text" 
-          placeholder="Search for a vendor..." 
-          class="form-control"
-        />
-        <div id="searchResults" class="search-results"></div>
-        <div class="selected-vendor">
-          <label for="selectedVendorInput">Selected Vendor:</label>
-          <input 
-            id="selectedVendorInput" 
-            type="text" 
-            class="form-control" 
-            readonly 
-            placeholder="No vendor selected"
-          />
+        <div class="popup-content">
+
+            <h3>Grant Vendor Access for Shipping</h3>
+
+            <input
+                id="vendorSearchBar"
+                type="text"
+                placeholder="Search for a vendor..."
+                class="form-control"
+            />
+
+            <div id="searchResults" class="search-results"></div>
+
+            <div class="selected-vendor">
+                <label for="selectedVendorInput">Selected Vendor:</label>
+
+                <input
+                    id="selectedVendorInput"
+                    type="text"
+                    class="form-control"
+                    readonly
+                    placeholder="No vendor selected"
+                />
+
+                <!-- Stores the actual selected vendor ID -->
+                <input
+                    id="selectedVendorId"
+                    type="hidden"
+                    value=""
+                />
+            </div>
+
+            <button
+                id="addVendorButton"
+                class="btn btn-primary"
+                type="button"
+            >
+                Add Vendor
+            </button>
+
+            <button
+                id="closePopupButton"
+                class="btn btn-secondary"
+                type="button"
+            >
+                Close
+            </button>
+
         </div>
-        <button id="addVendorButton" class="btn btn-primary">Add Vendor</button>
-        <button id="closePopupButton" class="btn btn-secondary">Close</button>
-      </div>
     </div>
 
 

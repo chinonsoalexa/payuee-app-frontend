@@ -322,100 +322,208 @@ function RenderProductDetails(responseData) {
 }
 
 function shippingPopupAssignment(orderID) {
+
     const popup = document.getElementById("vendorAccessPopup");
     const searchBar = document.getElementById("vendorSearchBar");
     const searchResults = document.getElementById("searchResults");
     const selectedVendorInput = document.getElementById("selectedVendorInput");
+    const selectedVendorId = document.getElementById("selectedVendorId");
     const addVendorButton = document.getElementById("addVendorButton");
     const closePopupButton = document.getElementById("closePopupButton");
 
-    // Show Popup
-    // function showPopup() {
-      popup.classList.remove("hidden");
-    // }
+    let debounceTimer = null;
 
-    // Close Popup
+    // Show popup
+    popup.classList.remove("hidden");
+
+
+    // Close popup
     function closePopup() {
-      popup.classList.add("hidden");
-      selectedVendorInput.value = "";
-      searchResults.innerHTML = "";
-      searchBar.value = "";
+
+        popup.classList.add("hidden");
+
+        searchBar.value = "";
+        searchResults.innerHTML = "";
+
+        selectedVendorInput.value = "";
+        selectedVendorId.value = "";
+
+        clearTimeout(debounceTimer);
     }
 
-    // Search Vendors
+
+    // Search vendors with debounce
     searchBar.addEventListener("input", function () {
-      const query = searchBar.value.toLowerCase();
-      searchResults.innerHTML = "";
-      if (query) {
-        // search all vendor by email
-        getAvailableVendorsByEail(query);
-      }
+
+        const query = searchBar.value.trim().toLowerCase();
+
+        // Cancel previous timer
+        clearTimeout(debounceTimer);
+
+        // Clear previous search results
+        searchResults.innerHTML = "";
+
+        // Reset selection
+        selectedVendorInput.value = "";
+        selectedVendorId.value = "";
+
+        // Don't search if empty
+        if (!query) {
+            return;
+        }
+
+        // Wait 500ms after user stops typing
+        debounceTimer = setTimeout(() => {
+
+            getAvailableVendorsByEail(query);
+
+        }, 500);
     });
 
-    addVendorButton.addEventListener("click", function () {
-        const selectedVendor = selectedVendorInput.value;
-        const retrievedVendorDiv = document.querySelector("[data-id]"); // Replace with specific selector if needed
-      
-        if (retrievedVendorDiv) {
-          const vendorId = retrievedVendorDiv.dataset.id;
-      
-          if (selectedVendor) {
-            updateShippersOrderStatus(orderID, vendorId);
-            closePopup();
-          } else {
-            alert("Please select a vendor before adding.");
-          }
-        } else {
-          alert("Vendor selection is missing or invalid. Please try again.");
-        }
-      });
-      
 
-    // Close Popup Button
+    // Add selected vendor
+    addVendorButton.addEventListener("click", function () {
+
+        const vendorId = selectedVendorId.value;
+
+        if (!vendorId) {
+
+            alert("Please select a vendor before adding.");
+
+            return;
+        }
+
+        updateShippersOrderStatus(orderID, vendorId);
+
+        closePopup();
+    });
+
+
+    // Close button
     closePopupButton.addEventListener("click", closePopup);
 }
 
 async function getAvailableVendorsByEail(query) {
-    // Endpoint URL
-    const apiUrl = "https://api.payuee.com/search-vendors/" + query;
+
+    const apiUrl =
+        "https://api.payuee.com/search-vendors/" +
+        encodeURIComponent(query);
 
     const requestOptions = {
         method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: 'include',  // Include cookies with the request
-    };
-    
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-        
-        if (!response.ok) {
-            const data = await response.json();
-            // showToastMessageE(`response: ${data}`);
-            return;
-        }else {
-            const searchResults = document.getElementById("searchResults");
-            const selectedVendorInput = document.getElementById("selectedVendorInput");
 
-            // Process the response data
-            const data = await response.json();
-            searchResults.innerHTML = "";
-            data.success.forEach(vendor => {
-                const vendorDiv = document.createElement("div");
-                vendorDiv.textContent = vendor.shop_email;
-                vendorDiv.dataset.id = vendor.user_id;
-                vendorDiv.addEventListener("click", function () {
-                    // shippingResponse
-                  selectedVendorInput.value = vendor.shop_email;
-                  searchResults.innerHTML = "";
-                });
-                searchResults.appendChild(vendorDiv);
-            });
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        credentials: "include"
+    };
+
+    try {
+
+        const response = await fetch(apiUrl, requestOptions);
+
+        if (!response.ok) {
+
+            let data = {};
+
+            try {
+                data = await response.json();
+            } catch (error) {
+                // Response wasn't JSON
+            }
+
+            console.error(
+                "Vendor search failed:",
+                response.status,
+                data
+            );
+
+            return;
         }
 
+
+        const searchResults =
+            document.getElementById("searchResults");
+
+        const selectedVendorInput =
+            document.getElementById("selectedVendorInput");
+
+        const selectedVendorId =
+            document.getElementById("selectedVendorId");
+
+
+        const data = await response.json();
+
+
+        searchResults.innerHTML = "";
+
+
+        // Make sure success exists and is an array
+        if (
+            !data.success ||
+            !Array.isArray(data.success) ||
+            data.success.length === 0
+        ) {
+
+            searchResults.innerHTML = `
+                <div class="no-vendors-found">
+                    No vendors found.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        data.success.forEach(vendor => {
+
+            const vendorDiv =
+                document.createElement("div");
+
+
+            vendorDiv.classList.add("vendor-result");
+
+
+            // Store vendor ID on the result
+            vendorDiv.dataset.id = vendor.user_id;
+
+
+            // Display vendor email
+            vendorDiv.textContent = vendor.shop_email;
+
+
+            // Select vendor
+            vendorDiv.addEventListener("click", function () {
+
+                // Display selected vendor
+                selectedVendorInput.value =
+                    vendor.shop_email;
+
+
+                // IMPORTANT:
+                // Store the actual vendor user ID
+                selectedVendorId.value =
+                    vendor.user_id;
+
+
+                // Clear search results
+                searchResults.innerHTML = "";
+
+            });
+
+
+            searchResults.appendChild(vendorDiv);
+
+        });
+
     } catch (error) {
-        console.error('Error fetching search details: ', error);
+
+        console.error(
+            "Error fetching vendor search:",
+            error
+        );
+
     }
 }
 
