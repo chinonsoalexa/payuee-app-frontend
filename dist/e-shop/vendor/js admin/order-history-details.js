@@ -71,12 +71,20 @@ async function getProducts(OrderId) {
         const responseData = await response.json();
 
         // updateProductsFromData(responseData.success);
+        RenderProductDetails(responseData);
+} finally {
+
+    }
+}
+
+function RenderProductDetails(responseData) {
         // Clear specific elements by class name before updating
         clearElementsByClass("loading-class-remover");
-        responseData.success.product_orders.forEach((product) => {
-            product.product_review_count = 6500;
+        responseData.success.order_history.product_orders.forEach((product) => {
+            // product.product_review_count = 6500;
             renderProducts(product);
         });
+
         // Update the content of each element by its ID
         document.getElementById("order-id").textContent = responseData.success.ID;
         // Convert to a Date object
@@ -99,28 +107,62 @@ async function getProducts(OrderId) {
         // Convert hours to 12-hour format
         hours = hours % 12 || 12; // Converts 0 (midnight) to 12
 
+        const status = getCancellationStatus(responseData.success.order_history);
+
+        let orderType = "";
+
+        const created = new Date(responseData.success.order_history.CreatedAt);
+        const delivery = new Date(responseData.success.order_history.delivery_time);
+
+        if (!isNaN(created) && !isNaN(delivery)) {
+            const diffTime = delivery - created;
+            let days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            orderType = `${days} Days Delivery`;
+        } else {
+            orderType = "Delivery Pending";
+        }
+
         // Combine into the desired format with AM/PM
         const formattedDate = `Date: ${day}-${month}-${year} Time: ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${period} UTC`;
         document.getElementById("order-date").textContent = formattedDate;
-        document.getElementById("customer-name").textContent = responseData.success.customer_fname + " " + responseData.success.customer_user_sname;
-        document.getElementById("company-name").textContent = responseData.success.customer_company_name;
-        document.getElementById("customer-state").textContent = responseData.success.customer_state;
-        document.getElementById("customer-city").textContent = responseData.success.customer_city;
-        document.getElementById("street-address-1").textContent = responseData.success.customer_street_address_1;
-        document.getElementById("street-address-2").textContent = responseData.success.customer_street_address_2;
-        document.getElementById("postcode").textContent = responseData.success.customer_zip_code;
-        document.getElementById("province").textContent = responseData.success.customer_province;
-        document.getElementById("phone-number").textContent = responseData.success.customer_phone_number;
-        document.getElementById("email-address").textContent = responseData.success.customer_email;
-        document.getElementById("order-note").textContent = responseData.success.order_note;
-        document.getElementById("order-cost").textContent = formatNumberToNaira((responseData.success.order_sub_total_cost + responseData.success.shipping_cost).toFixed(0));
+        document.getElementById("customer-name").textContent = responseData.success.order_history.customer_fname + " " + responseData.success.customer_user_sname;
+        document.getElementById("company-name").textContent = responseData.success.order_history.customer_company_name;
+        document.getElementById("customer-state").textContent = responseData.success.order_history.customer_state;
+        document.getElementById("customer-city").textContent = responseData.success.order_history.customer_city;
+        document.getElementById("street-address-1").textContent = responseData.success.order_history.customer_street_address_1;
+        document.getElementById("street-address-2").textContent = responseData.success.order_history.customer_street_address_2;
+        document.getElementById("postcode").textContent = responseData.success.order_history.customer_zip_code;
+        document.getElementById("province").textContent = responseData.success.order_history.customer_province;
+        document.getElementById("phone-number").textContent = responseData.success.order_history.customer_phone_number;
+        document.getElementById("email-address").textContent = responseData.success.order_history.customer_email;
+        document.getElementById("order-note").textContent = responseData.success.order_history.order_note;
+        document.getElementById("shipping-method").textContent = responseData.success.order_history.shipping_method;
+        document.getElementById("vendor-name").textContent = responseData.success.shop_name;
+        document.getElementById("vendor-address").textContent = responseData.success.shop_address;
+        document.getElementById("vendor-state").textContent = responseData.success.shop_state;
+        document.getElementById("vendor-city").textContent = responseData.success.shop_city;
+        document.getElementById("vendor-phone").textContent = responseData.success.phone_number;
+        document.getElementById("vendor-email").textContent = responseData.success.email;
+        document.getElementById("shipping-cost").textContent = formatNumberToNaira(responseData.success.order_history.shipping_cost);
+        document.getElementById("delivery-days").textContent = orderType;
+        const el = document.getElementById("delivery-status");
+        el.textContent = status.text;
+        // Styling
+        el.style.color = status.color;
+        el.style.backgroundColor = status.bg;
+        el.style.border = `1px solid ${status.color}`;
+        el.style.padding = "4px 10px";
+        el.style.borderRadius = "20px";
+        el.style.fontSize = "12px";
+        el.style.fontWeight = "600";
+        el.style.display = "inline-block";
+        document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_history.order_cost);
         if (!responseData.success.qr_code_image) {
             document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
             document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
-            document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.qr_code_image;
-
-            QRCodeName = `order-${responseData.success.ID}-QRCode`;
+            document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.order_history.qr_code_image;
         }
 
         let orderStatusId = document.getElementById('orderStatusId');
@@ -144,8 +186,11 @@ async function getProducts(OrderId) {
                 `;
                 break;
             default:
-                content = `
-                    <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform" href="#">Cancel</a></td>
+                // content = `
+                //     <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform" href="#">Cancel</a></td>
+                //     <td><a class="btn btn-success cart-btn-transform" href="#">Assign Shipping</a></td>
+                // `;
+                 content = `
                     <td><a class="btn btn-success cart-btn-transform" href="#">Assign Shipping</a></td>
                 `;
                 break;
@@ -163,18 +208,15 @@ async function getProducts(OrderId) {
                 if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Assign Shipping' button
                     // updateOrderStatus(responseData.success.ID, 'shipped');
-                    shippingPopupAssignment(responseData.success.ID);
+                    shippingPopupAssignment(responseData.success.order_history.ID);
                     // showPopup();
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
-                    updateOrderStatus(responseData.success.ID, 'cancelled');
+                    // updateOrderStatus(responseData.success.order_history.ID, 'cancelled');
                 }
             });
         });
-} finally {
-
-    }
 }
 
 function shippingPopupAssignment(orderID) {
