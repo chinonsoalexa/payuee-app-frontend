@@ -304,7 +304,7 @@ function RenderProductDetails(responseData) {
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
-                    // updateOrderStatus(responseData.success.ID, 'cancelled');
+                    updateOrderStatus(responseData.success.ID, 'cancelled');
                 }
             });
         });
@@ -567,7 +567,7 @@ async function updateOrderStatus(orderID, orderStatus) {
         const responseData = await response.json();
         let container = document.getElementById('order-grid');
         container.innerHTML = '';
-        await getProducts(orderID);
+        RenderProductDetails(responseData);
 } finally {
 
     }
