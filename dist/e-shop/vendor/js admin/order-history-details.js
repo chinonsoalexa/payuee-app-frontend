@@ -280,11 +280,8 @@ function RenderProductDetails(responseData) {
                 `;
                 break;
             default:
-                // content = `
-                //     <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform" href="#">Cancel</a></td>
-                //     <td><a class="btn btn-success cart-btn-transform" href="#">Assign Shipping</a></td>
-                // `;
-                 content = `
+                content = `
+                    <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform" href="#">Cancel</a></td>
                     <td><a class="btn btn-success cart-btn-transform" href="#">Assign Shipping</a></td>
                 `;
                 break;
