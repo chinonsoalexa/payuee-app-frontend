@@ -238,12 +238,6 @@ function RenderProductDetails(responseData) {
         document.getElementById("email-address").textContent = responseData.success.customer_email;
         document.getElementById("order-note").textContent = responseData.success.order_note;
         document.getElementById("shipping-method").textContent = responseData.success.shipping_method;
-        document.getElementById("vendor-name").textContent = responseData.success.shop_name;
-        document.getElementById("vendor-address").textContent = responseData.success.shop_address;
-        document.getElementById("vendor-state").textContent = responseData.success.shop_state;
-        document.getElementById("vendor-city").textContent = responseData.success.shop_city;
-        document.getElementById("vendor-phone").textContent = responseData.success.phone_number;
-        document.getElementById("vendor-email").textContent = responseData.success.email;
         document.getElementById("shipping-cost").textContent = formatNumberToNaira(responseData.success.shipping_cost);
         document.getElementById("delivery-days").textContent = orderType;
         const el = document.getElementById("delivery-status");
