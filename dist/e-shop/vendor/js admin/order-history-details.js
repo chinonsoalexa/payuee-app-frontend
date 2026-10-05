@@ -1,6 +1,8 @@
 // Initialize loader array with 8 elements (e.g., with null values)
 const loader = Array.from({ length: 4 }, (_, i) => i);
 
+var QRCodeName = '';
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Call the loading function to render the skeleton loaders
     loading();
@@ -111,12 +113,14 @@ async function getProducts(OrderId) {
         document.getElementById("phone-number").textContent = responseData.success.customer_phone_number;
         document.getElementById("email-address").textContent = responseData.success.customer_email;
         document.getElementById("order-note").textContent = responseData.success.order_note;
-        document.getElementById("order-cost").textContent = `₦${(responseData.success.order_sub_total_cost + responseData.success.shipping_cost).toFixed(0)}`;
+        document.getElementById("order-cost").textContent = formatNumberToNaira((responseData.success.order_sub_total_cost + responseData.success.shipping_cost).toFixed(0));
         if (!responseData.success.qr_code_image) {
             document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
             document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
             document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.qr_code_image;
+
+            QRCodeName = `order-${responseData.success.ID}-QRCode`;
         }
 
         let orderStatusId = document.getElementById('orderStatusId');
@@ -325,13 +329,28 @@ async function updateShippersOrderStatus(orderID, vendorID) {
 }
 
 // Add download functionality to the button
-document.getElementById('download-qr-code').addEventListener('click', function() {
-    const qrCodeUrl = document.getElementById('qr-code-image').src;
+document.getElementById('download-qr-code').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const qrCodeImage = document.getElementById('qr-code-image');
+    const qrCodeUrl = qrCodeImage.src;
+
+    if (!qrCodeUrl || qrCodeUrl === '#' || qrCodeUrl === window.location.href) {
+        console.error('QR code image URL is not available.');
+        return;
+    }
+
     const link = document.createElement('a');
+
     link.href = qrCodeUrl;
-    link.download = 'payuee_qr_code.png';
+    link.download = `${QRCodeName || 'payuee-qrcode'}.png`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+
+    document.body.appendChild(link);
     link.click();
-  });
+    link.remove();
+});
 
 function renderProducts(product) {
     const productBody = document.getElementById('order-grid');
@@ -455,6 +474,15 @@ function renderLoading() {
 }
 
 function formatNumberToNaira(number) {
+    return new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(number);
+}
+
+function formatNumberToNairaOld(number) {
     let formattedNumber;
     if (number >= 1_000_000_000) {
         formattedNumber = `₦${(number / 1_000_000_000).toFixed(1).replace('.0', '')}B`;
@@ -465,7 +493,7 @@ function formatNumberToNaira(number) {
     } else {
         formattedNumber = `₦${number.toFixed(0)}`;
     }
-    return formattedNumber;
+    return formattedNumber; 
 }
 
 function logout() {
