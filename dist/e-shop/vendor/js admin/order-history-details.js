@@ -80,7 +80,7 @@ async function getProducts(OrderId) {
 function RenderProductDetails(responseData) {
         // Clear specific elements by class name before updating
         clearElementsByClass("loading-class-remover");
-        responseData.success.order_history.product_orders.forEach((product) => {
+        responseData.success.product_orders.forEach((product) => {
             // product.product_review_count = 6500;
             renderProducts(product);
         });
@@ -111,8 +111,8 @@ function RenderProductDetails(responseData) {
 
         let orderType = "";
 
-        const created = new Date(responseData.success.order_history.CreatedAt);
-        const delivery = new Date(responseData.success.order_history.delivery_time);
+        const created = new Date(responseData.success.CreatedAt);
+        const delivery = new Date(responseData.success.delivery_time);
 
         if (!isNaN(created) && !isNaN(delivery)) {
             const diffTime = delivery - created;
@@ -126,25 +126,25 @@ function RenderProductDetails(responseData) {
         // Combine into the desired format with AM/PM
         const formattedDate = `Date: ${day}-${month}-${year} Time: ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${period} UTC`;
         document.getElementById("order-date").textContent = formattedDate;
-        document.getElementById("customer-name").textContent = responseData.success.order_history.customer_fname + " " + responseData.success.customer_user_sname;
-        document.getElementById("company-name").textContent = responseData.success.order_history.customer_company_name;
-        document.getElementById("customer-state").textContent = responseData.success.order_history.customer_state;
-        document.getElementById("customer-city").textContent = responseData.success.order_history.customer_city;
-        document.getElementById("street-address-1").textContent = responseData.success.order_history.customer_street_address_1;
-        document.getElementById("street-address-2").textContent = responseData.success.order_history.customer_street_address_2;
-        document.getElementById("postcode").textContent = responseData.success.order_history.customer_zip_code;
-        document.getElementById("province").textContent = responseData.success.order_history.customer_province;
-        document.getElementById("phone-number").textContent = responseData.success.order_history.customer_phone_number;
-        document.getElementById("email-address").textContent = responseData.success.order_history.customer_email;
-        document.getElementById("order-note").textContent = responseData.success.order_history.order_note;
-        document.getElementById("shipping-method").textContent = responseData.success.order_history.shipping_method;
+        document.getElementById("customer-name").textContent = responseData.success.customer_fname + " " + responseData.success.customer_user_sname;
+        document.getElementById("company-name").textContent = responseData.success.customer_company_name;
+        document.getElementById("customer-state").textContent = responseData.success.customer_state;
+        document.getElementById("customer-city").textContent = responseData.success.customer_city;
+        document.getElementById("street-address-1").textContent = responseData.success.customer_street_address_1;
+        document.getElementById("street-address-2").textContent = responseData.success.customer_street_address_2;
+        document.getElementById("postcode").textContent = responseData.success.customer_zip_code;
+        document.getElementById("province").textContent = responseData.success.customer_province;
+        document.getElementById("phone-number").textContent = responseData.success.customer_phone_number;
+        document.getElementById("email-address").textContent = responseData.success.customer_email;
+        document.getElementById("order-note").textContent = responseData.success.order_note;
+        document.getElementById("shipping-method").textContent = responseData.success.shipping_method;
         document.getElementById("vendor-name").textContent = responseData.success.shop_name;
         document.getElementById("vendor-address").textContent = responseData.success.shop_address;
         document.getElementById("vendor-state").textContent = responseData.success.shop_state;
         document.getElementById("vendor-city").textContent = responseData.success.shop_city;
         document.getElementById("vendor-phone").textContent = responseData.success.phone_number;
         document.getElementById("vendor-email").textContent = responseData.success.email;
-        document.getElementById("shipping-cost").textContent = formatNumberToNaira(responseData.success.order_history.shipping_cost);
+        document.getElementById("shipping-cost").textContent = formatNumberToNaira(responseData.success.shipping_cost);
         document.getElementById("delivery-days").textContent = orderType;
         const el = document.getElementById("delivery-status");
         el.textContent = status.text;
@@ -157,12 +157,12 @@ function RenderProductDetails(responseData) {
         el.style.fontSize = "12px";
         el.style.fontWeight = "600";
         el.style.display = "inline-block";
-        document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_history.order_cost);
+        document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_cost);
         if (!responseData.success.qr_code_image) {
             document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
             document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
-            document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.order_history.qr_code_image;
+            document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.qr_code_image;
         }
 
         let orderStatusId = document.getElementById('orderStatusId');
@@ -208,12 +208,12 @@ function RenderProductDetails(responseData) {
                 if (this.textContent === "Assign Shipping") {
                     // Perform the action for 'Assign Shipping' button
                     // updateOrderStatus(responseData.success.ID, 'shipped');
-                    shippingPopupAssignment(responseData.success.order_history.ID);
+                    shippingPopupAssignment(responseData.success.ID);
                     // showPopup();
                     console.log("testing shipping assignment");
                 } else if (this.textContent === "Cancel") {
                     // Perform the action for 'Cancel' button
-                    // updateOrderStatus(responseData.success.order_history.ID, 'cancelled');
+                    // updateOrderStatus(responseData.success.ID, 'cancelled');
                 }
             });
         });
