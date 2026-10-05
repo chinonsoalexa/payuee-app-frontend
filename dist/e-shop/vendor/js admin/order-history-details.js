@@ -111,12 +111,12 @@ async function getProducts(OrderId) {
         document.getElementById("phone-number").textContent = responseData.success.customer_phone_number;
         document.getElementById("email-address").textContent = responseData.success.customer_email;
         document.getElementById("order-note").textContent = responseData.success.order_note;
-        document.getElementById("order-cost").textContent = formatNumberToNaira(responseData.success.order_cost);
+        document.getElementById("order-cost").textContent = `₦${(responseData.success.order_sub_total_cost + responseData.success.shipping_cost).toFixed(0)}`;
         if (!responseData.success.qr_code_image) {
             document.getElementById('qrCodeSection').style.display = 'none'; // Hides the <tr> element
         } else {
             document.getElementById('qrCodeSection').style.display = 'block'; // Hides the <tr> element
-            document.getElementById('qr-code-image').src = "https://app.payuee.com/image/" +responseData.success.qr_code_image;
+            document.getElementById('qr-code-image').src = "https://img.payuee.com/" +responseData.success.qr_code_image;
         }
 
         let orderStatusId = document.getElementById('orderStatusId');
@@ -355,9 +355,9 @@ function renderProducts(product) {
     }
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="img-fluid img-40" src="${"https://app.payuee.com/image/"+product.first_image_url}" alt="${product.title}"></td>
+        <td><img class="img-fluid img-40" src="${"https://img.payuee.com/"+product.first_image_url}" alt="${product.title}"></td>
         <td>
-        <div class="product-name"><a href="https://app.payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
+        <div class="product-name"><a href="https://payuee.com/shop/${product.product_url_id}">${product.title}</a></div>
         </td>
         <td>${formatNumberToNaira(price)}</td>
         <td>
@@ -365,7 +365,7 @@ function renderProducts(product) {
         </td>
         <td>${product.net_weight}g</td>
         ${size}
-        <td>${formatNumberToNaira(price * product.quantity)}</td>
+        <td>${formatNumberToNaira(price)}</td>
     `;
     // Append the new element to the container
     productBody.appendChild(rowElement);
@@ -438,7 +438,7 @@ function renderLoading() {
 
     // Create the HTML string with dynamic data using template literals
     rowElement.innerHTML = `
-        <td><img class="skeleton loading-cursor img-fluid img-40" src="images/logo/logo.png" alt="Payuee e-Shop"></td>
+        <td><img class="skeleton loading-cursor img-fluid img-40" src="images/logo/logo-1.svg" alt="Payuee e-Shop"></td>
         <td>
         <div class="skeleton loading-cursor product-name"><a href="#">Loading...</a></div>
         </td>
